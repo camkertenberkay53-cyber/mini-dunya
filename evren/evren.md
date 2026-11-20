@@ -19,4 +19,16 @@ Ton: macera + merak + doğal komedi. Çocuk güvenli ama bebeksi değil (7–45 
 - Gizem ipi: haritanın kenarında "İlk Haritacı" imzalı, evin dışına giden eski bir yol.
 
 ## Karakterler
-(Proje dosyasındaki karakter bölümü tamamlanınca buraya işlenecek.)
+- **Tuna** (öncü): uzun ince, uzun turkuaz atkı, alnında pilot gözlüğü, turuncu ceket. Cesur, aceleci, lider olmaya hevesli. Makaradan kancalı ip atıcısı. Korkusu: geride kalmak. Komedi: kendinden emin planları hep beklenmedik sonuçlanır.
+- **Nil** (haritacı): kısa, dik duruşlu, yuvarlak büyük gözlük, sırtında rulo harita, lacivert yelek. Analitik, dikkatli, her şeyi ölçer. Korkusu: plansız kalmak. Komedi: kaosun ortasında kuru tek cümlelik yorumlar, ölçüm alır.
+- **Bulut** (mucit): iri, yuvarlak, şişe kapağı miğfer, aletli önlük. Sakin, içten, biraz sakar; Devlerin eşyalarından araç yapar. Korkusu: yükseklik. Komedi: sakarca girişimleri beklenmedik derecede başarılı olur.
+- **Pire** (çaylak): en küçük, kocaman kırmızı bere, minik çanta, hep koşar. Durmadan soru sorar, risk alır. Korkusu: yalnız kalmak. Komedi: masum soruları en kritik anda gerçeği söyler.
+- **Benek**: uğur böceği binek ve dost; konuşmaz, tepkileriyle komedi.
+- Yan: **Mürekkep Usta** (yaşlı Lonca Başkanı, çok şey saklar), **Ela** (Devlerin küçük kızı; yüzü görünmez), **Paşa** (ev kedisi, dağ gibi).
+
+## Bölüm kuralları
+- Her bölüm tek başına anlaşılır: ilk görüntü/replik durumu anlatır. Ama sezonun yolculuğunu bir adım ilerletir.
+- Shorts: 0-2 sn görsel hook, problem, büyüyen macera, sonuç + ters köşe. Son kare: yeni bölge haritaya işlenir.
+- Komedi doğal: karakter farkları, ölçek farkı, başarısız planlar, görsel ters köşe. Bağırma, zoraki şaka yok.
+- Tehlike heyecanlı ama korkutucu değil; kan, şiddet, korku yok.
+- Kategoriler dönüşümlü: yeni bölge, Devlerin günü, kurtarma, yarış, problem çözme, gizem, yeni canlı, doğal güç, mucit anı, başarısız plan, ters köşe, teknolojik keşif, Ela anı, kişisel macera, lonca hayatı, eski izler.

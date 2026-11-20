@@ -1,0 +1,120 @@
+ad: 'Sezon 1: Mutfak Kıtası'
+ana_hikaye: Devler mutfağı tadilata alıyor. Lonca, mutfak değişmeden önce haritasını
+  çıkarmak için dört haritacıyı gönderir. 14 gün sonra mutfak değişecek; keşfedilmeyen
+  her yer kaybolacak.
+gunler:
+- gun: 1
+  bolge: Süpürgelik çıkışı
+  sabah: '[Süpürgelik çıkışı] Ana yolculuk, günün başlangıcı: Görev verilir; ilk adım
+    ve ilk tehlike: süpürge.'
+  oglen: '[Süpürgelik çıkışı] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Süpürgelik çıkışı] Ana yolculuk, günün sonucu ve yeni merak: Görev verilir;
+    ilk adım ve ilk tehlike: süpürge.'
+  gece: '[Süpürgelik çıkışı] Karakter odaklı komik yan macera.'
+- gun: 2
+  bolge: Tezgah Ovası
+  sabah: '[Tezgah Ovası] Ana yolculuk, günün başlangıcı: Ekmek kırıntısı çölü, şeker
+    küpü kayaları.'
+  oglen: '[Tezgah Ovası] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Tezgah Ovası] Ana yolculuk, günün sonucu ve yeni merak: Ekmek kırıntısı
+    çölü, şeker küpü kayaları.'
+  gece: '[Tezgah Ovası] Karakter odaklı komik yan macera.'
+- gun: 3
+  bolge: Lavabo Gölü
+  sabah: '[Lavabo Gölü] Ana yolculuk, günün başlangıcı: Damlayan musluk; Bulut''un
+    salı.'
+  oglen: '[Lavabo Gölü] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Lavabo Gölü] Ana yolculuk, günün sonucu ve yeni merak: Damlayan musluk;
+    Bulut''un salı.'
+  gece: '[Lavabo Gölü] Karakter odaklı komik yan macera.'
+- gun: 4
+  bolge: Baharat Raflı Dağları
+  sabah: '[Baharat Raflı Dağları] Ana yolculuk, günün başlangıcı: Biber tozu fırtınası,
+    Pire hapşırır.'
+  oglen: '[Baharat Raflı Dağları] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Baharat Raflı Dağları] Ana yolculuk, günün sonucu ve yeni merak: Biber
+    tozu fırtınası, Pire hapşırır.'
+  gece: '[Baharat Raflı Dağları] Karakter odaklı komik yan macera.'
+- gun: 5
+  bolge: Buzdolabı Kutbu
+  sabah: '[Buzdolabı Kutbu] Ana yolculuk, günün başlangıcı: Kapı açıkken içeri girip
+    mahsur kalırlar.'
+  oglen: '[Buzdolabı Kutbu] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Buzdolabı Kutbu] Ana yolculuk, günün sonucu ve yeni merak: Kapı açıkken
+    içeri girip mahsur kalırlar.'
+  gece: '[Buzdolabı Kutbu] Karakter odaklı komik yan macera.'
+- gun: 6
+  bolge: Buzdolabı Kutbu (2)
+  sabah: '[Buzdolabı Kutbu (2)] Ana yolculuk, günün başlangıcı: Işık söndüğünde kaçış;
+    Nil''in ilk büyük hatası.'
+  oglen: '[Buzdolabı Kutbu (2)] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Buzdolabı Kutbu (2)] Ana yolculuk, günün sonucu ve yeni merak: Işık söndüğünde
+    kaçış; Nil''in ilk büyük hatası.'
+  gece: '[Buzdolabı Kutbu (2)] Karakter odaklı komik yan macera.'
+- gun: 7
+  bolge: Karınca Yolu
+  sabah: '[Karınca Yolu] Ana yolculuk, günün başlangıcı: Karınca kervanıyla pazarlık.'
+  oglen: '[Karınca Yolu] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Karınca Yolu] Ana yolculuk, günün sonucu ve yeni merak: Karınca kervanıyla
+    pazarlık.'
+  gece: '[Karınca Yolu] Karakter odaklı komik yan macera.'
+- gun: 8
+  bolge: Fırın Vadisi
+  sabah: '[Fırın Vadisi] Ana yolculuk, günün başlangıcı: Sıcak hava akımıyla uçmak.'
+  oglen: '[Fırın Vadisi] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Fırın Vadisi] Ana yolculuk, günün sonucu ve yeni merak: Sıcak hava akımıyla
+    uçmak.'
+  gece: '[Fırın Vadisi] Karakter odaklı komik yan macera.'
+- gun: 9
+  bolge: Çekmece Mağaraları
+  sabah: '[Çekmece Mağaraları] Ana yolculuk, günün başlangıcı: Çatal-bıçak ormanı,
+    kayıp Benek.'
+  oglen: '[Çekmece Mağaraları] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Çekmece Mağaraları] Ana yolculuk, günün sonucu ve yeni merak: Çatal-bıçak
+    ormanı, kayıp Benek.'
+  gece: '[Çekmece Mağaraları] Karakter odaklı komik yan macera.'
+- gun: 10
+  bolge: Kedi Mama Kabı
+  sabah: '[Kedi Mama Kabı] Ana yolculuk, günün başlangıcı: Ev kedisi Paşa ile ilk
+    karşılaşma.'
+  oglen: '[Kedi Mama Kabı] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Kedi Mama Kabı] Ana yolculuk, günün sonucu ve yeni merak: Ev kedisi Paşa
+    ile ilk karşılaşma.'
+  gece: '[Kedi Mama Kabı] Karakter odaklı komik yan macera.'
+- gun: 11
+  bolge: Ela'nın sandalyesi
+  sabah: '[Ela''nın sandalyesi] Ana yolculuk, günün başlangıcı: Ela neredeyse görüyor;
+    donup kalma oyunu.'
+  oglen: '[Ela''nın sandalyesi] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Ela''nın sandalyesi] Ana yolculuk, günün sonucu ve yeni merak: Ela neredeyse
+    görüyor; donup kalma oyunu.'
+  gece: '[Ela''nın sandalyesi] Karakter odaklı komik yan macera.'
+- gun: 12
+  bolge: Tadilat başlıyor
+  sabah: '[Tadilat başlıyor] Ana yolculuk, günün başlangıcı: Devler eşyaları kutulara
+    koyuyor; harita yarışı.'
+  oglen: '[Tadilat başlıyor] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Tadilat başlıyor] Ana yolculuk, günün sonucu ve yeni merak: Devler eşyaları
+    kutulara koyuyor; harita yarışı.'
+  gece: '[Tadilat başlıyor] Karakter odaklı komik yan macera.'
+- gun: 13
+  bolge: Kutu Şehri
+  sabah: '[Kutu Şehri] Ana yolculuk, günün başlangıcı: Kolilerin içinde kayıp; İlk
+    Haritacı''nın izi bulunur.'
+  oglen: '[Kutu Şehri] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Kutu Şehri] Ana yolculuk, günün sonucu ve yeni merak: Kolilerin içinde
+    kayıp; İlk Haritacı''nın izi bulunur.'
+  gece: '[Kutu Şehri] Karakter odaklı komik yan macera.'
+- gun: 14
+  bolge: Final
+  sabah: '[Final] Ana yolculuk, günün başlangıcı: Mutfak haritası tamamlanır, gizemli
+    işaret evin dışını gösterir.'
+  oglen: '[Final] Aynı bölgede bağımsız yan macera (kategori bot seçer).'
+  aksam: '[Final] Ana yolculuk, günün sonucu ve yeni merak: Mutfak haritası tamamlanır,
+    gizemli işaret evin dışını gösterir.'
+  gece: '[Final] Karakter odaklı komik yan macera.'
+uzun:
+  hafta1_pazar: 'Buzdolabından Kaçış: haritacılar buzdolabının içinde mahsur kalır,
+    ışık söner, Benek''in yardımıyla büyük kaçış.'
+  hafta2_pazar: 'Kutu Şehrinin Sırrı: tadilat kolilerinin içinde kaybolurlar, İlk
+    Haritacı''nın gizli işaretini çözerler.'
