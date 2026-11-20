@@ -158,6 +158,14 @@ def build_mix(ep, tl, out_wav):
             x = resample_poly(x, SR, sr).astype(np.float32)
         m.add(m.voice, x, s['start'], 1.15 if s['emotion'] == 'sinirli' else 1.0)
         a = s['action']
+        if a in ('kos_sag', 'kos_sol', 'kac'):
+            m.whoosh(s['start'] - 0.25)
+            if s['who'] in ('tayfun',):
+                m.horn(s['start'] - 0.2)
+            elif s['who'] == 'fikri':
+                m.beep(s['start'] - 0.3)
+        if a == 'carp':
+            m.boom(s['start'], 0.9)
         if a in ('gir_sag', 'gir_sol'):
             kind = ENTER_SFX.get(s['who'])
             if kind == 'truck':
@@ -173,7 +181,7 @@ def build_mix(ep, tl, out_wav):
         if a == 'zipla':
             m.boing(s['start'])
         if a == 'titre':
-            m.rumble(s['start'], s['dur'])
+            m.rumble(s['start'], min(0.8, s['dur']))
         if a == 'cal':
             m.ring(s['start'] - 1.3)
         if s['emotion'] == 'sinirli':

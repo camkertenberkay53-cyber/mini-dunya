@@ -66,3 +66,8 @@ Rıhtım, konteyner sahası, gümrük kapısı, kantar, depo, acente ofisi (masa
 
 ## Sektör olay havuzu
 Demuraj ve ardiye, gümrük müşaviri, eksik evrak, yanlış konteyner, booking iptali, cut-off kaçırılması, liman yoğunluğu, navlun fiyatları, tır şoförünün beklemesi, depoda kayıp yük, müşterinin "yüküm nerede?" araması, operasyoncunun aynı anda 50 işi yönetmesi, ETA değişikliği, aktarma gemisinin kaçırılması, mühür numarası uyuşmazlığı, kantarda fazla tonaj, soğuk zincirde jeneratör arızası, konşimento ve telex release, ordino beklemek, boş konteyner iadesi (depo nereye?), ADR evrakı, sigortasız yük, "aslı gibidir" kaşesi, bayram öncesi liman kapanışı.
+
+## İzleyici ve ton (güncelleme)
+- Hedef kitle: çocuklar dahil genel aile kitlesi. Çizgi film usulü aksiyon + komedi.
+- Her bölümde konuşmanın yanında hareketli bir an: kovalamaca, son saniye yetiştirme, kaçan yük, fren tutmaması, fırtına, kurtarma.
+- Çarpışmalar zararsız ve komik (GÜM! — hemen toparlanırlar). Çocuklar fiziksel komediye, yetişkinler sektör şakasına güler.

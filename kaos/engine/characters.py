@@ -17,7 +17,7 @@ class St:
 def kemal(f, cam, x, y, s):
     t = s.t
     sq = s.sq * (1 + 0.025 * math.sin(t * 3) + s.mo * 0.04)
-    x += s.shake * math.sin(t * 70) * 6
+    x += s.shake * math.sin(t * 38) * 2.5
     w, h = 300, 330 * sq
     ground_shadow(f, cam, x, y, 340)
     y = y + s.dy
@@ -42,7 +42,7 @@ def kemal(f, cam, x, y, s):
 # ---------------------------------------------------------------- TAYFUN (tır)
 def tayfun(f, cam, x, y, s):
     t = s.t
-    x += s.shake * math.sin(t * 70) * 8
+    x += s.shake * math.sin(t * 38) * 3
     ground_shadow(f, cam, x, y, 480)
     y = y + s.dy
     red = (0.85, 0.16, 0.14)
@@ -109,7 +109,7 @@ def erdal(f, cam, x, y, s):
 # ---------------------------------------------------------------- FİKRİ (forklift)
 def fikri(f, cam, x, y, s):
     t = s.t
-    x += s.shake * math.sin(t * 70) * 6
+    x += s.shake * math.sin(t * 38) * 2.5
     ground_shadow(f, cam, x, y, 400)
     y = y + s.dy
     yel = (0.98, 0.76, 0.12)

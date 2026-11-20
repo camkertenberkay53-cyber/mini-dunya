@@ -10,7 +10,7 @@ from . import paths
 
 CHARS = ['kemal', 'tayfun', 'erdal', 'necati', 'fikri', 'vedat', 'telefon']
 EMOTIONS = ['normal', 'panik', 'sinirli', 'bikkin', 'neseli', 'soguk', 'saskin', 'fisilti', 'aglamakli', 'kibirli']
-ACTIONS = ['yok', 'gir_sag', 'gir_sol', 'cik', 'zipla', 'titre', 'kameraya_bak', 'cal']
+ACTIONS = ['yok', 'gir_sag', 'gir_sol', 'kos_sag', 'kos_sol', 'cik', 'kac', 'zipla', 'titre', 'carp', 'kameraya_bak', 'cal']
 LOCATIONS = ['rihtim', 'saha', 'gumruk', 'kantar', 'depo', 'ofis', 'gece']
 
 
@@ -135,12 +135,15 @@ SCHEMA = """{
 RULES_COMMON = f"""
 KARAKTER ANAHTARLARI: kemal (Konteyner Kemal), tayfun (Tır Tayfun), erdal (Evrak Erdal), necati (Gemi Necati), fikri (Forklift Fikri), vedat (Vinç Vedat), telefon (Müşteri hattı: hep 'Yüküm nerede?' diye arayan sabırsız müşteri; sadece sesi var, görünmeyen kişi).
 DUYGULAR (emotion): {', '.join(EMOTIONS)}
-HAREKETLER (action): yok, gir_sag (sağdan sahneye girer), gir_sol (soldan girer), cik (sahneden çıkar), zipla (zıplar), titre (titrer), kameraya_bak (seyirciye döner, final için ideal), cal (sadece telefon: çalarak konuşmaya başlar)
+HAREKETLER (action): yok, gir_sag / gir_sol (sahneye normal girer), kos_sag / kos_sol (sahneye hızla koşarak/kayarak dalar — aksiyon girişi), cik (sahneden çıkar), kac (panikle hızla kaçar), zipla (zıplar), titre (kısa titreme, korku/soğuk), carp (bir şeye çarpar ya da üstüne bir şey düşer: GÜM! efekti), kameraya_bak (seyirciye döner, final için ideal), cal (sadece telefon: çalarak konuşmaya başlar). kos_* ve kac sadece kemal, tayfun, erdal, fikri için.
 MEKÂNLAR: {', '.join(LOCATIONS)} (necati varsa mekân rihtim ya da gece olmalı)
 KURALLAR:
 - Dil Türkçe, günlük ve doğal. Replikler kısa ve vurucu (en fazla 18 kelime). Küfür, argo hakaret, siyaset, din, gerçek firma ya da kişi adı YOK.
 - Sayıları yazıyla yaz ("kırk beş", "45" değil) çünkü seslendirilecek. Kısaltmaları açık yaz ya da okunuşuyla yaz ("e te a" yerine "varış saati").
-- Sahneye sonradan giren karakterin İLK repliğinde action gir_sag ya da gir_sol olsun; baştan sahnede olanlarda 'yok'.
+- Sahneye sonradan giren karakterin İLK repliğinde action gir_sag, gir_sol, kos_sag ya da kos_sol olsun; baştan sahnede olanlarda 'yok'.
+- İZLEYİCİ: Çocuklar dahil genel aile kitlesi. Tamamen aile dostu: korkutucu şiddet, kan, alkol, sigara, kaba laf yok; çarpışmalar çizgi film usulü (kimse gerçekten zarar görmez, hemen toparlanır).
+- AKSİYON + KOMEDİ: Her bölümde sadece konuşma değil, bir AKSİYON anı olsun: bir kovalamaca, son saniye yetiştirme, kaçan konteyner, devrilen yük, fırtına, bozulan fren, yarış, kurtarma gibi. Bunu hareketlerle göster (kos_*, kac, carp, zipla). Shorts'ta en az 2, uzun videoda her sahnede en az 1 hareketli an olsun; ama 'titre'yi bölümde en fazla 1 kez kullan.
+- KOMEDİ TEKNİKLERİ: üçlü kuralı (üçüncü şey beklenmedik), yanlış anlama, karakterin sabit lafının en kötü anda gelmesi, büyüyen kaos (her replik durumu daha da kötüleştirir), ciddi anda saçma detay, beklenmedik ters köşe final. Çocukların anlayacağı fiziksel komedi (çarpma, kayma, sıkışma) + yetişkinlerin güleceği sektör şakası birlikte.
 - Her karakterin kişiliğine, sabit lafına ve ses tonuna sadık kal. Herkes sistemin kurbanı, kimse gerçekten kötü değil.
 - Sektör bilgisi gerçekçi olsun (sektörde çalışan güldüğü için), ama sektörü hiç bilmeyen de anlamalı ve gülmeli.
 - Sadece JSON döndür, başka metin yazma.
@@ -198,7 +201,9 @@ JSON ŞEMASI:
 CRITIC = """Aşağıda "LOJİSTİK KAOS" için yazılmış bir bölüm var. Sen deneyimli bir komedi yazarı ve editörsün.
 Kontrol et ve gerekiyorsa DÜZELT:
 1. Bölüm, diziyi hiç izlememiş biri için tek başına anlaşılıyor mu? İlk replik durumu anlatıyor mu?
-2. Gerçekten komik mi? Punchline güçlü mü? Zayıf replikleri daha komik yap.
+2. Gerçekten komik mi? Punchline güçlü mü? Zayıf replikleri daha komik yap; sıradan replikleri esprili olanlarla değiştir.
+2b. Aksiyon var mı? Yalnızca konuşan karakterler varsa en az bir hareketli an ekle (kos_sag/kos_sol/kac/carp/zipla). 'titre' en fazla 1 kez.
+2c. Çocuklar dahil aile kitlesine uygun mu? Değilse düzelt.
 3. Karakterler kişiliklerine sadık mı? Sektör detayı doğru mu?
 4. Kurallar: sayılar yazıyla, replikler kısa, küfür/siyaset/gerçek isim yok, JSON şeması aynen korunuyor.
 5. Son {n} bölümün şakalarını tekrar ediyor mu? Ediyorsa değiştir: {recent}
@@ -236,6 +241,12 @@ def validate(ep, kind):
             if ln.get('action') not in ACTIONS:
                 ln['action'] = 'yok'
             if ln['action'] == 'cal' and w != 'telefon':
+                ln['action'] = 'yok'
+            if ln['action'] in ('kos_sag', 'kos_sol') and w not in ('kemal', 'tayfun', 'erdal', 'fikri'):
+                ln['action'] = 'gir_' + ln['action'][4:]
+            if ln['action'] == 'kac' and w not in ('kemal', 'tayfun', 'erdal', 'fikri'):
+                ln['action'] = 'cik'
+            if ln['action'] in ('carp', 'kos_sag', 'kos_sol', 'kac') and w == 'telefon':
                 ln['action'] = 'yok'
             ln['text'] = re.sub(r'\s+', ' ', str(ln.get('text', ''))).strip()
             if not ln['text']:

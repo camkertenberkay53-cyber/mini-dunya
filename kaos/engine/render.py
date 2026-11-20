@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 from .. import paths
 from . import backgrounds
 from .characters import CHARS, St
-from .draw import Cam, ease, seg, lerp
+from .draw import Cam, ease, seg, lerp, line, circle, fill
 
 FPS = 30
 GROUND_Y = 1250
@@ -115,7 +115,7 @@ def shot_for(seg_, idx, n, prev_who, W, H, pos):
     em, act = seg_['emotion'], seg_['action']
     vertical = H > W
     sy = 0.40 if vertical else 0.45
-    if who not in pos or act in ('gir_sag', 'gir_sol', 'cik'):
+    if who not in pos or act in ('gir_sag', 'gir_sol', 'cik', 'kos_sag', 'kos_sol', 'kac'):
         kind = 'wide'
     elif act == 'kameraya_bak' or idx == n - 1:
         kind = 'xclose'
@@ -185,6 +185,32 @@ def draw_texts(frame, items):
     return np.asarray(im).astype(np.float32) / 255.0
 
 
+
+def speed_lines(f, cam, x, y, side, t, w):
+    """Koşu: karakterin arkasında hız çizgileri ve toz."""
+    for i in range(7):
+        yy = y - 80 - i * 70
+        ln = 220 + 90 * ((i * 37 + int(t * 30)) % 3)
+        x0 = x + side * (w * 0.45 + 30)
+        a, b = cam.p(x0, yy), cam.p(x0 + side * ln, yy)
+        line(f, a, b, (0.97, 0.97, 0.97), cam.lw(7))
+    for j in range(4):
+        r = 30 + 14 * j
+        cx = x + side * (w * 0.4 + 60 * j)
+        circle(f, cam.p(cx, y - 15), r * cam.z, (0.86, 0.80, 0.68), False)
+
+
+def impact_burst(f, cam, x, y, dt):
+    """Çarpma: patlama yıldızı."""
+    k = 1 - dt / 0.5
+    R, r = (110 + 80 * (1 - k)), 55
+    pts = []
+    for i in range(20):
+        a = i * math.pi / 10 + 0.2
+        rr = R if i % 2 == 0 else r
+        pts.append((x + math.cos(a) * rr, y + math.sin(a) * rr))
+    fill(f, cam.P(pts), (1.0, 0.86, 0.2), True, cam.lw(6))
+
 # ---------------------------------------------------------------- render
 class Renderer:
     def __init__(self, ep, tl, W, H, meta):
@@ -206,10 +232,13 @@ class Renderer:
         self.enter, self.exit = {}, {}
         for s in self.segs:
             key = (s['scene'], s['who'])
-            if s['action'] in ('gir_sag', 'gir_sol') and key not in self.enter:
-                self.enter[key] = (s['start'], 1 if s['action'] == 'gir_sag' else -1)
-            if s['action'] == 'cik':
-                self.exit[key] = s['start'] + s['dur']
+            a = s['action']
+            if a in ('gir_sag', 'gir_sol', 'kos_sag', 'kos_sol') and key not in self.enter:
+                fast = a.startswith('kos')
+                self.enter[key] = (s['start'] - (0.25 if fast else 0), 1 if a.endswith('sag') else -1, 0.45 if fast else 0.9)
+            if a in ('cik', 'kac'):
+                self.exit[key] = (s['start'] + s['dur'], 0.45 if a == 'kac' else 0.8)
+        self.impacts = [(s['start'], s['scene'], s['who']) for s in self.segs if s['action'] == 'carp']
         rng = np.random.default_rng(7)
         self.blink_off = {c: rng.uniform(0, 4) for c in CHARS}
 
@@ -257,9 +286,13 @@ class Renderer:
         if cur is not None:
             mo, _, s = self.mouth_of(cur['who'], t, si)
             if cur['emotion'] == 'sinirli' and s is not None:
-                sh = 4 + 14 * mo
+                sh = 1.5 * mo
             if cur['action'] == 'titre' and s is not None:
-                sh = 10
+                sh = 3.0 * max(0.0, 1 - (t - cur['start']) / 0.8)
+        for ti, _, _ in self.impacts:
+            if 0 <= t - ti < 0.4:
+                sh = max(sh, 16 * (1 - (t - ti) / 0.4))
+                z *= 1 + 0.05 * (1 - (t - ti) / 0.4)
         cam = Cam(W, H, cx, cy, z, sh * math.sin(t * 61), sh * math.cos(t * 47))
         loc = sc.get('location', 'rihtim')
         if 'necati' in sc['characters'] and loc not in ('rihtim', 'gece'):
@@ -271,15 +304,23 @@ class Renderer:
         for c in order:
             x, y = pos[c]
             key = (si, c)
+            moving = 0.0
             if key in self.enter:
-                te, side = self.enter[key]
+                te, side, edur = self.enter[key]
                 if t < te:
                     continue
-                k = ease(seg(t, te, te + 0.9))
+                k = ease(seg(t, te, te + edur))
                 x = lerp(x + side * 1100, x, k)
-            if key in self.exit and t > self.exit[key]:
-                k = ease(seg(t, self.exit[key], self.exit[key] + 0.8))
+                if edur < 0.6 and t < te + edur:
+                    moving = side
+            if key in self.exit and t > self.exit[key][0]:
+                tx, xdur = self.exit[key]
+                k = ease(seg(t, tx, tx + xdur))
                 x = lerp(x, x + 1200, k)
+                if xdur < 0.6 and t < tx + xdur + 0.1:
+                    moving = -1
+            if moving:
+                speed_lines(f, cam, x, y, moving, t, CHARS[c]['w'] if 'w' in CHARS[c] else 300)
             mo, zc, s = self.mouth_of(c, t, si)
             last = [q for q in self.segs if q['scene'] == si and q['who'] == c and q['start'] <= t]
             emo = last[-1]['emotion'] if last else DEFAULT_EMO.get(c, 'normal')
@@ -315,12 +356,24 @@ class Renderer:
                 shake = 1.0
             st = St(t=t, mo=mo, ms=zc, emotion=emo, look=look, blink=blink, dy=dy, sq=sq, shake=shake, talking=s is not None)
             CHARS[c]['fn'](f, cam, x, y, st)
+            for ti, isi, iw in self.impacts:
+                if isi == si and iw == c and 0 <= t - ti < 0.5:
+                    fy = y + CHARS[c]['face'][1]
+                    impact_burst(f, cam, x + CHARS[c]['w'] * 0.42, fy - 200, t - ti)
         if loc == 'gece':
             f = f * np.array([0.78, 0.82, 1.0], np.float32)
         # vinyet
         f = f * self.vignette()
+        for ti, isi, _ in self.impacts:
+            if isi == si and 0 <= t - ti < 0.09:
+                f = f * 0.65 + 0.35
         # metinler
         items = self.texts(t, cur, si)
+        for ti, isi, iw in self.impacts:
+            if isi == si and 0 <= t - ti < 0.6 and iw in pos:
+                px, py = cam.p(pos[iw][0] + CHARS[iw]['w'] * 0.42, pos[iw][1] + CHARS[iw]['face'][1] - 200)
+                word = ('GÜM!', 'BAM!', 'ÇAT!', 'PAT!')[int(ti * 7) % 4]
+                items.append(('text', word, px, py, int(110 + 40 * (1 - (t - ti) / 0.6)), (255, 220, 40), 'mm'))
         # sahne geçişi (uzun)
         if self.tl['long']:
             a, b = self.tl['scenes'][si]
