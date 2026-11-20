@@ -16,10 +16,9 @@ from .draw import Cam, ease, seg, lerp, line, circle, fill
 
 FPS = 30
 GROUND_Y = 1250
-DEFAULT_EMO = {'kemal': 'panik', 'tayfun': 'normal', 'erdal': 'soguk', 'necati': 'kibirli', 'fikri': 'bikkin',
-               'vedat': 'fisilti', 'telefon': 'sinirli'}
+DEFAULT_EMO = {'tuna': 'neseli', 'nil': 'normal', 'bulut': 'normal', 'pire': 'saskin', 'benek': 'normal'}
 LINE_GAP = 0.28
-TOPS = {'tayfun': 540, 'fikri': 520, 'kemal': 350, 'erdal': 350, 'telefon': 300}
+TOPS = {c: v['h'] for c, v in CHARS.items()}
 
 
 # ---------------------------------------------------------------- ses analizi
@@ -66,18 +65,12 @@ def layout(scene):
     ground = [c for c in chars if CHARS[c]['ground']]
     pos = {}
     widths = [CHARS[c]['w'] for c in ground]
-    total = sum(widths) + 70 * max(0, len(ground) - 1)
-    cx = 700 if 'necati' in chars else 550
+    total = sum(widths) + 50 * max(0, len(ground) - 1)
+    cx = 550
     x = cx - total / 2
     for c, w in zip(ground, widths):
         pos[c] = (x + w / 2, GROUND_Y)
-        x += w + 70
-    if 'necati' in chars:
-        pos['necati'] = (min(pos[g][0] for g in ground) - 520 if ground else 150, backgrounds.GROUND)
-    if 'vedat' in chars:
-        tops = [GROUND_Y - TOPS.get(g, 320) for g in ground] or [900]
-        vy = max(330, min(560, min(tops) - 230))
-        pos['vedat'] = ((max(pos[g][0] for g in ground) + 60) if ground else 700, vy)
+        x += w + 50
     return pos
 
 
@@ -93,11 +86,7 @@ def bbox(chars, pos):
     for c in chars:
         x, y = pos[c]
         w = CHARS[c]['w']
-        if c == 'vedat':
-            xs += [x - 140, x + 140]; ys += [y - 140, y + 110]
-        elif c == 'necati':
-            xs += [x - 150, x + 340]; ys += [y - 700, y + 20]
-        else:
+        if True:
             xs += [x - w / 2, x + w / 2]; ys += [y - TOPS.get(c, 320), y + 30]
     return min(xs), max(xs), min(ys), max(ys)
 
@@ -193,11 +182,11 @@ def speed_lines(f, cam, x, y, side, t, w):
         ln = 220 + 90 * ((i * 37 + int(t * 30)) % 3)
         x0 = x + side * (w * 0.45 + 30)
         a, b = cam.p(x0, yy), cam.p(x0 + side * ln, yy)
-        line(f, a, b, (0.97, 0.97, 0.97), cam.lw(7))
+        line(f, a, b, (0.97, 0.95, 0.88), cam.lw(3))
     for j in range(4):
         r = 30 + 14 * j
         cx = x + side * (w * 0.4 + 60 * j)
-        circle(f, cam.p(cx, y - 15), r * cam.z, (0.86, 0.80, 0.68), False)
+        circle(f, cam.p(cx, y - 15), r * 0.6 * cam.z, (0.86, 0.78, 0.62), False)
 
 
 def impact_burst(f, cam, x, y, dt):
@@ -294,9 +283,7 @@ class Renderer:
                 sh = max(sh, 16 * (1 - (t - ti) / 0.4))
                 z *= 1 + 0.05 * (1 - (t - ti) / 0.4)
         cam = Cam(W, H, cx, cy, z, sh * math.sin(t * 61), sh * math.cos(t * 47))
-        loc = sc.get('location', 'rihtim')
-        if 'necati' in sc['characters'] and loc not in ('rihtim', 'gece'):
-            loc = 'rihtim'
+        loc = sc.get('location', 'tezgah')
         f = backgrounds.draw(loc, cam)
         # karakterler: önce gökyüzü/deniz karakterleri, sonra soldan sağa yer karakterleri
         order = sorted(pos.keys(), key=lambda c: (CHARS[c]['ground'], pos[c][0]))
@@ -329,7 +316,7 @@ class Renderer:
             # bakış
             if speaker and speaker != c and speaker in pos:
                 dx = pos[speaker][0] - x
-                look = (max(-1, min(1, dx / 300)) * 0.85, 0.25 if c == 'vedat' else (-0.2 if speaker == 'vedat' else 0.05))
+                look = (max(-1, min(1, dx / 300)) * 0.85, 0.05)
             else:
                 look = (0.0, 0.05) if (cur and cur['action'] == 'kameraya_bak' and c == speaker) or c == speaker else (0.0, 0.0)
                 if c == speaker and cur and cur['action'] != 'kameraya_bak':
@@ -346,24 +333,21 @@ class Renderer:
                     sq = 1 + 0.08 * math.sin(math.pi * u2)
                 if s['action'] == 'titre':
                     shake = 1.0
-                if s['action'] == 'cal' or c == 'telefon':
-                    shake = 1.0 if s['action'] == 'cal' else 0.0
                 sq *= 1 + 0.03 * mo
-            if c == 'erdal' and key in self.enter and t < self.enter[key][0] + 0.9:
-                shake = 1.0  # koşu
-            if c == 'telefon' and s is None and any(q['scene'] == si and q['who'] == 'telefon' and q['action'] == 'cal'
-                                                     and q['start'] - 1.2 < t < q['start'] for q in self.segs):
-                shake = 1.0
-            st = St(t=t, mo=mo, ms=zc, emotion=emo, look=look, blink=blink, dy=dy, sq=sq, shake=shake, talking=s is not None)
+            walk = 0.0
+            if key in self.enter and self.enter[key][0] <= t < self.enter[key][0] + self.enter[key][2]:
+                walk = 1.0
+            if key in self.exit and t > self.exit[key][0]:
+                walk = 1.0
+            st = St(t=t, mo=mo, ms=zc, emotion=emo, look=look, blink=blink, dy=dy, sq=sq, shake=shake,
+                    talking=s is not None, walk=walk)
             CHARS[c]['fn'](f, cam, x, y, st)
             for ti, isi, iw in self.impacts:
                 if isi == si and iw == c and 0 <= t - ti < 0.5:
                     fy = y + CHARS[c]['face'][1]
                     impact_burst(f, cam, x + CHARS[c]['w'] * 0.42, fy - 200, t - ti)
-        if loc == 'gece':
-            f = f * np.array([0.78, 0.82, 1.0], np.float32)
-        # vinyet
-        f = f * self.vignette()
+        f = backgrounds.draw_fg(loc, cam, f)
+        f = backgrounds.post(loc, f, cam, t)
         for ti, isi, _ in self.impacts:
             if isi == si and 0 <= t - ti < 0.09:
                 f = f * 0.65 + 0.35

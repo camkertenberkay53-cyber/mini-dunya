@@ -22,45 +22,31 @@ tts:
 
 # Karakter sesleri. Ses kataloğu videosunu izledikten sonra beğendiğin sesleri buraya yazarız.
 voices:
-  tayfun:
-    gemini: Algenib
-    style: "Kalın sesli, aceleci ve sürekli sinirli, gür bıyıklı bir tır şoförü gibi; hızlı ve yüksek sesle konuş."
-    edge: {voice: tr-TR-AhmetNeural, rate: "+12%", pitch: "-10Hz"}
-    piper: {voice: fettah-medium, speed: 0.95, pitch: 0.92}
-  kemal:
+  tuna:
     gemini: Puck
-    style: "Endişeli, saf ve paniğe kapılmış genç bir karakter gibi; sesi hafif titreyerek konuş."
-    edge: {voice: tr-TR-AhmetNeural, rate: "+6%", pitch: "+28Hz"}
-    piper: {voice: fahrettin-medium, speed: 1.0, pitch: 1.12}
-  erdal:
-    gemini: Charon
-    style: "Soğuk, monoton ve kendini beğenmiş bir bürokrat memur gibi; ağır ve düz konuş."
-    edge: {voice: de-DE-FlorianMultilingualNeural, rate: "-4%", pitch: "+0Hz"}
-    piper: {voice: dfki-medium, speed: 1.0, pitch: 1.08}
-  necati:
-    gemini: Gacrux
-    style: "Dev bir gemi gibi kibirli, yavaş ve derin sesle, her şeyin kendisini beklemesini doğal sayarak konuş."
-    edge: {voice: tr-TR-AhmetNeural, rate: "-14%", pitch: "-28Hz"}
-    piper: {voice: fettah-medium, speed: 0.85, pitch: 0.85}
-  fikri:
-    gemini: Enceladus
-    style: "Yorgun, bıkkın, iç çekerek ve esneyerek konuşan, mesai hesabı yapan bir forklift operatörü gibi."
-    edge: {voice: en-US-BrianMultilingualNeural, rate: "-6%", pitch: "-4Hz"}
-    piper: {voice: dfki-medium, speed: 0.92, pitch: 0.96}
-  vedat:
-    gemini: Zubenelgenubi
-    style: "Dedikoducu, keyifli ve fısıltıya yakın, sır verir gibi konuşan rahat bir mahalle abisi gibi."
-    edge: {voice: fr-FR-RemyMultilingualNeural, rate: "+0%", pitch: "+4Hz"}
-    piper: {voice: fahrettin-medium, speed: 0.95, pitch: 1.0}
-  telefon:
+    style: "Cesur, enerjik ve kendinden emin genç bir maceracı gibi; hevesli, hızlı ve gülümseyerek konuş."
+    edge: {voice: tr-TR-AhmetNeural, rate: "+8%", pitch: "+14Hz"}
+    piper: {voice: fahrettin-medium, speed: 1.05, pitch: 1.08}
+  nil:
     gemini: Kore
-    style: "Sabırsız, sinirli ve ısrarcı bir müşteri gibi, telefonda konuşur gibi hızlı konuş."
-    edge: {voice: tr-TR-EmelNeural, rate: "+12%", pitch: "+0Hz"}
-    piper: {voice: fahrettin-medium, speed: 1.05, pitch: 1.2}
+    style: "Zeki, sakin ve net konuşan genç bir kız gibi; kuru espri yapar gibi, ölçülü ve tane tane konuş."
+    edge: {voice: tr-TR-EmelNeural, rate: "+0%", pitch: "+6Hz"}
+    piper: {voice: dfki-medium, speed: 1.0, pitch: 1.25}
+  bulut:
+    gemini: Achird
+    style: "İri yapılı, yumuşak kalpli, sakin ve biraz yavaş konuşan sevimli bir genç mucit gibi."
+    edge: {voice: tr-TR-AhmetNeural, rate: "-6%", pitch: "-6Hz"}
+    piper: {voice: fettah-medium, speed: 0.92, pitch: 0.98}
+  pire:
+    gemini: Leda
+    style: "Küçük, meraklı ve heyecanlı bir çocuk gibi; hızlı, neşeli ve soru sorar gibi konuş."
+    edge: {voice: tr-TR-EmelNeural, rate: "+14%", pitch: "+38Hz"}
+    piper: {voice: dfki-medium, speed: 1.1, pitch: 1.4}
 
 # Yayın saatleri (Türkiye saati). Değiştirirsen .github/workflows/bot.yml içindeki cron satırlarını da güncelle.
 takvim:
-  sabah: "08:30 ana hikâye"
-  oglen: "13:30 bağımsız skeç"
-  aksam: "19:30 ana hikâye"
-  uzun: "Çarşamba ve Pazar 18:00 uzun video (6-7 dk)"
+  sabah: "08:30 ana yolculuk"
+  oglen: "13:30 yan macera"
+  aksam: "19:30 ana yolculuk"
+  gece: "21:30 yan macera"
+  uzun: "Pazar 18:00 uzun video (4-5 dk)"

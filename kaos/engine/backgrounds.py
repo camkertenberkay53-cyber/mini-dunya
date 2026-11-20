@@ -1,240 +1,279 @@
-"""Mekân arka planları. Dünya alanı: x -1300..2400, y -400..2300. Zemin (rıhtım kenarı) y=1000, karakterler y=1250'de durur."""
+"""MİNİ DÜNYA mekânları: katmanlı (parallax) arka planlar.
+Her mekân 3 katmandır: uzak (bulanık, yavaş kayar), orta (karakterlerin durduğu zemin, kamerayla birebir),
+ön (kameraya yakın, odak dışı, hızlı kayar; karakterlerin ÜSTÜNE çizilir).
+Dünya koordinatı: karakterler y=1250'de durur. Zeminin arka kenarı y=GROUND."""
 import math
 from functools import lru_cache
 import numpy as np
 import cv2
-from PIL import Image, ImageDraw, ImageFont
-from .. import paths
+from .draw import E, capsule, cel
 
-X0, Y0, BW, BH = -1300, -400, 3700, 2700
-GROUND = 1000
-OUTI = (22, 24, 34)
-LOCATIONS = ['rihtim', 'saha', 'gumruk', 'kantar', 'depo', 'ofis', 'gece']
-
-
-def P(x, y):
-    return (int(x - X0), int(y - Y0))
+X0, Y0, BW, BH = -1100, -700, 3500, 3000
+GROUND = 1010
+LOCATIONS = ['tezgah', 'lavabo', 'buzdolabi', 'baharat', 'zemin', 'cekmece', 'lonca']
+ALIAS = {}
+REF = (550, 1050)
+LAYER_K = {'far': 0.35, 'mid': 1.0, 'fg': 1.7}
+LAYER_SC = {'far': 0.5, 'mid': 1.0, 'fg': 0.5}
 
 
-def _poly(img, pts, col, w=5):
-    a = np.array([P(x, y) for x, y in pts], np.int32)
-    cv2.fillPoly(img, [a], col, cv2.LINE_AA)
-    if w:
-        cv2.polylines(img, [a], True, OUTI, w, cv2.LINE_AA)
+class Layer:
+    def __init__(self, name):
+        self.sc = LAYER_SC[name]
+        self.img = np.zeros((int(BH * self.sc), int(BW * self.sc), 4), np.uint8)
+
+    def P(self, pts):
+        return [((x - X0) * self.sc, (y - Y0) * self.sc) for x, y in pts]
+
+    def cel(self, pts, col, w=6, **k):
+        cel(self.img, self.P(pts), col, w=max(1, w * self.sc), **k)
+
+    def grad_rect(self, x0, y0, x1, y1, c0, c1, horizontal=False):
+        (a, b), (c, d) = self.P([(x0, y0), (x1, y1)])
+        a, b, c, d = int(max(0, a)), int(max(0, b)), int(min(self.img.shape[1], c)), int(min(self.img.shape[0], d))
+        if c <= a or d <= b:
+            return
+        n = (c - a) if horizontal else (d - b)
+        u = np.linspace(0, 1, n, dtype=np.float32)[:, None]
+        g = np.array(c0, np.float32) * (1 - u) + np.array(c1, np.float32) * u
+        g = (g * 255).astype(np.uint8)
+        if horizontal:
+            self.img[b:d, a:c, :3] = g[None, :, :]
+        else:
+            self.img[b:d, a:c, :3] = g[:, None, :]
+        self.img[b:d, a:c, 3] = 255
+
+    def line(self, a, b, col, w):
+        p = self.P([a, b])
+        cv2.line(self.img, tuple(int(v * 4) for v in p[0]), tuple(int(v * 4) for v in p[1]),
+                 tuple(int(c * 255) for c in col) + (255,), max(1, int(w * self.sc)), cv2.LINE_AA, shift=2)
+
+    def blur(self, s):
+        im = self.img.astype(np.float32)
+        a = im[..., 3:4] / 255
+        pre = np.concatenate([im[..., :3] * a, im[..., 3:4]], 2)
+        pre = cv2.GaussianBlur(pre, (0, 0), s * self.sc)
+        a2 = np.maximum(pre[..., 3:4], 1e-3)
+        out = np.concatenate([pre[..., :3] / (a2 / 255), pre[..., 3:4]], 2)
+        self.img = np.clip(out, 0, 255).astype(np.uint8)
 
 
-def _rect(img, x0, y0, x1, y1, col, w=5):
-    _poly(img, [(x0, y0), (x1, y0), (x1, y1), (x0, y1)], col, w)
+# ---------------------------------------------------------------- ortak parçalar
+def tiles(L, x0, y0, x1, y1, tw, th, c1, c2, grout, rng, stagger=True):
+    L.grad_rect(x0, y0, x1, y1, grout, grout)
+    r = 0
+    y = y0
+    while y < y1:
+        x = x0 - (tw / 2 if stagger and r % 2 else 0)
+        while x < x1:
+            col = c1 if rng.random() > 0.18 else c2
+            L.cel([(x + 5, y + 5), (x + tw - 5, y + 5), (x + tw - 5, y + th - 5), (x + 5, y + th - 5)], col,
+                  w=3, shadow=0.12, rim=0.25, oc=tuple(c * 0.75 for c in grout))
+            x += tw
+        y += th
+        r += 1
 
 
-def _vgrad(img, y0, y1, c0, c1):
-    a, b = P(0, y0)[1], P(0, y1)[1]
-    a, b = max(0, a), min(BH, b)
-    for yy in range(a, b):
-        u = (yy - P(0, y0)[1]) / max(1, (P(0, y1)[1] - P(0, y0)[1]))
-        img[yy] = (np.array(c0) * (1 - u) + np.array(c1) * u).astype(np.uint8)
+def window(L, x0, y0, x1, y1, frame=(0.95, 0.93, 0.88)):
+    L.grad_rect(x0, y0, x1, y1, (1.0, 0.97, 0.85), (0.80, 0.90, 0.98))
+    # dışarıda yapraklar (bulanık yeşil lekeler)
+    rng = np.random.default_rng(4)
+    for _ in range(40):
+        cx, cy = rng.uniform(x0, x1), rng.uniform(y0, y0 + (y1 - y0) * 0.6)
+        r = rng.uniform(40, 110)
+        L.cel(E(cx, cy, r, r * 0.8), (0.45 + rng.uniform(0, 0.2), 0.68, 0.38), outline=False, shadow=0.2, rim=0)
+    m = 34
+    for xx in (x0, (x0 + x1) / 2, x1):
+        L.cel([(xx - m / 2, y0), (xx + m / 2, y0), (xx + m / 2, y1), (xx - m / 2, y1)], frame, w=5)
+    for yy in (y0, (y0 + y1) / 2, y1):
+        L.cel([(x0 - m / 2, yy - m / 2), (x1 + m / 2, yy - m / 2), (x1 + m / 2, yy + m / 2), (x0 - m / 2, yy + m / 2)], frame, w=5)
 
 
-def _text(img, txt, x, y, size, col, stroke=0):
-    im = Image.fromarray(img)
-    d = ImageDraw.Draw(im)
-    fnt = ImageFont.truetype(paths.FONT, size)
-    try:
-        fnt.set_variation_by_axes([800])
-    except Exception:
-        pass
-    d.text(P(x, y), txt, font=fnt, fill=col, anchor='mm', stroke_width=stroke, stroke_fill=OUTI)
-    img[:] = np.asarray(im)
+def jar(L, x, base, w, h, glass, lid, label=None, content=None):
+    L.cel(capsule(x, base - h + w * 0.25, x, base - w * 0.25, w / 2, n=12), glass, w=8, shadow=0.25, rim=0.45)
+    if content:
+        L.cel(capsule(x, base - h * 0.55, x, base - w * 0.25, w / 2 - 14, n=12), content, w=0, outline=False, shadow=0.3, rim=0)
+    L.cel([(x - w * 0.42, base - h - 30), (x + w * 0.42, base - h - 30), (x + w * 0.42, base - h + 25), (x - w * 0.42, base - h + 25)], lid, w=8)
+    if label:
+        L.cel([(x - w * 0.36, base - h * 0.62), (x + w * 0.36, base - h * 0.62), (x + w * 0.36, base - h * 0.3), (x - w * 0.36, base - h * 0.3)], label, w=6, shadow=0.1)
+    # parlama
+    L.line((x + w * 0.28, base - h + 70), (x + w * 0.28, base - h * 0.45), (1, 1, 1), 14)
 
 
-CCOLS = [(230, 120, 40), (60, 160, 90), (200, 60, 60), (60, 120, 200), (230, 200, 60), (120, 80, 170)]
+def mug(L, x0, x1, top, base, col, inner=(0.38, 0.22, 0.12), handle_side=-1, pattern=None):
+    cx, w = (x0 + x1) / 2, (x1 - x0)
+    hx = x0 if handle_side < 0 else x1
+    hcy, hr = (top + base) / 2 - 40, (base - top) * 0.26
+    angs = np.linspace(0.05, math.pi - 0.05, 24)
+    outer = [(hx - handle_side * 20 + handle_side * (hr + 45) * 0.8 * math.sin(a), hcy - (hr + 45) * math.cos(a)) for a in angs]
+    inn = [(hx - handle_side * 20 + handle_side * (hr - 40) * 0.8 * math.sin(a), hcy - (hr - 40) * math.cos(a)) for a in angs]
+    L.cel(outer + inn[::-1], col, w=10, shadow=0.3, rim=0.35)
+    body = [(x0, top), (x1, top)] + [(cx + w / 2 * math.cos(a), base - 40 + 40 * math.sin(a)) for a in np.linspace(0, math.pi, 20)]
+    L.cel(body, col, w=10, shadow=0.3, rim=0.35)
+    if pattern:
+        rng = np.random.default_rng(2)
+        for k in range(14):
+            px, py = x0 + 60 + (k % 4) * (w - 120) / 3, top + 90 + (k // 4) * 130 + (40 if k % 2 else 0)
+            if py < base - 80:
+                L.cel(E(px, py, 28, 28), pattern, w=5, shadow=0.15, rim=0.2)
+    L.cel(E(cx, top, w / 2, 48), shade3(col, 0.9), w=10, shadow=0.1)
+    L.cel(E(cx, top + 6, w / 2 - 26, 32), inner, w=6, shadow=0.35, rim=0)
 
 
-def _container(img, x0, y0, w, h, col):
-    _rect(img, x0, y0, x0 + w, y0 + h, col, 4)
-    dark = tuple(int(c * 0.75) for c in col)
-    n = max(4, int(w / 26))
-    for k in range(1, n):
-        xx = x0 + k * w / n
-        cv2.line(img, P(xx, y0 + 7), P(xx, y0 + h - 7), dark, 3, cv2.LINE_AA)
-    cv2.rectangle(img, P(x0, y0), P(x0 + w, y0 + 8), tuple(int(c * 0.85) for c in col), -1)
+def shade3(c, k):
+    return tuple(min(1, v * k) for v in c)
 
 
-def _stack(img, x0, base, cols, rows, rng, w=250, h=88):
-    for c in range(cols):
-        for r in range(rows - (c % 2 if rows > 1 else 0)):
-            _container(img, x0 + c * (w + 6), base - (r + 1) * h, w, h, CCOLS[int(rng.integers(0, len(CCOLS)))])
+def counter(L, y_back, y_front, col, plank=260):
+    L.grad_rect(X0, y_back, X0 + BW, y_front, shade3(col, 0.92), col)
+    rng = np.random.default_rng(9)
+    for i in range(70):
+        y = y_back + 12 + i * (y_front - y_back) / 70 + rng.uniform(-4, 4)
+        pts = [(x, y + 7 * math.sin(x / 140 + i * 1.7)) for x in range(X0, X0 + BW + 80, 80)]
+        for a, b in zip(pts, pts[1:]):
+            L.line(a, b, shade3(col, 0.84), 3)
+    for x in range(X0, X0 + BW, plank * 3):
+        L.line((x, y_back), (x - 120, y_front), shade3(col, 0.7), 5)
+    L.cel([(X0, y_back - 22), (X0 + BW, y_back - 22), (X0 + BW, y_back + 6), (X0, y_back + 6)], shade3(col, 0.8), w=6, shadow=0.1)
 
 
-def _sky(img, top=(70, 150, 235), bot=(190, 228, 252), clouds=True, rng=None):
-    _vgrad(img, Y0, 830, top, bot)
-    if clouds:
-        for k in range(12):
-            cx, cy = rng.uniform(X0, X0 + BW), rng.uniform(-300, 500)
-            for j in range(5):
-                cv2.circle(img, P(cx + j * 60 - 120, cy + (j % 2) * -28), int(rng.uniform(45, 80)), (250, 252, 255), -1, cv2.LINE_AA)
+# ---------------------------------------------------------------- mekânlar
+def build_tezgah():
+    rng = np.random.default_rng(1)
+    far = Layer('far')
+    far.grad_rect(X0, Y0, X0 + BW, Y0 + BH, (0.94, 0.86, 0.70), (0.80, 0.66, 0.48))
+    window(far, 800, -560, 1900, 520)
+    tiles(far, X0, 560, X0 + BW, 1100, 150, 75, (0.62, 0.78, 0.70), (0.90, 0.88, 0.80), (0.88, 0.85, 0.78), rng)
+    # raf ve kavanozlar
+    far.cel([(X0, 330), (650, 330), (650, 368), (X0, 368)], (0.50, 0.32, 0.18), w=6)
+    for x, w, h, c in [(-950, 120, 210, (0.85, 0.45, 0.25)), (-790, 90, 150, (0.30, 0.55, 0.65)), (-650, 140, 250, (0.95, 0.80, 0.45)),
+                       (-460, 100, 170, (0.60, 0.32, 0.45)), (-300, 90, 130, (0.45, 0.66, 0.42)), (-150, 130, 220, (0.92, 0.55, 0.30)),
+                       (40, 110, 180, (0.40, 0.48, 0.70)), (200, 90, 140, (0.85, 0.75, 0.55)), (350, 130, 230, (0.78, 0.38, 0.30))]:
+        far.cel([(x, 330 - h), (x + w, 330 - h), (x + w, 330), (x, 330)], c, w=6, shadow=0.25, rim=0.3)
+        far.cel([(x + 10, 300 - h), (x + w - 10, 300 - h), (x + w - 10, 335 - h), (x + 10, 335 - h)], (0.35, 0.24, 0.18), w=5)
+    # sarkan bitki
+    for k in range(9):
+        a = k / 8
+        far.cel(E(620 + 40 * math.sin(k), 400 + k * 70, 34, 18, ang=0.6 if k % 2 else -0.6), (0.30, 0.52, 0.30), w=4, shadow=0.2)
+    far.cel([(560, 300), (700, 300), (680, 420), (580, 420)], (0.80, 0.42, 0.28), w=6)
+    far.blur(9)
+
+    mid = Layer('mid')
+    counter(mid, GROUND, 2300, (0.72, 0.48, 0.28))
+    # ince belli çay bardağı (arkada)
+    tg = [(560, 600), (740, 600), (716, 750), (690, 830), (722, 1010), (578, 1010), (610, 830), (584, 750)]
+    mid.cel(tg, (0.80, 0.42, 0.20), w=8, shadow=0.3, rim=0.5)
+    mid.cel([(560, 600), (740, 600), (735, 632), (565, 632)], (0.95, 0.90, 0.80), w=6, shadow=0.1)
+    mid.line((710, 640), (698, 800), (1, 0.95, 0.85), 9)
+    mid.cel(E(650, 1016, 120, 22), (0.85, 0.85, 0.88), w=6, shadow=0.2)
+    # dev kupa (solda)
+    mug(mid, -330, 170, 420, 1040, (0.86, 0.36, 0.24), handle_side=1, pattern=(0.98, 0.86, 0.62))
+    # kavanoz (sağda)
+    jar(mid, 1260, 1040, 420, 600, (0.62, 0.80, 0.82), (0.36, 0.25, 0.20), label=(0.97, 0.92, 0.80), content=(0.95, 0.92, 0.85))
+    # şeker küpleri ve kırıntılar
+    for x, y, s in [(930, 1200, 110), (1040, 1230, 80)]:
+        mid.cel([(x, y - s), (x + s, y - s - 20), (x + s + 26, y - 6), (x + 22, y + 12)], (0.98, 0.97, 0.94), w=6, shadow=0.25, rim=0.3)
+        mid.cel([(x, y - s), (x + s, y - s - 20), (x + s - 14, y - s - 40), (x - 18, y - s - 18)], (1, 1, 1), w=6, shadow=0)
+    for _ in range(14):
+        cx, cy = rng.uniform(-100, 1300), rng.uniform(1100, 1700)
+        if 380 < cx < 800 and cy < 1300:
+            continue
+        r = rng.uniform(8, 20)
+        n = 6
+        pts = [(cx + r * (0.6 + 0.5 * rng.random()) * math.cos(2 * math.pi * k / n), cy + r * 0.7 * (0.6 + 0.5 * rng.random()) * math.sin(2 * math.pi * k / n)) for k in range(n)]
+        mid.cel(pts, (0.80, 0.58, 0.32), w=3, shadow=0.35, rim=0.25)
+    # yatık kaşık (köprü)
+    mid.cel([(-480, 1520), (900, 1380), (912, 1408), (-470, 1552)], (0.80, 0.82, 0.86), w=7, shadow=0.25, rim=0.5)
+    mid.cel(E(1010, 1384, 130, 66, ang=-0.1), (0.82, 0.84, 0.88), w=7, shadow=0.3, rim=0.5)
+
+    fg = Layer('fg')
+    fg.cel(E(-120, 2050, 360, 320), (0.80, 0.12, 0.08), w=12, shadow=0.3, rim=0.3)
+    fg.cel([(-150, 1740), (-40, 1770), (-190, 1800)], (0.25, 0.48, 0.18), w=8)
+    fg.cel([(1000, 1900), (1900, 1840), (1950, 2500), (950, 2500)], (0.92, 0.75, 0.46), w=12, shadow=0.25)
+    fg.cel([(1000, 1900), (1900, 1840), (1910, 1940), (1010, 1990)], (0.70, 0.42, 0.20), w=10, shadow=0.1)
+    fg.blur(22)
+    return dict(far=far.img, mid=mid.img, fg=fg.img,
+                light=dict(src=(1350, -300), col=(1.0, 0.86, 0.60), shafts=0.20, warm=(1.04, 1.0, 0.92), dust=True))
 
 
-def _quay(img, rng, c0=(178, 178, 172), c1=(118, 120, 124)):
-    _vgrad(img, GROUND, Y0 + BH, c0, c1)
-    cv2.line(img, P(X0, GROUND), P(X0 + BW, GROUND), OUTI, 6, cv2.LINE_AA)
-    for k in range(-6, 10):
-        cv2.line(img, P(k * 280, 1420), P(k * 280 + 130, 1420), (240, 200, 40), 16, cv2.LINE_AA)
-    for k in range(260):  # asfalt dokusu
-        x, y = rng.uniform(X0, X0 + BW), rng.uniform(GROUND + 20, Y0 + BH)
-        cv2.circle(img, P(x, y), int(rng.uniform(1, 3)), (150, 150, 148), -1)
-
-
-def _sea(img, rng, top=(40, 120, 190), line=(120, 190, 235), night=False):
-    _rect(img, X0, 830, X0 + BW, GROUND, top, 0)
-    for k in range(90):
-        x, y = rng.uniform(X0, X0 + BW), rng.uniform(840, 990)
-        cv2.line(img, P(x, y), P(x + 45, y), line, 3, cv2.LINE_AA)
-
-
-def _skyline(img, col, rng, base=830):
-    x = X0
-    while x < X0 + BW:
-        w = rng.uniform(40, 110); h = rng.uniform(30, 140)
-        cv2.rectangle(img, P(x, base - h), P(x + w, base), col, -1)
-        if rng.random() < 0.2:
-            cv2.rectangle(img, P(x + w * 0.4, base - h - 60), P(x + w * 0.5, base - h), col, -1)
-        x += w + rng.uniform(0, 20)
-
-
-def _crane_bg(img, x, col=(245, 190, 30)):
-    for lx in (x, x + 240):
-        _rect(img, lx, 260, lx + 40, GROUND, col)
-    _rect(img, x - 280, 220, x + 560, 280, col)
-    for k in range(-6, 12):
-        cv2.line(img, P(x - 280 + k * 60 + 280, 228), P(x - 250 + k * 60 + 280, 272), tuple(int(c * 0.75) for c in col), 3, cv2.LINE_AA)
-    _rect(img, x + 60, 280, x + 200, 380, (250, 210, 60))
+BUILDERS = {'tezgah': build_tezgah}
 
 
 @lru_cache(8)
 def build(loc):
-    rng = np.random.default_rng(LOCATIONS.index(loc) + 3 if loc in LOCATIONS else 1)
-    img = np.zeros((BH, BW, 3), np.uint8)
-    if loc == 'rihtim':
-        _sky(img, rng=rng)
-        _skyline(img, (150, 175, 200), rng)
-        _sea(img, rng)
-        for sx in (-1100, 1700):  # uzak gemi siluetleri
-            _poly(img, [(sx, 800), (sx + 500, 800), (sx + 460, 840), (sx + 30, 840)], (90, 110, 140), 0)
-        _crane_bg(img, 1650)
-        _quay(img, rng)
-        _stack(img, -1250, GROUND, 2, 3, rng)
-        _stack(img, 1350, GROUND, 3, 2, rng)
-    elif loc == 'saha':
-        _sky(img, rng=rng)
-        _quay(img, rng, (186, 182, 170), (128, 126, 120))
-        for i, x0 in enumerate([-1250, -650, -50, 550, 1150, 1750]):
-            _stack(img, x0, GROUND, 2, 4 if i % 2 == 0 else 3, rng)
-        for lx in (-300, 900, 2000):  # aydınlatma direkleri
-            _rect(img, lx, 80, lx + 22, GROUND, (120, 125, 130), 4)
-            _rect(img, lx - 60, 60, lx + 82, 100, (90, 95, 100), 4)
-    elif loc == 'gumruk':
-        _sky(img, rng=rng)
-        _quay(img, rng, (176, 176, 170), (116, 118, 122))
-        _rect(img, -700, 450, 900, GROUND, (220, 214, 200))
-        _rect(img, -750, 400, 950, 470, (60, 90, 140))
-        _text(img, 'GÜMRÜK', 100, 435, 70, (255, 255, 255))
-        for wx in range(-620, 850, 210):
-            _rect(img, wx, 560, wx + 150, 720, (150, 200, 230), 4)
-            cv2.line(img, P(wx + 30, 580), P(wx + 70, 700), (220, 240, 255), 6, cv2.LINE_AA)
-        _rect(img, 1150, 640, 1420, GROUND, (230, 225, 210))
-        _rect(img, 1180, 680, 1390, 800, (150, 200, 230), 4)
-        _rect(img, 1100, 600, 1470, 650, (200, 60, 60))
-        # bariyer
-        _rect(img, 1430, 820, 1470, GROUND, (90, 90, 95), 4)
-        for k in range(8):
-            col = (220, 40, 40) if k % 2 == 0 else (250, 250, 250)
-            _rect(img, 1470 + k * 90, 830, 1560 + k * 90, 860, col, 3)
-        # kuyrukta bekleyen tır siluetleri
-        for k in range(4):
-            tx = 1900 + k * 160
-            _rect(img, tx, 760 - k * 10, tx + 140, 900 - k * 10, (120, 130, 150), 0)
-    elif loc == 'kantar':
-        _sky(img, rng=rng)
-        _quay(img, rng)
-        _poly(img, [(-200, 1180), (1300, 1180), (1380, 1330), (-280, 1330)], (140, 145, 150), 6)
-        for k in range(12):
-            cv2.line(img, P(-150 + k * 125, 1190), P(-190 + k * 125, 1320), (115, 120, 125), 3, cv2.LINE_AA)
-        _rect(img, 1500, 520, 1900, GROUND, (230, 225, 210))
-        _rect(img, 1560, 600, 1840, 720, (150, 200, 230), 4)
-        _rect(img, 1450, 300, 1950, 470, (30, 30, 34))
-        _text(img, 'KANTAR', 1700, 340, 46, (250, 250, 250))
-        _text(img, '42.780 KG', 1700, 420, 72, (255, 70, 60))
-        _stack(img, -1250, GROUND, 2, 2, rng)
-    elif loc == 'depo':
-        _vgrad(img, Y0, GROUND, (120, 128, 140), (165, 170, 178))
-        for k in range(-30, 80):  # oluklu duvar
-            x = k * 50
-            cv2.line(img, P(x, Y0), P(x, GROUND), (135, 142, 152), 4)
-        for lx in range(-1100, 2300, 450):  # tavan lambaları
-            _rect(img, lx, -150, lx + 160, -120, (60, 60, 65), 3)
-            cv2.circle(img, P(lx + 80, -110), 24, (255, 245, 200), -1, cv2.LINE_AA)
-        for sx in (-1200, -500, 1300, 2000):  # raflar
-            for r in range(4):
-                yy = GROUND - r * 170
-                _rect(img, sx, yy - 12, sx + 560, yy, (230, 130, 40), 3)
-                for b in range(4):
-                    bx = sx + 20 + b * 130
-                    _rect(img, bx, yy - 12 - 120, bx + 110, yy - 12, (200, 160, 110), 3)
-                    cv2.line(img, P(bx + 20, yy - 90), P(bx + 90, yy - 90), (150, 110, 70), 4)
-            for px in (sx, sx + 550):
-                _rect(img, px, GROUND - 700, px + 12, GROUND, (60, 90, 160), 3)
-        _vgrad(img, GROUND, Y0 + BH, (170, 168, 160), (120, 118, 112))
-        cv2.line(img, P(X0, GROUND), P(X0 + BW, GROUND), OUTI, 6, cv2.LINE_AA)
-        for k in range(-6, 10):
-            cv2.line(img, P(k * 280, 1420), P(k * 280 + 130, 1420), (240, 200, 40), 16, cv2.LINE_AA)
-    elif loc == 'ofis':
-        _vgrad(img, Y0, GROUND, (215, 205, 185), (235, 228, 210))
-        _rect(img, -900, 200, 300, 760, (120, 170, 220), 8)  # pencere
-        _vgrad_win = img[P(0, 210)[1]:P(0, 750)[1], P(-890, 0)[0]:P(290, 0)[0]]
-        _vgrad_win[:] = np.linspace([110, 170, 230], [190, 225, 250], _vgrad_win.shape[0])[:, None, :].astype(np.uint8)
-        _rect(img, -890, 620, 290, 750, (40, 110, 180), 0)
-        for k in range(5):
-            _rect(img, -850 + k * 220, 560, -650 + k * 220, 620, CCOLS[k], 3)
-        cv2.line(img, P(-300, 200), P(-300, 760), OUTI, 8)
-        _rect(img, 700, 180, 1400, 600, (250, 250, 248), 6)  # beyaz tahta
-        _text(img, 'ETA: ???', 1050, 280, 70, (40, 60, 160))
-        _text(img, 'CUT-OFF: DÜN', 1050, 380, 56, (200, 40, 40))
-        _text(img, 'YÜK NEREDE?!', 1050, 480, 56, (30, 30, 30))
-        cv2.circle(img, P(1700, 300), 90, (250, 250, 250), -1, cv2.LINE_AA)  # saat
-        cv2.circle(img, P(1700, 300), 90, OUTI, 8, cv2.LINE_AA)
-        cv2.line(img, P(1700, 300), P(1700, 240), OUTI, 8)
-        cv2.line(img, P(1700, 300), P(1745, 320), OUTI, 8)
-        _vgrad(img, GROUND, Y0 + BH, (150, 110, 80), (110, 80, 58))
-        cv2.line(img, P(X0, GROUND), P(X0 + BW, GROUND), OUTI, 6, cv2.LINE_AA)
-        for k in range(-20, 40):  # parke
-            cv2.line(img, P(k * 120, GROUND), P(k * 120 - 300, Y0 + BH), (125, 90, 64), 3)
-    elif loc == 'gece':
-        _vgrad(img, Y0, 830, (10, 14, 40), (40, 50, 90))
-        for k in range(220):
-            cv2.circle(img, P(rng.uniform(X0, X0 + BW), rng.uniform(Y0, 760)), int(rng.uniform(1, 3)), (240, 240, 255), -1)
-        cv2.circle(img, P(1900, 50), 70, (245, 240, 210), -1, cv2.LINE_AA)
-        _skyline(img, (25, 30, 55), rng)
-        for k in range(80):
-            x = rng.uniform(X0, X0 + BW)
-            cv2.circle(img, P(x, 830 - rng.uniform(5, 100)), 3, (255, 210, 120), -1)
-        _sea(img, rng, (15, 30, 60), (60, 90, 140), night=True)
-        _quay(img, rng, (90, 92, 100), (50, 52, 60))
-        _stack(img, -1250, GROUND, 2, 3, rng)
-        for lx in (-200, 1500):
-            _rect(img, lx, 100, lx + 26, GROUND, (60, 60, 70), 4)
-            _rect(img, lx - 70, 70, lx + 96, 110, (40, 40, 50), 4)
-            cone = np.array([P(lx - 60, 110), P(lx + 86, 110), P(lx + 500, GROUND + 300), P(lx - 474, GROUND + 300)], np.int32)
-            ov = img.copy()
-            cv2.fillPoly(ov, [cone], (255, 240, 180), cv2.LINE_AA)
-            img[:] = (img * 0.82 + ov * 0.18).astype(np.uint8)
-    else:
-        return build('rihtim')
-    return img
+    fn = BUILDERS.get(loc) or BUILDERS['tezgah']
+    return fn()
+
+
+def _warp(img, sc, cam, k, W, H, flags=cv2.INTER_LINEAR):
+    z = cam.z ** (0.4 + 0.6 * k) if k < 1 else cam.z * (1 + (k - 1) * 0.15)
+    cx = REF[0] + (cam.cx - REF[0]) * k
+    cy = REF[1] + (cam.cy - REF[1]) * k
+    a = z / sc
+    M = np.array([[a, 0, -(X0 * sc) * a / sc * 0 + (X0 - cx) * z + W / 2 + cam.sx * k],
+                  [0, a, (Y0 - cy) * z + H / 2 + cam.sy * k]], np.float32)
+    return cv2.warpAffine(img, M, (W, H), flags=flags, borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0, 0))
+
+
+def _over(f, rgba):
+    a = rgba[..., 3:4].astype(np.float32) / 255
+    f *= (1 - a)
+    f += rgba[..., :3].astype(np.float32) / 255 * a
+    return f
 
 
 def draw(loc, cam):
-    img = build(loc)
-    M = np.float32([[cam.z, 0, cam.W / 2 + cam.sx - (cam.cx - X0) * cam.z], [0, cam.z, cam.H / 2 + cam.sy - (cam.cy - Y0) * cam.z]])
-    out = cv2.warpAffine(img, M, (cam.W, cam.H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
-    return out.astype(np.float32) * (1 / 255.0)
+    L = build(loc)
+    W, H = cam.W, cam.H
+    f = np.zeros((H, W, 3), np.float32)
+    f[:] = (0.80, 0.66, 0.48)
+    f = _over(f, _warp(L['far'], LAYER_SC['far'], cam, LAYER_K['far'], W, H))
+    f = _over(f, _warp(L['mid'], LAYER_SC['mid'], cam, LAYER_K['mid'], W, H))
+    return f
+
+
+def draw_fg(loc, cam, f):
+    L = build(loc)
+    return _over(f, _warp(L['fg'], LAYER_SC['fg'], cam, LAYER_K['fg'], cam.W, cam.H))
+
+
+@lru_cache(4)
+def _grid(W, H):
+    Y, X = np.mgrid[0:H, 0:W].astype(np.float32)
+    return X, Y
+
+
+def post(loc, f, cam, t):
+    """Sinematik ışık: ışık hüzmeleri, toz, parlama (bloom), renk ve vinyet."""
+    L = build(loc)['light']
+    W, H = cam.W, cam.H
+    X, Y = _grid(W, H)
+    sx, sy = cam.p(*L['src'])
+    if L.get('shafts'):
+        ang = math.atan2(H - sy, W * 0.3 - sx)
+        dx, dy = math.cos(ang), math.sin(ang)
+        px, py = X - sx, Y - sy
+        across = -px * dy + py * dx
+        along = px * dx + py * dy
+        band = (0.5 + 0.5 * np.sin(across / (90 * cam.z) + 1.3)) ** 6 + 0.6 * (0.5 + 0.5 * np.sin(across / (37 * cam.z))) ** 10
+        fade = np.clip(1 - along / (H * 1.2), 0, 1) * (along > 0)
+        sh = cv2.GaussianBlur((band * fade).astype(np.float32), (0, 0), 6)
+        f += sh[..., None] * L['shafts'] * np.array(L['col'], np.float32)
+    if L.get('dust'):
+        rng = np.random.default_rng(11)
+        n = 70
+        bx, by = rng.uniform(0, 1, n), rng.uniform(0, 1, n)
+        sp = rng.uniform(0.2, 1, n)
+        for i in range(n):
+            x = ((bx[i] + 0.012 * math.sin(t * sp[i] + i)) % 1) * W
+            y = ((by[i] - t * 0.008 * sp[i]) % 1) * H * 0.85
+            r = 1.5 + 3 * sp[i]
+            a = 0.35 + 0.4 * (0.5 + 0.5 * math.sin(t * 2 * sp[i] + i))
+            cv2.circle(f, (int(x * 4), int(y * 4)), int(r * 4), tuple(float(c) * a + 0.2 for c in L['col']), -1, cv2.LINE_AA, shift=2)
+    br = np.clip(f - 0.80, 0, None)
+    small = cv2.resize(br, (W // 4, H // 4), interpolation=cv2.INTER_AREA)
+    f += cv2.resize(cv2.GaussianBlur(small, (0, 0), 8), (W, H)) * 0.9
+    f *= np.array(L['warm'], np.float32)
+    d = ((X - W * 0.55) / (W * 0.8)) ** 2 + ((Y - H * 0.45) / (H * 0.75)) ** 2
+    f *= np.clip(1.12 - 0.42 * d, 0.5, 1.05)[..., None]
+    return f

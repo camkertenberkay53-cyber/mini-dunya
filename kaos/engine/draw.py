@@ -196,3 +196,78 @@ def anger_steam(f, cam, x, y, t, k=1.0):
         circle(ov, c, (14 + 26 * u) * cam.z, (1, 1, 1), False)
         a = 0.6 * (1 - u) * k
         f[:] = f * (1 - a) + ov * a
+
+
+# ---------------------------------------------------------------- Mini Dünya: hücre gölgeli (cel) çizim
+OUT2 = (0.20, 0.12, 0.10)   # koyu kahve kontur
+
+
+def E(cx, cy, rx, ry, ang=0.0, n=36, a0=0.0, a1=2 * math.pi):
+    ca, sa = math.cos(ang), math.sin(ang)
+    out = []
+    for k in range(n):
+        a = a0 + (a1 - a0) * k / (n - (0 if a1 - a0 < 2 * math.pi - 1e-6 else 0))
+        px, py = rx * math.cos(a), ry * math.sin(a)
+        out.append((cx + px * ca - py * sa, cy + px * sa + py * ca))
+    return out
+
+
+def capsule(x0, y0, x1, y1, r0, r1=None, n=10):
+    """İki uç arası yuvarlak uçlu uzuv poligonu."""
+    r1 = r0 if r1 is None else r1
+    dx, dy = x1 - x0, y1 - y0
+    L = math.hypot(dx, dy) or 1
+    a = math.atan2(dy, dx)
+    pts = []
+    for k in range(n + 1):
+        t = a + math.pi / 2 + math.pi * k / n
+        pts.append((x1 + r1 * math.cos(t - math.pi), y1 + r1 * math.sin(t - math.pi)))
+    for k in range(n + 1):
+        t = a + math.pi / 2 + math.pi * k / n
+        pts.append((x0 + r0 * math.cos(t), y0 + r0 * math.sin(t)))
+    return pts
+
+
+def cel(f, spts, col, outline=True, w=5, shadow=0.24, rim=0.18, light=(1.0, -1.0), oc=None):
+    """Ekran koordinatlı poligonu hücre gölgeli doldurur: ışığa ters kenarda gölge şeridi, ışık tarafında parlak kenar."""
+    spts = np.asarray(spts, np.float32)
+    H, W = f.shape[:2]
+    x0, y0 = np.floor(spts.min(0)).astype(int) - 4
+    x1, y1 = np.ceil(spts.max(0)).astype(int) + 4
+    if x1 < 0 or y1 < 0 or x0 >= W or y0 >= H:
+        return
+    X0, Y0, X1, Y1 = max(0, x0), max(0, y0), min(W, x1), min(H, y1)
+    if X1 <= X0 or Y1 <= Y0:
+        return
+    loc = (spts - [X0, Y0]) * S
+    loc = np.round(loc).astype(np.int32)
+    m = np.zeros((Y1 - Y0, X1 - X0), np.uint8)
+    cv2.fillPoly(m, [loc], 255, cv2.LINE_AA, shift=2)
+    size = max(4.0, min(x1 - x0, y1 - y0))
+    off = max(2, int(size * 0.13))
+    mf = m.astype(np.float32) / 255
+    sc = 255.0 if f.dtype == np.uint8 else 1.0
+    nc = f.shape[2]
+    col = np.array(col, np.float32)
+    roi = f[Y0:Y1, X0:X1].astype(np.float32)
+    base = np.empty((Y1 - Y0, X1 - X0, 3), np.float32)
+    base[:] = col * sc
+    if shadow:
+        sh = np.roll(np.roll(mf, int(light[1] * off), 0), int(light[0] * off), 1)
+        band = np.clip(mf - sh, 0, 1)
+        band = cv2.GaussianBlur(band, (0, 0), max(0.6, off * 0.08))
+        base = base * (1 - shadow * band[..., None]) + (np.array([0.18, 0.10, 0.30]) * sc) * (shadow * 0.35 * band[..., None])
+    if rim:
+        o2 = max(1, off // 3)
+        hl = np.roll(np.roll(mf, int(-light[1] * o2), 0), int(-light[0] * o2), 1)
+        band2 = np.clip(mf - hl, 0, 1)
+        base = base + (np.array([1.0, 0.92, 0.75]) * sc - base) * (rim * band2[..., None])
+    a = mf[..., None]
+    roi[..., :3] = roi[..., :3] * (1 - a) + base * a
+    if nc == 4:
+        roi[..., 3:4] = np.maximum(roi[..., 3:4], a * sc)
+    f[Y0:Y1, X0:X1] = roi.astype(f.dtype)
+    if outline:
+        occ = oc if oc is not None else OUT2
+        c = tuple(float(v) * sc for v in occ) + ((sc,) if nc == 4 else ())
+        cv2.polylines(f, [np.round(spts * S).astype(np.int32)], True, c, max(1, int(w)), cv2.LINE_AA, shift=2)
