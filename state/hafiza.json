@@ -1,0 +1,29 @@
+{
+ "sezon": 1,
+ "sezon_baslangic": "2026-11-20",
+ "bolum_no": 1,
+ "harita": [
+  "Süpürgelik Geçidi"
+ ],
+ "bolumler": [
+  {
+   "no": 1,
+   "tarih": "2026-11-20",
+   "slot": "sabah",
+   "tur": "ana",
+   "baslik": "Süpürgelik Geçidi",
+   "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
+   "video_id": "NBDUSR-J9AE",
+   "ses": "gemini"
+  }
+ ],
+ "acik_meseleler": [
+  "Kapı menteşesinden aşağıya nasıl inecekler?"
+ ],
+ "en_cok_izlenen": [],
+ "yapilan": {
+  "2026-11-20": [
+   "sabah"
+  ]
+ }
+}

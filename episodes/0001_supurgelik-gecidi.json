@@ -1,0 +1,96 @@
+{
+ "konu": "Haritacılar Mutfak Kıtası'na geçmek ister ancak dev süpürgenin rüzgârı yollarını keser.",
+ "baslik": "Süpürgelik Geçidi",
+ "kapak_yazisi": "DEV SÜPÜRGE ALARMI!",
+ "end_card": "Yarın: Mutfak Tezgâhına Tırmanış!",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Süpürgelik Çıkışı",
+   "location": "zemin",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Mutfak Kıtası'na giden yolu dev süpürgenin rüzgârı kapatmış!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Ben haritacı lideriyim, hiçbir rüzgâr beni durduramaz!",
+     "emotion": "kibirli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Eyvah, Tuna geri uçuyor! Dikkat et!",
+     "emotion": "saskin",
+     "action": "carp"
+    },
+    {
+     "who": "nil",
+     "text": "Mevcut ağırlığımızla saniyede üç metre esen rüzgârda uçup gideriz.",
+     "emotion": "soguk",
+     "action": "egil"
+    },
+    {
+     "who": "bulut",
+     "text": "Korkmayın! Devlerin düşürdüğü düğmelerden ağır botlar yaptım!",
+     "emotion": "neseli",
+     "action": "gir_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Harika icat! Haritacılar Loncası hücum!",
+     "emotion": "kibirli",
+     "action": "zipla"
+    },
+    {
+     "who": "pire",
+     "text": "Botların tabanındaki ataçlar kapı menteşesine yapıştı!",
+     "emotion": "saskin",
+     "action": "titre"
+    },
+    {
+     "who": "nil",
+     "text": "İyi tarafı rüzgâr uçuramadı. Kötü tarafı havada asılı kaldık.",
+     "emotion": "bikkin",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Haritaya not alın: Geçit geçildi! Şimdi biri merdiven getirsin...",
+     "emotion": "neseli",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Mutfak Kıtası Keşfi Başlıyor! | Mini Dünya Birinci Bölüm",
+  "description": "Dört küçük haritacı Mutfak Kıtası'na geçmek isterken dev süpürge rüzgârına yakalanıyor! Bulut'un düğme botları onları kurtarabilecek mi?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "çizgi film",
+   "macera",
+   "shorts",
+   "türkçe animasyon",
+   "haritacılar"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
+  "acik_meseleler": [
+   "Kapı menteşesinden aşağıya nasıl inecekler?"
+  ],
+  "yeni_bolge": "Süpürgelik Geçidi"
+ },
+ "tur": "ana"
+}
