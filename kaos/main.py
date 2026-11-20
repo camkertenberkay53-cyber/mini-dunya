@@ -216,7 +216,10 @@ def main():
     if kind != 'bagimsiz' and isinstance(h.get('acik_meseleler'), list):
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
-                           'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine})
+                           'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine,
+                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''),
+                           'mekan': ep['scenes'][0].get('location', ''), 'ana_karakter': ep.get('ana_karakter', ''),
+                           'final': ep['scenes'][-1]['lines'][-1].get('text', '') if ep['scenes'][-1].get('lines') else ''})
     st['bolumler'] = st['bolumler'][-200:]
     done.append(slot)
     st['yapilan'][today.isoformat()] = done

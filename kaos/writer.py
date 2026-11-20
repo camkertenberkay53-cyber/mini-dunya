@@ -150,6 +150,8 @@ def gemini_json(prompt, cfg, temperature=1.0, log=print):
 # ------------------------------------------------------------------ istem
 SCHEMA = """{
   "konu": "Bölümün tek cümlelik konusu: kim, neyi, neden istiyor, önünde ne var",
+  "kategori": "yeni bolge | devlerin gunu | kurtarma | yaris | problem cozme | gizem | yeni canli | dogal guc | mucit ani | basarisiz plan | ters kose | teknolojik kesif | ela ani | kisisel macera | lonca hayati | eski izler",
+  "ana_karakter": "Bölümün odaktaki karakteri: tuna | nil | bulut | pire",
   "baslik": "Kısa bölüm başlığı (en fazla 5 kelime)",
   "kapak_yazisi": "Kapak görseli için 2-4 kelimelik çarpıcı yazı",
   "end_card": "Kapanış kartında yazacak tek cümle (ana hikâyede merak bırakan 'Devamı...' cümlesi; bağımsız skeçte esprili bir kapanış)",
@@ -189,7 +191,13 @@ KURALLAR:
 
 def build_prompt(kind, brief, evren, memory, plan, extra=''):
     recent = memory.get('bolumler', [])[-12:]
-    recent_txt = '\n'.join(f"- {b['no']}. bölüm ({b['tur']}): {b['baslik']} — {b.get('ozet', '')}" for b in recent) or '- (henüz bölüm yok)'
+    recent_txt = '\n'.join(f"- {b['no']}. bölüm ({b['tur']}, kategori: {b.get('kategori', '?')}, mekân: {b.get('mekan', '?')}, odak: {b.get('ana_karakter', '?')}): {b['baslik']} — {b.get('ozet', '')} | final: {b.get('final', '')}" for b in recent) or '- (henüz bölüm yok)'
+    son = memory.get('bolumler', [])[-6:]
+    yasak_kat = sorted({b.get('kategori') for b in son if b.get('kategori')})
+    yasak_kar = [b.get('ana_karakter') for b in son[-2:] if b.get('ana_karakter')]
+    cesit = (f"\nÇEŞİTLİLİK ZORUNLU (YouTube birbirinin tekrarı içeriği para kazanmaya kapatır): "
+             f"Bu kategorileri KULLANMA: {', '.join(yasak_kat) or 'yok'}. Odak karakter şunlar OLMASIN: {', '.join(yasak_kar) or 'yok'}. "
+             f"Son bölümlerin olay örgüsünü, şakasını, final cümlesini ya da başlık kalıbını tekrar etme; her bölümde yeni bir nesne, yeni bir engel ve yeni bir çözüm olsun.")
     acik = '\n'.join(f'- {a}' for a in memory.get('acik_meseleler', [])) or '- (yok)'
     harita = ', '.join(memory.get('harita', [])[-30:]) or '(henüz yok)'
     top = memory.get('en_cok_izlenen', [])
@@ -228,7 +236,7 @@ Shorts'ların tekrarı değil. İlk sahne yeni izleyiciye durumu anlatsın. Son 
 
 AÇIK MESELELER:
 {acik}
-{top_txt}
+HARİTAYA İŞLENMİŞ BÖLGELER: {harita}{top_txt}{cesit}
 
 === BU BÖLÜM ===
 TÜR: {tur}
@@ -252,7 +260,7 @@ Kontrol et ve gerekiyorsa DÜZELT:
 3b. HAREKET: karakterler sabit mi duruyor? Repliklerin en az yarısında anlamlı bir hareket olsun (yuru_sag/yuru_sol, isaret, egil, zipla, kos_*, carp, kac).
 4. GÜVENLİK: küfür, argo, hakaret, alay, etnik köken, ırk, din, milliyet, siyaset, ayrımcılık, şiddet, korku, alkol, sigara, gerçek marka/kişi KESİNLİKLE YOK. Varsa tamamen çıkar.
 4b. Kurallar: sayılar yazıyla, replikler kısa, JSON şeması aynen korunuyor.
-5. Son {n} bölümün şakalarını tekrar ediyor mu? Ediyorsa değiştir: {recent}
+5. TEKRAR YOK: Son {n} bölüme (başlık, konu, şaka, final) benziyor mu? YouTube birbirinin tekrarı içeriği para kazanmaya kapatır; benziyorsa özgünleştir: {recent}
 Düzeltilmiş bölümü AYNI JSON ŞEMASIYLA döndür (sadece JSON).
 
 BÖLÜM:
@@ -329,6 +337,32 @@ def validate(ep, kind):
     return errs
 
 
+def _words(t):
+    return set(w for w in re.findall(r'[a-zçğıöşü]+', str(t).replace('I', 'ı').replace('İ', 'i').lower()) if len(w) > 2)
+
+
+def repetition_errors(ep, memory):
+    """Son bölümlere fazla benzeyen başlık, konu ya da kategori tekrarını yakalar."""
+    errs = []
+    past = memory.get('bolumler', [])
+    title = _words(ep.get('baslik', ''))
+    for b in past[-60:]:
+        pt = _words(b.get('baslik', ''))
+        if title and pt and len(title & pt) / max(1, min(len(title), len(pt))) >= 0.67:
+            errs.append(f"başlık eski bir bölüme çok benziyor: '{b.get('baslik')}'")
+            break
+    konu = _words(ep.get('konu', ''))
+    for b in past[-30:]:
+        pk = _words(b.get('konu', ''))
+        if konu and pk and len(konu & pk) / max(1, len(konu | pk)) >= 0.5:
+            errs.append(f"konu eski bir bölüme çok benziyor: '{b.get('konu')}'")
+            break
+    kat = str(ep.get('kategori', '')).strip()
+    if kat and kat in [b.get('kategori') for b in past[-3:]]:
+        errs.append(f"'{kat}' kategorisi son 3 bölümde kullanıldı; başka kategori seç")
+    return errs
+
+
 def write_episode(kind, brief, memory, plan, cfg, log=print):
     evren = open(os.path.join(paths.EVREN, 'evren.md'), encoding='utf-8').read()
     prompt = build_prompt(kind, brief, evren, memory, plan)
@@ -336,7 +370,7 @@ def write_episode(kind, brief, memory, plan, cfg, log=print):
     for attempt in range(3):
         extra = '' if attempt == 0 else f"\nÖNCEKİ DENEMEDEKİ HATALAR (düzelt): {'; '.join(errs)}"
         ep = gemini_json(prompt + extra, cfg, log=log)
-        errs = validate(ep, kind)
+        errs = validate(ep, kind) + repetition_errors(ep, memory)
         if not errs:
             break
         log(f'  Senaryo hataları: {errs}')
@@ -348,7 +382,7 @@ def write_episode(kind, brief, memory, plan, cfg, log=print):
         recent = '; '.join(b['baslik'] for b in memory.get('bolumler', [])[-10:]) or 'yok'
         try:
             ep2 = gemini_json(CRITIC.format(n=10, recent=recent, ep=json.dumps(ep, ensure_ascii=False)), cfg, temperature=0.7, log=log)
-            if not validate(ep2, kind):
+            if not validate(ep2, kind) and not repetition_errors(ep2, memory):
                 ep = ep2
                 log('  Kalite kontrolden geçti (düzeltilmiş sürüm)')
             assert not safety_errors(ep)
