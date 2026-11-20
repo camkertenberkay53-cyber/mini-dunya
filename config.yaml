@@ -1,0 +1,66 @@
+# LOJİSTİK KAOS bot ayarları
+
+kanal:
+  ad: LOJİSTİK KAOS
+  dil: tr
+
+yayin:
+  # public = hemen yayınla, private = gizli yükle (önce izleyip elle açarsın), unlisted = liste dışı
+  gizlilik: public
+  yukle: true            # false yapılırsa video sadece üretilir, GitHub'dan indirilir
+  kategori: 23           # Komedi
+  shorts_etiketleri: ["lojistik", "komedi", "animasyon", "liman", "tır", "konteyner", "shorts"]
+
+senaryo:
+  # Ücretsiz Gemini metin modelleri (sırayla denenir; hiçbiri olmazsa uygun model otomatik bulunur)
+  modeller: ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.0-flash"]
+  kalite_kontrol: true
+
+tts:
+  order: [gemini, edge, piper]
+  gemini_models: ["gemini-2.5-flash-preview-tts", "gemini-3.1-flash-tts-preview"]
+
+# Karakter sesleri. Ses kataloğu videosunu izledikten sonra beğendiğin sesleri buraya yazarız.
+voices:
+  tayfun:
+    gemini: Algenib
+    style: "Kalın sesli, aceleci ve sürekli sinirli, gür bıyıklı bir tır şoförü gibi; hızlı ve yüksek sesle konuş."
+    edge: {voice: tr-TR-AhmetNeural, rate: "+12%", pitch: "-10Hz"}
+    piper: {voice: fettah-medium, speed: 0.95, pitch: 0.92}
+  kemal:
+    gemini: Puck
+    style: "Endişeli, saf ve paniğe kapılmış genç bir karakter gibi; sesi hafif titreyerek konuş."
+    edge: {voice: tr-TR-AhmetNeural, rate: "+6%", pitch: "+28Hz"}
+    piper: {voice: fahrettin-medium, speed: 1.0, pitch: 1.12}
+  erdal:
+    gemini: Charon
+    style: "Soğuk, monoton ve kendini beğenmiş bir bürokrat memur gibi; ağır ve düz konuş."
+    edge: {voice: de-DE-FlorianMultilingualNeural, rate: "-4%", pitch: "+0Hz"}
+    piper: {voice: dfki-medium, speed: 1.0, pitch: 1.08}
+  necati:
+    gemini: Gacrux
+    style: "Dev bir gemi gibi kibirli, yavaş ve derin sesle, her şeyin kendisini beklemesini doğal sayarak konuş."
+    edge: {voice: tr-TR-AhmetNeural, rate: "-14%", pitch: "-28Hz"}
+    piper: {voice: fettah-medium, speed: 0.85, pitch: 0.85}
+  fikri:
+    gemini: Enceladus
+    style: "Yorgun, bıkkın, iç çekerek ve esneyerek konuşan, mesai hesabı yapan bir forklift operatörü gibi."
+    edge: {voice: en-US-BrianMultilingualNeural, rate: "-6%", pitch: "-4Hz"}
+    piper: {voice: dfki-medium, speed: 0.92, pitch: 0.96}
+  vedat:
+    gemini: Zubenelgenubi
+    style: "Dedikoducu, keyifli ve fısıltıya yakın, sır verir gibi konuşan rahat bir mahalle abisi gibi."
+    edge: {voice: fr-FR-RemyMultilingualNeural, rate: "+0%", pitch: "+4Hz"}
+    piper: {voice: fahrettin-medium, speed: 0.95, pitch: 1.0}
+  telefon:
+    gemini: Kore
+    style: "Sabırsız, sinirli ve ısrarcı bir müşteri gibi, telefonda konuşur gibi hızlı konuş."
+    edge: {voice: tr-TR-EmelNeural, rate: "+12%", pitch: "+0Hz"}
+    piper: {voice: fahrettin-medium, speed: 1.05, pitch: 1.2}
+
+# Yayın saatleri (Türkiye saati). Değiştirirsen .github/workflows/bot.yml içindeki cron satırlarını da güncelle.
+takvim:
+  sabah: "08:30 ana hikâye"
+  oglen: "13:30 bağımsız skeç"
+  aksam: "19:30 ana hikâye"
+  uzun: "Çarşamba ve Pazar 18:00 uzun video (6-7 dk)"

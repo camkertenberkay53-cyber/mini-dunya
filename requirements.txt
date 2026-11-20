@@ -1,0 +1,8 @@
+numpy
+opencv-python-headless
+pillow
+scipy
+soundfile
+pyyaml
+edge-tts
+sherpa-onnx<1.13

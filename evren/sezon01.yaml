@@ -1,0 +1,66 @@
+sezon: 1
+ad: "45 Gün"
+ana_hikaye: "Konteyner Kemal 45 gündür limandan çıkamıyor. Evrak zinciri, yanlış rota ve sonunda yanlış teslimat."
+kemal_gun_baslangic: 45
+gunler:
+  - gun: 1
+    sabah: "Evrak Eksik: Kemal 45 gündür bekliyor; çıkış belgesi var ama giriş belgesi yok. (Tayfun, Erdal, Kemal)"
+    aksam: "Arşiv: Erdal giriş belgesini aramak için arşive iner; arşiv de bir konteynerin içinde. (Erdal, Fikri, Kemal)"
+    oglen: "Masadaki telefon çalar: 'Yüküm nerede?' Kimse bilmiyor."
+  - gun: 2
+    sabah: "Yanlış Belge: Belge bulunur ama Kemal'in rengi 'mavi' yazıyor; Kemal turuncu."
+    aksam: "Boya: Fikri Kemal'i maviye boyamayı önerir. Vedat: 'Ben bir şey görmedim.'"
+    oglen: "Fikri'nin mesai hesabı: 1 saat yük, 3 saat bekleme."
+  - gun: 3
+    sabah: "Mavi Kemal: Kemal boyandı; şimdi de mühür numarası tutmuyor."
+    aksam: "Mühür: Erdal yeni mühür ister; yeni mühür için eski mührün aslı lazım."
+    oglen: "Tayfun trafikte; navigasyon onu limanın içinde 2 saat döndürüyor."
+  - gun: 4
+    sabah: "Taşıma Emri: Tayfun nihayet emir alır ama plaka yanlış yazılmış."
+    aksam: "Plaka: Tayfun'un plakası düzelir; bu sefer Kemal kantarda fazla çıkıyor."
+    oglen: "Kantarda: Tayfun nefesini tutarak tartılmaya çalışıyor."
+  - gun: 5
+    sabah: "Kantar: Kemal'in içinde fazla yük var; içinde ne olduğunu kimse bilmiyor."
+    aksam: "Gizli Yük: Kemal'in içinden sesler geliyor. Devam edecek."
+    oglen: "Acente: operasyoncu aynı anda 50 telefona bakıyor (telefon karakteri)."
+  - gun: 6
+    sabah: "Sesler: İçeriden çıkan şey, aylardır kayıp olan Fikri'nin öğle yemeği."
+    aksam: "Necati Geliyor: Necati'nin ETA'sı açıklanır; yarın kalkacak, Kemal yetişmeli."
+    oglen: "Necati'nin ETA'sı bir bölüm içinde 6 kez değişiyor."
+  - gun: 7
+    sabah: "Haftanın Özeti: Vedat anlatıcı olarak 'Bu hafta ne oldu?' diye anlatır (yeni izleyiciler için giriş)."
+    aksam: "Cut-off: Kemal'in cut-off saati 1 dakika önce kapandı."
+    oglen: "Bayram öncesi liman: herkes aynı anda çıkmaya çalışıyor."
+  - gun: 8
+    sabah: "Denizde: Kemal gemide uyanır, nerede olduğunu bilmiyor (Necati ile)."
+    aksam: "Liste: Necati listede olmayan bir konteyner taşıdığını fark eder ve çok sinirlenir."
+    oglen: "Demuraj ve ardiye: Kemal'e her gün fatura kesiliyor, kendisi de şaşkın."
+  - gun: 9
+    sabah: "Aktarma: Kemal aktarma limanında indirilir; yanlış ülke."
+    aksam: "Yabancı Liman: Kemal'i yabancı bir forklift taşır; dil anlaşamıyorlar (Fikri yabancı forklifti oynar, aksanlı konuşur)."
+    oglen: "Boş konteyner iadesi: 'Depo nerede?' Kimse bilmiyor."
+  - gun: 10
+    sabah: "Telex: Erdal'ın uzaktan 'telex release' yapması gerekiyor; faks bozuk."
+    aksam: "Faks: Erdal kendini faksla göndermeye karar verir."
+    oglen: "Soğuk zincir: jeneratör arızası, reefer konteyner paniğe kapılıyor."
+  - gun: 11
+    sabah: "Erdal Yolda: Erdal faksın içinden yanlış ofise çıkar."
+    aksam: "Tayfun Yola Çıkıyor: Tayfun Kemal'i almak için uzun yola düşer."
+    oglen: "Tır parkında şoförlerin bekleme muhabbeti."
+  - gun: 12
+    sabah: "Gümrük Kapısı: Tayfun kapıda; kuyruk 3 kilometre."
+    aksam: "Kavuşma: Tayfun ve Kemal buluşur, Erdal da gelir. Hepsi aynı anda 'Eksik var' der."
+    oglen: "Gümrük müşaviri: herkesin çözümü o, kendisi ise tatilde (telefon karakteri)."
+  - gun: 13
+    sabah: "Eve Dönüş: Kemal yola çıkar; 58 günün sonunda."
+    aksam: "Teslimat: alıcının deposuna varılır."
+    oglen: "'Yüküm nerede?' Müşteri bu kez kapıda."
+  - gun: 14
+    sabah: "Haftanın Özeti: Vedat'ın anlatımıyla 2. hafta."
+    aksam: "Sezon Finali Fragmanı: alıcı kapıyı açar..."
+    oglen: "Liman tayfası yılbaşı kutlaması (bağımsız eğlence)."
+uzun:
+  hafta1_carsamba: "Haftanın Kaosu 1: 1-3. günlerin hikâyesi tek akışta, arşiv macerasının tamamı gibi yeni sahnelerle."
+  hafta1_pazar: "Özel Bölüm - Gece Vardiyası: cut-off kaçtı; gece vardiyasında herkes Kemal'i gizlice Necati'ye yüklemeye çalışır. Yanlış konteyner yüklenir, Kemal güvertede ama yanlış listede. Final: Necati limandan ayrılır."
+  hafta2_carsamba: "Haftanın Kaosu 2: 8-10. günlerin hikâyesi; ek olarak Kemal'in yabancı limandaki gecesi."
+  hafta2_pazar: "Sezon Finali - Teslim: alıcı Kemal'i açar, içinden çıkan ürün sipariş değil; iade gerekiyor. Kemal'in sayacı sıfırlanır: 'Bir gündür buradayım...' Sezon 2 kancası."

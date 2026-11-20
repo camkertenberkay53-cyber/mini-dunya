@@ -1,0 +1,113 @@
+name: Lojistik Kaos Bot
+
+on:
+  schedule:
+    - cron: "30 5 * * *"     # 08:30 TR - sabah (ana hikâye)
+    - cron: "30 10 * * *"    # 13:30 TR - öğle (bağımsız skeç)
+    - cron: "30 16 * * *"    # 19:30 TR - akşam (ana hikâye)
+    - cron: "0 15 * * 0,3"   # Çarşamba ve Pazar 18:00 TR - uzun video
+  workflow_dispatch:
+    inputs:
+      gorev:
+        description: "Ne yapılsın?"
+        type: choice
+        default: test
+        options: [test, sabah, oglen, aksam, uzun, katalog]
+      zorla:
+        description: "Bugün bu slot yapılmış olsa da yeniden üret"
+        type: boolean
+        default: false
+
+concurrency:
+  group: lojistik-kaos
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  uret:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Görevi belirle
+        id: gorev
+        run: |
+          case "${{ github.event.schedule }}" in
+            "30 5 * * *")   G=sabah ;;
+            "30 10 * * *")  G=oglen ;;
+            "30 16 * * *")  G=aksam ;;
+            "0 15 * * 0,3") G=uzun ;;
+            *)              G="${{ github.event.inputs.gorev }}" ;;
+          esac
+          echo "gorev=$G" >> "$GITHUB_OUTPUT"
+          echo "Görev: $G"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Kurulum
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q -r requirements.txt
+
+      - name: Yedek ses modelleri (önbellek)
+        uses: actions/cache@v4
+        with:
+          path: models
+          key: piper-tr-v1
+
+      - name: Yedek ses modellerini indir
+        run: |
+          mkdir -p models && cd models
+          for v in fahrettin-medium fettah-medium dfki-medium; do
+            if [ ! -d "vits-piper-tr_TR-$v" ]; then
+              curl -sSL -o m.tar.bz2 "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-$v.tar.bz2"
+              tar xjf m.tar.bz2 && rm m.tar.bz2
+            fi
+          done
+
+      - name: Bölümü üret ve yükle
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          PIPER_MODELS: ${{ github.workspace }}/models
+        run: |
+          G="${{ steps.gorev.outputs.gorev }}"
+          FORCE=""
+          if [ "${{ github.event.inputs.zorla }}" = "true" ]; then FORCE="--force"; fi
+          if [ "$G" = "katalog" ]; then
+            python -m kaos.catalog
+          elif [ "$G" = "test" ]; then
+            python -m kaos.main --slot sabah --no-upload --force
+          else
+            python -m kaos.main --slot "$G" $FORCE
+          fi
+
+      - name: Videoyu indirilebilir yap
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-${{ steps.gorev.outputs.gorev }}-${{ github.run_number }}
+          path: |
+            output/**/video.mp4
+            output/**/kapak.jpg
+            output/**/senaryo.json
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Hikâye hafızasını kaydet
+        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog'
+        run: |
+          git config user.name "lojistik-kaos-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state episodes evren
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -m "Bölüm kaydı: ${{ steps.gorev.outputs.gorev }} $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
