@@ -1,4 +1,4 @@
-"""LOJİSTİK KAOS botu.
+"""MİNİ DÜNYA botu.
 Kullanım:
   python -m kaos.main --slot auto            # saate göre sabah/oglen/aksam/uzun bölümü üretir ve yükler
   python -m kaos.main --slot sabah --no-upload
@@ -61,13 +61,15 @@ def slug(s):
 
 def auto_slot(now):
     h = now.hour + now.minute / 60
-    if now.weekday() in (2, 6) and 17 <= h < 19:
+    if now.weekday() == 6 and 17 <= h < 19:
         return 'uzun'
     if h < 11:
         return 'sabah'
     if h < 16:
         return 'oglen'
-    return 'aksam'
+    if h < 20.5:
+        return 'aksam'
+    return 'gece'
 
 
 def season_day(st, cfg, today):
@@ -94,20 +96,19 @@ def season_day(st, cfg, today):
 def brief_for(slot, plan, day, today):
     if slot == 'uzun':
         week = 1 if day <= 7 else 2
-        which = 'pazar' if today.weekday() == 6 else 'carsamba'
-        return 'uzun', plan['uzun'].get(f'hafta{week}_{which}', 'Haftanın en kaotik olayının uzun hikâyesi.')
+        return 'uzun', plan['uzun'].get(f'hafta{week}_pazar', plan['uzun'].get(f'hafta{week}', 'Haftanın en büyük keşif macerası.'))
     row = plan['gunler'][day - 1]
-    if slot == 'oglen':
-        return 'bagimsiz', row['oglen']
+    if slot in ('oglen', 'gece'):
+        return 'bagimsiz', row.get(slot) or row['oglen']
     return 'ana', row[slot]
 
 
 def description(ep, kind, no, season):
     yt = ep['youtube']
     base = yt.get('description', '').strip()
-    tail = (f"\n\nLOJİSTİK KAOS · Sezon {season} · Bölüm {no}\n"
-            "Limanda konuşan tırlar, konteynerler, gemiler ve evraklar... Lojistik dünyasının sitcom'u.\n"
-            "Her gün yeni bölüm! Abone olmayı unutma.\n\n#lojistik #komedi #animasyon #liman #tır #konteyner")
+    tail = (f"\n\nMİNİ DÜNYA · Sezon {season} · Bölüm {no}\n"
+            "Süpürgeliğin arkasında yaşayan minik haritacılar, Büyük Ev'i bölge bölge keşfediyor.\n"
+            "Her gün yeni bölüm! Abone olmayı unutma.\n\n#minidünya #animasyon #macera #keşif #çizgifilm")
     if kind != 'uzun':
         tail += ' #shorts'
     return base + tail
@@ -154,7 +155,7 @@ def update_stats(st, log=log):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--slot', default='auto', choices=['auto', 'sabah', 'oglen', 'aksam', 'uzun'])
+    ap.add_argument('--slot', default='auto', choices=['auto', 'sabah', 'oglen', 'aksam', 'gece', 'uzun'])
     ap.add_argument('--json', help='Hazır senaryo dosyasından üret')
     ap.add_argument('--no-upload', action='store_true')
     ap.add_argument('--force', action='store_true', help='Bugün bu slot yapılmış olsa da üret')

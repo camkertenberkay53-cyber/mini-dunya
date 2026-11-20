@@ -411,14 +411,14 @@ class Renderer:
                 items.append(('text', txt, W / 2, H - 120 - nl * 58, 52, (255, 255, 255), 'ma'))
         # açılış başlığı
         if not self.tl['long'] and t < 2.6:
-            items.append(('text', 'LOJİSTİK KAOS', W / 2, 215, 76, (255, 210, 60), 'mm'))
+            items.append(('text', 'MİNİ DÜNYA', W / 2, 215, 76, (255, 210, 60), 'mm'))
             items.append(('text', meta.get('subtitle', ''), W / 2, 292, 44, (255, 255, 255), 'mm'))
         if self.tl['long'] and t < 3.6:
-            items.append(('text', 'LOJİSTİK KAOS', W / 2, H / 2 - 70, 110, (255, 210, 60), 'mm'))
+            items.append(('text', 'MİNİ DÜNYA', W / 2, H / 2 - 70, 110, (255, 210, 60), 'mm'))
             items.append(('text', meta.get('subtitle', ''), W / 2, H / 2 + 40, 56, (255, 255, 255), 'mm'))
         # kapanış kartı
         if t >= end:
-            items.append(('text', 'LOJİSTİK KAOS', W / 2, H * (0.38 if self.vertical else 0.3), 96, (255, 210, 60), 'mm'))
+            items.append(('text', 'MİNİ DÜNYA', W / 2, H * (0.38 if self.vertical else 0.3), 96, (255, 210, 60), 'mm'))
             items.append(('text', meta.get('subtitle', ''), W / 2, H * (0.38 if self.vertical else 0.3) + 95, 50, (255, 255, 255), 'mm'))
             ec = self.ep.get('end_card', '')
             if ec and t > end + 0.6:

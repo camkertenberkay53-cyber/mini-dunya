@@ -1,6 +1,6 @@
 # LOJİSTİK KAOS 🚛
 
-Limanda konuşan tırlar, konteynerler, gemiler ve evraklar. Lojistik dünyasının animasyon sitcom'u.
+# MİNİ DÜNYA — Otomatik YouTube Animasyon Botu
 Bu depo, YouTube kanalı için her gün kendi kendine bölüm **yazan, seslendiren, çizen ve yükleyen** bottur.
 
 - **Her gün 3 Shorts:** 08:30 ana hikâye, 13:30 bağımsız skeç, 19:30 ana hikâye

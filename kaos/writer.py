@@ -172,7 +172,7 @@ Shorts'larda yayınlanmamış yeni olaylar ve sahneler mutlaka olsun (aynı Shor
         tur = 'BAĞIMSIZ SKEÇ: sezon hikâyesinden bağımsız, sektörden tek bir olayı komediye çevir. Ana hikâyeye en fazla küçük bir gönderme yapabilirsin.'
     else:
         tur = 'UZUN VİDEO bölümü.'
-    return f"""Sen "LOJİSTİK KAOS" adlı Türkçe animasyon sitcom'unun baş senaristisin. Bir liman ve lojistik merkezinde konuşan araçlar, eşyalar ve belgeler var.
+    return f"""Sen "MİNİ DÜNYA" adlı Türkçe animasyon sitcom'unun baş senaristisin. Bir liman ve lojistik merkezinde konuşan araçlar, eşyalar ve belgeler var.
 
 === EVREN KİTABI ===
 {evren}
@@ -198,7 +198,7 @@ JSON ŞEMASI:
 """
 
 
-CRITIC = """Aşağıda "LOJİSTİK KAOS" için yazılmış bir bölüm var. Sen deneyimli bir komedi yazarı ve editörsün.
+CRITIC = """Aşağıda "MİNİ DÜNYA" için yazılmış bir bölüm var. Sen deneyimli bir komedi yazarı ve editörsün.
 Kontrol et ve gerekiyorsa DÜZELT:
 1. Bölüm, diziyi hiç izlememiş biri için tek başına anlaşılıyor mu? İlk replik durumu anlatıyor mu?
 2. Gerçekten komik mi? Punchline güçlü mü? Zayıf replikleri daha komik yap; sıradan replikleri esprili olanlarla değiştir.
@@ -282,7 +282,7 @@ def validate(ep, kind):
         if total_words > 130:
             errs.append(f'shorts çok uzun ({total_words} kelime); en fazla 95 olmalı')
     yt = ep.setdefault('youtube', {})
-    yt['title'] = str(yt.get('title') or ep.get('baslik') or 'Lojistik Kaos')[:95]
+    yt['title'] = str(yt.get('title') or ep.get('baslik') or 'Mini Dünya')[:95]
     yt.setdefault('description', '')
     yt.setdefault('tags', [])
     ep.setdefault('end_card', '')
@@ -322,7 +322,7 @@ def write_episode(kind, brief, memory, plan, cfg, log=print):
 def new_season_plan(season_no, memory, cfg, log=print):
     evren = open(os.path.join(paths.EVREN, 'evren.md'), encoding='utf-8').read()
     recent = '\n'.join(f"- {b['baslik']}: {b.get('ozet', '')}" for b in memory.get('bolumler', [])[-30:])
-    prompt = f"""Sen "LOJİSTİK KAOS" animasyon sitcom'unun baş senaristisin.
+    prompt = f"""Sen "MİNİ DÜNYA" animasyon sitcom'unun baş senaristisin.
 EVREN KİTABI:
 {evren}
 

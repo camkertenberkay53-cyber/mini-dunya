@@ -1,15 +1,15 @@
-# LOJİSTİK KAOS bot ayarları
+# MİNİ DÜNYA bot ayarları
 
 kanal:
-  ad: LOJİSTİK KAOS
+  ad: MİNİ DÜNYA
   dil: tr
 
 yayin:
   # public = hemen yayınla, private = gizli yükle (önce izleyip elle açarsın), unlisted = liste dışı
   gizlilik: public
   yukle: true            # false yapılırsa video sadece üretilir, GitHub'dan indirilir
-  kategori: 23           # Komedi
-  shorts_etiketleri: ["lojistik", "komedi", "animasyon", "liman", "tır", "konteyner", "shorts"]
+  kategori: 1            # Film ve Animasyon
+  shorts_etiketleri: ["mini dünya", "animasyon", "macera", "keşif", "çizgi film", "shorts"]
 
 senaryo:
   # Ücretsiz Gemini metin modelleri (sırayla denenir; hiçbiri olmazsa uygun model otomatik bulunur)

@@ -1,4 +1,4 @@
-"""LOJİSTİK KAOS karakterleri. Her karakter dünya koordinatında (x, y) noktasına çizilir.
+"""MİNİ DÜNYA karakterleri. Her karakter dünya koordinatında (x, y) noktasına çizilir.
 Yer karakterlerinde (x, y) = ayak/teker hizasının ortası; Necati'de pruva su hattı; Vedat'ta kabin merkezi."""
 import math
 import cv2

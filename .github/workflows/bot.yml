@@ -1,25 +1,26 @@
-name: Lojistik Kaos Bot
+name: Mini Dunya Bot
 
 on:
   schedule:
     - cron: "30 5 * * *"     # 08:30 TR - sabah (ana hikâye)
     - cron: "30 10 * * *"    # 13:30 TR - öğle (bağımsız skeç)
     - cron: "30 16 * * *"    # 19:30 TR - akşam (ana hikâye)
-    - cron: "0 15 * * 0,3"   # Çarşamba ve Pazar 18:00 TR - uzun video
+    - cron: "30 18 * * *"    # 21:30 TR - gece (bağımsız macera)
+    - cron: "0 15 * * 0"     # Pazar 18:00 TR - haftalık uzun video
   workflow_dispatch:
     inputs:
       gorev:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [test, sabah, oglen, aksam, uzun, katalog]
+        options: [test, sabah, oglen, aksam, gece, uzun, katalog]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
         default: false
 
 concurrency:
-  group: lojistik-kaos
+  group: mini-dunya
   cancel-in-progress: false
 
 permissions:
@@ -39,7 +40,8 @@ jobs:
             "30 5 * * *")   G=sabah ;;
             "30 10 * * *")  G=oglen ;;
             "30 16 * * *")  G=aksam ;;
-            "0 15 * * 0,3") G=uzun ;;
+            "30 18 * * *")  G=gece ;;
+            "0 15 * * 0")   G=uzun ;;
             *)              G="${{ github.event.inputs.gorev }}" ;;
           esac
           echo "gorev=$G" >> "$GITHUB_OUTPUT"
@@ -105,7 +107,7 @@ jobs:
       - name: Hikâye hafızasını kaydet
         if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog'
         run: |
-          git config user.name "lojistik-kaos-bot"
+          git config user.name "mini-dunya-bot"
           git config user.email "bot@users.noreply.github.com"
           git add state episodes evren
           if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
