@@ -7,7 +7,7 @@ kanal:
 yayin:
   # public = hemen yayınla, private = gizli yükle (önce izleyip elle açarsın), unlisted = liste dışı
   gizlilik: public
-  yukle: true            # false yapılırsa video sadece üretilir, GitHub'dan indirilir
+  yukle: false           # false yapılırsa video sadece üretilir, GitHub'dan indirilir
   kategori: 1            # Film ve Animasyon
   shorts_etiketleri: ["mini dünya", "animasyon", "macera", "keşif", "çizgi film", "shorts"]
 
