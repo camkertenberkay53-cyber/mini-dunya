@@ -60,8 +60,8 @@ def build_timeline(ep, line_wavs, long_form=False):
 
 
 # ---------------------------------------------------------------- sahne düzeni
-def layout(scene):
-    chars = [c for c in scene['characters'] if c in CHARS]
+def layout(scene, order=None):
+    chars = [c for c in (order or scene['characters']) if c in CHARS]
     ground = [c for c in chars if CHARS[c]['ground']]
     pos = {}
     widths = [CHARS[c]['w'] for c in ground]
@@ -116,7 +116,7 @@ def shot_for(seg_, idx, n, prev_who, W, H, pos):
         kind = 'wide'
     if kind == 'wide' or len(pos) == 1 and kind == 'two':
         box = bbox(list(pos.keys()), pos)
-        cx, cy, z = frame_box(box, W, H, 0.94, 0.5 if vertical else 0.78, 1.5, sy)
+        cx, cy, z = frame_box(box, W, H, 0.9, 0.56 if vertical else 0.8, 1.75, sy)
     elif kind == 'two':
         box = bbox([who, prev_who], pos)
         cx, cy, z = frame_box(box, W, H, 0.92, 0.48 if vertical else 0.8, 1.9, sy)
@@ -233,10 +233,40 @@ class Renderer:
         for s in self.segs:
             if s['action'] in ('yuru_sag', 'yuru_sol'):
                 self.moves.setdefault((s['scene'], s['who']), []).append((s['start'] + 0.1, 170 if s['action'] == 'yuru_sag' else -170))
+        for si2, sc2 in enumerate(ep['scenes']):
+            cs = [c for c in sc2['characters'] if c in CHARS]
+            left = [c for c in cs if self.enter.get((si2, c), (0, 0, 0))[1] == -1]
+            right = [c for c in cs if self.enter.get((si2, c), (0, 0, 0))[1] == 1]
+            mid = [c for c in cs if c not in left and c not in right and c != 'benek']
+            ben = ['benek'] if 'benek' in cs and 'benek' not in left + right else []
+            order = left[::-1] + mid + ben + right
+            self.layouts[si2] = layout(sc2, order)
+            self.wide[si2] = shot_for(dict(who=None, emotion='normal', action='gir_sag'), 0, 1, None, W, H, self.layouts[si2])
+        # kamera çekimlerini, o anda sahnede gerçekten olan karakterlerin GÜNCEL konumlarına göre yeniden hesapla
+        for si2 in range(len(ep['scenes'])):
+            ss = [q for q in self.segs if q['scene'] == si2]
+            prev = None
+            for k, q in enumerate(ss):
+                q['shot'] = shot_for(q, k, len(ss), prev, W, H, self.present(si2, q))
+                prev = q['who']
         # dinleyen tepkileri: biri şaşırır ya da panikler ise diğerleri hafifçe sıçrar
         self.reacts = [(s['start'] + 0.15, s['scene'], s['who']) for s in self.segs if s['emotion'] in ('panik', 'saskin') or s['action'] == 'carp']
         rng = np.random.default_rng(7)
         self.blink_off = {c: rng.uniform(0, 4) for c in CHARS}
+
+    def present(self, si, q):
+        """Bu replik sırasında sahnede olan karakterler ve replik sonundaki konumları."""
+        t_end = q['start'] + q['dur']
+        out = {}
+        for c, (x, y) in self.layouts[si].items():
+            key = (si, c)
+            if key in self.enter and self.enter[key][0] > q['start'] + 0.05 and c != q['who']:
+                continue
+            if key in self.exit and self.exit[key][0] < q['start'] - 0.05:
+                continue
+            dx = sum(d for tm, d in self.moves.get(key, []) if tm <= t_end)
+            out[c] = (x + dx, y)
+        return out or dict(self.layouts[si])
 
     def scene_at(self, t):
         for i, (a, b) in enumerate(self.tl['scenes']):
@@ -295,7 +325,10 @@ class Renderer:
         loc = sc.get('location', 'tezgah')
         f = backgrounds.draw(loc, cam)
         # karakterler: önce gökyüzü/deniz karakterleri, sonra soldan sağa yer karakterleri
-        order = sorted(pos.keys(), key=lambda c: (CHARS[c]['ground'], pos[c][0]))
+        def depth(c):
+            n = sum(1 for tm, _ in self.moves.get((si, c), []) if t > tm)
+            return (n % 2, pos[c][0])
+        order = sorted(pos.keys(), key=depth)
         speaker = cur['who'] if cur is not None else None
         for c in order:
             x, y = pos[c]
@@ -318,10 +351,11 @@ class Renderer:
             if moving:
                 speed_lines(f, cam, x, y, moving, t, CHARS[c]['w'] if 'w' in CHARS[c] else 300)
             walk_in = 0.0
-            for tm, dxm in self.moves.get(key, []):
+            for n_mv, (tm, dxm) in enumerate(self.moves.get(key, [])):
                 if t > tm:
                     k2 = ease(seg(t, tm, tm + 0.9))
                     x += dxm * k2
+                    y += (45 if n_mv % 2 == 0 else -45) * k2
                     if k2 < 1:
                         walk_in = 1.0
             # boşta küçük kıpırdanma (ağırlık aktarma)

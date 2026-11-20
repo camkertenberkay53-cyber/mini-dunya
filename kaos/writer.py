@@ -149,6 +149,7 @@ def gemini_json(prompt, cfg, temperature=1.0, log=print):
 
 # ------------------------------------------------------------------ istem
 SCHEMA = """{
+  "konu": "Bölümün tek cümlelik konusu: kim, neyi, neden istiyor, önünde ne var",
   "baslik": "Kısa bölüm başlığı (en fazla 5 kelime)",
   "kapak_yazisi": "Kapak görseli için 2-4 kelimelik çarpıcı yazı",
   "end_card": "Kapanış kartında yazacak tek cümle (ana hikâyede merak bırakan 'Devamı...' cümlesi; bağımsız skeçte esprili bir kapanış)",
@@ -200,7 +201,12 @@ Shorts'ların tekrarı değil. İlk sahne yeni izleyiciye durumu anlatsın. Son 
     else:
         fmt = """FORMAT: DİKEY SHORTS (30-45 saniye). Tek sahne, 2-4 karakter (istersen benek de), 6-9 replik, toplam 55-95 kelime.
 - 0-2 sn KANCA: İlk replik durumu bilmeyen birine bile tek cümlede anlatan bir çığlık ya da soru (en fazla 10 kelime).
-- PROBLEM net, sonra BÜYÜR, karakterler bir plan dener, bir sürpriz olur.
+- ANLAMLI HİKÂYE (en önemli kural): Bölümün tek cümlelik net bir konusu olsun: "KİM, NEYİ, NEDEN istiyor ve önünde NE var?"
+  Örnek: "Pire, Benek'i karşıdaki şeker küpünden kurtarmak istiyor ama arada lavabo gölü var."
+  Yapı: 1) HEDEF ilk iki replikte belli olur. 2) ENGEL somut ve görseldir (dev nesne, su, rüzgâr, kedi). 3) İlk PLAN başarısız olur ya da ters gider.
+  4) Karakterlerin farklı yetenekleri birleşir ve ÇÖZÜM bulunur (Bulut'un aracı, Nil'in ölçümü, Tuna'nın cesareti, Pire'nin küçüklüğü).
+  5) SONUÇ: hedefe ulaşılır, öğrenilen ya da bulunan bir şey olur; son replik gülümseten bir ters köşe.
+  Rastgele şakalar dizisi YAZMA; her replik hikâyeyi bir adım ilerletsin. Diyalog olan biteni anlatsın ki ses kapalı izleyen bile anlasın.
 - Bölüm tek başına anlaşılır ve tatmin edici biter; ama sezon yolculuğunu bir adım ilerletir.
 - SON REPLİK: ters köşe ya da sıcak bir an; tercihen action 'kameraya_bak'."""
     if kind == 'ana':
@@ -238,7 +244,8 @@ JSON ŞEMASI:
 CRITIC = """Aşağıda "MİNİ DÜNYA" için yazılmış bir bölüm var. Sen deneyimli bir çocuk-aile animasyonu yazarı ve editörsün.
 Kontrol et ve gerekiyorsa DÜZELT:
 1. Bölüm, diziyi hiç izlememiş biri için tek başına anlaşılıyor mu? İlk replik durumu anlatıyor mu?
-2. Gerçekten komik mi? Punchline güçlü mü? Zayıf replikleri daha komik yap; sıradan replikleri esprili olanlarla değiştir.
+1b. HİKÂYE ANLAMLI MI: Net bir hedef, somut bir engel, başarısız bir ilk deneme, karakter yetenekleriyle bulunan çözüm ve tatmin edici bir sonuç var mı? Bölümün konusunu tek cümleyle söyleyebiliyor musun? Yoksa hikâyeyi bu yapıya göre yeniden yaz; hikâyeyi ilerletmeyen replikleri çıkar.
+2. Gerçekten eğlenceli mi? Son replik gülümsetiyor mu? Zayıf replikleri güçlendir.
 2b. Aksiyon var mı? Yalnızca konuşan karakterler varsa en az bir hareketli an ekle (kos_sag/kos_sol/kac/carp/zipla). 'titre' en fazla 1 kez.
 2c. Çocuklar dahil aile kitlesine uygun mu? Değilse düzelt.
 3. Karakterler kişiliklerine sadık mı? Benek konuşmuyor mu?

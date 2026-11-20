@@ -531,7 +531,23 @@ def post(loc, f, cam, t):
     br = np.clip(f - 0.80, 0, None)
     small = cv2.resize(br, (W // 4, H // 4), interpolation=cv2.INTER_AREA)
     f += cv2.resize(cv2.GaussianBlur(small, (0, 0), 8), (W, H)) * 0.9
+    # odak dışı ışık lekeleri (bokeh)
+    sw, shh = W // 4, H // 4
+    bk = np.zeros((shh, sw, 3), np.float32)
+    rng2 = np.random.default_rng(21)
+    for i in range(9):
+        bx = (rng2.uniform(0, 1) + 0.01 * t * rng2.uniform(-1, 1)) % 1 * sw
+        by = rng2.uniform(0.05, 0.6) * shh + 6 * math.sin(t * 0.5 + i)
+        r = rng2.uniform(8, 22)
+        cv2.circle(bk, (int(bx), int(by)), int(r), tuple(float(c) * 0.10 for c in L['col']), -1, cv2.LINE_AA)
+    bk = cv2.GaussianBlur(bk, (0, 0), 2.5)
+    f += cv2.resize(bk, (W, H))
     f *= np.array(L['warm'], np.float32)
+    # sinematik renk: yumuşak S-eğrisi kontrast + hafif doygunluk
+    f = np.clip(f, 0, 1)
+    f = f * 0.62 + (f * f * (3 - 2 * f)) * 0.38
+    lum = (f * np.array([0.3, 0.59, 0.11], np.float32)).sum(2, keepdims=True)
+    f = lum + (f - lum) * 1.12
     d = ((X - W * 0.55) / (W * 0.8)) ** 2 + ((Y - H * 0.45) / (H * 0.75)) ** 2
     f *= np.clip(1.12 - 0.42 * d, 0.5, 1.05)[..., None]
     return f
