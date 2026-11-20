@@ -13,9 +13,10 @@ SKIN2 = (0.80, 0.56, 0.42)
 class St:
     """Bir karakterin o andaki durumu."""
     def __init__(self, t=0.0, mo=0.0, ms=0.5, emotion='normal', look=(0, 0), blink=0.0, dy=0.0, sq=1.0, shake=0.0,
-                 talking=False, walk=0.0):
+                 talking=False, walk=0.0, point=0.0, crouch=0.0, face_dir=0.0):
         self.t, self.mo, self.ms, self.emotion, self.look, self.blink = t, mo, ms, emotion, look, blink
         self.dy, self.sq, self.shake, self.talking, self.walk = dy, sq, shake, talking, walk
+        self.point, self.crouch, self.face_dir = point, crouch, face_dir
 
 
 def C(f, cam, pts, col, **k):
@@ -80,12 +81,15 @@ def arm_angles(s, side, base=1.25):
     if s.emotion == 'neseli' and s.talking and side == 1:
         a = -math.pi / 2 + 0.6 + 0.2 * math.sin(t * 6)
     a += 0.06 * math.sin(t * 2 + side) + s.walk * side * 0.5 * math.sin(t * 14)
+    if s.point and side == (1 if s.face_dir >= 0 else -1):
+        target = -0.35 if side == 1 else math.pi + 0.35
+        a = a * (1 - s.point) + target * s.point
     return a
 
 
 def bob(s):
     return (math.sin(s.t * 2.2) * 3 + (math.sin(s.t * 11) * 4 * s.mo if s.talking else 0) +
-            abs(math.sin(s.t * 14)) * -10 * s.walk)
+            abs(math.sin(s.t * 14)) * -10 * s.walk + s.crouch * 38)
 
 
 # ---------------------------------------------------------------- TUNA (öncü)

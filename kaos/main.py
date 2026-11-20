@@ -36,7 +36,7 @@ def load_state():
     if os.path.exists(p):
         with open(p, encoding='utf-8') as f:
             return json.load(f)
-    return {'sezon': 1, 'sezon_baslangic': None, 'bolum_no': 0, 'kemal_gun': 45, 'bolumler': [],
+    return {'sezon': 1, 'sezon_baslangic': None, 'bolum_no': 0, 'harita': [], 'bolumler': [],
             'acik_meseleler': [], 'en_cok_izlenen': [], 'yapilan': {}}
 
 
@@ -88,7 +88,6 @@ def season_day(st, cfg, today):
             with open(os.path.join(paths.EVREN, f"sezon{st['sezon']:02d}.yaml"), 'w', encoding='utf-8') as f:
                 yaml.safe_dump(plan, f, allow_unicode=True, sort_keys=False)
         st['sezon_baslangic'] = today.isoformat()
-        st['kemal_gun'] = plan.get('kemal_gun_baslangic', st.get('kemal_gun', 1))
         day = 1
     return plan, day
 
@@ -211,8 +210,9 @@ def main():
     # hafıza
     st['bolum_no'] = no
     h = ep.get('hafiza', {})
-    if kind == 'ana' and isinstance(h.get('kemal_gun'), int) and h['kemal_gun'] > 0:
-        st['kemal_gun'] = h['kemal_gun']
+    yb = str(h.get('yeni_bolge') or '').strip()
+    if yb and yb not in st.setdefault('harita', []):
+        st['harita'].append(yb)
     if kind != 'bagimsiz' and isinstance(h.get('acik_meseleler'), list):
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],

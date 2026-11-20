@@ -14,20 +14,14 @@ from .engine import render
 from .main import load_cfg, log
 
 SAMPLE = {
-    'tayfun': 'Benim bekleme param kim ödeyecek? Üç saattir kapıdayım!',
-    'kemal': 'Kırk beş gündür buradayım! Artık beni biri gönderecek mi?',
-    'erdal': 'Kaşe var, imza var... ama aslı gibidir yok. Eksik var.',
-    'necati': 'Ben gelince başlar bu iş. Bekleyin bakalım.',
-    'fikri': 'Of... Bu yükü de kaldırırsam mesaiye girer mi?',
-    'vedat': 'Ben bir şey görmedim... ama anlatayım.',
-    'telefon': 'Alo? Yüküm nerede? Dün gelecekti!',
+    'tuna': 'Haritanın bu köşesi boş! Kim benimle gelir?',
+    'nil': 'Bir dakika. Önce ölçelim, sonra atlayalım.',
+    'bulut': 'Bu düğmeden bir tekerlek yaparım... galiba.',
+    'pire': 'Bu dev şey ne? Yenir mi? Dokunabilir miyim?',
 }
-GEMINI_ALT = {'tayfun': ['Fenrir'], 'kemal': ['Leda'], 'erdal': ['Iapetus'], 'necati': ['Alnilam'],
-              'fikri': ['Umbriel'], 'vedat': ['Achird'], 'telefon': ['Aoede']}
-EDGE_ALT = {'tayfun': [('tr-TR-AhmetNeural', '+18%', '-20Hz')], 'kemal': [('en-US-AndrewMultilingualNeural', '+5%', '+10Hz')],
-            'erdal': [('tr-TR-AhmetNeural', '-6%', '+6Hz')], 'necati': [('en-US-BrianMultilingualNeural', '-15%', '-15Hz')],
-            'fikri': [('tr-TR-AhmetNeural', '-10%', '-6Hz')], 'vedat': [('it-IT-GiuseppeMultilingualNeural', '+0%', '+0Hz')],
-            'telefon': [('en-US-AvaMultilingualNeural', '+10%', '+0Hz')]}
+GEMINI_ALT = {'tuna': ['Fenrir'], 'nil': ['Aoede'], 'bulut': ['Umbriel'], 'pire': ['Zephyr']}
+EDGE_ALT = {'tuna': [('tr-TR-AhmetNeural', '+12%', '+24Hz')], 'nil': [('en-US-AvaMultilingualNeural', '+0%', '+0Hz')],
+            'bulut': [('tr-TR-AhmetNeural', '-10%', '-14Hz')], 'pire': [('tr-TR-EmelNeural', '+18%', '+50Hz')]}
 
 
 def main():

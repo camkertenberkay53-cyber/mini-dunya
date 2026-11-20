@@ -145,7 +145,7 @@ class Mixer:
         return out_wav
 
 
-ENTER_SFX = {'tayfun': 'truck', 'fikri': 'forklift', 'erdal': 'steps', 'necati': 'ship'}
+ENTER_SFX = {'tuna': 'steps', 'nil': 'steps', 'bulut': 'steps', 'pire': 'steps', 'benek': 'whoosh'}
 
 
 def build_mix(ep, tl, out_wav):
@@ -160,10 +160,6 @@ def build_mix(ep, tl, out_wav):
         a = s['action']
         if a in ('kos_sag', 'kos_sol', 'kac'):
             m.whoosh(s['start'] - 0.25)
-            if s['who'] in ('tayfun',):
-                m.horn(s['start'] - 0.2)
-            elif s['who'] == 'fikri':
-                m.beep(s['start'] - 0.3)
         if a == 'carp':
             m.boom(s['start'], 0.9)
         if a in ('gir_sag', 'gir_sol'):
@@ -178,6 +174,8 @@ def build_mix(ep, tl, out_wav):
                 m.ship_horn(s['start'] - 1.0)
             else:
                 m.whoosh(s['start'])
+        if a in ('yuru_sag', 'yuru_sol'):
+            m.steps(s['start'])
         if a == 'zipla':
             m.boing(s['start'])
         if a == 'titre':

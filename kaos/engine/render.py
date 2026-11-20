@@ -103,8 +103,8 @@ def shot_for(seg_, idx, n, prev_who, W, H, pos):
     who = seg_['who']
     em, act = seg_['emotion'], seg_['action']
     vertical = H > W
-    sy = 0.40 if vertical else 0.45
-    if who not in pos or act in ('gir_sag', 'gir_sol', 'cik', 'kos_sag', 'kos_sol', 'kac'):
+    sy = 0.46 if vertical else 0.47
+    if who not in pos or act in ('gir_sag', 'gir_sol', 'cik', 'kos_sag', 'kos_sol', 'kac', 'yuru_sag', 'yuru_sol'):
         kind = 'wide'
     elif act == 'kameraya_bak' or idx == n - 1:
         kind = 'xclose'
@@ -228,6 +228,13 @@ class Renderer:
             if a in ('cik', 'kac'):
                 self.exit[key] = (s['start'] + s['dur'], 0.45 if a == 'kac' else 0.8)
         self.impacts = [(s['start'], s['scene'], s['who']) for s in self.segs if s['action'] == 'carp']
+        # sahne içi yürüyüşler: her biri 0.9 sn'de 170 birim
+        self.moves = {}
+        for s in self.segs:
+            if s['action'] in ('yuru_sag', 'yuru_sol'):
+                self.moves.setdefault((s['scene'], s['who']), []).append((s['start'] + 0.1, 170 if s['action'] == 'yuru_sag' else -170))
+        # dinleyen tepkileri: biri şaşırır ya da panikler ise diğerleri hafifçe sıçrar
+        self.reacts = [(s['start'] + 0.15, s['scene'], s['who']) for s in self.segs if s['emotion'] in ('panik', 'saskin') or s['action'] == 'carp']
         rng = np.random.default_rng(7)
         self.blink_off = {c: rng.uniform(0, 4) for c in CHARS}
 
@@ -271,6 +278,8 @@ class Renderer:
             cx, cy, z, kind = cur['shot']
             u = seg(t, cur['start'], cur['start'] + cur['dur'] + 0.5)
         z = z * (1 + 0.035 * ease(u))
+        if not self.tl['long'] and t < 1.4:
+            z *= 1 + 0.45 * (1 - ease(seg(t, 0.0, 1.4)))  # açılış kancası: hızlı geri çekilme
         sh = 0.0
         if cur is not None:
             mo, _, s = self.mouth_of(cur['who'], t, si)
@@ -308,6 +317,16 @@ class Renderer:
                     moving = -1
             if moving:
                 speed_lines(f, cam, x, y, moving, t, CHARS[c]['w'] if 'w' in CHARS[c] else 300)
+            walk_in = 0.0
+            for tm, dxm in self.moves.get(key, []):
+                if t > tm:
+                    k2 = ease(seg(t, tm, tm + 0.9))
+                    x += dxm * k2
+                    if k2 < 1:
+                        walk_in = 1.0
+            # boşta küçük kıpırdanma (ağırlık aktarma)
+            ph0 = self.blink_off[c] * 1.7
+            x += 7 * math.sin(t * 0.55 + ph0)
             mo, zc, s = self.mouth_of(c, t, si)
             last = [q for q in self.segs if q['scene'] == si and q['who'] == c and q['start'] <= t]
             emo = last[-1]['emotion'] if last else DEFAULT_EMO.get(c, 'normal')
@@ -334,13 +353,22 @@ class Renderer:
                 if s['action'] == 'titre':
                     shake = 1.0
                 sq *= 1 + 0.03 * mo
-            walk = 0.0
+            walk = walk_in
+            point = crouch = 0.0
+            if s is not None and s['action'] == 'isaret':
+                point = ease(seg(t, s['start'], s['start'] + 0.35)) * (1 - ease(seg(t, s['start'] + s['dur'] + 0.2, s['start'] + s['dur'] + 0.6)))
+            if s is not None and s['action'] == 'egil':
+                crouch = ease(seg(t, s['start'], s['start'] + 0.35)) * (1 - ease(seg(t, s['start'] + s['dur'], s['start'] + s['dur'] + 0.4)))
+            for tr, rsi, rw in self.reacts:
+                if rsi == si and rw != c and 0 <= t - tr < 0.35:
+                    dy = min(dy, -26 * math.sin(math.pi * (t - tr) / 0.35))
             if key in self.enter and self.enter[key][0] <= t < self.enter[key][0] + self.enter[key][2]:
                 walk = 1.0
             if key in self.exit and t > self.exit[key][0]:
                 walk = 1.0
             st = St(t=t, mo=mo, ms=zc, emotion=emo, look=look, blink=blink, dy=dy, sq=sq, shake=shake,
-                    talking=s is not None, walk=walk)
+                    talking=s is not None, walk=walk, point=point, crouch=crouch,
+                    face_dir=1.0 if look[0] >= 0 else -1.0)
             CHARS[c]['fn'](f, cam, x, y, st)
             for ti, isi, iw in self.impacts:
                 if isi == si and iw == c and 0 <= t - ti < 0.5:
