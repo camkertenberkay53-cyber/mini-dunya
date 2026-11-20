@@ -119,6 +119,13 @@ def gemini_tts(lines, cfg, outdir, api_key):
     """lines: [(key, who, text, emotion)] → {key: wav}. Karakter başına tek istek."""
     voices = cfg['voices']
     models = cfg['tts'].get('gemini_models', ['gemini-2.5-flash-preview-tts'])
+    try:
+        from ..writer import list_models, _model_order
+        avail = list_models(api_key, 'tts')
+        if avail:
+            models = _model_order(models, avail)[:3]
+    except Exception:
+        pass
     by_char = {}
     for key, who, text, emo in lines:
         by_char.setdefault(who, []).append((key, text, emo))

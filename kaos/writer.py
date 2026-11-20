@@ -25,57 +25,91 @@ def _post(url, body, timeout=120):
         return json.loads(r.read())
 
 
-def _discover_model(key):
+_MODEL_CACHE = {}
+
+
+def list_models(key, kind='text'):
+    """Anahtarın erişebildiği modelleri listeler (text: sohbet modelleri, tts: ses modelleri)."""
+    if kind in _MODEL_CACHE:
+        return _MODEL_CACHE[kind]
+    names, token = [], ''
     try:
-        with urllib.request.urlopen(f'https://generativelanguage.googleapis.com/v1beta/models?key={key}', timeout=30) as r:
-            data = json.loads(r.read())
+        for _ in range(5):
+            url = f'https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key={key}'
+            if token:
+                url += f'&pageToken={token}'
+            with urllib.request.urlopen(url, timeout=30) as r:
+                data = json.loads(r.read())
+            for m in data.get('models', []):
+                if 'generateContent' in m.get('supportedGenerationMethods', []):
+                    names.append(m['name'].split('/')[-1])
+            token = data.get('nextPageToken', '')
+            if not token:
+                break
     except Exception:
-        return None
-    cands = []
-    for m in data.get('models', []):
-        name = m['name'].split('/')[-1]
-        meth = m.get('supportedGenerationMethods', [])
-        if 'generateContent' not in meth:
-            continue
-        if any(b in name for b in ('tts', 'image', 'live', 'embedding', 'audio', 'vision', 'aqa', 'veo', 'imagen')):
-            continue
-        if 'flash' in name:
-            cands.append(name)
-    cands.sort(key=lambda n: ('lite' in n, 'preview' in n or 'exp' in n, n))
-    return cands[0] if cands else None
+        return []
+    if kind == 'tts':
+        c = [n for n in names if 'tts' in n]
+        c.sort(key=lambda n: ('pro' in n, n))
+    else:
+        bad = ('tts', 'image', 'live', 'embedding', 'audio', 'vision', 'aqa', 'veo', 'imagen', 'robotics', 'computer', 'thinking')
+        c = [n for n in names if 'flash' in n and not any(b in n for b in bad) and 'gemma' not in n]
+        def ver(n):
+            v = re.findall(r'(\d+(?:\.\d+)?)', n)
+            return float(v[0]) if v else 0.0
+        c.sort(key=lambda n: ('lite' in n, 'preview' in n or 'exp' in n, -ver(n), n))
+    _MODEL_CACHE[kind] = c
+    return c
+
+
+def _model_order(configured, available):
+    """Önce config'deki (hâlâ var olan) modeller, sonra bulunan diğerleri."""
+    if not available:
+        return list(configured)
+    out = [m for m in configured if m in available]
+    out += [m for m in available if m not in out]
+    return out[:6]
 
 
 def gemini_json(prompt, cfg, temperature=1.0, log=print):
     key = os.environ.get('GEMINI_API_KEY', '')
     if not key:
         raise WriterError('GEMINI_API_KEY tanımlı değil')
-    models = list(cfg['senaryo'].get('modeller', []))
-    found = None
+    available = list_models(key, 'text')
+    models = _model_order(cfg['senaryo'].get('modeller', []), available)
+    if available:
+        log(f'  Metin modelleri: {", ".join(models)}')
     errs = []
-    for attempt in range(2):
+    dead = set()
+    for attempt in range(4):
         for model in models:
+            if model in dead:
+                continue
             url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}'
             body = {'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
                     'generationConfig': {'temperature': temperature, 'responseMimeType': 'application/json'}}
             try:
-                data = _post(url, body)
+                data = _post(url, body, timeout=180)
                 txt = ''.join(p.get('text', '') for p in data['candidates'][0]['content']['parts'])
                 txt = re.sub(r'^```(json)?|```$', '', txt.strip()).strip()
                 return json.loads(txt)
             except urllib.error.HTTPError as e:
-                errs.append(f'{model}: HTTP {e.code}')
-                if e.code in (429, 503):
-                    time.sleep(10)
+                try:
+                    msg = json.loads(e.read()).get('error', {}).get('message', '')[:160]
+                except Exception:
+                    msg = ''
+                errs.append(f'{model}: HTTP {e.code} {msg}'.strip())
+                if e.code in (400, 403, 404):
+                    dead.add(model)
+                if e.code in (429, 500, 503):
+                    time.sleep(15)
             except Exception as e:
                 errs.append(f'{model}: {e}')
-        if found is None:
-            found = _discover_model(key)
-            if found and found not in models:
-                log(f'  Uygun model bulundu: {found}')
-                models = [found]
-                continue
-        time.sleep(20)
-    raise WriterError('Gemini metin isteği başarısız: ' + ' | '.join(errs[-6:]))
+        if all(m in dead for m in models):
+            break
+        log(f'  Gemini meşgul, tekrar denenecek ({attempt + 1}/4)')
+        time.sleep(30 * (attempt + 1))
+    raise WriterError('Gemini metin isteği başarısız: ' + ' | '.join(errs[-8:]))
 
 
 # ------------------------------------------------------------------ istem
