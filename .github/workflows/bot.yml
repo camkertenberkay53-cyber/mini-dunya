@@ -2,11 +2,9 @@ name: Mini Dunya Bot
 
 on:
   schedule:
-    - cron: "30 5 * * *"     # 08:30 TR - sabah (ana hikâye)
-    - cron: "30 10 * * *"    # 13:30 TR - öğle (bağımsız skeç)
-    - cron: "30 16 * * *"    # 19:30 TR - akşam (ana hikâye)
-    - cron: "30 18 * * *"    # 21:30 TR - gece (bağımsız macera)
-    - cron: "0 15 * * 0"     # Pazar 18:00 TR - haftalık uzun video
+    # Her saat kontrol: zamanı gelmiş ama yapılmamış slot varsa üretir (GitHub bir çalıştırmayı kaçırırsa telafi eder).
+    # Yayın saatleri (TR): 08:30 sabah, 13:30 öğle, 19:30 akşam, 21:30 gece, Pazar 18:00 uzun video
+    - cron: "37 * * * *"
   workflow_dispatch:
     inputs:
       gorev:
@@ -36,34 +34,35 @@ jobs:
       - name: Görevi belirle
         id: gorev
         run: |
-          case "${{ github.event.schedule }}" in
-            "30 5 * * *")   G=sabah ;;
-            "30 10 * * *")  G=oglen ;;
-            "30 16 * * *")  G=aksam ;;
-            "30 18 * * *")  G=gece ;;
-            "0 15 * * 0")   G=uzun ;;
-            *)              G="${{ github.event.inputs.gorev }}" ;;
-          esac
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            G=$(python3 -m kaos.due)
+          else
+            G="${{ github.event.inputs.gorev }}"
+          fi
           echo "gorev=$G" >> "$GITHUB_OUTPUT"
           echo "Görev: $G"
 
       - uses: actions/setup-python@v5
+        if: steps.gorev.outputs.gorev != 'none'
         with:
           python-version: "3.11"
           cache: pip
 
       - name: Kurulum
+        if: steps.gorev.outputs.gorev != 'none'
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
           pip install -q -r requirements.txt
 
       - name: Yedek ses modelleri (önbellek)
+        if: steps.gorev.outputs.gorev != 'none'
         uses: actions/cache@v4
         with:
           path: models
           key: piper-tr-v1
 
       - name: Yedek ses modellerini indir
+        if: steps.gorev.outputs.gorev != 'none'
         run: |
           mkdir -p models && cd models
           for v in fahrettin-medium fettah-medium dfki-medium; do
@@ -74,6 +73,7 @@ jobs:
           done
 
       - name: Bölümü üret ve yükle
+        if: steps.gorev.outputs.gorev != 'none'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -93,7 +93,7 @@ jobs:
           fi
 
       - name: Videoyu indirilebilir yap
-        if: always()
+        if: always() && steps.gorev.outputs.gorev != 'none'
         uses: actions/upload-artifact@v4
         with:
           name: video-${{ steps.gorev.outputs.gorev }}-${{ github.run_number }}
@@ -105,7 +105,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Hikâye hafızasını kaydet
-        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog'
+        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog' && steps.gorev.outputs.gorev != 'none'
         run: |
           git config user.name "mini-dunya-bot"
           git config user.email "bot@users.noreply.github.com"
