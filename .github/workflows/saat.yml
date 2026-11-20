@@ -1,0 +1,44 @@
+name: Mini Dunya Saat
+
+# Kendi kendini zamanlayan saat: bir sonraki yayın saatine kadar bekler, bölümü başlatır, sonra kendini yeniden kurar.
+# GitHub'ın zamanlayıcısı gecikse ya da tetiklemese bile yayınlar aksamaz. (Herkese açık depoda ücretsizdir.)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "11 */6 * * *"   # saat zinciri koparsa 6 saatte bir yeniden başlatır
+
+concurrency:
+  group: mini-dunya-saat
+  cancel-in-progress: true
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  bekle:
+    # Gizli depoda bekleme ücretli dakika harcar; saat sadece herkese açık depoda çalışır.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bekleyen bölüm varsa hemen başlat
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D=$(python3 -m kaos.due)
+          echo "Şu an yapılması gereken: $D"
+          if [ "$D" != "none" ]; then gh workflow run bot.yml -f gorev=otomatik; fi
+      - name: Bir sonraki yayın saatine kadar bekle
+        run: |
+          W=$(python3 -m kaos.due wait)
+          echo "Bekleme: $W saniye"
+          sleep "$W"
+      - name: Bölümü başlat ve saati yeniden kur
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git pull -q || true
+          gh workflow run bot.yml -f gorev=otomatik
+          gh workflow run saat.yml

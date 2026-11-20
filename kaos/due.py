@@ -28,5 +28,22 @@ def due(now=None):
     return 'none'
 
 
+def next_wait(now=None):
+    """Bir sonraki yayın saatine kaç saniye var (en fazla 5 saat 40 dk)."""
+    now = now or dt.datetime.now(TR)
+    best = None
+    for add in range(0, 3):
+        d = (now + dt.timedelta(days=add)).date()
+        times = [at for _, at in SLOTS] + ([18.0] if d.weekday() == 6 else [])
+        for at in times:
+            t = dt.datetime(d.year, d.month, d.day, int(at), int(round((at % 1) * 60)), tzinfo=TR) + dt.timedelta(minutes=1)
+            if t > now and (best is None or t < best):
+                best = t
+    return int(min((best - now).total_seconds(), 5 * 3600 + 40 * 60))
+
+
 if __name__ == '__main__':
-    print(due())
+    if len(sys.argv) > 1 and sys.argv[1] == 'wait':
+        print(next_wait())
+    else:
+        print(due())

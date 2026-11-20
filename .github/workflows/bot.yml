@@ -11,7 +11,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [test, sabah, oglen, aksam, gece, uzun, katalog]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, katalog]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -34,7 +34,7 @@ jobs:
       - name: Görevi belirle
         id: gorev
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.gorev }}" = "otomatik" ]; then
             G=$(python3 -m kaos.due)
           else
             G="${{ github.event.inputs.gorev }}"
