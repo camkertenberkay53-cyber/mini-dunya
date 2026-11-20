@@ -1,0 +1,86 @@
+{
+ "konu": "Tuna kapı menteşesinde yapışıp kalınca düşen tırmanma ipini kurtarmak için Bulut mancınık fırlatır, ip kapı koluna takılınca Pire zıplayıp kolu indirerek ipi kurtarır.",
+ "kategori": "problem cozme",
+ "ana_karakter": "bulut",
+ "baslik": "Menteşe Çıkmazı",
+ "kapak_yazisi": "İP AŞAĞI DÜŞTÜ!",
+ "end_card": "Mini Dünya ekibi bir sonraki macerada nerede mahsur kalacak?",
+ "music": "komik",
+ "scenes": [
+  {
+   "title": "Menteşe Üstü Kurtarma",
+   "location": "zemin",
+   "characters": [
+    "tuna",
+    "nil",
+    "pire",
+    "bulut"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Dev menteşeye yapışıp kaldık ve tırmanma ipimiz aşağı düştü!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Mıknatıslı botlarımız menteşeye yapışık olduğu için aşağı yürüyemiyoruz.",
+     "emotion": "bikkin",
+     "action": "egil"
+    },
+    {
+     "who": "bulut",
+     "text": "Hiç korkmayın! Şişe kapağı mancınığımla kancayı fırlatıp ipi çekeceğim!",
+     "emotion": "kibirli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Ateş! Kanca ipi yakaladı ama dev kapı koluna dolandı!",
+     "emotion": "saskin",
+     "action": "carp"
+    },
+    {
+     "who": "pire",
+     "text": "Ben hallederim! Kapı kolunun üzerine zıplayıp ağırlığımla bastırıyorum!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Kapı açıldı, ip boşa çıktı ama içeri kayıyoruz!",
+     "emotion": "panik",
+     "action": "kac"
+    },
+    {
+     "who": "nil",
+     "text": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
+     "emotion": "neseli",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Kapı Menteşesinde Mahsur Kaldık! | Mini Dünya",
+  "description": "Mıknatıslı botlar yüzünden kapı menteşesinde yapışıp kalan ekip, düşen tırmanma ipini şişe kapağı mancınığı ve zeki bir hamleyle kurtarıyor.",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "çizgi film",
+   "macera",
+   "türkçe animasyon",
+   "shorts",
+   "komedi"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
+  "acik_meseleler": [
+   "Açılan kapının ardından yeni odayı keşfedecekler mi?"
+  ],
+  "yeni_bolge": "Halı Zeminli Oda"
+ },
+ "tur": "bagimsiz"
+}

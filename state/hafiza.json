@@ -1,9 +1,10 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 1,
+ "bolum_no": 2,
  "harita": [
-  "Süpürgelik Geçidi"
+  "Süpürgelik Geçidi",
+  "Halı Zeminli Oda"
  ],
  "bolumler": [
   {
@@ -14,16 +15,35 @@
    "baslik": "Süpürgelik Geçidi",
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
-   "ses": "gemini"
+   "ses": "gemini",
+   "izlenme": 486
+  },
+  {
+   "no": 2,
+   "tarih": "2026-11-20",
+   "slot": "gece",
+   "tur": "bagimsiz",
+   "baslik": "Menteşe Çıkmazı",
+   "ozet": "Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
+   "video_id": "X6CgxBQMSGI",
+   "ses": "gemini",
+   "kategori": "problem cozme",
+   "konu": "Tuna kapı menteşesinde yapışıp kalınca düşen tırmanma ipini kurtarmak için Bulut mancınık fırlatır, ip kapı koluna takılınca Pire zıplayıp kolu indirerek ipi kurtarır.",
+   "mekan": "zemin",
+   "ana_karakter": "bulut",
+   "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!"
   }
  ],
  "acik_meseleler": [
   "Kapı menteşesinden aşağıya nasıl inecekler?"
  ],
- "en_cok_izlenen": [],
+ "en_cok_izlenen": [
+  "Süpürgelik Geçidi (486 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar."
+ ],
  "yapilan": {
   "2026-11-20": [
-   "sabah"
+   "sabah",
+   "gece"
   ]
  }
 }
