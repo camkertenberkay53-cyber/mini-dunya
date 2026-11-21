@@ -84,5 +84,21 @@
    "sabah",
    "oglen"
   ]
- }
+ },
+ "en_bolumler": [
+  {
+   "no": 3,
+   "tarih": "2026-11-21",
+   "slot": "sabah",
+   "baslik": "Exploring Countertop Plains",
+   "video_id": "XfDx0t4RXzc"
+  },
+  {
+   "no": 4,
+   "tarih": "2026-11-21",
+   "slot": "oglen",
+   "baslik": "Sponge Mountain Mission",
+   "video_id": "g1FlC-ZbV78"
+  }
+ ]
 }
