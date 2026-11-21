@@ -200,6 +200,16 @@ def build_prompt(kind, brief, evren, memory, plan, extra=''):
              f"Son bölümlerin olay örgüsünü, şakasını, final cümlesini ya da başlık kalıbını tekrar etme; her bölümde yeni bir nesne, yeni bir engel ve yeni bir çözüm olsun.")
     acik = '\n'.join(f'- {a}' for a in memory.get('acik_meseleler', [])) or '- (yok)'
     harita = ', '.join(memory.get('harita', [])[-30:]) or '(henüz yok)'
+    rakip_txt = ''
+    try:
+        with open(os.path.join(paths.ROOT, 'state', 'rakip.json'), encoding='utf-8') as f:
+            rk = json.load(f).get('icgoruler') or {}
+        rakip_txt = ('\nPAZAR ARAŞTIRMASI (en çok izlenen animasyon Shortslarından çıkarılan GENEL teknikler; başka kanalların '
+                     'karakterini, ismini, hikâyesini ASLA kullanma, sadece tekniği kendi evrenimize uygula):\n'
+                     f"- Yazar notu: {rk.get('yazar_notu', '')}\n- Kanca teknikleri: {'; '.join(rk.get('kanca_teknikleri', [])[:5])}\n"
+                     f"- Konu fırsatları: {'; '.join(rk.get('konu_firsatlari', [])[:6])}\n- Kaçınılacaklar: {'; '.join(rk.get('kacinilacaklar', [])[:4])}")
+    except Exception:
+        pass
     top = memory.get('en_cok_izlenen', [])
     top_txt = ('\nEN ÇOK İZLENEN BÖLÜMLER (bu tarz şakalara ağırlık ver):\n' + '\n'.join(f'- {x}' for x in top[:5])) if top else ''
     if kind == 'uzun':
@@ -236,7 +246,7 @@ Shorts'ların tekrarı değil. İlk sahne yeni izleyiciye durumu anlatsın. Son 
 
 AÇIK MESELELER:
 {acik}
-HARİTAYA İŞLENMİŞ BÖLGELER: {harita}{top_txt}{cesit}
+HARİTAYA İŞLENMİŞ BÖLGELER: {harita}{top_txt}{cesit}{rakip_txt}
 
 === BU BÖLÜM ===
 TÜR: {tur}

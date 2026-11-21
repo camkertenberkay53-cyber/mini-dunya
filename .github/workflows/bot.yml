@@ -5,13 +5,14 @@ on:
     # Her saat kontrol: zamanı gelmiş ama yapılmamış slot varsa üretir (GitHub bir çalıştırmayı kaçırırsa telafi eder).
     # Yayın saatleri (TR): 08:30 sabah, 13:30 öğle, 19:30 akşam, 21:30 gece, Pazar 18:00 uzun video
     - cron: "37 * * * *"
+    - cron: "41 3 * * 1"     # Pazartesi 06:41 TR: haftalık rakip analizi
   workflow_dispatch:
     inputs:
       gorev:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, ingilizce, katalog]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, ingilizce, rakip, katalog]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -36,7 +37,9 @@ jobs:
       - name: Görevi belirle
         id: gorev
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.gorev }}" = "otomatik" ]; then
+          if [ "${{ github.event.schedule }}" = "41 3 * * 1" ]; then
+            G=rakip
+          elif [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.gorev }}" = "otomatik" ]; then
             G=$(python3 -m kaos.due)
           else
             G="${{ github.event.inputs.gorev }}"
@@ -87,7 +90,9 @@ jobs:
           G="${{ steps.gorev.outputs.gorev }}"
           FORCE=""
           if [ "${{ github.event.inputs.zorla }}" = "true" ]; then FORCE="--force"; fi
-          if [ "$G" = "ingilizce" ]; then
+          if [ "$G" = "rakip" ]; then
+            python -m kaos.rakip
+          elif [ "$G" = "ingilizce" ]; then
             python -m kaos.main --en-telafi
           elif [ "$G" = "katalog" ]; then
             python -m kaos.catalog
