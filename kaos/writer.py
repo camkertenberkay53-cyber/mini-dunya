@@ -25,7 +25,7 @@ YASAK_KOKLER = [
     # etnik köken, ırk, din, siyaset
     'kürt', 'arap', 'ermeni', 'yahudi', 'çingene', 'zenci', 'gavur', 'laz ', 'yörük', 'muhacir', 'göçmen', 'ırk',
     'müslüman', 'hristiyan', 'allah', 'tanrı', 'namaz', 'cami', 'kilise', 'peygamber', 'kafir', 'dinsiz',
-    'seçim sandığı', 'siyasi', 'hükümet', 'cumhurbaşkanı', 'milletvekili', 'meclis', 'bayrak', 'vatan haini',
+    'seçim sandığı', 'siyasi', 'hükümet', 'cumhurbaşkanı', 'milletvekili', 'meclis', 'vatan haini',
     # şiddet, korku, bağımlılık
     'öldür', 'ölüm', 'ölü', 'kan ', 'kanlı', 'bıçakla', 'silah', 'tabanca', 'bomba', 'intihar', 'sigara', 'alkol',
     'bira', 'şarap', 'rakı', 'sarhoş', 'kumar',
