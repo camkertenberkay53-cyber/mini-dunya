@@ -1,11 +1,12 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 4,
+ "bolum_no": 5,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
-  "Tezgâh Ovası"
+  "Tezgâh Ovası",
+  "Ekmek Kırıntısı Çölü"
  ],
  "bolumler": [
   {
@@ -17,7 +18,9 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 1093
+   "izlenme": 1063,
+   "begeni": 3,
+   "yorum": 0
   },
   {
    "no": 2,
@@ -33,7 +36,9 @@
    "mekan": "zemin",
    "ana_karakter": "bulut",
    "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
-   "izlenme": 1223
+   "izlenme": 1227,
+   "begeni": 3,
+   "yorum": 0
   },
   {
    "no": 3,
@@ -49,7 +54,9 @@
    "mekan": "tezgah",
    "ana_karakter": "tuna",
    "final": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan.",
-   "izlenme": 540
+   "izlenme": 1117,
+   "begeni": 4,
+   "yorum": 0
   },
   {
    "no": 4,
@@ -64,16 +71,35 @@
    "konu": "Nil, bulaşık süngerinin altına kaçan harita rulosunu kurtarmak istiyor ama ağır ıslak sünger yolu tıkıyor.",
    "mekan": "tezgah",
    "ana_karakter": "nil",
-   "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!"
+   "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
+   "izlenme": 778,
+   "begeni": 4,
+   "yorum": 0
+  },
+  {
+   "no": 5,
+   "tarih": "2026-11-21",
+   "slot": "aksam",
+   "tur": "ana",
+   "baslik": "Şeker Küpü Kayalıkları",
+   "ozet": "Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+   "video_id": "ek9YNMi5GCk",
+   "ses": "gemini",
+   "kategori": "dogal guc",
+   "konu": "Pire ve Bulut, Şeker Küpü Kayalıkları'ndaki Tuna'ya ulaşmak için Ekmek Kırıntısı Çölü'nü aşmaya çalışırken dev bir kırıntı engeliyle karşılaşır ve şeker sandıkları tuz tepesine tırmanır.",
+   "mekan": "tezgah",
+   "ana_karakter": "pire",
+   "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!"
   }
  ],
  "acik_meseleler": [
-  "Şeker Küpü Kayalıkları'na ulaşan Tuna ekibin kalanıyla buluşabilecek mi?"
+  "Tuz kayasının ardındaki Şeker Küpü Kayalıkları'nda bekleyen Tuna'yla nasıl buluşacaklar?"
  ],
  "en_cok_izlenen": [
-  "Menteşe Çıkmazı (1223 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Süpürgelik Geçidi (1093 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
-  "Tezgâh Ovası Keşfi (540 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu."
+  "Menteşe Çıkmazı (1227 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
+  "Tezgâh Ovası Keşfi (1117 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
+  "Süpürgelik Geçidi (1063 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
+  "Sünger Ormanı Kurtarması (778 izlenme, bagimsiz): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -82,7 +108,8 @@
   ],
   "2026-11-21": [
    "sabah",
-   "oglen"
+   "oglen",
+   "aksam"
   ]
  },
  "en_bolumler": [
@@ -91,14 +118,27 @@
    "tarih": "2026-11-21",
    "slot": "sabah",
    "baslik": "Exploring Countertop Plains",
-   "video_id": "XfDx0t4RXzc"
+   "video_id": "XfDx0t4RXzc",
+   "izlenme": 0,
+   "begeni": 0,
+   "yorum": 0
   },
   {
    "no": 4,
    "tarih": "2026-11-21",
    "slot": "oglen",
    "baslik": "Sponge Mountain Mission",
-   "video_id": "g1FlC-ZbV78"
+   "video_id": "g1FlC-ZbV78",
+   "izlenme": 1,
+   "begeni": 0,
+   "yorum": 0
+  },
+  {
+   "no": 5,
+   "tarih": "2026-11-21",
+   "slot": "aksam",
+   "baslik": "Sugar Cube Cliffs",
+   "video_id": "wsPRpSSbOfc"
   }
  ]
 }

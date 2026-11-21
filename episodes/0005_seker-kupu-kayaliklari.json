@@ -1,0 +1,80 @@
+{
+ "konu": "Pire ve Bulut, Şeker Küpü Kayalıkları'ndaki Tuna'ya ulaşmak için Ekmek Kırıntısı Çölü'nü aşmaya çalışırken dev bir kırıntı engeliyle karşılaşır ve şeker sandıkları tuz tepesine tırmanır.",
+ "kategori": "dogal guc",
+ "ana_karakter": "pire",
+ "baslik": "Şeker Küpü Kayalıkları",
+ "acilis_efekti": "dusen_nesne",
+ "kapak_yazisi": "DEV EKMEK KIRINTISI ÜSTÜMÜZE DÜŞÜYOR!",
+ "end_card": "Tuz dağına tırmanmayı göze alır mıydın?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Ekmek Kırıntısı Çölü",
+   "location": "tezgah",
+   "characters": [
+    "pire",
+    "bulut",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "pire",
+     "text": "Tuna Tezgâh Ovası'nda bizi bekliyor, Şeker Küpü Kayalıkları'na ulaşmalıyız!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "bulut",
+     "text": "Kaçın! Dev bir ekmek kırıntısı çığ gibi üzerimize geliyor!",
+     "emotion": "panik",
+     "action": "kos_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Ekmek Kırıntısı Çölü yolumuzu tamamen kapattı!",
+     "emotion": "bikkin",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Benek! Kürdan mancınığını kur, bizi şu tatlı tepeye fırlat!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Dur Pire! O tırmandığın beyaz tepe şeker değil—",
+     "emotion": "panik",
+     "action": "carp"
+    },
+    {
+     "who": "pire",
+     "text": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
+     "emotion": "saskin",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dev Ekmek Kırıntısı Çölünden Kaçış! | Mini Dünya",
+  "description": "Haritacılar Tezgâh Ovası'ndaki Şeker Küpü Kayalıkları'na ulaşmaya çalışırken dev ekmek kırıntısı kaymasına yakalanıyor! Benek ve ekip bu çölü aşabilecek mi?\n\nTuz dağına tırmanmayı göze alır mıydın?",
+  "tags": [
+   "mini dünya",
+   "2d animasyon",
+   "çizgi film",
+   "macera",
+   "shorts",
+   "tezgah ovası",
+   "ekmek kırıntısı"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "acik_meseleler": [
+   "Tuz kayasının ardındaki Şeker Küpü Kayalıkları'nda bekleyen Tuna'yla nasıl buluşacaklar?"
+  ],
+  "yeni_bolge": "Ekmek Kırıntısı Çölü"
+ },
+ "tur": "ana"
+}
