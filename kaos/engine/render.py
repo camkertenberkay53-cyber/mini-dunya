@@ -429,8 +429,8 @@ class Renderer:
                 title = self.ep['scenes'][si].get('title', '')
                 if title:
                     items.append(('text', title.upper(), W / 2, H / 2, 70, (255, 210, 60), 'mm'))
-        if t < 0.25:
-            f = f * (t / 0.25)
+        if t < 0.25 and self.tl['long']:
+            f = f * (t / 0.25)  # Shorts'ta ilk kare hemen parlak başlar (akışta ilk görünen kare)
         return draw_texts(f, items) if items else f
 
     @lru_cache(1)
@@ -456,9 +456,14 @@ class Renderer:
                 items.append(('text', name, W / 2, H - 150 - nl * 58, 38, col, 'mm'))
                 items.append(('text', txt, W / 2, H - 120 - nl * 58, 52, (255, 255, 255), 'ma'))
         # açılış başlığı
-        if not self.tl['long'] and t < 2.6:
-            items.append(('text', 'MİNİ DÜNYA', W / 2, 215, 76, (255, 210, 60), 'mm'))
-            items.append(('text', meta.get('subtitle', ''), W / 2, 292, 44, (255, 255, 255), 'mm'))
+        if not self.tl['long'] and t < 3.2:
+            # açılış kancası: bölümün merak cümlesi, ilk karede büyük ve zıplayarak
+            hook = str(self.ep.get('kapak_yazisi') or self.ep.get('baslik', '')).upper()
+            pop = 1 + 0.35 * (1 - ease(seg(t, 0.0, 0.22)))
+            fade = 1 - seg(t, 2.8, 3.2)
+            if fade > 0:
+                items.append(('text', wrap(hook, int(96 * pop), W - 110), W / 2, 150, int(96 * pop), (255, 214, 50), 'ma'))
+            items.append(('text', 'MİNİ DÜNYA', W / 2, 92, 38, (255, 255, 255), 'mm'))
         if self.tl['long'] and t < 3.6:
             items.append(('text', 'MİNİ DÜNYA', W / 2, H / 2 - 70, 110, (255, 210, 60), 'mm'))
             items.append(('text', meta.get('subtitle', ''), W / 2, H / 2 + 40, 56, (255, 255, 255), 'mm'))

@@ -153,7 +153,7 @@ SCHEMA = """{
   "kategori": "yeni bolge | devlerin gunu | kurtarma | yaris | problem cozme | gizem | yeni canli | dogal guc | mucit ani | basarisiz plan | ters kose | teknolojik kesif | ela ani | kisisel macera | lonca hayati | eski izler",
   "ana_karakter": "Bölümün odaktaki karakteri: tuna | nil | bulut | pire",
   "baslik": "Kısa bölüm başlığı (en fazla 5 kelime)",
-  "kapak_yazisi": "Kapak görseli için 2-4 kelimelik çarpıcı yazı",
+  "kapak_yazisi": "VİDEONUN İLK SANİYESİNDE ekranda büyük yazacak KANCA: kaydıran izleyiciyi durduran 3-6 kelimelik şaşırtıcı ifade ya da soru. Bölümün olayını anlatsın, marka ya da bölüm numarası değil. Örn: 'DEV SÜNGER HARİTAYI YUTTU!', 'BUZDOLABINDA MAHSUR KALDIK', 'BU KAŞIK BİZİ TAŞIR MI?'",
   "end_card": "Kapanış kartında izleyiciye sorulan KISA ve eğlenceli bir soru (en fazla 8 kelime). Bölümle ilgili, cevabı yorumlara yazılabilir olsun. Örn: 'Sen olsan hangi yoldan geçerdin?' ya da 'Benek'e ne isim verirdin?'",
   "music": "komik | gergin | sakin",
   "scenes": [
