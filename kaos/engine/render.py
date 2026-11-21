@@ -468,7 +468,9 @@ class Renderer:
             items.append(('text', meta.get('subtitle', ''), W / 2, H * (0.38 if self.vertical else 0.3) + 95, 50, (255, 255, 255), 'mm'))
             ec = self.ep.get('end_card', '')
             if ec and t > end + 0.6:
-                items.append(('text', wrap(ec, 50, W - 160), W / 2, H * (0.38 if self.vertical else 0.3) + 170, 50, (200, 225, 255), 'ma'))
+                y0 = H * (0.38 if self.vertical else 0.3) + 170
+                items.append(('text', wrap(ec, 60, W - 140), W / 2, y0, 60, (255, 255, 255), 'ma'))
+                items.append(('text', 'CEVABINI YORUMLARA YAZ!', W / 2, y0 + (190 if self.vertical else 150), 44, (255, 210, 60), 'ma'))
             if t > end + 1.2:
                 items.append(('button', 'ABONE OL', W / 2, H * (0.62 if self.vertical else 0.75), 56))
         return items

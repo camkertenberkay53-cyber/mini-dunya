@@ -154,7 +154,7 @@ SCHEMA = """{
   "ana_karakter": "Bölümün odaktaki karakteri: tuna | nil | bulut | pire",
   "baslik": "Kısa bölüm başlığı (en fazla 5 kelime)",
   "kapak_yazisi": "Kapak görseli için 2-4 kelimelik çarpıcı yazı",
-  "end_card": "Kapanış kartında yazacak tek cümle (ana hikâyede merak bırakan 'Devamı...' cümlesi; bağımsız skeçte esprili bir kapanış)",
+  "end_card": "Kapanış kartında izleyiciye sorulan KISA ve eğlenceli bir soru (en fazla 8 kelime). Bölümle ilgili, cevabı yorumlara yazılabilir olsun. Örn: 'Sen olsan hangi yoldan geçerdin?' ya da 'Benek'e ne isim verirdin?'",
   "music": "komik | gergin | sakin",
   "scenes": [
     {
@@ -166,7 +166,7 @@ SCHEMA = """{
       ]
     }
   ],
-  "youtube": {"title": "YouTube başlığı (merak uyandıran, en fazla 70 karakter, emoji yok)", "description": "2-3 cümlelik açıklama", "tags": ["5-10 etiket"]},
+  "youtube": {"title": "YouTube başlığı (merak uyandıran, en fazla 70 karakter, emoji yok)", "description": "2-3 cümlelik açıklama + en sonda izleyiciye yorumda cevaplayacağı bir soru (end_card sorusunun aynısı veya benzeri)", "tags": ["5-10 etiket"]},
   "hafiza": {"ozet": "Bu bölümde ne oldu (1-2 cümle)", "acik_meseleler": ["Sonraki bölümlere taşınan açık konular"], "yeni_bolge": "Bu bölümde haritaya işlenen bölge adı (yoksa boş)"}
 }"""
 
