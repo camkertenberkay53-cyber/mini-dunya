@@ -1,0 +1,85 @@
+{
+ "konu": "Nil, bulaşık süngerinin altına kaçan harita rulosunu kurtarmak istiyor ama ağır ıslak sünger yolu tıkıyor.",
+ "kategori": "kurtarma",
+ "ana_karakter": "nil",
+ "baslik": "Sünger Ormanı Kurtarması",
+ "kapak_yazisi": "Harita Tehlikede!",
+ "end_card": "Bazen en dağınık planlar bile haritayı kurtarmaya yeter!",
+ "music": "komik",
+ "scenes": [
+  {
+   "title": "Islak Sünger Engelinde Kurtarma",
+   "location": "tezgah",
+   "characters": [
+    "nil",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "nil",
+     "text": "İmdat! Rüzgâr en önemli harita rulomu bulaşık süngerinin altına uçurdu!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "pire",
+     "text": "Merak etme Nil, çay kaşığı manivelamla o süngeri tek parmağımla kaldırırım!",
+     "emotion": "neseli",
+     "action": "kos_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Dur Pire, ivme hesabına göre kaşık kırılacak ve sünger üzerimize...",
+     "emotion": "fisilti",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Asılın! Haydi dev sünger, yüksel bakalım!",
+     "emotion": "kibirli",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Tebrikler Pire, süngeri kaldırmadın ama reçel denizini üzerimize fırlattın.",
+     "emotion": "bikkin",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Ama baksana! Reçel dalgası harita rulonu tam ayağının dibine getirdi!",
+     "emotion": "saskin",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
+     "emotion": "soguk",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dev Bulaşık Süngeri Haritayı Yuttu! | Mini Dünya Yan Macera",
+  "description": "Nil'in en değerli harita rulosu dev ıslak süngerin altına sürüklenince, Çaylak Pire kendi yöntemiyle kurtarma operasyonu düzenler. Ancak işler beklenmedik bir çilek reçeli dalgasıyla sonuçlanır!",
+  "tags": [
+   "mini dünya",
+   "2d çizgi film",
+   "animasyon macerası",
+   "kurtarma operasyonu",
+   "tezgah ovası",
+   "çocuk çizgi film",
+   "komik animasyon"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
+  "acik_meseleler": [
+   "Şeker Küpü Kayalıkları'na ulaşan Tuna ekibin kalanıyla buluşabilecek mi?"
+  ],
+  "yeni_bolge": ""
+ },
+ "tur": "bagimsiz"
+}

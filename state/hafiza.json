@@ -1,7 +1,7 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 3,
+ "bolum_no": 4,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
@@ -33,7 +33,7 @@
    "mekan": "zemin",
    "ana_karakter": "bulut",
    "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
-   "izlenme": 975
+   "izlenme": 1223
   },
   {
    "no": 3,
@@ -48,15 +48,32 @@
    "konu": "Tuna, Tezgâh Ovası'ndaki ekmek kırıntısı çölünü aşıp şeker dağlarına ulaşmak ister ama reçel gölüne saplanır; Pire'nin kürdan kaldıracıyla kurtulurlar.",
    "mekan": "tezgah",
    "ana_karakter": "tuna",
-   "final": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan."
+   "final": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan.",
+   "izlenme": 540
+  },
+  {
+   "no": 4,
+   "tarih": "2026-11-21",
+   "slot": "oglen",
+   "tur": "bagimsiz",
+   "baslik": "Sünger Ormanı Kurtarması",
+   "ozet": "Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
+   "video_id": "vpVD-LBjVwE",
+   "ses": "gemini",
+   "kategori": "kurtarma",
+   "konu": "Nil, bulaşık süngerinin altına kaçan harita rulosunu kurtarmak istiyor ama ağır ıslak sünger yolu tıkıyor.",
+   "mekan": "tezgah",
+   "ana_karakter": "nil",
+   "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!"
   }
  ],
  "acik_meseleler": [
   "Şeker Küpü Kayalıkları'na ulaşan Tuna ekibin kalanıyla buluşabilecek mi?"
  ],
  "en_cok_izlenen": [
+  "Menteşe Çıkmazı (1223 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
   "Süpürgelik Geçidi (1093 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
-  "Menteşe Çıkmazı (975 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı."
+  "Tezgâh Ovası Keşfi (540 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -64,7 +81,8 @@
    "gece"
   ],
   "2026-11-21": [
-   "sabah"
+   "sabah",
+   "oglen"
   ]
  }
 }
