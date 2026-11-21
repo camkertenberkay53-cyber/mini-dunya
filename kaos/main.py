@@ -205,6 +205,26 @@ def update_stats(st, log=log):
     for b in st['bolumler']:
         if b.get('video_id') in views:
             b['izlenme'] = views[b['video_id']]
+    try:
+        full = youtube.stats(ids, full=True)
+        for b in st['bolumler']:
+            if b.get('video_id') in full:
+                b['begeni'] = full[b['video_id']].get('likeCount', 0)
+                b['yorum'] = full[b['video_id']].get('commentCount', 0)
+    except Exception:
+        pass
+    # İngilizce kanal istatistikleri (haftalık değerlendirme için)
+    en_ids = [b['video_id'] for b in st.get('en_bolumler', [])[-40:] if b.get('video_id')]
+    if en_ids and youtube.configured('YT_REFRESH_TOKEN_EN'):
+        try:
+            full = youtube.stats(en_ids, token_env='YT_REFRESH_TOKEN_EN', full=True)
+            for b in st['en_bolumler']:
+                if b.get('video_id') in full:
+                    b['izlenme'] = full[b['video_id']].get('viewCount', 0)
+                    b['begeni'] = full[b['video_id']].get('likeCount', 0)
+                    b['yorum'] = full[b['video_id']].get('commentCount', 0)
+        except Exception as e:
+            log(f'  İngilizce izlenme verisi alınamadı: {e}')
     ranked = sorted([b for b in st['bolumler'] if b.get('izlenme') is not None], key=lambda b: -b['izlenme'])[:5]
     st['en_cok_izlenen'] = [f"{b['baslik']} ({b['izlenme']} izlenme, {b['tur']}): {b.get('ozet', '')}" for b in ranked]
 

@@ -66,11 +66,13 @@ def upload(video_path, title, description, tags, privacy='public', category=23, 
     return vid
 
 
-def stats(ids):
+def stats(ids, token_env='YT_REFRESH_TOKEN', full=False):
     if not ids:
         return {}
-    tok = access_token()
+    tok = access_token(token_env)
     url = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + ','.join(ids[:50])
     with urllib.request.urlopen(urllib.request.Request(url, headers={'Authorization': f'Bearer {tok}'}), timeout=30) as r:
         data = json.loads(r.read())
+    if full:
+        return {it['id']: {k: int(v) for k, v in it['statistics'].items() if str(v).isdigit()} for it in data.get('items', [])}
     return {it['id']: int(it['statistics'].get('viewCount', 0)) for it in data.get('items', [])}
