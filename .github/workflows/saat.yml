@@ -4,6 +4,11 @@ name: Mini Dunya Saat
 # GitHub'ın zamanlayıcısı gecikse ya da tetiklemese bile yayınlar aksamaz. (Herkese açık depoda ücretsizdir.)
 on:
   workflow_dispatch:
+    inputs:
+      zincir:
+        description: "Saat kendini yeniden kurdu (iç kullanım)"
+        type: boolean
+        default: false
   schedule:
     - cron: "11 */6 * * *"   # saat zinciri koparsa 6 saatte bir yeniden başlatır
 
@@ -24,6 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Bekleyen bölüm varsa hemen başlat
+        if: github.event.inputs.zincir != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -41,4 +47,4 @@ jobs:
         run: |
           git pull -q || true
           gh workflow run bot.yml -f gorev=otomatik
-          gh workflow run saat.yml
+          gh workflow run saat.yml -f zincir=true

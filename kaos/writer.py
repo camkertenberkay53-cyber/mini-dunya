@@ -116,7 +116,7 @@ def gemini_json(prompt, cfg, temperature=1.0, log=print):
         log(f'  Metin modelleri: {", ".join(models)}')
     errs = []
     dead = set()
-    for attempt in range(4):
+    for attempt in range(6):
         for model in models:
             if model in dead:
                 continue
@@ -142,8 +142,8 @@ def gemini_json(prompt, cfg, temperature=1.0, log=print):
                 errs.append(f'{model}: {e}')
         if all(m in dead for m in models):
             break
-        log(f'  Gemini meşgul, tekrar denenecek ({attempt + 1}/4)')
-        time.sleep(30 * (attempt + 1))
+        log(f'  Gemini meşgul, tekrar denenecek ({attempt + 1}/6)')
+        time.sleep(45 * (attempt + 1))
     raise WriterError('Gemini metin isteği başarısız: ' + ' | '.join(errs[-8:]))
 
 

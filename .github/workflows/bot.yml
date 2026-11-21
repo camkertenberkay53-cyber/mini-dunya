@@ -30,6 +30,8 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # her zaman en güncel hafıza: aynı bölüm iki kez üretilmesin
 
       - name: Görevi belirle
         id: gorev
