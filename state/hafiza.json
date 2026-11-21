@@ -1,12 +1,13 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 5,
+ "bolum_no": 6,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
   "Tezgâh Ovası",
-  "Ekmek Kırıntısı Çölü"
+  "Ekmek Kırıntısı Çölü",
+  "Peçete Dağı"
  ],
  "bolumler": [
   {
@@ -18,7 +19,7 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 1063,
+   "izlenme": 1065,
    "begeni": 3,
    "yorum": 0
   },
@@ -36,7 +37,7 @@
    "mekan": "zemin",
    "ana_karakter": "bulut",
    "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
-   "izlenme": 1227,
+   "izlenme": 1208,
    "begeni": 3,
    "yorum": 0
   },
@@ -54,7 +55,7 @@
    "mekan": "tezgah",
    "ana_karakter": "tuna",
    "final": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan.",
-   "izlenme": 1117,
+   "izlenme": 1123,
    "begeni": 4,
    "yorum": 0
   },
@@ -72,7 +73,7 @@
    "mekan": "tezgah",
    "ana_karakter": "nil",
    "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
-   "izlenme": 778,
+   "izlenme": 1085,
    "begeni": 4,
    "yorum": 0
   },
@@ -89,17 +90,36 @@
    "konu": "Pire ve Bulut, Şeker Küpü Kayalıkları'ndaki Tuna'ya ulaşmak için Ekmek Kırıntısı Çölü'nü aşmaya çalışırken dev bir kırıntı engeliyle karşılaşır ve şeker sandıkları tuz tepesine tırmanır.",
    "mekan": "tezgah",
    "ana_karakter": "pire",
-   "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!"
+   "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
+   "izlenme": 449,
+   "begeni": 1,
+   "yorum": 0
+  },
+  {
+   "no": 6,
+   "tarih": "2026-11-21",
+   "slot": "gece",
+   "tur": "bagimsiz",
+   "baslik": "Çatal Mancınık Testi",
+   "ozet": "Bulut tezgâhtaki dev bir çatalı mancınığa dönüştürür. Tuna sabırsızlanıp zembereği çalıştırınca ikili peçete dağına savrulur.",
+   "video_id": "LuPPBSTOsAs",
+   "ses": "gemini",
+   "kategori": "mucit ani",
+   "konu": "Bulut, Tezgâh Ovası'nı geçmek için dev çataldan mancınık yapar ama Tuna sabırsız davranıp aracı frensiz fırlatır.",
+   "mekan": "tezgah",
+   "ana_karakter": "bulut",
+   "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!"
   }
  ],
  "acik_meseleler": [
   "Tuz kayasının ardındaki Şeker Küpü Kayalıkları'nda bekleyen Tuna'yla nasıl buluşacaklar?"
  ],
  "en_cok_izlenen": [
-  "Menteşe Çıkmazı (1227 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Tezgâh Ovası Keşfi (1117 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
-  "Süpürgelik Geçidi (1063 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
-  "Sünger Ormanı Kurtarması (778 izlenme, bagimsiz): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı."
+  "Menteşe Çıkmazı (1208 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
+  "Tezgâh Ovası Keşfi (1123 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
+  "Sünger Ormanı Kurtarması (1085 izlenme, bagimsiz): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
+  "Süpürgelik Geçidi (1065 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
+  "Şeker Küpü Kayalıkları (449 izlenme, ana): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -109,7 +129,8 @@
   "2026-11-21": [
    "sabah",
    "oglen",
-   "aksam"
+   "aksam",
+   "gece"
   ]
  },
  "en_bolumler": [
@@ -129,7 +150,7 @@
    "slot": "oglen",
    "baslik": "Sponge Mountain Mission",
    "video_id": "g1FlC-ZbV78",
-   "izlenme": 1,
+   "izlenme": 2,
    "begeni": 0,
    "yorum": 0
   },
@@ -138,7 +159,10 @@
    "tarih": "2026-11-21",
    "slot": "aksam",
    "baslik": "Sugar Cube Cliffs",
-   "video_id": "wsPRpSSbOfc"
+   "video_id": "wsPRpSSbOfc",
+   "izlenme": 0,
+   "begeni": 0,
+   "yorum": 0
   }
  ]
 }

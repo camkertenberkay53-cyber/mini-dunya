@@ -1,0 +1,93 @@
+{
+ "konu": "Bulut, Tezgâh Ovası'nı geçmek için dev çataldan mancınık yapar ama Tuna sabırsız davranıp aracı frensiz fırlatır.",
+ "kategori": "mucit ani",
+ "ana_karakter": "bulut",
+ "baslik": "Çatal Mancınık Testi",
+ "acilis_efekti": "dusen_nesne",
+ "kapak_yazisi": "BU İCAT BİZİ UÇURACAK!",
+ "end_card": "Sen olsan bu icada ne isim verirdin?",
+ "music": "komik",
+ "scenes": [
+  {
+   "title": "Tezgâh Üstü Test Alanı",
+   "location": "tezgah",
+   "characters": [
+    "bulut",
+    "tuna",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "bulut",
+     "text": "Dikkat! Dev bir metal çatal düşüyor!",
+     "emotion": "panik",
+     "action": "kos_sol"
+    },
+    {
+     "who": "tuna",
+     "text": "Kaçmayın! İşte aradığımız mükemmel fırlatıcı araç!",
+     "emotion": "kibirli",
+     "action": "gir_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Tuna dur, o henüz sadece deneme aşamasında bir mancınık!",
+     "emotion": "sinirli",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Tezgâh Ovası'nı saniyeler içinde aşacağız! Benek, kolu çek!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Hayır çekme, fırlatma zembereği bir ataşla sabitli-",
+     "emotion": "aglamakli",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Uçuyoruz! İşte gerçek bir lider böyle yol açar!",
+     "emotion": "neseli",
+     "action": "carp"
+    },
+    {
+     "who": "bulut",
+     "text": "Lider Bey, sanırım peçete dağına zorunlu iniş yaptık.",
+     "emotion": "bikkin",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
+     "emotion": "saskin",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dev Bir Çataldan Mancınık Yaparsan Ne Olur?",
+  "description": "Bulut'un Tezgâh Ovası'nda çatal ve ataşla yaptığı mancınık testi Tuna'nın aceleciliği yüzünden kontrolden çıkıyor! Haritacılar peçete dağına iniş yapıyor. Sen olsan bu icada ne isim verirdin?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "çizgi film",
+   "macera",
+   "mucit",
+   "tezgah",
+   "türkçe animasyon",
+   "shorts"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Bulut tezgâhtaki dev bir çatalı mancınığa dönüştürür. Tuna sabırsızlanıp zembereği çalıştırınca ikili peçete dağına savrulur.",
+  "acik_meseleler": [
+   "Peçete dağının ardındaki Şeker Küpü Kayalıkları'na ulaşmak."
+  ],
+  "yeni_bolge": "Peçete Dağı"
+ },
+ "tur": "bagimsiz"
+}
