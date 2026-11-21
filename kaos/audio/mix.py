@@ -151,6 +151,13 @@ ENTER_SFX = {'tuna': 'steps', 'nil': 'steps', 'bulut': 'steps', 'pire': 'steps',
 def build_mix(ep, tl, out_wav):
     m = Mixer(tl['total'])
     segs = tl['segments']
+    fx = ep.get('acilis_efekti')
+    if not tl['long'] and fx:
+        m.whoosh(0.0, 0.35)
+        if fx in ('dusen_nesne', 'dev_damla'):
+            m.boom(0.55, 0.75)
+        else:
+            m.rumble(0.0, 1.2, 0.18)
     for s in segs:
         x, sr = sf.read(s['wav'], dtype='float32', always_2d=True)
         x = x.mean(1)

@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 from .. import paths
 from . import backgrounds
 from .characters import CHARS, St
-from .draw import Cam, ease, seg, lerp, line, circle, fill
+from .draw import Cam, ease, seg, lerp, line, circle, fill, ellipse, cel, E, capsule
 
 FPS = 30
 GROUND_Y = 1250
@@ -200,6 +200,54 @@ def impact_burst(f, cam, x, y, dt):
         pts.append((x + math.cos(a) * rr, y + math.sin(a) * rr))
     fill(f, cam.P(pts), (1.0, 0.86, 0.2), True, cam.lw(6))
 
+
+INTRO_FX = ('dusen_nesne', 'dev_el', 'dev_pati', 'dev_damla')
+INTRO_HIT = 0.55  # düşen nesnenin yere çarptığı an (sn)
+
+
+def intro_fx(f, cam, t, kind, gx, front):
+    """Shorts açılışında ölçek şoku: dev nesne düşer, dev el ya da kedi patisi uzanır, dev damla düşer."""
+    if kind in ('dusen_nesne', 'dev_damla') and not front:
+        k = min(1.0, t / INTRO_HIT)
+        y = -450 + (1110 + 450) * k * k
+        x = gx + 40
+        sh = min(1.0, k * 1.2)
+        ov = f.copy()
+        ellipse(ov, cam.p(x, 1140), 260 * sh * cam.z, 40 * sh * cam.z, (0.1, 0.06, 0.04), False)
+        f[:] = f * (1 - 0.35 * sh) + ov * 0.35 * sh
+        if kind == 'dusen_nesne':
+            squash = 1 - 0.18 * max(0.0, 1 - abs(t - INTRO_HIT) / 0.12) if t > INTRO_HIT - 0.12 else 1
+            cel(f, cam.P(E(x, y - 140 * squash, 300, 140 * squash)), (0.95, 0.75, 0.25), w=cam.lw(8), shadow=0.3, rim=0.45)
+            cel(f, cam.P(E(x, y - 158 * squash, 230, 100 * squash)), (0.98, 0.84, 0.40), w=cam.lw(5), shadow=0.15, rim=0.3)
+        else:
+            if t < INTRO_HIT:
+                cel(f, cam.P(E(x, y - 150, 120, 160)), (0.62, 0.84, 0.98), w=cam.lw(6), shadow=0.2, rim=0.7)
+            else:
+                u = min(1.0, (t - INTRO_HIT) / 0.6)
+                for i in range(10):
+                    a = math.pi + math.pi * i / 9
+                    r = 60 + 420 * u
+                    cel(f, cam.P(E(x + math.cos(a) * r, 1110 + math.sin(a) * r * 0.5 - 40 * (1 - u), 34 * (1 - u) + 8, 40 * (1 - u) + 8)),
+                        (0.70, 0.88, 1.0), w=cam.lw(4), shadow=0.1, rim=0.6)
+    if kind in ('dev_el', 'dev_pati') and front:
+        k = ease(seg(t, 0.0, 0.8)) * (1 - ease(seg(t, 1.6, 2.4)))
+        if k <= 0:
+            return
+        if kind == 'dev_el':
+            bx, by = gx + 900 - 600 * k, 300 + 450 * k
+            col = (0.95, 0.74, 0.58)
+            cel(f, cam.P(capsule(bx + 900, by - 500, bx + 120, by - 40, 260, 230)), col, w=cam.lw(10), shadow=0.3, rim=0.3)
+            for i, (dx, dy, L) in enumerate([(-150, 40, 330), (-60, 120, 360), (40, 140, 340), (130, 110, 290)]):
+                cel(f, cam.P(capsule(bx + dx, by + dy - 80, bx + dx - 60, by + dy + L - 80, 60, 52)), col, w=cam.lw(9), shadow=0.3, rim=0.3)
+        else:
+            bx, by = gx + 1100 - 700 * k, 980
+            col = (0.92, 0.58, 0.22)
+            cel(f, cam.P(capsule(bx + 900, by - 300, bx, by - 120, 300, 280)), col, w=cam.lw(10), shadow=0.3, rim=0.3)
+            for dx, dy in ((-260, -40), (-140, -200), (40, -230), (200, -150)):
+                cel(f, cam.P(E(bx + dx, by + dy, 85, 75)), (0.98, 0.70, 0.70), w=cam.lw(7), shadow=0.2, rim=0.2)
+            cel(f, cam.P(E(bx - 40, by + 20, 190, 150)), (0.98, 0.70, 0.70), w=cam.lw(8), shadow=0.25, rim=0.2)
+
+
 # ---------------------------------------------------------------- render
 class Renderer:
     def __init__(self, ep, tl, W, H, meta):
@@ -249,6 +297,11 @@ class Renderer:
             for k, q in enumerate(ss):
                 q['shot'] = shot_for(q, k, len(ss), prev, W, H, self.present(si2, q))
                 prev = q['who']
+        # açılış ölçek şoku varsa ilk replik geniş planda (olay kadraja girsin)
+        if not tl['long'] and ep.get('acilis_efekti') in INTRO_FX:
+            first = [q for q in self.segs if q['scene'] == 0][:1]
+            if first:
+                first[0]['shot'] = self.wide.get(0, first[0]['shot'])
         # dinleyen tepkileri: biri şaşırır ya da panikler ise diğerleri hafifçe sıçrar
         self.reacts = [(s['start'] + 0.15, s['scene'], s['who']) for s in self.segs if s['emotion'] in ('panik', 'saskin') or s['action'] == 'carp']
         rng = np.random.default_rng(7)
@@ -317,6 +370,8 @@ class Renderer:
                 sh = 1.5 * mo
             if cur['action'] == 'titre' and s is not None:
                 sh = 3.0 * max(0.0, 1 - (t - cur['start']) / 0.8)
+        if not self.tl['long'] and self.ep.get('acilis_efekti') in ('dusen_nesne', 'dev_damla') and 0 <= t - INTRO_HIT < 0.4:
+            sh = max(sh, 22 * (1 - (t - INTRO_HIT) / 0.4))
         for ti, _, _ in self.impacts:
             if 0 <= t - ti < 0.4:
                 sh = max(sh, 16 * (1 - (t - ti) / 0.4))
@@ -330,6 +385,10 @@ class Renderer:
             return (n % 2, pos[c][0])
         order = sorted(pos.keys(), key=depth)
         speaker = cur['who'] if cur is not None else None
+        fx = self.ep.get('acilis_efekti') if (not self.tl['long'] and si == 0) else None
+        fx_x = sum(p[0] for p in pos.values()) / max(1, len(pos)) + 60
+        if fx in INTRO_FX and t < 2.6:
+            intro_fx(f, cam, t, fx, fx_x, front=False)
         for c in order:
             x, y = pos[c]
             key = (si, c)
@@ -408,6 +467,8 @@ class Renderer:
                 if isi == si and iw == c and 0 <= t - ti < 0.5:
                     fy = y + CHARS[c]['face'][1]
                     impact_burst(f, cam, x + CHARS[c]['w'] * 0.42, fy - 200, t - ti)
+        if fx in INTRO_FX and t < 2.6:
+            intro_fx(f, cam, t, fx, fx_x, front=True)
         f = backgrounds.draw_fg(loc, cam, f)
         f = backgrounds.post(loc, f, cam, t)
         for ti, isi, _ in self.impacts:

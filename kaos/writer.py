@@ -153,6 +153,7 @@ SCHEMA = """{
   "kategori": "yeni bolge | devlerin gunu | kurtarma | yaris | problem cozme | gizem | yeni canli | dogal guc | mucit ani | basarisiz plan | ters kose | teknolojik kesif | ela ani | kisisel macera | lonca hayati | eski izler",
   "ana_karakter": "Bölümün odaktaki karakteri: tuna | nil | bulut | pire",
   "baslik": "Kısa bölüm başlığı (en fazla 5 kelime)",
+  "acilis_efekti": "Shorts'un ilk saniyesindeki ölçek şoku (biri seçilmeli): dusen_nesne (dev bir nesne karakterlerin yanına GÜM diye düşer) | dev_el (Devlerin dev eli üstlerine uzanır) | dev_pati (ev kedisinin dev patisi uzanır) | dev_damla (dev bir su damlası düşüp patlar). İlk replik bu olaya tepki olmalı.",
   "kapak_yazisi": "VİDEONUN İLK SANİYESİNDE ekranda büyük yazacak KANCA: kaydıran izleyiciyi durduran 3-6 kelimelik şaşırtıcı ifade ya da soru. Bölümün olayını anlatsın, marka ya da bölüm numarası değil. Örn: 'DEV SÜNGER HARİTAYI YUTTU!', 'BUZDOLABINDA MAHSUR KALDIK', 'BU KAŞIK BİZİ TAŞIR MI?'",
   "end_card": "Kapanış kartında izleyiciye sorulan KISA ve eğlenceli bir soru (en fazla 8 kelime). Bölümle ilgili, cevabı yorumlara yazılabilir olsun. Örn: 'Sen olsan hangi yoldan geçerdin?' ya da 'Benek'e ne isim verirdin?'",
   "music": "komik | gergin | sakin",
@@ -166,7 +167,7 @@ SCHEMA = """{
       ]
     }
   ],
-  "youtube": {"title": "YouTube başlığı (merak uyandıran, en fazla 70 karakter, emoji yok)", "description": "2-3 cümlelik açıklama + en sonda izleyiciye yorumda cevaplayacağı bir soru (end_card sorusunun aynısı veya benzeri)", "tags": ["5-10 etiket"]},
+  "youtube": {"title": "YouTube başlığı (en fazla 70 karakter, emoji yok). İşe yarayan kalıplardan birini kullan: 'Parmak Boyundaki Haritacılar [Mekân]'a Karşı!', 'Dev Bir [Eşya]'dan Kaçış!', '[Eşya] Boyunda Olsaydın Ne Olurdu?', '[Mekân]'ın Altındaki Gizemli Keşif!' ya da benzeri merak uyandıran bir kalıp", "description": "2-3 cümlelik açıklama + en sonda izleyiciye yorumda cevaplayacağı bir soru (end_card sorusunun aynısı veya benzeri)", "tags": ["5-10 etiket"]},
   "hafiza": {"ozet": "Bu bölümde ne oldu (1-2 cümle)", "acik_meseleler": ["Sonraki bölümlere taşınan açık konular"], "yeni_bolge": "Bu bölümde haritaya işlenen bölge adı (yoksa boş)"}
 }"""
 
@@ -176,7 +177,7 @@ DUYGULAR (emotion): {', '.join(EMOTIONS)}
 HAREKETLER (action): yok, gir_sag / gir_sol (sahneye yürüyerek girer), kos_sag / kos_sol (sahneye koşarak dalar), cik (sahneden çıkar), kac (hızla kaçar), yuru_sag / yuru_sol (sahne içinde birkaç adım yürür), isaret (bir yeri ya da şeyi eliyle gösterir), egil (eğilip yakından bakar, saklanır), zipla (zıplar), titre (kısa titreme), carp (bir şeye çarpar ya da üstüne bir şey düşer: GÜM!), kameraya_bak (seyirciye döner, final için ideal).
 MEKÂNLAR: {', '.join(LOCATIONS)} (tezgah = mutfak tezgâhı; lavabo = lavabo ve damlayan musluk; buzdolabi = buzdolabının içi; baharat = baharat rafı; zemin = mutfak zemini, kedi mama kabı, karınca yolu; cekmece = çatal bıçak çekmecesi; lonca = süpürgeliğin arkasındaki Harita Odası)
 KURALLAR:
-- Dil Türkçe, günlük ve doğal. Replikler kısa ve vurucu (en fazla 16 kelime).
+- Dil Türkçe, günlük ve doğal. Replikler kısa ve vurucu (Shorts'ta en fazla 12, uzun videoda en fazla 16 kelime).
 - KESİNLİKLE YASAK: küfür, argo, hakaret, alay, lakap takma; etnik köken, ırk, din, milliyet, siyaset, ayrımcılık ya da herhangi bir grubu kötüleyen söz; şiddet, kan, korku, ölüm; alkol, sigara; gerçek firma, marka ya da kişi adı. Karakterler birbirine asla kaba davranmaz; tartışsalar bile saygılı ve tatlıdır.
 - İZLEYİCİ: 7-45 yaş, aile kitlesi. Çocuk güvenli ama bebeksi değil; yetişkin de keyif alsın.
 - Sayıları yazıyla yaz ("üç yüz", "300" değil) çünkü seslendirilecek.
@@ -218,7 +219,12 @@ Haftanın büyük macerası: yeni bir bölge, büyük bir problem, karakterlerin
 Shorts'ların tekrarı değil. İlk sahne yeni izleyiciye durumu anlatsın. Son sahnede yeni bölge haritaya işlensin."""
     else:
         fmt = """FORMAT: DİKEY SHORTS (30-45 saniye). Tek sahne, 2-4 karakter (istersen benek de), 6-9 replik, toplam 55-95 kelime.
-- 0-2 sn KANCA: İlk replik durumu bilmeyen birine bile tek cümlede anlatan bir çığlık ya da soru (en fazla 10 kelime).
+- 0-2 sn KANCA (rakip analizine göre en çok izlenen tekniktir): Bölüm OLAYIN TAM ORTASINDA başlar; giriş, selamlaşma, tanıtım YOK.
+  İlk saniyede 'acilis_efekti' ile bir ölçek şoku olur (dev nesne düşer / dev el ya da pati uzanır / dev damla düşer) ve
+  ilk replik buna verilen panik ya da şaşkınlık tepkisidir (en fazla 7 kelime, örn. "Kaçın! Dev bir düğme düşüyor!").
+- DİYALOG AZ VE KISA: replikler en fazla 12 kelime; hikâye karakterlerin HAREKETLERİYLE ilerlesin, konuşma sadece destek olsun.
+- MİZAH ÖLÇEK FARKINDAN: sıradan ev eşyalarını beklenmedik amaçla kullan (ataş tırmanma kancası, düğme kalkan, kürdan kürek).
+- SÜRE: 35-50 saniye; hızlı tempo, her 3-5 saniyede bir yeni gelişme.
 - ANLAMLI HİKÂYE (en önemli kural): Bölümün tek cümlelik net bir konusu olsun: "KİM, NEYİ, NEDEN istiyor ve önünde NE var?"
   Örnek: "Pire, Benek'i karşıdaki şeker küpünden kurtarmak istiyor ama arada lavabo gölü var."
   Yapı: 1) HEDEF ilk iki replikte belli olur. 2) ENGEL somut ve görseldir (dev nesne, su, rüzgâr, kedi). 3) İlk PLAN başarısız olur ya da ters gider.
@@ -343,6 +349,8 @@ def validate(ep, kind):
     if ep.get('music') not in ('komik', 'gergin', 'sakin'):
         ep['music'] = 'komik'
     ep.setdefault('hafiza', {})
+    if kind != 'uzun' and ep.get('acilis_efekti') not in ('dusen_nesne', 'dev_el', 'dev_pati', 'dev_damla'):
+        ep['acilis_efekti'] = ['dusen_nesne', 'dev_el', 'dev_pati', 'dev_damla'][sum(map(ord, ep.get('baslik', 'x'))) % 4]
     errs += safety_errors(ep)
     return errs
 
@@ -440,7 +448,7 @@ def localize_en(ep, cfg, log=print):
 (tiny explorers living behind the baseboard map the "Big House"). Characters keep their names: Tuna (brave hasty leader), Nil (analytical
 mapmaker, dry humor), Bulut (big gentle inventor), Pire (tiniest curious kid). Humans are called "the Giants".
 Rules: adapt, don't translate word by word; jokes and wordplay must work in English; keep EXACTLY the same number of scenes and lines,
-same order and same 'who'; each line max 16 words; write numbers as words; family friendly: no insults, no slang swearing, no religion,
+same order and same 'who'; each line max 12 words (16 in long videos); write numbers as words; family friendly: no insults, no slang swearing, no religion,
 politics, ethnicity, violence, alcohol. kapak_yazisi = 3-6 word ALL-CAPS hook shown in the first second (e.g. "A GIANT SPONGE ATE OUR MAP!").
 end_card = a short fun question for viewers to answer in comments. youtube.title max 70 chars, curiosity-driven, no emoji;
 youtube.description 2-3 sentences ending with the same question; youtube.tags 6-10 English tags.
