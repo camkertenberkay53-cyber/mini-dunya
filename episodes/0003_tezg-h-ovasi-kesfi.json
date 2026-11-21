@@ -1,0 +1,97 @@
+{
+ "konu": "Tuna, Tezgâh Ovası'ndaki ekmek kırıntısı çölünü aşıp şeker dağlarına ulaşmak ister ama reçel gölüne saplanır; Pire'nin kürdan kaldıracıyla kurtulurlar.",
+ "kategori": "yeni bolge",
+ "ana_karakter": "tuna",
+ "baslik": "Tezgâh Ovası Keşfi",
+ "kapak_yazisi": "Kırıntı Çölü Macerası",
+ "end_card": "Yarın: Şeker Küpü Kayalıkları'nda Gizemli İzler!",
+ "music": "komik",
+ "scenes": [
+  {
+   "title": "Tezgâh Ovası'na Giriş",
+   "location": "tezgah",
+   "characters": [
+    "tuna",
+    "nil",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Tezgâhtaki dev kırıntı çölünü geçip şeker dağlarına ulaşmalıyız!",
+     "emotion": "neseli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "nil",
+     "text": "Ölçümlerime göre bu kırıntılar çöl değil, dünkü ekmekten kalma.",
+     "emotion": "soguk",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "pire",
+     "text": "O zaman şeker dağının tepesine ilk ben çıkıp haritayı çizeyim!",
+     "emotion": "neseli",
+     "action": "kos_sol"
+    },
+    {
+     "who": "tuna",
+     "text": "Lider önden gider! Takip edin beni haritacılar!",
+     "emotion": "kibirli",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Eyvah! Çekmeye çalıştıkça reçel gölüne daha çok batıyorum!",
+     "emotion": "panik",
+     "action": "carp"
+    },
+    {
+     "who": "nil",
+     "text": "Tebrikler Tuna, çilek reçeli gölünü keşfeden ilk kişi oldun.",
+     "emotion": "bikkin",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Kürdan kaldıracı tekniğim hazır! Basıyorum!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Ayyy, doğrudan şeker küpünün üstüne fırladım!",
+     "emotion": "panik",
+     "action": "kac"
+    },
+    {
+     "who": "nil",
+     "text": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan.",
+     "emotion": "soguk",
+     "action": "yuru_sag"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dev Mutfak Tezgâhında Kırıntı Çölü Macerası!",
+  "description": "Haritacılar Mutfak Kıtası'nın ilk büyük bölgesi olan Tezgâh Ovası'nı keşfe çıkıyor. Ekmek kırıntıları ve çilek reçeli gölü ekibi durdurabilecek mi?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "çizgi film",
+   "tezgâh ovası",
+   "macera",
+   "2d animasyon",
+   "türkçe shorts"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
+  "acik_meseleler": [
+   "Şeker Küpü Kayalıkları'na ulaşan Tuna ekibin kalanıyla buluşabilecek mi?"
+  ],
+  "yeni_bolge": "Tezgâh Ovası"
+ },
+ "tur": "ana"
+}

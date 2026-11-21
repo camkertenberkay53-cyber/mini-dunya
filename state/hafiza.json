@@ -1,10 +1,11 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 2,
+ "bolum_no": 3,
  "harita": [
   "Süpürgelik Geçidi",
-  "Halı Zeminli Oda"
+  "Halı Zeminli Oda",
+  "Tezgâh Ovası"
  ],
  "bolumler": [
   {
@@ -16,7 +17,7 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 486
+   "izlenme": 1093
   },
   {
    "no": 2,
@@ -31,19 +32,39 @@
    "konu": "Tuna kapı menteşesinde yapışıp kalınca düşen tırmanma ipini kurtarmak için Bulut mancınık fırlatır, ip kapı koluna takılınca Pire zıplayıp kolu indirerek ipi kurtarır.",
    "mekan": "zemin",
    "ana_karakter": "bulut",
-   "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!"
+   "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
+   "izlenme": 975
+  },
+  {
+   "no": 3,
+   "tarih": "2026-11-21",
+   "slot": "sabah",
+   "tur": "ana",
+   "baslik": "Tezgâh Ovası Keşfi",
+   "ozet": "Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
+   "video_id": "-o270hf5c2o",
+   "ses": "gemini",
+   "kategori": "yeni bolge",
+   "konu": "Tuna, Tezgâh Ovası'ndaki ekmek kırıntısı çölünü aşıp şeker dağlarına ulaşmak ister ama reçel gölüne saplanır; Pire'nin kürdan kaldıracıyla kurtulurlar.",
+   "mekan": "tezgah",
+   "ana_karakter": "tuna",
+   "final": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan."
   }
  ],
  "acik_meseleler": [
-  "Kapı menteşesinden aşağıya nasıl inecekler?"
+  "Şeker Küpü Kayalıkları'na ulaşan Tuna ekibin kalanıyla buluşabilecek mi?"
  ],
  "en_cok_izlenen": [
-  "Süpürgelik Geçidi (486 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar."
+  "Süpürgelik Geçidi (1093 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
+  "Menteşe Çıkmazı (975 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı."
  ],
  "yapilan": {
   "2026-11-20": [
    "sabah",
    "gece"
+  ],
+  "2026-11-21": [
+   "sabah"
   ]
  }
 }
