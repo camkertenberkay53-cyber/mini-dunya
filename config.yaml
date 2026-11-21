@@ -43,6 +43,30 @@ voices:
     edge: {voice: tr-TR-EmelNeural, rate: "+14%", pitch: "+38Hz"}
     piper: {voice: dfki-medium, speed: 1.1, pitch: 1.4}
 
+# İngilizce kardeş kanal (Mini World): her Türkçe bölüm İngilizceye uyarlanıp ayrı kanala yüklenir
+ingilizce:
+  acik: true
+  token_env: YT_REFRESH_TOKEN_EN
+  tts_order: [gemini, edge]
+  etiketler: ["mini world", "animation", "cartoon", "adventure", "tiny explorers", "animated series", "shorts"]
+  voices:
+    tuna:
+      gemini: Puck
+      style: "Brave, energetic, confident young explorer; eager, fast and smiling."
+      edge: {voice: en-US-BrianNeural, rate: "+8%", pitch: "+10Hz"}
+    nil:
+      gemini: Kore
+      style: "Smart, calm, precise young girl with dry humor; measured and clear."
+      edge: {voice: en-US-AvaNeural, rate: "+0%", pitch: "+4Hz"}
+    bulut:
+      gemini: Achird
+      style: "Big, soft-hearted, calm and slightly slow young inventor; warm and gentle."
+      edge: {voice: en-US-GuyNeural, rate: "-6%", pitch: "-6Hz"}
+    pire:
+      gemini: Leda
+      style: "Tiny, curious, excited kid; fast, cheerful, asks lots of questions."
+      edge: {voice: en-US-AnaNeural, rate: "+10%", pitch: "+10Hz"}
+
 # Yayın saatleri (Türkiye saati). Değiştirirsen .github/workflows/bot.yml içindeki cron satırlarını da güncelle.
 takvim:
   sabah: "08:30 ana yolculuk"

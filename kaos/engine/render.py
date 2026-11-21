@@ -446,6 +446,8 @@ class Renderer:
         end = self.tl['end_start']
         if cur is not None and t < cur['start'] + cur['dur'] + LINE_GAP + 0.35 and t < end:
             name, col = CHARS[cur['who']]['name'], CHARS[cur['who']]['color']
+            if meta.get('lang') == 'en':
+                name = NAMES_EN.get(cur['who'], name)
             if self.vertical:
                 txt = wrap(cur['text'], 66, W - 120)
                 items.append(('text', name, W / 2, 1370, 46, col, 'mm'))
@@ -463,22 +465,29 @@ class Renderer:
             fade = 1 - seg(t, 2.8, 3.2)
             if fade > 0:
                 items.append(('text', wrap(hook, int(96 * pop), W - 110), W / 2, 150, int(96 * pop), (255, 214, 50), 'ma'))
-            items.append(('text', 'MİNİ DÜNYA', W / 2, 92, 38, (255, 255, 255), 'mm'))
+            items.append(('text', UI[meta.get('lang', 'tr')]['brand'], W / 2, 92, 38, (255, 255, 255), 'mm'))
         if self.tl['long'] and t < 3.6:
-            items.append(('text', 'MİNİ DÜNYA', W / 2, H / 2 - 70, 110, (255, 210, 60), 'mm'))
+            items.append(('text', UI[meta.get('lang', 'tr')]['brand'], W / 2, H / 2 - 70, 110, (255, 210, 60), 'mm'))
             items.append(('text', meta.get('subtitle', ''), W / 2, H / 2 + 40, 56, (255, 255, 255), 'mm'))
         # kapanış kartı
         if t >= end:
-            items.append(('text', 'MİNİ DÜNYA', W / 2, H * (0.38 if self.vertical else 0.3), 96, (255, 210, 60), 'mm'))
+            items.append(('text', UI[meta.get('lang', 'tr')]['brand'], W / 2, H * (0.38 if self.vertical else 0.3), 96, (255, 210, 60), 'mm'))
             items.append(('text', meta.get('subtitle', ''), W / 2, H * (0.38 if self.vertical else 0.3) + 95, 50, (255, 255, 255), 'mm'))
             ec = self.ep.get('end_card', '')
             if ec and t > end + 0.6:
                 y0 = H * (0.38 if self.vertical else 0.3) + 170
                 items.append(('text', wrap(ec, 60, W - 140), W / 2, y0, 60, (255, 255, 255), 'ma'))
-                items.append(('text', 'CEVABINI YORUMLARA YAZ!', W / 2, y0 + (190 if self.vertical else 150), 44, (255, 210, 60), 'ma'))
+                items.append(('text', UI[meta.get('lang', 'tr')]['comment'], W / 2, y0 + (190 if self.vertical else 150), 44, (255, 210, 60), 'ma'))
             if t > end + 1.2:
-                items.append(('button', 'ABONE OL', W / 2, H * (0.62 if self.vertical else 0.75), 56))
+                items.append(('button', UI[meta.get('lang', 'tr')]['sub'], W / 2, H * (0.62 if self.vertical else 0.75), 56))
         return items
+
+
+UI = {
+    'tr': {'brand': 'MİNİ DÜNYA', 'comment': 'CEVABINI YORUMLARA YAZ!', 'sub': 'ABONE OL'},
+    'en': {'brand': 'MINI WORLD', 'comment': 'TELL US IN THE COMMENTS!', 'sub': 'SUBSCRIBE'},
+}
+NAMES_EN = {'tuna': 'TUNA', 'nil': 'NIL', 'bulut': 'BULUT', 'pire': 'PIRE', 'benek': 'BENEK'}
 
 
 def render_video(ep, tl, out_path, W, H, meta):

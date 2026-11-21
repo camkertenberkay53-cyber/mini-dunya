@@ -10,14 +10,14 @@ class YTError(Exception):
     pass
 
 
-def configured():
-    return all(os.environ.get(k) for k in ('YT_CLIENT_ID', 'YT_CLIENT_SECRET', 'YT_REFRESH_TOKEN'))
+def configured(token_env='YT_REFRESH_TOKEN'):
+    return all(os.environ.get(k) for k in ('YT_CLIENT_ID', 'YT_CLIENT_SECRET', token_env))
 
 
-def access_token():
+def access_token(token_env='YT_REFRESH_TOKEN'):
     data = urllib.parse.urlencode({
         'client_id': os.environ['YT_CLIENT_ID'], 'client_secret': os.environ['YT_CLIENT_SECRET'],
-        'refresh_token': os.environ['YT_REFRESH_TOKEN'], 'grant_type': 'refresh_token'}).encode()
+        'refresh_token': os.environ[token_env], 'grant_type': 'refresh_token'}).encode()
     try:
         with urllib.request.urlopen(urllib.request.Request('https://oauth2.googleapis.com/token', data=data), timeout=30) as r:
             return json.loads(r.read())['access_token']
@@ -25,11 +25,12 @@ def access_token():
         raise YTError(f'YouTube yetkilendirme hatası: {e.code} {e.read()[:300]!r}')
 
 
-def upload(video_path, title, description, tags, privacy='public', category=23, thumb=None, log=print):
-    tok = access_token()
+def upload(video_path, title, description, tags, privacy='public', category=23, thumb=None, log=print,
+           token_env='YT_REFRESH_TOKEN', lang='tr'):
+    tok = access_token(token_env)
     meta = {
         'snippet': {'title': title[:100], 'description': description[:4900], 'tags': tags[:30],
-                    'categoryId': str(category), 'defaultLanguage': 'tr', 'defaultAudioLanguage': 'tr'},
+                    'categoryId': str(category), 'defaultLanguage': lang, 'defaultAudioLanguage': lang},
         'status': {'privacyStatus': privacy, 'selfDeclaredMadeForKids': False, 'embeddable': True},
     }
     size = os.path.getsize(video_path)

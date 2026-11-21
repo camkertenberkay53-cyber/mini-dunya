@@ -113,6 +113,42 @@ def description(ep, kind, no, season):
     return base + tail
 
 
+def description_en(ep, kind, no, season):
+    base = (ep.get('youtube') or {}).get('description', '').strip()
+    tail = (f"\n\nMINI WORLD · Season {season} · Episode {no}\n"
+            "Tiny mapmakers living behind the baseboard explore the Big House, one room at a time.\n"
+            "New episodes every day! Subscribe for the next adventure.\n\n#miniworld #animation #cartoon #adventure #animatedseries")
+    if kind != 'uzun':
+        tail += ' #shorts'
+    return base + tail
+
+
+def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log):
+    """Aynı bölümü İngilizce kanal için uyarlar, seslendirir, çizer ve yükler."""
+    ec = cfg.get('ingilizce') or {}
+    if not ec.get('acik') or not youtube.configured(ec.get('token_env', 'YT_REFRESH_TOKEN_EN')):
+        return
+    log('— İngilizce (Mini World) sürümü —')
+    en = writer.localize_en(ep, cfg, log=log)
+    cfg_en = dict(cfg)
+    cfg_en['lang'] = 'en'
+    cfg_en['voices'] = ec['voices']
+    cfg_en['tts'] = dict(cfg['tts'], order=ec.get('tts_order', ['gemini', 'edge']))
+    meta = {'lang': 'en', 'subtitle': f"Episode {no} · {en['baslik']}", 'thumb': en.get('kapak_yazisi', en['baslik'])}
+    outdir = os.path.join(paths.OUTPUT, f"{today.isoformat()}_{slot}_{no:04d}_en")
+    final, thumb, engine, dur = produce(en, kind, meta, outdir, cfg_en)
+    log(f'İngilizce video hazır: {final} ({dur:.0f} sn, ses: {engine})')
+    title = (en.get('youtube') or {}).get('title') or en['baslik']
+    if kind != 'uzun' and '#shorts' not in title.lower():
+        title = title[:88] + ' #shorts'
+    tags = list(dict.fromkeys(((en.get('youtube') or {}).get('tags') or []) + ec.get('etiketler', [])))
+    vid = youtube.upload(final, title, description_en(en, kind, no, season), tags,
+                         cfg['yayin'].get('gizlilik', 'public'), cfg['yayin'].get('kategori', 1),
+                         thumb if kind == 'uzun' else None, log=log, token_env=ec.get('token_env', 'YT_REFRESH_TOKEN_EN'), lang='en')
+    st.setdefault('en_bolumler', []).append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'baslik': en['baslik'], 'video_id': vid})
+    st['en_bolumler'] = st['en_bolumler'][-200:]
+
+
 def produce(ep, kind, meta, outdir, cfg, log=log):
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, 'senaryo.json'), 'w', encoding='utf-8') as f:
@@ -226,6 +262,14 @@ def main():
     save_state(st)
     os.makedirs(paths.EPISODES, exist_ok=True)
     shutil.copy(os.path.join(outdir, 'senaryo.json'), os.path.join(paths.EPISODES, f"{no:04d}_{slug(ep['baslik'])}.json"))
+    # İngilizce kardeş kanal: Türkçe bölüm kaydedildikten sonra; hata olursa Türkçe yayını etkilemez
+    if upload:
+        try:
+            produce_en(ep, kind, no, st['sezon'], today, slot, cfg, st)
+            save_state(st)
+        except Exception as e:
+            log(f'İngilizce sürüm üretilemedi: {e}')
+            traceback.print_exc()
     return 0
 
 

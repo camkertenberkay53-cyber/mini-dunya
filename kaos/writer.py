@@ -413,3 +413,49 @@ Sadece JSON döndür:
     if len(plan.get('gunler', [])) < 14:
         raise WriterError('Sezon planı eksik geldi')
     return plan
+
+
+YASAK_EN = ['fuck', 'shit', 'bitch', 'damn', 'hell ', 'stupid', 'idiot', 'dumb', 'moron', 'shut up', 'kill', 'dead', 'blood',
+            'gun', 'beer', 'wine', 'cigarette', 'god ', 'jesus', 'allah', 'church', 'mosque', 'election', 'president',
+            'race ', 'racist', 'fat ', 'ugly']
+
+
+def localize_en(ep, cfg, log=print):
+    """Türkçe bölümü İngilizce kanala UYARLAR (kelime kelime çeviri değil): aynı sahne, karakter, hareket ve duygu."""
+    src = {'baslik': ep.get('baslik'), 'kapak_yazisi': ep.get('kapak_yazisi'), 'end_card': ep.get('end_card'),
+           'konu': ep.get('konu'), 'youtube': ep.get('youtube'),
+           'scenes': [{'title': sc.get('title', ''), 'lines': [{'who': l['who'], 'text': l['text']} for l in sc['lines']]}
+                      for sc in ep['scenes']]}
+    prompt = f"""You adapt episodes of a Turkish 2D animated adventure series into natural, funny ENGLISH for the sister channel "MINI WORLD"
+(tiny explorers living behind the baseboard map the "Big House"). Characters keep their names: Tuna (brave hasty leader), Nil (analytical
+mapmaker, dry humor), Bulut (big gentle inventor), Pire (tiniest curious kid). Humans are called "the Giants".
+Rules: adapt, don't translate word by word; jokes and wordplay must work in English; keep EXACTLY the same number of scenes and lines,
+same order and same 'who'; each line max 16 words; write numbers as words; family friendly: no insults, no slang swearing, no religion,
+politics, ethnicity, violence, alcohol. kapak_yazisi = 3-6 word ALL-CAPS hook shown in the first second (e.g. "A GIANT SPONGE ATE OUR MAP!").
+end_card = a short fun question for viewers to answer in comments. youtube.title max 70 chars, curiosity-driven, no emoji;
+youtube.description 2-3 sentences ending with the same question; youtube.tags 6-10 English tags.
+Return ONLY JSON with the same structure as the input:
+{json.dumps(src, ensure_ascii=False)}"""
+    for attempt in range(3):
+        en = gemini_json(prompt, cfg, temperature=0.7, log=log)
+        try:
+            out = json.loads(json.dumps(ep, ensure_ascii=False))
+            for k in ('baslik', 'kapak_yazisi', 'end_card', 'konu'):
+                if en.get(k):
+                    out[k] = str(en[k])
+            out['youtube'] = en.get('youtube') or {}
+            assert len(en['scenes']) == len(ep['scenes'])
+            for sc, esc in zip(out['scenes'], en['scenes']):
+                assert len(esc['lines']) == len(sc['lines'])
+                sc['title'] = esc.get('title', '')
+                for l, el in zip(sc['lines'], esc['lines']):
+                    l['text'] = str(el['text']).strip()
+            alltext = ' '.join([out['baslik'], out['kapak_yazisi'], out['end_card'], str(out['youtube'])] +
+                               [l['text'] for sc in out['scenes'] for l in sc['lines']]).lower()
+            bad = [w for w in YASAK_EN if re.search(r'(?<![a-z])' + re.escape(w), ' ' + alltext + ' ')]
+            if bad:
+                raise ValueError(f'unsafe words: {bad}')
+            return out
+        except Exception as e:
+            log(f'  İngilizce uyarlama tekrar deneniyor: {e}')
+    raise WriterError('İngilizce uyarlama başarısız')

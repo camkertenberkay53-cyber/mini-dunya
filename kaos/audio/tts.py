@@ -135,10 +135,11 @@ def gemini_tts(lines, cfg, outdir, api_key):
         style = voices[who].get('style', '')
         texts = [_clean(t) for _, t, _ in items]
         listing = '\n\n'.join(texts)
-        prompt = (f"{style}\nAşağıdaki {len(texts)} repliği Türkçe, doğal ve oyunculu şekilde sırayla seslendir. "
+        dil = 'İngilizce (doğal Amerikan aksanı)' if cfg.get('lang') == 'en' else 'Türkçe'
+        prompt = (f"{style}\nAşağıdaki {len(texts)} repliği {dil}, doğal ve oyunculu şekilde sırayla seslendir. "
                   f"Her replikten sonra tam iki saniye sessiz kal. Başka hiçbir şey söyleme.\n\n{listing}")
         if len(texts) == 1:
-            prompt = f"{style}\nŞu repliği Türkçe, doğal ve oyunculu şekilde seslendir:\n\n{texts[0]}"
+            prompt = f"{style}\nŞu repliği {dil}, doğal ve oyunculu şekilde seslendir:\n\n{texts[0]}"
         audio, last_err = None, None
         for model in models:
             for attempt in range(2):
