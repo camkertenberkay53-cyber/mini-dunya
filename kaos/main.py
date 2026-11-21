@@ -149,6 +149,27 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log):
     st['en_bolumler'] = st['en_bolumler'][-200:]
 
 
+def en_backfill():
+    cfg = load_cfg()
+    st = load_state()
+    today = dt.datetime.now(TZ).date()
+    have = {b['no'] for b in st.get('en_bolumler', [])}
+    todo = [b for b in st['bolumler'] if b['tarih'] == today.isoformat() and b['no'] not in have]
+    if not todo:
+        log('İngilizce sürümü eksik bölüm yok.')
+        return 0
+    for b in todo:
+        fn = os.path.join(paths.EPISODES, f"{b['no']:04d}_{slug(b['baslik'])}.json")
+        if not os.path.exists(fn):
+            log(f'Senaryo bulunamadı: {fn}')
+            continue
+        with open(fn, encoding='utf-8') as f:
+            ep = json.load(f)
+        produce_en(ep, b['tur'], b['no'], st['sezon'], today, b['slot'], cfg, st)
+        save_state(st)
+    return 0
+
+
 def produce(ep, kind, meta, outdir, cfg, log=log):
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, 'senaryo.json'), 'w', encoding='utf-8') as f:
@@ -194,7 +215,10 @@ def main():
     ap.add_argument('--json', help='Hazır senaryo dosyasından üret')
     ap.add_argument('--no-upload', action='store_true')
     ap.add_argument('--force', action='store_true', help='Bugün bu slot yapılmış olsa da üret')
+    ap.add_argument('--en-telafi', action='store_true', help='Bugünün İngilizce sürümü olmayan bölümlerini İngilizce üret')
     args = ap.parse_args()
+    if args.en_telafi:
+        return en_backfill()
 
     cfg = load_cfg()
     st = load_state()

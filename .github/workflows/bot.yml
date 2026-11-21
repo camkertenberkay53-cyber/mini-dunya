@@ -11,7 +11,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, katalog]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, ingilizce, katalog]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -87,7 +87,9 @@ jobs:
           G="${{ steps.gorev.outputs.gorev }}"
           FORCE=""
           if [ "${{ github.event.inputs.zorla }}" = "true" ]; then FORCE="--force"; fi
-          if [ "$G" = "katalog" ]; then
+          if [ "$G" = "ingilizce" ]; then
+            python -m kaos.main --en-telafi
+          elif [ "$G" = "katalog" ]; then
             python -m kaos.catalog
           elif [ "$G" = "test" ]; then
             python -m kaos.main --slot sabah --no-upload --force
