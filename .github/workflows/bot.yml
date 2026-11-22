@@ -12,7 +12,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, ingilizce, rakip, katalog]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, ingilizce, rakip, durum, katalog]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -90,7 +90,9 @@ jobs:
           G="${{ steps.gorev.outputs.gorev }}"
           FORCE=""
           if [ "${{ github.event.inputs.zorla }}" = "true" ]; then FORCE="--force"; fi
-          if [ "$G" = "rakip" ]; then
+          if [ "$G" = "durum" ]; then
+            python -m kaos.durum
+          elif [ "$G" = "rakip" ]; then
             python -m kaos.rakip
           elif [ "$G" = "ingilizce" ]; then
             python -m kaos.main --en-telafi
@@ -115,7 +117,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Hikâye hafızasını kaydet
-        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog' && steps.gorev.outputs.gorev != 'none'
+        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog' && steps.gorev.outputs.gorev != 'none' && steps.gorev.outputs.gorev != 'durum'
         run: |
           git config user.name "mini-dunya-bot"
           git config user.email "bot@users.noreply.github.com"
