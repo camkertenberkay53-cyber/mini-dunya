@@ -212,7 +212,11 @@ def build_prompt(kind, brief, evren, memory, plan, extra=''):
     except Exception:
         pass
     top = memory.get('en_cok_izlenen', [])
-    top_txt = ('\nEN ÇOK İZLENEN BÖLÜMLER (bu tarz şakalara ağırlık ver):\n' + '\n'.join(f'- {x}' for x in top[:5])) if top else ''
+    top_txt = ('\nEN BAŞARILI BÖLÜMLER (izlenme + izleyiciyi tutma + abone; bu tarz hikâye, kanca, kategori ve karakterlere ağırlık ver, ama tekrar etme):\n'
+               + '\n'.join(f'- {x}' for x in top[:5])) if top else ''
+    zayif = memory.get('en_zayif', [])
+    if zayif:
+        top_txt += '\nEN ZAYIF BÖLÜMLER (bu tarzlardan uzak dur):\n' + '\n'.join(f'- {x}' for x in zayif[:3])
     if kind == 'uzun':
         fmt = """FORMAT: YATAY UZUN VİDEO (4-5 dakika). 6-8 sahne, toplam 55-80 replik, toplam yaklaşık 600-750 kelime.
 Haftanın büyük macerası: yeni bir bölge, büyük bir problem, karakterlerin bir karar vermesi ve büyük bir final. Sahneler farklı mekânlarda geçebilir.

@@ -185,6 +185,7 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log, brief=None, 
                          thumb if kind == 'uzun' else None, log=log, token_env=ec.get('token_env', 'YT_REFRESH_TOKEN_EN'), lang='en',
                          publish_at=en_publish_at('uzun' if kind == 'uzun' else slot))
     log(f"  İngilizce yayın zamanı (UTC): {en_publish_at('uzun' if kind == 'uzun' else slot)}")
+    kanal_yonet(st, en, vid, 'en', f'Season {season}', ec.get('token_env', 'YT_REFRESH_TOKEN_EN'), log=log)
     st.setdefault('en_bolumler', []).append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': en['baslik'],
                                              'tr_baslik': src.get('baslik'), 'konu': src.get('konu', ''), 'kategori': src.get('kategori', ''),
                                              'mekan': src['scenes'][0].get('location', ''), 'ana_karakter': src.get('ana_karakter', ''),
@@ -213,6 +214,49 @@ def en_backfill():
     return 0
 
 
+def kanal_yonet(st, ep, vid, lang, season_name, token_env, log=log):
+    """Videoyu sezon oynatma listesine ekler ve kanal adına yorum bırakır (yetki yoksa sessizce atlar)."""
+    if not vid:
+        return
+    tr = lang == 'tr'
+    key = 'oynatma' if tr else 'oynatma_en'
+    title = (f"Mini Dünya · {season_name}" if tr else f"Mini World · {season_name}")[:150]
+    try:
+        pls = st.setdefault(key, {})
+        if title not in pls:
+            desc = ("Mini Dünya bölümleri sırasıyla. Baştan izle, haritanın her köşesini keşfet!" if tr
+                    else "Every Mini World episode in order. Start from the beginning and explore every corner of the map!")
+            pls[title] = youtube.playlist_ensure(title, desc, token_env, lang)
+        youtube.playlist_add(pls[title], vid, token_env)
+        log(f'  Oynatma listesine eklendi: {title}')
+    except Exception as e:
+        log(f'  Oynatma listesi atlandı: {e}')
+    soru = ep.get('end_card', '').strip()
+    devam = ((ep.get('hafiza') or {}).get('acik_meseleler') or [''])[0]
+    if tr:
+        text = f"{soru} Cevabını yorumlara yaz! 👇\n\n🗺️ Haritanın devamı yarın: {devam}\nKaçırmamak için abone ol, bildirimleri aç! 🔔"
+    else:
+        text = f"{soru} Tell us in the comments! 👇\n\n🗺️ The map continues tomorrow. Subscribe and turn on notifications so you don't miss it! 🔔"
+    st.setdefault('bekleyen_yorum', []).append({'video_id': vid, 'token': token_env, 'metin': text})
+    yorumlari_gonder(st, log=log)
+
+
+def yorumlari_gonder(st, log=log):
+    """Bekleyen yorumları gönderir; zamanlanmış (henüz özel) videolar yayına girince sonraki çalıştırmada gönderilir."""
+    kalan = []
+    for y in st.get('bekleyen_yorum', []):
+        try:
+            youtube.comment(y['video_id'], y['metin'], y['token'])
+            log(f"  Kanal yorumu yazıldı: {y['video_id']}")
+        except Exception as e:
+            y['deneme'] = y.get('deneme', 0) + 1
+            if 'insufficient' in str(e).lower() or y['deneme'] >= 12:
+                log(f'  Yorum atlandı: {str(e)[:160]}')
+            else:
+                kalan.append(y)
+    st['bekleyen_yorum'] = kalan[-40:]
+
+
 def produce(ep, kind, meta, outdir, cfg, log=log):
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, 'senaryo.json'), 'w', encoding='utf-8') as f:
@@ -236,7 +280,33 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
     return final, thumb, engine, tl['total']
 
 
+def update_analytics(st, log=log):
+    """Kalma oranı, ortalama izlenme süresi ve kazanılan abone (Analytics yetkisi varsa)."""
+    end = dt.date.today().isoformat()
+    start = (dt.date.today() - dt.timedelta(days=60)).isoformat()
+    for key, env in (('bolumler', 'YT_REFRESH_TOKEN'), ('en_bolumler', 'YT_REFRESH_TOKEN_EN')):
+        ids = [b['video_id'] for b in st.get(key, [])[-60:] if b.get('video_id')]
+        if not ids or not youtube.configured(env):
+            continue
+        try:
+            a = youtube.analytics(ids, start, end, env)
+            for b in st[key]:
+                r = a.get(b.get('video_id'))
+                if r:
+                    b['izleme_yuzdesi'] = round(float(r.get('averageViewPercentage', 0)), 1)
+                    b['ort_sure_sn'] = int(r.get('averageViewDuration', 0))
+                    b['abone_kazanci'] = int(r.get('subscribersGained', 0))
+                    b['paylasim'] = int(r.get('shares', 0))
+        except Exception as e:
+            log(f'  Analytics alınamadı ({key}): {str(e)[:120]}')
+
+
 def update_stats(st, log=log):
+    try:
+        yorumlari_gonder(st, log=log)
+        update_analytics(st, log=log)
+    except Exception as e:
+        log(f'  Kanal yönetimi adımı atlandı: {e}')
     ids = [b['video_id'] for b in st['bolumler'][-40:] if b.get('video_id')]
     if not ids or not youtube.configured():
         return
@@ -268,8 +338,19 @@ def update_stats(st, log=log):
                     b['yorum'] = full[b['video_id']].get('commentCount', 0)
         except Exception as e:
             log(f'  İngilizce izlenme verisi alınamadı: {e}')
-    ranked = sorted([b for b in st['bolumler'] if b.get('izlenme') is not None], key=lambda b: -b['izlenme'])[:5]
-    st['en_cok_izlenen'] = [f"{b['baslik']} ({b['izlenme']} izlenme, {b['tur']}): {b.get('ozet', '')}" for b in ranked]
+    def puan(b):
+        # izlenme + izleyiciyi tutma + abone kazandırma (veri varsa)
+        return (b.get('izlenme') or 0) * (0.5 + (b.get('izleme_yuzdesi') or 50) / 100) + 300 * (b.get('abone_kazanci') or 0)
+
+    def satir(b):
+        ek = f", izleme %{b['izleme_yuzdesi']}" if b.get('izleme_yuzdesi') is not None else ''
+        ek += f", +{b['abone_kazanci']} abone" if b.get('abone_kazanci') else ''
+        return (f"{b['baslik']} ({b['izlenme']} izlenme{ek}; kategori {b.get('kategori', '?')}, mekân {b.get('mekan', '?')}, "
+                f"odak {b.get('ana_karakter', '?')}): {b.get('ozet', '')}")
+    olc = [b for b in st['bolumler'] if b.get('izlenme') is not None and b.get('tarih', '') < dt.date.today().isoformat()]
+    ranked = sorted(olc, key=lambda b: -puan(b))
+    st['en_cok_izlenen'] = [satir(b) for b in ranked[:5]]
+    st['en_zayif'] = [satir(b) for b in ranked[-3:]] if len(ranked) >= 8 else []
 
 
 def main():
@@ -330,6 +411,7 @@ def main():
             vid_id = youtube.upload(final, title, description(ep, kind, no, st['sezon']), tags,
                                     cfg['yayin'].get('gizlilik', 'public'), cfg['yayin'].get('kategori', 23),
                                     thumb if kind == 'uzun' else None, log=log)
+            kanal_yonet(st, ep, vid_id, 'tr', (plan or {}).get('ad') or f"Sezon {st['sezon']}", 'YT_REFRESH_TOKEN', log=log)
 
     # hafıza
     st['bolum_no'] = no

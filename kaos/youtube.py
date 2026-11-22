@@ -77,3 +77,66 @@ def stats(ids, token_env='YT_REFRESH_TOKEN', full=False):
     if full:
         return {it['id']: {k: int(v) for k, v in it['statistics'].items() if str(v).isdigit()} for it in data.get('items', [])}
     return {it['id']: int(it['statistics'].get('viewCount', 0)) for it in data.get('items', [])}
+
+
+# ---------------------------------------------------------------- kanal yönetimi (youtube.force-ssl / yt-analytics yetkisi gerekir)
+_TOK = {}
+
+
+def _tok(token_env):
+    if token_env not in _TOK:
+        _TOK[token_env] = access_token(token_env)
+    return _TOK[token_env]
+
+
+def _api(method, url, token_env, body=None):
+    data = json.dumps(body).encode() if body is not None else None
+    req = urllib.request.Request(url, data=data, method=method,
+                                 headers={'Authorization': f'Bearer {_tok(token_env)}', 'Content-Type': 'application/json'})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            raw = r.read()
+            return json.loads(raw) if raw else {}
+    except urllib.error.HTTPError as e:
+        raise YTError(f'{e.code} {e.read()[:300]!r}')
+
+
+def playlist_ensure(title, description, token_env='YT_REFRESH_TOKEN', lang='tr'):
+    """Bu başlıkta bir oynatma listesi varsa id'sini döndürür, yoksa herkese açık olarak oluşturur."""
+    page = ''
+    for _ in range(5):
+        d = _api('GET', 'https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&maxResults=50' + (f'&pageToken={page}' if page else ''), token_env)
+        for it in d.get('items', []):
+            if it['snippet']['title'] == title:
+                return it['id']
+        page = d.get('nextPageToken')
+        if not page:
+            break
+    d = _api('POST', 'https://www.googleapis.com/youtube/v3/playlists?part=snippet,status', token_env,
+             {'snippet': {'title': title, 'description': description, 'defaultLanguage': lang},
+              'status': {'privacyStatus': 'public'}})
+    return d['id']
+
+
+def playlist_add(playlist_id, video_id, token_env='YT_REFRESH_TOKEN'):
+    _api('POST', 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet', token_env,
+         {'snippet': {'playlistId': playlist_id, 'resourceId': {'kind': 'youtube#video', 'videoId': video_id}}})
+
+
+def comment(video_id, text, token_env='YT_REFRESH_TOKEN'):
+    """Kanal adına videoya yorum yazar (yalnızca herkese açık videolara yazılabilir)."""
+    d = _api('POST', 'https://www.googleapis.com/youtube/v3/commentThreads?part=snippet', token_env,
+             {'snippet': {'videoId': video_id, 'topLevelComment': {'snippet': {'textOriginal': text}}}})
+    return d.get('id')
+
+
+def analytics(ids, start, end, token_env='YT_REFRESH_TOKEN'):
+    """Video başına izlenme yüzdesi, ortalama izlenme süresi ve kazanılan abone (YouTube Analytics API)."""
+    if not ids:
+        return {}
+    q = urllib.parse.urlencode({'ids': 'channel==MINE', 'startDate': start, 'endDate': end, 'dimensions': 'video',
+                                'metrics': 'views,averageViewDuration,averageViewPercentage,subscribersGained,likes,shares',
+                                'filters': 'video==' + ','.join(ids[:200]), 'maxResults': 200, 'sort': '-views'})
+    d = _api('GET', 'https://youtubeanalytics.googleapis.com/v2/reports?' + q, token_env)
+    cols = [c['name'] for c in d.get('columnHeaders', [])]
+    return {row[0]: dict(zip(cols[1:], row[1:])) for row in d.get('rows', [])}
