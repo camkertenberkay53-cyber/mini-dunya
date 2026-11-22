@@ -12,7 +12,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, durum, kanal, katalog]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -98,6 +98,9 @@ jobs:
             python -m kaos.durum
           elif [ "$G" = "rakip" ]; then
             python -m kaos.rakip
+            python -m kaos.rapor || echo "Rapor atlandı"
+          elif [ "$G" = "rapor" ]; then
+            python -m kaos.rapor
           elif [ "$G" = "ingilizce" ]; then
             python -m kaos.main --en-telafi
           elif [ "$G" = "katalog" ]; then
@@ -117,6 +120,8 @@ jobs:
             output/**/video.mp4
             output/**/kapak.jpg
             output/**/senaryo.json
+            output/**/yonetmen.json
+            output/**/kare_*.jpg
           retention-days: 14
           if-no-files-found: ignore
 

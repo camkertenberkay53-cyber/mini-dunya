@@ -44,6 +44,10 @@ voices:
     piper: {voice: dfki-medium, speed: 1.1, pitch: 1.4}
 
 # İngilizce kardeş kanal (Mini World): her Türkçe bölüm İngilizceye uyarlanıp ayrı kanala yüklenir
+# Yapay zekâ video yönetmeni (Gemini görsel): şimdilik sadece puan + rapor, yayını durdurmaz
+yonetmen:
+  acik: true
+
 ingilizce:
   acik: true
   token_env: YT_REFRESH_TOKEN_EN

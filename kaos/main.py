@@ -371,6 +371,17 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
     from . import qc
     rep = qc.check(final, W, H, 30, expected_dur=tl['total'], outdir=outdir, log=log)
     ep['_qc'] = {k: rep.get(k) for k in ('karar', 'sure_sn', 'ses_lufs', 'siyah_sn', 'orta', 'dusuk', 'duzeltmeler')}
+    # yapay zekâ yönetmeni: RAPOR MODU (yayını durdurmaz); hata olursa üretim etkilenmez
+    if (cfg.get('yonetmen') or {}).get('acik') and cfg.get('lang', 'tr') == 'tr':
+        try:
+            from . import yonetmen
+            yr = yonetmen.degerlendir(ep, tl, final, outdir, cfg, qc_rep=rep, log=log)
+            if yr:
+                ep['_yonetmen'] = {'toplam': yr['toplam'], 'karar': yr['karar'], 'puanlar': yr['puanlar'],
+                                   'en_zayif': str(yr.get('en_zayif_sahne', ''))[:160],
+                                   'oneriler': [str(x)[:160] for x in (yr.get('oneriler') or [])][:3]}
+        except Exception as e:
+            log(f'Yönetmen atlandı: {str(e)[:150]}')
     thumb = render.thumbnail(ep, tl, os.path.join(outdir, 'kapak.jpg'), W, H, meta)
     return final, thumb, engine, tl['total']
 
@@ -539,7 +550,7 @@ def main():
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
                            'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine,
-                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'),
+                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'),
                            'final_turu': ep.get('final_turu', ''), 'fikir': ep.get('_fikir'),
                            'mekan': ep['scenes'][0].get('location', ''), 'ana_karakter': ep.get('ana_karakter', ''),
                            'final': ep['scenes'][-1]['lines'][-1].get('text', '') if ep['scenes'][-1].get('lines') else ''})
