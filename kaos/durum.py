@@ -34,6 +34,14 @@ def main():
                       f"upload={s.get('uploadStatus')} red={s.get('rejectionReason')} kids={s.get('madeForKids')} "
                       f"dil={v['snippet'].get('defaultAudioLanguage')} izlenme={v['statistics'].get('viewCount')} "
                       f"yayın={v['snippet'].get('publishedAt')} bölge={v['contentDetails'].get('regionRestriction')}")
+            try:
+                import datetime as dt
+                a = youtube.analytics(ids, (dt.date.today() - dt.timedelta(days=30)).isoformat(), dt.date.today().isoformat(), env)
+                for vid, r in a.items():
+                    print(f"  ANALİZ {vid}: izlenme={r.get('views')} izleme%={r.get('averageViewPercentage')} "
+                          f"ort.sn={r.get('averageViewDuration')} abone+={r.get('subscribersGained')} paylaşım={r.get('shares')}")
+            except Exception as e:
+                print('  Analytics hatası:', str(e)[:200])
             missing = set(ids) - {v['id'] for v in d.get('items', [])}
             if missing:
                 print('  BU KANALDA BULUNAMAYANLAR:', missing)
