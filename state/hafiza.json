@@ -1,7 +1,7 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 10,
+ "bolum_no": 11,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
@@ -10,7 +10,8 @@
   "Peçete Dağı",
   "Lavabo Gölü",
   "Buzdolabı Buzulu",
-  "Musluk Şelalesi Gizli Geçidi"
+  "Musluk Şelalesi Gizli Geçidi",
+  "Lavabo Gider Girişi"
  ],
  "bolumler": [
   {
@@ -22,7 +23,7 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 1218,
+   "izlenme": 1217,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -41,7 +42,7 @@
    "mekan": "zemin",
    "ana_karakter": "bulut",
    "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
-   "izlenme": 1213,
+   "izlenme": 1214,
    "begeni": 3,
    "yorum": 1,
    "kuruldu": true
@@ -79,7 +80,7 @@
    "mekan": "tezgah",
    "ana_karakter": "nil",
    "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
-   "izlenme": 1086,
+   "izlenme": 1083,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -98,7 +99,7 @@
    "mekan": "tezgah",
    "ana_karakter": "pire",
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
-   "izlenme": 1199,
+   "izlenme": 1200,
    "begeni": 3,
    "yorum": 1,
    "kuruldu": true
@@ -136,7 +137,7 @@
    "mekan": "lavabo",
    "ana_karakter": "nil",
    "final": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!",
-   "izlenme": 1145,
+   "izlenme": 1136,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -155,7 +156,7 @@
    "mekan": "tezgah",
    "ana_karakter": "tuna",
    "final": "Sıradaki hedef neresi Öncü Tuna?",
-   "izlenme": 2,
+   "izlenme": 4,
    "begeni": 0,
    "yorum": 1,
    "kuruldu": true
@@ -174,8 +175,8 @@
    "mekan": "lavabo",
    "ana_karakter": "pire",
    "final": "Fırça kılından seken bilye tam şapkamın içine gol oldu!",
-   "izlenme": 954,
-   "begeni": 5,
+   "izlenme": 1196,
+   "begeni": 3,
    "yorum": 1,
    "kuruldu": true
   },
@@ -194,20 +195,47 @@
    "ana_karakter": "nil",
    "final": "Harita harika ama bir dakika... Başımın üzerine tam bir sabun köpüğü düştü, şapkam oldu!",
    "kuruldu": true,
-   "izlenme": 0,
+   "izlenme": 2,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 1
+  },
+  {
+   "no": 11,
+   "tarih": "2026-11-22",
+   "slot": "gece",
+   "tur": "bagimsiz",
+   "baslik": "Köpük Gölü Kurtarması",
+   "ozet": "Bulut'un köpükle gidere kayan vida anahtarını Tuna'nın yardımı ve ataş kancasıyla kurtardılar; çekilen kanca lavabo tıpasını açınca tüm su boşaldı ama Bulut dev bir sabun balonunun içinde havada kaldı.",
+   "video_id": "dfWLW5s7-Ws",
+   "ses": "gemini",
+   "kategori": "kurtarma",
+   "konu": "Bulut'un köpüklü gider deliğine kayan vida anahtarını Tuna ile birlikte ataş kanca ve makara kullanarak kurtarma çabası.",
+   "qc": {
+    "karar": "yayına hazır",
+    "sure_sn": 41.2,
+    "ses_lufs": -14.1,
+    "siyah_sn": 0,
+    "orta": [],
+    "dusuk": [],
+    "duzeltmeler": []
+   },
+   "yonetmen": null,
+   "final_turu": "komik",
+   "fikir": null,
+   "mekan": "lavabo",
+   "ana_karakter": "bulut",
+   "final": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?"
   }
  ],
  "acik_meseleler": [
   "Gizli boru geçidinin nereye çıktığı keşfedilecek."
  ],
  "en_cok_izlenen": [
-  "Süpürgelik Geçidi (1218 izlenme; kategori ?, mekân ?, odak ?): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
-  "Menteşe Çıkmazı (1213 izlenme; kategori problem cozme, mekân zemin, odak bulut): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Şeker Küpü Kayalıkları (1199 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "Süpürgelik Geçidi (1217 izlenme; kategori ?, mekân ?, odak ?): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
+  "Menteşe Çıkmazı (1214 izlenme; kategori problem cozme, mekân zemin, odak bulut): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
+  "Şeker Küpü Kayalıkları (1200 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
   "Tezgâh Ovası Keşfi (1127 izlenme; kategori yeni bolge, mekân tezgah, odak tuna): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
-  "Sünger Ormanı Kurtarması (1086 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı."
+  "Sünger Ormanı Kurtarması (1083 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -225,7 +253,8 @@
    "uzun",
    "oglen",
    "aksam",
-   "fikir"
+   "fikir",
+   "gece"
   ]
  },
  "en_bolumler": [
@@ -298,6 +327,20 @@
    "izlenme": 0,
    "begeni": 0,
    "yorum": 0
+  },
+  {
+   "no": 11,
+   "tarih": "2026-11-22",
+   "slot": "gece",
+   "tur": "bagimsiz",
+   "baslik": "The Tea Strainer Submarine",
+   "tr_baslik": "Çay Süzgeci Denizaltısı",
+   "konu": "Bulut, Lavabo Gölü'nün dibindeki parlayan çay kaşığını çıkarmak için çay süzgecinden denizaltı yapar ama köpüklü su pervaneyi tıklar.",
+   "kategori": "mucit ani",
+   "mekan": "lavabo",
+   "ana_karakter": "bulut",
+   "ozet": "Bulut çay süzgecinden denizaltı yapıp Lavabo Gölü'ne daldı fakat köpükler pervaneyi tıkayınca acil durum sabun balonuyla yüzeye uçtular.",
+   "video_id": "q1yypCy9pJw"
   }
  ],
  "oynatma": {
@@ -307,7 +350,8 @@
  "oynatma_en": {},
  "_gun": 3,
  "fikir_havuzu": {
-  "tr": {}
+  "tr": {},
+  "en": {}
  },
  "fikir_gecmisi": {
   "tr": [
@@ -363,5 +407,24 @@
    }
   ]
  },
- "en_zayif": []
+ "en_zayif": [],
+ "karakter_hafiza": {
+  "tuna": [
+   "İlk hatasından sonra ekip çalışmasına uyum sağlayıp ipi çekmeye yardım etti."
+  ],
+  "bulut": [
+   "Pratik zekasını ve ataş kancasını kullanarak aletini kurtardı."
+  ]
+ },
+ "cozulenler": [
+  "Bulut'un sürüklenen vida anahtarı köpükten kurtarıldı."
+ ],
+ "en_karakter_hafiza": {
+  "bulut": [
+   "Su altı motor tıkanmalarına karşı köpük balonlu acil tahliye sistemi geliştirdi."
+  ]
+ },
+ "en_cozulenler": [
+  "Bulut'un denizaltısı kilitlendi ama sabun balonu tahliye mekanizması sayesinde ekip güvenle yüzeye çıktı."
+ ]
 }

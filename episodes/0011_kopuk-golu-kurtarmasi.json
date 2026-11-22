@@ -1,0 +1,101 @@
+{
+ "konu": "Bulut'un köpüklü gider deliğine kayan vida anahtarını Tuna ile birlikte ataş kanca ve makara kullanarak kurtarma çabası.",
+ "kategori": "kurtarma",
+ "ana_karakter": "bulut",
+ "baslik": "Köpük Gölü Kurtarması",
+ "acilis_efekti": "dev_damla",
+ "kapak_yazisi": "DEV KÖPÜK ANAHTARI YUTTU!",
+ "end_card": "Sen olsan köpük dalgasından nasıl kaçardın?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Lavabo Kenarı Kurtarma Operasyonu",
+   "location": "lavabo",
+   "characters": [
+    "tuna",
+    "bulut"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Dev lavaboda harita çıkarırken musluk damlamaya başladı!",
+     "emotion": "panik",
+     "action": "kac"
+    },
+    {
+     "who": "bulut",
+     "text": "Eyvah! En sevdiğim vida anahtarım köpüklü gider deliğine kayıyor!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Ben uzanıp yakalarım! Ah, elim sabundan kaydı!",
+     "emotion": "saskin",
+     "action": "kos_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Ataş kancalı ipimi fırlatıyorum! Sırtımdaki makarayı çalıştırdım!",
+     "emotion": "normal",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Harika hamle! Ben de ipin ucundan tutup seni yukarı çekiyorum!",
+     "emotion": "neseli",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Anahtarı tuttum! Ama çekilince lavabonun dev tıpasını da söktük!",
+     "emotion": "saskin",
+     "action": "carp"
+    },
+    {
+     "who": "tuna",
+     "text": "Tıpa açıldı, bütün dev köpük gölü bir anda yok oldu!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "bulut",
+     "text": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?",
+     "emotion": "bikkin",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Parmak Boyundaki Haritacılar Lavabo Gölü'ne Karşı!",
+  "description": "Dev lavabo kenarında aksiyon dolu bir kurtarma operasyonu! Bulut'un vida anahtarı köpüklü sulara kapılınca Tuna ve Bulut harika bir ekip çalışması yapıyor. Sen olsan köpük dalgasından nasıl kaçardın?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "çizgi film",
+   "2d animasyon",
+   "macera",
+   "türkçe animasyon",
+   "lavabo gölü",
+   "ölçek farkı"
+  ]
+ },
+ "final_turu": "komik",
+ "hafiza": {
+  "ozet": "Bulut'un köpükle gidere kayan vida anahtarını Tuna'nın yardımı ve ataş kancasıyla kurtardılar; çekilen kanca lavabo tıpasını açınca tüm su boşaldı ama Bulut dev bir sabun balonunun içinde havada kaldı.",
+  "acik_meseleler": [
+   "Bulut'un uçan sabun balonundan nasıl ineceği çözülecek."
+  ],
+  "yeni_bolge": "Lavabo Gider Girişi",
+  "cozulen_sorun": "Bulut'un sürüklenen vida anahtarı köpükten kurtarıldı.",
+  "karakter_gelisimi": {
+   "tuna": "İlk hatasından sonra ekip çalışmasına uyum sağlayıp ipi çekmeye yardım etti.",
+   "nil": "",
+   "bulut": "Pratik zekasını ve ataş kancasını kullanarak aletini kurtardı.",
+   "pire": ""
+  }
+ },
+ "_fikir": null,
+ "tur": "bagimsiz"
+}
