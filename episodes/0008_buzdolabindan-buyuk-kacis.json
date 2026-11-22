@@ -1,0 +1,515 @@
+{
+ "konu": "Devlerin buzdolabına peynir keşfi için giren haritacılar, kapağın aniden kapanmasıyla içeride mahsur kalır ve Benek'in yardımıyla buz kalıplarından kaçış yolu ararlar.",
+ "kategori": "basarisiz plan",
+ "ana_karakter": "tuna",
+ "baslik": "Buzdolabından Büyük Kaçış",
+ "acilis_efekti": "dusen_nesne",
+ "kapak_yazisi": "BUZDOLABINDA MAHSUR KALDIK!",
+ "end_card": "Sen olsan buzdolabında neyden kaçardın?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Buz Kıtası Kapısında",
+   "location": "tezgah",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Haritacılar, işte Şeker Küpü Kayalıkları'ndan sonraki en büyük hedefimiz!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Tuna, dev kapağın açık kalma süresi sadece kırk beş saniye.",
+     "emotion": "soguk",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Ayrıca içerisi bir kutup kadar soğuk, miğferim buğulandı bile.",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "O devasa sarı şey bir peynir dağı mı?",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Evet Pire, o dağ Haritacılar Loncası'nın yeni zaferi olacak!",
+     "emotion": "kibirli",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Sıcaklık aniden düşüyor, acele etsek iyi olur.",
+     "emotion": "normal",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Hadi ekibim, peynir tepesine doğru tırmanış başlasın!",
+     "emotion": "neseli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Durun, dev el kapağı kapatıyor!",
+     "emotion": "panik",
+     "action": "carp"
+    },
+    {
+     "who": "pire",
+     "text": "Eyvah, her yer kapkaranlık oldu!",
+     "emotion": "panik",
+     "action": "kac"
+    }
+   ]
+  },
+  {
+   "title": "Karanlık ve Soğuk",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Herkes iyi mi? Işıklar nerede yandı?",
+     "emotion": "panik",
+     "action": "gir_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Buzdolabı kapağı kapanınca iç ışık otomatik olarak söner Tuna.",
+     "emotion": "soguk",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Sıcaklık eksi iki dereceye düştü, sakalım dondurma oldu!",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Burada sonsuza kadar donmuş köfte gibi mi kalacağız?",
+     "emotion": "aglamakli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Korkmak yok! Öncü Tuna her durumdan bir çıkış yolu bulur.",
+     "emotion": "kibirli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Teoride üç dakikamız var, yoksa parmaklarımız buz tutacak.",
+     "emotion": "soguk",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Görüş mesafesi sıfır, önümü bile göremiyorum.",
+     "emotion": "normal",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Bakın, Benek'in kanatları karanlıkta hafifçe parlıyor!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Aferin Benek, bizi bu buz çölünden çıkar!",
+     "emotion": "neseli",
+     "action": "yuru_sol"
+    }
+   ]
+  },
+  {
+   "title": "Tereyağı Kaydırağı",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Şu üst rafa tırmanırsak kapak fitiline ulaşabiliriz.",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Tırmandığımız yer bir tereyağı paketi Tuna, son derece kaygan!",
+     "emotion": "panik",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Ataçlı ipimi yukarı fırlatıyorum, tutunun!",
+     "emotion": "normal",
+     "action": "gir_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Kayıııyoruz! Bu dev bir kaydırak!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Tutunun dedim, panik yapmayın!",
+     "emotion": "panik",
+     "action": "carp"
+    },
+    {
+     "who": "nil",
+     "text": "Sürtünme katsayısı sıfır, dosdoğru yoğurt kovasına gidiyoruz!",
+     "emotion": "panik",
+     "action": "kac"
+    },
+    {
+     "who": "bulut",
+     "text": "Yoğurt denizine çakılmak üzereyiz!",
+     "emotion": "panik",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Kancayı şu zeytin kavanozuna takın!",
+     "emotion": "sinirli",
+     "action": "isaret"
+    },
+    {
+     "who": "pire",
+     "text": "Harika bir iniş oldu, yoğurda teğet geçtik!",
+     "emotion": "neseli",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Üstelik daha da soğuk olan alt rafa düştük.",
+     "emotion": "bikkin",
+     "action": "yuru_sag"
+    }
+   ]
+  },
+  {
+   "title": "Benek'in İzinde",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "pire",
+     "text": "Benek kapak contasına doğru uçuyor, bir şey gördü!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Peşinden gidin, bu dondurucu havadan kurtulmalıyız.",
+     "emotion": "normal",
+     "action": "kos_sag"
+    },
+    {
+     "who": "nil",
+     "text": "Bakın, kapağın altındaki lastik contada minik bir aralık var.",
+     "emotion": "soguk",
+     "action": "egil"
+    },
+    {
+     "who": "bulut",
+     "text": "Dışarıdan sıcak hava sızıyor, ışık çizgisi görünüyor!",
+     "emotion": "neseli",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "pire",
+     "text": "Ama aralık çok dar, buradan sadece Benek geçebilir.",
+     "emotion": "aglamakli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "O zaman Benek'e bir görev vereceğiz.",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Benek dışarı çıkıp kapağın sensörünü tetikleyebilir mi?",
+     "emotion": "normal",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Mıknatıslı atacı Benek'in sırtına bağlayalım, dış sensörü çeksin!",
+     "emotion": "neseli",
+     "action": "gir_sol"
+    },
+    {
+     "who": "tuna",
+     "text": "Harika plan! Hadi Benek, özgürlüğümüz senin kanatlarında!",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Uç Benek uç, bizi bu kutuptan kurtar!",
+     "emotion": "neseli",
+     "action": "zipla"
+    }
+   ]
+  },
+  {
+   "title": "Sensör Operasyonu",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "nil",
+     "text": "Benek aralıktan dışarı süzüldü, şimdi bekliyoruz.",
+     "emotion": "fisilti",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Dişlerim birbirine vuruyor, çenemi tutamıyorum.",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Sakin olun ekibim, Haritacılar asla teslim olmaz.",
+     "emotion": "kibirli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Ya Benek dışarıda bir çilek bulup bizi unutursa?",
+     "emotion": "panik",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Benek son derece sadık bir dosttur Pire, saçmalama.",
+     "emotion": "bikkin",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Titreşim seziyorum, sensör mıknatısı çekiyor!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "İşte bu! Dışarıdaki ışık düğmesi basıldı!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "pire",
+     "text": "Işıklar yandı, sarı peynir dağı parıldıyor!",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "nil",
+     "text": "Lamba ısındı ama kapak hâlâ tam açılmadı.",
+     "emotion": "soguk",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "tuna",
+     "text": "O zaman şimdi kendi gücümüzle ittireceğiz!",
+     "emotion": "sinirli",
+     "action": "isaret"
+    }
+   ]
+  },
+  {
+   "title": "Işığa Doğru Kaçış",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "bulut",
+     "text": "Donmuş beze tanesini kapak aralığına sıkıştırıyorum!",
+     "emotion": "normal",
+     "action": "gir_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Hep birlikte itin! Bir, iki, üç!",
+     "emotion": "sinirli",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Contanın vakumu gevşiyor, aralık genişledi!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "pire",
+     "text": "Sıcak hava geliyor, kulaklarım ısındı!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Dışarı fırlaaa! Tezgâha doğru atlayın!",
+     "emotion": "neseli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Peçete balonuyla yumuşak iniş yapıyoruz!",
+     "emotion": "neseli",
+     "action": "carp"
+    },
+    {
+     "who": "nil",
+     "text": "Kapak arkamızdan tekrar kapandı, tam zamanında çıktık.",
+     "emotion": "soguk",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Benek! Harika bir iş çıkardın minik dostum!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "İşte gerçek bir Haritacı dayanışması!",
+     "emotion": "kibirli",
+     "action": "yuru_sol"
+    }
+   ]
+  },
+  {
+   "title": "Lonca Haritacısı",
+   "location": "lonca",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire",
+    "benek"
+   ],
+   "lines": [
+    {
+     "who": "nil",
+     "text": "Buzdolabı Buzulu başarıyla haritaya çizildi.",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Sıcak ıhlamur çayım olmasa asla ısınamazdım.",
+     "emotion": "soguk",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Bir daha o soğuk kutuba ne zaman gideceğiz?",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Sadece kalın kazaklarımızı giydiğimiz zaman Pire!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Haritaya not: Kutup bölgesi lezzetli peynirlerle dolu ama çok tehlikeli.",
+     "emotion": "soguk",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Ve en önemlisi, Kahraman Uğur Böceği Benek olmadan girmeyin!",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Büyük Ev'in keşfedilmemiş her köşesi bizimdir!",
+     "emotion": "kibirli",
+     "action": "kameraya_bak"
+    },
+    {
+     "who": "pire",
+     "text": "Sıradaki hedef neresi Öncü Tuna?",
+     "emotion": "neseli",
+     "action": "zipla"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Parmak Boyundaki Haritacılar Buzdolabı Buzuluna Karşı!",
+  "description": "Haritacılar ekibi dev buzdolabında mahsur kalıyor! Sıcaklık eksi derecelere düşerken Benek'in akıllıca yardımıyla dondurucu kapandan kaçabilecekler mi? Sen olsan buzdolabında neyden kaçardın?",
+  "tags": [
+   "mini dünya",
+   "2d animasyon",
+   "çizgi film",
+   "macera",
+   "buzdolabı kaçışı",
+   "tuna ve nil",
+   "ölçek farkı",
+   "eğlenceli animasyon"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Ekip buz gibi buzdolabında mahsur kaldı, Benek dışarı kaçarak kapağın sensörünü çalıştırdı ve haritacılar son anda tezgâha kurtuldu.",
+  "acik_meseleler": [
+   "Buzdolabı Buzulu haritaya eklendi, sonraki hedef mutfak rafları."
+  ],
+  "yeni_bolge": "Buzdolabı Buzulu"
+ },
+ "tur": "uzun"
+}

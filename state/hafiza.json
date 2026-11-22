@@ -1,14 +1,15 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 7,
+ "bolum_no": 8,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
   "Tezgâh Ovası",
   "Ekmek Kırıntısı Çölü",
   "Peçete Dağı",
-  "Lavabo Gölü"
+  "Lavabo Gölü",
+  "Buzdolabı Buzulu"
  ],
  "bolumler": [
   {
@@ -20,8 +21,8 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 1066,
-   "begeni": 3,
+   "izlenme": 1067,
+   "begeni": 5,
    "yorum": 0
   },
   {
@@ -38,7 +39,7 @@
    "mekan": "zemin",
    "ana_karakter": "bulut",
    "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
-   "izlenme": 1211,
+   "izlenme": 1212,
    "begeni": 3,
    "yorum": 0
   },
@@ -74,7 +75,7 @@
    "mekan": "tezgah",
    "ana_karakter": "nil",
    "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
-   "izlenme": 1085,
+   "izlenme": 1086,
    "begeni": 4,
    "yorum": 0
   },
@@ -92,7 +93,7 @@
    "mekan": "tezgah",
    "ana_karakter": "pire",
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
-   "izlenme": 1192,
+   "izlenme": 1196,
    "begeni": 3,
    "yorum": 0
   },
@@ -110,7 +111,7 @@
    "mekan": "tezgah",
    "ana_karakter": "bulut",
    "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
-   "izlenme": 0,
+   "izlenme": 2,
    "begeni": 0,
    "yorum": 0
   },
@@ -127,18 +128,36 @@
    "konu": "Nil, Tuna ve Bulut, kulak çöpü kürekli köpük salıyla Lavabo Gölü'nü geçip Şeker Küpü Kayalıkları'na ulaşmaya çalışır.",
    "mekan": "lavabo",
    "ana_karakter": "nil",
-   "final": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!"
+   "final": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!",
+   "izlenme": 613,
+   "begeni": 4,
+   "yorum": 0
+  },
+  {
+   "no": 8,
+   "tarih": "2026-11-22",
+   "slot": "uzun",
+   "tur": "uzun",
+   "baslik": "Buzdolabından Büyük Kaçış",
+   "ozet": "Ekip buz gibi buzdolabında mahsur kaldı, Benek dışarı kaçarak kapağın sensörünü çalıştırdı ve haritacılar son anda tezgâha kurtuldu.",
+   "video_id": "4iwL9UllVws",
+   "ses": "gemini",
+   "kategori": "basarisiz plan",
+   "konu": "Devlerin buzdolabına peynir keşfi için giren haritacılar, kapağın aniden kapanmasıyla içeride mahsur kalır ve Benek'in yardımıyla buz kalıplarından kaçış yolu ararlar.",
+   "mekan": "tezgah",
+   "ana_karakter": "tuna",
+   "final": "Sıradaki hedef neresi Öncü Tuna?"
   }
  ],
  "acik_meseleler": [
-  "Şeker Küpü Kayalıkları'nın zirvesine tırmanıp köpüklerden arınmak."
+  "Buzdolabı Buzulu haritaya eklendi, sonraki hedef mutfak rafları."
  ],
  "en_cok_izlenen": [
-  "Menteşe Çıkmazı (1211 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Şeker Küpü Kayalıkları (1192 izlenme, ana): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "Menteşe Çıkmazı (1212 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
+  "Şeker Küpü Kayalıkları (1196 izlenme, ana): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
   "Tezgâh Ovası Keşfi (1126 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
-  "Sünger Ormanı Kurtarması (1085 izlenme, bagimsiz): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
-  "Süpürgelik Geçidi (1066 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar."
+  "Sünger Ormanı Kurtarması (1086 izlenme, bagimsiz): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
+  "Süpürgelik Geçidi (1067 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -152,7 +171,8 @@
    "gece"
   ],
   "2026-11-22": [
-   "sabah"
+   "sabah",
+   "uzun"
   ]
  },
  "en_bolumler": [
@@ -191,7 +211,17 @@
    "tarih": "2026-11-22",
    "slot": "sabah",
    "baslik": "Sink Lake Foam Raft",
-   "video_id": "Qe4bBKwH3Yw"
+   "video_id": "Qe4bBKwH3Yw",
+   "izlenme": 0,
+   "begeni": 0,
+   "yorum": 0
+  },
+  {
+   "no": 8,
+   "tarih": "2026-11-22",
+   "slot": "uzun",
+   "baslik": "The Great Fridge Escape",
+   "video_id": "c-Rvk4jTea4"
   }
  ]
 }
