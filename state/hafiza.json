@@ -221,7 +221,8 @@
    "sabah",
    "uzun",
    "oglen",
-   "aksam"
+   "aksam",
+   "fikir"
   ]
  },
  "en_bolumler": [
@@ -297,5 +298,63 @@
   "Mini Dünya · Sezon 1: Mutfak Kıtası": "PLRChhAMp9EFY"
  },
  "bekleyen_yorum": [],
- "oynatma_en": {}
+ "oynatma_en": {},
+ "_gun": 3,
+ "fikir_havuzu": {
+  "tr": {}
+ },
+ "fikir_gecmisi": {
+  "tr": [
+   {
+    "konu": "Süpürgelik Geçidi",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "Tuna kapı menteşesinde yapışıp kalınca düşen tırmanma ipini kurtarmak için Bulut mancınık fırlatır, ip kapı koluna takılınca Pire zıplayıp kolu indirerek ipi kurtarır.",
+    "mekan": "zemin",
+    "ana_karakter": "bulut"
+   },
+   {
+    "konu": "Tuna, Tezgâh Ovası'ndaki ekmek kırıntısı çölünü aşıp şeker dağlarına ulaşmak ister ama reçel gölüne saplanır; Pire'nin kürdan kaldıracıyla kurtulurlar.",
+    "mekan": "tezgah",
+    "ana_karakter": "tuna"
+   },
+   {
+    "konu": "Nil, bulaşık süngerinin altına kaçan harita rulosunu kurtarmak istiyor ama ağır ıslak sünger yolu tıkıyor.",
+    "mekan": "tezgah",
+    "ana_karakter": "nil"
+   },
+   {
+    "konu": "Pire ve Bulut, Şeker Küpü Kayalıkları'ndaki Tuna'ya ulaşmak için Ekmek Kırıntısı Çölü'nü aşmaya çalışırken dev bir kırıntı engeliyle karşılaşır ve şeker sandıkları tuz tepesine tırmanır.",
+    "mekan": "tezgah",
+    "ana_karakter": "pire"
+   },
+   {
+    "konu": "Bulut, Tezgâh Ovası'nı geçmek için dev çataldan mancınık yapar ama Tuna sabırsız davranıp aracı frensiz fırlatır.",
+    "mekan": "tezgah",
+    "ana_karakter": "bulut"
+   },
+   {
+    "konu": "Nil, Tuna ve Bulut, kulak çöpü kürekli köpük salıyla Lavabo Gölü'nü geçip Şeker Küpü Kayalıkları'na ulaşmaya çalışır.",
+    "mekan": "lavabo",
+    "ana_karakter": "nil"
+   },
+   {
+    "konu": "Devlerin buzdolabına peynir keşfi için giren haritacılar, kapağın aniden kapanmasıyla içeride mahsur kalır ve Benek'in yardımıyla buz kalıplarından kaçış yolu ararlar.",
+    "mekan": "tezgah",
+    "ana_karakter": "tuna"
+   },
+   {
+    "konu": "Pire, lavabo giderine kayan mavi bilyeyi düşmeden yakalamak için düğme kayaklarıyla ıslak sabunda kayar ama kontrolden çıkar.",
+    "mekan": "lavabo",
+    "ana_karakter": "pire"
+   },
+   {
+    "konu": "Nil, Lavabo Gölü'ndeki dev damlaları atlatıp musluğun arkasındaki gizli boru geçidini haritalamak istiyor.",
+    "mekan": "lavabo",
+    "ana_karakter": "nil"
+   }
+  ]
+ }
 }
