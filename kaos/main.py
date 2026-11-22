@@ -124,7 +124,7 @@ def description_en(ep, kind, no, season):
 
 
 # İngilizce kanal: ABD (Doğu) izleyicisinin en aktif saatlerinde yayına girer (rakip verisi: 15-18 ET en viral dilim).
-EN_YAYIN_ET = {'sabah': 7.0, 'oglen': 10.0, 'aksam': 16.0, 'gece': 18.0, 'uzun': 10.0}
+EN_YAYIN_ET = {'sabah': 7.0, 'oglen': 10.0, 'aksam': 16.0, 'gece': 18.0, 'uzun': 12.5}
 
 
 def en_publish_at(slot, now=None):
@@ -142,13 +142,32 @@ def en_publish_at(slot, now=None):
     return None
 
 
-def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log):
-    """Aynı bölümü İngilizce kanal için uyarlar, seslendirir, çizer ve yükler."""
+def en_memory(st):
+    """İngilizce kanalın kendi bölüm hafızası (tekrar kontrolü ve çeşitlilik için)."""
+    m = dict(st)
+    m['bolumler'] = [dict(b, no=b.get('no', 0), tur=b.get('tur', ''), ozet=b.get('ozet', '')) for b in st.get('en_bolumler', [])]
+    return m
+
+
+def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log, brief=None, plan=None):
+    """İngilizce kanal için AYNI EVRENDE BAĞIMSIZ bir bölüm yazar (Türkçe bölümün kopyası değil), seslendirir, çizer, zamanlar.
+    İki kanalda birebir aynı görüntünün yüklenmesi YouTube'da kopya/yeniden kullanılmış içerik riskidir."""
     ec = cfg.get('ingilizce') or {}
     if not ec.get('acik') or not youtube.configured(ec.get('token_env', 'YT_REFRESH_TOKEN_EN')):
         return
-    log('— İngilizce (Mini World) sürümü —')
-    en = writer.localize_en(ep, cfg, log=log)
+    log('— İngilizce (Mini World) bağımsız bölümü —')
+    src = ep
+    if brief is not None and plan is not None:
+        fark = (f"\n\nÖNEMLİ: Bu bölüm İNGİLİZCE kardeş kanal için yazılıyor. Ana kanalda bugün '{ep['baslik']}' yayınlandı "
+                f"(konu: {ep.get('konu', '')}; mekân: {ep['scenes'][0].get('location')}; açılış: {ep.get('acilis_efekti')}). "
+                f"Bu bölüm ondan TAMAMEN FARKLI olmalı: başka bir olay, başka bir mekân, başka bir açılış efekti, başka bir odak karakter. "
+                f"Aynı sezon bölgesinde geçebilir ama hikâye ve görüntüler tekrar etmesin.")
+        try:
+            src = writer.write_episode(kind, brief + fark, en_memory(st), plan, cfg, log=log)
+        except Exception as e:
+            log(f'  Bağımsız İngilizce bölüm yazılamadı, bugünkü bölüm uyarlanacak: {e}')
+            src = ep
+    en = writer.localize_en(src, cfg, log=log)
     cfg_en = dict(cfg)
     cfg_en['lang'] = 'en'
     cfg_en['voices'] = ec['voices']
@@ -166,7 +185,10 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log):
                          thumb if kind == 'uzun' else None, log=log, token_env=ec.get('token_env', 'YT_REFRESH_TOKEN_EN'), lang='en',
                          publish_at=en_publish_at('uzun' if kind == 'uzun' else slot))
     log(f"  İngilizce yayın zamanı (UTC): {en_publish_at('uzun' if kind == 'uzun' else slot)}")
-    st.setdefault('en_bolumler', []).append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'baslik': en['baslik'], 'video_id': vid})
+    st.setdefault('en_bolumler', []).append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': en['baslik'],
+                                             'tr_baslik': src.get('baslik'), 'konu': src.get('konu', ''), 'kategori': src.get('kategori', ''),
+                                             'mekan': src['scenes'][0].get('location', ''), 'ana_karakter': src.get('ana_karakter', ''),
+                                             'ozet': (src.get('hafiza') or {}).get('ozet', ''), 'video_id': vid})
     st['en_bolumler'] = st['en_bolumler'][-200:]
 
 
@@ -280,6 +302,7 @@ def main():
         kind = ep.get('tur', 'ana')
         writer.validate(ep, kind)
         plan = load_plan(st['sezon']) or {}
+        brief = None
     else:
         plan, day = season_day(st, cfg, today)
         kind, brief = brief_for(slot, plan, day, today)
@@ -330,7 +353,7 @@ def main():
     # İngilizce kardeş kanal: Türkçe bölüm kaydedildikten sonra; hata olursa Türkçe yayını etkilemez
     if upload:
         try:
-            produce_en(ep, kind, no, st['sezon'], today, slot, cfg, st)
+            produce_en(ep, kind, no, st['sezon'], today, slot, cfg, st, brief=brief, plan=plan)
             save_state(st)
         except Exception as e:
             log(f'İngilizce sürüm üretilemedi: {e}')
