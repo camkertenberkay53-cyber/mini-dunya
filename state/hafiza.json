@@ -22,9 +22,9 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 1216,
+   "izlenme": 1218,
    "begeni": 4,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -41,9 +41,9 @@
    "mekan": "zemin",
    "ana_karakter": "bulut",
    "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
-   "izlenme": 1212,
+   "izlenme": 1213,
    "begeni": 3,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -62,7 +62,7 @@
    "final": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan.",
    "izlenme": 1127,
    "begeni": 4,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -81,7 +81,7 @@
    "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
    "izlenme": 1086,
    "begeni": 4,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -100,7 +100,7 @@
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
    "izlenme": 1199,
    "begeni": 3,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -117,9 +117,9 @@
    "mekan": "tezgah",
    "ana_karakter": "bulut",
    "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
-   "izlenme": 2,
+   "izlenme": 4,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -138,7 +138,7 @@
    "final": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!",
    "izlenme": 1145,
    "begeni": 4,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -155,9 +155,9 @@
    "mekan": "tezgah",
    "ana_karakter": "tuna",
    "final": "Sıradaki hedef neresi Öncü Tuna?",
-   "izlenme": 1,
+   "izlenme": 2,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -174,9 +174,9 @@
    "mekan": "lavabo",
    "ana_karakter": "pire",
    "final": "Fırça kılından seken bilye tam şapkamın içine gol oldu!",
-   "izlenme": 333,
-   "begeni": 1,
-   "yorum": 0,
+   "izlenme": 954,
+   "begeni": 5,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -193,18 +193,21 @@
    "mekan": "lavabo",
    "ana_karakter": "nil",
    "final": "Harita harika ama bir dakika... Başımın üzerine tam bir sabun köpüğü düştü, şapkam oldu!",
-   "kuruldu": true
+   "kuruldu": true,
+   "izlenme": 0,
+   "begeni": 0,
+   "yorum": 0
   }
  ],
  "acik_meseleler": [
   "Gizli boru geçidinin nereye çıktığı keşfedilecek."
  ],
  "en_cok_izlenen": [
-  "Süpürgelik Geçidi (1216 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
-  "Menteşe Çıkmazı (1212 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Şeker Küpü Kayalıkları (1199 izlenme, ana): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
-  "Lavabo Gölü Köpük Salı (1145 izlenme, ana): Ekip, Bulut'un köpük salı ve kulak çöpü küreği yardımıyla damla dalgasını atlatıp köpüklü bir şekilde Şeker Küpü Kayalıkları'na ulaştı.",
-  "Tezgâh Ovası Keşfi (1127 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu."
+  "Süpürgelik Geçidi (1218 izlenme; kategori ?, mekân ?, odak ?): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
+  "Menteşe Çıkmazı (1213 izlenme; kategori problem cozme, mekân zemin, odak bulut): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
+  "Şeker Küpü Kayalıkları (1199 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "Tezgâh Ovası Keşfi (1127 izlenme; kategori yeni bolge, mekân tezgah, odak tuna): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
+  "Sünger Ormanı Kurtarması (1086 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -291,7 +294,10 @@
    "tarih": "2026-11-22",
    "slot": "aksam",
    "baslik": "Mystery of Faucet Falls",
-   "video_id": "8HFHWW1453M"
+   "video_id": "8HFHWW1453M",
+   "izlenme": 0,
+   "begeni": 0,
+   "yorum": 0
   }
  ],
  "oynatma": {
@@ -356,5 +362,6 @@
     "ana_karakter": "nil"
    }
   ]
- }
+ },
+ "en_zayif": []
 }
