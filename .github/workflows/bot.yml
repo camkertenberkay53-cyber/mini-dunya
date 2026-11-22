@@ -12,7 +12,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, ingilizce, rakip, durum, katalog]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, ingilizce, rakip, durum, kanal, katalog]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -90,7 +90,9 @@ jobs:
           G="${{ steps.gorev.outputs.gorev }}"
           FORCE=""
           if [ "${{ github.event.inputs.zorla }}" = "true" ]; then FORCE="--force"; fi
-          if [ "$G" = "durum" ]; then
+          if [ "$G" = "kanal" ]; then
+            python -m kaos.main --kanal-kurulum
+          elif [ "$G" = "durum" ]; then
             python -m kaos.durum
           elif [ "$G" = "rakip" ]; then
             python -m kaos.rakip

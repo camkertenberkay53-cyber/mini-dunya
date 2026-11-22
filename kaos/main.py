@@ -193,6 +193,30 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log, brief=None, 
     st['en_bolumler'] = st['en_bolumler'][-200:]
 
 
+def kanal_kurulum():
+    """Tek seferlik: yayınlanmış tüm bölümleri sezon listelerine ekler ve kanal yorumu bırakır."""
+    st = load_state()
+    plan = load_plan(st['sezon']) or {}
+    for key, lang, env in (('bolumler', 'tr', 'YT_REFRESH_TOKEN'), ('en_bolumler', 'en', 'YT_REFRESH_TOKEN_EN')):
+        if not youtube.configured(env):
+            continue
+        for b in st.get(key, []):
+            if not b.get('video_id') or b.get('kuruldu'):
+                continue
+            ep = {'end_card': '', 'hafiza': {}}
+            fn = os.path.join(paths.EPISODES, f"{b['no']:04d}_{slug(b.get('tr_baslik') or b['baslik'])}.json")
+            if lang == 'tr' and os.path.exists(fn):
+                with open(fn, encoding='utf-8') as f:
+                    ep = json.load(f)
+            if not ep.get('end_card'):
+                ep['end_card'] = 'Sen olsan ne yapardın?' if lang == 'tr' else 'What would you do?'
+            name = (plan.get('ad') or f"Sezon {st['sezon']}") if lang == 'tr' else f"Season {st['sezon']}"
+            kanal_yonet(st, ep, b['video_id'], lang, name, env)
+            b['kuruldu'] = True
+            save_state(st)
+    return 0
+
+
 def en_backfill():
     cfg = load_cfg()
     st = load_state()
@@ -359,10 +383,13 @@ def main():
     ap.add_argument('--json', help='Hazır senaryo dosyasından üret')
     ap.add_argument('--no-upload', action='store_true')
     ap.add_argument('--force', action='store_true', help='Bugün bu slot yapılmış olsa da üret')
+    ap.add_argument('--kanal-kurulum', action='store_true', help='Mevcut videoları oynatma listelerine ekle, yorum bırak')
     ap.add_argument('--en-telafi', action='store_true', help='Bugünün İngilizce sürümü olmayan bölümlerini İngilizce üret')
     args = ap.parse_args()
     if args.en_telafi:
         return en_backfill()
+    if args.kanal_kurulum:
+        return kanal_kurulum()
 
     cfg = load_cfg()
     st = load_state()
