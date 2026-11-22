@@ -139,7 +139,12 @@ Görev: kopyalamadan, bizim evrenimize uygulanabilecek GENEL dersleri çıkar. B
  "ideal_sure_sn": 0,
  "tempo": "önerilen tempo",
  "kacinilacaklar": ["tutmayan şeyler"],
- "yazar_notu": "senaryo yazarına verilecek 3-4 cümlelik özet talimat"}}"""
+ "yazar_notu": "senaryo yazarına verilecek 3-4 cümlelik özet talimat",
+ "trend_firsatlari": [{{"trend": "listede yükselen genel kalıp/tema (kanal adı yok)", "neden_calisiyor": "kısa",
+   "mini_dunya_uyarlamasi": "bizim karakterler ve evin içiyle ÖZGÜN bir bölüm fikri (1-2 cümle)", "mekan": "evin içinden bir yer",
+   "karakter": "tuna|nil|bulut|pire", "risk": "kopya/marka/güvenlik riski varsa yaz, yoksa 'yok'", "puan": 0}}]}}
+trend_firsatlari tam 10 madde olsun; puan 0-10 arası 'Mini Dünya'ya uyum + izlenme potansiyeli + özgünlük'tür.
+Riskli (başka bir esere/karaktere/markaya benzeyen) fikirlere en fazla 3 puan ver."""
     return gemini_json(prompt, cfg, temperature=0.5, log=log)
 
 

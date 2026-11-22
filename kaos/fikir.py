@@ -92,6 +92,13 @@ def gunun_fikirleri(st, plan, day, today, cfg, lang='tr', harici=None, log=print
         with open(os.path.join(paths.ROOT, 'state', 'rakip.json'), encoding='utf-8') as f:
             ins = json.load(f).get('icgoruler') or {}
         rakip = '; '.join((ins.get('kanca_teknikleri') or [])[:3] + (ins.get('konu_firsatlari') or [])[:4])
+        # trend motoru: en yüksek puanlı 3 güvenli fırsat (en az 1-2 fikir bunlardan esinlensin)
+        tf = [t for t in (ins.get('trend_firsatlari') or []) if isinstance(t, dict)
+              and str(t.get('risk', 'yok')).strip().lower() in ('yok', 'none', '', '-')]
+        tf = sorted(tf, key=lambda t: -float(t.get('puan') or 0))[:3]
+        if tf:
+            rakip += ' | TREND FIRSATLARI (30 fikrin en az 4-5 tanesi bunlardan esinlensin, aynısını değil): ' + '; '.join(
+                f"{t.get('mini_dunya_uyarlamasi', '')} ({t.get('mekan', '')}, {t.get('karakter', '')})" for t in tf)
     except Exception:
         pass
     fikirler = _uret(gun_brief, gecmis, harici, rakip, lang, cfg, log)

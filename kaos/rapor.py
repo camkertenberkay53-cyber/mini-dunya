@@ -140,6 +140,15 @@ def main():
     with open(os.path.join(paths.STATE, 'rapor.json'), 'w', encoding='utf-8') as f:
         json.dump(r, f, ensure_ascii=False, indent=1)
     t = metin(r)
+    try:
+        with open(os.path.join(paths.STATE, 'rakip.json'), encoding='utf-8') as f:
+            tf = (json.load(f).get('icgoruler') or {}).get('trend_firsatlari') or []
+        if tf:
+            t += '\n## Bu haftanın trend fırsatları (puana göre)\n' + '\n'.join(
+                f"- [{x.get('puan')}] {x.get('trend', '')} → {x.get('mini_dunya_uyarlamasi', '')} (risk: {x.get('risk', '?')})"
+                for x in sorted([x for x in tf if isinstance(x, dict)], key=lambda x: -float(x.get('puan') or 0))) + '\n'
+    except Exception:
+        pass
     with open(os.path.join(paths.STATE, 'rapor.md'), 'w', encoding='utf-8') as f:
         f.write(t)
     print(t)
