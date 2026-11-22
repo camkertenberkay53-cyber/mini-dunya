@@ -145,6 +145,8 @@ def en_publish_at(slot, now=None):
 def en_memory(st):
     """İngilizce kanalın kendi bölüm hafızası (tekrar kontrolü ve çeşitlilik için)."""
     m = dict(st)
+    m['karakter_hafiza'] = st.get('en_karakter_hafiza', {})
+    m['cozulenler'] = st.get('en_cozulenler', [])
     m['bolumler'] = [dict(b, no=b.get('no', 0), tur=b.get('tur', ''), ozet=b.get('ozet', '')) for b in st.get('en_bolumler', [])]
     return m
 
@@ -191,6 +193,8 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log, brief=None, 
                                              'mekan': src['scenes'][0].get('location', ''), 'ana_karakter': src.get('ana_karakter', ''),
                                              'ozet': (src.get('hafiza') or {}).get('ozet', ''), 'video_id': vid})
     st['en_bolumler'] = st['en_bolumler'][-200:]
+    if src is not ep:
+        sezon_hafiza_guncelle(st, src.get('hafiza') or {}, 'en_karakter_hafiza', 'en_cozulenler')
 
 
 def kanal_kurulum():
@@ -236,6 +240,20 @@ def en_backfill():
         produce_en(ep, b['tur'], b['no'], st['sezon'], today, b['slot'], cfg, st)
         save_state(st)
     return 0
+
+
+def sezon_hafiza_guncelle(st, h, kh_key='karakter_hafiza', coz_key='cozulenler'):
+    """Karakter gelişimi ve çözülmüş sorunlar sezon hafızasına yazılır (karakterler olayları unutmasın)."""
+    kh = st.setdefault(kh_key, {})
+    for c, v in (h.get('karakter_gelisimi') or {}).items():
+        v = str(v or '').strip()
+        if v and c in ('tuna', 'nil', 'bulut', 'pire'):
+            kh.setdefault(c, []).append(v[:140])
+            kh[c] = kh[c][-8:]
+    cz = str(h.get('cozulen_sorun') or '').strip()
+    if cz:
+        st.setdefault(coz_key, []).append(cz[:140])
+        st[coz_key] = st[coz_key][-40:]
 
 
 def kanal_yonet(st, ep, vid, lang, season_name, token_env, log=log):
@@ -423,6 +441,7 @@ def main():
         plan, day = season_day(st, cfg, today)
         kind, brief = brief_for(slot, plan, day, today)
         log(f"Sezon {st['sezon']} · Gün {day} · {slot} ({kind}): {brief}")
+        st['_gun'] = day
         ep = writer.write_episode(kind, brief, st, plan, cfg, log=log)
         ep['tur'] = kind
 
@@ -454,6 +473,7 @@ def main():
     yb = str(h.get('yeni_bolge') or '').strip()
     if yb and yb not in st.setdefault('harita', []):
         st['harita'].append(yb)
+    sezon_hafiza_guncelle(st, h)
     if kind != 'bagimsiz' and isinstance(h.get('acik_meseleler'), list):
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],

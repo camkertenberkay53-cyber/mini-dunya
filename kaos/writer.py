@@ -168,7 +168,9 @@ SCHEMA = """{
     }
   ],
   "youtube": {"title": "YouTube başlığı (en fazla 70 karakter, emoji yok). İşe yarayan kalıplardan birini kullan: 'Parmak Boyundaki Haritacılar [Mekân]'a Karşı!', 'Dev Bir [Eşya]'dan Kaçış!', '[Eşya] Boyunda Olsaydın Ne Olurdu?', '[Mekân]'ın Altındaki Gizemli Keşif!' ya da benzeri merak uyandıran bir kalıp", "description": "2-3 cümlelik açıklama + en sonda izleyiciye yorumda cevaplayacağı bir soru (end_card sorusunun aynısı veya benzeri)", "tags": ["5-10 etiket"]},
-  "hafiza": {"ozet": "Bu bölümde ne oldu (1-2 cümle)", "acik_meseleler": ["Sonraki bölümlere taşınan açık konular"], "yeni_bolge": "Bu bölümde haritaya işlenen bölge adı (yoksa boş)"}
+  "final_turu": "tatmin | komik | sasirtici | merak (son bölümlerde kullanılmayan bir tür seç; her bölüm cliffhanger ile bitmek zorunda değil)",
+  "hafiza": {"ozet": "Bu bölümde ne oldu (1-2 cümle)", "acik_meseleler": ["Sonraki bölümlere taşınan açık konular"], "yeni_bolge": "Bu bölümde haritaya işlenen bölge adı (yoksa boş)",
+             "cozulen_sorun": "Bu bölümde çözülen somut problem (kısa)", "karakter_gelisimi": {"tuna": "bu bölümde yaşadığı başarı/hata/ders (yoksa boş)", "nil": "", "bulut": "", "pire": ""}}
 }"""
 
 RULES_COMMON = f"""
@@ -190,9 +192,46 @@ KURALLAR:
 """
 
 
+def sezon_blogu(kind, memory, plan):
+    """Sezon hikâye yöneticisi: ana gizem (cevapsız), bugünün ipucu, karakter yolculuğu ve hafızası, çözülmüş sorunlar."""
+    if not plan:
+        return ''
+    gun = memory.get('_gun') or 0
+    rows = plan.get('gunler', [])
+    row = rows[gun - 1] if 0 < gun <= len(rows) else {}
+    son_gun = gun >= len(rows) and gun > 0
+    out = ['', 'SEZON HİKÂYE YÖNETİCİSİ:']
+    if plan.get('gizem'):
+        out.append(f"- SEZONUN ANA GİZEMİ (izleyicinin merak ettiği soru; cevabı ASLA açıklama{'' if not son_gun else ' — bugün FİNAL günü, akşam bölümünde açıklanabilir'}): {plan['gizem']}")
+        if son_gun and plan.get('gizem_cozumu'):
+            out.append(f"- GİZEMİN ÇÖZÜMÜ (sadece final bölümünde kullan): {plan['gizem_cozumu']}")
+    if row.get('ipucu'):
+        if kind == 'ana':
+            out.append(f"- BUGÜNÜN İPUCU (ana bölümde doğal bir şekilde, görsel bir an ya da tek bir repliğe yerleştir; bölümün kendi problemi önde olsun): {row['ipucu']}")
+        else:
+            out.append(f"- Sezonun gizemine en fazla küçük bir gönderme yapabilirsin (zorunlu değil). Bugünkü ipucu: {row['ipucu']}")
+    if row.get('odak'):
+        out.append(f"- Bugünün sezon odak karakteri: {row['odak']}")
+    yol = plan.get('karakter_yolculugu') or {}
+    if yol:
+        out.append('- KARAKTER YOLCULUKLARI (sezon boyunca yavaş yavaş gelişsinler): ' + ' | '.join(f'{k}: {v}' for k, v in yol.items()))
+    kh = memory.get('karakter_hafiza') or {}
+    if kh:
+        out.append('- KARAKTERLERİN ŞİMDİYE KADAR YAŞADIKLARI (unutmasınlar, tutarlı davransınlar): ' +
+                   ' | '.join(f"{k}: {'; '.join(v[-3:])}" for k, v in kh.items() if v))
+    coz = memory.get('cozulenler') or []
+    if coz:
+        out.append('- DAHA ÖNCE ÇÖZÜLMÜŞ SORUNLAR (aynı problemi ya da aynı çözümü tekrar kullanma): ' + '; '.join(coz[-15:]))
+    ft = [b.get('final_turu') for b in memory.get('bolumler', [])[-3:] if b.get('final_turu')]
+    if ft:
+        out.append(f"- Son bölümlerin final türleri: {', '.join(ft)}. Bu bölümde farklı bir final türü seç.")
+    return '\n'.join(out)
+
+
 def build_prompt(kind, brief, evren, memory, plan, extra=''):
     recent = memory.get('bolumler', [])[-12:]
     recent_txt = '\n'.join(f"- {b['no']}. bölüm ({b['tur']}, kategori: {b.get('kategori', '?')}, mekân: {b.get('mekan', '?')}, odak: {b.get('ana_karakter', '?')}): {b['baslik']} — {b.get('ozet', '')} | final: {b.get('final', '')}" for b in recent) or '- (henüz bölüm yok)'
+    sezon_txt = sezon_blogu(kind, memory, plan)
     son = memory.get('bolumler', [])[-6:]
     yasak_kat = sorted({b.get('kategori') for b in son if b.get('kategori')})
     yasak_kar = [b.get('ana_karakter') for b in son[-2:] if b.get('ana_karakter')]
@@ -256,7 +295,7 @@ Shorts'ların tekrarı değil. İlk sahne yeni izleyiciye durumu anlatsın. Son 
 
 AÇIK MESELELER:
 {acik}
-HARİTAYA İŞLENMİŞ BÖLGELER: {harita}{top_txt}{cesit}{rakip_txt}
+HARİTAYA İŞLENMİŞ BÖLGELER: {harita}{sezon_txt}{top_txt}{cesit}{rakip_txt}
 
 === BU BÖLÜM ===
 TÜR: {tur}
@@ -425,11 +464,15 @@ EVREN KİTABI:
 
 Sezon {season_no} için 14 günlük plan yaz. Sezon Büyük Ev'in yeni bir bölgesini (ör. banyo, salon, çalışma odası, çamaşırlık, balkon) keşfeder ve bir hedefe doğru ilerler.
 Her gün bir alt bölge ve dört bölüm: sabah (ana yolculuk), aksam (ana yolculuk, sabahın devamı), oglen ve gece (aynı bölgede yan macera).
-Ayrıca 2 pazar uzun videosu yaz (hafta1_pazar, hafta2_pazar). Önceki sezondan bir merak ipi devam etsin; İlk Haritacı gizemi yavaş ilerlesin.
+Ayrıca 2 pazar uzun videosu yaz (hafta1_pazar, hafta2_pazar). Sezonun bir ANA GİZEMİ olsun; her gün bir ipucu, 14. günde tatmin edici çözüm. Karakterler sezon boyunca gelişsin. Önceki sezondan bir merak ipi devam etsin; İlk Haritacı gizemi yavaş ilerlesin.
 Küfür, hakaret, etnik köken, ırk, din, siyaset, şiddet, korku KESİNLİKLE yok.
 Sadece JSON döndür:
 {{"sezon": {season_no}, "ad": "...", "ana_hikaye": "...",
- "gunler": [{{"gun": 1, "bolge": "...", "sabah": "...", "oglen": "...", "aksam": "...", "gece": "..."}}],
+ "gizem": "Sezonun ana gizemi (izleyiciye soru olarak; ilk bölümde açıklanmaz)",
+ "gizem_cozumu": "Gizemin cevabı (sadece 14. gün akşam bölümünde açıklanır) ve bir sonraki sezona açılan kapı",
+ "karakter_yolculugu": {{"tuna": "sezon boyunca hatası ve öğrendiği ders", "nil": "...", "bulut": "...", "pire": "..."}},
+ "gunler": [{{"gun": 1, "bolge": "...", "odak": "tuna|nil|bulut|pire", "sabah": "...", "oglen": "...", "aksam": "...", "gece": "...",
+   "ipucu": "Bu gün ana bölümlerde bulunan gizem ipucu (ipuçları gün gün çözüme yaklaştırsın)"}}],
  "uzun": {{"hafta1_pazar": "...", "hafta2_pazar": "..."}}}}"""
     plan = gemini_json(prompt, cfg, log=log)
     if len(plan.get('gunler', [])) < 14:
