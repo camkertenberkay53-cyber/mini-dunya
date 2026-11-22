@@ -1,0 +1,86 @@
+{
+ "konu": "Nil, Lavabo Gölü'ndeki dev damlaları atlatıp musluğun arkasındaki gizli boru geçidini haritalamak istiyor.",
+ "kategori": "gizem",
+ "ana_karakter": "nil",
+ "baslik": "Musluk Şelalesi Gizemi",
+ "acilis_efekti": "dev_damla",
+ "kapak_yazisi": "DEV DAMLA SALI BATIRIYOR!",
+ "end_card": "Sizce borunun arkasında ne var?",
+ "music": "komik",
+ "scenes": [
+  {
+   "title": "Musluk Şelalesi",
+   "location": "lavabo",
+   "characters": [
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "nil",
+     "text": "Lavabo Gölü'nde dev musluk damlaları salımızı batırıyor, gizli boru geçidine ulaşmalıyız!",
+     "emotion": "panik",
+     "action": "kac"
+    },
+    {
+     "who": "bulut",
+     "text": "Doğrudan geçide kürek çekmeyi deniyorum! Eyvah, büyük bir dalga bizi geri savurdu!",
+     "emotion": "saskin",
+     "action": "carp"
+    },
+    {
+     "who": "nil",
+     "text": "Böyle geçemeyiz! Su damlalarının ritmini hesaplayıp arkadan dolanmamız gerek.",
+     "emotion": "normal",
+     "action": "isaret"
+    },
+    {
+     "who": "pire",
+     "text": "Süper zıplayışımla havlu ipini musluğun arkasındaki kuru kayalığa bağlıyorum!",
+     "emotion": "normal",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Harika fikir! İpi çekerek salı güvenli bölgeye yanaştırıyorum.",
+     "emotion": "normal",
+     "action": "kos_sag"
+    },
+    {
+     "who": "nil",
+     "text": "Başardık! Haritaya not düşüyorum: Musluk Şelalesi aşıldı, gizli boru geçidi keşfedildi!",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Harita harika ama bir dakika... Başımın üzerine tam bir sabun köpüğü düştü, şapkam oldu!",
+     "emotion": "normal",
+     "action": "yuru_sag"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dev Musluk Damlasından Kaçış! | Mini Dünya",
+  "description": "Lavabo Gölü'nde dev musluk damlaları salımızı batırmak üzereydi! Nil'in harita planı ve Pire'nin muhteşem zıplayışıyla gizli boru geçidini keşfettik. Sizce borunun arkasında ne var?",
+  "tags": [
+   "mini dünya",
+   "2d animasyon",
+   "çizgi film",
+   "macera",
+   "lavabo gölü",
+   "gizli geçit",
+   "türkçe animasyon"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Ekip, damlayan musluğun yarattığı dalgaları atlatıp Pire'nin yüksek zıplayışı sayesinde musluğun arkasındaki gizli boru geçidine sığındı ve burayı haritaladı.",
+  "acik_meseleler": [
+   "Gizli boru geçidinin nereye çıktığı keşfedilecek."
+  ],
+  "yeni_bolge": "Musluk Şelalesi Gizli Geçidi"
+ },
+ "tur": "ana"
+}
