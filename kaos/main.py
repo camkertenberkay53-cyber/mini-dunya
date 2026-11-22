@@ -214,16 +214,28 @@ def fikir_uret():
     cfg = load_cfg()
     st = load_state()
     today = dt.datetime.now(TZ).date()
-    plan, day = season_day(st, cfg, today)
-    st['_gun'] = day
     done = st.setdefault('yapilan', {}).setdefault(today.isoformat(), [])
-    try:
-        tr = fikir.gunun_fikirleri(st, plan, day, today, cfg, 'tr', log=log)
-        save_state(st)
-        if (cfg.get('ingilizce') or {}).get('acik'):
-            fikir.gunun_fikirleri(st, plan, day, today, cfg, 'en', harici=[fikir._parmak_izi(f) for f in tr.values()], log=log)
-    except Exception as e:
-        log(f'Fikir motoru başarısız: {e}')
+    # Yarının dört yayını için fikirler (bugünkü havuz yoksa önce bugün)
+    for hedef in (today, today + dt.timedelta(days=1)):
+        if hedef == today and today.isoformat() in st.get('fikir_havuzu', {}).get('tr', {}):
+            continue
+        if hedef == today:
+            plan, day = season_day(st, cfg, hedef)
+        else:  # yarın için yan etkisiz hesap: sezon sınırını burada geçme (yeni sezon üretim günü kurulur)
+            plan = load_plan(st['sezon']) or {}
+            day = (hedef - dt.date.fromisoformat(st.get('sezon_baslangic', today.isoformat()))).days + 1
+            if day > len(plan.get('gunler', [])):
+                break
+        st['_gun'] = day
+        try:
+            tr = fikir.gunun_fikirleri(st, plan, day, hedef, cfg, 'tr', log=log)
+            save_state(st)
+            if (cfg.get('ingilizce') or {}).get('acik'):
+                fikir.gunun_fikirleri(st, plan, day, hedef, cfg, 'en', harici=[fikir._parmak_izi(f) for f in tr.values()], log=log)
+            save_state(st)
+        except Exception as e:
+            log(f'Fikir motoru başarısız ({hedef}): {e}')
+            break
     if 'fikir' not in done:
         done.append('fikir')
     save_state(st)
