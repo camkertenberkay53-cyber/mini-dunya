@@ -1,0 +1,86 @@
+{
+ "konu": "Nil, Tuna ve Bulut, kulak çöpü kürekli köpük salıyla Lavabo Gölü'nü geçip Şeker Küpü Kayalıkları'na ulaşmaya çalışır.",
+ "kategori": "teknolojik kesif",
+ "ana_karakter": "nil",
+ "baslik": "Lavabo Gölü Köpük Salı",
+ "acilis_efekti": "dev_damla",
+ "kapak_yazisi": "DEV DAMLA KÖPÜK SALI YUTTU!",
+ "end_card": "Sizce köpük sal köpürünce ne yapmalılar?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Lavabo Gölünde Tehlikeli Yolculuk",
+   "location": "lavabo",
+   "characters": [
+    "nil",
+    "tuna",
+    "bulut"
+   ],
+   "lines": [
+    {
+     "who": "nil",
+     "text": "Şeker Küpü Kayalıkları'na ulaşmak için bu dev Lavabo Gölü'nü geçmeliyiz!",
+     "emotion": "normal",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Dikkat! Musluktan dev bir damla düşüyor, dalga geliyor!",
+     "emotion": "panik",
+     "action": "kos_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Köpük salıma atlayın, kulak çöpü küreği bende!",
+     "emotion": "normal",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Eyvah! Hızlandıkça salımız sabun köpüğüne dönüşüp eriyor!",
+     "emotion": "panik",
+     "action": "titre"
+    },
+    {
+     "who": "tuna",
+     "text": "Kulak çöpünü kayaya takıp kendimizi karaya çekelim!",
+     "emotion": "normal",
+     "action": "carp"
+    },
+    {
+     "who": "bulut",
+     "text": "Kıyıya ulaştık ama hepimiz dev bir baloncuk banyosu yaptık!",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!",
+     "emotion": "normal",
+     "action": "kac"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Parmak Boyundaki Haritacılar Lavabo Gölü'ne Karşı!",
+  "description": "Damlayan musluk dev bir şelaleye dönüşünce ekibimiz köpük sal ve kulak çöpü kürekleriyle Lavabo Gölü'nü geçmeye çalışıyor. Ancak sal sabun köpüğüne dönüşünce işler karışıyor! Sizce köpük sal köpürünce ne yapmalılar?",
+  "tags": [
+   "mini dünya",
+   "2d animasyon",
+   "çizgi film",
+   "lavabo gölü",
+   "macera",
+   "shorts",
+   "haritacılar"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Ekip, Bulut'un köpük salı ve kulak çöpü küreği yardımıyla damla dalgasını atlatıp köpüklü bir şekilde Şeker Küpü Kayalıkları'na ulaştı.",
+  "acik_meseleler": [
+   "Şeker Küpü Kayalıkları'nın zirvesine tırmanıp köpüklerden arınmak."
+  ],
+  "yeni_bolge": "Lavabo Gölü"
+ },
+ "tur": "ana"
+}
