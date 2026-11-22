@@ -123,6 +123,25 @@ def description_en(ep, kind, no, season):
     return base + tail
 
 
+# İngilizce kanal: ABD (Doğu) izleyicisinin en aktif saatlerinde yayına girer (rakip verisi: 15-18 ET en viral dilim).
+EN_YAYIN_ET = {'sabah': 7.0, 'oglen': 10.0, 'aksam': 16.0, 'gece': 18.0, 'uzun': 10.0}
+
+
+def en_publish_at(slot, now=None):
+    from zoneinfo import ZoneInfo
+    et = ZoneInfo('America/New_York')
+    now = (now or dt.datetime.now(dt.timezone.utc)).astimezone(et)
+    h = EN_YAYIN_ET.get(slot, 16.0)
+    for add in range(0, 8):
+        d = (now + dt.timedelta(days=add)).date()
+        if slot == 'uzun' and d.weekday() != 6:
+            continue
+        t = dt.datetime(d.year, d.month, d.day, int(h), int(round(h % 1 * 60)), tzinfo=et)
+        if t > now + dt.timedelta(minutes=20):
+            return t.astimezone(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    return None
+
+
 def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log):
     """Aynı bölümü İngilizce kanal için uyarlar, seslendirir, çizer ve yükler."""
     ec = cfg.get('ingilizce') or {}
@@ -144,7 +163,9 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log):
     tags = list(dict.fromkeys(((en.get('youtube') or {}).get('tags') or []) + ec.get('etiketler', [])))
     vid = youtube.upload(final, title, description_en(en, kind, no, season), tags,
                          cfg['yayin'].get('gizlilik', 'public'), cfg['yayin'].get('kategori', 1),
-                         thumb if kind == 'uzun' else None, log=log, token_env=ec.get('token_env', 'YT_REFRESH_TOKEN_EN'), lang='en')
+                         thumb if kind == 'uzun' else None, log=log, token_env=ec.get('token_env', 'YT_REFRESH_TOKEN_EN'), lang='en',
+                         publish_at=en_publish_at('uzun' if kind == 'uzun' else slot))
+    log(f"  İngilizce yayın zamanı (UTC): {en_publish_at('uzun' if kind == 'uzun' else slot)}")
     st.setdefault('en_bolumler', []).append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'baslik': en['baslik'], 'video_id': vid})
     st['en_bolumler'] = st['en_bolumler'][-200:]
 

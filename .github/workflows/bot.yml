@@ -3,7 +3,7 @@ name: Mini Dunya Bot
 on:
   schedule:
     # Her saat kontrol: zamanı gelmiş ama yapılmamış slot varsa üretir (GitHub bir çalıştırmayı kaçırırsa telafi eder).
-    # Yayın saatleri (TR): 08:30 sabah, 13:30 öğle, 19:30 akşam, 21:30 gece, Pazar 18:00 uzun video
+    # Yayın saatleri (TR): ~10:00, 12:30, 16:00, 18:30; Pazar ~10:00 uzun video. İngilizce sürüm ABD saatine zamanlanır.
     - cron: "37 * * * *"
     - cron: "41 3 * * 1"     # Pazartesi 06:41 TR: haftalık rakip analizi
   workflow_dispatch:

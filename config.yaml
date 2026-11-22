@@ -69,8 +69,8 @@ ingilizce:
 
 # Yayın saatleri (Türkiye saati). Değiştirirsen .github/workflows/bot.yml içindeki cron satırlarını da güncelle.
 takvim:
-  sabah: "08:30 ana yolculuk"
-  oglen: "13:30 yan macera"
-  aksam: "19:30 ana yolculuk"
-  gece: "21:30 yan macera"
-  uzun: "Pazar 18:00 uzun video (4-5 dk)"
+  sabah: "10:00 TR ana yolculuk (İngilizce: 07:00 ABD Doğu)"
+  oglen: "12:30 TR yan macera (İngilizce: 10:00 ABD Doğu)"
+  aksam: "16:00 TR ana yolculuk (İngilizce: 16:00 ABD Doğu)"
+  gece: "18:30 TR yan macera (İngilizce: 18:00 ABD Doğu)"
+  uzun: "Pazar 10:00 TR uzun video (İngilizce: Pazar 10:00 ABD Doğu)"

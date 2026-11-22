@@ -26,12 +26,13 @@ def access_token(token_env='YT_REFRESH_TOKEN'):
 
 
 def upload(video_path, title, description, tags, privacy='public', category=23, thumb=None, log=print,
-           token_env='YT_REFRESH_TOKEN', lang='tr'):
+           token_env='YT_REFRESH_TOKEN', lang='tr', publish_at=None):
     tok = access_token(token_env)
     meta = {
         'snippet': {'title': title[:100], 'description': description[:4900], 'tags': tags[:30],
                     'categoryId': str(category), 'defaultLanguage': lang, 'defaultAudioLanguage': lang},
-        'status': {'privacyStatus': privacy, 'selfDeclaredMadeForKids': False, 'embeddable': True},
+        'status': ({'privacyStatus': 'private', 'publishAt': publish_at} if publish_at else {'privacyStatus': privacy})
+                  | {'selfDeclaredMadeForKids': False, 'embeddable': True},
     }
     size = os.path.getsize(video_path)
     req = urllib.request.Request(
