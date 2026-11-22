@@ -211,8 +211,8 @@ def kanal_kurulum():
             if not ep.get('end_card'):
                 ep['end_card'] = 'Sen olsan ne yapardın?' if lang == 'tr' else 'What would you do?'
             name = (plan.get('ad') or f"Sezon {st['sezon']}") if lang == 'tr' else f"Season {st['sezon']}"
-            kanal_yonet(st, ep, b['video_id'], lang, name, env)
-            b['kuruldu'] = True
+            if kanal_yonet(st, ep, b['video_id'], lang, name, env):
+                b['kuruldu'] = True
             save_state(st)
     return 0
 
@@ -241,7 +241,8 @@ def en_backfill():
 def kanal_yonet(st, ep, vid, lang, season_name, token_env, log=log):
     """Videoyu sezon oynatma listesine ekler ve kanal adına yorum bırakır (yetki yoksa sessizce atlar)."""
     if not vid:
-        return
+        return False
+    ok = False
     tr = lang == 'tr'
     key = 'oynatma' if tr else 'oynatma_en'
     title = (f"Mini Dünya · {season_name}" if tr else f"Mini World · {season_name}")[:150]
@@ -253,6 +254,7 @@ def kanal_yonet(st, ep, vid, lang, season_name, token_env, log=log):
             pls[title] = youtube.playlist_ensure(title, desc, token_env, lang)
         youtube.playlist_add(pls[title], vid, token_env)
         log(f'  Oynatma listesine eklendi: {title}')
+        ok = True
     except Exception as e:
         log(f'  Oynatma listesi atlandı: {e}')
     soru = ep.get('end_card', '').strip()
@@ -261,8 +263,10 @@ def kanal_yonet(st, ep, vid, lang, season_name, token_env, log=log):
         text = f"{soru} Cevabını yorumlara yaz! 👇\n\n🗺️ Haritanın devamı yarın: {devam}\nKaçırmamak için abone ol, bildirimleri aç! 🔔"
     else:
         text = f"{soru} Tell us in the comments! 👇\n\n🗺️ The map continues tomorrow. Subscribe and turn on notifications so you don't miss it! 🔔"
-    st.setdefault('bekleyen_yorum', []).append({'video_id': vid, 'token': token_env, 'metin': text})
-    yorumlari_gonder(st, log=log)
+    if ok:
+        st.setdefault('bekleyen_yorum', []).append({'video_id': vid, 'token': token_env, 'metin': text})
+        yorumlari_gonder(st, log=log)
+    return ok
 
 
 def yorumlari_gonder(st, log=log):
