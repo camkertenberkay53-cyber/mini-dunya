@@ -304,6 +304,10 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
     subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', vid, '-i', wav, '-map', '0:v', '-map', '1:a', '-c:v', 'copy',
                     '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', '-shortest', final], check=True)
     os.remove(vid)
+    # teknik kalite kontrolü: kritik hatada QCError -> bu bölüm yayınlanmaz, slot sonraki saatte yeniden denenir
+    from . import qc
+    rep = qc.check(final, W, H, 30, expected_dur=tl['total'], outdir=outdir, log=log)
+    ep['_qc'] = {k: rep.get(k) for k in ('karar', 'sure_sn', 'ses_lufs', 'siyah_sn', 'orta', 'dusuk', 'duzeltmeler')}
     thumb = render.thumbnail(ep, tl, os.path.join(outdir, 'kapak.jpg'), W, H, meta)
     return final, thumb, engine, tl['total']
 
@@ -454,7 +458,8 @@ def main():
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
                            'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine,
-                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''),
+                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'),
+                           'final_turu': ep.get('final_turu', ''), 'fikir': ep.get('_fikir'),
                            'mekan': ep['scenes'][0].get('location', ''), 'ana_karakter': ep.get('ana_karakter', ''),
                            'final': ep['scenes'][-1]['lines'][-1].get('text', '') if ep['scenes'][-1].get('lines') else ''})
     st['bolumler'] = st['bolumler'][-200:]
