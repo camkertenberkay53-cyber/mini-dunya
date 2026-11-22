@@ -106,7 +106,7 @@ def _model_order(configured, available):
     return out[:6]
 
 
-def gemini_json(prompt, cfg, temperature=1.0, log=print):
+def gemini_json(prompt, cfg, temperature=1.0, log=print, rounds=6):
     key = os.environ.get('GEMINI_API_KEY', '')
     if not key:
         raise WriterError('GEMINI_API_KEY tanımlı değil')
@@ -116,7 +116,7 @@ def gemini_json(prompt, cfg, temperature=1.0, log=print):
         log(f'  Metin modelleri: {", ".join(models)}')
     errs = []
     dead = set()
-    for attempt in range(6):
+    for attempt in range(rounds):
         for model in models:
             if model in dead:
                 continue
@@ -142,7 +142,7 @@ def gemini_json(prompt, cfg, temperature=1.0, log=print):
                 errs.append(f'{model}: {e}')
         if all(m in dead for m in models):
             break
-        log(f'  Gemini meşgul, tekrar denenecek ({attempt + 1}/6)')
+        log(f'  Gemini meşgul, tekrar denenecek ({attempt + 1}/{rounds})')
         time.sleep(45 * (attempt + 1))
     raise WriterError('Gemini metin isteği başarısız: ' + ' | '.join(errs[-8:]))
 

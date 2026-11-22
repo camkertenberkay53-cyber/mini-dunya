@@ -169,7 +169,8 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log, brief=None, 
             try:
                 from . import fikir
                 tr_bugun = [fikir._parmak_izi(f) for f in (st.get('fikir_havuzu', {}).get('tr', {}).get(today.isoformat()) or {}).values()]
-                idea_en = fikir.gunun_fikirleri(st, plan, st.get('_gun') or 0, today, cfg, 'en', harici=tr_bugun, log=log).get(slot)
+                idea_en = fikir.gunun_fikirleri(st, plan, st.get('_gun') or 0, today, cfg, 'en', harici=tr_bugun, log=log,
+                                                 sadece_onbellek=True).get(slot)
             except Exception as e:
                 log(f'  İngilizce fikir motoru atlandı: {e}')
         try:
@@ -205,6 +206,28 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log, brief=None, 
     st['en_bolumler'] = st['en_bolumler'][-200:]
     if src is not ep:
         sezon_hafiza_guncelle(st, src.get('hafiza') or {}, 'en_karakter_hafiza', 'en_cozulenler')
+
+
+def fikir_uret():
+    """Günlük fikir motoru: yayınlardan önce (07:00) çalışır; üretim anında sadece hazır fikir kullanılır."""
+    from . import fikir
+    cfg = load_cfg()
+    st = load_state()
+    today = dt.datetime.now(TZ).date()
+    plan, day = season_day(st, cfg, today)
+    st['_gun'] = day
+    done = st.setdefault('yapilan', {}).setdefault(today.isoformat(), [])
+    try:
+        tr = fikir.gunun_fikirleri(st, plan, day, today, cfg, 'tr', log=log)
+        save_state(st)
+        if (cfg.get('ingilizce') or {}).get('acik'):
+            fikir.gunun_fikirleri(st, plan, day, today, cfg, 'en', harici=[fikir._parmak_izi(f) for f in tr.values()], log=log)
+    except Exception as e:
+        log(f'Fikir motoru başarısız: {e}')
+    if 'fikir' not in done:
+        done.append('fikir')
+    save_state(st)
+    return 0
 
 
 def kanal_kurulum():
@@ -419,6 +442,7 @@ def main():
     ap.add_argument('--json', help='Hazır senaryo dosyasından üret')
     ap.add_argument('--no-upload', action='store_true')
     ap.add_argument('--force', action='store_true', help='Bugün bu slot yapılmış olsa da üret')
+    ap.add_argument('--fikir', action='store_true', help='Bugünün fikir havuzunu (TR + EN) üret')
     ap.add_argument('--kanal-kurulum', action='store_true', help='Mevcut videoları oynatma listelerine ekle, yorum bırak')
     ap.add_argument('--en-telafi', action='store_true', help='Bugünün İngilizce sürümü olmayan bölümlerini İngilizce üret')
     args = ap.parse_args()
@@ -426,6 +450,8 @@ def main():
         return en_backfill()
     if args.kanal_kurulum:
         return kanal_kurulum()
+    if args.fikir:
+        return fikir_uret()
 
     cfg = load_cfg()
     st = load_state()
@@ -456,7 +482,9 @@ def main():
         if kind != 'uzun':
             try:
                 from . import fikir
-                idea = fikir.gunun_fikirleri(st, plan, day, today, cfg, 'tr', log=log).get(slot)
+                idea = fikir.gunun_fikirleri(st, plan, day, today, cfg, 'tr', log=log, sadece_onbellek=True).get(slot)
+                if not idea:
+                    log('  Bugün için hazır fikir yok; sezon planıyla devam.')
             except Exception as e:
                 log(f'  Fikir motoru atlandı: {e}')
         ep = writer.write_episode(kind, brief + (fikir.brief_ek(idea) if idea else ''), st, plan, cfg, log=log)

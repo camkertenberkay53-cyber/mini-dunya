@@ -47,7 +47,7 @@ bir icat + komik sonuç). Ana yolculuk slotları (sabah, aksam) sezon planındak
 Sadece JSON döndür: {{"fikirler": [{{"slot": "sabah", "ad": "...", "ana_karakter": "tuna|nil|bulut|pire", "mekan": "...",
 "nesne": "...", "tehlike": "...", "mekanizma": "...", "ilk_saniye": "ilk 1 saniyede ekranda olan görsel olay",
 "problem": "...", "surpriz": "...", "cozum": "...", "final": "...", "final_turu": "tatmin|komik|sasirtici|merak"}}]}}"""
-    d = gemini_json(prompt, cfg, temperature=1.1, log=log)
+    d = gemini_json(prompt, cfg, temperature=1.1, log=log, rounds=3)
     return [f for f in d.get('fikirler', []) if isinstance(f, dict) and f.get('slot') in SLOTLAR]
 
 
@@ -65,15 +65,17 @@ izlenince anlaşılır mı), uygunluk (aile dostu ve evrene uygun). Benzerse red
 reddedilmemiş en iyi adayı seç; seçilen dört fikir de birbirinden farklı olsun (farklı nesne, mekanizma, ana karakter).
 Sadece JSON döndür: {{"puanlar": [{{"i": 0, "yenilik": 0, "izlenme_potansiyeli": 0, "uygunluk": 0, "red": "benzerse kısa neden, değilse boş"}}],
 "secim": {{"sabah": 0, "oglen": 0, "aksam": 0, "gece": 0}}}}"""
-    return gemini_json(prompt, cfg, temperature=0.3, log=log)
+    return gemini_json(prompt, cfg, temperature=0.3, log=log, rounds=3)
 
 
-def gunun_fikirleri(st, plan, day, today, cfg, lang='tr', harici=None, log=print):
+def gunun_fikirleri(st, plan, day, today, cfg, lang='tr', harici=None, log=print, sadece_onbellek=False):
     """Bugünün slot -> fikir eşlemesi (önbellekli: günde kanal başına 2 Gemini çağrısı)."""
     havuz = st.setdefault('fikir_havuzu', {}).setdefault(lang, {})
     key = today.isoformat()
     if key in havuz:
         return havuz[key]
+    if sadece_onbellek:
+        return {}
     rows = (plan or {}).get('gunler', [])
     row = rows[day - 1] if 0 < day <= len(rows) else {}
     gun_brief = {s: row.get(s, '') for s in SLOTLAR}
