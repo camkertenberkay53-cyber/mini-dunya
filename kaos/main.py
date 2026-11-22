@@ -164,8 +164,18 @@ def produce_en(ep, kind, no, season, today, slot, cfg, st, log=log, brief=None, 
                 f"(konu: {ep.get('konu', '')}; mekân: {ep['scenes'][0].get('location')}; açılış: {ep.get('acilis_efekti')}). "
                 f"Bu bölüm ondan TAMAMEN FARKLI olmalı: başka bir olay, başka bir mekân, başka bir açılış efekti, başka bir odak karakter. "
                 f"Aynı sezon bölgesinde geçebilir ama hikâye ve görüntüler tekrar etmesin.")
+        idea_en = None
+        if kind != 'uzun':
+            try:
+                from . import fikir
+                tr_bugun = [fikir._parmak_izi(f) for f in (st.get('fikir_havuzu', {}).get('tr', {}).get(today.isoformat()) or {}).values()]
+                idea_en = fikir.gunun_fikirleri(st, plan, st.get('_gun') or 0, today, cfg, 'en', harici=tr_bugun, log=log).get(slot)
+            except Exception as e:
+                log(f'  İngilizce fikir motoru atlandı: {e}')
         try:
-            src = writer.write_episode(kind, brief + fark, en_memory(st), plan, cfg, log=log)
+            src = writer.write_episode(kind, brief + fark + (fikir.brief_ek(idea_en) if idea_en else ''), en_memory(st), plan, cfg, log=log)
+            if idea_en:
+                fikir.kaydet(st, idea_en, 'en')
         except Exception as e:
             log(f'  Bağımsız İngilizce bölüm yazılamadı, bugünkü bölüm uyarlanacak: {e}')
             src = ep
@@ -442,7 +452,15 @@ def main():
         kind, brief = brief_for(slot, plan, day, today)
         log(f"Sezon {st['sezon']} · Gün {day} · {slot} ({kind}): {brief}")
         st['_gun'] = day
-        ep = writer.write_episode(kind, brief, st, plan, cfg, log=log)
+        idea = None
+        if kind != 'uzun':
+            try:
+                from . import fikir
+                idea = fikir.gunun_fikirleri(st, plan, day, today, cfg, 'tr', log=log).get(slot)
+            except Exception as e:
+                log(f'  Fikir motoru atlandı: {e}')
+        ep = writer.write_episode(kind, brief + (fikir.brief_ek(idea) if idea else ''), st, plan, cfg, log=log)
+        ep['_fikir'] = idea
         ep['tur'] = kind
 
     no = st['bolum_no'] + 1
@@ -474,6 +492,9 @@ def main():
     if yb and yb not in st.setdefault('harita', []):
         st['harita'].append(yb)
     sezon_hafiza_guncelle(st, h)
+    if ep.get('_fikir'):
+        from . import fikir
+        fikir.kaydet(st, ep['_fikir'], 'tr')
     if kind != 'bagimsiz' and isinstance(h.get('acik_meseleler'), list):
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
