@@ -12,8 +12,8 @@ from . import paths, youtube
 from .writer import gemini_json, list_models, _model_order, _post
 
 SORGULAR = {
-    'tr': ['animasyon shorts', 'çizgi film kısa', 'komik animasyon', 'minik insanlar animasyon', 'animasyon hikaye'],
-    'en': ['animation shorts', 'animated story shorts', 'tiny people animation', 'funny cartoon shorts', '2d animation short story'],
+    'tr': ['animasyon shorts', 'çizgi film kısa', 'komik animasyon', 'minik insanlar animasyon', 'animasyon hikaye', 'çizgi film shorts', 'animasyon komik kısa'],
+    'en': ['animation shorts', 'animated story shorts', 'tiny people animation', 'funny cartoon shorts', '2d animation short story', 'cartoon shorts', 'animated adventure shorts'],
 }
 OUT = os.path.join(paths.ROOT, 'state', 'rakip.json')
 
@@ -59,14 +59,37 @@ def topla(log=print):
                 pub = dt.datetime.strptime(it['snippet']['publishedAt'][:19], '%Y-%m-%dT%H:%M:%S')
                 days = max(1.0, (dt.datetime.utcnow() - pub).total_seconds() / 86400)
                 views = int(it['statistics'].get('viewCount', 0))
+                tz = 3 if lang == 'tr' else -5
+                yerel = pub + dt.timedelta(hours=tz)
                 vids.append({'id': it['id'], 'baslik': it['snippet']['title'], 'kanal': it['snippet']['channelTitle'],
+                             'saat': yerel.hour, 'gun': yerel.weekday(),
                              'sure': sec, 'izlenme': views, 'gunluk': int(views / days),
                              'begeni': int(it['statistics'].get('likeCount', 0) or 0),
                              'yorum': int(it['statistics'].get('commentCount', 0) or 0),
                              'etiket': it['snippet'].get('tags', [])[:8]})
         vids.sort(key=lambda v: -v['gunluk'])
+        out[lang + '_tumu'] = vids
         out[lang] = vids[:30]
         log(f'  {lang}: {len(vids)} video bulundu, en hızlı: {vids[0]["baslik"][:60] if vids else "-"}')
+    return out
+
+
+def saat_analizi(vids):
+    """Yükleme saatine (izleyicinin yerel saati) göre medyan günlük izlenme ve viral oran (en iyi %25'e girme)."""
+    import statistics
+    if not vids:
+        return {}
+    esik = sorted(v['gunluk'] for v in vids)[int(len(vids) * 0.75)]
+    out = {}
+    for a, b in ((0, 6), (6, 9), (9, 12), (12, 15), (15, 18), (18, 21), (21, 24)):
+        g = [v for v in vids if a <= v['saat'] < b]
+        if g:
+            out[f'{a:02d}-{b:02d}'] = {'video': len(g), 'medyan_gunluk': int(statistics.median(v['gunluk'] for v in g)),
+                                      'viral_oran': round(sum(v['gunluk'] >= esik for v in g) / len(g), 2)}
+    hs = {'hafta_ici': [v for v in vids if v['gun'] < 5], 'hafta_sonu': [v for v in vids if v['gun'] >= 5]}
+    for k, g in hs.items():
+        if g:
+            out[k] = {'video': len(g), 'medyan_gunluk': int(statistics.median(v['gunluk'] for v in g))}
     return out
 
 
@@ -97,7 +120,7 @@ def izle(video_id, cfg, log=print):
 def analiz(veri, izlenen, cfg, log=print):
     """Toplanan veriden kanala uygulanacak strateji içgörülerini çıkarır."""
     ozet = {lang: [{k: v[k] for k in ('baslik', 'sure', 'gunluk', 'begeni', 'yorum')} for v in vids[:25]]
-            for lang, vids in veri.items()}
+            for lang, vids in veri.items() if not lang.endswith('_tumu')}
     prompt = f"""Sen bir YouTube Shorts animasyon stratejistisin. Kanalımız: "Mini Dünya / Mini World" — süpürgeliğin arkasında yaşayan
 parmak boyundaki dört haritacının (Tuna, Nil, Bulut, Pire) ve uğur böceği Benek'in evin içini keşfettiği 2D macera dizisi. 7-45 yaş, aile dostu.
 
@@ -127,14 +150,16 @@ def main(log=print):
     veri = topla(log=log)
     izlenen = []
     for lang in ('en', 'tr'):
-        for v in veri.get(lang, [])[:3]:
+        for v in veri.get(lang, [])[:1]:
             r = izle(v['id'], cfg, log=log)
             if r:
                 izlenen.append({'dil': lang, 'baslik': v['baslik'], 'gunluk': v['gunluk'], 'sure': v['sure'], 'analiz': r})
                 log(f"  izlendi: {v['baslik'][:60]}")
     ins = analiz(veri, izlenen, cfg, log=log)
-    rapor = {'tarih': dt.date.today().isoformat(), 'icgoruler': ins, 'izlenen': izlenen,
-             'en_hizli': {k: v[:10] for k, v in veri.items()}}
+    saatler = {'tr (Türkiye saati)': saat_analizi(veri.get('tr_tumu', [])), 'en (ABD Doğu saati)': saat_analizi(veri.get('en_tumu', []))}
+    log('Yükleme saati analizi:\n' + json.dumps(saatler, ensure_ascii=False, indent=1))
+    rapor = {'tarih': dt.date.today().isoformat(), 'icgoruler': ins, 'izlenen': izlenen, 'saat_analizi': saatler,
+             'en_hizli': {k: v[:10] for k, v in veri.items() if not k.endswith('_tumu')}}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(rapor, f, ensure_ascii=False, indent=1)
