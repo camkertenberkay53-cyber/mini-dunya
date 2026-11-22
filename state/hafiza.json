@@ -42,7 +42,8 @@
    "final": "Harika, hem ipimizi kurtardık hem de halı zemin menteşeden çok daha yumuşakmış!",
    "izlenme": 1212,
    "begeni": 3,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 3,
@@ -60,7 +61,8 @@
    "final": "Haritaya not: Tezgâh Ovası lezzetli ama son derece yapışkan.",
    "izlenme": 1127,
    "begeni": 4,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 4,
@@ -78,7 +80,8 @@
    "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
    "izlenme": 1086,
    "begeni": 4,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 5,
@@ -96,7 +99,8 @@
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
    "izlenme": 1199,
    "begeni": 3,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 6,
@@ -114,7 +118,8 @@
    "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
    "izlenme": 2,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 7,
@@ -132,7 +137,8 @@
    "final": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!",
    "izlenme": 1145,
    "begeni": 4,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 8,
@@ -150,7 +156,8 @@
    "final": "Sıradaki hedef neresi Öncü Tuna?",
    "izlenme": 1,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 9,
@@ -168,7 +175,8 @@
    "final": "Fırça kılından seken bilye tam şapkamın içine gol oldu!",
    "izlenme": 333,
    "begeni": 1,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 10,
@@ -183,7 +191,8 @@
    "konu": "Nil, Lavabo Gölü'ndeki dev damlaları atlatıp musluğun arkasındaki gizli boru geçidini haritalamak istiyor.",
    "mekan": "lavabo",
    "ana_karakter": "nil",
-   "final": "Harita harika ama bir dakika... Başımın üzerine tam bir sabun köpüğü düştü, şapkam oldu!"
+   "final": "Harita harika ama bir dakika... Başımın üzerine tam bir sabun köpüğü düştü, şapkam oldu!",
+   "kuruldu": true
   }
  ],
  "acik_meseleler": [
@@ -282,5 +291,10 @@
    "baslik": "Mystery of Faucet Falls",
    "video_id": "8HFHWW1453M"
   }
- ]
+ ],
+ "oynatma": {
+  "Mini Dünya · Sezon 1: Mutfak Kıtası": "PLRChhAMp9EFY"
+ },
+ "bekleyen_yorum": [],
+ "oynatma_en": {}
 }
