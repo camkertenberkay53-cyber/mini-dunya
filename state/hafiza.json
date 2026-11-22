@@ -1,7 +1,7 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 8,
+ "bolum_no": 9,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
@@ -21,7 +21,7 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 1067,
+   "izlenme": 1216,
    "begeni": 5,
    "yorum": 0
   },
@@ -129,7 +129,7 @@
    "mekan": "lavabo",
    "ana_karakter": "nil",
    "final": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!",
-   "izlenme": 613,
+   "izlenme": 951,
    "begeni": 4,
    "yorum": 0
   },
@@ -146,18 +146,36 @@
    "konu": "Devlerin buzdolabına peynir keşfi için giren haritacılar, kapağın aniden kapanmasıyla içeride mahsur kalır ve Benek'in yardımıyla buz kalıplarından kaçış yolu ararlar.",
    "mekan": "tezgah",
    "ana_karakter": "tuna",
-   "final": "Sıradaki hedef neresi Öncü Tuna?"
+   "final": "Sıradaki hedef neresi Öncü Tuna?",
+   "izlenme": 1,
+   "begeni": 0,
+   "yorum": 0
+  },
+  {
+   "no": 9,
+   "tarih": "2026-11-22",
+   "slot": "oglen",
+   "tur": "bagimsiz",
+   "baslik": "Sabun Kaydırağı Yarışı",
+   "ozet": "Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
+   "video_id": "VeCIUgVV0pQ",
+   "ses": "gemini",
+   "kategori": "yaris",
+   "konu": "Pire, lavabo giderine kayan mavi bilyeyi düşmeden yakalamak için düğme kayaklarıyla ıslak sabunda kayar ama kontrolden çıkar.",
+   "mekan": "lavabo",
+   "ana_karakter": "pire",
+   "final": "Fırça kılından seken bilye tam şapkamın içine gol oldu!"
   }
  ],
  "acik_meseleler": [
   "Buzdolabı Buzulu haritaya eklendi, sonraki hedef mutfak rafları."
  ],
  "en_cok_izlenen": [
+  "Süpürgelik Geçidi (1216 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
   "Menteşe Çıkmazı (1212 izlenme, bagimsiz): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
   "Şeker Küpü Kayalıkları (1196 izlenme, ana): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
   "Tezgâh Ovası Keşfi (1126 izlenme, ana): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
-  "Sünger Ormanı Kurtarması (1086 izlenme, bagimsiz): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
-  "Süpürgelik Geçidi (1067 izlenme, ana): Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar."
+  "Sünger Ormanı Kurtarması (1086 izlenme, bagimsiz): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -172,7 +190,8 @@
   ],
   "2026-11-22": [
    "sabah",
-   "uzun"
+   "uzun",
+   "oglen"
   ]
  },
  "en_bolumler": [
@@ -221,7 +240,17 @@
    "tarih": "2026-11-22",
    "slot": "uzun",
    "baslik": "The Great Fridge Escape",
-   "video_id": "c-Rvk4jTea4"
+   "video_id": "c-Rvk4jTea4",
+   "izlenme": 0,
+   "begeni": 0,
+   "yorum": 0
+  },
+  {
+   "no": 9,
+   "tarih": "2026-11-22",
+   "slot": "oglen",
+   "baslik": "The Great Soap Slide",
+   "video_id": "TjwbK1_xXgU"
   }
  ]
 }

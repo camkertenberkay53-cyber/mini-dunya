@@ -1,0 +1,85 @@
+{
+ "konu": "Pire, lavabo giderine kayan mavi bilyeyi düşmeden yakalamak için düğme kayaklarıyla ıslak sabunda kayar ama kontrolden çıkar.",
+ "kategori": "yaris",
+ "ana_karakter": "pire",
+ "baslik": "Sabun Kaydırağı Yarışı",
+ "acilis_efekti": "dusen_nesne",
+ "kapak_yazisi": "SABUN KÖPÜĞÜNDE DEV YARIŞ!",
+ "end_card": "Sizce yarışı kim kazandı?",
+ "music": "komik",
+ "scenes": [
+  {
+   "title": "Lavabo Yüzeyi",
+   "location": "lavabo",
+   "characters": [
+    "pire",
+    "bulut"
+   ],
+   "lines": [
+    {
+     "who": "pire",
+     "text": "Mavi bilye ıslak lavaboda kayıp gidere doğru gidiyor!",
+     "emotion": "panik",
+     "action": "kos_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Gidere düşerse kaybolur, hemen durdurmamız lazım!",
+     "emotion": "saskin",
+     "action": "gir_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Düğme kayaklarımı giydim, köpüklerin üstünden uçuyorum!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Dur Pire! Islak sabun çok kaygan, duramazsın!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "pire",
+     "text": "Eyvah! Fren tutmuyor, diş fırçasına çarpıyorum!",
+     "emotion": "aglamakli",
+     "action": "carp"
+    },
+    {
+     "who": "bulut",
+     "text": "Pire iyi misin? Bilye nereye gitti?",
+     "emotion": "saskin",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "pire",
+     "text": "Fırça kılından seken bilye tam şapkamın içine gol oldu!",
+     "emotion": "neseli",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dev Diş Fırçasına Karşı Sabun Kaydırağı Yarışı!",
+  "description": "Pire, lavabo giderine sürüklenen mavi bilyeyi yakalamak için düğme kayaklarıyla kayıyor! Peki köpüklü sabunda kontrolü sağlayabilecek mi?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "shorts",
+   "çizgi film",
+   "macera",
+   "lavabo",
+   "eğlence"
+  ]
+ },
+ "hafiza": {
+  "ozet": "Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
+  "acik_meseleler": [
+   "Buzdolabı Buzulu haritaya eklendi, sonraki hedef mutfak rafları."
+  ],
+  "yeni_bolge": ""
+ },
+ "tur": "bagimsiz"
+}
