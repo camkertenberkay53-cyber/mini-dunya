@@ -165,7 +165,6 @@
    "tur": "uzun",
    "baslik": "Buzdolabından Büyük Kaçış",
    "ozet": "Ekip buz gibi buzdolabında mahsur kaldı, Benek dışarı kaçarak kapağın sensörünü çalıştırdı ve haritacılar son anda tezgâha kurtuldu.",
-   "video_id": "4iwL9UllVws",
    "ses": "gemini",
    "kategori": "basarisiz plan",
    "konu": "Devlerin buzdolabına peynir keşfi için giren haritacılar, kapağın aniden kapanmasıyla içeride mahsur kalır ve Benek'in yardımıyla buz kalıplarından kaçış yolu ararlar.",
@@ -175,7 +174,9 @@
    "izlenme": 11,
    "begeni": 0,
    "yorum": 1,
-   "kuruldu": true
+   "kuruldu": true,
+   "silindi": "2026-11-23",
+   "video_id_eski": "4iwL9UllVws"
   },
   {
    "no": 9,
