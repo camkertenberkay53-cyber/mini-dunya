@@ -277,6 +277,10 @@ Son an ilk anla bağlansın (izleyici başa sardığında akış devam ediyor gi
 - 0-2 sn KANCA (rakip analizine göre en çok izlenen tekniktir): Bölüm OLAYIN TAM ORTASINDA başlar; giriş, selamlaşma, tanıtım YOK.
   İlk saniyede 'acilis_efekti' ile bir ölçek şoku olur (dev nesne düşer / dev el ya da pati uzanır / dev damla düşer) ve
   ilk replik buna verilen panik ya da şaşkınlık tepkisidir (en fazla 7 kelime, örn. "Kaçın! Dev bir düğme düşüyor!").
+- KANAL VERİSİ (en yüksek izlenme oranı %85, diğerleri %30): İLK REPLİK karakterlerin O AN İÇİNE DÜŞTÜĞÜ somut bir çıkmazdır
+  ("Dev menteşeye yapışıp kaldık ve ipimiz düştü!" gibi: mahsur kaldık / sıkıştık / düşüyoruz / kapandı). Bir hedef ya da hikâye
+  bilgisiyle ("...ulaşmalıyız", "...keşfetmeliyiz") AÇMA; hedef, çıkmazdan kurtulma çabasının içinde kendiliğinden anlaşılsın.
+  Sonra her replik bir öncekinin sonucu olsun (deneme -> ters gitti -> yeni fikir -> beklenmedik çözüm).
 - DİYALOG AZ VE KISA: replikler en fazla 12 kelime; hikâye karakterlerin HAREKETLERİYLE ilerlesin, konuşma sadece destek olsun.
 - MİZAH ÖLÇEK FARKINDAN: sıradan ev eşyalarını beklenmedik amaçla kullan (ataş tırmanma kancası, düğme kalkan, kürdan kürek).
 - SÜRE: 35-50 saniye; hızlı tempo, her 3-5 saniyede bir yeni gelişme.
