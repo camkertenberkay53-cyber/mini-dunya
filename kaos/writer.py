@@ -462,6 +462,10 @@ def repetition_errors(ep, memory):
 
 def write_episode(kind, brief, memory, plan, cfg, log=print):
     evren = open(os.path.join(paths.EVREN, 'evren.md'), encoding='utf-8').read()
+    try:  # resmî karakter ve marka kitabı (görünüş, kişilik, imza sözleri, asla kuralları)
+        evren += '\n\n' + open(os.path.join(paths.EVREN, 'karakterler.md'), encoding='utf-8').read()
+    except OSError:
+        pass
     prompt = build_prompt(kind, brief, evren, memory, plan)
     ep, errs = None, ['başlamadı']
     for attempt in range(3):
@@ -490,6 +494,10 @@ def write_episode(kind, brief, memory, plan, cfg, log=print):
 
 def new_season_plan(season_no, memory, cfg, log=print):
     evren = open(os.path.join(paths.EVREN, 'evren.md'), encoding='utf-8').read()
+    try:  # resmî karakter ve marka kitabı (görünüş, kişilik, imza sözleri, asla kuralları)
+        evren += '\n\n' + open(os.path.join(paths.EVREN, 'karakterler.md'), encoding='utf-8').read()
+    except OSError:
+        pass
     recent = '\n'.join(f"- {b['baslik']}: {b.get('ozet', '')}" for b in memory.get('bolumler', [])[-30:])
     prompt = f"""Sen "MİNİ DÜNYA" 2D animasyon macera dizisinin baş senaristisin.
 EVREN KİTABI:

@@ -18,11 +18,11 @@ Ton: macera + merak + doğal komedi. Çocuk güvenli ama bebeksi değil (7–45 
 - Sezon 1: Büyük Ev (mutfak, salon, banyo, yatak odaları, çalışma odası, çamaşırlık).
 - Gizem ipi: haritanın kenarında "İlk Haritacı" imzalı, evin dışına giden eski bir yol.
 
-## Karakterler
+## Karakterler (resmî tanım ve imza sözleri: evren/karakterler.md)
 - **Tuna** (öncü): uzun ince, uzun turkuaz atkı, alnında pilot gözlüğü, turuncu ceket. Cesur, aceleci, lider olmaya hevesli. Makaradan kancalı ip atıcısı. Korkusu: geride kalmak. Komedi: kendinden emin planları hep beklenmedik sonuçlanır.
 - **Nil** (haritacı): kısa, dik duruşlu, yuvarlak büyük gözlük, sırtında rulo harita, lacivert yelek. Analitik, dikkatli, her şeyi ölçer. Korkusu: plansız kalmak. Komedi: kaosun ortasında kuru tek cümlelik yorumlar, ölçüm alır.
-- **Bulut** (mucit): iri, yuvarlak, şişe kapağı miğfer, aletli önlük. Sakin, içten, biraz sakar; Devlerin eşyalarından araç yapar. Korkusu: yükseklik. Komedi: sakarca girişimleri beklenmedik derecede başarılı olur.
-- **Pire** (çaylak): en küçük, kocaman kırmızı bere, minik çanta, hep koşar. Durmadan soru sorar, risk alır. Korkusu: yalnız kalmak. Komedi: masum soruları en kritik anda gerçeği söyler.
+- **Bulut** (mucit): iri, yuvarlak, kırmızı bere, kahverengi kazak, kalemli cepli yeşil önlük. Sakin, içten, biraz sakar; Devlerin eşyalarından araç yapar. Korkusu: yükseklik. Komedi: sakarca girişimleri beklenmedik derecede başarılı olur.
+- **Pire** (çaylak): en küçük, kızıl saç, kırmızı fransız beresi, çiller, sarı tişört, mor sırt çantası, hep koşar. Durmadan soru sorar, risk alır. Korkusu: yalnız kalmak. Komedi: masum soruları en kritik anda gerçeği söyler.
 - **Benek**: uğur böceği binek ve dost; konuşmaz, tepkileriyle komedi.
 - Yan: **Mürekkep Usta** (yaşlı Lonca Başkanı, çok şey saklar), **Ela** (Devlerin küçük kızı; yüzü görünmez), **Paşa** (ev kedisi, dağ gibi).
 
