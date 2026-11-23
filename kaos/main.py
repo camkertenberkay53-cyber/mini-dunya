@@ -352,6 +352,15 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, 'senaryo.json'), 'w', encoding='utf-8') as f:
         json.dump(ep, f, ensure_ascii=False, indent=1)
+    # boyalı arka plan (ücretli ayrı anahtar; sadece seçili Türkçe Shorts slotlarında, hata olursa çizim arka plan)
+    if kind != 'uzun' and meta.get('_slot'):
+        try:
+            from . import boya
+            if boya.acik(cfg, meta['_slot']):
+                meta['boya'] = boya.uret(ep, outdir, cfg, log=log)
+        except Exception as e:
+            log(f'Boyalı arka plan atlandı: {str(e)[:150]}')
+    ep['_boya'] = bool(meta.get('boya'))
     model_dir = os.environ.get('PIPER_MODELS', os.path.join(paths.ROOT, 'models'))
     wavs, engine = tts.synthesize(ep, cfg, os.path.join(outdir, 'ses'), model_dir=model_dir, log=log)
     long_form = kind == 'uzun'
@@ -521,7 +530,7 @@ def main():
 
     no = st['bolum_no'] + 1
     meta = {'subtitle': f"Bölüm {no} · {ep['baslik']}" if kind != 'bagimsiz' else f"Skeç · {ep['baslik']}",
-            'thumb': ep.get('kapak_yazisi', ep['baslik'])}
+            'thumb': ep.get('kapak_yazisi', ep['baslik']), '_slot': slot}
     outdir = os.path.join(paths.OUTPUT, f"{today.isoformat()}_{slot}_{no:04d}_{slug(ep['baslik'])}")
     final, thumb, engine, dur = produce(ep, kind, meta, outdir, cfg)
     log(f'Video hazır: {final} ({dur:.0f} sn, ses: {engine})')
@@ -555,7 +564,7 @@ def main():
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
                            'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine,
-                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'), 'format': ep.get('_format', 'normal'),
+                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'), 'format': ep.get('_format', 'normal'), 'boya': ep.get('_boya', False),
                            'final_turu': ep.get('final_turu', ''), 'fikir': ep.get('_fikir'),
                            'mekan': ep['scenes'][0].get('location', ''), 'ana_karakter': ep.get('ana_karakter', ''),
                            'final': ep['scenes'][-1]['lines'][-1].get('text', '') if ep['scenes'][-1].get('lines') else ''})

@@ -256,6 +256,10 @@ def intro_fx(f, cam, t, kind, gx, front):
 class Renderer:
     def __init__(self, ep, tl, W, H, meta):
         self.ep, self.tl, self.W, self.H, self.meta = ep, tl, W, H, meta
+        self.paint = None
+        if meta.get('boya'):
+            from ..boya import Boya
+            self.paint = Boya(meta['boya'], GROUND_Y)
         self.vertical = H > W
         self.layouts = [layout(sc) for sc in ep['scenes']]
         self.segs = tl['segments']
@@ -402,7 +406,7 @@ class Renderer:
                 z *= 1 + 0.05 * (1 - (t - ti) / 0.4)
         cam = Cam(W, H, cx, cy, z, sh * math.sin(t * 61), sh * math.cos(t * 47))
         loc = sc.get('location', 'tezgah')
-        f = backgrounds.draw(loc, cam)
+        f = self.paint.draw(cam) if self.paint is not None else backgrounds.draw(loc, cam)
         # karakterler: önce gökyüzü/deniz karakterleri, sonra soldan sağa yer karakterleri
         speaker = cur['who'] if cur is not None else None
 
@@ -492,7 +496,8 @@ class Renderer:
                     impact_burst(f, cam, x + CHARS[c]['w'] * 0.42, fy - 200, t - ti)
         if fx in INTRO_FX and t < 2.6:
             intro_fx(f, cam, t, fx, fx_x, front=True)
-        f = backgrounds.draw_fg(loc, cam, f)
+        if self.paint is None:
+            f = backgrounds.draw_fg(loc, cam, f)
         f = backgrounds.post(loc, f, cam, t)
         for ti, isi, _ in self.impacts:
             if isi == si and 0 <= t - ti < 0.09:

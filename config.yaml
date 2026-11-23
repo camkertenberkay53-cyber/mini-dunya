@@ -52,6 +52,13 @@ yonetmen:
 deney:
   kisa_slotlar: [sabah, aksam]
 
+# Boyalı arka plan (Nano Banana, ayrı ücretli anahtar GEMINI_IMAGE_KEY). Anahtar yoksa otomatik kapalı.
+# A/B: sabah (kısa) + öğle (normal) boyalı; akşam (kısa) + gece (normal) çizim.
+boya:
+  acik: true
+  slotlar: [sabah, oglen]
+  boyut: "2K"
+
 ingilizce:
   acik: true
   # Kanal henüz dağıtım almıyor (0 izlenme); Gemini kotasını Türkçe kanala ayırmak için 1 hafta günde 2 + pazar uzun
