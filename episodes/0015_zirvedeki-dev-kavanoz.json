@@ -1,0 +1,113 @@
+{
+ "konu": "Baharat rafında harita çizen ekip, dev bir elin bıraktığı dev kavanozdan gazoz kapağını kalkan yaparak korunur.",
+ "kategori": "devlerin gunu",
+ "ana_karakter": "tuna",
+ "baslik": "Zirvedeki Dev Kavanoz",
+ "acilis_efekti": "dev_el",
+ "kapak_yazisi": "DEV EL KAVANOZ İNDİRİYOR!",
+ "end_card": "Sen olsan kapağın altından nasıl çıkardın?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Baharat Rafı Zirvesi",
+   "location": "baharat",
+   "characters": [
+    "tuna",
+    "nil",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Baharat rafının zirvesindeyiz, koli kalesini buradan haritalayacağız!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "pire",
+     "text": "Eyvah! Dev bir el tam tepemize koca bir kavanoz indiriyor, kenara kaçın!",
+     "emotion": "panik",
+     "action": "kos_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Dur Pire, rafın kenarı dipsiz uçurum, oradan kaçamayız!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Hemen şu metal gazoz kapağının altına girin, kalkan yapıyoruz!",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "GÜM! Kavanoz indi ama sağlam kapak bizi korudu, ezilmedik!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Kavanozun camı dev bir mercek oldu, koli kalesi capcanlı görünüyor!",
+     "emotion": "saskin",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Harika manzara! Şimdi tek sorun, bu kapağın altından bizi kim çıkaracak?",
+     "emotion": "neseli",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dev El Üstümüze Kavanoz İndirdi! Zirvede Kurtuluş Planı",
+  "description": "Parmak boyundaki haritacılar Baharat Rafı Zirvesi'ndeyken dev bir el koca bir kavanoz bırakıyor! Kenara kaçamayan Tuna ve ekibi metal gazoz kapağıyla nasıl kurtulacak? Sen olsan kapağın altından nasıl çıkardın?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "türkçe animasyon",
+   "çizgi dizi",
+   "shorts",
+   "macera"
+  ]
+ },
+ "final_turu": "komik",
+ "hafiza": {
+  "ozet": "Ekip Baharat Rafı Zirvesi'nde harita çıkarırken dev elin kavanoz bırakmasıyla sıkıştı; kenardan kaçamayınca gazoz kapağını zırh yaparak korundular.",
+  "acik_meseleler": [
+   "Buzdolabındaki yüz yıllık okun gösterdiği yöndeki gizemli hava kanalı",
+   "Koli kalesine güvenli iniş yolu bulmak",
+   "Gazoz kapağının altından çıkış yolu açmak"
+  ],
+  "yeni_bolge": "Baharat Zirvesi Gözlem Noktası",
+  "cozulen_sorun": "Dev kavanozun altında ezilme tehlikesi metal gazoz kapağı sığınağıyla çözüldü.",
+  "karakter_gelisimi": {
+   "tuna": "Uçuruma kaçmak yerine yerdeki malzemeyi hızlıca kalkana dönüştürerek ekibini kurtardı.",
+   "nil": "",
+   "bulut": "",
+   "pire": ""
+  }
+ },
+ "_format": "kisa",
+ "_fikir": {
+  "slot": "aksam",
+  "ad": "Zirvedeki Dev Mutfak",
+  "ana_karakter": "tuna",
+  "mekan": "baharat",
+  "nesne": "şişe kapağı",
+  "tehlike": "dev bir elin yaklaşması",
+  "mekanizma": "keşif",
+  "ilk_saniye": "Kamera rafın en üst zirvesinden aşağıya doğru geniş açıyla bakar; devasa mutfak ayaklar altındadır.",
+  "problem": "Zirveye ulaşıldığında tüm mutfak görünür ancak dev bir el rafa yeni bir kavanoz koymak için yaklaşır.",
+  "surpriz": "Dev el kavanozu tam ekibin durduğu noktaya koyacaktır.",
+  "cozum": "Tuna ekibi şişe kapağının altına saklayarak dev elin kavanozu koyarken onları ezmesini engeller.",
+  "final": "Dev el uzaklaşır; yeni konan kavanozun arkasından harika bir manzara açılır.",
+  "final_turu": "tatmin",
+  "yenilik_puani": 9,
+  "izlenme_potansiyeli": 9
+ },
+ "tur": "ana"
+}
