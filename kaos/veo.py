@@ -235,6 +235,7 @@ def birlestir(clips, shots, ep, out_path, log=print, zamanli=False):
             a = i * per + 0.6 + k * (per - 0.8) / max(1, len(ds))
             subs.append((a, a + (per - 0.8) / max(1, len(ds)) - 0.15, d['who'], d['text']))
     kanca = (ep.get('kapak_yazisi') or ep.get('baslik', '')).upper()
+    SON = 1.6 if zamanli else 2.4  # son kart süresi (kısa klipte daha kısa)
     soru = ep.get('end_card') or 'Sen olsan ne yapardın?'
     from .engine.characters import CHARS
     dec = subprocess.Popen(['ffmpeg', '-loglevel', 'error', '-i', tmp, '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], stdout=subprocess.PIPE)
@@ -251,12 +252,12 @@ def birlestir(clips, shots, ep, out_path, log=print, zamanli=False):
         if t < 3.0:
             fr = _yazi(fr, kanca, 150, 96)
         for a, b, who, text in subs:
-            if a <= t < b and t < dur - 2.4:
+            if a <= t < b and t < dur - SON:
                 col = CHARS.get(who, {}).get('color', (255, 255, 255))
                 fr = _yazi(fr, CHARS.get(who, {}).get('name', who.upper()), 1390, 50, renk=tuple(col))
                 fr = _yazi(fr, text, 1455, 62, renk=(255, 255, 255))
-        if t > dur - 2.4:
-            k = min(1.0, (t - (dur - 2.4)) / 0.4)
+        if t > dur - SON:
+            k = min(1.0, (t - (dur - SON)) / 0.3)
             fr = (fr * (1 - 0.55 * k)).astype(np.uint8)
             fr = _yazi(fr, 'MİNİ DÜNYA', 640, 110)
             fr = _yazi(fr, soru, 820, 70, renk=(255, 255, 255))
