@@ -1,5 +1,40 @@
 {
  "video": "output/son/2026-11-23_oglen_0013_makara-kalesi-nin-ag-haritasi/video.mp4",
  "baslik": "Makara Kalesi'nin Ağ Haritası",
- "rapor": null
+ "rapor": {
+  "puanlar": {
+   "acilis": 12,
+   "anlasilirlik": 9,
+   "animasyon": 7,
+   "karakter_tutarliligi": 5,
+   "tempo": 8,
+   "gorsel": 6,
+   "final": 6,
+   "ses": 5
+  },
+  "en_iyi_sahne": "[1_saniye — 1.0 sn] Düşen dev düğmenin sahneye girişi ve derinlik hissi başarılı.",
+  "en_zayif_sahne": "[surpriz — 22.0 sn] Pire karakterinin zemine basmayıp havada asılı kalması.",
+  "acilis_degerlendirmesi": "Başlık net ve dikkat çekici ancak karakterlerin durağanlığı açılış enerjisini düşürüyor.",
+  "tempo_degerlendirmesi": "44 saniye boyunca aynı sabit kamera açısı kullanıldığı için tempo tekdüze kalmış.",
+  "gorsel_hatalar": [
+   "[surpriz — 22.0 sn] Karakter havada süzülüyor ve gölgesi zemine oturmuyor.",
+   "[final — 40.2 sn] Nil karakteri sağ kenarda kadraj dışına taşarak yarım kesilmiş."
+  ],
+  "oneriler": [
+   "Diyalog aralarında dinamik kamera açıları ve yakın planlar kullanın.",
+   "Karakterlerin zemin temaslarını ve gölge yerleşimlerini kontrol edin."
+  ],
+  "toplam": 58,
+  "karar": "Yeniden üretim / manuel inceleme gerekli",
+  "mod": "rapor (yayını durdurmaz)",
+  "kareler": [
+   "ilk_kare",
+   "1_saniye",
+   "3_saniye",
+   "orta",
+   "surpriz",
+   "final",
+   "son_kare"
+  ]
+ }
 }
