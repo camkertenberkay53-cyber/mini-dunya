@@ -27,7 +27,8 @@ KARAKTER_TARIF = {
 }
 STIL = ('Premium 3D animated family film look (Pixar/Illumination quality), soft cinematic lighting, shallow depth of field, '
         'rich realistic textures on giant household objects; the characters are finger-sized toy-like vinyl figures exactly '
-        'matching the reference images. Family friendly, no text, no logos, no brands.')
+        'matching the reference images. Family friendly. STRICT: absolutely no readable text, letters, numbers, labels, logos or '
+        'brand names anywhere; all packages, jars, boxes and cans are plain and unlabeled.')
 
 
 class VeoError(Exception):
