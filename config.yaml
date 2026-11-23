@@ -60,7 +60,9 @@ ucd:
 
 # Veo pilotu (günde 1 Shorts yapay zekâ videosu, ~0,9$/bölüm, GEMINI_IMAGE_KEY). Hata olursa 3D.
 veo:
-  acik: false   # 23 Kasım: Google bu projeye Veo erişimi vermiyor (model listesinde yok); erişim açılınca true
+  acik: true
+  motor: omni   # Gemini Omni Flash (projede açık; Veo kapalı). 12 sn ~0,84$
+  sure: 12
   slot: aksam
   cozunurluk: "720p"
   modeller: [veo-3.1-lite-generate-preview, veo-3.1-fast-generate-preview]

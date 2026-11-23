@@ -206,7 +206,7 @@ def _yazi(img, text, y, size, renk=(255, 214, 40), golge=True, max_w=0.88):
     return np.array(pil)
 
 
-def birlestir(clips, shots, ep, out_path, log=print):
+def birlestir(clips, shots, ep, out_path, log=print, zamanli=False):
     W, H, FPS = 1080, 1920, 30
     tmp = out_path + '.ham.mp4'
     lst = out_path + '.txt'
@@ -224,6 +224,11 @@ def birlestir(clips, shots, ep, out_path, log=print):
     # altyazı zamanlaması: her planın replikleri o planın süresine yayılır
     subs = []
     per = dur / max(1, len(shots))
+    if zamanli:  # Omni planı replik zamanlarını veriyor
+        for d in shots[0].get('dialogue', []):
+            if d.get('who') != 'benek' and d.get('text'):
+                subs.append((float(d.get('start', 0)), float(d.get('end', 0)) or float(d.get('start', 0)) + 2.5, d['who'], d['text']))
+        shots = []
     for i, s in enumerate(shots):
         ds = [d for d in s.get('dialogue', [])[:2] if d.get('who') != 'benek']
         for k, d in enumerate(ds):
@@ -266,7 +271,111 @@ def birlestir(clips, shots, ep, out_path, log=print):
     return out_path, dur
 
 
+# ------------------------------------------------------------------ Omni (Gemini Omni Flash): tek klip, referans görselli
+def _metin_json(prompt, log=print):
+    """Ücretli anahtarla JSON metin (ücretsiz kota sık doluyor)."""
+    for model in ('gemini-3.8-flash', 'gemini-flash-latest', 'gemini-3.7-flash'):
+        try:
+            d = _req(f'{BASE}/models/{model}:generateContent',
+                     {'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
+                      'generationConfig': {'temperature': 0.8, 'responseMimeType': 'application/json'}}, timeout=120)
+            return json.loads(''.join(p.get('text', '') for p in d['candidates'][0]['content']['parts']))
+        except Exception as e:
+            log(f'  Plan ({model}) hata: {str(e)[:120]}')
+    return None
+
+
+def omni_plan(ep, sure, log=print):
+    lines = [{'who': l['who'], 'text': l['text'], 'action': l.get('action')} for sc in ep['scenes'] for l in sc['lines']]
+    chars = list(dict.fromkeys(l['who'] for l in lines if l['who'] in KARAKTER_TARIF))[:3]
+    prompt = f"""You are the director of a premium 3D animated YouTube Shorts series "Mini Dünya": finger-sized explorer kids
+living behind the kitchen baseboard explore a giant house. Write ONE video-generation prompt for a single continuous {sure}-second
+vertical (9:16) cinematic shot sequence based on this Turkish script. Use timecodes like [0-3s], [3-7s]... covering 0-{sure}s.
+[0-2s] must already show the predicament/danger (strong hook); the last seconds deliver a surprising, funny payoff.
+Use dynamic camera moves (push-in, whip pan, low angle hero shot, close-up reactions). Describe sound effects and ambience.
+Characters (refer to them as <IMAGE_REF_0>, <IMAGE_REF_1>... in this order): {json.dumps([KARAKTER_TARIF[c] for c in chars])}
+Keep at most 4 short spoken lines total, in TURKISH, taken/shortened from the script; write them in the prompt as
+CharacterName says in Turkish: "..." at the right timecode. Benek never speaks. No on-screen text, family friendly.
+Location: {ep['scenes'][0].get('location')} | topic: {ep.get('konu', '')}
+Script: {json.dumps(lines, ensure_ascii=False)}
+Return JSON: {{"prompt": "...", "dialogue": [{{"who": "tuna", "text": "Türkçe", "start": 0.5, "end": 2.5}}]}}"""
+    d = _metin_json(prompt, log=log) or {}
+    if not d.get('prompt'):
+        d = {'prompt': f"[0-{sure}s] {ep.get('konu', '')}. The characters <IMAGE_REF_0> react with big expressive animation; dynamic camera.",
+             'dialogue': [{'who': l['who'], 'text': l['text'], 'start': 1 + 3 * i, 'end': 3.6 + 3 * i}
+                          for i, l in enumerate([l for l in lines if l['who'] != 'benek'][:3])]}
+    d['characters'] = chars
+    return d
+
+
+def omni(ep, outdir, cfg, log=print):
+    v = cfg.get('veo') or {}
+    sure = int(v.get('sure', 12))
+    p = omni_plan(ep, sure, log=log)
+    with open(os.path.join(outdir, 'omni_plan.json'), 'w', encoding='utf-8') as f:
+        json.dump(p, f, ensure_ascii=False, indent=1)
+    inp = []
+    for c in p['characters']:
+        with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
+            inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
+    txt = (f"Use the given images as character references (not as literal frames); keep their exact look in every shot. "
+           f"{STIL} {sure}-second video. {p['prompt']} Natural Turkish child voices, lively sound effects, light playful score without lyrics.")
+    inp.append({'type': 'text', 'text': txt})
+    out = os.path.join(outdir, 'omni_klip.mp4')
+    last = None
+    for model in v.get('omni_modeller', ['gemini-omni-1.2-flash', 'gemini-omni-1.1-flash']):
+        for rf in ({'type': 'video', 'aspect_ratio': '9:16', 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
+                   {'type': 'video', 'aspect_ratio': '9:16', 'resolution': v.get('cozunurluk', '720p')}):
+            body = {'model': model, 'input': inp, 'response_format': rf, 'background': False, 'store': False, 'stream': False,
+                    'generation_config': {'video_config': {'task': 'reference_to_video'}}}
+            t0 = time.time()
+            try:
+                d = _req(f'{BASE}/interactions', body, timeout=900)
+            except VeoError as e:
+                last = e
+                log(f'  Omni ({model}) hata: {str(e)[:200]}')
+                continue
+            data = None
+            for stp in d.get('steps', []) or []:
+                for c in stp.get('content', []) or []:
+                    if c.get('type') == 'video' and c.get('data'):
+                        data = c['data']
+            data = data or (d.get('output_video') or {}).get('data')
+            if not data:
+                last = VeoError(f"Omni video döndürmedi: durum={d.get('status')} {str(d)[:300]}")
+                log(f'  {last}')
+                continue
+            with open(out, 'wb') as f:
+                f.write(base64.b64decode(data))
+            log(f'  Omni klip hazır ({model}, {time.time() - t0:.0f} sn)')
+            return out, p
+    raise VeoError(f'Omni üretilemedi: {last}')
+
+
 def uret(ep, outdir, cfg, log=print):
+    if (cfg.get('veo') or {}).get('motor', 'omni') == 'omni':
+        return uret_omni(ep, outdir, cfg, log=log)
+    return uret_veo(ep, outdir, cfg, log=log)
+
+
+def uret_omni(ep, outdir, cfg, log=print):
+    t0 = time.time()
+    os.makedirs(outdir, exist_ok=True)
+    klip, p = omni(ep, outdir, cfg, log=log)
+    shots = [{'dialogue': p.get('dialogue', [])}]
+    final, dur = birlestir([klip], shots, ep, os.path.join(outdir, 'video.mp4'), log=log, zamanli=True)
+    # kapak: klibin 1. saniyesinden kare + kanca yazısı
+    fn = os.path.join(outdir, 'omni_kare.jpg')
+    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-ss', '1.0', '-i', klip, '-frames:v', '1', fn], check=True)
+    k = cv2.resize(cv2.imread(fn), (1080, 1920))[..., ::-1]
+    k = _yazi(np.ascontiguousarray(k), (ep.get('kapak_yazisi') or ep['baslik']).upper(), 160, 104)
+    thumb = os.path.join(outdir, 'kapak.jpg')
+    cv2.imwrite(thumb, k[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 90])
+    log(f'Omni bölümü hazır: {dur:.1f} sn, {(time.time() - t0) / 60:.1f} dk, tahmini maliyet ~${0.07 * dur:.2f}')
+    return final, thumb, dur
+
+
+def uret_veo(ep, outdir, cfg, log=print):
     """Veo bölümünü üretir: (video, kapak, süre). Hata -> VeoError."""
     t0 = time.time()
     os.makedirs(outdir, exist_ok=True)
