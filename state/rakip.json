@@ -1,192 +1,312 @@
 {
- "tarih": "2026-11-22",
+ "tarih": "2026-11-23",
  "icgoruler": {
   "baslik_kaliplari": [
-   "Dev [Nesne] Karşısında Hayatta Kalma Rehberi! 😱",
-   "[Karakter] Dev [Nesne] İçinde Mahsur Kaldı! 🫧",
-   "Parmak Boyunda [Masaüstü/Ev Eşyası] Macera Parkuru 🏃‍♂️",
-   "Uzak Durmanız Gereken 3 Dev Ev Tehlikesi! ⚠️",
-   "Dev Boyutlu [Günlük Durum] Nasıl Çözülür? 😂"
+   "Parmak Boyundaysan [Dev Eşya] Nasıl Kullanılır? 😱",
+   "[Karakter Adı] vs [Ev Tehdidi]: Kim Kazanır? 🔥",
+   "Bunu Sakın [Mekân]'da Deneme! ⚠️",
+   "Eğer [Küçük Nesne] Düşürürsen Ne Olur? 🤯",
+   "Evdeki En Tehlikeli 3 Yer! 🚨"
   ],
   "kanca_teknikleri": [
-   "Devasa bir nesnenin (ör. düşen bir silgi veya damlayan su) karakterin tam önüne aniden düşmesiyle başlayan fiziksel şok kancası.",
-   "Karakterin kendi boyunun 10 katı bir mekanizmayı (ör. uçlu kalem arkası) yanlışlıkla tetiklemesi ve fırlaması.",
-   "Bilinmeyen dev bir kutunun/kapağın ritmik tıkırtılar eşliğinde açılması ve içinden beklenmedik dev bir nesne çıkması.",
-   "Karakterlerin dev bir tehlikeden (çalışan robot süpürge) çığlık atmadan evrensel beden diliyle kaçış anı."
+   "İlk 1.5 saniyede dev bir insan ayağının veya evcil hayvan patisinin kameranın dibine hızla inmesi.",
+   "Haritacıların dev bir ev nesnesiyle (örn. çalışan vantilatör) fiziksel mücadelesinin tam ortasından başlama.",
+   "Karaktelerin kameraya doğru panikle koşarak izleyiciye 'SAKIN KIPIRDAMA!' uyarısı yapması.",
+   "Mikro-fiziksel tatmin kancası: İğne ucunda veya damla üstünde dengede kalma anı."
   ],
   "konu_firsatlari": [
-   "Çalışan robot süpürgenin üzerine düşüp onu bir hız treni gibi kullanmaya çalışmak.",
-   "Çalışma masasında uçlu kalemin basma mekanizmasını mancınık olarak kullanmak.",
-   "Balkondan düşen dev su damlalarını trambolin gibi kullanarak aşağı inmeye çalışmak.",
-   "Açık kalmış buzdolabının rafını kutup macerasına dönüştürüp donmuş buz küpleriyle kaymak.",
-   "Dev bir bulaşık süngerini kale yapıp akan musluk şelalesinden korunmak.",
-   "Klavyenin tuşları arasında sekerek dev bir basamak tırmanışı yarışı yapmak."
+   "Robot süpürgenin üzerini üs edinip evin haritasını çıkarma yarışı.",
+   "Damlayan mutfak musluğundan dev su çarkı ve mikro jeneratör yapma.",
+   "Çalışan bir buzdolabının içine kazara girip buz kutusunda hayatta kalma.",
+   "Koltuk minderlerinin arasına düşen altın parayı kaldıraçla çıkarma operasyonu.",
+   "Kuru temizleme poşetinden dev bir sıcak hava balonu inşa etme.",
+   "Kediyle göz göze gelip onu oyuncakla başka yöne saptırma taktiği."
   ],
   "mekan_fikirleri": [
-   "Çalışma Masası ve Kalemlik İçi",
-   "Mutfak Tezgahı ve Bulaşık Sünger Yığını",
-   "Açık Buzdolabı Alt Rafı (Buzul Bölgesi)",
-   "Banyo Lavabosu ve Sabun Köpüğü Denizi",
-   "Salon Halısı ve Robot Süpürge Güzergahı"
+   "Mutfak Lavabosu ve Bulaşıklık Dağı",
+   "Çalışma Masası (Klavye Tuşları ve Kablo Ormanı)",
+   "Oturma Odası Halısı ve Robot Süpürge Güzergahı",
+   "Süpürgelik Arkası Gizli Tüneller ve Şebeke Hattı",
+   "Buzdolabının En Üst Sebzelik Rafı"
   ],
-  "ideal_sure_sn": 35,
-  "tempo": "Yüksek tempo; ilk 2 saniyede görsel aksiyon, her 2-3 saniyede bir yeni nesne etkileşimi veya sürpriz fiziksel reaksiyon.",
+  "ideal_sure_sn": 32,
+  "tempo": "İlk 2 saniyede şok/merak kancası; her 3 saniyede bir açı veya aksiyon değişimi; diyalog yerine ses efektli görsel mizah; 25-30. saniyede tatmin edici veya eğlenceli ters köşe final.",
   "kacinilacaklar": [
-   "Uzun konuşmalar ve hikayeyi yavaşlatan diyalog ağırlıklı sahneler.",
-   "Sadece çok küçük çocuklara hitap eden eğitici veya bebeksi anlatım tarzı.",
-   "Ölçek farkını hissettirmeyen düz, derinliksiz arka planlar.",
-   "Yüksek yerel dil bağımlılığı olan espri ve metin kullanımı."
+   "Yavaş ve diyalog ağırlıklı uzun girişler yapmaktan kaçının.",
+   "Popüler oyun veya çizgi film karakterlerini birebir taklit etmekten (telif ve marka kimliği riski) kaçının.",
+   "7-45 yaş family-friendly tonu bozacak aşırı korku ve karanlık temalardan uzak durun.",
+   "Karakterlerin dev insanlarla doğrudan uzun diyaloglara girmesinden kaçının (gizlilik konseptini koruyun)."
   ],
-  "yazar_notu": "Senaryoları tamamen ölçek farkının getirdiği fiziksel komedi ve merak unsuru üzerine kurgulayın. Diyalogları minimumda tutarak evrensel beden dili, mimikler ve ritmik ses efektleriyle anlatımı güçlendirin. Her hikayede sıradan bir ev eşyasını devasa bir engel veya eğlence parkuruna dönüştürerek 2. saniyede izleyiciyi yakalayın."
- },
- "izlenen": [
-  {
-   "dil": "tr",
-   "baslik": "He knocked on a giant shell. Then they lined up. 3 #cute #animation",
-   "gunluk": 1594724,
-   "sure": 27,
-   "analiz": {
-    "ilk_2_saniye": "Bir karakterin boyuna uygun olmayan nesneyi denemesi ve fiziksel uyumsuzlukla başarısız olması.",
-    "kanca_tipi": "Merak ve fiziksel komedi",
-    "konu_turu": "Domino etkisi / sıralı nesne değişimi ve organizasyon dinamiği",
-    "mekan_turu": "Stilize 3D doğa ortamı (minimal su altı tabanı)",
-    "tempo": "Yüksek; her 1-2 saniyede bir yeni bir aksiyon, geçiş veya karakter katılımı",
-    "diyalog": "Yok; tamamen beden dili ve görsel mimikler",
-    "duygu": "Ritmik düzenin verdiği tatmin hissi (satisfying) ve durum komedisi",
-    "final": "Zincirleme reaksiyonun tamamlanması sonrası bir karakterin tepkisiyle biten punchline",
-    "yazi_kullanimi": "Hiç yazı kullanılmamış, evrensel görsel anlatım",
-    "ses_muzik": "Hareketlerle senkronize çizgi film tipi foley efektleri (pop, kayma, tıkırtı) ve ritmik ses tasarımı",
-    "uygulanabilir_ders": "Diyalogsuz içeriklerde boyut sıralamasına dayalı 'domino etkisi' kurgulamak, izleyicinin sürecin sonunu merak ederek videoyu sonuna kadar izlemesini sağlar."
+  "yazar_notu": "Her Shorts senaryosunda evrensel bir fizik kuralını veya sıradan bir ev eşyasını haritacılarımızın gözünden 'dev bir keşif görevi' olarak kurgulayın. Diyalogları minimumda tutup durum komedisi ve görsel ritme odaklanın. İzleyicinin ilk 2 saniyede 'Bu parmak boyundaki ekip buradan nasıl kurtulacak?' sorusunu sormasını sağlayın.",
+  "trend_firsatlari": [
+   {
+    "trend": "Fiziksel Nesne Deneyleri ve Kesişme Tatmini",
+    "neden_calisiyor": "Nesnelerin değişimi ve fiziksel tepkiler yüksek merak ile izleme süresi sağlıyor.",
+    "mini_dunya_uyarlamasi": "Tuna'nın dev bir mısır tanesini ateşlemek için kibrit ve çengelli iğneden yapılmış mancınık mekanizmasını test etmesi.",
+    "mekan": "Mutfak Masası",
+    "karakter": "tuna",
+    "risk": "yok",
+    "puan": 9
+   },
+   {
+    "trend": "Disiplin vs Meydan Okuma / Dayanıklılık Testi",
+    "neden_calisiyor": "Karakterin fiziksel kararlılığı ve yaşadığı zorluklar izleyicide empati ve mizah yaratıyor.",
+    "mini_dunya_uyarlamasi": "Pire'nin dev bir ataç üzerinde 24 saat dengede durma iddiası ve rüzgar estikçe yaşadığı komik mücadele.",
+    "mekan": "Çalışma Masası",
+    "karakter": "pire",
+    "risk": "yok",
+    "puan": 9
+   },
+   {
+    "trend": "Yüksek Hızlı Kaçış ve Kovalamaca",
+    "neden_calisiyor": "Adrenalin, hareketli kamera ve zamanla yarış izleyiciyi ekrana kilitliyor.",
+    "mini_dunya_uyarlamasi": "Nil ve Benek'in harita çizerken aniden çalışan robot süpürgenin emiş alanından kaçma yarışı.",
+    "mekan": "Oturma Odası Halısı",
+    "karakter": "nil",
+    "risk": "yok",
+    "puan": 10
+   },
+   {
+    "trend": "Mühendislik / 'Nasıl Yapılır?' Visual Explainer",
+    "neden_calisiyor": "Karmaşık bir mekanizmanın görsel ve basitleştirilmiş çözümü tatmin hissi veriyor.",
+    "mini_dunya_uyarlamasi": "Bulut'un eski bir duvarda asılı mekanik saatin dişlilerini kullanarak yukarı tırmanma asansörü yapması.",
+    "mekan": "Kitaplık Arkası",
+    "karakter": "bulut",
+    "risk": "yok",
+    "puan": 9
+   },
+   {
+    "trend": "Sevimli Yaratık / Hayvan Etkileşimi",
+    "neden_calisiyor": "Şirinlik faktörü ve beklenmedik sevimli reaksiyonlar sosyal medyada hızlı yayılıyor.",
+    "mini_dunya_uyarlamasi": "Pire'nin Benek'i eğitip dev bir ev karıncasıyla arkadaş olmaya çalışırken yaşanan tatlı anlar.",
+    "mekan": "Saksı İçi Toprak Alan",
+    "karakter": "pire",
+    "risk": "yok",
+    "puan": 8
+   },
+   {
+    "trend": "Nostaljik Günlük Anlar ve Anılar",
+    "neden_calisiyor": "Ortak deneyimler ve geçmişe duyulan özlem yüksek yorum/paylaşım getiriyor.",
+    "mini_dunya_uyarlamasi": "Ekibin tavan arasındaki kutuda bulduğu 90'lardan kalma nostaljik bir atari kasedinin içine girip incelemesi.",
+    "mekan": "Tavan Arası Kutusu",
+    "karakter": "bulut",
+    "risk": "yok",
+    "puan": 8
+   },
+   {
+    "trend": "İkonik Oyun Dünyası Parodileri (Roblox/Minecraft Tarzı)",
+    "neden_calisiyor": "Genç kitle tanıdık oyun estetiğini hemen benimsiyor.",
+    "mini_dunya_uyarlamasi": "Haritacıların küp şekerleri Minecraft bloğu gibi üst üste dizerek kale kurması.",
+    "mekan": "Yemek Masası",
+    "karakter": "tuna",
+    "risk": "Marka ve telif riski nedeniyle doğrudan taklik edilmemeli.",
+    "puan": 3
+   },
+   {
+    "trend": "Gece Rutini ve Huzurlu Yaşam",
+    "neden_calisiyor": "Sakinleştirici ve estetik içerikler tekrar tekrar izlenme (loop) sağlıyor.",
+    "mini_dunya_uyarlamasi": "Nil'in ekibi uyutmak için kibrit kutularından yataklar hazırlayıp pamukla kaplama süreci.",
+    "mekan": "Süpürgelik Arkası Ana Ev",
+    "karakter": "nil",
+    "risk": "yok",
+    "puan": 8
+   },
+   {
+    "trend": "Absürt İkilem / Seçim Formatı (Para vs Aşk)",
+    "neden_calisiyor": "Karakterin yaşadığı hızlı kararsızlık komedisi sürpriz finaller sunuyor.",
+    "mini_dunya_uyarlamasi": "Pire'nin dev bir çikolata kırıntısı ile parlak bir elmas düğme arasında seçim yapmak zorunda kalması.",
+    "mekan": "Mutfak Zemin Çatlağı",
+    "karakter": "pire",
+    "risk": "yok",
+    "puan": 9
+   },
+   {
+    "trend": "Abartılı Korku / Gece Canavarı Parodisi",
+    "neden_calisiyor": "Gizem ve anlık korku öğeleri merak uyandırıp tık getiriyor.",
+    "mini_dunya_uyarlamasi": "Pencereye konan dev bir gece kelebeğinin gölgesini haritacıların gölge canavarı sanması.",
+    "mekan": "Pencere Pervazı",
+    "karakter": "tuna",
+    "risk": "Çok korkunç yapılırsa 7 yaş altı aile dostu yapıyı riske atar.",
+    "puan": 3
    }
-  }
- ],
+  ]
+ },
+ "izlenen": [],
  "saat_analizi": {
   "tr (Türkiye saati)": {
    "00-06": {
-    "video": 12,
-    "medyan_gunluk": 84192,
-    "viral_oran": 0.17
+    "video": 11,
+    "medyan_gunluk": 82163,
+    "viral_oran": 0.27
    },
    "06-09": {
     "video": 6,
-    "medyan_gunluk": 70319,
+    "medyan_gunluk": 84004,
     "viral_oran": 0.33
    },
    "09-12": {
     "video": 14,
-    "medyan_gunluk": 241227,
-    "viral_oran": 0.57
+    "medyan_gunluk": 217582,
+    "viral_oran": 0.5
    },
    "12-15": {
-    "video": 22,
-    "medyan_gunluk": 78004,
-    "viral_oran": 0.27
+    "video": 27,
+    "medyan_gunluk": 72499,
+    "viral_oran": 0.3
    },
    "15-18": {
-    "video": 35,
-    "medyan_gunluk": 117103,
-    "viral_oran": 0.31
+    "video": 32,
+    "medyan_gunluk": 127332,
+    "viral_oran": 0.25
    },
    "18-21": {
     "video": 36,
-    "medyan_gunluk": 66785,
-    "viral_oran": 0.14
+    "medyan_gunluk": 71854,
+    "viral_oran": 0.17
    },
    "21-24": {
-    "video": 25,
-    "medyan_gunluk": 433,
-    "viral_oran": 0.16
+    "video": 24,
+    "medyan_gunluk": 1185,
+    "viral_oran": 0.17
    },
    "hafta_ici": {
-    "video": 105,
-    "medyan_gunluk": 81990
+    "video": 98,
+    "medyan_gunluk": 82506
    },
    "hafta_sonu": {
-    "video": 45,
-    "medyan_gunluk": 67539
+    "video": 52,
+    "medyan_gunluk": 82525
    }
   },
   "en (ABD Doğu saati)": {
    "00-06": {
-    "video": 31,
-    "medyan_gunluk": 120829,
-    "viral_oran": 0.13
+    "video": 36,
+    "medyan_gunluk": 303174,
+    "viral_oran": 0.22
    },
    "06-09": {
     "video": 41,
-    "medyan_gunluk": 326238,
-    "viral_oran": 0.24
+    "medyan_gunluk": 163168,
+    "viral_oran": 0.17
    },
    "09-12": {
-    "video": 25,
-    "medyan_gunluk": 202823,
-    "viral_oran": 0.28
+    "video": 22,
+    "medyan_gunluk": 163430,
+    "viral_oran": 0.32
    },
    "12-15": {
-    "video": 14,
-    "medyan_gunluk": 2875,
-    "viral_oran": 0.14
+    "video": 13,
+    "medyan_gunluk": 1284,
+    "viral_oran": 0.15
    },
    "15-18": {
-    "video": 12,
-    "medyan_gunluk": 767255,
-    "viral_oran": 0.5
+    "video": 9,
+    "medyan_gunluk": 924224,
+    "viral_oran": 0.56
    },
    "18-21": {
-    "video": 12,
-    "medyan_gunluk": 203565,
-    "viral_oran": 0.25
+    "video": 9,
+    "medyan_gunluk": 289749,
+    "viral_oran": 0.33
    },
    "21-24": {
-    "video": 14,
-    "medyan_gunluk": 569616,
-    "viral_oran": 0.43
+    "video": 17,
+    "medyan_gunluk": 221726,
+    "viral_oran": 0.29
    },
    "hafta_ici": {
-    "video": 104,
-    "medyan_gunluk": 325163
+    "video": 107,
+    "medyan_gunluk": 257250
    },
    "hafta_sonu": {
-    "video": 45,
-    "medyan_gunluk": 120829
+    "video": 40,
+    "medyan_gunluk": 131990
    }
   }
  },
  "en_hizli": {
   "tr": [
    {
-    "id": "7jrTMvdvqPc",
-    "baslik": "He knocked on a giant shell. Then they lined up. 3 #cute #animation",
-    "kanal": "ログの人",
-    "saat": 12,
-    "gun": 4,
-    "sure": 27,
-    "izlenme": 3116343,
-    "gunluk": 1594724,
-    "begeni": 14185,
-    "yorum": 14,
+    "id": "WXnUqnPzyug",
+    "baslik": "pugsley Addams chop chop chop 😂 #shorts​ #animation​ #roblox​ #splatoon3​ #animationmeme​ #funny​",
+    "kanal": "finox",
+    "saat": 6,
+    "gun": 6,
+    "sure": 15,
+    "izlenme": 4699357,
+    "gunluk": 3921558,
+    "begeni": 0,
+    "yorum": 11,
     "etiket": []
    },
    {
-    "id": "pJubYwj5bq4",
-    "baslik": "90s ki Aam Ke Bagh Ki Dopahar 🥭 Kaka Ki Seeti 😭 Ghibli styles #shorts #viralshorts #90snostalgia",
-    "kanal": "Ghibli Gaon",
-    "saat": 17,
-    "gun": 2,
-    "sure": 73,
-    "izlenme": 5004383,
-    "gunluk": 1328739,
+    "id": "puyeU567ACs",
+    "baslik": "90s पिताजी टिकट लेने उतरे और ट्रेन चल पड़ी 😱 #shorts",
+    "kanal": "Vox magic ",
+    "saat": 16,
+    "gun": 5,
+    "sure": 118,
+    "izlenme": 3356783,
+    "gunluk": 1878924,
     "begeni": 0,
-    "yorum": 28,
+    "yorum": 26,
     "etiket": [
-     "aam ke bagh ki dopahar",
-     "kaccha aam todna",
-     "aam chori bachpan",
-     "bagh se aam churana",
-     "chowkidar kaka ki seeti",
-     "90s nostalgia",
-     "bachpan ki yaadein",
-     "garmi ki chhuttiyan"
+     "shorts",
+     "ghibli video",
+     "ghibli kahani",
+     "ghibli story",
+     "story",
+     "kahani",
+     "ghibli video train wali",
+     "train"
+    ]
+   },
+   {
+    "id": "FeR3a1CXpPY",
+    "baslik": "If Youre Homeless… 🤔 (Animation Meme) Anim: Don_Wakamole #shorts",
+    "kanal": "Nutshell Animations",
+    "saat": 23,
+    "gun": 5,
+    "sure": 24,
+    "izlenme": 2588560,
+    "gunluk": 1715823,
+    "begeni": 60223,
+    "yorum": 1704,
+    "etiket": []
+   },
+   {
+    "id": "UlKPQapSVhY",
+    "baslik": "Netflix's Steps is actually Hilarious #shorts #netflix #netflixmovies #animation #netflixoriginal",
+    "kanal": "Danbo",
+    "saat": 3,
+    "gun": 6,
+    "sure": 56,
+    "izlenme": 2091332,
+    "gunluk": 1558534,
+    "begeni": 85016,
+    "yorum": 758,
+    "etiket": []
+   },
+   {
+    "id": "94ThibrOoX0",
+    "baslik": "Ready-Made Rafale? India Said No - (3D) Animation by Imagine How",
+    "kanal": "Imagine How",
+    "saat": 18,
+    "gun": 5,
+    "sure": 117,
+    "izlenme": 2465580,
+    "gunluk": 1418816,
+    "begeni": 50262,
+    "yorum": 813,
+    "etiket": [
+     "rafale",
+     "rafale fighter jet",
+     "rafale india",
+     "india rafale",
+     "rafale india specific enhancements",
+     "rafale upgrades india",
+     "rafale helmet",
+     "rafale ladakh"
     ]
    },
    {
@@ -196,9 +316,9 @@
     "saat": 7,
     "gun": 4,
     "sure": 23,
-    "izlenme": 28896322,
-    "gunluk": 1245936,
-    "begeni": 137710,
+    "izlenme": 29347096,
+    "gunluk": 1212875,
+    "begeni": 139685,
     "yorum": 0,
     "etiket": [
      "ghulam rasool cartoon in urdu hindi",
@@ -212,16 +332,29 @@
     ]
    },
    {
+    "id": "7jrTMvdvqPc",
+    "baslik": "He knocked on a giant shell. Then they lined up. 3 #cute #animation",
+    "kanal": "ログの人",
+    "saat": 12,
+    "gun": 4,
+    "sure": 27,
+    "izlenme": 3471970,
+    "gunluk": 1173749,
+    "begeni": 15906,
+    "yorum": 14,
+    "etiket": []
+   },
+   {
     "id": "3kNwqcY18fg",
     "baslik": "How a dragon would survive its own fire 🐉🔥 #shorts",
     "kanal": "Dr. Tie",
     "saat": 16,
     "gun": 4,
     "sure": 70,
-    "izlenme": 17174951,
-    "gunluk": 1087771,
-    "begeni": 688897,
-    "yorum": 4561,
+    "izlenme": 17557091,
+    "gunluk": 1045502,
+    "begeni": 698909,
+    "yorum": 4609,
     "etiket": []
    },
    {
@@ -231,9 +364,9 @@
     "saat": 10,
     "gun": 0,
     "sure": 44,
-    "izlenme": 20561798,
-    "gunluk": 1024651,
-    "begeni": 195435,
+    "izlenme": 20875833,
+    "gunluk": 990739,
+    "begeni": 197890,
     "yorum": 0,
     "etiket": [
      "ghulam rasool cartoon in urdu hindi",
@@ -247,77 +380,20 @@
     ]
    },
    {
-    "id": "lTERffFh334",
-    "baslik": "WALL·E (2008) | 🤖This Robot Shows What True Love Means! 🥹💕#shorts #movierecap",
-    "kanal": "meetsstar",
-    "saat": 19,
-    "gun": 1,
-    "sure": 179,
-    "izlenme": 9870223,
-    "gunluk": 846442,
-    "begeni": 411781,
-    "yorum": 2129,
-    "etiket": []
-   },
-   {
-    "id": "c85tzEkAoD0",
-    "baslik": "The Angry Birds Movie | ⚡When Speed Is Your Superpower! 🐤#shorts #movierecap",
-    "kanal": "meetsstar",
-    "saat": 19,
-    "gun": 1,
-    "sure": 166,
-    "izlenme": 19383606,
-    "gunluk": 755340,
-    "begeni": 655938,
-    "yorum": 1319,
-    "etiket": []
-   },
-   {
-    "id": "JEg7pag0Ys0",
-    "baslik": "Childhood Winter memories❄️😍 #relatable #winter #nostalgia #childhood #shorts #ytshorts #animation",
-    "kanal": "Kalaa Bliss",
-    "saat": 14,
-    "gun": 0,
-    "sure": 18,
-    "izlenme": 4247445,
-    "gunluk": 722187,
-    "begeni": 59878,
-    "yorum": 107,
-    "etiket": []
-   },
-   {
-    "id": "aiCTcEaRSro",
-    "baslik": "Leo ve Dikenli Çalının Korkunç Sırrı! 😱🌳 | Korku Hikayesi #Shorts",
-    "kanal": "Synma düzenlemeler",
-    "saat": 9,
-    "gun": 4,
-    "sure": 42,
-    "izlenme": 1390993,
-    "gunluk": 662113,
-    "begeni": 24072,
-    "yorum": 85,
-    "etiket": []
-   },
-   {
-    "id": "8tAQIRLQQIg",
-    "baslik": "Uyku Vakti Geldi! 🌙 Çocuklar İçin Gece Rutini #Shorts",
-    "kanal": "Pırtık",
-    "saat": 17,
+    "id": "v1C4_IVL42Q",
+    "baslik": "Он Стал Тем Кем Должен Был Стать🔥#shorts #мультфильм #эдит",
+    "kanal": "Mambo Story",
+    "saat": 13,
     "gun": 5,
-    "sure": 31,
-    "izlenme": 13483266,
-    "gunluk": 619188,
-    "begeni": 87549,
-    "yorum": 0,
+    "sure": 179,
+    "izlenme": 1875547,
+    "gunluk": 972603,
+    "begeni": 72937,
+    "yorum": 546,
     "etiket": [
-     "bedtime routine for kids",
-     "bedtime routine",
-     "kids bedtime",
-     "night routine for kids",
-     "toddler bedtime routine",
-     "good habits for kids",
-     "healthy habits",
-     "tidy up toys"
+     "фильм эдит",
+     "мультфильм эдит",
+     "мультфильм"
     ]
    }
   ],
@@ -329,10 +405,10 @@
     "saat": 9,
     "gun": 3,
     "sure": 35,
-    "izlenme": 17748596,
-    "gunluk": 6484818,
-    "begeni": 222091,
-    "yorum": 511,
+    "izlenme": 21927868,
+    "gunluk": 5861810,
+    "begeni": 260103,
+    "yorum": 533,
     "etiket": [
      "DoodleCrush",
      "Doodle Crush",
@@ -345,25 +421,47 @@
     ]
    },
    {
-    "id": "KD93twH0Y_c",
-    "baslik": "Now KEVIN is LOCKED OUT 📦 PART 3 (FINAL)",
-    "kanal": "SEEDPIT Official",
-    "saat": 16,
-    "gun": 5,
-    "sure": 42,
-    "izlenme": 39303024,
-    "gunluk": 5251448,
-    "begeni": 311150,
-    "yorum": 2069,
+    "id": "f7Bbujq7ll4",
+    "baslik": "आज मंगलवार है 🤒 मम्मी को बुखार है  #Shorts #HindiRhymes #kidsrhymes",
+    "kanal": "Golu Tv Rhymes ",
+    "saat": 2,
+    "gun": 4,
+    "sure": 29,
+    "izlenme": 71480949,
+    "gunluk": 4193536,
+    "begeni": 419090,
+    "yorum": 0,
     "etiket": [
-     "seedpit",
-     "seed",
-     "kevin",
-     "seed and kevin",
-     "seed moved out",
-     "moved out",
-     "part 3",
-     "final"
+     "Chuhey Ko Bukhar",
+     "Aaj Mangalvar Hai",
+     "Mummy Ko Bukhar Hai",
+     "Hindi Rhymes",
+     "Kids Rhymes",
+     "Baby Rhymes",
+     "Hindi Balgeet",
+     "Nursery Rhymes"
+    ]
+   },
+   {
+    "id": "bcJZ7HANeNY",
+    "baslik": "Motivation vs Discipline vs Obsession vs Anger: The Mine 🩸 #motivation #discipline #animation",
+    "kanal": "MindFrame Animation ",
+    "saat": 16,
+    "gun": 6,
+    "sure": 32,
+    "izlenme": 23647061,
+    "gunluk": 3172272,
+    "begeni": 369628,
+    "yorum": 15222,
+    "etiket": [
+     "discipline",
+     "motivation",
+     "selfimprovement",
+     "animation",
+     "growth",
+     "consistency",
+     "nevergiveup",
+     "anger"
     ]
    },
    {
@@ -373,9 +471,9 @@
     "saat": 12,
     "gun": 5,
     "sure": 61,
-    "izlenme": 70624677,
-    "gunluk": 3262138,
-    "begeni": 746484,
+    "izlenme": 71367152,
+    "gunluk": 3150358,
+    "begeni": 750724,
     "yorum": 0,
     "etiket": [
      "FGH Magic Kids",
@@ -389,93 +487,65 @@
     ]
    },
    {
+    "id": "NJSK_k0Lo1Y",
+    "baslik": "Sweet House vs Veggie House! Which One Would You Live In? #shorts #kidssong",
+    "kanal": "Dominoki Kids Songs",
+    "saat": 10,
+    "gun": 1,
+    "sure": 37,
+    "izlenme": 15718136,
+    "gunluk": 2750310,
+    "begeni": 129852,
+    "yorum": 0,
+    "etiket": [
+     "Brush Your Teeth",
+     "Brush Your Teeth Song",
+     "brush your teeth song",
+     "brush teeth song",
+     "brushing teeth",
+     "brushing teeth song",
+     "kids music",
+     "kid songs"
+    ]
+   },
+   {
+    "id": "urgZt90_kFI",
+    "baslik": "بکری دادی کی واشنگ مشین میں جھاگ ہی جھاگ 😂 | Bakri Dadi Ka Washing Machine Hungama | Part 8",
+    "kanal": "baby learning",
+    "saat": 23,
+    "gun": 5,
+    "sure": 61,
+    "izlenme": 53584860,
+    "gunluk": 2416409,
+    "begeni": 552585,
+    "yorum": 0,
+    "etiket": []
+   },
+   {
     "id": "o-X3FyT2IBY",
     "baslik": "Which One Is the FUNNIEST? 1, 2 or 3? 😂 - Maizen Minecraft Animations #shorts #minecraft",
     "kanal": "Sir Potato",
     "saat": 12,
     "gun": 1,
     "sure": 18,
-    "izlenme": 29085916,
-    "gunluk": 2498653,
-    "begeni": 207071,
-    "yorum": 4870,
+    "izlenme": 29231442,
+    "gunluk": 2311792,
+    "begeni": 207837,
+    "yorum": 4896,
     "etiket": []
    },
    {
-    "id": "Kpfj83SuYiE",
-    "baslik": "Can Kevin MOW Seed? 🌱",
-    "kanal": "SEEDPIT Official",
-    "saat": 11,
-    "gun": 5,
-    "sure": 35,
-    "izlenme": 16447952,
-    "gunluk": 2138230,
-    "begeni": 76246,
-    "yorum": 351,
-    "etiket": [
-     "seedpit",
-     "seed",
-     "kevin",
-     "seed and kevin",
-     "lawn mower",
-     "mow",
-     "mowing",
-     "can kevin mow seed"
-    ]
-   },
-   {
-    "id": "nGtuqD1xn0Y",
-    "baslik": "Kamzor Sheru Kaise Bana Taqatwar Sher? 🦁🔥#Shorts #YouTubeShorts #Sheru  #AIAnimation #AnimalStory",
-    "kanal": "HARIS EPIC AI",
-    "saat": 8,
-    "gun": 4,
-    "sure": 93,
-    "izlenme": 62454365,
-    "gunluk": 2097340,
-    "begeni": 825099,
-    "yorum": 778,
-    "etiket": []
-   },
-   {
-    "id": "MBghiGJ6Gso",
-    "baslik": "Motivation vs Discipline vs Obsession: 365 Days on One Bar🩸 #animation #discipline #motivation",
-    "kanal": "MindFrame Animation ",
-    "saat": 16,
+    "id": "ciPk1z0DGNs",
+    "baslik": "The Shapes Song | Learn Shapes & Colors for Kids | Bang Bang Monkey",
+    "kanal": "Bang Bang Monkey Song",
+    "saat": 3,
     "gun": 1,
-    "sure": 50,
-    "izlenme": 23388630,
-    "gunluk": 2038354,
-    "begeni": 415699,
-    "yorum": 13140,
-    "etiket": [
-     "discipline",
-     "motivation",
-     "selfimprovement",
-     "animation",
-     "growth"
-    ]
-   },
-   {
-    "id": "fUN56NRXWGM",
-    "baslik": "From Tiny Seeds to a Dream Custard Apple Orchard 🍈🌱 | Harvest, Sell & Sweet Moments ❤️#shorts #cozy",
-    "kanal": "Ghibli Tales",
-    "saat": 23,
-    "gun": 2,
-    "sure": 169,
-    "izlenme": 33427064,
-    "gunluk": 1944282,
-    "begeni": 518839,
-    "yorum": 803,
-    "etiket": [
-     "custard apple",
-     "custard apple orchard",
-     "custard apple harvest",
-     "custard apple farming",
-     "sitaphal",
-     "sitaphal farming",
-     "fruit orchard",
-     "fruit harvest"
-    ]
+    "sure": 116,
+    "izlenme": 41476713,
+    "gunluk": 2074648,
+    "begeni": 22934,
+    "yorum": 0,
+    "etiket": []
    },
    {
     "id": "FZsY0dgpUgI",
@@ -484,9 +554,9 @@
     "saat": 18,
     "gun": 1,
     "sure": 114,
-    "izlenme": 47749222,
-    "gunluk": 1879834,
-    "begeni": 10287,
+    "izlenme": 52320128,
+    "gunluk": 1981476,
+    "begeni": 11382,
     "yorum": 0,
     "etiket": [
      "brush your teeth song",
@@ -500,17 +570,23 @@
     ]
    },
    {
-    "id": "9CtfI8MN7kA",
-    "baslik": "Jerry and Tom (Minecraft Animation) #shorts",
-    "kanal": "toonz CRAFT",
-    "saat": 10,
+    "id": "MBghiGJ6Gso",
+    "baslik": "Motivation vs Discipline vs Obsession: 365 Days on One Bar🩸 #animation #discipline #motivation",
+    "kanal": "MindFrame Animation ",
+    "saat": 16,
     "gun": 1,
-    "sure": 15,
-    "izlenme": 33948339,
-    "gunluk": 1812138,
-    "begeni": 359144,
-    "yorum": 2295,
-    "etiket": []
+    "sure": 50,
+    "izlenme": 24514424,
+    "gunluk": 1964591,
+    "begeni": 428338,
+    "yorum": 13489,
+    "etiket": [
+     "discipline",
+     "motivation",
+     "selfimprovement",
+     "animation",
+     "growth"
+    ]
    }
   ]
  }

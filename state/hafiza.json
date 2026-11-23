@@ -93,8 +93,8 @@
    "mekan": "tezgah",
    "ana_karakter": "nil",
    "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
-   "izlenme": 1106,
-   "begeni": 4,
+   "izlenme": 1200,
+   "begeni": 5,
    "yorum": 1,
    "kuruldu": true
   },
@@ -112,7 +112,7 @@
    "mekan": "tezgah",
    "ana_karakter": "pire",
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
-   "izlenme": 1202,
+   "izlenme": 1245,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -131,8 +131,8 @@
    "mekan": "tezgah",
    "ana_karakter": "bulut",
    "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
-   "izlenme": 5,
-   "begeni": 0,
+   "izlenme": 340,
+   "begeni": 4,
    "yorum": 1,
    "kuruldu": true
   },
@@ -238,9 +238,9 @@
    "mekan": "lavabo",
    "ana_karakter": "bulut",
    "final": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?",
-   "izlenme": 0,
-   "begeni": 0,
-   "yorum": 1,
+   "izlenme": 276,
+   "begeni": 3,
+   "yorum": 2,
    "kuruldu": true
   },
   {
@@ -269,7 +269,10 @@
    "mekan": "baharat",
    "ana_karakter": "tuna",
    "final": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!",
-   "kuruldu": true
+   "kuruldu": true,
+   "izlenme": 155,
+   "begeni": 3,
+   "yorum": 2
   }
  ],
  "acik_meseleler": [
@@ -278,9 +281,9 @@
  "en_cok_izlenen": [
   "Menteşe Çıkmazı (1217 izlenme, izleme %85.2, +1 abone; kategori problem cozme, mekân zemin, odak bulut): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
   "Sabun Kaydırağı Yarışı (1323 izlenme; kategori yaris, mekân lavabo, odak pire): Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
-  "Şeker Küpü Kayalıkları (1202 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
-  "Lavabo Gölü Köpük Salı (1152 izlenme; kategori teknolojik kesif, mekân lavabo, odak nil): Ekip, Bulut'un köpük salı ve kulak çöpü küreği yardımıyla damla dalgasını atlatıp köpüklü bir şekilde Şeker Küpü Kayalıkları'na ulaştı.",
-  "Sünger Ormanı Kurtarması (1106 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı."
+  "Şeker Küpü Kayalıkları (1245 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "Sünger Ormanı Kurtarması (1200 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
+  "Lavabo Gölü Köpük Salı (1152 izlenme; kategori teknolojik kesif, mekân lavabo, odak nil): Ekip, Bulut'un köpük salı ve kulak çöpü küreği yardımıyla damla dalgasını atlatıp köpüklü bir şekilde Şeker Küpü Kayalıkları'na ulaştı."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -325,7 +328,7 @@
    "video_id": "g1FlC-ZbV78",
    "izlenme": 2,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -336,7 +339,7 @@
    "video_id": "wsPRpSSbOfc",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -347,7 +350,7 @@
    "video_id": "Qe4bBKwH3Yw",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -358,7 +361,7 @@
    "video_id": "c-Rvk4jTea4",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -369,7 +372,7 @@
    "video_id": "TjwbK1_xXgU",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -380,7 +383,7 @@
    "video_id": "8HFHWW1453M",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   },
   {
@@ -398,7 +401,7 @@
    "video_id": "q1yypCy9pJw",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0,
+   "yorum": 1,
    "kuruldu": true
   }
  ],
@@ -793,9 +796,9 @@
   ]
  },
  "en_zayif": [
-  "Çatal Mancınık Testi (5 izlenme; kategori mucit ani, mekân tezgah, odak bulut): Bulut tezgâhtaki dev bir çatalı mancınığa dönüştürür. Tuna sabırsızlanıp zembereği çalıştırınca ikili peçete dağına savrulur.",
-  "Musluk Şelalesi Gizemi (2 izlenme; kategori gizem, mekân lavabo, odak nil): Ekip, damlayan musluğun yarattığı dalgaları atlatıp Pire'nin yüksek zıplayışı sayesinde musluğun arkasındaki gizli boru geçidine sığındı ve burayı haritaladı.",
-  "Köpük Gölü Kurtarması (0 izlenme; kategori kurtarma, mekân lavabo, odak bulut): Bulut'un köpükle gidere kayan vida anahtarını Tuna'nın yardımı ve ataş kancasıyla kurtardılar; çekilen kanca lavabo tıpasını açınca tüm su boşaldı ama Bulut dev bir sabun balonunun içinde havada kaldı."
+  "Köpük Gölü Kurtarması (276 izlenme; kategori kurtarma, mekân lavabo, odak bulut): Bulut'un köpükle gidere kayan vida anahtarını Tuna'nın yardımı ve ataş kancasıyla kurtardılar; çekilen kanca lavabo tıpasını açınca tüm su boşaldı ama Bulut dev bir sabun balonunun içinde havada kaldı.",
+  "Buzdolabından Büyük Kaçış (8 izlenme; kategori basarisiz plan, mekân tezgah, odak tuna): Ekip buz gibi buzdolabında mahsur kaldı, Benek dışarı kaçarak kapağın sensörünü çalıştırdı ve haritacılar son anda tezgâha kurtuldu.",
+  "Musluk Şelalesi Gizemi (2 izlenme; kategori gizem, mekân lavabo, odak nil): Ekip, damlayan musluğun yarattığı dalgaları atlatıp Pire'nin yüksek zıplayışı sayesinde musluğun arkasındaki gizli boru geçidine sığındı ve burayı haritaladı."
  ],
  "karakter_hafiza": {
   "tuna": [
@@ -824,5 +827,15 @@
  "en_cozulenler": [
   "Bulut'un denizaltısı kilitlendi ama sabun balonu tahliye mekanizması sayesinde ekip güvenle yüzeye çıktı."
  ],
- "son_yukleme": "2026-11-23T09:46:48.837518+03:00"
+ "son_yukleme": "2026-11-23T09:46:48.837518+03:00",
+ "donusum_dersleri": {
+  "tarih": "2026-11-23",
+  "genel": 0.28,
+  "iyi": [
+   "Menteşe Çıkmazı (odak bulut, problem cozme, final )"
+  ],
+  "kotu": [
+   "Tezgâh Ovası Keşfi (odak tuna, yeni bolge, final )"
+  ]
+ }
 }

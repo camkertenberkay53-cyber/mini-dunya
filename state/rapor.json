@@ -1,9 +1,267 @@
 {
- "tarih": "2026-11-22",
- "durum": "veri yok",
+ "tarih": "2026-11-23",
+ "durum": "tamam",
+ "video_sayisi": 3,
+ "toplam_izlenme": 3564,
+ "toplam_abone": 1,
+ "genel_donusum": 0.28,
+ "medyan_izlenme": 1217,
+ "medyan_donusum": 0.0,
+ "siniflar": {
+  "A": [
+   {
+    "no": 2,
+    "baslik": "Menteşe Çıkmazı",
+    "tarih": "2026-11-20",
+    "slot": "gece",
+    "tur": "bagimsiz",
+    "izlenme": 1217,
+    "abone": 1,
+    "donusum": 0.82,
+    "izleme_yuzdesi": 85.2,
+    "kategori": "problem cozme",
+    "mekan": "zemin",
+    "ana_karakter": "bulut",
+    "final_turu": "",
+    "format": "normal",
+    "boya": "cizim",
+    "yonetmen": null,
+    "sinif": "A"
+   }
+  ],
+  "B": [
+   {
+    "no": 1,
+    "baslik": "Süpürgelik Geçidi",
+    "tarih": "2026-11-20",
+    "slot": "sabah",
+    "tur": "ana",
+    "izlenme": 1219,
+    "abone": 0,
+    "donusum": 0.0,
+    "izleme_yuzdesi": 30.3,
+    "kategori": "",
+    "mekan": "",
+    "ana_karakter": "",
+    "final_turu": "",
+    "format": "normal",
+    "boya": "cizim",
+    "yonetmen": null,
+    "sinif": "B"
+   }
+  ],
+  "C": [],
+  "D": [
+   {
+    "no": 3,
+    "baslik": "Tezgâh Ovası Keşfi",
+    "tarih": "2026-11-21",
+    "slot": "sabah",
+    "tur": "ana",
+    "izlenme": 1128,
+    "abone": 0,
+    "donusum": 0.0,
+    "izleme_yuzdesi": 33.0,
+    "kategori": "yeni bolge",
+    "mekan": "tezgah",
+    "ana_karakter": "tuna",
+    "final_turu": "",
+    "format": "normal",
+    "boya": "cizim",
+    "yonetmen": null,
+    "sinif": "D"
+   }
+  ]
+ },
+ "kategori": {
+  "problem cozme": {
+   "video": 1,
+   "izlenme": 1217,
+   "abone": 1,
+   "ort_izlenme": 1217,
+   "donusum": 0.82,
+   "izleme_yuzdesi": 85.2
+  },
+  "?": {
+   "video": 1,
+   "izlenme": 1219,
+   "abone": 0,
+   "ort_izlenme": 1219,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 30.3
+  },
+  "yeni bolge": {
+   "video": 1,
+   "izlenme": 1128,
+   "abone": 0,
+   "ort_izlenme": 1128,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 33.0
+  }
+ },
+ "karakter": {
+  "bulut": {
+   "video": 1,
+   "izlenme": 1217,
+   "abone": 1,
+   "ort_izlenme": 1217,
+   "donusum": 0.82,
+   "izleme_yuzdesi": 85.2
+  },
+  "?": {
+   "video": 1,
+   "izlenme": 1219,
+   "abone": 0,
+   "ort_izlenme": 1219,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 30.3
+  },
+  "tuna": {
+   "video": 1,
+   "izlenme": 1128,
+   "abone": 0,
+   "ort_izlenme": 1128,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 33.0
+  }
+ },
+ "mekan": {
+  "zemin": {
+   "video": 1,
+   "izlenme": 1217,
+   "abone": 1,
+   "ort_izlenme": 1217,
+   "donusum": 0.82,
+   "izleme_yuzdesi": 85.2
+  },
+  "?": {
+   "video": 1,
+   "izlenme": 1219,
+   "abone": 0,
+   "ort_izlenme": 1219,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 30.3
+  },
+  "tezgah": {
+   "video": 1,
+   "izlenme": 1128,
+   "abone": 0,
+   "ort_izlenme": 1128,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 33.0
+  }
+ },
+ "final_turu": {
+  "?": {
+   "video": 3,
+   "izlenme": 3564,
+   "abone": 1,
+   "ort_izlenme": 1188,
+   "donusum": 0.28,
+   "izleme_yuzdesi": 49.5
+  }
+ },
+ "slot": {
+  "gece": {
+   "video": 1,
+   "izlenme": 1217,
+   "abone": 1,
+   "ort_izlenme": 1217,
+   "donusum": 0.82,
+   "izleme_yuzdesi": 85.2
+  },
+  "sabah": {
+   "video": 2,
+   "izlenme": 2347,
+   "abone": 0,
+   "ort_izlenme": 1174,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 31.6
+  }
+ },
+ "format": {
+  "normal": {
+   "video": 3,
+   "izlenme": 3564,
+   "abone": 1,
+   "ort_izlenme": 1188,
+   "donusum": 0.28,
+   "izleme_yuzdesi": 49.5
+  }
+ },
+ "boya": {
+  "cizim": {
+   "video": 3,
+   "izlenme": 3564,
+   "abone": 1,
+   "ort_izlenme": 1188,
+   "donusum": 0.28,
+   "izleme_yuzdesi": 49.5
+  }
+ },
+ "yonetmen_izlenme_korelasyonu": null,
  "eksik": [
-  "Süpürgelik Geçidi",
-  "Menteşe Çıkmazı"
+  "Sünger Ormanı Kurtarması",
+  "Şeker Küpü Kayalıkları",
+  "Çatal Mancınık Testi"
  ],
- "videolar": []
+ "videolar": [
+  {
+   "no": 1,
+   "baslik": "Süpürgelik Geçidi",
+   "tarih": "2026-11-20",
+   "slot": "sabah",
+   "tur": "ana",
+   "izlenme": 1219,
+   "abone": 0,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 30.3,
+   "kategori": "",
+   "mekan": "",
+   "ana_karakter": "",
+   "final_turu": "",
+   "format": "normal",
+   "boya": "cizim",
+   "yonetmen": null,
+   "sinif": "B"
+  },
+  {
+   "no": 2,
+   "baslik": "Menteşe Çıkmazı",
+   "tarih": "2026-11-20",
+   "slot": "gece",
+   "tur": "bagimsiz",
+   "izlenme": 1217,
+   "abone": 1,
+   "donusum": 0.82,
+   "izleme_yuzdesi": 85.2,
+   "kategori": "problem cozme",
+   "mekan": "zemin",
+   "ana_karakter": "bulut",
+   "final_turu": "",
+   "format": "normal",
+   "boya": "cizim",
+   "yonetmen": null,
+   "sinif": "A"
+  },
+  {
+   "no": 3,
+   "baslik": "Tezgâh Ovası Keşfi",
+   "tarih": "2026-11-21",
+   "slot": "sabah",
+   "tur": "ana",
+   "izlenme": 1128,
+   "abone": 0,
+   "donusum": 0.0,
+   "izleme_yuzdesi": 33.0,
+   "kategori": "yeni bolge",
+   "mekan": "tezgah",
+   "ana_karakter": "tuna",
+   "final_turu": "",
+   "format": "normal",
+   "boya": "cizim",
+   "yonetmen": null,
+   "sinif": "D"
+  }
+ ]
 }
