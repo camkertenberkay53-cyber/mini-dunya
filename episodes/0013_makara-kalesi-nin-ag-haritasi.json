@@ -1,0 +1,118 @@
+{
+ "konu": "Nil ve ekibi Dikiş Kutusu Vadisi'nde haritaları yırtılınca sevimli bir örümceğin ördüğü iplik ağ haritasıyla yollarını bulur.",
+ "kategori": "yeni canli",
+ "ana_karakter": "nil",
+ "baslik": "Makara Kalesi'nin Ağ Haritası",
+ "acilis_efekti": "dusen_nesne",
+ "kapak_yazisi": "DEV DÜĞME DÜŞTÜ HARİTA YIRTILDI!",
+ "end_card": "Senin haritanı kimin örmesini isterdin?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Dikiş Kutusu Vadisi",
+   "location": "tezgah",
+   "characters": [
+    "nil",
+    "pire",
+    "bulut"
+   ],
+   "lines": [
+    {
+     "who": "nil",
+     "text": "Dev düğme yuvarlanıp haritamızı yırttı, Dikiş Kutusu'nda yönümüzü kaybettik!",
+     "emotion": "panik",
+     "action": "carp"
+    },
+    {
+     "who": "pire",
+     "text": "Yırtık parçaları birleştirmeyi denedim ama rüzgâr hepsini uçurdu!",
+     "emotion": "panik",
+     "action": "kos_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Şu dev makaranın arkasında minik bir örümcek bize bakıyor!",
+     "emotion": "saskin",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Korkmayın, o sadece yuva örmek için iplik arıyor!",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Bizi makaraya sarıp paket etmesin sakın?",
+     "emotion": "panik",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Cebimdeki kırmızı ipliği ucuyla örümceğe uzatıyorum!",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "nil",
+     "text": "İnanılmaz! İplikle bize vadinin kuşbakışı haritasını ördü!",
+     "emotion": "normal",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "pire",
+     "text": "Harika! Ama umarım dönüş yolunda haritamızı sinekler yemez!",
+     "emotion": "normal",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Dikiş Kutusu Vadisi'nin Gizemli Haritası!",
+  "description": "Dikiş Kutusu'nda dev bir düğme düşüp haritamızı yırtınca kaybolduk! Sevimli örümceğin yardımıyla yolu nasıl bulduk? Böyle bir ağ haritası ister miydin?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "çizgi film",
+   "dikiş kutusu",
+   "macera",
+   "örümcek",
+   "harita"
+  ]
+ },
+ "final_turu": "sasirtici",
+ "hafiza": {
+  "ozet": "Dikiş Kutusu Vadisi'nde dev düğmenin yuvarlanmasıyla harita yırtıldı. Ekip yırtık parçaları birleştiremeyince, Bulut'un ipliği sayesinde sevimli örümcek onlara ağdan bir yol haritası ördü.",
+  "acik_meseleler": [
+   "Dikiş Kutusu Vadisi'nin ötesindeki kumaş tepeciğinin keşfi."
+  ],
+  "yeni_bolge": "Dikiş Kutusu Vadisi",
+  "cozulen_sorun": "Yırtılan harita yerine örümceğin iplikle ördüğü ağ haritası kullanılarak yol bulundu.",
+  "karakter_gelisimi": {
+   "tuna": "",
+   "nil": "Kriz anında sakin kalıp sevimli canlının ihtiyacını çözüme dönüştürdü.",
+   "bulut": "",
+   "pire": ""
+  }
+ },
+ "_format": "normal",
+ "_fikir": {
+  "slot": "oglen",
+  "ad": "Yıldızların Sesi",
+  "ana_karakter": "nil",
+  "mekan": "baharat",
+  "nesne": "düğme",
+  "tehlike": "büyük bir titreşim",
+  "mekanizma": "beklenmedik dostluk",
+  "ilk_saniye": "Raftaki titremeyle dev bir yıldız anasonun çan gibi ses çıkararak sallanması.",
+  "problem": "Labirentteki titreşimler yol tarif haritasını yırtar.",
+  "surpriz": "Titreşimi yapan şey rafın arkasında yuza yapmış sevimli bir örümcektir.",
+  "cozum": "Nil düğmenin deliğinden örümceğe iplik uzatır, örümcek onlara labirentin kuşbakışı ağ haritasını örer.",
+  "final": "Örümceğin ördüğü ağ haritasıyla labirent kolayca geçilir.",
+  "final_turu": "sasirtici",
+  "yenilik_puani": 9,
+  "izlenme_potansiyeli": 9
+ },
+ "tur": "bagimsiz"
+}
