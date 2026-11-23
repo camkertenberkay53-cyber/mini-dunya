@@ -361,7 +361,7 @@ def uzat(prev_id, chars, prompt, sure, out, cfg, log=print, oran='9:16'):
         for rf in ({'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
                    {'type': 'video', 'resolution': v.get('cozunurluk', '720p')}, None):
             body = {'model': model, 'previous_interaction_id': prev_id, 'input': inp, 'background': False, 'store': True,
-                    'stream': False, 'generation_config': {'video_config': {'task': 'extend'}}}
+                    'stream': False}  # API: previous_interaction_id ile 'task' gönderilemez
             if rf:
                 body['response_format'] = rf
             t0 = time.time()
