@@ -240,7 +240,8 @@
    "final": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 1
+   "yorum": 1,
+   "kuruldu": true
   },
   {
    "no": 12,
@@ -267,7 +268,8 @@
    "fikir": null,
    "mekan": "baharat",
    "ana_karakter": "tuna",
-   "final": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!"
+   "final": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!",
+   "kuruldu": true
   }
  ],
  "acik_meseleler": [
@@ -322,7 +324,8 @@
    "video_id": "g1FlC-ZbV78",
    "izlenme": 2,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 5,
@@ -332,7 +335,8 @@
    "video_id": "wsPRpSSbOfc",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 7,
@@ -342,7 +346,8 @@
    "video_id": "Qe4bBKwH3Yw",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 8,
@@ -352,7 +357,8 @@
    "video_id": "c-Rvk4jTea4",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 9,
@@ -362,7 +368,8 @@
    "video_id": "TjwbK1_xXgU",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 10,
@@ -372,7 +379,8 @@
    "video_id": "8HFHWW1453M",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   },
   {
    "no": 11,
@@ -389,14 +397,17 @@
    "video_id": "q1yypCy9pJw",
    "izlenme": 0,
    "begeni": 0,
-   "yorum": 0
+   "yorum": 0,
+   "kuruldu": true
   }
  ],
  "oynatma": {
   "Mini Dünya · Sezon 1: Mutfak Kıtası": "PLRChhAMp9EFY"
  },
  "bekleyen_yorum": [],
- "oynatma_en": {},
+ "oynatma_en": {
+  "Mini World · Season 1": "PLIvGBQws7jrw"
+ },
  "_gun": 4,
  "fikir_havuzu": {
   "tr": {},
