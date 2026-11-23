@@ -60,17 +60,21 @@ def build_timeline(ep, line_wavs, long_form=False):
 
 
 # ---------------------------------------------------------------- sahne düzeni
+GAP = 95       # karakterler arası boşluk (birbirinin önüne geçmesinler)
+MIN_GAP = 60   # yürürken bile korunacak en az boşluk
+
+
 def layout(scene, order=None):
     chars = [c for c in (order or scene['characters']) if c in CHARS]
     ground = [c for c in chars if CHARS[c]['ground']]
     pos = {}
     widths = [CHARS[c]['w'] for c in ground]
-    total = sum(widths) + 50 * max(0, len(ground) - 1)
+    total = sum(widths) + GAP * max(0, len(ground) - 1)
     cx = 550
     x = cx - total / 2
     for c, w in zip(ground, widths):
         pos[c] = (x + w / 2, GROUND_Y)
-        x += w + 50
+        x += w + GAP
     return pos
 
 
@@ -290,6 +294,26 @@ class Renderer:
             order = left[::-1] + mid + ben + right
             self.layouts[si2] = layout(sc2, order)
             self.wide[si2] = shot_for(dict(who=None, emotion='normal', action='gir_sag'), 0, 1, None, W, H, self.layouts[si2])
+        # yürüyüşler komşu karakterin içine girmesin: her adım, o anki komşulara göre sınırlanır
+        for si2 in range(len(ep['scenes'])):
+            cur_x = {c: xy[0] for c, xy in self.layouts[si2].items()}
+            evs = sorted((tm, c, d, i) for (sj, c), mv in self.moves.items() if sj == si2 for i, (tm, d) in enumerate(mv))
+            for tm, c, d, i in evs:
+                x0 = cur_x[c]
+                lo, hi = -1e9, 1e9
+                for o, xo in cur_x.items():
+                    if o == c:
+                        continue
+                    sep = (CHARS[c]['w'] + CHARS[o]['w']) / 2 + MIN_GAP
+                    if xo <= x0:
+                        lo = max(lo, xo + sep)
+                    else:
+                        hi = min(hi, xo - sep)
+                nd = max(lo, min(hi, x0 + d)) - x0
+                if abs(nd) < 40:
+                    nd = 0.0  # yer yok: yerinde döner, kimsenin önüne geçmez
+                self.moves[(si2, c)][i] = (tm, nd)
+                cur_x[c] = x0 + nd
         # kamera çekimlerini, o anda sahnede gerçekten olan karakterlerin GÜNCEL konumlarına göre yeniden hesapla
         for si2 in range(len(ep['scenes'])):
             ss = [q for q in self.segs if q['scene'] == si2]
@@ -380,11 +404,11 @@ class Renderer:
         loc = sc.get('location', 'tezgah')
         f = backgrounds.draw(loc, cam)
         # karakterler: önce gökyüzü/deniz karakterleri, sonra soldan sağa yer karakterleri
-        def depth(c):
-            n = sum(1 for tm, _ in self.moves.get((si, c), []) if t > tm)
-            return (n % 2, pos[c][0])
-        order = sorted(pos.keys(), key=depth)
         speaker = cur['who'] if cur is not None else None
+
+        def depth(c):  # konuşan karakter her zaman en önde çizilir
+            return (c == speaker, pos[c][0])
+        order = sorted(pos.keys(), key=depth)
         fx = self.ep.get('acilis_efekti') if (not self.tl['long'] and si == 0) else None
         fx_x = sum(p[0] for p in pos.values()) / max(1, len(pos)) + 60
         if fx in INTRO_FX and t < 2.6:
@@ -414,8 +438,7 @@ class Renderer:
                 if t > tm:
                     k2 = ease(seg(t, tm, tm + 0.9))
                     x += dxm * k2
-                    y += (45 if n_mv % 2 == 0 else -45) * k2
-                    if k2 < 1:
+                    if k2 < 1 and dxm:
                         walk_in = 1.0
             # boşta küçük kıpırdanma (ağırlık aktarma)
             ph0 = self.blink_off[c] * 1.7
