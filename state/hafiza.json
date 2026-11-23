@@ -368,7 +368,6 @@
    "tur": "ana",
    "baslik": "Zirvedeki Dev Kavanoz",
    "ozet": "Ekip Baharat Rafı Zirvesi'nde harita çıkarırken dev elin kavanoz bırakmasıyla sıkıştı; kenardan kaçamayınca gazoz kapağını zırh yaparak korundular.",
-   "video_id": "IhXVnAaj--s",
    "ses": "veo",
    "kategori": "devlerin gunu",
    "konu": "Baharat rafında harita çizen ekip, dev bir elin bıraktığı dev kavanozdan gazoz kapağını kalkan yaparak korunur.",
@@ -427,7 +426,10 @@
    "final": "Harika manzara! Şimdi tek sorun, bu kapağın altından bizi kim çıkaracak?",
    "izlenme": 1,
    "begeni": 0,
-   "yorum": 1
+   "yorum": 1,
+   "video_id_eski": "IhXVnAaj--s",
+   "silindi": "2026-11-23",
+   "not": "12 sn versiyon; 45 sn sürümü 63DNlAqSe4Y ile değiştirildi (kullanıcı elle sildi)"
   },
   {
    "no": 16,
