@@ -163,6 +163,7 @@ def build(r, outdir, samples=6, log=print, max_frames=None):
     if max_frames:
         n_tot = min(n_tot, max_frames)
     rects, t0, done = {}, time.time(), 0
+    limit = float(os.environ.get('UCD_SURE_SINIRI_DK', '55')) * 60  # bu süreyi aşarsa 2D'ye dön (yayın gecikmesin)
     # karakter durumlarını yakalamak için Renderer'ı yakalama kipinde çalıştır
     r.texts = lambda *a, **k: []
     for i in range(n_tot):
@@ -223,6 +224,11 @@ def build(r, outdir, samples=6, log=print, max_frames=None):
         py0 = sc.render.resolution_y - int(sc.render.border_max_y * sc.render.resolution_y)
         frames[(si, i)] = (path, x0 + px0 / R, y0 + py0 / R)
         done += 1
+        el = time.time() - t0
+        if done == 20 and el / done * n_tot > limit:
+            raise RuntimeError(f'3D çok yavaş: kare başı {el / done:.1f} sn, tahmini toplam {el / done * n_tot / 60:.0f} dk')
+        if el > limit:
+            raise RuntimeError(f'3D süre sınırı aşıldı ({done}/{n_tot} kare)')
         if done % 24 == 0:
             el = time.time() - t0
             log(f'  3D: {done}/{n_tot} kare, kare başı {el / done:.1f} sn, kalan ~{(n_tot - done) * el / done / 60:.0f} dk')
