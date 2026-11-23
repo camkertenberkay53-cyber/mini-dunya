@@ -143,3 +143,14 @@ def analytics(ids, start, end, token_env='YT_REFRESH_TOKEN'):
     d = _api('GET', 'https://youtubeanalytics.googleapis.com/v2/reports?' + q, token_env)
     cols = [c['name'] for c in d.get('columnHeaders', [])]
     return {row[0]: dict(zip(cols[1:], row[1:])) for row in d.get('rows', [])}
+
+
+def delete_video(video_id, token_env='YT_REFRESH_TOKEN'):
+    """Videoyu KALICI olarak siler (geri alınamaz). Yalnızca kullanıcının açık onayıyla çağrılır."""
+    req = urllib.request.Request(f'https://www.googleapis.com/youtube/v3/videos?id={video_id}', method='DELETE',
+                                 headers={'Authorization': f'Bearer {_tok(token_env)}'})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return r.status
+    except urllib.error.HTTPError as e:
+        raise YTError(f'{e.code} {e.read()[:300]!r}')

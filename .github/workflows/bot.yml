@@ -11,11 +11,15 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka, sil]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
         default: false
+      video_id:
+        description: "gorev=sil için silinecek YouTube video id'si (kalıcı!)"
+        type: string
+        default: ""
 
 concurrency:
   group: mini-dunya
@@ -106,6 +110,8 @@ jobs:
             python -m kaos.yonetmen
           elif [ "$G" = "veo_test" ]; then
             python -m kaos.veo
+          elif [ "$G" = "sil" ]; then
+            python -m kaos.main --sil "${{ github.event.inputs.video_id }}"
           elif [ "$G" = "marka" ]; then
             python -m kaos.marka
           elif [ "$G" = "veo_test_uzun" ]; then

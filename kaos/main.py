@@ -513,7 +513,18 @@ def main():
     ap.add_argument('--fikir', action='store_true', help='Bugünün fikir havuzunu (TR + EN) üret')
     ap.add_argument('--kanal-kurulum', action='store_true', help='Mevcut videoları oynatma listelerine ekle, yorum bırak')
     ap.add_argument('--en-telafi', action='store_true', help='Bugünün İngilizce sürümü olmayan bölümlerini İngilizce üret')
+    ap.add_argument('--sil', help='Bu video id\'sini YouTube\'dan kalıcı sil (kullanıcı onayıyla)')
     args = ap.parse_args()
+    if args.sil:
+        st = load_state()
+        youtube.delete_video(args.sil)
+        for b in st.get('bolumler', []):
+            if b.get('video_id') == args.sil:
+                b['silindi'] = dt.date.today().isoformat()
+                b['video_id_eski'] = b.pop('video_id')
+        save_state(st)
+        log(f'Silindi: {args.sil}')
+        return
     if args.en_telafi:
         return en_backfill()
     if args.kanal_kurulum:
