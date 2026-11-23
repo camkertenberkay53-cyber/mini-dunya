@@ -128,7 +128,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Hikâye hafızasını kaydet
-        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog' && steps.gorev.outputs.gorev != 'none' && steps.gorev.outputs.gorev != 'durum' && steps.gorev.outputs.gorev != 'boya_test'
+        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog' && steps.gorev.outputs.gorev != 'none' && steps.gorev.outputs.gorev != 'durum'
         run: |
           git config user.name "mini-dunya-bot"
           git config user.email "bot@users.noreply.github.com"

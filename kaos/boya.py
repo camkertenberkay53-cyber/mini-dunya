@@ -161,7 +161,9 @@ def test(ep_path, outdir='output/boya_test', log=print):
     for i, s in enumerate(segs[::2][:4]):
         f = r.frame(s['start'] + s['dur'] * 0.6)
         cv2.imwrite(os.path.join(outdir, f'kare_{i}.jpg'), (np.clip(f, 0, 1) * 255).astype(np.uint8)[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 88])
-    log(f'Test kareleri: {outdir}')
+    ims = [cv2.resize(cv2.imread(bg), (540, 960))] + [cv2.resize(cv2.imread(os.path.join(outdir, f'kare_{i}.jpg')), (540, 960)) for i in range(min(4, len(segs[::2])))]
+    cv2.imwrite(os.path.join(paths.STATE, 'onizleme.jpg'), np.hstack(ims), [cv2.IMWRITE_JPEG_QUALITY, 82])
+    log(f'Test kareleri: {outdir} + state/onizleme.jpg')
 
 
 if __name__ == '__main__':
