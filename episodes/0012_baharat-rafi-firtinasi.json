@@ -1,0 +1,106 @@
+{
+ "konu": "Tuna ve ekibi Baharat Rafı'nda biber tozu fırtınasına yakalanır; düğme kalkan ve ataş kancasıyla zirveye ulaşıp koli yığınına yönelen gizemli okları keşfederler.",
+ "kategori": "yeni bolge",
+ "ana_karakter": "tuna",
+ "baslik": "Baharat Rafı Fırtınası",
+ "acilis_efekti": "dusen_nesne",
+ "kapak_yazisi": "DEV BAHARAT RAFINDA HAPŞIRIK FIRTINASI!",
+ "end_card": "Sen olsan hangi baharatı kalkan yapardın?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Baharat Rafı Tırmanışı",
+   "location": "baharat",
+   "characters": [
+    "tuna",
+    "pire",
+    "nil"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Gizemli haritayı tamamlamak için bu dev Baharat Rafı Zirvesi'ne tırmanmalıyız!",
+     "emotion": "normal",
+     "action": "isaret"
+    },
+    {
+     "who": "pire",
+     "text": "Eyvah! Kırmızı biber tozu fırtınası başladı, gözlerim yanıyor!",
+     "emotion": "panik",
+     "action": "kac"
+    },
+    {
+     "who": "nil",
+     "text": "Rüzgâr çok şiddetli! Düz tırmanmaya çalışırsak aşağı savrulacağız!",
+     "emotion": "soguk",
+     "action": "carp"
+    },
+    {
+     "who": "tuna",
+     "text": "Hemen düğme kalkanın arkasına saklanın, ataş kancasını fırlatıyorum!",
+     "emotion": "normal",
+     "action": "zipla"
+    },
+    {
+     "who": "pire",
+     "text": "Hapşuuu! Düğme kalkan kırmızı fırtınayı engelliyor, tırmanabiliriz!",
+     "emotion": "saskin",
+     "action": "kos_sag"
+    },
+    {
+     "who": "nil",
+     "text": "Ataş halatıyla çekiliyoruz... Harika, zirveye güvenle ulaştık!",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "nil",
+     "text": "Haritaya not: Buradaki gizemli ok işaretleri kapıdaki koli yığınını gösteriyor.",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Harika! Ama biri lütfen karabiber kutusunun kapağını kapatsın... Hapşuuu!",
+     "emotion": "normal",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!",
+     "emotion": "neseli",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Parmak Boyundaki Haritacılar Baharat Rafı'na Karşı!",
+  "description": "Haritacılar Baharat Rafı Zirvesi'ne tırmanırken dev bir biber tozu fırtınası patlak veriyor! Düğme kalkan ve ataş kancası bu fırtınayı aşmaya yetecek mi?\n\nSen olsan hangi baharatı kalkan yapardın?",
+  "tags": [
+   "mini dünya",
+   "animasyon",
+   "macera",
+   "baharat rafı",
+   "çizgi film",
+   "shorts"
+  ]
+ },
+ "final_turu": "merak",
+ "hafiza": {
+  "ozet": "Ekip biber tozu fırtınasını düğme kalkan ve ataş kancası kullanarak aştı, Baharat Rafı Zirvesi'ne tırmanıp koli yığınına işaret eden okları keşfetti.",
+  "acik_meseleler": [
+   "Kapının yanındaki koli yığınının haritalanması ve gizli geçidin sonu."
+  ],
+  "yeni_bolge": "Baharat Rafı Zirvesi",
+  "cozulen_sorun": "Biber tozu fırtınası düğme kalkanı ve ataş kancası kullanılarak aşıldı.",
+  "karakter_gelisimi": {
+   "tuna": "Aceleci davranmak yerine kalkan ve halat kullanarak ekibini güvenle zirveye taşıdı.",
+   "nil": "Zirvede dikkatli ölçüm yaparak gizemli okların koli yığınına baktığını fark etti.",
+   "bulut": "",
+   "pire": "Fırtınaya ve hapşırığa rağmen düğme kalkan arkasında ekiple birlikte ilerledi."
+  }
+ },
+ "_fikir": null,
+ "tur": "ana"
+}
