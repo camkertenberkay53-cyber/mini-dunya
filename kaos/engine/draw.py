@@ -200,6 +200,7 @@ def anger_steam(f, cam, x, y, t, k=1.0):
 
 # ---------------------------------------------------------------- Mini Dünya: hücre gölgeli (cel) çizim
 OUT2 = (0.20, 0.12, 0.10)   # koyu kahve kontur
+HACIM = True                # 3D benzeri hacimli ışıklandırma (False: eski düz hücre gölgesi)
 
 
 def E(cx, cy, rx, ry, ang=0.0, n=36, a0=0.0, a1=2 * math.pi):
@@ -252,12 +253,38 @@ def cel(f, spts, col, outline=True, w=5, shadow=0.24, rim=0.18, light=(1.0, -1.0
     roi = f[Y0:Y1, X0:X1].astype(np.float32)
     base = np.empty((Y1 - Y0, X1 - X0, 3), np.float32)
     base[:] = col * sc
-    if shadow:
+    if HACIM and shadow and size >= 6:
+        # 3D benzeri hacim: parçayı şişirilmiş bir yüzey gibi ele al (mesafe dönüşümü -> yükseklik -> normal)
+        d = cv2.distanceTransform((m > 127).astype(np.uint8), cv2.DIST_L2, cv2.DIST_MASK_PRECISE)
+        R = float(d.max()) or 1.0
+        Rc = min(R, 26.0)  # geniş parçalar (gövde, yüz) yalnızca kenarlarda yuvarlanır, ortası düz kalır
+        u = np.clip(d / Rc, 0, 1)
+        h = np.sqrt(1 - (1 - u) ** 2) * Rc * 0.9
+        h = cv2.GaussianBlur(h, (0, 0), max(1.0, Rc * 0.35))  # orta eksen kırışıklığını yok et
+        gx = cv2.Sobel(h, cv2.CV_32F, 1, 0, ksize=3) / 8
+        gy = cv2.Sobel(h, cv2.CV_32F, 0, 1, ksize=3) / 8
+        nz = 1.0 / np.sqrt(gx * gx + gy * gy + 1)
+        nx, ny = -gx * nz, -gy * nz
+        L = np.array([0.55 * light[0], 0.62 * light[1], 0.56])
+        L = L / np.linalg.norm(L)
+        dif = np.clip(nx * L[0] + ny * L[1] + nz * L[2], 0, 1)
+        Hv = L + np.array([0, 0, 1.0]); Hv = Hv / np.linalg.norm(Hv)
+        spec = np.clip(nx * Hv[0] + ny * Hv[1] + nz * Hv[2], 0, 1) ** 28
+        fres = (1 - nz) ** 2.2
+        lit = 0.62 + 0.48 * dif  # ortam + yayılım
+        warm = np.array([1.0, 0.96, 0.88]); cool = np.array([0.62, 0.60, 0.86])
+        tint = cool + (warm - cool) * np.clip(dif * 1.4, 0, 1)[..., None]
+        base = base * (lit[..., None] * tint)
+        base = base + (np.array([1.0, 0.97, 0.9]) * sc) * (0.32 * spec)[..., None]
+        side = np.clip(nx * light[0] - ny * light[1] * 0.3, 0, 1)
+        base = base + (np.array([1.0, 0.85, 0.62]) * sc - base) * (rim * 1.6 * fres * side)[..., None]
+        base = np.clip(base, 0, sc)
+    elif shadow:
         sh = np.roll(np.roll(mf, int(light[1] * off), 0), int(light[0] * off), 1)
         band = np.clip(mf - sh, 0, 1)
         band = cv2.GaussianBlur(band, (0, 0), max(0.6, off * 0.08))
         base = base * (1 - shadow * band[..., None]) + (np.array([0.18, 0.10, 0.30]) * sc) * (shadow * 0.35 * band[..., None])
-    if rim:
+    if rim and not (HACIM and shadow and size >= 6):
         o2 = max(1, off // 3)
         hl = np.roll(np.roll(mf, int(-light[1] * o2), 0), int(-light[0] * o2), 1)
         band2 = np.clip(mf - hl, 0, 1)
@@ -269,5 +296,8 @@ def cel(f, spts, col, outline=True, w=5, shadow=0.24, rim=0.18, light=(1.0, -1.0
     f[Y0:Y1, X0:X1] = roi.astype(f.dtype)
     if outline:
         occ = oc if oc is not None else OUT2
+        if HACIM:  # 3D görünümde siyah yerine dolgunun koyu tonu, daha ince kontur
+            occ = tuple(float(v) for v in (np.array(col, np.float32) * 0.42 + np.array(occ, np.float32) * 0.35))
+            w = max(1, int(w * 0.6))
         c = tuple(float(v) * sc for v in occ) + ((sc,) if nc == 4 else ())
         cv2.polylines(f, [np.round(spts * S).astype(np.int32)], True, c, max(1, int(w)), cv2.LINE_AA, shift=2)
