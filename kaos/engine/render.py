@@ -493,6 +493,9 @@ class Renderer:
             st = St(t=t, mo=mo, ms=zc, emotion=emo, look=look, blink=blink, dy=dy, sq=sq, shake=shake,
                     talking=s is not None, walk=walk, point=point, crouch=crouch,
                     face_dir=1.0 if look[0] >= 0 else -1.0)
+            if self.layer3d is not None:
+                self._dy = getattr(self, '_dy', {})
+                self._dy[c] = getattr(st, 'dy', 0.0)
             if self.cap is not None:
                 self.cap.append((c, x, y, st))
             elif self.layer3d is None:
@@ -501,6 +504,18 @@ class Renderer:
                 if isi == si and iw == c and 0 <= t - ti < 0.5:
                     bursts.append((x, y, c, t - ti))
         if self.layer3d is not None and self.cap is None:
+            # temas gölgesi: 3D karakteri zemine bağlar (zıplarken küçülüp solar)
+            for c in order:
+                x, y = pos[c]
+                hgt = max(0.0, -getattr(self, '_dy', {}).get(c, 0.0))
+                k = 1 / (1 + hgt / 120)
+                gx, gy = cam.p(x, GROUND_Y + 6)
+                rw, rh = CHARS[c]['w'] * 0.55 * cam.z * k, 16 * cam.z * k
+                if -rw < gx < W + rw and -rh < gy < H + rh:
+                    m = np.zeros((H, W), np.float32)
+                    cv2.ellipse(m, (int(gx), int(gy)), (max(1, int(rw)), max(1, int(rh))), 0, 0, 360, 1.0, -1)
+                    m = cv2.GaussianBlur(m, (0, 0), max(2.0, 9 * cam.z * k)) * 0.42 * k
+                    f *= (1 - m[..., None] * np.array([0.85, 0.9, 1.0], np.float32))
             f = self.layer3d.composite(f, cam, si, t)
         for bx, by_, bc, bdt in bursts:
             impact_burst(f, cam, bx + CHARS[bc]['w'] * 0.42, by_ + CHARS[bc]['face'][1] - 200, bdt)

@@ -177,15 +177,21 @@ class Figure:
             self.leg[s].rotation_euler = Euler((s * cyc * 0.55 * walk + (0.5 * crouch if s else 0), 0, 0))
             point = getattr(st, 'point', 0.0) if s == (1 if getattr(st, 'face_dir', 1.0) >= 0 else -1) else 0.0
             talking = getattr(st, 'talking', False)
-            gest = 0.25 * math.sin(t * 5 + s) * (1 if talking else 0) * getattr(st, 'mo', 0.0)
+            mo_ = getattr(st, 'mo', 0.0)
+            gest = (0.55 * math.sin(t * 4.2 + s * 1.3) + 0.25) * (1 if talking else 0) * min(1.0, 0.4 + mo_)
             if point:
                 self.arm[s].rotation_euler = Euler((math.radians(-85) * point, 0, s * math.radians(25) * point))
             else:
-                self.arm[s].rotation_euler = Euler((-s * cyc * 0.6 * walk + 0.05 * math.sin(t * 1.7 + s) - gest, 0, s * (math.radians(8) + 0.3 * shake)))
-        self.chest.rotation_euler = Euler((0.06 * walk + 0.25 * crouch, 0, 0.05 * math.sin(t * 1.3) + 0.08 * cyc * walk))
+                self.arm[s].rotation_euler = Euler((-s * cyc * 0.6 * walk + 0.05 * math.sin(t * 1.7 + s) - gest, 0,
+                                                    s * (math.radians(8) + 0.3 * shake + 0.35 * abs(gest))))
+        talking = getattr(st, 'talking', False)
+        tk = 1.0 if talking else 0.0
+        self.chest.rotation_euler = Euler((0.06 * walk + 0.25 * crouch + 0.08 * tk, 0.05 * tk * math.sin(t * 2.3),
+                                           0.05 * math.sin(t * 1.3) + 0.08 * cyc * walk + 0.1 * tk * math.sin(t * 1.9)))
         lx, ly = getattr(st, 'look', (0.0, 0.0))
         mo = getattr(st, 'mo', 0.0)
-        self.head.rotation_euler = Euler((-0.1 * ly + 0.05 * mo * math.sin(t * 9) - 0.03, 0.04 * math.sin(t * 1.1), lx * 0.5))
+        self.head.rotation_euler = Euler((-0.1 * ly + 0.12 * tk * math.sin(t * 6.5) - 0.03,
+                                          0.04 * math.sin(t * 1.1) + 0.08 * tk * math.sin(t * 3.1), lx * 0.5))
         emo = getattr(st, 'emotion', 'normal')
         if self.mouth:
             wide = 1.25 if emo in ('panik', 'saskin') else 1.0
