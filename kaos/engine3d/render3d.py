@@ -10,7 +10,7 @@ import cv2
 import numpy as np
 
 FPS3D = 10  # karakter animasyonu saniyede 10 poz (stilize animasyonda yaygın); kamera 30 fps akıcı
-R = 1.1          # katman çözünürlüğü: dünya birimi başına piksel
+R = 0.95         # katman çözünürlüğü: dünya birimi başına piksel
 MARGIN_X = 560   # sahne dışına doğru render payı (giriş/çıkış)
 TOP = 600        # zeminden yukarı (zıplama + saç)
 BOTTOM = 70      # zeminden aşağı (gölge)

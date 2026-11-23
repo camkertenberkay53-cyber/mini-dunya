@@ -84,9 +84,12 @@ _TOK = {}
 
 
 def _tok(token_env):
-    if token_env not in _TOK:
-        _TOK[token_env] = access_token(token_env)
-    return _TOK[token_env]
+    """Erişim anahtarı 1 saat geçerli; 3D render uzun sürdüğü için 45 dakikadan eskiyse yenile."""
+    import time
+    tk = _TOK.get(token_env)
+    if not tk or time.time() - tk[1] > 45 * 60:
+        _TOK[token_env] = (access_token(token_env), time.time())
+    return _TOK[token_env][0]
 
 
 def _api(method, url, token_env, body=None):

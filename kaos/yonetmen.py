@@ -74,7 +74,11 @@ Sadece JSON döndür: {{"puanlar": {{"acilis": 0, "anlasilirlik": 0, "animasyon"
     key = os.environ.get('GEMINI_API_KEY', '')
     models = _model_order(cfg['senaryo'].get('modeller', []), list_models(key, 'text'))
     rep = None
-    for model in models[:3]:
+    import time
+    deneme = [m for m in models[:3]] * 2  # Gemini yoğunluk (503) verirse 30 sn bekleyip bir tur daha dene
+    for k, model in enumerate(deneme):
+        if k == 3:
+            time.sleep(30)
         try:
             d = _post(f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}',
                       {'contents': [{'role': 'user', 'parts': parts}],

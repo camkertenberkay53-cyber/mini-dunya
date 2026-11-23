@@ -13,7 +13,7 @@ yayin:
 
 senaryo:
   # Ücretsiz Gemini metin modelleri (sırayla denenir; hiçbiri olmazsa uygun model otomatik bulunur)
-  modeller: ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]
+  modeller: ["gemini-flash-latest", "gemini-3.8-flash", "gemini-2.0-flash"]
   kalite_kontrol: true
 
 tts:
@@ -56,7 +56,7 @@ deney:
 ucd:
   acik: true
   diller: [tr]
-  ornek: 6
+  ornek: 4
 
 # Boyalı arka plan (Nano Banana, ayrı ücretli anahtar GEMINI_IMAGE_KEY). Anahtar yoksa otomatik kapalı.
 # A/B: sabah (kısa) + öğle (normal) boyalı; akşam (kısa) + gece (normal) çizim.
