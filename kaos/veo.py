@@ -294,6 +294,12 @@ def test(log=print):
     import shutil
     from .main import load_cfg
     cfg = load_cfg()
+    try:  # tanı: bu anahtarla açık olan görsel/video modelleri
+        d = _req(f'{BASE}/models?pageSize=200')
+        log('Modeller: ' + ', '.join(f"{m['name'].split('/')[-1]}[{','.join(m.get('supportedGenerationMethods', []))}]"
+                                     for m in d.get('models', []) if any(k in m['name'] for k in ('veo', 'video', 'image', 'imagen', 'banana'))))
+    except Exception as e:
+        log(f'Model listesi hatası: {e}')
     ep_path = sorted(glob.glob(os.path.join(paths.EPISODES, '*.json')))[-1]
     with open(ep_path, encoding='utf-8') as f:
         ep = json.load(f)
