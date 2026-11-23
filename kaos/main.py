@@ -510,7 +510,12 @@ def main():
                     log('  Bugün için hazır fikir yok; sezon planıyla devam.')
             except Exception as e:
                 log(f'  Fikir motoru atlandı: {e}')
+        writer.KISA = kind != 'uzun' and slot in ((cfg.get('deney') or {}).get('kisa_slotlar') or [])
+        if writer.KISA:
+            log('A/B testi: KISA format (20-25 sn)')
         ep = writer.write_episode(kind, brief + (fikir.brief_ek(idea) if idea else ''), st, plan, cfg, log=log)
+        ep['_format'] = 'kisa' if writer.KISA else 'normal'
+        writer.KISA = False
         ep['_fikir'] = idea
         ep['tur'] = kind
 
@@ -550,7 +555,7 @@ def main():
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
                            'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine,
-                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'),
+                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'), 'format': ep.get('_format', 'normal'),
                            'final_turu': ep.get('final_turu', ''), 'fikir': ep.get('_fikir'),
                            'mekan': ep['scenes'][0].get('location', ''), 'ana_karakter': ep.get('ana_karakter', ''),
                            'final': ep['scenes'][-1]['lines'][-1].get('text', '') if ep['scenes'][-1].get('lines') else ''})

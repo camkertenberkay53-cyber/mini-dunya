@@ -228,6 +228,10 @@ def sezon_blogu(kind, memory, plan):
     return '\n'.join(out)
 
 
+# A/B testi: kısa format (20-25 sn). main.py slot'a göre açar/kapatır.
+KISA = False
+
+
 def build_prompt(kind, brief, evren, memory, plan, extra=''):
     recent = memory.get('bolumler', [])[-12:]
     recent_txt = '\n'.join(f"- {b['no']}. bölüm ({b['tur']}, kategori: {b.get('kategori', '?')}, mekân: {b.get('mekan', '?')}, odak: {b.get('ana_karakter', '?')}): {b['baslik']} — {b.get('ozet', '')} | final: {b.get('final', '')}" for b in recent) or '- (henüz bölüm yok)'
@@ -267,7 +271,9 @@ def build_prompt(kind, brief, evren, memory, plan, extra=''):
 Haftanın büyük macerası: yeni bir bölge, büyük bir problem, karakterlerin bir karar vermesi ve büyük bir final. Sahneler farklı mekânlarda geçebilir.
 Shorts'ların tekrarı değil. İlk sahne yeni izleyiciye durumu anlatsın. Son sahnede yeni bölge haritaya işlensin."""
     else:
-        fmt = """FORMAT: DİKEY SHORTS (30-45 saniye). Tek sahne, 2-4 karakter (istersen benek de), 6-9 replik, toplam 55-95 kelime.
+        fmt = ("""ÖNCELİKLİ KURAL (aşağıdaki uzunluk sınırlarını EZER) — DİKEY KISA SHORTS (20-25 saniye; izleyici sonuna kadar izlesin, tekrar izlesin). Tek sahne, 2-3 karakter,
+4-6 replik, toplam 30-55 kelime. Tek bir olay: kanca -> tek deneme -> sürpriz sonuç. Ara açıklama ve yan şaka YOK.
+Son an ilk anla bağlansın (izleyici başa sardığında akış devam ediyor gibi hissetsin).\n""" if KISA else "") + """FORMAT: DİKEY SHORTS (30-45 saniye). Tek sahne, 2-4 karakter (istersen benek de), 6-9 replik, toplam 55-95 kelime.
 - 0-2 sn KANCA (rakip analizine göre en çok izlenen tekniktir): Bölüm OLAYIN TAM ORTASINDA başlar; giriş, selamlaşma, tanıtım YOK.
   İlk saniyede 'acilis_efekti' ile bir ölçek şoku olur (dev nesne düşer / dev el ya da pati uzanır / dev damla düşer) ve
   ilk replik buna verilen panik ya da şaşkınlık tepkisidir (en fazla 7 kelime, örn. "Kaçın! Dev bir düğme düşüyor!").
@@ -381,13 +387,14 @@ def validate(ep, kind):
     else:
         if len(ep['scenes']) > 1:
             ep['scenes'] = ep['scenes'][:1]
-        if total_lines < 5 or total_lines > 11:
-            errs.append(f'shorts için replik sayısı {total_lines}; 6-9 olmalı')
+        lo, hi = (4, 7) if KISA else (5, 11)
+        if total_lines < lo or total_lines > hi:
+            errs.append(f'shorts için replik sayısı {total_lines}; ' + ('4-6' if KISA else '6-9') + ' olmalı')
         moving = sum(1 for sc in ep['scenes'] for ln in sc.get('lines', []) if ln.get('action', 'yok') not in ('yok', 'kameraya_bak'))
         if moving < max(2, total_lines // 3):
             errs.append(f'karakterler çok sabit: sadece {moving} replikte hareket var; en az yarısında hareket olsun')
-        if total_words > 130:
-            errs.append(f'shorts çok uzun ({total_words} kelime); en fazla 95 olmalı')
+        if total_words > (70 if KISA else 130):
+            errs.append(f'shorts çok uzun ({total_words} kelime); en fazla ' + ('55' if KISA else '95') + ' olmalı')
     yt = ep.setdefault('youtube', {})
     yt['title'] = str(yt.get('title') or ep.get('baslik') or 'Mini Dünya')[:95]
     yt.setdefault('description', '')

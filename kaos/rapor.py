@@ -38,7 +38,7 @@ def hesapla(bolumler, bugun=None):
         olc.append(dict(no=b.get('no'), baslik=b.get('baslik', ''), tarih=b.get('tarih'), slot=b.get('slot'), tur=b.get('tur'),
                         izlenme=izl, abone=ab, donusum=round(ab * 1000 / izl, 2) if izl else 0.0,
                         izleme_yuzdesi=b.get('izleme_yuzdesi'), kategori=b.get('kategori', ''), mekan=b.get('mekan', ''),
-                        ana_karakter=b.get('ana_karakter', ''), final_turu=b.get('final_turu', ''),
+                        ana_karakter=b.get('ana_karakter', ''), final_turu=b.get('final_turu', ''), format=b.get('format', 'normal'),
                         yonetmen=(b.get('yonetmen') or {}).get('toplam')))
     if not olc:
         return {'tarih': bugun, 'durum': 'veri yok', 'eksik': eksik[:20], 'videolar': []}
@@ -57,9 +57,13 @@ def hesapla(bolumler, bugun=None):
             d['video'] += 1
             d['izlenme'] += x['izlenme']
             d['abone'] += x['abone']
+            if x.get('izleme_yuzdesi') is not None:
+                d.setdefault('_y', []).append(x['izleme_yuzdesi'])
         for d in g.values():
             d['ort_izlenme'] = round(d['izlenme'] / d['video'])
             d['donusum'] = round(d['abone'] * 1000 / d['izlenme'], 2) if d['izlenme'] else 0.0
+            y = d.pop('_y', [])
+            d['izleme_yuzdesi'] = round(sum(y) / len(y), 1) if y else None
         return dict(sorted(g.items(), key=lambda kv: -kv[1]['donusum']))
 
     # yönetmen puanı ile izlenme arasındaki ilişki (kalibrasyon için)
@@ -75,7 +79,7 @@ def hesapla(bolumler, bugun=None):
             'medyan_izlenme': med_izl, 'medyan_donusum': med_don,
             'siniflar': {s: [x for x in sorted(olc, key=lambda x: -x['donusum']) if x['sinif'] == s] for s in 'ABCD'},
             'kategori': grup('kategori'), 'karakter': grup('ana_karakter'), 'mekan': grup('mekan'),
-            'final_turu': grup('final_turu'), 'slot': grup('slot'),
+            'final_turu': grup('final_turu'), 'slot': grup('slot'), 'format': grup('format'),
             'yonetmen_izlenme_korelasyonu': kal, 'eksik': eksik[:20], 'videolar': olc}
 
 
@@ -103,10 +107,11 @@ def metin(r):
                      + (f", yönetmen {x['yonetmen']}" if x.get('yonetmen') is not None else ''))
         L.append('')
     for alan, ad in (('karakter', 'Odak karakter'), ('kategori', 'Kategori'), ('mekan', 'Mekân'),
-                     ('final_turu', 'Final türü'), ('slot', 'Yayın saati')):
+                     ('final_turu', 'Final türü'), ('slot', 'Yayın saati'), ('format', 'Format (A/B)')):
         L.append(f"## {ad} bazında dönüşüm")
         for k, d in list(r[alan].items())[:8]:
-            L.append(f"- {k}: {d['video']} video, ort. {d['ort_izlenme']:,} izlenme, {d['donusum']}/1000 abone")
+            L.append(f"- {k}: {d['video']} video, ort. {d['ort_izlenme']:,} izlenme, {d['donusum']}/1000 abone"
+                     + (f", izlenme oranı %{d['izleme_yuzdesi']}" if d.get('izleme_yuzdesi') is not None else ''))
         L.append('')
     k = r.get('yonetmen_izlenme_korelasyonu')
     L.append('## Yönetmen kalibrasyonu')

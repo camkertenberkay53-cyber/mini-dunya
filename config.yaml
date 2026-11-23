@@ -48,6 +48,10 @@ voices:
 yonetmen:
   acik: true
 
+# A/B testi (23-30 Kasım): ortalama izlenme ~8,5 sn. Bu slotlar 20-25 sn kısa format, diğerleri normal.
+deney:
+  kisa_slotlar: [sabah, aksam]
+
 ingilizce:
   acik: true
   # Kanal henüz dağıtım almıyor (0 izlenme); Gemini kotasını Türkçe kanala ayırmak için 1 hafta günde 2 + pazar uzun
