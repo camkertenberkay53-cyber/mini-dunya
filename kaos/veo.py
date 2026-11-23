@@ -50,6 +50,77 @@ def _kiyafet_metni(chars):
     return (' OUTFITS IN THIS EPISODE (must stay identical in every shot, override the reference clothing): ' + '; '.join(parca) + '.') if parca else ''
 
 
+def _ref(c):
+    """Bölüme özel kostümlü referans varsa onu, yoksa resmî referansı verir."""
+    return (OZEL.get('ref') or {}).get(c) or os.path.join(REF_DIR, f'{c}.jpg')
+
+
+def _gorsel_uret(parts, path, oran='9:16', log=print):
+    body = {'contents': [{'role': 'user', 'parts': parts}],
+            'generationConfig': {'responseModalities': ['IMAGE'], 'imageConfig': {'aspectRatio': oran, 'imageSize': '1K'}}}
+    for model in ('gemini-nano-banana-2.1', 'gemini-3-pro-image', 'gemini-3.1-flash-image'):
+        try:
+            d = _req(f'{BASE}/models/{model}:generateContent', body, timeout=240)
+            for p in d['candidates'][0]['content']['parts']:
+                data = (p.get('inlineData') or p.get('inline_data') or {}).get('data')
+                if data:
+                    with open(path, 'wb') as f:
+                        f.write(base64.b64decode(data))
+                    return path
+        except Exception as e:
+            log(f'  Görsel ({model}) hata: {str(e)[:120]}')
+    return None
+
+
+def kostum_referanslari(chars, outdir, log=print):
+    """Kıyafet değişen bölümlerde her karakter için kostümlü resmî referans üretir (Nano Banana, ~0,04$/görsel):
+    Omni tüm çekimlerde AYNI kostüm tasarımını görür (börk şekli vb. değişmez)."""
+    k = OZEL.get('kiyafet') or {}
+    refs = {}
+    for c in chars:
+        if not k.get(c):
+            continue
+        out = os.path.join(outdir, f'kostum_{c}.jpg')
+        with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
+            img = base64.b64encode(f.read()).decode()
+        parts = [{'text': f"Character model sheet: the SAME character as the reference image (identical face, hair, proportions, art style), "
+                          f"full body, standing, front three-quarter view, neutral pose, plain soft light-grey studio background. "
+                          f"Now wearing this exact costume, every detail clearly visible: {k[c]}. "
+                          f"{_stil()} Absolutely no text, letters or logos."},
+                 {'inline_data': {'mime_type': 'image/jpeg', 'data': img}}]
+        if _gorsel_uret(parts, out, log=log):
+            refs[c] = out
+            log(f'  Kostümlü referans hazır: {c}')
+    return refs
+
+
+def perde_kontrol(klip, chars, aciklama, log=print):
+    """Perde kalite kontrolü (Gemini görüş): karakter/kostüm tutarlılığı ve görsel hatalar. (puan 1-10, sorun) döner."""
+    try:
+        d0 = _sure(klip)
+        parts = []
+        for c in chars:
+            with open(_ref(c), 'rb') as f:
+                parts += [{'text': f'Reference for {c}:'}, {'inline_data': {'mime_type': 'image/jpeg', 'data': base64.b64encode(f.read()).decode()}}]
+        for j, t in enumerate((0.15, 0.5, 0.85)):
+            fn = f'{klip}.kk{j}.jpg'
+            subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-ss', f'{d0 * t:.2f}', '-i', klip, '-frames:v', '1', '-vf', 'scale=360:-2', fn], check=True)
+            with open(fn, 'rb') as f:
+                parts += [{'text': f'Frame at {d0 * t:.1f}s:'}, {'inline_data': {'mime_type': 'image/jpeg', 'data': base64.b64encode(f.read()).decode()}}]
+        parts.append({'text': f"You are a strict animation supervisor. Planned shot: {aciklama[:600]}. Compare the frames with the character "
+                              f"references. Score 1-10: are the characters recognizably the same with IDENTICAL costumes (hat shape, colors, "
+                              f"goggles, scarf), no morphing faces, no extra limbs, no readable text, and does the shot match the plan? "
+                              f'Return JSON {{"puan": 8, "sorun": "short Turkish description or empty"}}'})
+        d = _req(f'{BASE}/models/gemini-3.8-flash:generateContent',
+                 {'contents': [{'role': 'user', 'parts': parts}],
+                  'generationConfig': {'temperature': 0.1, 'responseMimeType': 'application/json'}}, timeout=120)
+        r = json.loads(''.join(p.get('text', '') for p in d['candidates'][0]['content']['parts']))
+        return int(r.get('puan', 10)), str(r.get('sorun', ''))
+    except Exception as e:
+        log(f'  Perde kontrolü atlandı: {str(e)[:120]}')
+        return 10, ''
+
+
 def _tarif(c):
     return KARAKTER_TARIF[c] + (('; ' + OZEL['kiyafet'][c]) if OZEL.get('kiyafet', {}).get(c) else '')
 
@@ -428,7 +499,7 @@ def uzat(prev_id, chars, prompt, sure, out, cfg, log=print, oran='9:16'):
     v = cfg.get('veo') or {}
     inp = []
     for c in chars:  # karakterler uzatmada da referans olarak verilir (tutarlılık)
-        with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
+        with open(_ref(c), 'rb') as f:
             inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
     inp.append({'type': 'text', 'text': f"Continue the scene seamlessly for {sure} more seconds (0s = start of the new part). "
                                         f"Keep the characters' faces exactly as in the references.{_kiyafet_metni(chars)} {_stil()} {prompt} {_ses()}"})
@@ -464,7 +535,7 @@ def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik
     v = cfg.get('veo') or {}
     inp = []
     for c in chars:
-        with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
+        with open(_ref(c), 'rb') as f:
             inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
     ek = ''
     if sureklilik and os.path.exists(sureklilik):
@@ -551,32 +622,46 @@ def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
     if OZEL:
         log(f"  Bölüme özel mod: {', '.join(OZEL)}")
     chars, parts = perde_plan(ep, perdeler, log=log)
+    if OZEL.get('kiyafet'):
+        OZEL['ref'] = kostum_referanslari(chars, outdir, log=log)
+    tekrar_hak = int(v.get('perde_tekrar', 1))  # bütçe tavanı: en fazla bu kadar perde yeniden çekilir
     with open(os.path.join(outdir, 'omni_perde_plan.json'), 'w', encoding='utf-8') as f:
         json.dump({'characters': chars, 'parts': parts}, f, ensure_ascii=False, indent=1)
     parcalar, subs, offset, prev = [], [], 0.0, None
     for i, (sure, p) in enumerate(zip(perdeler, parts)):
         out = os.path.join(outdir, f'omni_perde_{i}.mp4')
         tam_mi = False
-        if i == 0:
-            omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, store=True)
-            zincir = sure
-        elif zincir + sure > ZINCIR_MAX:  # Omni 30 sn'den uzun videoyu uzatmıyor: son kareden yeni zincir
-            log(f'  Zincir {zincir} sn: son kareden devam eden yeni çekim')
-            son = os.path.join(outdir, f'omni_perde_{i - 1}_son.jpg')
-            subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', parcalar[-1], '-frames:v', '1', son], check=True)
-            omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, sureklilik=son, store=True)
-            zincir = sure
-        else:
-            zincir += sure
-            try:
-                uzat(prev, chars, p['prompt'], sure, out, cfg, log=log, oran=oran)
-                d_new = _sure(out)
-                tam_mi = d_new > offset + 1.5  # uzatma tüm videoyu döndürdüyse
-            except VeoError as e:
-                log(f'  Uzatma olmadı, son kareden devam eden yeni çekim: {str(e)[:120]}')
+        prev_once, zincir_once = prev, (zincir if i else 0)
+        for deneme in range(2):
+            zincir = zincir_once
+            tam_mi = False
+            if i == 0:
+                omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, store=True)
+                zincir = sure
+            elif zincir + sure > ZINCIR_MAX:  # Omni 30 sn'den uzun videoyu uzatmıyor: son kareden yeni zincir
+                log(f'  Zincir {zincir} sn: son kareden devam eden yeni çekim')
                 son = os.path.join(outdir, f'omni_perde_{i - 1}_son.jpg')
                 subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', parcalar[-1], '-frames:v', '1', son], check=True)
                 omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, sureklilik=son, store=True)
+                zincir = sure
+            else:
+                zincir += sure
+                try:
+                    uzat(prev, chars, p['prompt'], sure, out, cfg, log=log, oran=oran)
+                    d_new = _sure(out)
+                    tam_mi = d_new > offset + 1.5  # uzatma tüm videoyu döndürdüyse
+                except VeoError as e:
+                    log(f'  Uzatma olmadı, son kareden devam eden yeni çekim: {str(e)[:120]}')
+                    son = os.path.join(outdir, f'omni_perde_{i - 1}_son.jpg')
+                    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', parcalar[-1], '-frames:v', '1', son], check=True)
+                    omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, sureklilik=son, store=True)
+            puan, sorun = perde_kontrol(out, chars, p['prompt'], log=log)
+            log(f'  Perde {i + 1} kontrol: {puan}/10 {sorun[:100]}')
+            if puan >= 7 or tekrar_hak <= 0 or deneme == 1:
+                break
+            tekrar_hak -= 1
+            prev = prev_once
+            log(f'  Perde {i + 1} yeniden çekiliyor (kalan hak {tekrar_hak})')
         prev = SON_ID.get('id')
         d = _sure(out)
         bas = offset if not tam_mi else offset  # repliğin perde içi zamanı -> toplam zaman

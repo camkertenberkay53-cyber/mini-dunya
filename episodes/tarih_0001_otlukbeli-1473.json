@@ -26,8 +26,8 @@
  "stil": "Premium 3D animated cinematic historical epic (Pixar-quality characters, feature-film scale and camera work), golden-hour light, volumetric dust and smoke, dramatic low angles, sweeping crane shots. Tuna and Bulut are NORMAL child-size kids (not tiny) in a real-scale 15th-century eastern Anatolian highland; adult soldiers and Sultan Mehmed II (white turban, rich kaftan, beard, on a white horse) are stylized 3D adults. Historically plausible 1473 armies: Ottoman janissaries with white börk hats, bronze cannons; Akkoyunlu Turkmen horse archers with banners. No blood, no gore, no injuries shown. STRICT: absolutely no readable text, letters, numbers or logos anywhere.",
  "ses": "Natural Turkish child voices (and Sultan's short adult command if any), thunderous war drums and Ottoman mehter-style percussion, galloping horses, deep cannon booms, epic orchestral score without lyrics.",
  "kiyafet": {
-  "tuna": "here dressed as a young Ottoman janissary: tall white börk felt hat, blue kaftan with red sash, keeps his brass goggles on the hat and his teal scarf",
-  "bulut": "here dressed as a young Ottoman artillery apprentice: his red cap, brown kaftan, green leather apron with a pencil in the pocket"
+  "tuna": "young Ottoman janissary uniform: a TALL white felt börk hat (cylindrical, slightly flared, with a long white fold hanging down the back of the neck and a small brass ornament on the front) with his brass goggles resting on the hat, his teal scarf, a royal blue knee-length kaftan with brass frog fastenings, a red sash belt, dark trousers, brown boots",
+  "bulut": "young Ottoman artillery apprentice: his round red felt cap, a plain brown knee-length kaftan, his green leather apron with a pencil in the pocket, brown boots"
  },
  "scenes": [
   {

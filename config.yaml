@@ -71,6 +71,7 @@ veo:
   uzun_segment: 15
   cozunurluk: "360p"          # ucuz çekim (0,023$/sn) + ücretsiz yapay zekâ büyütme
   buyut: true                 # Real-ESRGAN (CPU) ile 1080x1920
+  perde_tekrar: 1              # kalite kontrolünde düşük puanlı en fazla 1 perde yeniden çekilir (bütçe tavanı)
   modeller: [veo-3.1-lite-generate-preview, veo-3.1-fast-generate-preview]
 
 # Boyalı arka plan (Nano Banana, ayrı ücretli anahtar GEMINI_IMAGE_KEY). Anahtar yoksa otomatik kapalı.
