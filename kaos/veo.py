@@ -340,6 +340,16 @@ def birlestir(clips, shots, ep, out_path, log=print, zamanli=False, W=1080, H=19
             subs.append((a, a + (per - 0.8) / max(1, len(ds)) - 0.15, d['who'], d['text']))
     kanca = (ep.get('kapak_yazisi') or ep.get('baslik', '')).upper()
     SON = (4.0 if yat else 1.6) if zamanli else 2.4  # son kart süresi
+    if zamanli and son_kart and not yat:
+        # Son kart konuşmanın ÜSTÜNE binmesin: video bittikten sonra son kareyi dondurup 2,5 sn ekle (ses: konuşma tam biter, sonra sessizlik)
+        SON = 2.5
+        ek = out_path + '.ek.mp4'
+        subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', tmp, '-vf', f'tpad=stop_mode=clone:stop_duration={SON}',
+                        '-af', f'apad=pad_dur={SON}', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '17', '-pix_fmt', 'yuv420p',
+                        '-c:a', 'aac', '-ar', '48000', '-ac', '2', ek], check=True)
+        os.replace(ek, tmp)
+        dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', tmp],
+                                   capture_output=True, text=True).stdout.strip() or dur)
     soru = ep.get('end_card') or 'Sen olsan ne yapardın?'
     from .engine.characters import CHARS
     dec = subprocess.Popen(['ffmpeg', '-loglevel', 'error', '-i', tmp, '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], stdout=subprocess.PIPE)
@@ -598,6 +608,8 @@ The story must have clear cause and effect: every part follows logically from th
 motivated camera moves (push-ins, follow shots, low angles), sound effects. A cut to a closer angle is allowed inside a part only if
 stated as "the camera cuts to a close-up of ...". Use timecodes relative to the part start, e.g. [0-4s].
 Characters (in this order as <IMAGE_REF_0>...): {json.dumps([_tarif(c) for c in chars], ensure_ascii=False)}. Benek never speaks.
+TIMING RULE (critical): every spoken line must START after 0.5s and FINISH at least 1.5 seconds before its part ends (the last part:
+at least 2 seconds before the end), so no word is ever cut by a part boundary. Keep lines short enough to be spoken calmly in the time given.
 Spoken lines: TURKISH only, short, taken/adapted from the script, max 2 per part, written in the prompt as
 CharacterName says in Turkish: "...". No on-screen text, no labels, family friendly.
 Place: {ep.get('mekan') or ep['scenes'][0].get('location')} | style: {_stil()} | topic: {ep.get('konu', '')} | signature moment: {ep.get('gorsel_an', '')}
@@ -638,23 +650,27 @@ def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
             if i == 0:
                 omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, store=True)
                 zincir = sure
+                zincir_bas_idx, zincir_bas_ofs = 0, 0.0
             elif zincir + sure > ZINCIR_MAX:  # Omni 30 sn'den uzun videoyu uzatmıyor: son kareden yeni zincir
                 log(f'  Zincir {zincir} sn: son kareden devam eden yeni çekim')
                 son = os.path.join(outdir, f'omni_perde_{i - 1}_son.jpg')
                 subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', parcalar[-1], '-frames:v', '1', son], check=True)
                 omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, sureklilik=son, store=True)
                 zincir = sure
+                zincir_bas_idx, zincir_bas_ofs = len(parcalar), offset
             else:
                 zincir += sure
                 try:
                     uzat(prev, chars, p['prompt'], sure, out, cfg, log=log, oran=oran)
                     d_new = _sure(out)
-                    tam_mi = d_new > offset + 1.5  # uzatma tüm videoyu döndürdüyse
+                    tam_mi = d_new > sure + 1.5  # uzatma, zincirin tamamını (önceki perdeler + yeni) döndürdüyse
                 except VeoError as e:
                     log(f'  Uzatma olmadı, son kareden devam eden yeni çekim: {str(e)[:120]}')
                     son = os.path.join(outdir, f'omni_perde_{i - 1}_son.jpg')
                     subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', parcalar[-1], '-frames:v', '1', son], check=True)
                     omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, sureklilik=son, store=True)
+                    zincir = sure
+                    zincir_bas_idx, zincir_bas_ofs = len(parcalar), offset
             puan, sorun = perde_kontrol(out, chars, p['prompt'], log=log)
             log(f'  Perde {i + 1} kontrol: {puan}/10 {sorun[:100]}')
             if puan >= 7 or tekrar_hak <= 0 or deneme == 1:
@@ -669,9 +685,9 @@ def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
             if dl.get('who') != 'benek' and dl.get('text'):
                 a = bas + float(dl.get('start', 0))
                 subs.append({'who': dl['who'], 'text': dl['text'], 'start': a, 'end': bas + float(dl.get('end', 0) or dl.get('start', 0) + 2.5)})
-        if tam_mi:
-            parcalar = [out]
-            offset = d
+        if tam_mi:  # zincirin önceki parçalarını at, yerine tam zincir videosunu koy (aynı görüntü iki kez oynamasın)
+            parcalar = parcalar[:zincir_bas_idx] + [out]
+            offset = zincir_bas_ofs + d
         else:
             parcalar.append(out)
             offset += d
