@@ -50,7 +50,7 @@ yonetmen:
 
 # A/B testi (23-30 Kasım): ortalama izlenme ~8,5 sn. Bu slotlar 20-25 sn kısa format, diğerleri normal.
 deney:
-  kisa_slotlar: [sabah, aksam]
+  kisa_slotlar: [sabah, oglen, aksam]   # Omni (öğle, akşam) kısa senaryo ister; 3D'de sabah kısa / gece normal
 
 # 3D karakterler (Blender/Cycles, ücretsiz). Shorts'ta açık; uzun video 2D (render süresi). Blender yoksa otomatik 2D.
 ucd:
@@ -61,9 +61,12 @@ ucd:
 # Veo pilotu (günde 1 Shorts yapay zekâ videosu, ~0,9$/bölüm, GEMINI_IMAGE_KEY). Hata olursa 3D.
 veo:
   acik: true
-  motor: omni   # Gemini Omni Flash (projede açık; Veo kapalı). 12 sn ~0,84$
-  sure: 12
-  slot: aksam
+  motor: omni      # Gemini Omni 1.2 Flash (~0,07$/sn 720p). Hata/kredi bitti -> otomatik 3D
+  slotlar: [oglen, aksam]   # en çok izlenen dilimler (rakip analizi: 09-12 ve 15-18)
+  sure: 12         # Shorts uzunluğu (sn) ~0,84$
+  uzun: true       # haftalık uzun video da Omni ile
+  uzun_sure: 240   # hedef ~4 dk (16 x 15 sn çekim) ~17$
+  uzun_segment: 15
   cozunurluk: "720p"
   modeller: [veo-3.1-lite-generate-preview, veo-3.1-fast-generate-preview]
 

@@ -36,7 +36,13 @@ class VeoError(Exception):
 
 def acik(cfg, slot):
     v = cfg.get('veo') or {}
-    return bool(v.get('acik')) and bool(os.environ.get('GEMINI_IMAGE_KEY')) and slot == v.get('slot')
+    slots = v.get('slotlar') or ([v['slot']] if v.get('slot') else [])
+    return bool(v.get('acik')) and bool(os.environ.get('GEMINI_IMAGE_KEY')) and slot in slots
+
+
+def uzun_acik(cfg):
+    v = cfg.get('veo') or {}
+    return bool(v.get('acik')) and bool(v.get('uzun')) and bool(os.environ.get('GEMINI_IMAGE_KEY'))
 
 
 def _key():
@@ -206,8 +212,11 @@ def _yazi(img, text, y, size, renk=(255, 214, 40), golge=True, max_w=0.88):
     return np.array(pil)
 
 
-def birlestir(clips, shots, ep, out_path, log=print, zamanli=False):
-    W, H, FPS = 1080, 1920, 30
+def birlestir(clips, shots, ep, out_path, log=print, zamanli=False, W=1080, H=1920, son_kart=True):
+    FPS = 30
+    yat = W > H
+    Y = (lambda y: int(y * H / 1920)) if not yat else (lambda y: int(y * H / 1920 * 1.0))
+    FS = (lambda sz: sz) if not yat else (lambda sz: int(sz * 0.8))
     tmp = out_path + '.ham.mp4'
     lst = out_path + '.txt'
     norm = []
@@ -235,7 +244,7 @@ def birlestir(clips, shots, ep, out_path, log=print, zamanli=False):
             a = i * per + 0.6 + k * (per - 0.8) / max(1, len(ds))
             subs.append((a, a + (per - 0.8) / max(1, len(ds)) - 0.15, d['who'], d['text']))
     kanca = (ep.get('kapak_yazisi') or ep.get('baslik', '')).upper()
-    SON = 1.6 if zamanli else 2.4  # son kart süresi (kısa klipte daha kısa)
+    SON = (4.0 if yat else 1.6) if zamanli else 2.4  # son kart süresi
     soru = ep.get('end_card') or 'Sen olsan ne yapardın?'
     from .engine.characters import CHARS
     dec = subprocess.Popen(['ffmpeg', '-loglevel', 'error', '-i', tmp, '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], stdout=subprocess.PIPE)
@@ -249,19 +258,22 @@ def birlestir(clips, shots, ep, out_path, log=print, zamanli=False):
             break
         fr = np.frombuffer(buf, np.uint8).reshape(H, W, 3).copy()
         t = i / FPS
-        if t < 3.0:
+        if t < 3.0 and not yat:
             fr = _yazi(fr, kanca, 150, 96)
         for a, b, who, text in subs:
-            if a <= t < b and t < dur - SON:
+            if a <= t < b and (t < dur - SON or not son_kart):
                 col = CHARS.get(who, {}).get('color', (255, 255, 255))
-                fr = _yazi(fr, CHARS.get(who, {}).get('name', who.upper()), 1390, 50, renk=tuple(col))
-                fr = _yazi(fr, text, 1455, 62, renk=(255, 255, 255))
-        if t > dur - SON:
+                if yat:
+                    fr = _yazi(fr, CHARS.get(who, {}).get('name', who.upper()) + ': ' + text, H - 150, 46, renk=(255, 255, 255), max_w=0.8)
+                else:
+                    fr = _yazi(fr, CHARS.get(who, {}).get('name', who.upper()), 1390, 50, renk=tuple(col))
+                    fr = _yazi(fr, text, 1455, 62, renk=(255, 255, 255))
+        if son_kart and t > dur - SON:
             k = min(1.0, (t - (dur - SON)) / 0.3)
             fr = (fr * (1 - 0.55 * k)).astype(np.uint8)
-            fr = _yazi(fr, 'MİNİ DÜNYA', 640, 110)
-            fr = _yazi(fr, soru, 820, 70, renk=(255, 255, 255))
-            fr = _yazi(fr, 'CEVABINI YORUMLARA YAZ!', 1060, 56, renk=(255, 120, 90))
+            fr = _yazi(fr, 'MİNİ DÜNYA', Y(640), FS(110))
+            fr = _yazi(fr, soru, Y(820), FS(70), renk=(255, 255, 255))
+            fr = _yazi(fr, 'CEVABINI YORUMLARA YAZ!' if not yat else 'ABONE OL, YENİ BÖLÜMÜ KAÇIRMA!', Y(1060), FS(56), renk=(255, 120, 90))
         enc.stdin.write(fr.tobytes())
         i += 1
     enc.stdin.close()
@@ -287,7 +299,7 @@ def _metin_json(prompt, log=print):
 
 
 def omni_plan(ep, sure, log=print):
-    lines = [{'who': l['who'], 'text': l['text'], 'action': l.get('action')} for sc in ep['scenes'] for l in sc['lines']]
+    lines = [{'who': l['who'], 'text': l['text'], 'action': l.get('action'), 'sahne': l.get('sahne')} for sc in ep['scenes'] for l in sc['lines']]
     chars = list(dict.fromkeys(l['who'] for l in lines if l['who'] in KARAKTER_TARIF))[:3]
     prompt = f"""You are the director of a premium 3D animated YouTube Shorts series "Mini Dünya": finger-sized explorer kids
 living behind the kitchen baseboard explore a giant house. Write ONE video-generation prompt for a single continuous {sure}-second
@@ -297,8 +309,10 @@ Use dynamic camera moves (push-in, whip pan, low angle hero shot, close-up react
 Characters (refer to them as <IMAGE_REF_0>, <IMAGE_REF_1>... in this order): {json.dumps([KARAKTER_TARIF[c] for c in chars])}
 Keep at most 4 short spoken lines total, in TURKISH, taken/shortened from the script; write them in the prompt as
 CharacterName says in Turkish: "..." at the right timecode. Benek never speaks. No on-screen text, family friendly.
-Location: {ep['scenes'][0].get('location')} | topic: {ep.get('konu', '')}
-Script: {json.dumps(lines, ensure_ascii=False)}
+Location: {ep.get('mekan') or ep['scenes'][0].get('location')} | topic: {ep.get('konu', '')}
+Signature visual moment (must appear, ideally as the climax): {ep.get('gorsel_an', '')}
+Small non-speaking creatures/props mentioned in the script may appear (they are not in the reference images; design them cute).
+Script (each line may include "sahne" = what is on screen): {json.dumps(lines, ensure_ascii=False)}
 Return JSON: {{"prompt": "...", "dialogue": [{{"who": "tuna", "text": "Türkçe", "start": 0.5, "end": 2.5}}]}}"""
     d = _metin_json(prompt, log=log) or {}
     if not d.get('prompt'):
@@ -315,18 +329,30 @@ def omni(ep, outdir, cfg, log=print):
     p = omni_plan(ep, sure, log=log)
     with open(os.path.join(outdir, 'omni_plan.json'), 'w', encoding='utf-8') as f:
         json.dump(p, f, ensure_ascii=False, indent=1)
+    out = os.path.join(outdir, 'omni_klip.mp4')
+    return omni_cagri(p['characters'], p['prompt'], sure, out, cfg, log=log), p
+
+
+def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik=None):
+    """Tek Omni üretimi: karakter referansları (+ isteğe bağlı önceki klibin son karesi) ile video; dosya yolunu döndürür."""
+    v = cfg.get('veo') or {}
     inp = []
-    for c in p['characters']:
+    for c in chars:
         with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
             inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
-    txt = (f"Use the given images as character references (not as literal frames); keep their exact look in every shot. "
-           f"{STIL} {sure}-second video. {p['prompt']} Natural Turkish child voices, lively sound effects, light playful score without lyrics.")
+    ek = ''
+    if sureklilik and os.path.exists(sureklilik):
+        with open(sureklilik, 'rb') as f:
+            inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
+        ek = (f' The last reference image (<IMAGE_REF_{len(chars)}>) is the final frame of the previous shot: continue seamlessly '
+              f'from it (same location, lighting, character positions and outfits).')
+    txt = (f"Use the given images as references (not as literal frames); keep the characters' exact look in every shot.{ek} "
+           f"{STIL} {sure}-second video. {prompt} Natural Turkish child voices, lively sound effects, light playful score without lyrics.")
     inp.append({'type': 'text', 'text': txt})
-    out = os.path.join(outdir, 'omni_klip.mp4')
     last = None
     for model in v.get('omni_modeller', ['gemini-omni-1.2-flash', 'gemini-omni-1.1-flash']):
-        for rf in ({'type': 'video', 'aspect_ratio': '9:16', 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
-                   {'type': 'video', 'aspect_ratio': '9:16', 'resolution': v.get('cozunurluk', '720p')}):
+        for rf in ({'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
+                   {'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p')}):
             body = {'model': model, 'input': inp, 'response_format': rf, 'background': False, 'store': False, 'stream': False,
                     'generation_config': {'video_config': {'task': 'reference_to_video'}}}
             t0 = time.time()
@@ -349,7 +375,7 @@ def omni(ep, outdir, cfg, log=print):
             with open(out, 'wb') as f:
                 f.write(base64.b64decode(data))
             log(f'  Omni klip hazır ({model}, {time.time() - t0:.0f} sn)')
-            return out, p
+            return out
     raise VeoError(f'Omni üretilemedi: {last}')
 
 
@@ -373,6 +399,73 @@ def uret_omni(ep, outdir, cfg, log=print):
     thumb = os.path.join(outdir, 'kapak.jpg')
     cv2.imwrite(thumb, k[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 90])
     log(f'Omni bölümü hazır: {dur:.1f} sn, {(time.time() - t0) / 60:.1f} dk, tahmini maliyet ~${0.07 * dur:.2f}')
+    return final, thumb, dur
+
+
+def uzun_plan(ep, n_seg, seg_sure, log=print):
+    """Uzun bölüm senaryosunu n_seg adet ardışık Omni çekimine böler (her biri seg_sure sn)."""
+    sahneler = [{'location': sc.get('location'), 'characters': sc.get('characters'),
+                 'lines': [{'who': l['who'], 'text': l['text'], 'action': l.get('action'), 'sahne': l.get('sahne')} for l in sc['lines']]} for sc in ep['scenes']]
+    prompt = f"""You are the director of "Mini Dünya", a premium 3D animated family series (finger-sized explorer kids in a giant house).
+Turn this Turkish episode into EXACTLY {n_seg} consecutive cinematic shots of {seg_sure} seconds each (total {n_seg * seg_sure} s,
+horizontal 16:9). The shots must flow continuously like one film: each shot starts where the previous ended. Start with a strong
+hook (danger/predicament in the first seconds), build adventure and comedy, end with a satisfying payoff and a hint for the next episode.
+For each shot: up to 3 characters (ids from: {list(KARAKTER_TARIF)}), an English Veo/Omni prompt with timecodes [0-5s] etc., dynamic
+camera, sound effects; spoken lines in TURKISH written as CharacterName says in Turkish: "..." (max 3 lines per shot, from the script,
+shortened). Benek never speaks. No on-screen text, family friendly.
+Character looks: {json.dumps(KARAKTER_TARIF, ensure_ascii=False)}
+Episode: {ep.get('baslik')} | topic: {ep.get('konu', '')} | place: {ep.get('mekan', '')}
+Signature visual moment (build up to it): {ep.get('gorsel_an', '')}
+Script: {json.dumps(sahneler, ensure_ascii=False)}
+Return JSON: {{"shots": [{{"characters": ["tuna"], "prompt": "...", "dialogue": [{{"who": "tuna", "text": "Türkçe", "start": 1.0, "end": 3.5}}]}}]}}
+(dialogue start/end are seconds within that shot)."""
+    d = _metin_json(prompt, log=log) or {}
+    shots = [x for x in (d.get('shots') or []) if x.get('prompt')]
+    if len(shots) < max(2, n_seg // 2):
+        raise VeoError(f'uzun plan yetersiz ({len(shots)} çekim)')
+    for x in shots:
+        x['characters'] = [c for c in (x.get('characters') or []) if c in KARAKTER_TARIF][:3] or ['tuna']
+    return shots[:n_seg]
+
+
+def uret_uzun(ep, outdir, cfg, log=print):
+    """Haftalık uzun video (3-5 dk) Omni ile: ardışık çekimler, her çekim önceki çekimin son karesinden devam eder."""
+    v = cfg.get('veo') or {}
+    t0 = time.time()
+    os.makedirs(outdir, exist_ok=True)
+    seg = int(v.get('uzun_segment', 15))
+    n = max(int(v.get('uzun_min_cekim', 6)), int(v.get('uzun_sure', 240)) // seg)
+    shots = uzun_plan(ep, n, seg, log=log)
+    with open(os.path.join(outdir, 'omni_uzun_plan.json'), 'w', encoding='utf-8') as f:
+        json.dump(shots, f, ensure_ascii=False, indent=1)
+    clips, son, subs_all, offset = [], None, [], 0.0
+    for i, sh in enumerate(shots):
+        out = os.path.join(outdir, f'omni_uzun_{i:02d}.mp4')
+        try:
+            omni_cagri(sh['characters'], sh['prompt'], seg, out, cfg, log=log, oran='16:9', sureklilik=son)
+        except VeoError as e:
+            if len(clips) >= max(2, n * 2 // 3):  # yeterince çekim varsa kısa bitir
+                log(f'  Çekim {i} üretilemedi, {len(clips)} çekimle bitiriliyor: {str(e)[:120]}')
+                break
+            raise
+        d = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', out],
+                                 capture_output=True, text=True).stdout.strip() or seg)
+        for dl in sh.get('dialogue', []):
+            subs_all.append({'who': dl.get('who'), 'text': dl.get('text', ''), 'start': offset + float(dl.get('start', 0)),
+                             'end': offset + float(dl.get('end', 0) or float(dl.get('start', 0)) + 2.5)})
+        offset += d
+        son = os.path.join(outdir, f'omni_uzun_{i:02d}_son.jpg')
+        subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', out, '-frames:v', '1', son], check=True)
+        clips.append(out)
+        log(f'  Uzun video: {len(clips)}/{len(shots)} çekim, {offset:.0f} sn')
+    final, dur = birlestir(clips, [{'dialogue': subs_all}], ep, os.path.join(outdir, 'video.mp4'), log=log, zamanli=True, W=1920, H=1080)
+    fn = os.path.join(outdir, 'omni_kare.jpg')
+    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-ss', '2.0', '-i', clips[0], '-frames:v', '1', fn], check=True)
+    k = cv2.resize(cv2.imread(fn), (1280, 720))[..., ::-1]
+    k = _yazi(np.ascontiguousarray(k), (ep.get('kapak_yazisi') or ep['baslik']).upper(), 60, 84, max_w=0.9)
+    thumb = os.path.join(outdir, 'kapak.jpg')
+    cv2.imwrite(thumb, k[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 90])
+    log(f'Omni uzun video hazır: {dur / 60:.1f} dk, {(time.time() - t0) / 60:.0f} dk sürdü, tahmini maliyet ~${0.07 * dur:.2f}')
     return final, thumb, dur
 
 
@@ -420,5 +513,23 @@ def test(log=print):
     log(f'Test: {ep_path} -> state/veo_test.mp4 ({dur:.1f} sn)')
 
 
+def test_uzun(log=print):
+    """gorev=veo_test uzun: ucuz uzun video testi (2 x 6 sn yatay çekim, süreklilik + birleştirme)."""
+    import glob
+    import shutil
+    from .main import load_cfg
+    cfg = load_cfg()
+    cfg['veo'].update(uzun_sure=12, uzun_segment=6, uzun_min_cekim=2)
+    eps = sorted(glob.glob(os.path.join(paths.EPISODES, '*.json')))
+    ep_path = next((p for p in reversed(eps) if 'uzun' in json.load(open(p, encoding='utf-8')).get('tur', '')), eps[-1])
+    with open(ep_path, encoding='utf-8') as f:
+        ep = json.load(f)
+    out = os.path.join(paths.OUTPUT, 'veo_test_uzun')
+    final, thumb, dur = uret_uzun(ep, out, cfg, log=log)
+    shutil.copy(final, os.path.join(paths.STATE, 'veo_test_uzun.mp4'))
+    log(f'Test uzun: {ep_path} -> state/veo_test_uzun.mp4 ({dur:.1f} sn)')
+
+
 if __name__ == '__main__':
-    test()
+    import sys
+    test_uzun() if 'uzun' in sys.argv else test()

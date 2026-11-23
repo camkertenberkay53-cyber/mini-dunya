@@ -230,9 +230,28 @@ def sezon_blogu(kind, memory, plan):
 
 # A/B testi: kısa format (20-25 sn). main.py slot'a göre açar/kapatır.
 KISA = False
+# Omni (yapay zekâ video) bölümü: görüntü motoru sınırı yok -> serbest sinema modu. main.py açar/kapatır.
+OMNI = False
+SINEMA = """SİNEMA MODU (bu bölüm sinematik 3D yapay zekâ videosu olarak çekilecek; motor sınırı YOK, hayal gücünü kullan):
+- MEKÂN SERBEST: Büyük Ev'in herhangi bir yeri (oturma odası halısı, kitaplık rafları, çiçek saksısı ormanı, akvaryum kenarı,
+  çalışma masası, banyo küveti, balkon, çatı arası, pencere pervazı...). "location" alanına yine listeden EN YAKIN olanı yaz,
+  ama gerçek yeri "mekan" alanında canlı ve görsel olarak tarif et.
+- DÜNYA ZENGİN: konuşmayan küçük canlılar (örümcek, karınca kolonisi, kelebek, sinek, salyangoz, uyuyan dev kedi), araçlar ve
+  icatlar (kâğıt uçak, şişe kapağı tekne, balon, oyuncak araba, ataş kanca, ip asansör), doğa olayları (su baskını, toz fırtınası,
+  rüzgâr) kullanılabilir. Türk evinin tanıdık nesneleri (çaydanlık, ince belli çay bardağı, simit, lokum, nazar boncuğu, Türk
+  kahvesi fincanı, terlik) dev ölçekte harika sahneler verir.
+- GÖRSEL AN: her bölümde akılda kalacak tek bir muhteşem görüntü olsun ("gorsel_an" alanı): ör. kâğıt uçakla mutfaktan süzülüş,
+  dev kedinin bıyıklarının arasından kaçış, çay buharında kaybolan harita. Bunu final ya da doruk noktasına koy.
+- GÖSTER, ANLATMA: replikler az ve kısa; olay görüntüyle anlaşılsın. Her repliğe kısa bir "sahne" alanı ekle: o an ekranda ne
+  görünüyor (kamera, hareket, nesne) — tek cümle.
+- Aksiyon gerçek ve büyük olabilir (kovalamaca, uçuş, düşme-kurtulma) ama korkutucu/şiddetli değil; tehlike hep komik ve tatlı biter.
+- Karakterlerin görünüşü ve kişilikleri AYNI kalır; Benek konuşmaz.
+"""
 
 
 def build_prompt(kind, brief, evren, memory, plan, extra=''):
+    if OMNI:
+        brief = SINEMA + '\n' + brief
     recent = memory.get('bolumler', [])[-12:]
     recent_txt = '\n'.join(f"- {b['no']}. bölüm ({b['tur']}, kategori: {b.get('kategori', '?')}, mekân: {b.get('mekan', '?')}, odak: {b.get('ana_karakter', '?')}): {b['baslik']} — {b.get('ozet', '')} | final: {b.get('final', '')}" for b in recent) or '- (henüz bölüm yok)'
     sezon_txt = sezon_blogu(kind, memory, plan)

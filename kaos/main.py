@@ -352,11 +352,18 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, 'senaryo.json'), 'w', encoding='utf-8') as f:
         json.dump(ep, f, ensure_ascii=False, indent=1)
-    # Veo bölümü (günde 1, yapay zekâ videosu); hata olursa normal 3D hattıyla devam
-    if kind != 'uzun' and meta.get('_slot') and cfg.get('lang', 'tr') == 'tr':
+    # Omni bölümü (öğle+akşam Shorts ve haftalık uzun video); hata olursa normal 3D/2D hattıyla devam
+    if meta.get('_slot') and cfg.get('lang', 'tr') == 'tr':
         from . import veo
-        if veo.acik(cfg, meta['_slot']):
+        if (kind == 'uzun' and veo.uzun_acik(cfg)) or (kind != 'uzun' and veo.acik(cfg, meta['_slot'])):
             try:
+                if kind == 'uzun':
+                    final, thumb, dur = veo.uret_uzun(ep, outdir, cfg, log=log)
+                    ep['_veo'] = True
+                    from . import qc
+                    rep = qc.check(final, 1920, 1080, 30, expected_dur=dur, outdir=outdir, log=log)
+                    ep['_qc'] = {k: rep.get(k) for k in ('karar', 'sure_sn', 'ses_lufs', 'siyah_sn', 'orta', 'dusuk', 'duzeltmeler')}
+                    return final, thumb, 'omni', dur
                 final, thumb, dur = veo.uret(ep, outdir, cfg, log=log)
                 ep['_veo'] = True
                 from . import qc
@@ -545,12 +552,20 @@ def main():
                     log('  Bugün için hazır fikir yok; sezon planıyla devam.')
             except Exception as e:
                 log(f'  Fikir motoru atlandı: {e}')
+        try:
+            from . import veo as _veo
+            writer.OMNI = (kind == 'uzun' and _veo.uzun_acik(cfg)) or (kind != 'uzun' and _veo.acik(cfg, slot))
+        except Exception:
+            writer.OMNI = False
+        if writer.OMNI:
+            log('Senaryo: SİNEMA MODU (Omni bölümü)')
         writer.KISA = kind != 'uzun' and slot in ((cfg.get('deney') or {}).get('kisa_slotlar') or [])
         if writer.KISA:
             log('A/B testi: KISA format (20-25 sn)')
         ep = writer.write_episode(kind, brief + (fikir.brief_ek(idea) if idea else ''), st, plan, cfg, log=log)
         ep['_format'] = 'kisa' if writer.KISA else 'normal'
         writer.KISA = False
+        writer.OMNI = False
         ep['_fikir'] = idea
         ep['tur'] = kind
 
