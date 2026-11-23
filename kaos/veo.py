@@ -44,6 +44,12 @@ def _ses():
     return OZEL.get('ses') or SES_VARSAYILAN
 
 
+def _kiyafet_metni(chars):
+    k = OZEL.get('kiyafet') or {}
+    parca = [f"{c.capitalize()} {k[c]}" for c in chars if k.get(c)]
+    return (' OUTFITS IN THIS EPISODE (must stay identical in every shot, override the reference clothing): ' + '; '.join(parca) + '.') if parca else ''
+
+
 def _tarif(c):
     return KARAKTER_TARIF[c] + (('; ' + OZEL['kiyafet'][c]) if OZEL.get('kiyafet', {}).get(c) else '')
 
@@ -371,7 +377,7 @@ def uzat(prev_id, chars, prompt, sure, out, cfg, log=print, oran='9:16'):
         with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
             inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
     inp.append({'type': 'text', 'text': f"Continue the scene seamlessly for {sure} more seconds (0s = start of the new part). "
-                                        f"Keep the characters' faces exactly as in the references. {_stil()} {prompt} {_ses()}"})
+                                        f"Keep the characters' faces exactly as in the references.{_kiyafet_metni(chars)} {_stil()} {prompt} {_ses()}"})
     last = None
     for model in v.get('omni_modeller', ['gemini-omni-1.2-flash']):
         for rf in ({'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
@@ -413,7 +419,7 @@ def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik
         ek = (f' The last reference image (<IMAGE_REF_{len(chars)}>) is the final frame of the previous shot: continue seamlessly '
               f'from it (same location, lighting, character positions and outfits).')
     txt = (f"Use the given images as references (not as literal frames); keep the characters' exact look in every shot.{ek} "
-           f"{_stil()} {sure}-second video. {prompt} {_ses()}")
+           f"{_kiyafet_metni(chars)} {_stil()} {sure}-second video. {prompt} {_ses()}")
     inp.append({'type': 'text', 'text': txt})
     last = None
     for model in v.get('omni_modeller', ['gemini-omni-1.2-flash', 'gemini-omni-1.1-flash']):
@@ -499,7 +505,15 @@ def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
         tam_mi = False
         if i == 0:
             omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, store=True)
+            zincir = sure
+        elif zincir + sure > ZINCIR_MAX:  # Omni 30 sn'den uzun videoyu uzatmıyor: son kareden yeni zincir
+            log(f'  Zincir {zincir} sn: son kareden devam eden yeni çekim')
+            son = os.path.join(outdir, f'omni_perde_{i - 1}_son.jpg')
+            subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', parcalar[-1], '-frames:v', '1', son], check=True)
+            omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, sureklilik=son, store=True)
+            zincir = sure
         else:
+            zincir += sure
             try:
                 uzat(prev, chars, p['prompt'], sure, out, cfg, log=log, oran=oran)
                 d_new = _sure(out)
@@ -543,6 +557,7 @@ def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
     return final, thumb, dur
 
 
+ZINCIR_MAX = 30  # Omni uzatma sınırı (sn)
 FIYAT = {'360p': 0.023, '720p': 0.07, '1080p': 0.104}  # Omni saniye fiyatı ($)
 
 

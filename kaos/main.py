@@ -613,7 +613,7 @@ def main():
                                     'unlisted' if ep.get('onizleme') else cfg['yayin'].get('gizlilik', 'public'),
                                     ep.get('yt_kategori') or cfg['yayin'].get('kategori', 23),
                                     thumb if kind == 'uzun' else None, log=log)
-            kanal_yonet(st, ep, vid_id, 'tr', (plan or {}).get('ad') or f"Sezon {st['sezon']}", 'YT_REFRESH_TOKEN', log=log)
+            kanal_yonet(st, ep, vid_id, 'tr', ep.get('oynatma_listesi') or (plan or {}).get('ad') or f"Sezon {st['sezon']}", 'YT_REFRESH_TOKEN', log=log)
 
     # hafıza
     st['bolum_no'] = no
