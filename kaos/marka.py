@@ -6,7 +6,8 @@ import json
 import os
 
 from . import paths
-from .veo import KARAKTER_TARIF, REF_DIR, _req, BASE
+from .veo import KARAKTER_TARIF, _req, BASE
+REF_DIR = os.path.join(paths.ROOT, 'assets', 'ref')  # marka üretimi ham 3D referanslardan
 
 OUT = os.path.join(paths.STATE, 'marka')
 STIL = ('Premium 3D animated feature film still (Pixar / Illumination quality), soft cinematic lighting, rich realistic textures, '

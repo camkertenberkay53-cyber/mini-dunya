@@ -16,7 +16,7 @@ import numpy as np
 from . import paths
 
 BASE = 'https://generativelanguage.googleapis.com/v1beta'
-REF_DIR = os.path.join(paths.ROOT, 'assets', 'ref')
+REF_DIR = os.path.join(paths.ROOT, 'assets', 'ref_omni') if os.path.isdir(os.path.join(paths.ROOT, 'assets', 'ref_omni')) else os.path.join(paths.ROOT, 'assets', 'ref')
 FONT = os.path.join(paths.ROOT, 'assets', 'fonts', 'Baloo2.ttf')
 KARAKTER_TARIF = {
     'tuna': 'Tuna: boy explorer, brown spiky hair, brass goggles on forehead, teal scarf, orange-yellow coat with belt, blue trousers, brown boots',
