@@ -11,7 +11,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka, sil, omni_yeniden, yayinla]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka, sil, omni_yeniden, yayinla, incele]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -117,6 +117,8 @@ jobs:
             python -m kaos.veo
           elif [ "$G" = "omni_yeniden" ]; then
             python -m kaos.main --slot aksam --force --json "${{ github.event.inputs.bolum }}"
+          elif [ "$G" = "incele" ]; then
+            mkdir -p indir && gh run download "${{ github.event.inputs.bolum }}" -D indir && python -m kaos.incele indir
           elif [ "$G" = "yayinla" ]; then
             python -m kaos.main --yayinla "${{ github.event.inputs.video_id }}"
           elif [ "$G" = "sil" ]; then
