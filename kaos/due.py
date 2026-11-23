@@ -11,7 +11,7 @@ TR = dt.timezone(dt.timedelta(hours=3))
 # Kanal verisi (20-22 Kasım): öncekine 2,5 saatten yakın ya da 21:00 sonrası yüklenen Shorts YouTube'un test havuzuna hiç
 # girmedi (0-5 izlenme); aralıklı olanlar ~1.100-1.300 aldı. Bu yüzden: en az 3 saat ara, 21:00 sonrası Shorts yok,
 # geciken slot sonrakine yığılmaz (kaçan slot atlanır).
-SLOTS = [('sabah', 7.0), ('oglen', 10.75), ('aksam', 14.0), ('gece', 17.5)]  # 3D render ~30-45 dk sürer
+SLOTS = [('oglen', 11.3), ('aksam', 14.75)]  # 23 Kasım: günde 2 Shorts, ikisi de Omni (~11:35 ve ~15:00 yayında)
 MIN_ARA_SAAT = 3.0
 SON_SHORTS_SAAT = 21.0
 RAKIP_SAAT = 11.6  # pazartesi, kota yenilendikten sonra: haftalık rakip analizi + dönüşüm raporu

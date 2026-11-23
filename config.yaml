@@ -50,17 +50,18 @@ yonetmen:
 
 # A/B testi (23-30 Kasım): ortalama izlenme ~8,5 sn. Bu slotlar 20-25 sn kısa format, diğerleri normal.
 deney:
-  kisa_slotlar: [sabah, oglen, aksam]   # Omni (öğle, akşam) kısa senaryo ister; 3D'de sabah kısa / gece normal
+  kisa_slotlar: [oglen, aksam]   # Omni Shorts 12 sn: kısa senaryo
 
 # 3D karakterler (Blender/Cycles, ücretsiz). Shorts'ta açık; uzun video 2D (render süresi). Blender yoksa otomatik 2D.
 ucd:
-  acik: true
+  acik: false   # 23 Kasım: kanalda her şey Omni (3D kapalı)
   diller: [tr]
   ornek: 4
 
 # Veo pilotu (günde 1 Shorts yapay zekâ videosu, ~0,9$/bölüm, GEMINI_IMAGE_KEY). Hata olursa 3D.
 veo:
   acik: true
+  yedek: bekle     # Omni hata verirse 3D'ye düşme, slotu sonra tekrar dene (kalite önce)
   motor: omni      # Gemini Omni 1.2 Flash (~0,07$/sn 720p). Hata/kredi bitti -> otomatik 3D
   slotlar: [oglen, aksam]   # en çok izlenen dilimler (rakip analizi: 09-12 ve 15-18)
   sure: 12         # Shorts uzunluğu (sn) ~0,84$
@@ -73,12 +74,12 @@ veo:
 # Boyalı arka plan (Nano Banana, ayrı ücretli anahtar GEMINI_IMAGE_KEY). Anahtar yoksa otomatik kapalı.
 # A/B: sabah (kısa) + öğle (normal) boyalı; akşam (kısa) + gece (normal) çizim.
 boya:
-  acik: true
+  acik: false   # Omni kendi sahnesini üretiyor
   slotlar: [sabah, oglen]
   boyut: "2K"
 
 ingilizce:
-  acik: true
+  acik: false   # 23 Kasım: kalite için durduruldu (2D, 0 izlenme); Omni ile ileride yeniden
   # Kanal henüz dağıtım almıyor (0 izlenme); Gemini kotasını Türkçe kanala ayırmak için 1 hafta günde 2 + pazar uzun
   slotlar: [oglen, aksam, uzun]
   token_env: YT_REFRESH_TOKEN_EN

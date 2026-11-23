@@ -380,6 +380,9 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
                     log(f'Yönetmen atlandı: {str(e)[:150]}')
                 return final, thumb, 'veo', dur
             except Exception as e:
+                if (cfg.get('veo') or {}).get('yedek') == 'bekle':
+                    # kaliteyi koru: 3D/2D'ye düşme; bölüm yayınlanmaz, slot bir sonraki saatte yeniden denenir
+                    raise RuntimeError(f'Omni bölümü üretilemedi (sonra tekrar denenecek): {str(e)[:300]}')
                 log(f'Veo bölümü üretilemedi, 3D hattıyla devam: {str(e)[:300]}')
     # boyalı arka plan (ücretli ayrı anahtar; sadece seçili Türkçe Shorts slotlarında, hata olursa çizim arka plan)
     if kind != 'uzun' and meta.get('_slot'):
