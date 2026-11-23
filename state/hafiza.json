@@ -302,7 +302,8 @@
    "gece"
   ],
   "2026-11-23": [
-   "sabah"
+   "sabah",
+   "fikir"
   ]
  },
  "en_bolumler": [
@@ -408,10 +409,292 @@
  "oynatma_en": {
   "Mini World · Season 1": "PLIvGBQws7jrw"
  },
- "_gun": 4,
+ "_gun": 5,
  "fikir_havuzu": {
-  "tr": {},
-  "en": {}
+  "tr": {
+   "2026-11-23": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Körleşen Rehber",
+     "ana_karakter": "pire",
+     "mekan": "baharat",
+     "nesne": "çay kaşığı",
+     "tehlike": "yiyeceklerin düşmesi",
+     "mekanizma": "hata",
+     "ilk_saniye": "Pire'nin biber kavanozunun kapağını merakla açmasıyla dev bir tohumun üzerine düşmesi.",
+     "problem": "Pire meraktan karabiber kavanozunun kapağını zorlar, açılan kapaktan dökülen tane biberler tırmanma yolunu tıkar.",
+     "surpriz": "Yuvarlanan karabiber taneleri zincirleme reaksiyonla diğer kavanozları da sarsar.",
+     "cozum": "Pire çay kaşığını kalkan gibi kullanarak gelen tane biberleri sırayla savuşturur ve yoldan temizler.",
+     "final": "Pire gözleri yaşarmış halde zafer pozu verir ancak hapşırarak geri savrulur.",
+     "final_turu": "komik",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "Yıldızların Sesi",
+     "ana_karakter": "nil",
+     "mekan": "baharat",
+     "nesne": "düğme",
+     "tehlike": "büyük bir titreşim",
+     "mekanizma": "beklenmedik dostluk",
+     "ilk_saniye": "Raftaki titremeyle dev bir yıldız anasonun çan gibi ses çıkararak sallanması.",
+     "problem": "Labirentteki titreşimler yol tarif haritasını yırtar.",
+     "surpriz": "Titreşimi yapan şey rafın arkasında yuza yapmış sevimli bir örümcektir.",
+     "cozum": "Nil düğmenin deliğinden örümceğe iplik uzatır, örümcek onlara labirentin kuşbakışı ağ haritasını örer.",
+     "final": "Örümceğin ördüğü ağ haritasıyla labirent kolayca geçilir.",
+     "final_turu": "sasirtici",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Zirvedeki Dev Mutfak",
+     "ana_karakter": "tuna",
+     "mekan": "baharat",
+     "nesne": "şişe kapağı",
+     "tehlike": "dev bir elin yaklaşması",
+     "mekanizma": "keşif",
+     "ilk_saniye": "Kamera rafın en üst zirvesinden aşağıya doğru geniş açıyla bakar; devasa mutfak ayaklar altındadır.",
+     "problem": "Zirveye ulaşıldığında tüm mutfak görünür ancak dev bir el rafa yeni bir kavanoz koymak için yaklaşır.",
+     "surpriz": "Dev el kavanozu tam ekibin durduğu noktaya koyacaktır.",
+     "cozum": "Tuna ekibi şişe kapağının altına saklayarak dev elin kavanozu koyarken onları ezmesini engeller.",
+     "final": "Dev el uzaklaşır; yeni konan kavanozun arkasından harika bir manzara açılır.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Sallanan Beşik",
+     "ana_karakter": "bulut",
+     "mekan": "cekmece",
+     "nesne": "lastik bant",
+     "tehlike": "çekmecenin açılması",
+     "mekanizma": "yeni icat",
+     "ilk_saniye": "Çekmecenin hafifçe aralanmasıyla içeri dolan gece rüzgarı.",
+     "problem": "Kamp alanındaki zemin sert olduğu için kimse uyuyamamaktadır.",
+     "surpriz": "Çekmece rayı hafifçe sallanmaktadır.",
+     "cozum": "Bulut lastik bantları çatal uçlarına bağlayarak ekibe sallanan harika hamağı inşa eder.",
+     "final": "Tüm ekip hamakta mışıl mışıl uyur.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    }
+   },
+   "2026-11-24": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Kaşık Mancınığıyla İntikal",
+     "ana_karakter": "tuna",
+     "mekan": "buzdolabi",
+     "nesne": "kaşık",
+     "tehlike": "kapının kapanması",
+     "mekanizma": "zamanla yarış",
+     "ilk_saniye": "Tuna'nın dev bir çay kaşığının üzerine zıplayıp kendini buzdolabının orta rafına fırlatması.",
+     "problem": "Tuna en üst rafa hızlıca tırmanmak isterken kapının kapanma sesiyle sarsılırlar.",
+     "surpriz": "Mancınık olarak kullandığı kaşık dona yapışır ve fırlatma yönü değişir.",
+     "cozum": "Benek son anda Tuna'yı kıyafetinden yakalayıp kayarak peynir paketinin üstüne düşürür.",
+     "final": "Kapı tamamen kapanır, tek ışık kaynağı donmuş rafların hafif parıltısı kalır.",
+     "final_turu": "sasirtici",
+     "yenilik_puani": 7,
+     "izlenme_potansiyeli": 8
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "Yumurta Kayalıkları Tırmanışı",
+     "ana_karakter": "bulut",
+     "mekan": "buzdolabi",
+     "nesne": "yumurta kabuğu",
+     "tehlike": "yiyeceklerin düşmesi",
+     "mekanizma": "yeni icat",
+     "ilk_saniye": "Bulut'un yarım yumurta kabuğundan yaptığı kaskla dev yumurta kartonuna bakması.",
+     "problem": "Üst raftaki bir zeytin kavanozunun sarsılmasıyla dev bir yumurta yerinden oynar.",
+     "surpriz": "Yumurta yuvarlanmak yerine kartonun arasında sıkışıp geçici bir köprü oluşturur.",
+     "cozum": "Bulut yumurta kabuğu parçalarını merdiven adımları olarak kullanıp ekibi yukarı tırmandırır.",
+     "final": "Yumurta kartonunun en tepe noktasına güvenle ulaşırlar.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Buz Kutbu Sığınağı",
+     "ana_karakter": "nil",
+     "mekan": "buzdolabi",
+     "nesne": "peçete",
+     "tehlike": "beklenmedik sıcaklık",
+     "mekanizma": "hayatta kalma",
+     "ilk_saniye": "Nil'in termometre çizgisini kontrol edip eksi dereceleri göstermesiyle irkilmesi.",
+     "problem": "Sıcaklık aniden aşırı düşer ve donma riski baş gösterir.",
+     "surpriz": "Bir peçete katının içi hava kabarcıkları sayesinde izole bir alan sunmaktadır.",
+     "cozum": "Nil peçeteyi katlayarak ekibin içine sığınacağı küçük bir kar kulübesi (iglo) inşa eder.",
+     "final": "Geceyi geçirmek için korunaklı ilk sığınak hazırlanmış olur.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Buz Kaydırağı Çılgınlığı",
+     "ana_karakter": "pire",
+     "mekan": "buzdolabi",
+     "nesne": "şişe kapağı",
+     "tehlike": "kaygan yüzey",
+     "mekanizma": "yarış",
+     "ilk_saniye": "Pire'nin ters çevrilmiş bir şişe kapağının içine oturup 'Buz pateni zamanı!' diye bağırması.",
+     "problem": "Pire kontrolü kaybedip donmuş raf boyunca baş aşağı kaymaya başlar.",
+     "surpriz": "Kapak bir buz sarkıtına çarpıp Pire'yi havaya fırlatır.",
+     "cozum": "Pire yumuşak bir margarin paketinin üzerine çakılarak yaralanmadan kurtulur.",
+     "final": "Pire'nin yüzü tamamen margarin kaplanır, gülüşürler.",
+     "final_turu": "komik",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    }
+   }
+  },
+  "en": {
+   "2026-11-23": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Kırmızı Fırtına Tırmanışı",
+     "ana_karakter": "tuna",
+     "mekan": "baharat",
+     "nesne": "kürdan",
+     "tehlike": "rüzgâr/vantilatör",
+     "mekanizma": "hayatta kalma",
+     "ilk_saniye": "Dev bir vantilatörün dönmeye başlamasıyla toz biberlerin havada kıpkırmızı bir hortum oluşturması.",
+     "problem": "Tırmanış sırasında esen acı biber fırtınası ekibin görüşünü kapatır ve yuvalarından uzaklaştırır.",
+     "surpriz": "Benek havada uçuşan biber tanelerini sırtında toplayıp rüzgârın yönünü gösteren bir pusulaya dönüşür.",
+     "cozum": "Tuna kürdanları raf aralıklarına çakarak ekibe biber fırtınasına dayanıklı bir tırmanış merdiveni oluşturur.",
+     "final": "Zirveye yakın bir çıkıntıya ulaşan ekip kırmızılıktan kurtulup nefes alır.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 8,
+     "izlenme_potansiyeli": 9
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "Un Fırtınasında Dostluk",
+     "ana_karakter": "pire",
+     "mekan": "baharat",
+     "nesne": "un",
+     "tehlike": "rüzgâr/vantilatör",
+     "mekanizma": "beklenmedik dostluk",
+     "ilk_saniye": "Pire'nin un paketine hapşırmasıyla her yerin bembeyaz bir sisle kaplanması.",
+     "problem": "Görüş mesafesi sıfıra iner ve Nil kaybolur.",
+     "surpriz": "Unun içinde yürüyen bir arı ekibin üzerine basacağı yeri kanatlarıyla temizler.",
+     "cozum": "Pire arıya unsuz tatlı bir kurabiye kırıntısı sunarak onu labirent dışına rehber yapar.",
+     "final": "Arı ekibi tarçın labirentinden güvenle çıkarır.",
+     "final_turu": "sasirtici",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Zirvedeki Mıknatıs İpucu",
+     "ana_karakter": "nil",
+     "mekan": "baharat",
+     "nesne": "mıknatıs",
+     "tehlike": "ışığın kapanması",
+     "mekanizma": "keşif",
+     "ilk_saniye": "Mutfak ışığının aniden sönmesi ve harita çizen Nil'in karanlıkta kalması.",
+     "problem": "Zirvedeki yön oklarını çizmek için ışık kalmamıştır.",
+     "surpriz": "Mıknatıs metal buzdolabı kapağından yansıyan minik gölge çizgilerini belirginleştirir.",
+     "cozum": "Nil mıknatısı yön oklarına tutarak dev mutfağın kuşbakışı harita şifresini çözer.",
+     "final": "Nil heyecanla haykırır: 'Oklar tek bir noktayı, dev buzdolabını gösteriyor!'",
+     "final_turu": "merak",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Eriyen Buz Macera Gecesi",
+     "ana_karakter": "bulut",
+     "mekan": "lonca",
+     "nesne": "buz küpü",
+     "tehlike": "buzun erimesi",
+     "mekanizma": "zamanla yarış",
+     "ilk_saniye": "Loncaya getirilen minik buz küpünün hızla erimeye başlaması.",
+     "problem": "Eriyen su harita masasını basmak üzeredir.",
+     "surpriz": "Eriyen su kanallardan akarken haritadaki gizli yazıları parlatarak görünür yapar.",
+     "cozum": "Bulut suyu pipetle yönlendirerek sadece harita kanalına akmasını sağlar.",
+     "final": "Gece vakti haritadaki yeni gizli rota ortaya çıkar.",
+     "final_turu": "merak",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    }
+   },
+   "2026-11-24": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Zeytin Yuvarlanması",
+     "ana_karakter": "pire",
+     "mekan": "buzdolabi",
+     "nesne": "zeytin",
+     "tehlike": "yiyeceklerin düşmesi",
+     "mekanizma": "yanlış anlaşılma",
+     "ilk_saniye": "Pire'nin dev bir siyah zeytini zıplama topu sanıp üstüne atlaması.",
+     "problem": "Zeytin yuvarlanarak kapı eşiğine doğru hızlanır ve ekibin çıkış yolunu tıkar.",
+     "surpriz": "Zeytinin yapışkan yağı, kapanmakta olan kapının contasına sürülerek kapının tam kilitlenmesini önler.",
+     "cozum": "Pire zeytini ittirerek küçük bir boşluk bırakır ve geçit açar.",
+     "final": "Pire gururla zeytinin üstünde durur ama elleri simsiyah olmuştur.",
+     "final_turu": "komik",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "Ekmek Kırıntısı İzleri",
+     "ana_karakter": "nil",
+     "mekan": "buzdolabi",
+     "nesne": "ekmek kırıntısı",
+     "tehlike": "evcil hayvanın yaklaşması",
+     "mekanizma": "beklenmedik dostluk",
+     "ilk_saniye": "Nil'in raf boyunca dizilmiş ekmek kırıntılarını büyüteçle incelemesi.",
+     "problem": "Dışarıdan buzdolabına yanaşan kedinin burnu kapı contasına çarparak büyük bir sarsıntı yaratır.",
+     "surpriz": "Kırıntıların yanında saklanan minik bir sinek ekibe kedinin burnunun yönünü haber verir.",
+     "cozum": "Nil kırıntıları sırayla dizerek kedinin göremeyeceği gölge bölgeye ekibi saklar.",
+     "final": "Sinek ekiple kırıntı paylaşır ve dost olurlar.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Pil Işıldağı",
+     "ana_karakter": "bulut",
+     "mekan": "buzdolabi",
+     "nesne": "pil",
+     "tehlike": "ışığın kapanması",
+     "mekanizma": "yeni icat",
+     "ilk_saniye": "Bulut'un raf kenarına unutulmuş ince kalemi pille birleştirmeye çalışması.",
+     "problem": "Zifiri karanlık çöker ve ekibin göz gözü görmez olur.",
+     "surpriz": "Pilin kutupları yakındaki alüminyum folyoya değince minik bir kıvılcım ışığı oluşur.",
+     "cozum": "Bulut bu kıvılcımı sabitleyip küçük bir fener icat eder.",
+     "final": "Karanlık raf aniden yumuşak bir ışıkla aydınlanır.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Bozuk Para Kalkanı",
+     "ana_karakter": "tuna",
+     "mekan": "buzdolabi",
+     "nesne": "bozuk para",
+     "tehlike": "büyük bir nesnenin yuvarlanması",
+     "mekanizma": "kaçış",
+     "ilk_saniye": "Tuna'nın dik duran bir bozuk parayı arkasından itmeye çalışması.",
+     "problem": "Yukarıdan kayan dev bir limon yuvarlanarak Tuna'ya doğru gelir.",
+     "surpriz": "Bozuk para devrilerek mükemmel bir durdurucu takoz işlevi görür.",
+     "cozum": "Limon bozuk paraya çarpıp durur ve ekibin geçeceği yolu kapatmaz.",
+     "final": "Tuna bozuk paraya basıp kahraman duruşu sergiler.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    }
+   }
+  }
  },
  "fikir_gecmisi": {
   "tr": [
@@ -464,6 +747,48 @@
     "konu": "Nil, Lavabo Gölü'ndeki dev damlaları atlatıp musluğun arkasındaki gizli boru geçidini haritalamak istiyor.",
     "mekan": "lavabo",
     "ana_karakter": "nil"
+   }
+  ],
+  "en": [
+   {
+    "konu": "Exploring Countertop Plains",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "Sponge Mountain Mission",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "Sugar Cube Cliffs",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "Sink Lake Foam Raft",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "The Great Fridge Escape",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "The Great Soap Slide",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "Mystery of Faucet Falls",
+    "mekan": "",
+    "ana_karakter": ""
+   },
+   {
+    "konu": "Bulut, Lavabo Gölü'nün dibindeki parlayan çay kaşığını çıkarmak için çay süzgecinden denizaltı yapar ama köpüklü su pervaneyi tıklar.",
+    "mekan": "lavabo",
+    "ana_karakter": "bulut"
    }
   ]
  },
