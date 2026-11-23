@@ -60,7 +60,7 @@ ucd:
 
 # Veo pilotu (günde 1 Shorts yapay zekâ videosu, ~0,9$/bölüm, GEMINI_IMAGE_KEY). Hata olursa 3D.
 veo:
-  acik: true
+  acik: false   # 23 Kasım: Google bu projeye Veo erişimi vermiyor (model listesinde yok); erişim açılınca true
   slot: aksam
   cozunurluk: "720p"
   modeller: [veo-3.1-lite-generate-preview, veo-3.1-fast-generate-preview]
