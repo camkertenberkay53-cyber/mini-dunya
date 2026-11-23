@@ -114,7 +114,7 @@ def uret(ep, outdir, cfg, log=print):
 
 class Boya:
     """Renderer için: resmi kamera hareketine göre (hafif paralaks) ekrana yerleştirir."""
-    ZOOM = 1.85
+    ZOOM = 1.55
     ZEMIN = 0.73  # resimde karakterlerin bastığı yüzeyin yüksekliği (oran)
 
     def __init__(self, path, ground_y):
