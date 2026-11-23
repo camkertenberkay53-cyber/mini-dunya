@@ -11,7 +11,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka, sil, omni_yeniden]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka, sil, omni_yeniden, yayinla]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -64,6 +64,7 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg libxi6 libxkbcommon0 libsm6 libxrender1 libxxf86vm1 libxfixes3 libgl1 libegl1 > /dev/null
           pip install -q -r requirements.txt
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu || echo "torch kurulamadı: büyütme atlanır"
           pip install -q bpy || echo "bpy kurulamadı: 3D kapalı, 2D ile devam" 
 
       - name: Yedek ses modelleri (önbellek)
@@ -116,6 +117,8 @@ jobs:
             python -m kaos.veo
           elif [ "$G" = "omni_yeniden" ]; then
             python -m kaos.main --slot aksam --force --json "${{ github.event.inputs.bolum }}"
+          elif [ "$G" = "yayinla" ]; then
+            python -m kaos.main --yayinla "${{ github.event.inputs.video_id }}"
           elif [ "$G" = "sil" ]; then
             python -m kaos.main --sil "${{ github.event.inputs.video_id }}"
           elif [ "$G" = "marka" ]; then

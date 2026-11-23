@@ -64,12 +64,13 @@ veo:
   yedek: bekle     # Omni hata verirse 3D'ye düşme, slotu sonra tekrar dene (kalite önce)
   motor: omni      # Gemini Omni 1.2 Flash (~0,07$/sn 720p). Hata/kredi bitti -> otomatik 3D
   slotlar: [aksam]
-  perdeler: [15, 10, 10, 10]   # 45 sn: açılış + 3 kesintisiz uzatma (~3,15$ ≈ 157 TL)
+  perdeler: [15, 10, 10, 10]   # 45 sn: açılış + 3 kesintisiz uzatma (360p: ~1,04$ ≈ 52 TL)
   sure: 12         # Shorts uzunluğu (sn) ~0,84$
   uzun: false      # kredi eklenene kadar kapalı
   uzun_sure: 240   # hedef ~4 dk (16 x 15 sn çekim) ~17$
   uzun_segment: 15
-  cozunurluk: "720p"
+  cozunurluk: "360p"          # ucuz çekim (0,023$/sn) + ücretsiz yapay zekâ büyütme
+  buyut: true                 # Real-ESRGAN (CPU) ile 1080x1920
   modeller: [veo-3.1-lite-generate-preview, veo-3.1-fast-generate-preview]
 
 # Boyalı arka plan (Nano Banana, ayrı ücretli anahtar GEMINI_IMAGE_KEY). Anahtar yoksa otomatik kapalı.

@@ -31,6 +31,23 @@ STIL = ('Premium 3D animated family film look (Pixar/Illumination quality), soft
         'brand names anywhere; all packages, jars, boxes and cans are plain and unlabeled.')
 
 
+# Bölüme özel ayarlar (tarih modu vb.): uret_perdeli başında ep'den doldurulur
+OZEL = {}
+SES_VARSAYILAN = 'Natural Turkish child voices, lively sound effects, light playful score without lyrics.'
+
+
+def _stil():
+    return OZEL.get('stil') or STIL
+
+
+def _ses():
+    return OZEL.get('ses') or SES_VARSAYILAN
+
+
+def _tarif(c):
+    return KARAKTER_TARIF[c] + (('; ' + OZEL['kiyafet'][c]) if OZEL.get('kiyafet', {}).get(c) else '')
+
+
 class VeoError(Exception):
     pass
 
@@ -354,8 +371,7 @@ def uzat(prev_id, chars, prompt, sure, out, cfg, log=print, oran='9:16'):
         with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
             inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
     inp.append({'type': 'text', 'text': f"Continue the scene seamlessly for {sure} more seconds (0s = start of the new part). "
-                                        f"Keep the characters exactly as in the references. {STIL} {prompt} "
-                                        f"Natural Turkish child voices, lively sound effects, the same light playful score."})
+                                        f"Keep the characters' faces exactly as in the references. {_stil()} {prompt} {_ses()}"})
     last = None
     for model in v.get('omni_modeller', ['gemini-omni-1.2-flash']):
         for rf in ({'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
@@ -397,7 +413,7 @@ def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik
         ek = (f' The last reference image (<IMAGE_REF_{len(chars)}>) is the final frame of the previous shot: continue seamlessly '
               f'from it (same location, lighting, character positions and outfits).')
     txt = (f"Use the given images as references (not as literal frames); keep the characters' exact look in every shot.{ek} "
-           f"{STIL} {sure}-second video. {prompt} Natural Turkish child voices, lively sound effects, light playful score without lyrics.")
+           f"{_stil()} {sure}-second video. {prompt} {_ses()}")
     inp.append({'type': 'text', 'text': txt})
     last = None
     for model in v.get('omni_modeller', ['gemini-omni-1.2-flash', 'gemini-omni-1.1-flash']):
@@ -439,21 +455,21 @@ def perde_plan(ep, perdeler, log=print):
     """Bölümü kesintisiz bir sahnenin ardışık perdelerine böler (ilk perde üretim, diğerleri uzatma)."""
     lines = [{'who': l['who'], 'text': l['text'], 'action': l.get('action'), 'sahne': l.get('sahne')} for sc in ep['scenes'] for l in sc['lines']]
     chars = list(dict.fromkeys(l['who'] for l in lines if l['who'] in KARAKTER_TARIF))[:3]
-    adlar = ['HOOK + SETUP: within the first 2 seconds the characters are already in the predicament; establish place and goal',
+    adlar = ep.get('perde_adlari') or ['HOOK + SETUP: within the first 2 seconds the characters are already in the predicament; establish place and goal',
              'COMPLICATION: they try a plan, it goes wrong in a funny way, stakes rise',
              'CLIMAX: the boldest attempt, the signature visual moment, peak tension and action',
              'PAYOFF: surprising clever/funny resolution, characters celebrate, a final gag or hint of the next mystery']
-    prompt = f"""You are the director and editor of "Mini Dünya", a premium 3D animated family series (finger-sized explorer kids in a
-giant house). Plan ONE continuous vertical (9:16) YouTube Short of {sum(perdeler)} seconds made of {len(perdeler)} consecutive parts
+    tanim = ep.get('yonetmen_notu') or ('a premium 3D animated family series (finger-sized explorer kids in a giant house)')
+    prompt = f"""You are the director and editor of "Mini Dünya", {tanim}. Plan ONE continuous vertical (9:16) YouTube Short of {sum(perdeler)} seconds made of {len(perdeler)} consecutive parts
 generated as a single take that is EXTENDED part by part (each part continues exactly where the previous ended, same location,
 same lighting, same characters, no jumps). Durations: {perdeler} seconds. Parts: {json.dumps(adlar[:len(perdeler)])}.
 The story must have clear cause and effect: every part follows logically from the previous one. Use expressive acting, dynamic but
 motivated camera moves (push-ins, follow shots, low angles), sound effects. A cut to a closer angle is allowed inside a part only if
 stated as "the camera cuts to a close-up of ...". Use timecodes relative to the part start, e.g. [0-4s].
-Characters (in this order as <IMAGE_REF_0>...): {json.dumps([KARAKTER_TARIF[c] for c in chars])}. Benek never speaks.
+Characters (in this order as <IMAGE_REF_0>...): {json.dumps([_tarif(c) for c in chars], ensure_ascii=False)}. Benek never speaks.
 Spoken lines: TURKISH only, short, taken/adapted from the script, max 2 per part, written in the prompt as
 CharacterName says in Turkish: "...". No on-screen text, no labels, family friendly.
-Place: {ep.get('mekan') or ep['scenes'][0].get('location')} | topic: {ep.get('konu', '')} | signature moment: {ep.get('gorsel_an', '')}
+Place: {ep.get('mekan') or ep['scenes'][0].get('location')} | style: {_stil()} | topic: {ep.get('konu', '')} | signature moment: {ep.get('gorsel_an', '')}
 Script: {json.dumps(lines, ensure_ascii=False)}
 Return JSON: {{"parts": [{{"prompt": "English prompt for this part", "dialogue": [{{"who": "tuna", "text": "Türkçe", "start": 1.0, "end": 3.2}}]}}]}}
 (dialogue start/end are seconds within that part)."""
@@ -467,9 +483,13 @@ Return JSON: {{"parts": [{{"prompt": "English prompt for this part", "dialogue":
 def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
     """40-50 sn Shorts: 15 sn açılış + kesintisiz uzatmalar; uzatma olmazsa son kareden süreklilikli yeni çekim."""
     v = cfg.get('veo') or {}
-    perdeler = v.get('perdeler') or [15, 10, 10, 10]
+    perdeler = ep.get('perdeler') or v.get('perdeler') or [15, 10, 10, 10]
     t0 = time.time()
     os.makedirs(outdir, exist_ok=True)
+    OZEL.clear()
+    OZEL.update({k: ep[k] for k in ('stil', 'ses', 'kiyafet') if ep.get(k)})
+    if OZEL:
+        log(f"  Bölüme özel mod: {', '.join(OZEL)}")
     chars, parts = perde_plan(ep, perdeler, log=log)
     with open(os.path.join(outdir, 'omni_perde_plan.json'), 'w', encoding='utf-8') as f:
         json.dump({'characters': chars, 'parts': parts}, f, ensure_ascii=False, indent=1)
@@ -503,15 +523,27 @@ def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
             parcalar.append(out)
             offset += d
         log(f'  Perde {i + 1}/{len(perdeler)} tamam, toplam {offset:.1f} sn')
+    ham_parcalar = list(parcalar)
+    if v.get('buyut') and v.get('cozunurluk', '720p') in ('360p', '480p'):
+        try:
+            from . import buyut as _b
+            parcalar = [_b.buyut(c, c.replace('.mp4', '_hd.mp4'), log=log) for c in parcalar]
+        except Exception as e:
+            log(f'  Büyütme atlandı (ham klip kullanılacak): {str(e)[:150]}')
+            parcalar = ham_parcalar
     final, dur = birlestir(parcalar, [{'dialogue': subs}], ep, os.path.join(outdir, 'video.mp4'), log=log, zamanli=True)
     fn = os.path.join(outdir, 'omni_kare.jpg')
-    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-ss', '1.0', '-i', parcalar[0], '-frames:v', '1', fn], check=True)
+    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-ss', str(min(1.0, _sure(parcalar[0]) / 2)), '-i', parcalar[0], '-frames:v', '1', fn], check=True)
     k = cv2.resize(cv2.imread(fn), (1080, 1920))[..., ::-1]
     k = _yazi(np.ascontiguousarray(k), (ep.get('kapak_yazisi') or ep['baslik']).upper(), 160, 104)
     thumb = os.path.join(outdir, 'kapak.jpg')
     cv2.imwrite(thumb, k[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 90])
-    log(f'Omni perdeli Shorts hazır: {dur:.1f} sn, {(time.time() - t0) / 60:.1f} dk, tahmini maliyet ~${0.07 * dur:.2f}')
+    log(f'Omni perdeli Shorts hazır: {dur:.1f} sn, {(time.time() - t0) / 60:.1f} dk, tahmini maliyet ~${FIYAT.get(v.get('cozunurluk', '720p'), 0.07) * dur:.2f}')
+    OZEL.clear()
     return final, thumb, dur
+
+
+FIYAT = {'360p': 0.023, '720p': 0.07, '1080p': 0.104}  # Omni saniye fiyatı ($)
 
 
 def uret(ep, outdir, cfg, log=print):

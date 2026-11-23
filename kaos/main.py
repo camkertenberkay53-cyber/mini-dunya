@@ -105,6 +105,10 @@ def brief_for(slot, plan, day, today):
 def description(ep, kind, no, season):
     yt = ep['youtube']
     base = yt.get('description', '').strip()
+    if ep.get('seri') == 'tarih':  # bağımsız tarih bölümleri: aramaya uygun, sezon anlatısı yok
+        tail = ("\n\nMİNİ DÜNYA · Haritacılar Zamanda\nHer bölümde tarihten bir an, 45 saniyede!\nAbone olmayı unutma.\n\n"
+                "#tarih #osmanlı #animasyon #minidünya")
+        return base + tail + (' #shorts' if kind != 'uzun' else '')
     tail = (f"\n\nMİNİ DÜNYA · Sezon {season} · Bölüm {no}\n"
             "Süpürgeliğin arkasında yaşayan minik haritacılar, Büyük Ev'i bölge bölge keşfediyor.\n"
             "Her gün yeni bölüm! Abone olmayı unutma.\n\n#minidünya #animasyon #macera #keşif #çizgifilm")
@@ -507,6 +511,7 @@ def update_stats(st, log=log):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--slot', default='auto', choices=['auto', 'sabah', 'oglen', 'aksam', 'gece', 'uzun'])
+    ap.add_argument('--yayinla', help='Liste dışı (önizleme) videoyu herkese açık yap')
     ap.add_argument('--json', help='Hazır senaryo dosyasından üret')
     ap.add_argument('--no-upload', action='store_true')
     ap.add_argument('--force', action='store_true', help='Bugün bu slot yapılmış olsa da üret')
@@ -515,6 +520,10 @@ def main():
     ap.add_argument('--en-telafi', action='store_true', help='Bugünün İngilizce sürümü olmayan bölümlerini İngilizce üret')
     ap.add_argument('--sil', help='Bu video id\'sini YouTube\'dan kalıcı sil (kullanıcı onayıyla)')
     args = ap.parse_args()
+    if args.yayinla:
+        youtube.set_privacy(args.yayinla, 'public')
+        log(f'Herkese açık yapıldı: https://youtu.be/{args.yayinla}')
+        return
     if args.sil:
         st = load_state()
         youtube.delete_video(args.sil)
@@ -601,7 +610,8 @@ def main():
                 title = (title[:88] + ' #shorts')
             tags = list(dict.fromkeys(ep['youtube'].get('tags', []) + cfg['yayin'].get('shorts_etiketleri', [])))
             vid_id = youtube.upload(final, title, description(ep, kind, no, st['sezon']), tags,
-                                    cfg['yayin'].get('gizlilik', 'public'), cfg['yayin'].get('kategori', 23),
+                                    'unlisted' if ep.get('onizleme') else cfg['yayin'].get('gizlilik', 'public'),
+                                    ep.get('yt_kategori') or cfg['yayin'].get('kategori', 23),
                                     thumb if kind == 'uzun' else None, log=log)
             kanal_yonet(st, ep, vid_id, 'tr', (plan or {}).get('ad') or f"Sezon {st['sezon']}", 'YT_REFRESH_TOKEN', log=log)
 

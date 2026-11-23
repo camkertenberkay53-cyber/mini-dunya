@@ -154,3 +154,9 @@ def delete_video(video_id, token_env='YT_REFRESH_TOKEN'):
             return r.status
     except urllib.error.HTTPError as e:
         raise YTError(f'{e.code} {e.read()[:300]!r}')
+
+
+def set_privacy(video_id, privacy='public', token_env='YT_REFRESH_TOKEN'):
+    """Önizlemedeki (liste dışı) videoyu herkese açık yapar."""
+    return _api('PUT', 'https://www.googleapis.com/youtube/v3/videos?part=status', token_env,
+                {'id': video_id, 'status': {'privacyStatus': privacy, 'selfDeclaredMadeForKids': False, 'embeddable': True}})
