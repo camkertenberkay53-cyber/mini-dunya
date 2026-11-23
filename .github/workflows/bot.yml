@@ -11,13 +11,17 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka, sil]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka, sil, omni_yeniden]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
         default: false
       video_id:
         description: "gorev=sil için silinecek YouTube video id'si (kalıcı!)"
+        type: string
+        default: ""
+      bolum:
+        description: "gorev=omni_yeniden için bölüm dosyası (episodes/...json)"
         type: string
         default: ""
 
@@ -110,6 +114,8 @@ jobs:
             python -m kaos.yonetmen
           elif [ "$G" = "veo_test" ]; then
             python -m kaos.veo
+          elif [ "$G" = "omni_yeniden" ]; then
+            python -m kaos.main --slot aksam --force --json "${{ github.event.inputs.bolum }}"
           elif [ "$G" = "sil" ]; then
             python -m kaos.main --sil "${{ github.event.inputs.video_id }}"
           elif [ "$G" = "marka" ]; then

@@ -11,7 +11,9 @@ TR = dt.timezone(dt.timedelta(hours=3))
 # Kanal verisi (20-22 Kasım): öncekine 2,5 saatten yakın ya da 21:00 sonrası yüklenen Shorts YouTube'un test havuzuna hiç
 # girmedi (0-5 izlenme); aralıklı olanlar ~1.100-1.300 aldı. Bu yüzden: en az 3 saat ara, 21:00 sonrası Shorts yok,
 # geciken slot sonrakine yığılmaz (kaçan slot atlanır).
-SLOTS = [('oglen', 11.3), ('aksam', 14.75)]  # 23 Kasım: günde 2 Shorts, ikisi de Omni (~11:35 ve ~15:00 yayında)
+SLOTS = [('aksam', 14.5)]  # 45 sn Omni Shorts ~15:00
+YAYIN_GUNLERI = {2, 5}  # çarşamba, cumartesi (bütçe: kredi eklenince artırılır)
+UZUN_AKTIF = False      # haftalık uzun video kredi eklenene kadar kapalı
 MIN_ARA_SAAT = 3.0
 SON_SHORTS_SAAT = 21.0
 RAKIP_SAAT = 11.6  # pazartesi, kota yenilendikten sonra: haftalık rakip analizi + dönüşüm raporu
@@ -29,11 +31,11 @@ def due(now=None):
         st = {}
     done = st.get('yapilan', {}).get(now.date().isoformat(), [])
     # 1) uzun video (pazar)
-    if now.weekday() == 6 and h >= UZUN_SAAT and 'uzun' not in done:
+    if UZUN_AKTIF and now.weekday() == 6 and h >= UZUN_SAAT and 'uzun' not in done:
         return 'uzun'
     # 2) Shorts: geçmiş ve yapılmamış slotlardan EN SONUNCUSU (eskiler atlanır, yığılma olmaz)
     gecmis = [s for s, at in SLOTS if h >= at and s not in done]
-    if gecmis and h < SON_SHORTS_SAAT:
+    if gecmis and h < SON_SHORTS_SAAT and now.weekday() in YAYIN_GUNLERI:
         son = st.get('son_yukleme')
         ara_ok = True
         if son:

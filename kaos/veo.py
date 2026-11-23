@@ -334,7 +334,56 @@ def omni(ep, outdir, cfg, log=print):
     return omni_cagri(p['characters'], p['prompt'], sure, out, cfg, log=log), p
 
 
-def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik=None):
+SON_ID = {}
+
+
+def _video_cikar(d):
+    data = None
+    for stp in d.get('steps', []) or []:
+        for c in stp.get('content', []) or []:
+            if c.get('type') == 'video' and c.get('data'):
+                data = c['data']
+    return data or (d.get('output_video') or {}).get('data')
+
+
+def uzat(prev_id, chars, prompt, sure, out, cfg, log=print, oran='9:16'):
+    """Omni ile önceki üretimi kesintisiz uzatır (aynı sahnenin devamı). Çıktı yolunu döndürür."""
+    v = cfg.get('veo') or {}
+    inp = []
+    for c in chars:  # karakterler uzatmada da referans olarak verilir (tutarlılık)
+        with open(os.path.join(REF_DIR, f'{c}.jpg'), 'rb') as f:
+            inp.append({'type': 'image', 'data': base64.b64encode(f.read()).decode(), 'mime_type': 'image/jpeg'})
+    inp.append({'type': 'text', 'text': f"Continue the scene seamlessly for {sure} more seconds (0s = start of the new part). "
+                                        f"Keep the characters exactly as in the references. {STIL} {prompt} "
+                                        f"Natural Turkish child voices, lively sound effects, the same light playful score."})
+    last = None
+    for model in v.get('omni_modeller', ['gemini-omni-1.2-flash']):
+        for rf in ({'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
+                   {'type': 'video', 'resolution': v.get('cozunurluk', '720p')}, None):
+            body = {'model': model, 'previous_interaction_id': prev_id, 'input': inp, 'background': False, 'store': True,
+                    'stream': False, 'generation_config': {'video_config': {'task': 'extend'}}}
+            if rf:
+                body['response_format'] = rf
+            t0 = time.time()
+            try:
+                d = _req(f'{BASE}/interactions', body, timeout=900)
+            except VeoError as e:
+                last = e
+                log(f'  Omni uzatma hata: {str(e)[:200]}')
+                continue
+            data = _video_cikar(d)
+            if not data:
+                last = VeoError(f"uzatma video döndürmedi: {str(d)[:200]}")
+                continue
+            with open(out, 'wb') as f:
+                f.write(base64.b64decode(data))
+            SON_ID['id'] = d.get('id')
+            log(f'  Omni uzatma hazır ({time.time() - t0:.0f} sn)')
+            return out
+    raise VeoError(f'uzatma olmadı: {last}')
+
+
+def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik=None, store=False):
     """Tek Omni üretimi: karakter referansları (+ isteğe bağlı önceki klibin son karesi) ile video; dosya yolunu döndürür."""
     v = cfg.get('veo') or {}
     inp = []
@@ -354,7 +403,7 @@ def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik
     for model in v.get('omni_modeller', ['gemini-omni-1.2-flash', 'gemini-omni-1.1-flash']):
         for rf in ({'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p'), 'duration': f'{sure}s'},
                    {'type': 'video', 'aspect_ratio': oran, 'resolution': v.get('cozunurluk', '720p')}):
-            body = {'model': model, 'input': inp, 'response_format': rf, 'background': False, 'store': False, 'stream': False,
+            body = {'model': model, 'input': inp, 'response_format': rf, 'background': False, 'store': store, 'stream': False,
                     'generation_config': {'video_config': {'task': 'reference_to_video'}}}
             t0 = time.time()
             try:
@@ -375,13 +424,101 @@ def omni_cagri(chars, prompt, sure, out, cfg, log=print, oran='9:16', sureklilik
                 continue
             with open(out, 'wb') as f:
                 f.write(base64.b64decode(data))
+            SON_ID['id'] = d.get('id')
             log(f'  Omni klip hazır ({model}, {time.time() - t0:.0f} sn)')
             return out
     raise VeoError(f'Omni üretilemedi: {last}')
 
 
+def _sure(path):
+    return float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', path],
+                                capture_output=True, text=True).stdout.strip() or 0)
+
+
+def perde_plan(ep, perdeler, log=print):
+    """Bölümü kesintisiz bir sahnenin ardışık perdelerine böler (ilk perde üretim, diğerleri uzatma)."""
+    lines = [{'who': l['who'], 'text': l['text'], 'action': l.get('action'), 'sahne': l.get('sahne')} for sc in ep['scenes'] for l in sc['lines']]
+    chars = list(dict.fromkeys(l['who'] for l in lines if l['who'] in KARAKTER_TARIF))[:3]
+    adlar = ['HOOK + SETUP: within the first 2 seconds the characters are already in the predicament; establish place and goal',
+             'COMPLICATION: they try a plan, it goes wrong in a funny way, stakes rise',
+             'CLIMAX: the boldest attempt, the signature visual moment, peak tension and action',
+             'PAYOFF: surprising clever/funny resolution, characters celebrate, a final gag or hint of the next mystery']
+    prompt = f"""You are the director and editor of "Mini Dünya", a premium 3D animated family series (finger-sized explorer kids in a
+giant house). Plan ONE continuous vertical (9:16) YouTube Short of {sum(perdeler)} seconds made of {len(perdeler)} consecutive parts
+generated as a single take that is EXTENDED part by part (each part continues exactly where the previous ended, same location,
+same lighting, same characters, no jumps). Durations: {perdeler} seconds. Parts: {json.dumps(adlar[:len(perdeler)])}.
+The story must have clear cause and effect: every part follows logically from the previous one. Use expressive acting, dynamic but
+motivated camera moves (push-ins, follow shots, low angles), sound effects. A cut to a closer angle is allowed inside a part only if
+stated as "the camera cuts to a close-up of ...". Use timecodes relative to the part start, e.g. [0-4s].
+Characters (in this order as <IMAGE_REF_0>...): {json.dumps([KARAKTER_TARIF[c] for c in chars])}. Benek never speaks.
+Spoken lines: TURKISH only, short, taken/adapted from the script, max 2 per part, written in the prompt as
+CharacterName says in Turkish: "...". No on-screen text, no labels, family friendly.
+Place: {ep.get('mekan') or ep['scenes'][0].get('location')} | topic: {ep.get('konu', '')} | signature moment: {ep.get('gorsel_an', '')}
+Script: {json.dumps(lines, ensure_ascii=False)}
+Return JSON: {{"parts": [{{"prompt": "English prompt for this part", "dialogue": [{{"who": "tuna", "text": "Türkçe", "start": 1.0, "end": 3.2}}]}}]}}
+(dialogue start/end are seconds within that part)."""
+    d = _metin_json(prompt, log=log) or {}
+    parts = [x for x in (d.get('parts') or []) if x.get('prompt')][:len(perdeler)]
+    if len(parts) < len(perdeler):
+        raise VeoError(f'perde planı eksik ({len(parts)}/{len(perdeler)})')
+    return chars, parts
+
+
+def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
+    """40-50 sn Shorts: 15 sn açılış + kesintisiz uzatmalar; uzatma olmazsa son kareden süreklilikli yeni çekim."""
+    v = cfg.get('veo') or {}
+    perdeler = v.get('perdeler') or [15, 10, 10, 10]
+    t0 = time.time()
+    os.makedirs(outdir, exist_ok=True)
+    chars, parts = perde_plan(ep, perdeler, log=log)
+    with open(os.path.join(outdir, 'omni_perde_plan.json'), 'w', encoding='utf-8') as f:
+        json.dump({'characters': chars, 'parts': parts}, f, ensure_ascii=False, indent=1)
+    parcalar, subs, offset, prev = [], [], 0.0, None
+    for i, (sure, p) in enumerate(zip(perdeler, parts)):
+        out = os.path.join(outdir, f'omni_perde_{i}.mp4')
+        tam_mi = False
+        if i == 0:
+            omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, store=True)
+        else:
+            try:
+                uzat(prev, chars, p['prompt'], sure, out, cfg, log=log, oran=oran)
+                d_new = _sure(out)
+                tam_mi = d_new > offset + 1.5  # uzatma tüm videoyu döndürdüyse
+            except VeoError as e:
+                log(f'  Uzatma olmadı, son kareden devam eden yeni çekim: {str(e)[:120]}')
+                son = os.path.join(outdir, f'omni_perde_{i - 1}_son.jpg')
+                subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-sseof', '-0.1', '-i', parcalar[-1], '-frames:v', '1', son], check=True)
+                omni_cagri(chars, p['prompt'], sure, out, cfg, log=log, oran=oran, sureklilik=son, store=True)
+        prev = SON_ID.get('id')
+        d = _sure(out)
+        bas = offset if not tam_mi else offset  # repliğin perde içi zamanı -> toplam zaman
+        for dl in p.get('dialogue', [])[:2]:
+            if dl.get('who') != 'benek' and dl.get('text'):
+                a = bas + float(dl.get('start', 0))
+                subs.append({'who': dl['who'], 'text': dl['text'], 'start': a, 'end': bas + float(dl.get('end', 0) or dl.get('start', 0) + 2.5)})
+        if tam_mi:
+            parcalar = [out]
+            offset = d
+        else:
+            parcalar.append(out)
+            offset += d
+        log(f'  Perde {i + 1}/{len(perdeler)} tamam, toplam {offset:.1f} sn')
+    final, dur = birlestir(parcalar, [{'dialogue': subs}], ep, os.path.join(outdir, 'video.mp4'), log=log, zamanli=True)
+    fn = os.path.join(outdir, 'omni_kare.jpg')
+    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-ss', '1.0', '-i', parcalar[0], '-frames:v', '1', fn], check=True)
+    k = cv2.resize(cv2.imread(fn), (1080, 1920))[..., ::-1]
+    k = _yazi(np.ascontiguousarray(k), (ep.get('kapak_yazisi') or ep['baslik']).upper(), 160, 104)
+    thumb = os.path.join(outdir, 'kapak.jpg')
+    cv2.imwrite(thumb, k[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 90])
+    log(f'Omni perdeli Shorts hazır: {dur:.1f} sn, {(time.time() - t0) / 60:.1f} dk, tahmini maliyet ~${0.07 * dur:.2f}')
+    return final, thumb, dur
+
+
 def uret(ep, outdir, cfg, log=print):
-    if (cfg.get('veo') or {}).get('motor', 'omni') == 'omni':
+    v = cfg.get('veo') or {}
+    if v.get('motor', 'omni') == 'omni' and v.get('perdeler'):
+        return uret_perdeli(ep, outdir, cfg, log=log)
+    if v.get('motor', 'omni') == 'omni':
         return uret_omni(ep, outdir, cfg, log=log)
     return uret_veo(ep, outdir, cfg, log=log)
 
