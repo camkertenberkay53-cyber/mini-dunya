@@ -1,7 +1,7 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 15,
+ "bolum_no": 16,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
@@ -115,7 +115,7 @@
    "mekan": "tezgah",
    "ana_karakter": "pire",
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
-   "izlenme": 1259,
+   "izlenme": 1261,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -134,7 +134,7 @@
    "mekan": "tezgah",
    "ana_karakter": "bulut",
    "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
-   "izlenme": 1056,
+   "izlenme": 1159,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -192,7 +192,7 @@
    "mekan": "lavabo",
    "ana_karakter": "pire",
    "final": "Fırça kılından seken bilye tam şapkamın içine gol oldu!",
-   "izlenme": 1326,
+   "izlenme": 1327,
    "begeni": 3,
    "yorum": 1,
    "kuruldu": true
@@ -242,7 +242,7 @@
    "mekan": "lavabo",
    "ana_karakter": "bulut",
    "final": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?",
-   "izlenme": 879,
+   "izlenme": 1091,
    "begeni": 7,
    "yorum": 2,
    "kuruldu": true
@@ -274,7 +274,7 @@
    "ana_karakter": "tuna",
    "final": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!",
    "kuruldu": true,
-   "izlenme": 293,
+   "izlenme": 346,
    "begeni": 3,
    "yorum": 2
   },
@@ -323,7 +323,7 @@
    "mekan": "tezgah",
    "ana_karakter": "nil",
    "final": "Harika! Ama umarım dönüş yolunda haritamızı sinekler yemez!",
-   "izlenme": 258,
+   "izlenme": 295,
    "begeni": 4,
    "yorum": 0
   },
@@ -424,6 +424,74 @@
    },
    "mekan": "baharat",
    "ana_karakter": "tuna",
+   "final": "Harika manzara! Şimdi tek sorun, bu kapağın altından bizi kim çıkaracak?",
+   "izlenme": 1,
+   "begeni": 0,
+   "yorum": 1
+  },
+  {
+   "no": 16,
+   "tarih": "2026-11-23",
+   "slot": "aksam",
+   "tur": "ana",
+   "baslik": "Zirvedeki Dev Kavanoz",
+   "ozet": "Ekip Baharat Rafı Zirvesi'nde harita çıkarırken dev elin kavanoz bırakmasıyla sıkıştı; kenardan kaçamayınca gazoz kapağını zırh yaparak korundular.",
+   "video_id": "63DNlAqSe4Y",
+   "ses": "veo",
+   "kategori": "devlerin gunu",
+   "konu": "Baharat rafında harita çizen ekip, dev bir elin bıraktığı dev kavanozdan gazoz kapağını kalkan yaparak korunur.",
+   "qc": {
+    "karar": "yayına hazır",
+    "sure_sn": 45.2,
+    "ses_lufs": -13.9,
+    "siyah_sn": 0,
+    "orta": [],
+    "dusuk": [],
+    "duzeltmeler": []
+   },
+   "yonetmen": {
+    "toplam": 66,
+    "karar": "Yeniden üretim / manuel inceleme gerekli",
+    "puanlar": {
+     "acilis": 13,
+     "anlasilirlik": 10,
+     "animasyon": 10,
+     "karakter_tutarliligi": 6,
+     "tempo": 9,
+     "gorsel": 7,
+     "final": 6,
+     "ses": 5
+    },
+    "en_zayif": "orta — 21.4 sn, diğer iki karakterin aniden kadrajdan yok olması anlatımı zayıflatıyor.",
+    "oneriler": [
+     "Karakter devamlılığını korumak adına kalabalık sahnelerde tüm figürleri kadrajda tutun.",
+     "Açılış vaadini güçlendirmek için dev el gölgesini veya tehdidini ilk karede gösterin."
+    ]
+   },
+   "format": "kisa",
+   "boya": false,
+   "ucd": false,
+   "veo": true,
+   "final_turu": "komik",
+   "fikir": {
+    "slot": "aksam",
+    "ad": "Zirvedeki Dev Mutfak",
+    "ana_karakter": "tuna",
+    "mekan": "baharat",
+    "nesne": "şişe kapağı",
+    "tehlike": "dev bir elin yaklaşması",
+    "mekanizma": "keşif",
+    "ilk_saniye": "Kamera rafın en üst zirvesinden aşağıya doğru geniş açıyla bakar; devasa mutfak ayaklar altındadır.",
+    "problem": "Zirveye ulaşıldığında tüm mutfak görünür ancak dev bir el rafa yeni bir kavanoz koymak için yaklaşır.",
+    "surpriz": "Dev el kavanozu tam ekibin durduğu noktaya koyacaktır.",
+    "cozum": "Tuna ekibi şişe kapağının altına saklayarak dev elin kavanozu koyarken onları ezmesini engeller.",
+    "final": "Dev el uzaklaşır; yeni konan kavanozun arkasından harika bir manzara açılır.",
+    "final_turu": "tatmin",
+    "yenilik_puani": 9,
+    "izlenme_potansiyeli": 9
+   },
+   "mekan": "baharat",
+   "ana_karakter": "tuna",
    "final": "Harika manzara! Şimdi tek sorun, bu kapağın altından bizi kim çıkaracak?"
   }
  ],
@@ -434,10 +502,10 @@
  ],
  "en_cok_izlenen": [
   "Menteşe Çıkmazı (1217 izlenme, izleme %85.2, +1 abone; kategori problem cozme, mekân zemin, odak bulut): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Sabun Kaydırağı Yarışı (1326 izlenme; kategori yaris, mekân lavabo, odak pire): Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
-  "Şeker Küpü Kayalıkları (1259 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "Sabun Kaydırağı Yarışı (1327 izlenme; kategori yaris, mekân lavabo, odak pire): Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
+  "Şeker Küpü Kayalıkları (1261 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
   "Sünger Ormanı Kurtarması (1214 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
-  "Lavabo Gölü Köpük Salı (1154 izlenme; kategori teknolojik kesif, mekân lavabo, odak nil): Ekip, Bulut'un köpük salı ve kulak çöpü küreği yardımıyla damla dalgasını atlatıp köpüklü bir şekilde Şeker Küpü Kayalıkları'na ulaştı."
+  "Çatal Mancınık Testi (1159 izlenme; kategori mucit ani, mekân tezgah, odak bulut): Bulut tezgâhtaki dev bir çatalı mancınığa dönüştürür. Tuna sabırsızlanıp zembereği çalıştırınca ikili peçete dağına savrulur."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -463,6 +531,7 @@
    "fikir",
    "oglen",
    "uzun",
+   "aksam",
    "aksam"
   ]
  },
@@ -944,6 +1013,16 @@
     "ilk_saniye": "Kamera rafın en üst zirvesinden aşağıya doğru geniş açıyla bakar; devasa mutfak ayaklar altındadır.",
     "ana_karakter": "tuna",
     "mekan": "baharat"
+   },
+   {
+    "nesne": "şişe kapağı",
+    "tehlike": "dev bir elin yaklaşması",
+    "mekanizma": "keşif",
+    "cozum": "Tuna ekibi şişe kapağının altına saklayarak dev elin kavanozu koyarken onları ezmesini engeller.",
+    "final_turu": "tatmin",
+    "ilk_saniye": "Kamera rafın en üst zirvesinden aşağıya doğru geniş açıyla bakar; devasa mutfak ayaklar altındadır.",
+    "ana_karakter": "tuna",
+    "mekan": "baharat"
    }
   ],
   "en": [
@@ -1000,7 +1079,7 @@
   ]
  },
  "en_zayif": [
-  "Köpük Gölü Kurtarması (879 izlenme; kategori kurtarma, mekân lavabo, odak bulut): Bulut'un köpükle gidere kayan vida anahtarını Tuna'nın yardımı ve ataş kancasıyla kurtardılar; çekilen kanca lavabo tıpasını açınca tüm su boşaldı ama Bulut dev bir sabun balonunun içinde havada kaldı.",
+  "Tezgâh Ovası Keşfi (1128 izlenme, izleme %33.0; kategori yeni bolge, mekân tezgah, odak tuna): Ekip Tezgâh Ovası'na adım attı. Tuna çilek reçeline saplandı ancak Pire'nin kürdan kaldıracı sayesinde şeker küplerine doğru fırlayarak kurtuldu.",
   "Buzdolabından Büyük Kaçış (11 izlenme; kategori basarisiz plan, mekân tezgah, odak tuna): Ekip buz gibi buzdolabında mahsur kaldı, Benek dışarı kaçarak kapağın sensörünü çalıştırdı ve haritacılar son anda tezgâha kurtuldu.",
   "Musluk Şelalesi Gizemi (4 izlenme; kategori gizem, mekân lavabo, odak nil): Ekip, damlayan musluğun yarattığı dalgaları atlatıp Pire'nin yüksek zıplayışı sayesinde musluğun arkasındaki gizli boru geçidine sığındı ve burayı haritaladı."
  ],
@@ -1009,6 +1088,7 @@
    "İlk hatasından sonra ekip çalışmasına uyum sağlayıp ipi çekmeye yardım etti.",
    "Aceleci davranmak yerine kalkan ve halat kullanarak ekibini güvenle zirveye taşıdı.",
    "Lider olarak Nil'e baskı yapmak yerine ona güvenip doğaçlama yapmasını destekledi.",
+   "Uçuruma kaçmak yerine yerdeki malzemeyi hızlıca kalkana dönüştürerek ekibini kurtardı.",
    "Uçuruma kaçmak yerine yerdeki malzemeyi hızlıca kalkana dönüştürerek ekibini kurtardı."
   ],
   "bulut": [
@@ -1030,6 +1110,7 @@
   "Biber tozu fırtınası düğme kalkanı ve ataş kancası kullanılarak aşıldı.",
   "Yırtılan harita yerine örümceğin iplikle ördüğü ağ haritası kullanılarak yol bulundu.",
   "Buzdolabında sönen ışık ve donan kapı contası engeli Nil'in hava akımını takip eden doğaçlaması ve Bulut'un mancınığıyla aşıldı.",
+  "Dev kavanozun altında ezilme tehlikesi metal gazoz kapağı sığınağıyla çözüldü.",
   "Dev kavanozun altında ezilme tehlikesi metal gazoz kapağı sığınağıyla çözüldü."
  ],
  "en_karakter_hafiza": {
@@ -1050,7 +1131,7 @@
   "Bulut'un denizaltısı kilitlendi ama sabun balonu tahliye mekanizması sayesinde ekip güvenle yüzeye çıktı.",
   "Un fırtınasında kaybolan ekibin arı rehberliğinde dışarı çıkması."
  ],
- "son_yukleme": "2026-11-23T18:00:03.609438+03:00",
+ "son_yukleme": "2026-11-23T18:31:14.670708+03:00",
  "donusum_dersleri": {
   "tarih": "2026-11-23",
   "genel": 0.28,
