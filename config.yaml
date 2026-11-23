@@ -50,6 +50,8 @@ yonetmen:
 
 ingilizce:
   acik: true
+  # Kanal henüz dağıtım almıyor (0 izlenme); Gemini kotasını Türkçe kanala ayırmak için 1 hafta günde 2 + pazar uzun
+  slotlar: [oglen, aksam, uzun]
   token_env: YT_REFRESH_TOKEN_EN
   tts_order: [gemini, edge]
   etiketler: ["mini world", "animation", "cartoon", "adventure", "tiny explorers", "animated series", "shorts"]

@@ -557,11 +557,14 @@ def main():
     st['bolumler'] = st['bolumler'][-200:]
     done.append(slot)
     st['yapilan'][today.isoformat()] = done
+    if kind != 'uzun' and vid_id:
+        st['son_yukleme'] = dt.datetime.now(dt.timezone(dt.timedelta(hours=3))).isoformat()
     save_state(st)
     os.makedirs(paths.EPISODES, exist_ok=True)
     shutil.copy(os.path.join(outdir, 'senaryo.json'), os.path.join(paths.EPISODES, f"{no:04d}_{slug(ep['baslik'])}.json"))
     # İngilizce kardeş kanal: Türkçe bölüm kaydedildikten sonra; hata olursa Türkçe yayını etkilemez
-    if upload:
+    en_slotlar = (cfg.get('ingilizce') or {}).get('slotlar') or ['sabah', 'oglen', 'aksam', 'gece', 'uzun']
+    if upload and slot in en_slotlar:
         try:
             produce_en(ep, kind, no, st['sezon'], today, slot, cfg, st, brief=brief, plan=plan)
             save_state(st)
