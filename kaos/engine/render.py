@@ -407,6 +407,7 @@ class Renderer:
                 sh = max(sh, 16 * (1 - (t - ti) / 0.4))
                 z *= 1 + 0.05 * (1 - (t - ti) / 0.4)
         cam = Cam(W, H, cx, cy, z, sh * math.sin(t * 61), sh * math.cos(t * 47))
+        self._cam = cam
         loc = sc.get('location', 'tezgah')
         f = self.paint.draw(cam) if self.paint is not None else backgrounds.draw(loc, cam)
         # karakterler: önce gökyüzü/deniz karakterleri, sonra soldan sağa yer karakterleri

@@ -9,8 +9,8 @@ from functools import lru_cache
 import cv2
 import numpy as np
 
-FPS3D = 12
-R = 1.2          # katman çözünürlüğü: dünya birimi başına piksel
+FPS3D = 10  # karakter animasyonu saniyede 10 poz (stilize animasyonda yaygın); kamera 30 fps akıcı
+R = 1.1          # katman çözünürlüğü: dünya birimi başına piksel
 MARGIN_X = 560   # sahne dışına doğru render payı (giriş/çıkış)
 TOP = 600        # zeminden yukarı (zıplama + saç)
 BOTTOM = 70      # zeminden aşağı (gölge)
@@ -201,7 +201,14 @@ def build(r, outdir, samples=6, log=print, max_frames=None):
         bx1 = min(x1, max(x + C_W.get(c, 200) for x, y, c, st in vis))
         by0 = max(y0, min(y - C_H.get(c, 450) + min(0.0, getattr(st, 'dy', 0.0)) for x, y, c, st in vis))
         by1 = y1
-        if bx1 - bx0 < 20:
+        # kameranın o an göstermediği kısmı çizme (yakın planda büyük kazanç); hareket/sarsıntı payı bırak
+        cm = getattr(r, '_cam', None)
+        if cm is not None:
+            pad = 90 / max(cm.z, 0.3)
+            hw, hh = cm.W / 2 / cm.z + pad, cm.H / 2 / cm.z + pad
+            bx0, bx1 = max(bx0, cm.cx - hw), min(bx1, cm.cx + hw)
+            by0, by1 = max(by0, cm.cy - hh), min(by1, cm.cy + hh)
+        if bx1 - bx0 < 20 or by1 - by0 < 20:
             continue
         sc.render.use_border = True
         sc.render.use_crop_to_border = True
