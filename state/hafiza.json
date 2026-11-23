@@ -1,7 +1,7 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 13,
+ "bolum_no": 14,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
@@ -13,7 +13,8 @@
   "Musluk Şelalesi Gizli Geçidi",
   "Lavabo Gider Girişi",
   "Baharat Rafı Zirvesi",
-  "Dikiş Kutusu Vadisi"
+  "Dikiş Kutusu Vadisi",
+  "Buzul Geçidi"
  ],
  "bolumler": [
   {
@@ -94,7 +95,7 @@
    "mekan": "tezgah",
    "ana_karakter": "nil",
    "final": "Harita kurtuldu evet... ama artık çilek kokulu ve tam üç metre daha uzun görünüyor!",
-   "izlenme": 1185,
+   "izlenme": 1214,
    "begeni": 5,
    "yorum": 1,
    "kuruldu": true
@@ -113,7 +114,7 @@
    "mekan": "tezgah",
    "ana_karakter": "pire",
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
-   "izlenme": 1235,
+   "izlenme": 1259,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -132,7 +133,7 @@
    "mekan": "tezgah",
    "ana_karakter": "bulut",
    "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
-   "izlenme": 483,
+   "izlenme": 883,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -151,7 +152,7 @@
    "mekan": "lavabo",
    "ana_karakter": "nil",
    "final": "Haritaya not yazın: Tatlı kayalıklara en köpüklü iniş yapıldı!",
-   "izlenme": 1152,
+   "izlenme": 1154,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -170,7 +171,7 @@
    "mekan": "tezgah",
    "ana_karakter": "tuna",
    "final": "Sıradaki hedef neresi Öncü Tuna?",
-   "izlenme": 8,
+   "izlenme": 11,
    "begeni": 0,
    "yorum": 1,
    "kuruldu": true
@@ -189,7 +190,7 @@
    "mekan": "lavabo",
    "ana_karakter": "pire",
    "final": "Fırça kılından seken bilye tam şapkamın içine gol oldu!",
-   "izlenme": 1323,
+   "izlenme": 1326,
    "begeni": 3,
    "yorum": 1,
    "kuruldu": true
@@ -209,7 +210,7 @@
    "ana_karakter": "nil",
    "final": "Harita harika ama bir dakika... Başımın üzerine tam bir sabun köpüğü düştü, şapkam oldu!",
    "kuruldu": true,
-   "izlenme": 3,
+   "izlenme": 4,
    "begeni": 0,
    "yorum": 1
   },
@@ -239,8 +240,8 @@
    "mekan": "lavabo",
    "ana_karakter": "bulut",
    "final": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?",
-   "izlenme": 359,
-   "begeni": 3,
+   "izlenme": 791,
+   "begeni": 7,
    "yorum": 2,
    "kuruldu": true
   },
@@ -271,8 +272,8 @@
    "ana_karakter": "tuna",
    "final": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!",
    "kuruldu": true,
-   "izlenme": 192,
-   "begeni": 3,
+   "izlenme": 241,
+   "begeni": 2,
    "yorum": 2
   },
   {
@@ -319,18 +320,53 @@
    },
    "mekan": "tezgah",
    "ana_karakter": "nil",
-   "final": "Harika! Ama umarım dönüş yolunda haritamızı sinekler yemez!"
+   "final": "Harika! Ama umarım dönüş yolunda haritamızı sinekler yemez!",
+   "izlenme": 231,
+   "begeni": 1,
+   "yorum": 0
+  },
+  {
+   "no": 14,
+   "tarih": "2026-11-23",
+   "slot": "uzun",
+   "tur": "uzun",
+   "baslik": "Buzulun Gizli İzi",
+   "ozet": "Buzdolabında mahsur kalan ekip, Nil'in doğaçlama hava akımı taktiği ve Bulut'un kavanoz lastiği mancınığıyla fan kapağından tezgâha kaçtı; buzun içine kazınmış yüz yıllık bir haritacı oku buldular.",
+   "video_id": "DQTbydLPU_A",
+   "ses": "omni",
+   "kategori": "eski izler",
+   "konu": "Buzdolabında mahsur kalan haritacılar, dondurucu soğukta Nil'in doğaçlama zekâsı ve Bulut'un icadıyla kaçarken yüz yıllık gizemli bir haritacı izi bulur.",
+   "qc": {
+    "karar": "yayına hazır",
+    "sure_sn": 240.7,
+    "ses_lufs": -14.3,
+    "siyah_sn": 0,
+    "orta": [],
+    "dusuk": [],
+    "duzeltmeler": []
+   },
+   "yonetmen": null,
+   "format": "normal",
+   "boya": false,
+   "ucd": false,
+   "veo": true,
+   "final_turu": "tatmin",
+   "fikir": null,
+   "mekan": "buzdolabi",
+   "ana_karakter": "bulut",
+   "final": "Buzul Geçidi haritaya işlendi! Sıradaki macera bizi bekler!"
   }
  ],
  "acik_meseleler": [
-  "Kapının yanındaki koli yığınının haritalanması ve gizli geçidin sonu."
+  "Buzdolabındaki yüz yıllık okun gösterdiği yöndeki gizemli hava kanalı",
+  "Kapının yanındaki koli yığını"
  ],
  "en_cok_izlenen": [
   "Menteşe Çıkmazı (1217 izlenme, izleme %85.2, +1 abone; kategori problem cozme, mekân zemin, odak bulut): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Sabun Kaydırağı Yarışı (1323 izlenme; kategori yaris, mekân lavabo, odak pire): Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
-  "Şeker Küpü Kayalıkları (1235 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
-  "Sünger Ormanı Kurtarması (1185 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
-  "Lavabo Gölü Köpük Salı (1152 izlenme; kategori teknolojik kesif, mekân lavabo, odak nil): Ekip, Bulut'un köpük salı ve kulak çöpü küreği yardımıyla damla dalgasını atlatıp köpüklü bir şekilde Şeker Küpü Kayalıkları'na ulaştı."
+  "Sabun Kaydırağı Yarışı (1326 izlenme; kategori yaris, mekân lavabo, odak pire): Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
+  "Şeker Küpü Kayalıkları (1259 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "Sünger Ormanı Kurtarması (1214 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
+  "Lavabo Gölü Köpük Salı (1154 izlenme; kategori teknolojik kesif, mekân lavabo, odak nil): Ekip, Bulut'un köpük salı ve kulak çöpü küreği yardımıyla damla dalgasını atlatıp köpüklü bir şekilde Şeker Küpü Kayalıkları'na ulaştı."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -354,7 +390,8 @@
   "2026-11-23": [
    "sabah",
    "fikir",
-   "oglen"
+   "oglen",
+   "uzun"
   ]
  },
  "en_bolumler": [
@@ -385,7 +422,7 @@
    "slot": "aksam",
    "baslik": "Sugar Cube Cliffs",
    "video_id": "wsPRpSSbOfc",
-   "izlenme": 0,
+   "izlenme": 1,
    "begeni": 0,
    "yorum": 1,
    "kuruldu": true
@@ -429,7 +466,7 @@
    "slot": "aksam",
    "baslik": "Mystery of Faucet Falls",
    "video_id": "8HFHWW1453M",
-   "izlenme": 0,
+   "izlenme": 1,
    "begeni": 0,
    "yorum": 1,
    "kuruldu": true
@@ -464,7 +501,10 @@
    "mekan": "baharat",
    "ana_karakter": "pire",
    "ozet": "Devrilen un paketi yüzünden görüşünü kaybeden haritacılar, Tuna'nın başarısız müdahalesi sonrası Pire'nin kurabiye kırıntısı sunduğu arının kanat rüzgârıyla tarçın labirentinden kurtuldu.",
-   "video_id": "z2Z-gzxFfIU"
+   "video_id": "z2Z-gzxFfIU",
+   "izlenme": 0,
+   "begeni": 0,
+   "yorum": 0
   }
  ],
  "oynatma": {
@@ -878,30 +918,35 @@
   ]
  },
  "en_zayif": [
-  "Köpük Gölü Kurtarması (359 izlenme; kategori kurtarma, mekân lavabo, odak bulut): Bulut'un köpükle gidere kayan vida anahtarını Tuna'nın yardımı ve ataş kancasıyla kurtardılar; çekilen kanca lavabo tıpasını açınca tüm su boşaldı ama Bulut dev bir sabun balonunun içinde havada kaldı.",
-  "Buzdolabından Büyük Kaçış (8 izlenme; kategori basarisiz plan, mekân tezgah, odak tuna): Ekip buz gibi buzdolabında mahsur kaldı, Benek dışarı kaçarak kapağın sensörünü çalıştırdı ve haritacılar son anda tezgâha kurtuldu.",
-  "Musluk Şelalesi Gizemi (3 izlenme; kategori gizem, mekân lavabo, odak nil): Ekip, damlayan musluğun yarattığı dalgaları atlatıp Pire'nin yüksek zıplayışı sayesinde musluğun arkasındaki gizli boru geçidine sığındı ve burayı haritaladı."
+  "Köpük Gölü Kurtarması (791 izlenme; kategori kurtarma, mekân lavabo, odak bulut): Bulut'un köpükle gidere kayan vida anahtarını Tuna'nın yardımı ve ataş kancasıyla kurtardılar; çekilen kanca lavabo tıpasını açınca tüm su boşaldı ama Bulut dev bir sabun balonunun içinde havada kaldı.",
+  "Buzdolabından Büyük Kaçış (11 izlenme; kategori basarisiz plan, mekân tezgah, odak tuna): Ekip buz gibi buzdolabında mahsur kaldı, Benek dışarı kaçarak kapağın sensörünü çalıştırdı ve haritacılar son anda tezgâha kurtuldu.",
+  "Musluk Şelalesi Gizemi (4 izlenme; kategori gizem, mekân lavabo, odak nil): Ekip, damlayan musluğun yarattığı dalgaları atlatıp Pire'nin yüksek zıplayışı sayesinde musluğun arkasındaki gizli boru geçidine sığındı ve burayı haritaladı."
  ],
  "karakter_hafiza": {
   "tuna": [
    "İlk hatasından sonra ekip çalışmasına uyum sağlayıp ipi çekmeye yardım etti.",
-   "Aceleci davranmak yerine kalkan ve halat kullanarak ekibini güvenle zirveye taşıdı."
+   "Aceleci davranmak yerine kalkan ve halat kullanarak ekibini güvenle zirveye taşıdı.",
+   "Lider olarak Nil'e baskı yapmak yerine ona güvenip doğaçlama yapmasını destekledi."
   ],
   "bulut": [
-   "Pratik zekasını ve ataş kancasını kullanarak aletini kurtardı."
+   "Pratik zekasını ve ataş kancasını kullanarak aletini kurtardı.",
+   "Kavanoz lastiği ve gazoz kapağından fırlatıcı yaparak ekibin havalandırmaya ulaşmasını sağladı."
   ],
   "nil": [
    "Zirvede dikkatli ölçüm yaparak gizemli okların koli yığınına baktığını fark etti.",
-   "Kriz anında sakin kalıp sevimli canlının ihtiyacını çözüme dönüştürdü."
+   "Kriz anında sakin kalıp sevimli canlının ihtiyacını çözüme dönüştürdü.",
+   "Kalıplaşmış planlar ve donmuş defteri olmadan ilk kez doğaçlama karar vererek ekibi kurtardı."
   ],
   "pire": [
-   "Fırtınaya ve hapşırığa rağmen düğme kalkan arkasında ekiple birlikte ilerledi."
+   "Fırtınaya ve hapşırığa rağmen düğme kalkan arkasında ekiple birlikte ilerledi.",
+   "Merakı sayesinde buz sarkıtının arkasındaki yüz yıllık haritacı damgasını keşfetti."
   ]
  },
  "cozulenler": [
   "Bulut'un sürüklenen vida anahtarı köpükten kurtarıldı.",
   "Biber tozu fırtınası düğme kalkanı ve ataş kancası kullanılarak aşıldı.",
-  "Yırtılan harita yerine örümceğin iplikle ördüğü ağ haritası kullanılarak yol bulundu."
+  "Yırtılan harita yerine örümceğin iplikle ördüğü ağ haritası kullanılarak yol bulundu.",
+  "Buzdolabında sönen ışık ve donan kapı contası engeli Nil'in hava akımını takip eden doğaçlaması ve Bulut'un mancınığıyla aşıldı."
  ],
  "en_karakter_hafiza": {
   "bulut": [

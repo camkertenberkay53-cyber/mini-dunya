@@ -1,0 +1,458 @@
+{
+ "konu": "Buzdolabında mahsur kalan haritacılar, dondurucu soğukta Nil'in doğaçlama zekâsı ve Bulut'un icadıyla kaçarken yüz yıllık gizemli bir haritacı izi bulur.",
+ "kategori": "eski izler",
+ "ana_karakter": "bulut",
+ "baslik": "Buzulun Gizli İzi",
+ "acilis_efekti": "dusen_nesne",
+ "kapak_yazisi": "BUZ DOLABINDA MAHSUR KALDIK!",
+ "end_card": "Sence o eski işareti kim bıraktı?",
+ "music": "gergin",
+ "scenes": [
+  {
+   "title": "Buz Çölünde Mahsur",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "GÜM! Dev kapı kapandı, içeride sıkışıp kaldık!",
+     "emotion": "panik",
+     "action": "carp"
+    },
+    {
+     "who": "pire",
+     "text": "Peki ya şu ne? Burası neden kutup gibi soğuk?",
+     "emotion": "saskin",
+     "action": "titre"
+    },
+    {
+     "who": "nil",
+     "text": "Devlerin soğuk kutusu. Derece sıfırın altına hızla iniyor.",
+     "emotion": "soguk",
+     "action": "egil"
+    },
+    {
+     "who": "bulut",
+     "text": "Bereyi takma vakti geldi, sakalım bile donmak üzere.",
+     "emotion": "normal",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "tuna",
+     "text": "Haritacılar, ileri! Kapının lastik contasına tırmanıp yolu bulacağız!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Hesaplarıma göre lastik conta tam yetmiş santim yukarıda, tırmanış imkânsız.",
+     "emotion": "soguk",
+     "action": "egil"
+    },
+    {
+     "who": "bulut",
+     "text": "Bir dakika... bende tam ona göre bir şey var!",
+     "emotion": "neseli",
+     "action": "gir_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Gazoz kapağı mı? Onunla nasıl tırmanacağız Bulut abi?",
+     "emotion": "saskin",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Tırmanmayacağız Pire, kapağı kızak yapıp tereyağı kutusundan kayacağız.",
+     "emotion": "normal",
+     "action": "yuru_sag"
+    }
+   ]
+  },
+  {
+   "title": "Işıklar Sönünce",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "Aman dikkat, sarı peynir dağının üzerinden geçiyoruz!",
+     "emotion": "panik",
+     "action": "kos_sol"
+    },
+    {
+     "who": "pire",
+     "text": "Hop! Kayan kapağın üstünde durmak çok eğlenceliymiş!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Durun! Çıt sesi geldi, lamba kapanmak üzere!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Eyvah, zifiri karanlık oldu! Nil, acil bir harita planı ver!",
+     "emotion": "panik",
+     "action": "kac"
+    },
+    {
+     "who": "nil",
+     "text": "Planım yok... Harita defterim buz tuttu, sayfalar açılmıyor!",
+     "emotion": "aglamakli",
+     "action": "titre"
+    },
+    {
+     "who": "bulut",
+     "text": "Sakin olun dostlar, karanlıkta gözlerimizi kapatıp soğuk hava akımını dinleyelim.",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Kulaklarım donmazsa dinlerim tabii!",
+     "emotion": "normal",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Hesap yapamıyorum... İlk defa kitaba bakmadan karar vermem gerek.",
+     "emotion": "saskin",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Sana güveniyoruz Nil! Doğaçlama yap, hissine güven!",
+     "emotion": "normal",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Tamam... O zaman sol taraftaki soğuk rüzgârı takip ediyoruz!",
+     "emotion": "neseli",
+     "action": "kos_sag"
+    }
+   ]
+  },
+  {
+   "title": "Buz Sarkıtları Geçidi",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "bulut",
+     "text": "Bu rafın arkası dev buz sarkıtlarıyla kaplı, tıpkı kristal mağara gibi.",
+     "emotion": "saskin",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "İp atıcımı sarkıta fırlatıyorum, sıkı tutunun!",
+     "emotion": "normal",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "pire",
+     "text": "Buzlar erirse aşağıya, reçel kavanozunun içine düşeriz!",
+     "emotion": "panik",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Erimez Pire. Hava akımı buradan yukarıya doğru çekiliyor.",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "bulut",
+     "text": "Yükseklik pek bana göre değil ama Nil haklı görünüyor.",
+     "emotion": "normal",
+     "action": "titre"
+    },
+    {
+     "who": "tuna",
+     "text": "Harika tırmanış Nil! Kitapsız da harika bir haritacısın.",
+     "emotion": "neseli",
+     "action": "kos_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Teşekkürler Tuna. Bazen rüzgârı dinlemek cetvelden daha iyi sonuç veriyor.",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "pire",
+     "text": "Hey bakın! Buzun içinde parlayan garip bir şey var!",
+     "emotion": "saskin",
+     "action": "isaret"
+    },
+    {
+     "who": "bulut",
+     "text": "Dur bakalım Pire, ataş kazmamla üzerindeki kırağıyı kazıyayım.",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Dikkatli ol Bulut, buz kütlesi çok sert!",
+     "emotion": "panik",
+     "action": "yuru_sag"
+    }
+   ]
+  },
+  {
+   "title": "Yüz Yıllık İz",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "bulut",
+     "text": "Kırağı temizlendi... Bu bir haritacı damgası!",
+     "emotion": "saskin",
+     "action": "carp"
+    },
+    {
+     "who": "nil",
+     "text": "İnanamıyorum, buzun içine kazınmış bir ok işareti ve tarih!",
+     "emotion": "saskin",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "Peki ya şu ne yazan yer? Yüz yıl öncesi mi?",
+     "emotion": "saskin",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "İlk Haritacı buradaymış! Ok işareti tam yukarıyı, fan ızgarasını gösteriyor.",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Demek eski efsane doğruymuş, İlk Haritacı buzul geçidinden kaçmayı başarmış.",
+     "emotion": "normal",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "bulut",
+     "text": "Bize yolu o gösteriyor. Fan kapağı dışarıya açılan tek hava kanalı.",
+     "emotion": "normal",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "pire",
+     "text": "Ama fana kadar nasıl uçacağız? Kanatlarımız yok ki!",
+     "emotion": "panik",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Benek var! Ve cebimde kavanoz lastiğinden yaptığım bir fırlatıcı var.",
+     "emotion": "neseli",
+     "action": "gir_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Plan kuruldu bile. Yüz yıllık izi takip ediyoruz!",
+     "emotion": "neseli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "nil",
+     "text": "Hesapları bir kenara bıraktım, rüzgâr bizi nereye götürürse oraya!",
+     "emotion": "neseli",
+     "action": "kos_sol"
+    }
+   ]
+  },
+  {
+   "title": "Büyük Kaçış Düzeneği",
+   "location": "buzdolabi",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "bulut",
+     "text": "Kavanoz lastiğini iki kürdan arasına gerdim. Mancınık hazır!",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "pire",
+     "text": "İlk ben bineceğim! Şapkamı da sıkıca bağladım!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "tuna",
+     "text": "Benek lastiğin ucuna kondu bile, antenleriyle sinyal veriyor.",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "nil",
+     "text": "Doğaçlama kuralı bir: Havalandırma kapağı açıldığı anda fırlıyoruz!",
+     "emotion": "normal",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "bulut",
+     "text": "Buzlar çatırdıyor, motor çalışmaya başladı!",
+     "emotion": "panik",
+     "action": "titre"
+    },
+    {
+     "who": "tuna",
+     "text": "Rüzgâr geliyor! Üç, iki, bir... Bırak lastiği Bulut!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "bulut",
+     "text": "Fırlatıcı devrede! Herkes Benek'in sırtına yapışsın!",
+     "emotion": "neseli",
+     "action": "carp"
+    },
+    {
+     "who": "pire",
+     "text": "Uçuyoruz! Yaşasın buzdolabı roketi!",
+     "emotion": "neseli",
+     "action": "zipla"
+    },
+    {
+     "who": "nil",
+     "text": "Fan kanatlarının arasından süzülüyoruz, ışığı görüyorum!",
+     "emotion": "neseli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Kapı contası aralanıyor, kendinizi dışarı bırakın!",
+     "emotion": "panik",
+     "action": "kac"
+    }
+   ]
+  },
+  {
+   "title": "Tezgâha Güvenli İniş",
+   "location": "tezgah",
+   "characters": [
+    "tuna",
+    "nil",
+    "bulut",
+    "pire"
+   ],
+   "lines": [
+    {
+     "who": "pire",
+     "text": "PATA KÜTE! Yumuşak sarı süngerin üstüne indik!",
+     "emotion": "neseli",
+     "action": "carp"
+    },
+    {
+     "who": "bulut",
+     "text": "Oh be, tezgâhın sıcağı ne kadar da güzelmiş.",
+     "emotion": "normal",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Herkes sağlam mı? Haritacılar yine harika bir iş başardı!",
+     "emotion": "neseli",
+     "action": "kos_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Sayfalarım çözüldü bile. Hemen o yüz yıllık işareti haritaya çiziyorum.",
+     "emotion": "neseli",
+     "action": "yuru_sag"
+    },
+    {
+     "who": "pire",
+     "text": "İlk Haritacı o oku neden fana doğru çizmişti acaba?",
+     "emotion": "saskin",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Çünkü en zor anlarda bile çıkış yolu her zaman yukarıdadır.",
+     "emotion": "normal",
+     "action": "yuru_sol"
+    },
+    {
+     "who": "nil",
+     "text": "Artık biliyorum; en iyi harita, kriz anında yüreğinle çizdiğindir.",
+     "emotion": "neseli",
+     "action": "egil"
+    },
+    {
+     "who": "tuna",
+     "text": "Buzul Geçidi haritaya işlendi! Sıradaki macera bizi bekler!",
+     "emotion": "neseli",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Parmak Boyundaki Haritacılar Dev Buzdolabına Karşı!",
+  "description": "Devlerin buzdolabında kapı aniden kapanınca parmak boyundaki haritacılar dondurucu soğukta mahsur kalır! Işıklar söndüğünde Nil ilk kez kuralları unutup doğaçlama yapar ve buzların arasında yüz yıllık gizemli bir haritacı izi keşfederler.\n\nSence o eski işareti kim bıraktı?",
+  "tags": [
+   "mini dunya",
+   "animasyon",
+   "cizgi film",
+   "turkce cizgi film",
+   "buzdolabi macerasi",
+   "parmak boyu",
+   "kesif"
+  ]
+ },
+ "final_turu": "tatmin",
+ "hafiza": {
+  "ozet": "Buzdolabında mahsur kalan ekip, Nil'in doğaçlama hava akımı taktiği ve Bulut'un kavanoz lastiği mancınığıyla fan kapağından tezgâha kaçtı; buzun içine kazınmış yüz yıllık bir haritacı oku buldular.",
+  "acik_meseleler": [
+   "Buzdolabındaki yüz yıllık okun gösterdiği yöndeki gizemli hava kanalı",
+   "Kapının yanındaki koli yığını"
+  ],
+  "yeni_bolge": "Buzul Geçidi",
+  "cozulen_sorun": "Buzdolabında sönen ışık ve donan kapı contası engeli Nil'in hava akımını takip eden doğaçlaması ve Bulut'un mancınığıyla aşıldı.",
+  "karakter_gelisimi": {
+   "tuna": "Lider olarak Nil'e baskı yapmak yerine ona güvenip doğaçlama yapmasını destekledi.",
+   "nil": "Kalıplaşmış planlar ve donmuş defteri olmadan ilk kez doğaçlama karar vererek ekibi kurtardı.",
+   "bulut": "Kavanoz lastiği ve gazoz kapağından fırlatıcı yaparak ekibin havalandırmaya ulaşmasını sağladı.",
+   "pire": "Merakı sayesinde buz sarkıtının arkasındaki yüz yıllık haritacı damgasını keşfetti."
+  }
+ },
+ "_format": "normal",
+ "_fikir": null,
+ "tur": "uzun"
+}
