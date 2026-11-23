@@ -52,6 +52,16 @@ def kareler(path, tl, outdir):
 def degerlendir(ep, tl, video, outdir, cfg, qc_rep=None, log=print):
     from .writer import list_models, _model_order, _post
     ks = kareler(video, tl, outdir)
+    try:  # önizleme: Claude'un ve ekibin videoyu görebilmesi için kareleri state/'e yaz (her bölümde üzerine yazılır)
+        from . import paths
+        ims = [cv2.resize(cv2.imread(fn), (270, 480)) for _, _, fn in ks[:10]]
+        while len(ims) % 5:
+            ims.append(ims[-1] * 0)
+        import numpy as _np
+        sheet = _np.vstack([_np.hstack(ims[i:i + 5]) for i in range(0, len(ims), 5)])
+        cv2.imwrite(os.path.join(paths.STATE, 'onizleme_son.jpg'), sheet, [cv2.IMWRITE_JPEG_QUALITY, 80])
+    except Exception as e:
+        log(f'  önizleme yazılamadı: {e}')
     senaryo = [f"{l['who']}: {l['text']} ({l.get('action', 'yok')})" for sc in ep['scenes'] for l in sc['lines']]
     prompt = f"""Sen deneyimli bir animasyon yönetmeni ve YouTube Shorts editörüsün. Aşağıda "Mini Dünya" (2D, parmak boyundaki
 haritacıların evi keşfettiği aile dizisi) için ÜRETİLMİŞ GERÇEK VİDEODAN alınmış kareler var. Karelerin hangi anda alındığı
@@ -113,3 +123,36 @@ Sadece JSON döndür: {{"puanlar": {{"acilis": 0, "anlasilirlik": 0, "animasyon"
     log(f"Yönetmen puanı: {toplam}/100 ({karar}) | " + ', '.join(f'{k} {v}/{KRITER[k]}' for k, v in p.items())
         + f" | en zayıf: {rep.get('en_zayif_sahne', '')[:80]}")
     return rep
+
+
+def son_video(kok='output/son', log=print):
+    """gorev=yonetmen: son yüklenen bölümün videosunu (GitHub çıktısından indirilmiş) yeniden değerlendir."""
+    import glob
+    import subprocess
+    from . import paths
+    from .main import load_cfg
+    vids = sorted(glob.glob(os.path.join(kok, '**', 'video.mp4'), recursive=True))
+    vids = [v for v in vids if '_en' not in v] or vids
+    if not vids:
+        raise SystemExit('Video bulunamadı')
+    v = vids[0]
+    d = os.path.dirname(v)
+    with open(os.path.join(d, 'senaryo.json'), encoding='utf-8') as f:
+        ep = json.load(f)
+    dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', v],
+                               capture_output=True, text=True).stdout.strip() or 30)
+    tl = {'total': dur, 'end_start': dur - 3.2, 'scenes': []}
+    qc_rep = None
+    try:
+        with open(os.path.join(d, 'qc.json'), encoding='utf-8') as f:
+            qc_rep = json.load(f)
+    except Exception:
+        pass
+    rep = degerlendir(ep, tl, v, d, load_cfg(), qc_rep=qc_rep, log=log)
+    with open(os.path.join(paths.STATE, 'yonetmen_son.json'), 'w', encoding='utf-8') as f:
+        json.dump({'video': v, 'baslik': ep.get('baslik'), 'rapor': rep}, f, ensure_ascii=False, indent=1)
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+
+
+if __name__ == '__main__':
+    son_video()

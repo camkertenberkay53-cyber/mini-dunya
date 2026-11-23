@@ -11,7 +11,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -23,6 +23,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   uret:
@@ -78,6 +79,7 @@ jobs:
       - name: Bölümü üret ve yükle
         if: steps.gorev.outputs.gorev != 'none'
         env:
+          GH_TOKEN: ${{ github.token }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_IMAGE_KEY: ${{ secrets.GEMINI_IMAGE_KEY }}
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -98,6 +100,10 @@ jobs:
           elif [ "$G" = "rakip" ]; then
             python -m kaos.rakip
             python -m kaos.rapor || echo "Rapor atlandı"
+          elif [ "$G" = "yonetmen" ]; then
+            AID=$(gh api "repos/${{ github.repository }}/actions/artifacts?per_page=40" --jq '[.artifacts[] | select((.name | test("^video-(sabah|oglen|aksam|gece|otomatik)-")) and .size_in_bytes > 1000000 and (.expired | not))][0].id')
+            mkdir -p output/son && gh api "repos/${{ github.repository }}/actions/artifacts/$AID/zip" > /tmp/son.zip && unzip -oq /tmp/son.zip -d output/son
+            python -m kaos.yonetmen
           elif [ "$G" = "boya_test" ]; then
             python -m kaos.boya
           elif [ "$G" = "rapor" ]; then
