@@ -107,7 +107,18 @@ def _model_order(configured, available):
 
 
 def gemini_json(prompt, cfg, temperature=1.0, log=print, rounds=6):
-    key = os.environ.get('GEMINI_API_KEY', '')
+    try:
+        return _gemini_json(os.environ.get('GEMINI_API_KEY', ''), prompt, cfg, temperature, log,
+                            rounds if not os.environ.get('GEMINI_IMAGE_KEY') else min(rounds, 2))
+    except WriterError as e:
+        paid = os.environ.get('GEMINI_IMAGE_KEY', '')
+        if not paid:
+            raise
+        log(f'  Ücretsiz kota dolu/hata ({str(e)[:80]}), ücretli anahtarla devam')
+        return _gemini_json(paid, prompt, cfg, temperature, log, 3)
+
+
+def _gemini_json(key, prompt, cfg, temperature=1.0, log=print, rounds=6):
     if not key:
         raise WriterError('GEMINI_API_KEY tanımlı değil')
     available = list_models(key, 'text')
