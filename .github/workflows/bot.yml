@@ -11,7 +11,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -97,6 +97,8 @@ jobs:
           elif [ "$G" = "rakip" ]; then
             python -m kaos.rakip
             python -m kaos.rapor || echo "Rapor atlandı"
+          elif [ "$G" = "boya_test" ]; then
+            python -m kaos.boya
           elif [ "$G" = "rapor" ]; then
             python -m kaos.rapor
           elif [ "$G" = "ingilizce" ]; then
@@ -121,11 +123,12 @@ jobs:
             output/**/yonetmen.json
             output/**/kare_*.jpg
             output/**/arka_plan.png
+            output/boya_test/*.jpg
           retention-days: 14
           if-no-files-found: ignore
 
       - name: Hikâye hafızasını kaydet
-        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog' && steps.gorev.outputs.gorev != 'none' && steps.gorev.outputs.gorev != 'durum'
+        if: success() && steps.gorev.outputs.gorev != 'test' && steps.gorev.outputs.gorev != 'katalog' && steps.gorev.outputs.gorev != 'none' && steps.gorev.outputs.gorev != 'durum' && steps.gorev.outputs.gorev != 'boya_test'
         run: |
           git config user.name "mini-dunya-bot"
           git config user.email "bot@users.noreply.github.com"

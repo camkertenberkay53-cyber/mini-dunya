@@ -132,3 +132,39 @@ class Boya:
         M = np.array([[s, 0, W / 2 - iw * 0.5 * s + dx + cam.sx * 0.5],
                       [0, s, gy - ih * self.ZEMIN * s + cam.sy * 0.5]], np.float32)
         return cv2.warpAffine(self.img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+
+
+def test(ep_path, outdir='output/boya_test', log=print):
+    """Ücretsiz kota harcamadan: kayıtlı bir bölüm için arka plan üret, birkaç kare çiz (gorev=boya_test)."""
+    import wave
+    from .engine import render
+    from .main import load_cfg
+    cfg = load_cfg()
+    os.makedirs(outdir, exist_ok=True)
+    with open(ep_path, encoding='utf-8') as f:
+        ep = json.load(f)
+    bg = uret(ep, outdir, cfg, log=log)
+    if not bg:
+        raise SystemExit('Arka plan üretilemedi (anahtar/ödeme kontrol edilmeli)')
+    wavs = {}
+    for si, sc in enumerate(ep['scenes']):
+        for li, ln in enumerate(sc['lines']):
+            p = os.path.join(outdir, f'w{si}_{li}.wav')
+            n = int(24000 * (0.8 + 0.3 * len(ln['text'].split())))
+            with wave.open(p, 'wb') as w:
+                w.setnchannels(1); w.setsampwidth(2); w.setframerate(24000)
+                w.writeframes((np.sin(np.arange(n) * 0.05) * 3000).astype(np.int16).tobytes())
+            wavs[(si, li)] = p
+    tl = render.build_timeline(ep, wavs)
+    r = render.Renderer(ep, tl, 1080, 1920, {'subtitle': ep.get('baslik', ''), 'boya': bg})
+    segs = [s for s in tl['segments'] if s['scene'] == 0]
+    for i, s in enumerate(segs[::2][:4]):
+        f = r.frame(s['start'] + s['dur'] * 0.6)
+        cv2.imwrite(os.path.join(outdir, f'kare_{i}.jpg'), (np.clip(f, 0, 1) * 255).astype(np.uint8)[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 88])
+    log(f'Test kareleri: {outdir}')
+
+
+if __name__ == '__main__':
+    import glob
+    import sys
+    test(sys.argv[1] if len(sys.argv) > 1 else sorted(glob.glob(os.path.join(paths.EPISODES, '*.json')))[-1])
