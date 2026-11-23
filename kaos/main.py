@@ -352,6 +352,28 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, 'senaryo.json'), 'w', encoding='utf-8') as f:
         json.dump(ep, f, ensure_ascii=False, indent=1)
+    # Veo bölümü (günde 1, yapay zekâ videosu); hata olursa normal 3D hattıyla devam
+    if kind != 'uzun' and meta.get('_slot') and cfg.get('lang', 'tr') == 'tr':
+        from . import veo
+        if veo.acik(cfg, meta['_slot']):
+            try:
+                final, thumb, dur = veo.uret(ep, outdir, cfg, log=log)
+                ep['_veo'] = True
+                from . import qc
+                rep = qc.check(final, 1080, 1920, 30, expected_dur=dur, outdir=outdir, log=log)
+                ep['_qc'] = {k: rep.get(k) for k in ('karar', 'sure_sn', 'ses_lufs', 'siyah_sn', 'orta', 'dusuk', 'duzeltmeler')}
+                try:
+                    from . import yonetmen
+                    yr = yonetmen.degerlendir(ep, {'total': dur, 'end_start': dur - 2.4, 'scenes': []}, final, outdir, cfg, qc_rep=rep, log=log)
+                    if yr:
+                        ep['_yonetmen'] = {'toplam': yr['toplam'], 'karar': yr['karar'], 'puanlar': yr['puanlar'],
+                                           'en_zayif': str(yr.get('en_zayif_sahne', ''))[:160],
+                                           'oneriler': [str(x)[:160] for x in (yr.get('oneriler') or [])][:3]}
+                except Exception as e:
+                    log(f'Yönetmen atlandı: {str(e)[:150]}')
+                return final, thumb, 'veo', dur
+            except Exception as e:
+                log(f'Veo bölümü üretilemedi, 3D hattıyla devam: {str(e)[:300]}')
     # boyalı arka plan (ücretli ayrı anahtar; sadece seçili Türkçe Shorts slotlarında, hata olursa çizim arka plan)
     if kind != 'uzun' and meta.get('_slot'):
         try:
@@ -568,7 +590,7 @@ def main():
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
                            'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine,
-                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'), 'format': ep.get('_format', 'normal'), 'boya': ep.get('_boya', False), 'ucd': ep.get('_3d', False),
+                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'), 'format': ep.get('_format', 'normal'), 'boya': ep.get('_boya', False), 'ucd': ep.get('_3d', False), 'veo': ep.get('_veo', False),
                            'final_turu': ep.get('final_turu', ''), 'fikir': ep.get('_fikir'),
                            'mekan': ep['scenes'][0].get('location', ''), 'ana_karakter': ep.get('ana_karakter', ''),
                            'final': ep['scenes'][-1]['lines'][-1].get('text', '') if ep['scenes'][-1].get('lines') else ''})

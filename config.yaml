@@ -58,6 +58,13 @@ ucd:
   diller: [tr]
   ornek: 4
 
+# Veo pilotu (günde 1 Shorts yapay zekâ videosu, ~0,9$/bölüm, GEMINI_IMAGE_KEY). Hata olursa 3D.
+veo:
+  acik: true
+  slot: aksam
+  cozunurluk: "720p"
+  modeller: [veo-3.1-lite-generate-preview, veo-3.1-fast-generate-preview]
+
 # Boyalı arka plan (Nano Banana, ayrı ücretli anahtar GEMINI_IMAGE_KEY). Anahtar yoksa otomatik kapalı.
 # A/B: sabah (kısa) + öğle (normal) boyalı; akşam (kısa) + gece (normal) çizim.
 boya:
