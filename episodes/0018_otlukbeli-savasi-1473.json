@@ -1,0 +1,109 @@
+{
+ "tur": "ana",
+ "seri": "tarih",
+ "konu": "Haritacılar Zamanda: 11 Ağustos 1473 Otlukbeli Savaşı. Tuna ve Bulut, Fatih Sultan Mehmed'in ordusunda genç yeniçeri ve topçu çırağıdır. Uzun Hasan'ın Akkoyunlu süvarileri tepeden hücuma kalkar; Osmanlı topları ve tüfekleri savaşın kaderini belirler, Uzun Hasan geri çekilir.",
+ "kategori": "tarih",
+ "ana_karakter": "tuna",
+ "baslik": "Otlukbeli Savaşı 1473",
+ "kapak_yazisi": "1473 OTLUKBELİ: SÜVARİLER GELİYOR!",
+ "end_card": "Haritacılar bir sonraki zaman yolculuğunda nereye gitsin? Yorumlara yaz!",
+ "music": "gergin",
+ "mekan": "Otlukbeli plain near Tercan, Erzincan, eastern Anatolia, 11 August 1473: wide green-golden highland valley under huge mountains, the Ottoman camp with red tents, banners and a line of bronze cannons on a low ridge",
+ "gorsel_an": "All Ottoman bronze cannons fire together in one thunderous volley, a wall of white smoke rolls across the valley, and the charging cavalry horses rear up and scatter (nobody is hurt on screen)",
+ "perdeler": [
+  15,
+  10,
+  10,
+  10
+ ],
+ "yonetmen_notu": "now in its special history series 'Haritacılar Zamanda': the explorer kids travel in time and live a real historical moment from inside. Make it feel like a premium animated feature film trailer: epic scale, shocking opening, tight editing with 2-3 motivated cuts per part (wide establishing / medium / extreme close-up, always varied, every cut on an action or a sound), crisp detailed frames. Rich, accurate 1473 period detail: Ottoman camp with large red and white tents, mehter band beating huge kös kettle drums and playing zurnas, janissaries in white börk hats with long muskets (early arquebuses), bronze cannons on wooden carriages with gunners and powder barrels, Sultan Mehmed II (41 years old, beard, large white turban, rich kaftan) on a white horse with his commanders; Akkoyunlu Turkmen army of horse archers in lamellar armor with pennants under the Anatolian highland mountains. Respectful to both sides, no villains, no blood, no gore, no one shown being hurt",
+ "perde_adlari": [
+  "HOOK (shocking, 15s): [0-3s] a huge wave of Akkoyunlu horse archers thunders down the slope STRAIGHT TOWARD THE CAMERA through golden dust, hooves shaking the ground; [3-6s] hard cut to Tuna on the ridge gasping, the dust in his face; [6-15s] reveal of the Ottoman cannon line, Bulut checking a cannon, mehter drums pounding, Sultan Mehmed on his white horse raising his hand",
+  "COMPLICATION (10s, continues the same take): the dust cloud hides the riders, gunners cannot aim; extreme close-up as Tuna pulls his brass goggles down over his eyes and spots them; Bulut lights a slow match fuse, the flame reflecting in his eyes; ends on an extreme close-up of the burning fuse touching the cannon",
+  "CLIMAX (10s, signature moment): begins with a blinding white muzzle flash filling the screen, then the whole cannon line fires one after another in slow motion, janissaries fire a musket volley, a wall of white smoke rolls across the valley, the charging horses rear up and scatter in panic at the noise (nobody hurt)",
+  "PAYOFF (10s): through the drifting smoke, on a far hill Uzun Hasan (older Turkmen ruler, white beard, dark turban) turns his horse and the Akkoyunlu army withdraws; the Ottoman camp cheers, mehter drums, banners wave; Tuna and Bulut high-five at golden sunset, Tuna looks into the camera"
+ ],
+ "stil": "Premium 3D animated cinematic historical epic (Pixar-quality characters, feature-film scale and camera work), golden-hour light, volumetric dust and smoke, dramatic low angles, sweeping crane shots. Tuna and Bulut are NORMAL child-size kids (not tiny) in a real-scale 15th-century eastern Anatolian highland; adult soldiers and Sultan Mehmed II (white turban, rich kaftan, beard, on a white horse) are stylized 3D adults. Historically plausible 1473 armies: Ottoman janissaries with white börk hats, bronze cannons; Akkoyunlu Turkmen horse archers with banners. No blood, no gore, no injuries shown. STRICT: absolutely no readable text, letters, numbers or logos anywhere.",
+ "ses": "Natural Turkish child voices (and Sultan's short adult command if any), thunderous war drums and Ottoman mehter-style percussion, galloping horses, deep cannon booms, epic orchestral score without lyrics.",
+ "kiyafet": {
+  "tuna": "here dressed as a young Ottoman janissary: tall white börk felt hat, blue kaftan with red sash, keeps his brass goggles on the hat and his teal scarf",
+  "bulut": "here dressed as a young Ottoman artillery apprentice: his red cap, brown kaftan, green leather apron with a pencil in the pocket"
+ },
+ "scenes": [
+  {
+   "title": "Otlukbeli Ovası, 1473",
+   "location": "zemin",
+   "characters": [
+    "tuna",
+    "bulut"
+   ],
+   "lines": [
+    {
+     "who": "tuna",
+     "text": "11 Ağustos 1473, Otlukbeli! Uzun Hasan'ın Akkoyunlu süvarileri üstümüze geliyor!",
+     "emotion": "panik",
+     "action": "isaret"
+    },
+    {
+     "who": "bulut",
+     "text": "Bir hafta önce Fırat kıyısında yenildik. Bugün hata yok!",
+     "emotion": "sinirli",
+     "action": "kos_sag"
+    },
+    {
+     "who": "tuna",
+     "text": "Toz yüzünden göremiyoruz! Dur... gözlüğümle görüyorum!",
+     "emotion": "saskin",
+     "action": "egil"
+    },
+    {
+     "who": "bulut",
+     "text": "Bir dakika... bende tam ona göre bir şey var! Fitil hazır!",
+     "emotion": "neseli",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Hepsi birden, ateş!",
+     "emotion": "normal",
+     "action": "zipla"
+    },
+    {
+     "who": "bulut",
+     "text": "Atlar top sesine alışık değil! Uzun Hasan geri çekiliyor!",
+     "emotion": "saskin",
+     "action": "isaret"
+    },
+    {
+     "who": "tuna",
+     "text": "Bugünden sonra Anadolu'da Osmanlı'nın sözü geçecek. Haritacılar, ileri!",
+     "emotion": "neseli",
+     "action": "kameraya_bak"
+    }
+   ]
+  }
+ ],
+ "youtube": {
+  "title": "Otlukbeli Savaşı 1473 | Fatih Sultan Mehmet vs Uzun Hasan",
+  "description": "11 Ağustos 1473'te Erzincan Tercan yakınlarındaki Otlukbeli'nde Fatih Sultan Mehmet'in Osmanlı ordusu ile Uzun Hasan'ın Akkoyunlu ordusu karşılaştı. Bir hafta önce Fırat kıyısında öncü birlikleri yenilen Osmanlılar, toplar ve tüfeklerle donanmış ordusuyla karşılık verdi. Top seslerine alışık olmayan Akkoyunlu süvarileri dağıldı, Uzun Hasan geri çekildi ve Osmanlı, Anadolu'nun en güçlü devleti oldu.\n\nHaritacılar Zamanda: Tuna ve Bulut tarihin en büyük anlarını içeriden yaşıyor!",
+  "tags": [
+   "otlukbeli savaşı",
+   "otlukbeli muharebesi",
+   "fatih sultan mehmet",
+   "uzun hasan",
+   "akkoyunlu",
+   "osmanlı tarihi",
+   "1473",
+   "tarih",
+   "osmanlı",
+   "yeniçeri",
+   "tarih animasyon",
+   "haritacılar zamanda"
+  ]
+ },
+ "hafiza": {},
+ "onizleme": true,
+ "yt_kategori": 27,
+ "oynatma_listesi": "Haritacılar Zamanda",
+ "acilis_efekti": "dev_el"
+}

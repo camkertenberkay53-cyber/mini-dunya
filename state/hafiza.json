@@ -1,7 +1,7 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 17,
+ "bolum_no": 18,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
@@ -243,7 +243,7 @@
    "ana_karakter": "bulut",
    "final": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?",
    "izlenme": 1091,
-   "begeni": 6,
+   "begeni": 7,
    "yorum": 2,
    "kuruldu": true
   },
@@ -274,7 +274,7 @@
    "ana_karakter": "tuna",
    "final": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!",
    "kuruldu": true,
-   "izlenme": 441,
+   "izlenme": 466,
    "begeni": 4,
    "yorum": 2
   },
@@ -323,8 +323,8 @@
    "mekan": "tezgah",
    "ana_karakter": "nil",
    "final": "Harika! Ama umarım dönüş yolunda haritamızı sinekler yemez!",
-   "izlenme": 295,
-   "begeni": 4,
+   "izlenme": 351,
+   "begeni": 3,
    "yorum": 0
   },
   {
@@ -495,8 +495,8 @@
    "mekan": "baharat",
    "ana_karakter": "tuna",
    "final": "Harika manzara! Şimdi tek sorun, bu kapağın altından bizi kim çıkaracak?",
-   "izlenme": 6,
-   "begeni": 0,
+   "izlenme": 312,
+   "begeni": 3,
    "yorum": 1
   },
   {
@@ -546,7 +546,59 @@
    "fikir": null,
    "mekan": "zemin",
    "ana_karakter": "tuna",
-   "final": "Anadolu'da artık Osmanlı'nın sözü geçecek. Haritacılar, ileri!"
+   "final": "Anadolu'da artık Osmanlı'nın sözü geçecek. Haritacılar, ileri!",
+   "izlenme": 2,
+   "begeni": 0,
+   "yorum": 1
+  },
+  {
+   "no": 18,
+   "tarih": "2026-11-23",
+   "slot": "aksam",
+   "tur": "ana",
+   "baslik": "Otlukbeli Savaşı 1473",
+   "ozet": "",
+   "video_id": "DvlcbB-vdAo",
+   "ses": "veo",
+   "kategori": "tarih",
+   "konu": "Haritacılar Zamanda: 11 Ağustos 1473 Otlukbeli Savaşı. Tuna ve Bulut, Fatih Sultan Mehmed'in ordusunda genç yeniçeri ve topçu çırağıdır. Uzun Hasan'ın Akkoyunlu süvarileri tepeden hücuma kalkar; Osmanlı topları ve tüfekleri savaşın kaderini belirler, Uzun Hasan geri çekilir.",
+   "qc": {
+    "karar": "yayına hazır",
+    "sure_sn": 55.2,
+    "ses_lufs": -13.8,
+    "siyah_sn": 0,
+    "orta": [],
+    "dusuk": [],
+    "duzeltmeler": []
+   },
+   "yonetmen": {
+    "toplam": 68,
+    "karar": "Yeniden üretim / manuel inceleme gerekli",
+    "puanlar": {
+     "acilis": 13,
+     "anlasilirlik": 10,
+     "animasyon": 10,
+     "karakter_tutarliligi": 6,
+     "tempo": 10,
+     "gorsel": 7,
+     "final": 7,
+     "ses": 5
+    },
+    "en_zayif": "3_saniye — 3.0 sn: Tuna'nın başlığı sonraki sahnelerdeki yeniçeri börkü tasarımıyla uyuşmuyor.",
+    "oneriler": [
+     "Karakter model ve aksesuarlarını (özellikle başlık boyutu) tüm sahnelerde sabitleyin.",
+     "Bitiş ekranındaki etkileşim yazılarının görseli tamamen örtmesini engellemek için yerleşimi alt kısma kaydırın."
+    ]
+   },
+   "format": "normal",
+   "boya": false,
+   "ucd": false,
+   "veo": true,
+   "final_turu": "",
+   "fikir": null,
+   "mekan": "zemin",
+   "ana_karakter": "tuna",
+   "final": "Bugünden sonra Anadolu'da Osmanlı'nın sözü geçecek. Haritacılar, ileri!"
   }
  ],
  "acik_meseleler": [
@@ -585,6 +637,7 @@
    "fikir",
    "oglen",
    "uzun",
+   "aksam",
    "aksam",
    "aksam",
    "aksam"
@@ -704,7 +757,8 @@
   }
  ],
  "oynatma": {
-  "Mini Dünya · Sezon 1: Mutfak Kıtası": "PLRChhAMp9EFY"
+  "Mini Dünya · Sezon 1: Mutfak Kıtası": "PLRChhAMp9EFY",
+  "Mini Dünya · Haritacılar Zamanda": "PLUcg55QbO1n8"
  },
  "bekleyen_yorum": [],
  "oynatma_en": {
@@ -1186,7 +1240,7 @@
   "Bulut'un denizaltısı kilitlendi ama sabun balonu tahliye mekanizması sayesinde ekip güvenle yüzeye çıktı.",
   "Un fırtınasında kaybolan ekibin arı rehberliğinde dışarı çıkması."
  ],
- "son_yukleme": "2026-11-23T19:37:49.924854+03:00",
+ "son_yukleme": "2026-11-23T21:05:26.177779+03:00",
  "donusum_dersleri": {
   "tarih": "2026-11-23",
   "genel": 0.28,
