@@ -257,6 +257,8 @@ class Renderer:
     def __init__(self, ep, tl, W, H, meta):
         self.ep, self.tl, self.W, self.H, self.meta = ep, tl, W, H, meta
         self.paint = None
+        self.cap = None       # 3D: karakter durumlarını yakalama listesi
+        self.layer3d = meta.get('_layer3d')  # 3D karakter katmanı (varsa 2D karakter çizilmez)
         if meta.get('boya'):
             from ..boya import Boya
             self.paint = Boya(meta['boya'], GROUND_Y)
@@ -413,6 +415,7 @@ class Renderer:
         def depth(c):  # konuşan karakter her zaman en önde çizilir
             return (c == speaker, pos[c][0])
         order = sorted(pos.keys(), key=depth)
+        bursts = []
         fx = self.ep.get('acilis_efekti') if (not self.tl['long'] and si == 0) else None
         fx_x = sum(p[0] for p in pos.values()) / max(1, len(pos)) + 60
         if fx in INTRO_FX and t < 2.6:
@@ -489,11 +492,17 @@ class Renderer:
             st = St(t=t, mo=mo, ms=zc, emotion=emo, look=look, blink=blink, dy=dy, sq=sq, shake=shake,
                     talking=s is not None, walk=walk, point=point, crouch=crouch,
                     face_dir=1.0 if look[0] >= 0 else -1.0)
-            CHARS[c]['fn'](f, cam, x, y, st)
+            if self.cap is not None:
+                self.cap.append((c, x, y, st))
+            elif self.layer3d is None:
+                CHARS[c]['fn'](f, cam, x, y, st)
             for ti, isi, iw in self.impacts:
                 if isi == si and iw == c and 0 <= t - ti < 0.5:
-                    fy = y + CHARS[c]['face'][1]
-                    impact_burst(f, cam, x + CHARS[c]['w'] * 0.42, fy - 200, t - ti)
+                    bursts.append((x, y, c, t - ti))
+        if self.layer3d is not None and self.cap is None:
+            f = self.layer3d.composite(f, cam, si, t)
+        for bx, by_, bc, bdt in bursts:
+            impact_burst(f, cam, bx + CHARS[bc]['w'] * 0.42, by_ + CHARS[bc]['face'][1] - 200, bdt)
         if fx in INTRO_FX and t < 2.6:
             intro_fx(f, cam, t, fx, fx_x, front=True)
         if self.paint is None:
@@ -580,6 +589,16 @@ NAMES_EN = {'tuna': 'TUNA', 'nil': 'NIL', 'bulut': 'BULUT', 'pire': 'PIRE', 'ben
 
 
 def render_video(ep, tl, out_path, W, H, meta):
+    if meta.get('3d') and not meta.get('_layer3d'):
+        try:
+            from ..engine3d import render3d
+            cap = Renderer(ep, tl, W, H, meta)
+            meta['_layer3d'] = render3d.build(cap, os.path.join(os.path.dirname(out_path), 'kare3d'),
+                                              samples=meta.get('3d_ornek', 6), log=meta.get('_log', print))
+        except Exception as e:  # Blender yoksa ya da hata verirse bölüm 2D karakterlerle çıkar
+            meta['_layer3d'] = None
+            meta['3d'] = False
+            meta.get('_log', print)(f'3D katman üretilemedi, 2D ile devam: {str(e)[:200]}')
     r = Renderer(ep, tl, W, H, meta)
     n = int(tl['total'] * FPS)
     tmp = out_path + '.tmp.mp4'

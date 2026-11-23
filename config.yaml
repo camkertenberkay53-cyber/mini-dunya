@@ -52,6 +52,12 @@ yonetmen:
 deney:
   kisa_slotlar: [sabah, aksam]
 
+# 3D karakterler (Blender/Cycles, ücretsiz). Shorts'ta açık; uzun video 2D (render süresi). Blender yoksa otomatik 2D.
+ucd:
+  acik: true
+  diller: [tr]
+  ornek: 6
+
 # Boyalı arka plan (Nano Banana, ayrı ücretli anahtar GEMINI_IMAGE_KEY). Anahtar yoksa otomatik kapalı.
 # A/B: sabah (kısa) + öğle (normal) boyalı; akşam (kısa) + gece (normal) çizim.
 boya:

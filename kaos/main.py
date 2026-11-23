@@ -368,7 +368,11 @@ def produce(ep, kind, meta, outdir, cfg, log=log):
     tl = render.build_timeline(ep, wavs, long_form=long_form)
     log(f"Video süresi: {tl['total']:.1f} sn — çiziliyor...")
     vid = os.path.join(outdir, 'goruntu.mp4')
+    u3 = cfg.get('ucd') or {}
+    if u3.get('acik') and kind != 'uzun' and cfg.get('lang', 'tr') in (u3.get('diller') or ['tr']):
+        meta.update({'3d': True, '_log': log, '3d_ornek': u3.get('ornek', 6)})
     render.render_video(ep, tl, vid, W, H, meta)
+    ep['_3d'] = bool(meta.get('_layer3d'))
     wav = os.path.join(outdir, 'miks.wav')
     mix.build_mix(ep, tl, wav)
     final = os.path.join(outdir, 'video.mp4')
@@ -564,7 +568,7 @@ def main():
         st['acik_meseleler'] = [str(x) for x in h['acik_meseleler']][:8]
     st['bolumler'].append({'no': no, 'tarih': today.isoformat(), 'slot': slot, 'tur': kind, 'baslik': ep['baslik'],
                            'ozet': h.get('ozet', ''), 'video_id': vid_id, 'ses': engine,
-                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'), 'format': ep.get('_format', 'normal'), 'boya': ep.get('_boya', False),
+                           'kategori': ep.get('kategori', ''), 'konu': ep.get('konu', ''), 'qc': ep.get('_qc'), 'yonetmen': ep.get('_yonetmen'), 'format': ep.get('_format', 'normal'), 'boya': ep.get('_boya', False), 'ucd': ep.get('_3d', False),
                            'final_turu': ep.get('final_turu', ''), 'fikir': ep.get('_fikir'),
                            'mekan': ep['scenes'][0].get('location', ''), 'ana_karakter': ep.get('ana_karakter', ''),
                            'final': ep['scenes'][-1]['lines'][-1].get('text', '') if ep['scenes'][-1].get('lines') else ''})

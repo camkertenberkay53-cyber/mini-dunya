@@ -7,11 +7,11 @@ import sys
 
 TR = dt.timezone(dt.timedelta(hours=3))
 # Üretim ~25-30 dk sürer; tetikleme saatleri yükleme hedefinden önce.
-# Türkçe yükleme hedefleri ~08:00, 11:30, 15:00, 18:30 (aralar 3,5 saat).
+# Türkçe yükleme hedefleri ~08:00, 11:30, 15:00, 18:30 (aralar 3,5 saat); tetikleme 3D render süresi kadar önce.
 # Kanal verisi (20-22 Kasım): öncekine 2,5 saatten yakın ya da 21:00 sonrası yüklenen Shorts YouTube'un test havuzuna hiç
 # girmedi (0-5 izlenme); aralıklı olanlar ~1.100-1.300 aldı. Bu yüzden: en az 3 saat ara, 21:00 sonrası Shorts yok,
 # geciken slot sonrakine yığılmaz (kaçan slot atlanır).
-SLOTS = [('sabah', 7.5), ('oglen', 11.0), ('aksam', 14.5), ('gece', 18.0)]
+SLOTS = [('sabah', 7.0), ('oglen', 10.75), ('aksam', 14.0), ('gece', 17.5)]  # 3D render ~30-45 dk sürer
 MIN_ARA_SAAT = 3.0
 SON_SHORTS_SAAT = 21.0
 RAKIP_SAAT = 11.6  # pazartesi, kota yenilendikten sonra: haftalık rakip analizi + dönüşüm raporu
