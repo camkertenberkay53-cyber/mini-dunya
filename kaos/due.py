@@ -69,6 +69,16 @@ def next_wait(now=None):
             t = dt.datetime(d.year, d.month, d.day, int(at), int(round((at % 1) * 60)), tzinfo=TR) + dt.timedelta(minutes=1)
             if t > now and (best is None or t < best):
                 best = t
+    # 3 saat kuralı yüzünden bekleyen slot varsa, ara dolduğu anda uyan
+    try:
+        with open(os.path.join(os.path.dirname(__file__), '..', 'state', 'hafiza.json'), encoding='utf-8') as f:
+            son = json.load(f).get('son_yukleme')
+        if son:
+            t = dt.datetime.fromisoformat(son) + dt.timedelta(hours=MIN_ARA_SAAT, minutes=2)
+            if t > now and t < best and t.hour + t.minute / 60 < SON_SHORTS_SAAT:
+                best = t
+    except Exception:
+        pass
     return int(min((best - now).total_seconds(), 5 * 3600 + 40 * 60))
 
 

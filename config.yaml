@@ -13,7 +13,7 @@ yayin:
 
 senaryo:
   # Ücretsiz Gemini metin modelleri (sırayla denenir; hiçbiri olmazsa uygun model otomatik bulunur)
-  modeller: ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.0-flash"]
+  modeller: ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]
   kalite_kontrol: true
 
 tts:
