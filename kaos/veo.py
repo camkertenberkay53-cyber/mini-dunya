@@ -290,7 +290,8 @@ def birlestir(clips, shots, ep, out_path, log=print, zamanli=False, W=1080, H=19
                 if yat:
                     fr = _yazi(fr, CHARS.get(who, {}).get('name', who.upper()) + ': ' + text, H - 150, 46, renk=(255, 255, 255), max_w=0.8)
                 else:
-                    fr = _yazi(fr, CHARS.get(who, {}).get('name', who.upper()), 1390, 50, renk=tuple(col))
+                    if who != 'diger':
+                        fr = _yazi(fr, CHARS.get(who, {}).get('name', who.upper()), 1390, 50, renk=tuple(col))
                     fr = _yazi(fr, text, 1455, 62, renk=(255, 255, 255))
         if son_kart and t > dur - SON:
             k = min(1.0, (t - (dur - SON)) / 0.3)
@@ -319,6 +320,59 @@ def _metin_json(prompt, log=print):
             return json.loads(''.join(p.get('text', '') for p in d['candidates'][0]['content']['parts']))
         except Exception as e:
             log(f'  Plan ({model}) hata: {str(e)[:120]}')
+    return None
+
+
+def altyazi_cikar(klipler, chars, outdir, plan_subs=None, log=print):
+    """Altyazıyı plandan değil, Omni'nin GERÇEKTEN seslendirdiği sözlerden çıkarır (zaman + metin sesle birebir).
+    Klipler birleştirilmiş sesin üzerinden Gemini'ye dinletilir. Olmazsa None döner (plan altyazısı kullanılır)."""
+    try:
+        lst = os.path.join(outdir, 'ses_liste.txt')
+        with open(lst, 'w') as f:
+            f.writelines(f"file '{os.path.abspath(c)}'\n" for c in klipler)
+        mp3 = os.path.join(outdir, 'ses_tum.mp3')
+        subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', lst, '-vn', '-ac', '1', '-ar', '16000',
+                        '-b:a', '48k', mp3], check=True)
+        toplam = _sure(mp3)
+        with open(mp3, 'rb') as f:
+            ses = base64.b64encode(f.read()).decode()
+        ipucu = json.dumps([{'who': d['who'], 'text': d['text']} for d in (plan_subs or [])], ensure_ascii=False)
+        prompt = (f"This is the {toplam:.1f}-second soundtrack of a Turkish animated short. Transcribe ONLY the spoken dialogue, EXACTLY the "
+                  f"words actually heard (not what was planned), with precise start and end times in seconds from 0. Split long sentences "
+                  f"into readable chunks of max ~8 words, each with its own exact timing. Speakers: kids {chars} (identify by voice and by the "
+                  f"planned lines below), any adult or unknown voice = \"diger\". Ignore music, drums, shouts without words and sound effects. "
+                  f"Planned lines (only to help identify speakers and spelling; if a line was not spoken, leave it out): {ipucu}. "
+                  f'Return JSON: {{"lines": [{{"who": "tuna", "text": "Türkçe", "start": 1.2, "end": 3.4}}]}}')
+        for model in ('gemini-3.8-flash', 'gemini-flash-latest'):
+            try:
+                d = _req(f'{BASE}/models/{model}:generateContent',
+                         {'contents': [{'role': 'user', 'parts': [{'inline_data': {'mime_type': 'audio/mpeg', 'data': ses}}, {'text': prompt}]}],
+                          'generationConfig': {'temperature': 0.1, 'responseMimeType': 'application/json'}}, timeout=180)
+                out = json.loads(''.join(p.get('text', '') for p in d['candidates'][0]['content']['parts']))
+            except Exception as e:
+                log(f'  Altyazı dökümü ({model}) hata: {str(e)[:120]}')
+                continue
+            satirlar = []
+            for l in out.get('lines') or []:
+                try:
+                    a, b = float(l['start']), float(l['end'])
+                except (KeyError, TypeError, ValueError):
+                    continue
+                t = str(l.get('text', '')).strip()
+                if not t or b <= a or a >= toplam:
+                    continue
+                who = l.get('who') if l.get('who') in chars else 'diger'
+                satirlar.append({'who': who, 'text': t, 'start': max(0.0, a - 0.05), 'end': min(toplam, b + 0.15)})
+            if satirlar:
+                satirlar.sort(key=lambda x: x['start'])
+                for x, y in zip(satirlar, satirlar[1:]):  # üst üste binmesin
+                    x['end'] = min(x['end'], y['start'])
+                log(f'  Altyazı sesten çıkarıldı: {len(satirlar)} satır ({model})')
+                with open(os.path.join(outdir, 'altyazi_ses.json'), 'w', encoding='utf-8') as f:
+                    json.dump(satirlar, f, ensure_ascii=False, indent=1)
+                return satirlar
+    except Exception as e:
+        log(f'  Altyazı dökümü atlandı: {str(e)[:150]}')
     return None
 
 
@@ -537,6 +591,11 @@ def uret_perdeli(ep, outdir, cfg, log=print, oran='9:16'):
             parcalar.append(out)
             offset += d
         log(f'  Perde {i + 1}/{len(perdeler)} tamam, toplam {offset:.1f} sn')
+    gercek = altyazi_cikar(parcalar, chars, outdir, plan_subs=subs, log=log)
+    if gercek:
+        subs = gercek
+    else:
+        log('  Uyarı: altyazı plandan (sesle tam uyumlu olmayabilir)')
     ham_parcalar = list(parcalar)
     if v.get('buyut') and v.get('cozunurluk', '720p') in ('360p', '480p'):
         try:
