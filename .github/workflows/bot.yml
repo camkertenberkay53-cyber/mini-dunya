@@ -11,7 +11,7 @@ on:
         description: "Ne yapılsın?"
         type: choice
         default: test
-        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun]
+        options: [otomatik, test, sabah, oglen, aksam, gece, uzun, fikir, ingilizce, rakip, rapor, durum, kanal, katalog, boya_test, yonetmen, veo_test, veo_test_uzun, marka]
       zorla:
         description: "Bugün bu slot yapılmış olsa da yeniden üret"
         type: boolean
@@ -106,6 +106,8 @@ jobs:
             python -m kaos.yonetmen
           elif [ "$G" = "veo_test" ]; then
             python -m kaos.veo
+          elif [ "$G" = "marka" ]; then
+            python -m kaos.marka
           elif [ "$G" = "veo_test_uzun" ]; then
             python -m kaos.veo uzun
           elif [ "$G" = "boya_test" ]; then
