@@ -1,7 +1,7 @@
 {
  "sezon": 1,
  "sezon_baslangic": "2026-11-20",
- "bolum_no": 16,
+ "bolum_no": 17,
  "harita": [
   "Süpürgelik Geçidi",
   "Halı Zeminli Oda",
@@ -27,7 +27,7 @@
    "ozet": "Haritacılar süpürgelik çıkışındaki dev süpürge rüzgârını Bulut'un ağır düğme botlarıyla aştı ancak botlardaki mıknatıslı ataçlar yüzünden kapı menteşesine yapışıp kaldılar.",
    "video_id": "NBDUSR-J9AE",
    "ses": "gemini",
-   "izlenme": 1219,
+   "izlenme": 1218,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true,
@@ -115,7 +115,7 @@
    "mekan": "tezgah",
    "ana_karakter": "pire",
    "final": "Hapşuuu! Şeker değil dev tuz kayasıymış, gözlerim yandı!",
-   "izlenme": 1261,
+   "izlenme": 1259,
    "begeni": 4,
    "yorum": 1,
    "kuruldu": true
@@ -134,8 +134,8 @@
    "mekan": "tezgah",
    "ana_karakter": "bulut",
    "final": "Haritaya not düş: Çatal fırlatıcı harika çalışıyor, ama freni yok!",
-   "izlenme": 1159,
-   "begeni": 4,
+   "izlenme": 1166,
+   "begeni": 5,
    "yorum": 1,
    "kuruldu": true
   },
@@ -192,7 +192,7 @@
    "mekan": "lavabo",
    "ana_karakter": "pire",
    "final": "Fırça kılından seken bilye tam şapkamın içine gol oldu!",
-   "izlenme": 1327,
+   "izlenme": 1326,
    "begeni": 3,
    "yorum": 1,
    "kuruldu": true
@@ -243,7 +243,7 @@
    "ana_karakter": "bulut",
    "final": "Harika! Peki ben neden hâlâ uçan dev bir sabun balonunun içindeyim?",
    "izlenme": 1091,
-   "begeni": 7,
+   "begeni": 6,
    "yorum": 2,
    "kuruldu": true
   },
@@ -274,8 +274,8 @@
    "ana_karakter": "tuna",
    "final": "Yarın o koli yığınına iniyoruz, maceraya hazır olun!",
    "kuruldu": true,
-   "izlenme": 346,
-   "begeni": 3,
+   "izlenme": 441,
+   "begeni": 4,
    "yorum": 2
   },
   {
@@ -494,7 +494,59 @@
    },
    "mekan": "baharat",
    "ana_karakter": "tuna",
-   "final": "Harika manzara! Şimdi tek sorun, bu kapağın altından bizi kim çıkaracak?"
+   "final": "Harika manzara! Şimdi tek sorun, bu kapağın altından bizi kim çıkaracak?",
+   "izlenme": 6,
+   "begeni": 0,
+   "yorum": 1
+  },
+  {
+   "no": 17,
+   "tarih": "2026-11-23",
+   "slot": "aksam",
+   "tur": "ana",
+   "baslik": "Otlukbeli Savaşı 1473",
+   "ozet": "",
+   "video_id": "ykqLKC3_GSU",
+   "ses": "veo",
+   "kategori": "tarih",
+   "konu": "Haritacılar Zamanda: 11 Ağustos 1473 Otlukbeli Savaşı. Tuna ve Bulut, Fatih Sultan Mehmed'in ordusunda genç yeniçeri ve topçu çırağıdır. Uzun Hasan'ın Akkoyunlu süvarileri tepeden hücuma kalkar; Osmanlı topları ve tüfekleri savaşın kaderini belirler, Uzun Hasan geri çekilir.",
+   "qc": {
+    "karar": "yayına hazır",
+    "sure_sn": 45.1,
+    "ses_lufs": -13.7,
+    "siyah_sn": 0,
+    "orta": [],
+    "dusuk": [],
+    "duzeltmeler": []
+   },
+   "yonetmen": {
+    "toplam": 59,
+    "karar": "Yeniden üretim / manuel inceleme gerekli",
+    "puanlar": {
+     "acilis": 12,
+     "anlasilirlik": 9,
+     "animasyon": 8,
+     "karakter_tutarliligi": 5,
+     "tempo": 8,
+     "gorsel": 6,
+     "final": 6,
+     "ses": 5
+    },
+    "en_zayif": "final — 41.7 sn: Tuna'nın kostümü ve başlığı önceki sahneye göre aniden değişerek devamlılığı bozuyor.",
+    "oneriler": [
+     "Sahneler arası karakter model ve kostüm sürekliliğini sabitleyin.",
+     "Açılış kancasına ana karakterleri dahil ederek görsel stil bütünlüğü sağlayın."
+    ]
+   },
+   "format": "normal",
+   "boya": false,
+   "ucd": false,
+   "veo": true,
+   "final_turu": "",
+   "fikir": null,
+   "mekan": "zemin",
+   "ana_karakter": "tuna",
+   "final": "Anadolu'da artık Osmanlı'nın sözü geçecek. Haritacılar, ileri!"
   }
  ],
  "acik_meseleler": [
@@ -504,10 +556,10 @@
  ],
  "en_cok_izlenen": [
   "Menteşe Çıkmazı (1217 izlenme, izleme %85.2, +1 abone; kategori problem cozme, mekân zemin, odak bulut): Menteşede yapışıp kalan ekip, Bulut'un mancınığı kapı koluna takılınca Pire'nin kapı koluna zıplamasıyla kapıyı açıp ipi kurtardı.",
-  "Sabun Kaydırağı Yarışı (1327 izlenme; kategori yaris, mekân lavabo, odak pire): Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
-  "Şeker Küpü Kayalıkları (1261 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
+  "Sabun Kaydırağı Yarışı (1326 izlenme; kategori yaris, mekân lavabo, odak pire): Pire, lavabo giderine kayan mavi bilyeyi düğme kayaklarıyla kurtarmaya çalışırken fırçaya çarptı ama bilyeyi şapkasıyla yakaladı.",
+  "Şeker Küpü Kayalıkları (1259 izlenme; kategori dogal guc, mekân tezgah, odak pire): Pire ve Bulut, Şeker Küpü Kayalıkları'na ulaşmak için ekmek kırıntısı çölünü aşmaya çalıştı ancak şeker sanıp tırmandıkları tepe dev bir tuz kayası çıktı.",
   "Sünger Ormanı Kurtarması (1214 izlenme; kategori kurtarma, mekân tezgah, odak nil): Nil bulaşık süngerinin altındaki haritasını kurtarmak isterken Pire'nin kaşık kaldıracı reçel dalgası yarattı; harita kurtuldu ama reçele bulandı.",
-  "Çatal Mancınık Testi (1159 izlenme; kategori mucit ani, mekân tezgah, odak bulut): Bulut tezgâhtaki dev bir çatalı mancınığa dönüştürür. Tuna sabırsızlanıp zembereği çalıştırınca ikili peçete dağına savrulur."
+  "Çatal Mancınık Testi (1166 izlenme; kategori mucit ani, mekân tezgah, odak bulut): Bulut tezgâhtaki dev bir çatalı mancınığa dönüştürür. Tuna sabırsızlanıp zembereği çalıştırınca ikili peçete dağına savrulur."
  ],
  "yapilan": {
   "2026-11-20": [
@@ -533,6 +585,7 @@
    "fikir",
    "oglen",
    "uzun",
+   "aksam",
    "aksam",
    "aksam"
   ]
@@ -1133,7 +1186,7 @@
   "Bulut'un denizaltısı kilitlendi ama sabun balonu tahliye mekanizması sayesinde ekip güvenle yüzeye çıktı.",
   "Un fırtınasında kaybolan ekibin arı rehberliğinde dışarı çıkması."
  ],
- "son_yukleme": "2026-11-23T18:31:14.670708+03:00",
+ "son_yukleme": "2026-11-23T19:37:49.924854+03:00",
  "donusum_dersleri": {
   "tarih": "2026-11-23",
   "genel": 0.28,
