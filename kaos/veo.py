@@ -117,6 +117,32 @@ Scene: {shot['first_frame']}"""}]
 
 
 # ------------------------------------------------------------------ 3) Veo görselden video
+def _veo_modelleri(v, log=print):
+    """Mevcut Veo modellerini API'den bul (isimler değişebiliyor): önce Lite (ucuz), sonra Fast."""
+    try:
+        ms = []
+        tok = ''
+        for _ in range(5):
+            d = _req(f'{BASE}/models?pageSize=200' + (f'&pageToken={tok}' if tok else ''))
+            for m in d.get('models', []):
+                if 'veo' in m['name'] and 'predictLongRunning' in (m.get('supportedGenerationMethods') or []):
+                    ms.append(m['name'].split('/')[-1])
+            tok = d.get('nextPageToken')
+            if not tok:
+                break
+        def sira(m):
+            return (0 if 'lite' in m else 1 if 'fast' in m else 2, '3.1' not in m, m)
+        ms = sorted(set(ms), key=sira)
+        ms = [m for m in ms if 'lite' in m or 'fast' in m] or ms
+        log(f'  Veo modelleri: {ms[:4]}')
+        if ms:
+            return ms[:3]
+    except Exception as e:
+        log(f'  Veo model listesi alınamadı: {str(e)[:120]}')
+    return v.get('modeller', ['veo-3.1-lite-generate-preview', 'veo-3.1-fast-generate-preview'])
+
+
+
 def video(shot, img_path, out_path, cfg, log=print):
     v = cfg.get('veo') or {}
     konusma = ' '.join(f'{d["who"].capitalize()} says in Turkish: "{d["text"]}".' for d in shot.get('dialogue', [])[:2]
@@ -127,7 +153,7 @@ def video(shot, img_path, out_path, cfg, log=print):
     mime = 'image/png' if img_path.endswith('.png') else 'image/jpeg'
     params = {'aspectRatio': '9:16', 'durationSeconds': 8, 'resolution': v.get('cozunurluk', '720p')}
     last = None
-    for model in v.get('modeller', ['veo-3.1-lite-generate-preview', 'veo-3.1-fast-generate-preview']):
+    for model in _veo_modelleri(v, log):
         for image in ({'bytesBase64Encoded': img, 'mimeType': mime}, {'inlineData': {'mimeType': mime, 'data': img}}):
             try:
                 op = _req(f'{BASE}/models/{model}:predictLongRunning', {'instances': [{'prompt': prompt, 'image': image}], 'parameters': params})
