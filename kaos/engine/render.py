@@ -419,7 +419,7 @@ class Renderer:
         bursts = []
         fx = self.ep.get('acilis_efekti') if (not self.tl['long'] and si == 0) else None
         fx_x = sum(p[0] for p in pos.values()) / max(1, len(pos)) + 60
-        if fx in INTRO_FX and t < 2.6:
+        if fx in INTRO_FX and t < 2.6 and self.layer3d is None and self.cap is None:
             intro_fx(f, cam, t, fx, fx_x, front=False)
         for c in order:
             x, y = pos[c]
@@ -504,7 +504,7 @@ class Renderer:
             f = self.layer3d.composite(f, cam, si, t)
         for bx, by_, bc, bdt in bursts:
             impact_burst(f, cam, bx + CHARS[bc]['w'] * 0.42, by_ + CHARS[bc]['face'][1] - 200, bdt)
-        if fx in INTRO_FX and t < 2.6:
+        if fx in INTRO_FX and t < 2.6 and self.layer3d is None and self.cap is None:
             intro_fx(f, cam, t, fx, fx_x, front=True)
         if self.paint is None:
             f = backgrounds.draw_fg(loc, cam, f)
