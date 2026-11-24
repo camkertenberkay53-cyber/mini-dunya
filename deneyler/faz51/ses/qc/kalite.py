@@ -22,9 +22,14 @@ _SAYI_RE = re.compile(f"^({'|'.join(SAYI)})+$")
 _SAYI_EKLI_RE = re.compile(f"^({'|'.join(SAYI)})+[a-zçğıöşü]{{0,5}}$")
 
 # Eşikler (bu deneyde belirlendi; değiştirilirse rapor edilir)
+# QC kural sürümü. v1: ilk ölçüm (QC1). v2: QC1 yanlış alarm analizinden sonra (değişiklikler raporda, iki sürüm
+# aynı veriyle karşılaştırılır): isim belirteçleri kritik WER'den çıkarıldı (isimler ayrı denetlenir); baş konuşması
+# yalnız süre anomalisiyle birlikte kritik; kelimesiz kuyruk sesi 0.7-1.5 sn arası UYARI, 1.5 sn üstü KRİTİK.
+SURUM = "v2"
 ESIK = {
     "wer_kritik": 0.30, "wer_uyari": 0.10,
-    "kuyruk_kelime_kritik": 2, "kuyruk_ses_kritik_sn": 0.7, "bas_ses_kritik_sn": 0.7,
+    "kuyruk_kelime_kritik": 2, "kuyruk_ses_kritik_sn": 1.5, "kuyruk_ses_uyari_sn": 0.7, "bas_ses_kritik_sn": 0.7,
+    "bas_sure_orani_kritik": 1.3,
     "eksik_kritik": 2,
     "sure_orani_ust": 1.5, "sure_orani_alt": 0.6,
     "ic_sessizlik_uyari_sn": 1.0,
@@ -107,8 +112,25 @@ def denetle(x: np.ndarray, sr: int, konusma: str, ozel: list[dict], asr: dict, h
     ops = hizala(ref, hip)
     hata = sum(o[0] != "esit" for o in ops)
     wer = hata / max(1, len(ref))
-    eslesen = [(i, j) for k, i, j in ops if k in ("esit", "degis") and benzer(ref[i], hip[j]) >= 0.6]
-    eksik = [ref[i] for k, i, j in ops if k == "sil"]
+    isim_tok = set()
+    for o in ozel:
+        if o["tur"] == "isim":
+            for t in normal(o["okunus"]) + normal(o["yazim"]):
+                isim_tok.add(t[:max(3, len(t) - 3)])
+    def _isim(t: str) -> bool:
+        return any(t.startswith(k) for k in isim_tok)
+    # İsme komşu eklemeler (ASR'nin bir ismi birkaç parçaya bölmesi) de isimsiz hatadan sayılmaz; isim ayrı denetlenir.
+    def _isme_komsu(n: int) -> bool:
+        onceki = next((ops[q][1] for q in range(n - 1, -1, -1) if ops[q][1] is not None), None)
+        sonraki = next((ops[q][1] for q in range(n + 1, len(ops)) if ops[q][1] is not None), None)
+        return any(r is not None and _isim(ref[r]) for r in (onceki, sonraki))
+    hata_isimsiz = sum(1 for n, (k, i, j) in enumerate(ops) if k != "esit"
+                       and not (i is not None and _isim(ref[i])) and not (k == "ekle" and _isme_komsu(n)))
+    n_isimsiz = sum(1 for t in ref if not _isim(t))
+    wer_isimsiz = hata_isimsiz / max(1, n_isimsiz)
+    eslesen = [(i, j) for k, i, j in ops if k in ("esit", "degis") and (benzer(ref[i], hip[j]) >= 0.6 or _isim(ref[i]))]
+    eksik = [ref[i] for k, i, j in ops if k == "sil" and not _isim(ref[i])]
+    eksik_isim = [ref[i] for k, i, j in ops if k == "sil" and _isim(ref[i])]
     ilk_j = eslesen[0][1] if eslesen else None
     son_j = eslesen[-1][1] if eslesen else None
     fazla_ic = [hip[j] for k, i, j in ops if k == "ekle" and ilk_j is not None and ilk_j < j < son_j]
@@ -156,21 +178,31 @@ def denetle(x: np.ndarray, sr: int, konusma: str, ozel: list[dict], asr: dict, h
     kritik, uyari = [], []
     if len(kuyruk_kel) >= ESIK["kuyruk_kelime_kritik"] or kuyruk_ses >= ESIK["kuyruk_ses_kritik_sn"]:
         kritik.append(f"cümle sonunda fazladan konuşma ({len(kuyruk_kel)} kelime, {kuyruk_ses:.1f} sn ses)")
-    if (len(bas_kel) >= 2) or bas_ses >= ESIK["bas_ses_kritik_sn"]:
-        kritik.append(f"cümle başında fazladan konuşma ({len(bas_kel)} kelime, {bas_ses:.1f} sn ses)")
+    elif kuyruk_ses >= ESIK["kuyruk_ses_uyari_sn"]:
+        uyari.append(f"cümle sonunda kelimesiz ses ({kuyruk_ses:.1f} sn; nefes/gürültü olabilir, dinlenmeli)")
+    bas_var = len(bas_kel) >= 2 or bas_ses >= ESIK["bas_ses_kritik_sn"]
+    if bas_var and sure_orani is not None and sure_orani > ESIK["bas_sure_orani_kritik"]:
+        kritik.append(f"cümle başında fazladan konuşma ({len(bas_kel)} kelime, {bas_ses:.1f} sn ses, süre {sure_orani:.2f}x)")
+    elif bas_var:
+        uyari.append(f"cümle başı ASR ile eşleşmedi ({len(bas_kel)} kelime; süre normal)")
     if len(eksik) >= ESIK["eksik_kritik"]:
         kritik.append(f"eksik kelime: {' '.join(eksik)}")
+    if eksik_isim:
+        uyari.append(f"isim duyulmadı/farklı duyuldu: {' '.join(eksik_isim)}")
     if not butunluk:
-        kritik.append("cümle bütünlüğü: ilk ya da son kelime duyulmadı")
-    if wer > ESIK["wer_kritik"]:
-        kritik.append(f"kelime hata oranı yüksek ({wer:.2f})")
+        if sure_orani is not None and (sure_orani > ESIK["bas_sure_orani_kritik"] or sure_orani < 0.8):
+            kritik.append("cümle bütünlüğü: ilk ya da son kelime duyulmadı (süre de anormal)")
+        else:
+            uyari.append("cümle bütünlüğü: ilk ya da son kelime ASR ile eşleşmedi (süre normal)")
+    if wer_isimsiz > ESIK["wer_kritik"]:
+        kritik.append(f"kelime hata oranı yüksek (isimler hariç {wer_isimsiz:.2f})")
     if sure_orani is not None and (sure_orani > ESIK["sure_orani_ust"] or sure_orani < ESIK["sure_orani_alt"]):
         kritik.append(f"süre anomalisi (beklenenin {sure_orani:.2f} katı)")
     for o in ozel_sonuc:
         if not o["bulundu"] and o["tur"] in ("sayi", "sira", "kisaltma"):
             kritik.append(f"{o['tur']} okunmadı/yanlış: '{o['yazim']}' → beklenen '{o['okunus']}'")
-    if ESIK["wer_uyari"] < wer <= ESIK["wer_kritik"]:
-        uyari.append(f"kelime hata oranı ({wer:.2f})")
+    if ESIK["wer_uyari"] < wer_isimsiz <= ESIK["wer_kritik"]:
+        uyari.append(f"kelime hata oranı (isimler hariç {wer_isimsiz:.2f})")
     if len(eksik) == 1:
         uyari.append(f"eksik kelime: {eksik[0]}")
     if fazla_ic:
@@ -188,7 +220,8 @@ def denetle(x: np.ndarray, sr: int, konusma: str, ozel: list[dict], asr: dict, h
     return {
         "durum": "KRITIK" if kritik else ("UYARI" if uyari else "GECTI"),
         "puan": round(puan, 1), "kritik": kritik, "uyari": uyari,
-        "olcum": {"wer": round(wer, 3), "eksik": eksik, "fazla_ic": fazla_ic, "kuyruk_kelime": kuyruk_kel,
+        "surum": SURUM,
+        "olcum": {"wer": round(wer, 3), "wer_isimsiz": round(wer_isimsiz, 3), "eksik_isim": eksik_isim, "eksik": eksik, "fazla_ic": fazla_ic, "kuyruk_kelime": kuyruk_kel,
                   "bas_kelime": bas_kel, "kuyruk_ses_sn": round(kuyruk_ses, 2), "bas_ses_sn": round(bas_ses, 2),
                   "konusma_sn": round(konusma_sn, 2), "ses_sn": round(len(x) / sr, 2),
                   "sure_orani": None if sure_orani is None else round(sure_orani, 2),

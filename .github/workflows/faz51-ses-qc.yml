@@ -96,7 +96,8 @@ jobs:
           path: /tmp/r
       - name: Sonuçları dala yaz
         run: |
-          D=deneyler/faz51/ses/qc/sonuc
+          K=$(python3 -c "import json;print(json.load(open('deneyler/faz51/ses/qc/kosu.json'))['kosu_id'])")
+          D=deneyler/faz51/ses/qc/sonuc/$K
           mkdir -p "$D/ses"
           cp /tmp/r/*.json "$D/" || true
           cp /tmp/r/*.mp3 "$D/ses/" || true
