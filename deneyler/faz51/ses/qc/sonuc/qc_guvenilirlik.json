@@ -1,0 +1,1506 @@
+{
+ "enjeksiyon": [
+  {
+   "no": 0,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 3.1 sn ses)",
+    "kelime hata oranı yüksek (0.38)",
+    "süre anomalisi (beklenenin 1.57 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: roman bozgun",
+    "özel isim doğrulanamadı: Harran"
+   ]
+  },
+  {
+   "no": 0,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (7 kelime, 2.5 sn ses)",
+    "kelime hata oranı yüksek (1.00)"
+   ],
+   "uyari": [
+    "araya giren kelime: roma bolgun",
+    "özel isim doğrulanamadı: Harran"
+   ]
+  },
+  {
+   "no": 0,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "eksik kelime: harran yakınlarında bozguna",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.46)"
+   ],
+   "uyari": [
+    "araya giren kelime: roma",
+    "sonda tek fazla kelime: haran"
+   ]
+  },
+  {
+   "no": 0,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "eksik kelime: biri harran",
+    "kelime hata oranı yüksek (0.31)"
+   ],
+   "uyari": [
+    "araya giren kelime: roma",
+    "özel isim doğrulanamadı: Harran"
+   ]
+  },
+  {
+   "no": 0,
+   "tur": "uzun_sessizlik",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.31)"
+   ],
+   "uyari": [
+    "araya giren kelime: roma",
+    "özel isim doğrulanamadı: Harran",
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 0,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.69)"
+   ],
+   "uyari": [
+    "araya giren kelime: roma ordularının bir sancak bolgun",
+    "özel isim doğrulanamadı: Harran"
+   ]
+  },
+  {
+   "no": 0,
+   "tur": "yanlis_sayi",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.31)",
+    "sayi okunmadı/yanlış: 'elli dört' → beklenen 'elli dört'"
+   ],
+   "uyari": [
+    "araya giren kelime: roma"
+   ]
+  },
+  {
+   "no": 0,
+   "tur": "yanlis_isim",
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.23)",
+    "araya giren kelime: roma",
+    "özel isim doğrulanamadı: Hasankeyf"
+   ]
+  },
+  {
+   "no": 1,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 3.2 sn ses)",
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "süre anomalisi (beklenenin 1.63 katı)"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.17)"
+   ]
+  },
+  {
+   "no": 1,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (7 kelime, 2.7 sn ses)",
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.75)",
+    "süre anomalisi (beklenenin 1.54 katı)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 1,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "eksik kelime: yaşayabileceği en büyük",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [
+    "sonda tek fazla kelime: yaşayabilecek"
+   ]
+  },
+  {
+   "no": 1,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.42)"
+   ],
+   "uyari": [
+    "eksik kelime: askerin"
+   ]
+  },
+  {
+   "no": 1,
+   "tur": "uzun_sessizlik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.58)"
+   ],
+   "uyari": [
+    "araya giren kelime: ask a skeleton kel",
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 1,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [
+    "araya giren kelime: ask beşyüzelliüç baharında"
+   ]
+  },
+  {
+   "no": 2,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 2.9 sn ses)",
+    "süre anomalisi (beklenenin 1.73 katı)"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.17)",
+    "araya giren kelime: roma"
+   ]
+  },
+  {
+   "no": 2,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (7 kelime, 2.5 sn ses)",
+    "kelime hata oranı yüksek (0.75)",
+    "süre anomalisi (beklenenin 1.64 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: roma"
+   ]
+  },
+  {
+   "no": 2,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "eksik kelime: romaya geri döndü",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.25)",
+    "özel isim doğrulanamadı: Roma"
+   ]
+  },
+  {
+   "no": 2,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "eksik kelime: kartallar romaya"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.25)",
+    "özel isim doğrulanamadı: Roma"
+   ]
+  },
+  {
+   "no": 2,
+   "tur": "uzun_sessizlik",
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.17)",
+    "araya giren kelime: roma",
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 2,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [
+    "araya giren kelime: isa nın atlıları semer roma"
+   ]
+  },
+  {
+   "no": 2,
+   "tur": "yanlis_isim",
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.25)",
+    "araya giren kelime: roma",
+    "özel isim doğrulanamadı: Bizans"
+   ]
+  },
+  {
+   "no": 3,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 3.8 sn ses)",
+    "süre anomalisi (beklenenin 1.95 katı)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 3,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 3.3 sn ses)",
+    "süre anomalisi (beklenenin 1.84 katı)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 3,
+   "tur": "son_kesik",
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": []
+  },
+  {
+   "no": 3,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.0 sn ses)",
+    "eksik kelime: nasıl taşıyabilir",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.22)"
+   ]
+  },
+  {
+   "no": 3,
+   "tur": "uzun_sessizlik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.0 sn ses)",
+    "süre anomalisi (beklenenin 1.72 katı)"
+   ],
+   "uyari": [
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 3,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.0 sn ses)",
+    "kelime hata oranı yüksek (0.44)",
+    "süre anomalisi (beklenenin 1.53 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: cleopatra mısır ın kaderini"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 2.9 sn ses)"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.30)",
+    "araya giren kelime: mehmet"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (7 kelime, 2.2 sn ses)",
+    "kelime hata oranı yüksek (0.90)"
+   ],
+   "uyari": [
+    "araya giren kelime: mehmet"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (3 kelime, 0.6 sn ses)",
+    "eksik kelime: mehmetin ordusu istanbul",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.80)",
+    "süre anomalisi (beklenenin 0.55 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: bahar",
+    "özel isim doğrulanamadı: İstanbul"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.40)"
+   ],
+   "uyari": [
+    "eksik kelime: mehmetin",
+    "özel isim doğrulanamadı: İstanbul"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "uzun_sessizlik",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.40)"
+   ],
+   "uyari": [
+    "araya giren kelime: mehmet surları",
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.60)"
+   ],
+   "uyari": [
+    "araya giren kelime: mehmet in önünde kuşatılmış kalenin"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "yanlis_sayi",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.40)",
+    "sayi okunmadı/yanlış: 'elli dört' → beklenen 'elli dört'"
+   ],
+   "uyari": [
+    "araya giren kelime: mehmet"
+   ]
+  },
+  {
+   "no": 4,
+   "tur": "yanlis_isim",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.40)"
+   ],
+   "uyari": [
+    "araya giren kelime: mehmet",
+    "özel isim doğrulanamadı: Edirne"
+   ]
+  },
+  {
+   "no": 5,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 4.0 sn ses)",
+    "kelime hata oranı yüksek (0.45)",
+    "süre anomalisi (beklenenin 1.78 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: han buhara"
+   ]
+  },
+  {
+   "no": 5,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (10 kelime, 3.8 sn ses)",
+    "kelime hata oranı yüksek (1.27)",
+    "süre anomalisi (beklenenin 1.69 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: han buhara"
+   ]
+  },
+  {
+   "no": 5,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.55)"
+   ],
+   "uyari": [
+    "eksik kelime: düşürdü",
+    "araya giren kelime: han buhara"
+   ]
+  },
+  {
+   "no": 5,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)",
+    "eksik kelime: şehirleri birer",
+    "kelime hata oranı yüksek (0.73)"
+   ],
+   "uyari": [
+    "araya giren kelime: han semerkampdan"
+   ]
+  },
+  {
+   "no": 5,
+   "tur": "uzun_sessizlik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)",
+    "kelime hata oranı yüksek (0.45)",
+    "süre anomalisi (beklenenin 1.57 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: han semerkamptan",
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 5,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)",
+    "kelime hata oranı yüksek (1.00)"
+   ],
+   "uyari": [
+    "araya giren kelime: han buhara şey imparatorluk en güçlü olduğu"
+   ]
+  },
+  {
+   "no": 5,
+   "tur": "yanlis_isim",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)",
+    "kelime hata oranı yüksek (0.45)"
+   ],
+   "uyari": [
+    "araya giren kelime: han semerkamptan",
+    "özel isim doğrulanamadı: Kudüs"
+   ]
+  },
+  {
+   "no": 6,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 3.1 sn ses)",
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 6,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (8 kelime, 2.5 sn ses)",
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (1.40)"
+   ],
+   "uyari": [
+    "araya giren kelime: ticay"
+   ]
+  },
+  {
+   "no": 6,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.1 sn ses)",
+    "eksik kelime: titreyen ellerle",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.70)",
+    "süre anomalisi (beklenenin 0.57 katı)"
+   ],
+   "uyari": [
+    "sonda tek fazla kelime: tüccendirir"
+   ]
+  },
+  {
+   "no": 6,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "eksik kelime: o mektubu titreyen",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.80)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 6,
+   "tur": "uzun_sessizlik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.80)"
+   ],
+   "uyari": [
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 6,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.1 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.90)"
+   ],
+   "uyari": [
+    "araya giren kelime: haberi geldiğinde şehrin dört"
+   ]
+  },
+  {
+   "no": 6,
+   "tur": "yanlis_isim",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [
+    "özel isim doğrulanamadı: Nefertiti"
+   ]
+  },
+  {
+   "no": 7,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 3.0 sn ses)",
+    "süre anomalisi (beklenenin 1.51 katı)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 7,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (7 kelime, 2.2 sn ses)",
+    "kelime hata oranı yüksek (0.78)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 7,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "süre anomalisi (beklenenin 0.58 katı)"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "eksik kelime: sesi",
+    "sonda tek fazla kelime: sebebinde"
+   ]
+  },
+  {
+   "no": 7,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "eksik kelime: yalnızca davulların",
+    "kelime hata oranı yüksek (0.56)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 7,
+   "tur": "uzun_sessizlik",
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.11)",
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 7,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.56)"
+   ],
+   "uyari": [
+    "araya giren kelime: yalnız an önce elliüç"
+   ]
+  },
+  {
+   "no": 8,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 3.4 sn ses)",
+    "süre anomalisi (beklenenin 2.03 katı)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 8,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (8 kelime, 2.8 sn ses)",
+    "kelime hata oranı yüksek (0.80)",
+    "süre anomalisi (beklenenin 1.91 katı)"
+   ],
+   "uyari": []
+  },
+  {
+   "no": 8,
+   "tur": "son_kesik",
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": []
+  },
+  {
+   "no": 8,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.20)",
+    "eksik kelime: neden",
+    "sonda tek fazla kelime: ne"
+   ]
+  },
+  {
+   "no": 8,
+   "tur": "uzun_sessizlik",
+   "durum": "KRITIK",
+   "kritik": [
+    "süre anomalisi (beklenenin 1.66 katı)"
+   ],
+   "uyari": [
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 8,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 0.8 sn ses)",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [
+    "araya giren kelime: ne kartalı düşman eline geçti"
+   ]
+  },
+  {
+   "no": 9,
+   "tur": "kuyruk_anlamsiz",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 2.9 sn ses)",
+    "süre anomalisi (beklenenin 1.64 katı)"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: dört"
+   ]
+  },
+  {
+   "no": 9,
+   "tur": "kuyruk_konusma",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (8 kelime, 2.3 sn ses)",
+    "kelime hata oranı yüksek (1.11)",
+    "süre anomalisi (beklenenin 1.54 katı)"
+   ],
+   "uyari": [
+    "araya giren kelime: dört"
+   ]
+  },
+  {
+   "no": 9,
+   "tur": "son_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.44)",
+    "süre anomalisi (beklenenin 0.60 katı)"
+   ],
+   "uyari": [
+    "eksik kelime: çalmaya",
+    "araya giren kelime: dört",
+    "sonda tek fazla kelime: çanlar"
+   ]
+  },
+  {
+   "no": 9,
+   "tur": "orta_kesik",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.44)"
+   ],
+   "uyari": [
+    "eksik kelime: dörtbir"
+   ]
+  },
+  {
+   "no": 9,
+   "tur": "uzun_sessizlik",
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: dört",
+    "uzun iç sessizlik (2.0 sn)"
+   ]
+  },
+  {
+   "no": 9,
+   "tur": "araya_ekleme",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.78)"
+   ],
+   "uyari": [
+    "araya giren kelime: dört bir yıl sonra tek"
+   ]
+  }
+ ],
+ "yanlis_alarm": [
+  {
+   "motor": "chatterbox",
+   "no": 0,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.23)",
+    "araya giren kelime: roma",
+    "özel isim doğrulanamadı: Harran"
+   ],
+   "dokum": "Milattan önce 53 yılında Roma'nın en büyük ordularından biri Haren yakınlarında bozguna uğradı."
+  },
+  {
+   "motor": "chatterbox",
+   "no": 1,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.17)"
+   ],
+   "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı."
+  },
+  {
+   "motor": "chatterbox",
+   "no": 2,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.25)",
+    "araya giren kelime: roma"
+   ],
+   "dokum": "33 yıl sonra tek bir kalış bile çekilmeden Kartallar Roma'ya geri döndü."
+  },
+  {
+   "motor": "chatterbox",
+   "no": 3,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.0 sn ses)"
+   ],
+   "uyari": [],
+   "dokum": "Şimdi düşünün, bir sancak binlerce insanın onurunu nasıl taşıyabilir?"
+  },
+  {
+   "motor": "chatterbox",
+   "no": 4,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.30)",
+    "araya giren kelime: mehmet"
+   ],
+   "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surların önüne dayandı."
+  },
+  {
+   "motor": "chatterbox",
+   "no": 5,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)",
+    "kelime hata oranı yüksek (0.45)"
+   ],
+   "uyari": [
+    "araya giren kelime: han semerkamptan"
+   ],
+   "dokum": "Cengiz Han'ın atlıları, Semerkamp'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü."
+  },
+  {
+   "motor": "chatterbox",
+   "no": 6,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [],
+   "dokum": "Kraliçek Leopatra, Mısır'ın kaderini değiştirecek o mektubu tüccarın ellerle mühürledi."
+  },
+  {
+   "motor": "chatterbox",
+   "no": 7,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.11)"
+   ],
+   "dokum": "Gece çöptüğünde kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu."
+  },
+  {
+   "motor": "chatterbox",
+   "no": 8,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 0.8 sn ses)"
+   ],
+   "uyari": [],
+   "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöktü?"
+  },
+  {
+   "motor": "chatterbox",
+   "no": 9,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: dört"
+   ],
+   "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 0,
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.38)"
+   ],
+   "uyari": [
+    "araya giren kelime: roma"
+   ],
+   "dokum": "Milattan önce 53 yılında, Roma'nın en büyük ordularından biri Haranya kınlarında bozbuna uğradı."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 1,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.17)"
+   ],
+   "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 2,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.25)",
+    "araya giren kelime: kartarlar"
+   ],
+   "dokum": "33 yıl sonra tek bir kılıç bile çekilmeden Kartarlar Roma'ya geri döndü."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 3,
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Şimdi düşünün bir sancak binlerce insanın onurunu nasıl taşıyabilir?"
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 4,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.20)",
+    "araya giren kelime: mehmet"
+   ],
+   "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 5,
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.55)"
+   ],
+   "uyari": [
+    "araya giren kelime: han ın adlıları",
+    "özel isim doğrulanamadı: Semerkant"
+   ],
+   "dokum": "Cengiz Han'ın adlıları, Semel Kamp tam buharaya kadar uzanan şehirleri birer birer düşürdü."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 6,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [],
+   "dokum": "Kraliçek Lopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen erlerle mühürledi."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 7,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.11)"
+   ],
+   "dokum": "Kece çöktüğünde kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu."
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 8,
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöptü?"
+  },
+  {
+   "motor": "piper_fahrettin",
+   "no": 9,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: dört"
+   ],
+   "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 0,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.23)",
+    "araya giren kelime: roma"
+   ],
+   "dokum": "Milaptan önce 53 yılında Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 1,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (3 kelime, 0.3 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.33)"
+   ],
+   "uyari": [],
+   "dokum": "ve John'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtır."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 2,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.17)",
+    "araya giren kelime: roma"
+   ],
+   "dokum": "33 yıl sonra tek bir kılıç bile çekilmeden Kartallar Roma'ya geri döndü."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 3,
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Şimdi düşünün, bir sancak binlerce insanın onurunu nasıl taşıyabilir?"
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 4,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.20)",
+    "araya giren kelime: mehmet"
+   ],
+   "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 5,
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.45)"
+   ],
+   "uyari": [
+    "araya giren kelime: han semerkantan"
+   ],
+   "dokum": "Cengiz Han'ın atlıları, Semerkantan, Buhar'a kadar uzanan şehirleri birer birer düşürdü."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 6,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.6 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.50)"
+   ],
+   "uyari": [],
+   "dokum": "Galicia Cleopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mürürledi."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 7,
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.44)"
+   ],
+   "uyari": [
+    "araya giren kelime: kuş"
+   ],
+   "dokum": "Gece çöktüğünde kuş atılmış kalenin içinde yalnız cadavulların sesi duyuluyordu."
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 8,
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöptü?"
+  },
+  {
+   "motor": "piper_fettah",
+   "no": 9,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: dört"
+   ],
+   "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 0,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.15)",
+    "araya giren kelime: roma"
+   ],
+   "dokum": "Milattan önce 53 yılında Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 1,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.3 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.17)"
+   ],
+   "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 2,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.25)",
+    "araya giren kelime: kartalılar"
+   ],
+   "dokum": "33 yıl sonra tek bir kılıç bile çekilmeden Kartalılar Roma'ya geri döndü."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 3,
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Şimdi düşünün bir sancak binlerce insanın onurunu nasıl taşıyabilir?"
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 4,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.20)",
+    "araya giren kelime: mehmet"
+   ],
+   "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 5,
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.45)"
+   ],
+   "uyari": [
+    "araya giren kelime: han semerkantan"
+   ],
+   "dokum": "Cengiz Han'ın atlıları, Semerkantan, Buhara'ya kadar uzanan şehirleri birer birer düşürdü."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 6,
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (4 kelime, 1.3 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.40)"
+   ],
+   "uyari": [],
+   "dokum": "Kölyçek Leopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mühürledi."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 7,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: kuşa"
+   ],
+   "dokum": "Gece çöktüğünde kuşa atılmış kalenin içinde yalnızca davulların sesi duyuluyordu."
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 8,
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöktü?"
+  },
+  {
+   "motor": "piper_dfki",
+   "no": 9,
+   "durum": "UYARI",
+   "kritik": [],
+   "uyari": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: dört"
+   ],
+   "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı."
+  }
+ ],
+ "gercek_vaka": [
+  {
+   "no": 0,
+   "metin": "Bir kuş için 33 yıl.",
+   "durum": "KRITIK",
+   "kritik": [
+    "sayi okunmadı/yanlış: '33' → beklenen 'otuz üç'"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.20)"
+   ],
+   "dokum": "Bir kuş için 39 yıl.",
+   "olcum": {
+    "kuyruk_ses_sn": 0.06,
+    "kuyruk_kelime": [],
+    "sure_orani": 1.12,
+    "wer": 0.2
+   }
+  },
+  {
+   "no": 1,
+   "metin": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "durum": "KRITIK",
+   "kritik": [
+    "kelime hata oranı yüksek (0.33)"
+   ],
+   "uyari": [
+    "özel isim doğrulanamadı: aquila"
+   ],
+   "dokum": "Bu, legionun kartalıydı, akvira, onu taşıyan askere akilüfer denirdi.",
+   "olcum": {
+    "kuyruk_ses_sn": 0.48,
+    "kuyruk_kelime": [],
+    "sure_orani": 0.9,
+    "wer": 0.333
+   }
+  },
+  {
+   "no": 2,
+   "metin": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)"
+   ],
+   "uyari": [],
+   "dokum": "Kartalı kaybetmek bir lejyon için büyük bir utançtı.",
+   "olcum": {
+    "kuyruk_ses_sn": 1.29,
+    "kuyruk_kelime": [],
+    "sure_orani": 1.0,
+    "wer": 0.0
+   }
+  },
+  {
+   "no": 3,
+   "metin": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (3 kelime, 1.0 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.60)",
+    "sayi okunmadı/yanlış: '53'te' → beklenen 'elli üçte'"
+   ],
+   "uyari": [
+    "araya giren kelime: grastus",
+    "özel isim doğrulanamadı: Crassus"
+   ],
+   "dokum": "Mö vs KT bugünkü Harran yakınlarında Grastus'un ordusu parklara yenildi.",
+   "olcum": {
+    "kuyruk_ses_sn": 0.24,
+    "kuyruk_kelime": [],
+    "sure_orani": 0.82,
+    "wer": 0.6
+   }
+  },
+  {
+   "no": 4,
+   "metin": "Kartallar düşmanın eline geçti; Crassus da öldürüldü.",
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Kartallar düşmanın eline geçti, Krassus da öldürüldü.",
+   "olcum": {
+    "kuyruk_ses_sn": 0.0,
+    "kuyruk_kelime": [],
+    "sure_orani": 0.67,
+    "wer": 0.0
+   }
+  },
+  {
+   "no": 5,
+   "metin": "Roma yıllarca bu utançla yaşadı.",
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Roma yıllarca bu utançla yaşadı.",
+   "olcum": {
+    "kuyruk_ses_sn": 0.27,
+    "kuyruk_kelime": [],
+    "sure_orani": 1.36,
+    "wer": 0.0
+   }
+  },
+  {
+   "no": 6,
+   "metin": "33 yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "sayi okunmadı/yanlış: '33' → beklenen 'otuz üç'"
+   ],
+   "uyari": [
+    "kelime hata oranı (0.20)"
+   ],
+   "dokum": "30 ok yıl sonra Augustus savaşmadan ama gücünü göstererek partlarla anlaştı.",
+   "olcum": {
+    "kuyruk_ses_sn": 0.3,
+    "kuyruk_kelime": [],
+    "sure_orani": 1.01,
+    "wer": 0.2
+   }
+  },
+  {
+   "no": 7,
+   "metin": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "durum": "KRITIK",
+   "kritik": [
+    "cümle sonunda fazladan konuşma (12 kelime, 5.2 sn ses)",
+    "kelime hata oranı yüksek (1.71)",
+    "süre anomalisi (beklenenin 2.10 katı)"
+   ],
+   "uyari": [],
+   "dokum": "Bazı kaynaklara göre kartalları Tiberius teslim aldı. Moduk çökünüm izime tetiyere de, Omeden izime tetiyere, Bez dugumun çökünüm az.",
+   "olcum": {
+    "kuyruk_ses_sn": 5.16,
+    "kuyruk_kelime": [
+     "moduk",
+     "çökünüm",
+     "izime",
+     "tetiyere",
+     "de",
+     "omeden",
+     "izime",
+     "tetiyere",
+     "bez",
+     "dugumun",
+     "çökünüm",
+     "az"
+    ],
+    "sure_orani": 2.1,
+    "wer": 1.714
+   }
+  },
+  {
+   "no": 8,
+   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "durum": "GECTI",
+   "kritik": [],
+   "uyari": [],
+   "dokum": "Ve Roma bunu kazanılmış bir savaş gibi kutladı.",
+   "olcum": {
+    "kuyruk_ses_sn": 0.48,
+    "kuyruk_kelime": [],
+    "sure_orani": 0.98,
+    "wer": 0.0
+   }
+  }
+ ],
+ "ozet": {
+  "enjeksiyon": {
+   "araya_ekleme": {
+    "toplam": 10,
+    "yakalanan_herhangi": 10,
+    "yakalanan_kritik": 10
+   },
+   "kuyruk_anlamsiz": {
+    "toplam": 10,
+    "yakalanan_herhangi": 10,
+    "yakalanan_kritik": 10
+   },
+   "kuyruk_konusma": {
+    "toplam": 10,
+    "yakalanan_herhangi": 10,
+    "yakalanan_kritik": 10
+   },
+   "orta_kesik": {
+    "toplam": 10,
+    "yakalanan_herhangi": 10,
+    "yakalanan_kritik": 10
+   },
+   "son_kesik": {
+    "toplam": 10,
+    "yakalanan_herhangi": 8,
+    "yakalanan_kritik": 8
+   },
+   "uzun_sessizlik": {
+    "toplam": 10,
+    "yakalanan_herhangi": 10,
+    "yakalanan_kritik": 7
+   },
+   "yanlis_isim": {
+    "toplam": 5,
+    "yakalanan_herhangi": 5,
+    "yakalanan_kritik": 3
+   },
+   "yanlis_sayi": {
+    "toplam": 2,
+    "yakalanan_herhangi": 2,
+    "yakalanan_kritik": 2
+   }
+  },
+  "enjeksiyon_toplam": {
+   "toplam": 67,
+   "yakalanan_herhangi": 65,
+   "yakalanan_kritik": 60
+  },
+  "yanlis_alarm": {
+   "chatterbox": {
+    "klip": 10,
+    "kritik": 5,
+    "uyari": 5
+   },
+   "piper_fahrettin": {
+    "klip": 10,
+    "kritik": 4,
+    "uyari": 4
+   },
+   "piper_fettah": {
+    "klip": 10,
+    "kritik": 4,
+    "uyari": 4
+   },
+   "piper_dfki": {
+    "klip": 10,
+    "kritik": 3,
+    "uyari": 5
+   }
+  },
+  "gercek_vaka": {
+   "GECTI": 3,
+   "UYARI": 0,
+   "KRITIK": 6
+  }
+ }
+}
