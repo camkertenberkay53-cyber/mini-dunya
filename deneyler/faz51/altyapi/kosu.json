@@ -1,56 +1,84 @@
 {
- "kosu_id": "R1_paralel_S2",
- "aciklama": "Aynı çekim (S2) 1, 2 ve 4 eşzamanlı işte",
+ "kosu_id": "R2_pilot_11is",
+ "aciklama": "Pilot 11 çekim, her çekim ayrı iş + birleştirme",
  "isler": [
   {
-   "ad": "g1_1",
-   "grup": "1",
+   "ad": "p11_S1",
+   "grup": "11",
+   "cekimler": [
+    "S1"
+   ]
+  },
+  {
+   "ad": "p11_S2",
+   "grup": "11",
    "cekimler": [
     "S2"
    ]
   },
   {
-   "ad": "g2_1",
-   "grup": "2",
+   "ad": "p11_S3",
+   "grup": "11",
    "cekimler": [
-    "S2"
+    "S3"
    ]
   },
   {
-   "ad": "g2_2",
-   "grup": "2",
+   "ad": "p11_S4a",
+   "grup": "11",
    "cekimler": [
-    "S2"
+    "S4a"
    ]
   },
   {
-   "ad": "g4_1",
-   "grup": "4",
+   "ad": "p11_S4b",
+   "grup": "11",
    "cekimler": [
-    "S2"
+    "S4b"
    ]
   },
   {
-   "ad": "g4_2",
-   "grup": "4",
+   "ad": "p11_S5",
+   "grup": "11",
    "cekimler": [
-    "S2"
+    "S5"
    ]
   },
   {
-   "ad": "g4_3",
-   "grup": "4",
+   "ad": "p11_S6",
+   "grup": "11",
    "cekimler": [
-    "S2"
+    "S6"
    ]
   },
   {
-   "ad": "g4_4",
-   "grup": "4",
+   "ad": "p11_S7a",
+   "grup": "11",
    "cekimler": [
-    "S2"
+    "S7a"
+   ]
+  },
+  {
+   "ad": "p11_S7b",
+   "grup": "11",
+   "cekimler": [
+    "S7b"
+   ]
+  },
+  {
+   "ad": "p11_S8",
+   "grup": "11",
+   "cekimler": [
+    "S8"
+   ]
+  },
+  {
+   "ad": "p11_S9",
+   "grup": "11",
+   "cekimler": [
+    "S9"
    ]
   }
  ],
- "birlestir": false
+ "birlestir": true
 }
