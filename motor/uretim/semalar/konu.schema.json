@@ -1,0 +1,19 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "konu",
+ "description": "Bir videonun konusu. Konuya özel her şey burada ve sonraki veri dosyalarında yaşar; motor kodunda değil.",
+ "type": "object",
+ "required": ["surum", "kimlik", "baslik", "format", "hedef_sure_sn", "donemler", "dil", "ozet"],
+ "additionalProperties": false,
+ "properties": {
+  "surum": {"const": 1},
+  "kimlik": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+  "baslik": {"type": "string", "minLength": 3, "maxLength": 100},
+  "format": {"enum": ["shorts", "uzun"]},
+  "hedef_sure_sn": {"type": "array", "items": {"type": "number", "exclusiveMinimum": 0}, "minItems": 2, "maxItems": 2},
+  "donemler": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+  "dil": {"enum": ["tr", "en"]},
+  "ozet": {"type": "string", "minLength": 20},
+  "notlar": {"type": "array", "items": {"type": "string"}}
+ }
+}

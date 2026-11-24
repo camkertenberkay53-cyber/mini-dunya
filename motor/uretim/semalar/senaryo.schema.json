@@ -1,0 +1,43 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "senaryo",
+ "description": "Anlatı katmanının çıktısı. Görsel üretimden habersizdir: her cümle yalnızca bir görsel NİYET taşır.",
+ "type": "object",
+ "required": ["surum", "konu", "format", "baslik", "cumleler", "kanca", "final"],
+ "additionalProperties": false,
+ "$defs": {
+  "niyet": {
+   "type": "object", "required": ["tur"], "additionalProperties": false,
+   "properties": {
+    "tur": {"enum": ["3d", "harita", "bilgi_karti"]},
+    "roller": {"type": "array", "items": {"type": "object", "required": ["rol"], "additionalProperties": false,
+     "properties": {"rol": {"type": "string"}, "donem": {"type": "string"}, "adet": {"type": "integer", "minimum": 1},
+                    "nesne": {"type": "string"}, "odak": {"type": "boolean"}}}},
+    "eylem": {"type": "string"},
+    "mesafe": {"enum": ["yakin", "orta", "uzak"]},
+    "ortam": {"type": "object", "additionalProperties": false,
+     "properties": {"arazi": {"type": "string"}, "isik": {"type": "string"}, "cevre": {"type": "array", "items": {"type": "string"}}}},
+    "metin": {"type": "string"},
+    "aciklama": {"type": "string"}
+   }
+  }
+ },
+ "properties": {
+  "surum": {"const": 1},
+  "konu": {"type": "string"},
+  "format": {"enum": ["shorts", "uzun"]},
+  "baslik": {"type": "string"},
+  "kanca": {"type": "string"},
+  "final": {"type": "string"},
+  "cumleler": {"type": "array", "minItems": 1, "items": {
+   "type": "object", "required": ["id", "metin", "kartlar", "niyet"], "additionalProperties": false,
+   "properties": {
+    "id": {"type": "string", "pattern": "^S[0-9]+$"},
+    "metin": {"type": "string", "minLength": 2},
+    "kartlar": {"type": "array", "items": {"type": "string"}},
+    "olgusal": {"type": "boolean", "default": true},
+    "bolum": {"type": "string"},
+    "niyet": {"$ref": "#/$defs/niyet"}
+   }}}
+ }
+}

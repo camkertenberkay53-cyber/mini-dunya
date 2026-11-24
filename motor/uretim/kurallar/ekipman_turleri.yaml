@@ -1,0 +1,15 @@
+# Ekipman türleri (animasyon kurallarının "yuva_turu" koşulu için). Yeni dönem eklendiğinde yalnızca burası büyür.
+turler:
+  kilic: [osmanli_kilic, duz_kilic, gladius]
+  mizrak: [mizrak, kargi, pilum]
+  gurz: [gurz]
+  yay: [kompozit_yay]
+  arbalet: [arbalet]
+  sancak: [osmanli_sancagi, akkoyunlu_sancagi, bizans_sancagi, vexillum, aquila, tug]
+  kalkan: [hasir_kalkan, celik_kalkan, pavez, badem_kalkan, scutum]
+# Sahnede bulunması gereken ama HİÇBİR kitte olmayan nesneler: istenirse eksik olarak raporlanır.
+nesneler:
+  mesale: []
+  itilecek: []
+  alet: []
+  binek: []        # at modeli Faz 3 karakterleriyle birlikte kurulmadı ve test edilmedi

@@ -1,0 +1,28 @@
+# Animasyon kullanım kuralları (konudan bağımsız). Teknik izin (montaj ve animasyon testleri) AYRICA gerekir:
+# burada izinli görünen bir animasyon, o karakterde test edilmemiş ya da yasaklıysa yine kullanılamaz.
+#
+# tur: yerinde | yer_degistiren | tek_sefer
+# hiz: yer_degistiren animasyonların zemin hızı animasyon_olcum.json'dan (ÖLÇÜLMÜŞ) alınır; planda başka hız verilemez.
+# gerekli:
+#   yuva_turu: {yuva: [tür, ...]}  -> karakterin o yuvasında bu türlerden biri olmalı (ekipman_turleri.yaml)
+#   binek: true                      -> sahnede karakterin bindiği bir binek olmalı
+#   nesne: <ad>                      -> sahnede bu türde bir nesne olmalı (itilecek araba, tamir edilen alet...)
+#   alet: true                       -> işçi aleti gerekir
+animasyonlar:
+  Idle_Loop:        {tur: yerinde, eylemler: [bekleme, durma, dinleme]}
+  Walk_Loop:        {tur: yer_degistiren, eylemler: [yuruyus]}
+  Walk_Formal_Loop: {tur: yer_degistiren, eylemler: [yuruyus, toren_yuruyusu]}
+  Jog_Fwd_Loop:     {tur: yer_degistiren, eylemler: [kosu]}
+  Sprint_Loop:      {tur: yer_degistiren, eylemler: [kosu, hucum]}
+  Sword_Attack:     {tur: yerinde, eylemler: [kilic_saldirisi], gerekli: {yuva_turu: {sag_el: [kilic]}}}
+  Sword_Idle:       {tur: yerinde, eylemler: [kilicla_bekleme], gerekli: {yuva_turu: {sag_el: [kilic]}}}
+  Driving_Loop:     {tur: yerinde, eylemler: [binicilik], gerekli: {binek: true}}
+  Idle_Torch_Loop:  {tur: yerinde, eylemler: [mesale_tutma], gerekli: {nesne: mesale}}
+  Push_Loop:        {tur: yer_degistiren, eylemler: [itme], gerekli: {nesne: itilecek}}
+  Fixing_Kneeling:  {tur: yerinde, eylemler: [tamir, diz_cokme], gerekli: {alet: true}}
+  Interact:         {tur: tek_sefer, eylemler: [isaret, jest]}
+  Death01:          {tur: tek_sefer, eylemler: [olum]}
+  Hit_Chest:        {tur: tek_sefer, eylemler: [darbe_alma]}
+# Yerinde animasyonda karakter sahnede kımıldamaz; yer değiştirende ölçülen hızla ilerler (ayak kayması olmaz).
+# Ölçülen hız ile plandaki hız arasında izin verilen fark (oran):
+hiz_toleransi: 0.05

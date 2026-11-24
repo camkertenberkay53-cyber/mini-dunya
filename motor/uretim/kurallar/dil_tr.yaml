@@ -1,0 +1,17 @@
+# Tarih güveni 'belirsiz' ya da 'tartismali' bir karta dayanan cümle, aşağıdaki temkin ifadelerinden birini içermelidir
+# (kesin bilgi gibi anlatılamaz). Küçük harfe çevrilmiş metinde aranır.
+temkin_ifadeleri:
+  - muhtemelen
+  - büyük ihtimalle
+  - tahminen
+  - sanılıyor
+  - düşünülüyor
+  - rivayet
+  - bazı kaynaklara göre
+  - kaynaklara göre
+  - tartışmalı
+  - kesin değil
+  - bilinmiyor
+  - iddia edilir
+  - anlatılır
+  - söylenir

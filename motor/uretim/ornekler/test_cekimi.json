@@ -1,0 +1,256 @@
+{
+ "surum": 1,
+ "konu": "test-lejyon-yuruyusu",
+ "donem": "roma-cumhuriyet",
+ "fps": 30,
+ "cozunurluk": [
+  1080,
+  1920
+ ],
+ "tohum": 7,
+ "cekimler": [
+  {
+   "id": "T1",
+   "cumleler": [
+    "S1"
+   ],
+   "sure_sn": 6.0,
+   "tur": "3d",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "aksam_ustu",
+    "cevre": [
+     {
+      "id": "roma_cadiri",
+      "konum": [
+       -11,
+       -16
+      ],
+      "yon_derece": 20
+     },
+     {
+      "id": "roma_cadiri",
+      "konum": [
+       -15,
+       -12
+      ],
+      "yon_derece": -10
+     },
+     {
+      "id": "roma_cadiri",
+      "konum": [
+       -9,
+       -22
+      ],
+      "yon_derece": 35
+     }
+    ]
+   },
+   "karakterler": [
+    {
+     "takim": "rom_aquilifer",
+     "rol": "piyade",
+     "konum": [
+      0.0,
+      2.0
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.3,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_centurio",
+     "rol": "komutan",
+     "konum": [
+      0.9,
+      3.4
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.55,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -1.1,
+      -0.0
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      0.0,
+      -0.0
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.08,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      1.1,
+      -0.0
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.15,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -1.1,
+      -1.5
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.05,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      0.0,
+      -1.5
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.12,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      1.1,
+      -1.5
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.02,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -1.1,
+      -3.0
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.1,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      0.0,
+      -3.0
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      1.1,
+      -3.0
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.07,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      -1.1,
+      -4.5
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.14,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      0.0,
+      -4.5
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.04,
+     "hiz_m_sn": 0.817
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      1.1,
+      -4.5
+     ],
+     "yon_derece": 0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.11,
+     "hiz_m_sn": 0.817
+    }
+   ],
+   "kamera": {
+    "plan": "orta",
+    "hareket": "yan_takip",
+    "yumusatma": "dogrusal",
+    "bas": {
+     "konum": [
+      2.4,
+      0.95,
+      8.0
+     ],
+     "hedef": [
+      0.0,
+      1.55,
+      0.5
+     ],
+     "fov": 38
+    },
+    "son": {
+     "konum": [
+      2.0,
+      1.0,
+      12.9
+     ],
+     "hedef": [
+      0.0,
+      1.5,
+      5.4
+     ],
+     "fov": 36
+    }
+   },
+   "notlar": [
+    "Kontrol noktası 1 test çekimi: yürüyen lejyon kolu, önde kartal taşıyıcı, yanda centurio, uzakta kamp."
+   ]
+  }
+ ],
+ "eksikler": []
+}
