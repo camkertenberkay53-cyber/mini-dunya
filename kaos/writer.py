@@ -109,9 +109,9 @@ def _model_order(configured, available):
 def gemini_json(prompt, cfg, temperature=1.0, log=print, rounds=6):
     try:
         return _gemini_json(os.environ.get('GEMINI_API_KEY', ''), prompt, cfg, temperature, log,
-                            rounds if not os.environ.get('GEMINI_IMAGE_KEY') else min(rounds, 2))
+                            rounds if not paths.ucretli_anahtar() else min(rounds, 2))
     except WriterError as e:
-        paid = os.environ.get('GEMINI_IMAGE_KEY', '')
+        paid = paths.ucretli_anahtar()
         if not paid:
             raise
         log(f'  Ücretsiz kota dolu/hata ({str(e)[:80]}), ücretli anahtarla devam')

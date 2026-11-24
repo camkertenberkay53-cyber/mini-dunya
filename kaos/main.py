@@ -545,6 +545,9 @@ def main():
     st = load_state()
     now = dt.datetime.now(TZ)
     today = now.date()
+    if cfg.get('uretim_duraklat') and not args.json and not args.force:
+        log('Otomatik üretim duraklatıldı (config: uretim_duraklat). Yeni sinematik motor onayı bekleniyor.')
+        return
     slot = auto_slot(now) if args.slot == 'auto' else args.slot
     done = st.setdefault('yapilan', {}).setdefault(today.isoformat(), [])
     if slot in done and not args.force and not args.json:

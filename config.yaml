@@ -1,3 +1,9 @@
+# ÜCRETSİZ MOD (24 Kasım 2026): ücretli hiçbir API çağrılmaz (Omni, Nano Banana, ücretli Gemini anahtarı).
+# Yalnızca ücretsiz Gemini kotası (GEMINI_API_KEY), edge-tts ve yerel Piper kullanılır.
+ucretsiz_mod: true
+# Yeni sinematik motor onaylanana kadar otomatik yayın durdu (hatalı video yayınlanmasın)
+uretim_duraklat: true
+
 # MİNİ DÜNYA bot ayarları
 
 kanal:
@@ -60,7 +66,7 @@ ucd:
 
 # Veo pilotu (günde 1 Shorts yapay zekâ videosu, ~0,9$/bölüm, GEMINI_IMAGE_KEY). Hata olursa 3D.
 veo:
-  acik: true
+  acik: false   # ücretsiz mod: Omni kapalı
   yedek: bekle     # Omni hata verirse 3D'ye düşme, slotu sonra tekrar dene (kalite önce)
   motor: omni      # Gemini Omni 1.2 Flash (~0,07$/sn 720p). Hata/kredi bitti -> otomatik 3D
   slotlar: [aksam]

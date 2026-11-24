@@ -132,16 +132,16 @@ class VeoError(Exception):
 def acik(cfg, slot):
     v = cfg.get('veo') or {}
     slots = v.get('slotlar') or ([v['slot']] if v.get('slot') else [])
-    return bool(v.get('acik')) and bool(os.environ.get('GEMINI_IMAGE_KEY')) and slot in slots
+    return bool(v.get('acik')) and bool(paths.ucretli_anahtar()) and slot in slots
 
 
 def uzun_acik(cfg):
     v = cfg.get('veo') or {}
-    return bool(v.get('acik')) and bool(v.get('uzun')) and bool(os.environ.get('GEMINI_IMAGE_KEY'))
+    return bool(v.get('acik')) and bool(v.get('uzun')) and bool(paths.ucretli_anahtar())
 
 
 def _key():
-    return os.environ['GEMINI_IMAGE_KEY']
+    return (paths.ucretli_anahtar() or (_ for _ in ()).throw(RuntimeError('Ücretsiz mod: ücretli anahtar kapalı')))
 
 
 def _req(url, body=None, timeout=120):

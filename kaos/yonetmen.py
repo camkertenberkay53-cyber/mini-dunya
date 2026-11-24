@@ -82,7 +82,7 @@ Sadece JSON döndür: {{"puanlar": {{"acilis": 0, "anlasilirlik": 0, "animasyon"
         with open(fn, 'rb') as f:
             parts.append({'inline_data': {'mime_type': 'image/jpeg', 'data': base64.b64encode(f.read()).decode()}})
     # ücretli görsel anahtarı varsa onu kullan (ücretsiz katman görsel değerlendirmede sık 503/429 veriyor; maliyet < 0,01$)
-    key = os.environ.get('GEMINI_IMAGE_KEY') or os.environ.get('GEMINI_API_KEY', '')
+    key = paths.ucretli_anahtar() or os.environ.get('GEMINI_API_KEY', '')
     models = _model_order(cfg['senaryo'].get('modeller', []), list_models(key, 'text'))
     rep = None
     import time

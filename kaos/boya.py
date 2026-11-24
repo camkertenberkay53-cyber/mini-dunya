@@ -29,7 +29,7 @@ AYLIK_SINIR = 160
 
 def acik(cfg, slot):
     b = cfg.get('boya') or {}
-    return bool(b.get('acik')) and bool(os.environ.get('GEMINI_IMAGE_KEY')) and slot in (b.get('slotlar') or [])
+    return bool(b.get('acik')) and bool(paths.ucretli_anahtar()) and slot in (b.get('slotlar') or [])
 
 
 def _sayac():
@@ -83,7 +83,7 @@ def _modeller(key):
 
 def uret(ep, outdir, cfg, log=print):
     """Bölüm için arka plan üretir; yolunu döndürür ya da None (hata/sınır: normal çizim arka plan kullanılır)."""
-    key = os.environ.get('GEMINI_IMAGE_KEY', '')
+    key = paths.ucretli_anahtar()
     if not key:
         return None
     if not _sinir_ok():
