@@ -48,7 +48,9 @@ static func isik(kok: Node, i: Dictionary) -> void:
 	env.tonemap_exposure = float(g.get("pozlama", 1.05))
 	env.tonemap_white = float(g.get("beyaz", 1.0))
 	env.fog_enabled = true
-	env.fog_light_color = _renk(g.get("sis_renk", i["sis"]["renk"]))
+	var sis_c := _renk(g.get("sis_renk", i["sis"]["renk"]))
+	var sk := float(g.get("sis_renk_carpan", 1.0))
+	env.fog_light_color = Color(sis_c.r * sk, sis_c.g * sk, sis_c.b * sk)
 	env.fog_density = float(i["sis"]["yogunluk"]) * float(g.get("sis_carpan", 1.0))
 	env.fog_sky_affect = float(g.get("sis_gok", 0.35))
 	env.fog_height = 2.0
@@ -155,7 +157,82 @@ static func arazi(kok: Node, a: Dictionary, merkez: Vector2) -> void:
 	mi.position = Vector3(merkez.x, 0, merkez.y)
 	kok.add_child(mi)
 
+const UZAK_SHADER := """
+shader_type spatial;
+render_mode diffuse_burley, specular_disabled;
+uniform vec3 r0; uniform vec3 r1; uniform vec3 r2; uniform vec2 merkez; uniform float yukseklik = 45.0;
+uniform float bas = 180.0; uniform float tam = 420.0;
+float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
+float n(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
+  return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }
+float fbm(vec2 p){ float s=0.0, a=0.5; for(int i=0;i<6;i++){ s+=a*n(p); p*=2.07; a*=0.5; } return s; }
+float sirt(vec2 p){ float s=0.0, a=0.5; for(int i=0;i<5;i++){ s+=a*(1.0-abs(n(p)*2.0-1.0)); p*=2.11; a*=0.5; } return s; }
+float yuk(vec2 w){
+  float k = smoothstep(bas, tam, distance(w, merkez));
+  return -2.0 + (fbm(w*0.004)*0.55 + sirt(w*0.009)*0.45) * yukseklik * k;
+}
+varying float hv; varying vec3 wp;
+void vertex(){
+  vec3 w = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz;
+  float y = yuk(w.xz);
+  VERTEX.y += y;
+  float e = 3.0;
+  NORMAL = normalize(vec3(yuk(w.xz - vec2(e,0)) - yuk(w.xz + vec2(e,0)), 2.0*e, yuk(w.xz - vec2(0,e)) - yuk(w.xz + vec2(0,e))));
+  hv = clamp(y / max(yukseklik, 1.0), 0.0, 1.0);
+  wp = w;
+}
+void fragment(){
+  float d = fbm(wp.xz*0.05);
+  vec3 c = mix(r0, r1, smoothstep(0.1, 0.6, hv + (d-0.5)*0.3));
+  c = mix(c, r2, smoothstep(0.65, 1.0, hv));
+  c *= 0.82 + 0.3*fbm(wp.xz*0.4);
+  ALBEDO = c;
+  ROUGHNESS = 1.0;
+}
+"""
+
 static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez: Vector2, yon: float) -> void:
+	var g: Dictionary = a.get("gorsel", {})
+	var bicim: String = g.get("dag_bicim", "kure")
+	if bicim == "yok":
+		return
+	if bicim == "arazi":
+		# Faz 5.2 D4: küre tepeler yerine yükseklik alanı (sırt gürültüsü); ana zeminin (500 m) dışında yükselir
+		var m := PlaneMesh.new()
+		m.size = Vector2(1800, 1800)
+		m.subdivide_width = 240
+		m.subdivide_depth = 240
+		var sh := Shader.new()
+		sh.code = UZAK_SHADER
+		if g.has("dag_pus_renk"):
+			# Faz 5.2 D8: uzak arazi sahnenin genel sisini değil kendi hava perspektifini kullanır (FOG çıkışı)
+			sh.code = UZAK_SHADER.replace("ROUGHNESS = 1.0;", "ROUGHNESS = 1.0;\n  float uz = length(VERTEX);\n  FOG = vec4(pus_renk, min(pus_max, 1.0 - exp(-uz * pus_yogunluk)));").replace("uniform float bas = 180.0;", "uniform vec3 pus_renk; uniform float pus_yogunluk = 0.004; uniform float pus_max = 0.6; uniform float bas = 180.0;")
+		if g.get("dag_tani", "") == "sabit_renk":
+			sh.code = sh.code.replace("ALBEDO = c;", "ALBEDO = vec3(0.25, 0.1, 0.1);")
+		elif g.get("dag_tani", "") == "normal_yukari":
+			sh.code = sh.code.replace("  NORMAL = normalize(vec3(", "  vec3 _n = normalize(vec3(")
+		var mat := ShaderMaterial.new()
+		mat.shader = sh
+		if g.has("dag_pus_renk"):
+			mat.set_shader_parameter("pus_renk", _v3(g["dag_pus_renk"]))
+			mat.set_shader_parameter("pus_yogunluk", float(g.get("dag_pus_yogunluk", 0.004)))
+			mat.set_shader_parameter("pus_max", float(g.get("dag_pus_max", 0.6)))
+		var rk: Array = a["dag_renkleri"]
+		var ton := float(g.get("dag_ton", 1.0))
+		mat.set_shader_parameter("r0", _v3(rk[0]) * ton)
+		mat.set_shader_parameter("r1", _v3(rk[min(1, rk.size() - 1)]) * ton)
+		mat.set_shader_parameter("r2", _v3(rk[rk.size() - 1]) * ton)
+		mat.set_shader_parameter("bas", float(g.get("dag_bas", 180.0)))
+		mat.set_shader_parameter("tam", float(g.get("dag_tam", 420.0)))
+		mat.set_shader_parameter("merkez", merkez)
+		mat.set_shader_parameter("yukseklik", float(g.get("dag_yukseklik", 45.0)))
+		var mi := MeshInstance3D.new()
+		mi.mesh = m
+		mi.material_override = mat
+		mi.position = Vector3(merkez.x, 0, merkez.y)
+		mi.extra_cull_margin = 200.0
+		kok.add_child(mi)
+		return
 	## Dağ sıraları kameranın baktığı yönde, sahne merkezinin ötesine dizilir.
 	var ileri := Vector2(sin(yon), cos(yon))
 	var yan := Vector2(ileri.y, -ileri.x)
@@ -180,6 +257,8 @@ const OT_SHADER := """
 shader_type spatial;
 render_mode cull_disabled, diffuse_burley;
 uniform vec3 alt; uniform vec3 ust; uniform vec3 kuru;
+uniform float yukari_normal = 0.0;  // Faz 5.2 D1: aydınlatma normali yukarı (arka yüz siyahlığı biter)
+uniform float tutam = 0.0;          // Faz 5.2 D2: kart başına 7 ince yaprak (opak kama yerine)
 varying float renk_payi;
 void vertex(){
   vec3 m = (MODEL_MATRIX * vec4(0,0,0,1)).xyz;
@@ -187,9 +266,24 @@ void vertex(){
   vec3 w = (MODEL_MATRIX * vec4(0,0,0,1)).xyz;
   float tepe = 1.0 - UV.y;
   VERTEX.x += (sin(TIME*1.8 + w.x*0.7 + w.z*0.4)*0.07 + sin(TIME*4.1 + w.z)*0.02) * tepe * tepe;
-  VERTEX.x *= mix(1.0, 0.35, tepe);
+  VERTEX.x *= mix(1.0, mix(0.35, 1.0, tutam), tepe);
 }
 void fragment(){
+  if (tutam > 0.5) {
+    float t = 1.0 - UV.y;
+    float ic = 0.0;
+    for (int k = 0; k < 7; k++) {
+      float fk = float(k);
+      float s = fract(sin(fk * 12.9898 + renk_payi * 78.233) * 43758.5453);
+      float s2 = fract(sin(fk * 39.346 + renk_payi * 11.135) * 24634.6345);
+      float boy = 0.5 + 0.5 * s2;
+      float merkez = 0.12 + 0.76 * s + (s2 - 0.5) * 0.35 * t * t;
+      float gen = 0.05 * (1.0 - t / boy);
+      if (t < boy && abs(UV.x - merkez) < gen) { ic = 1.0; }
+    }
+    if (ic < 0.5) { discard; }
+  }
+  if (yukari_normal > 0.5) { NORMAL = normalize((VIEW_MATRIX * vec4(0.0, 1.0, 0.0, 0.0)).xyz); }
   vec3 u = mix(ust, kuru, smoothstep(0.55, 1.0, renk_payi));
   ALBEDO = mix(alt, u, 1.0 - UV.y) * (0.85 + 0.3 * renk_payi);
   ROUGHNESS = 1.0;
@@ -208,8 +302,10 @@ static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Ar
 	var mat := ShaderMaterial.new()
 	mat.shader = sh
 	mat.set_shader_parameter("alt", _v3(a["zemin"]["cimen"]) * float(g.get("ot_alt_parlaklik", 0.85)))
-	mat.set_shader_parameter("ust", _v3(a["zemin"]["cimen2"]))
-	mat.set_shader_parameter("kuru", _v3(a["zemin"]["kuru"]))
+	mat.set_shader_parameter("ust", _v3(a["zemin"]["cimen2"]) * float(g.get("ot_ust_carpan", 1.0)))
+	mat.set_shader_parameter("kuru", _v3(a["zemin"]["kuru"]) * float(g.get("ot_ust_carpan", 1.0)))
+	mat.set_shader_parameter("yukari_normal", 1.0 if g.get("ot_normal", "") == "yukari" else 0.0)
+	mat.set_shader_parameter("tutam", 1.0 if g.get("ot_bicim", "") == "tutam" else 0.0)
 	q.material = mat
 	var mm := MultiMesh.new()
 	mm.transform_format = MultiMesh.TRANSFORM_3D
@@ -217,9 +313,21 @@ static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Ar
 	mm.instance_count = int(float(a["ot_sayisi"]) * float(g.get("ot_sayi_carpan", 1.0)))
 	var yx: float = a.get("yol_x", 0.0)
 	var yg: float = a["yol"]["genislik"] if a["yol"]["acik"] else 0.0
+	# Faz 5.2 D3: kümelenmiş dağılım (aynı toplam sayı; doğada ot öbek öbek büyür)
+	var kume: bool = g.get("ot_dagilim", "") == "kume"
+	var merkezler: Array = []
+	if kume:
+		for c in maxi(1, int(mm.instance_count / 10)):
+			merkezler.append(Vector2(rng.randf_range(alan[0], alan[1]), rng.randf_range(alan[2], alan[3])))
 	for i in mm.instance_count:
 		var x := rng.randf_range(alan[0], alan[1])
 		var z := rng.randf_range(alan[2], alan[3])
+		if kume:
+			var c: Vector2 = merkezler[rng.randi() % merkezler.size()]
+			var r := absf(rng.randfn(0.0, float(g.get("kume_yaricap", 0.45))))
+			var aci := rng.randf() * TAU
+			x = c.x + cos(aci) * r
+			z = c.y + sin(aci) * r
 		if absf(x - yx) < yg:
 			x = yx + signf(x - yx + 0.001) * rng.randf_range(yg, yg + 1.4)
 		var b := Basis(Vector3.UP, rng.randf() * TAU).rotated(Vector3(1, 0, 0), rng.randf_range(-0.25, 0.25)).scaled(Vector3.ONE * rng.randf_range(0.5, 1.3))

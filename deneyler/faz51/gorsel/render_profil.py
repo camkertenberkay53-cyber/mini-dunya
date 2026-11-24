@@ -7,6 +7,7 @@ Aynı kamera, sahne, ışık preset'i ve karakterler; yalnız görsel profil de�
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -26,8 +27,8 @@ def main() -> int:
     if profil == "V0":
         proje = REPO / "motor" / "godot"
     else:
-        proje = deney_projesi(Path("/tmp/gv2"))
-        p = json.loads((BURASI / "profiller.json").read_text())[profil]
+        proje = deney_projesi(Path(os.environ.get("DENEY_PROJE", "/tmp/gv2")))
+        p = json.loads((BURASI / os.environ.get("PROFIL_DOSYASI", "profiller.json")).read_text())[profil]
         is_["isik"]["gorsel"] = p.get("isik", {})
         is_["arazi"]["gorsel"] = p.get("arazi", {})
     is_yolu = cikti / f"{cid}_{profil}.is.json"
@@ -38,7 +39,7 @@ def main() -> int:
                   "opengl3", "res://sahneler/cekim.tscn", "--write-movie", str(avi), "--fixed-fps", "30",
                   "--quit-after", str(kare), "--", str(is_yolu)], 3 * 3600)
     hatalar = [s for s in r["gunluk"].splitlines() if "ERROR" in s]
-    sonuc = {"cekim": cid, "profil": profil, "kare": kare, "render_sn": r["sure_sn"], "kare_basina_sn": round(r["sure_sn"] / kare, 3),
+    sonuc = {"cekim": cid, "profil": profil, "cpu": open("/proc/cpuinfo").read().split("model name")[1].split("\n")[0].strip(": \t"), "kare": kare, "render_sn": r["sure_sn"], "kare_basina_sn": round(r["sure_sn"] / kare, 3),
              "tepe_gb": r["tepe_gb"], "cpu_sn": r["cpu_sn"], "cikis": r["cikis"], "godot_hata": hatalar[:10],
              "durum": "TAMAM" if r["cikis"] == 0 and avi.exists() and not hatalar else "HATA"}
     if avi.exists():
@@ -47,7 +48,7 @@ def main() -> int:
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", str(avi), "-vf", f"select=eq(n\\,{kare_no})",
                         "-frames:v", "1", str(cikti / f"{cid}_{profil}.png")], check=True)
         avi.unlink()
-    (cikti / f"{cid}_{profil}.json").write_text(json.dumps(sonuc, ensure_ascii=False, indent=1))
+    (cikti / f"{cid}_{profil}{os.environ.get('EK', '')}.json").write_text(json.dumps(sonuc, ensure_ascii=False, indent=1))
     print(json.dumps(sonuc, ensure_ascii=False))
     return 0 if sonuc["durum"] == "TAMAM" else 1
 

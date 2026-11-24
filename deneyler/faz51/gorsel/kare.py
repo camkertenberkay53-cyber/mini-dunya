@@ -47,7 +47,7 @@ def main() -> int:
     sure = time.time() - t
     kareler = sorted(gecici.glob("k*.png"))
     hatalar = [s for s in (r.stdout + r.stderr).splitlines() if "ERROR" in s]
-    if not kareler:
+    if not kareler or hatalar:
         print(json.dumps({"durum": "HATA", "hatalar": hatalar[:10]}, ensure_ascii=False))
         return 1
     cikti.parent.mkdir(parents=True, exist_ok=True)
