@@ -641,6 +641,9 @@
    "aksam",
    "aksam",
    "aksam"
+  ],
+  "2026-11-24": [
+   "fikir"
   ]
  },
  "en_bolumler": [
@@ -764,7 +767,7 @@
  "oynatma_en": {
   "Mini World · Season 1": "PLIvGBQws7jrw"
  },
- "_gun": 4,
+ "_gun": 6,
  "fikir_havuzu": {
   "tr": {
    "2026-11-23": {
@@ -902,6 +905,76 @@
      "surpriz": "Kapak bir buz sarkıtına çarpıp Pire'yi havaya fırlatır.",
      "cozum": "Pire yumuşak bir margarin paketinin üzerine çakılarak yaralanmadan kurtulur.",
      "final": "Pire'nin yüzü tamamen margarin kaplanır, gülüşürler.",
+     "final_turu": "komik",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    }
+   },
+   "2026-11-25": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Mıknatıs Kutbu Karmaşası",
+     "ana_karakter": "bulut",
+     "mekan": "buzdolabi",
+     "nesne": "mıknatıs",
+     "tehlike": "ışığın kapanması",
+     "mekanizma": "yeni icat",
+     "ilk_saniye": "Dev mıknatısın metal rafa 'ÇANK!' diye yapışmasıyla çıkan devasa titreşim.",
+     "problem": "Işıklar sönünce Nil'in çizdiği rotadaki pusula mıknatıs yüzünden ters dönmeye başlar.",
+     "surpriz": "Mıknatıs aslında buzdolabı kapağının sensörünü şaşırtmaktadır.",
+     "cozum": "Bulut mıknatısı ters çevirip raf metaline sabitleyerek yönü manuel hesaplar.",
+     "final": "Pusulasız da yön bulunabileceği kanıtlanır.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "Ataş Frenli Kızak",
+     "ana_karakter": "tuna",
+     "mekan": "buzdolabi",
+     "nesne": "ataş",
+     "tehlike": "kaygan yüzey",
+     "mekanizma": "yarış",
+     "ilk_saniye": "Ataşın buz yüzeyini kıvılcımlar saçarak çizmesi.",
+     "problem": "Buz küpü kızağı donmuş sebzelik rafında aşırı hızlanıp uçuruma yaklaşır.",
+     "surpriz": "Ataş buz yüzeyine saplanarak harika bir çapa görevi görür.",
+     "cozum": "Tuna ataşı buza saplayıp kızağı uçurumun kenarında 180 derece döndürür.",
+     "final": "Yarışı tam uçurum kenarında durarak kazanırlar.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Lastik Bant Fırlatışı",
+     "ana_karakter": "nil",
+     "mekan": "buzdolabi",
+     "nesne": "lastik bant",
+     "tehlike": "rüzgâr/vantilatör",
+     "mekanizma": "hayatta kalma",
+     "ilk_saniye": "Buzdolabı kapağının kapanırken oluşturduğu devasa hava akımı.",
+     "problem": "Hava akımı ekibi geriye savurur, Nil'in harita rulosu elinden uçar.",
+     "surpriz": "Benek'in parıldayan kanatları rüzgarda yön gösteren bir deniz fenerine dönüşür.",
+     "cozum": "Nil lastik bantı kapı kolunun iç kısmına takıp kendilerini dışarı doğru sapanla fırlatır.",
+     "final": "Dışarıdaki sıcak havaya ulaşmanın heyecanı kaplar.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 8,
+     "izlenme_potansiyeli": 9
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Gece Yarısı Şeker Baskını",
+     "ana_karakter": "pire",
+     "mekan": "tezgah",
+     "nesne": "şeker",
+     "tehlike": "evcil hayvanın yaklaşması",
+     "mekanizma": "gizli bölge",
+     "ilk_saniye": "Dev bir kedi patisinin tezgahın kenarına gürültüyle koyulması.",
+     "problem": "Pire gece tatlı krizine girip tezgahtaki şeker küpüne tırmanırken kedinin dikkatini çeker.",
+     "surpriz": "Kedi şeker küpünden ziyade Pire'nin arkasındaki gölgeyle oynamak ister.",
+     "cozum": "Tuna bozuk parayı tezgahta yuvarlayıp kedinin dikkatini başka yöne çeker.",
+     "final": "Pire cebinde tek bir şeker kristaliyle yatağına döner.",
      "final_turu": "komik",
      "yenilik_puani": 9,
      "izlenme_potansiyeli": 9
