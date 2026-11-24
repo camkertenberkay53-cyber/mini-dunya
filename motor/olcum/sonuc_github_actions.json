@@ -1,0 +1,26 @@
+{
+ "ortam": "github_actions",
+ "tarih": "2026-11-24 09:20",
+ "cpu": "Intel(R) Xeon(R) 6975P-C",
+ "cekirdek": 4,
+ "bellek_gb": 16.5,
+ "olculen": {
+  "ice_aktarma_sn": 10.6,
+  "render_kare": 180,
+  "render_cozunurluk": "1080x1920",
+  "uretilen_kare": 180,
+  "render_sn": 290.9,
+  "acilis_sn": 17.1,
+  "kare_basina_sn": 1.54,
+  "render_tepe_bellek_gb": 0.98,
+  "kodlama_sn": 3.5,
+  "ara_dosya_avi_mb": 27.9,
+  "mp4_mb": 6.94
+ },
+ "tahmin": {
+  "aciklama": "Ölçülen kare süresinin 50 sn x 30 fps'e doğrusal uzatılması. Sahne yükü değişirse değişir.",
+  "shorts_50sn_dk": 39.2,
+  "gunde_2_shorts_dk": 78.5,
+  "shorts_ara_dosya_gb": 0.23
+ }
+}
