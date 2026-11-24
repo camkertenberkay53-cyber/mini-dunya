@@ -1,0 +1,29 @@
+# Varlık kaynakları. Yalnızca lisansı dosyadan doğrulanmış kaynaklar burada olabilir.
+# commit: kayıt bu commit'e sabitlenir; kaynak değişirse katalog farkı gösterir.
+quaternius-stage:
+  klasor: quaternius-stage
+  url: https://github.com/chibifire-stages/quaternius-stage
+  commit: ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab
+  lisans: CC0-1.0
+  lisans_dosyasi: LICENSE
+  yazar: Quaternius (quaternius.com); USD kopyası chibifire-stages
+  kok: models
+  uzantilar: [.usda, .usd, .usdc]
+ual1:
+  klasor: quaternius.universalAnimationLibrary.standard
+  url: https://github.com/IAFahim/quaternius.universalAnimationLibrary.standard
+  commit: 8456155dbae7eb861f553a2341871ccae633c857
+  lisans: CC0-1.0
+  lisans_dosyasi: LICENSE
+  yazar: Quaternius (Universal Animation Library 1)
+  kok: .
+  uzantilar: [.fbx]
+kaykit-adventurers:
+  klasor: KayKit-Character-Pack-Adventures-1.0
+  url: https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0
+  commit: 672074b73ba276876a19e8816ecdc5241817ab47
+  lisans: CC0-1.0
+  lisans_dosyasi: LICENSE.txt
+  yazar: Kay Lousberg
+  kok: .
+  uzantilar: [.glb, .gltf]

@@ -1,0 +1,4 @@
+ad: TEST - A'nın renk değiştirilmiş kopyası (AYRIŞMAMALI)
+etiket: test-b
+kabul_edilen_donemler: [ortacag-avrupa-fantastik, evrensel]
+roller: {piyade: [test_renk_kopyasi, korucu_erkek, korucu_erkek]}

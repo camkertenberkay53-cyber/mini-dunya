@@ -1,0 +1,40 @@
+# Paket -> tür ve dönem etiketleri. Burada adı geçmeyen paket "dislandi" olur (ilgisiz ya da dönem dışı).
+# Dönem etiketi, bir varlığın HANGİ kitlere konabileceğini belirler. "evrensel" her kite girebilir
+# (arazi, bitki, kaya, çıplak gövde, saç). Diğer etiketler yalnızca aynı etiketi kabul eden kite girer.
+# Etiketler bilerek dar tutuldu: "fantastik ortaçağ" bir Osmanlı, Bizans ya da Roma kitine girmez.
+quaternius-stage:
+  UniversalBaseCharacters: {tur: karakter_govde, donem: [evrensel], not: "Gerçek oranlı çıplak gövde, saç, kaş, sakal"}
+  ModularCharacterOutfitsFantasy: {tur: karakter_kiyafet, donem: [ortacag-avrupa-fantastik], not: "Köylü ve korucu kıyafetleri; gerçek oranlı"}
+  UniversalAnimationLibrary: {tur: animasyon, donem: [evrensel]}
+  UniversalAnimationLibrary2: {tur: animasyon, donem: [evrensel]}
+  KnightCharacter: {tur: karakter_stilize, donem: [ortacag-avrupa-fantastik]}
+  UltimateAnimatedCharacter: {tur: karakter_stilize, donem: [karisik]}
+  RPGCharacters: {tur: karakter_stilize, donem: [fantastik]}
+  BackgroundPosedHumans: {tur: karakter_poz, donem: [modern]}
+  AnimatedMen: {tur: karakter_stilize, donem: [modern]}
+  AnimatedWomen: {tur: karakter_stilize, donem: [modern]}
+  UltimateModularCharacters: {tur: karakter_stilize, donem: [karisik]}
+  UltimateModularWomen: {tur: karakter_stilize, donem: [karisik]}
+  MedievalWeapons: {tur: silah, donem: [ortacag-avrupa-fantastik]}
+  UltimateAnimatedAnimals: {tur: hayvan, donem: [evrensel]}
+  FarmAnimal: {tur: hayvan, donem: [evrensel]}
+  Ships: {tur: arac, donem: [karisik]}
+  MedievalVillage: {tur: yapi, donem: [ortacag-avrupa-fantastik]}
+  MedievalVillageMegaKit: {tur: yapi, donem: [ortacag-avrupa-fantastik]}
+  ModularMedievalBuildings: {tur: yapi, donem: [ortacag-avrupa-fantastik]}
+  UltimateModularRuins: {tur: yapi, donem: [antik-harabe]}
+  FantasyPropsMegaKit: {tur: esya, donem: [ortacag-avrupa-fantastik]}
+  Survival: {tur: esya, donem: [karisik]}
+  UltimateNature: {tur: doga, donem: [evrensel]}
+  StylizedNatureMegaKit: {tur: doga, donem: [evrensel]}
+  UltimateStylizedNature: {tur: doga, donem: [evrensel]}
+  SimpleNature: {tur: doga, donem: [evrensel]}
+  TexturedFantasyNature: {tur: doga, donem: [evrensel]}
+  StylizedTree: {tur: doga, donem: [evrensel]}
+  UltimateCrops: {tur: doga, donem: [evrensel]}
+  FarmBuildings: {tur: yapi, donem: [ortacag-avrupa-fantastik]}
+  UltimateFantasyRTS: {tur: yapi, donem: [fantastik]}
+ual1:
+  "*": {tur: animasyon, donem: [evrensel], not: "UAL1, 45 klip, Unreal tarzı 65 kemik"}
+kaykit-adventurers:
+  "*": {tur: karakter_stilize, donem: [fantastik], not: "Chibi oranlı; denetimde negatif örnek"}

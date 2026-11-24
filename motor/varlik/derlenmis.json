@@ -1,0 +1,337 @@
+{
+ "korucu_erkek": {
+  "anahtar": "5890d728938832ed",
+  "glb_sha256": "c446c4423bb2b65eb651e7051319f36808838dde4dd6b235b2b9a502fdd75bf9",
+  "bayt": 3599328,
+  "derleme_sn": 15.5,
+  "kaynaklar": [
+   "quaternius-stage/ModularCharacterOutfitsFantasy/SK_MaleRanger.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+   "ual1/UAL1_Standard.fbx"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 1.869,
+   "genislik_m": 1.859,
+   "ucgen": 36902,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [
+    "Death01",
+    "Driving_Loop",
+    "Fixing_Kneeling",
+    "Hit_Chest",
+    "Idle_Loop",
+    "Idle_Torch_Loop",
+    "Interact",
+    "Jog_Fwd_Loop",
+    "Push_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Walk_Formal_Loop",
+    "Walk_Loop"
+   ],
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.184
+  }
+ },
+ "koylu_erkek": {
+  "anahtar": "a6fbbd86ec885405",
+  "glb_sha256": "93212d9ceb4f729d9d36258191929d8524f6b2eb3c0a8200adaec8fa899e2fde",
+  "bayt": 2501152,
+  "derleme_sn": 14.3,
+  "kaynaklar": [
+   "quaternius-stage/ModularCharacterOutfitsFantasy/SK_MalePeasant.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+   "ual1/UAL1_Standard.fbx"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 1.817,
+   "genislik_m": 1.859,
+   "ucgen": 22610,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [
+    "Death01",
+    "Driving_Loop",
+    "Fixing_Kneeling",
+    "Hit_Chest",
+    "Idle_Loop",
+    "Idle_Torch_Loop",
+    "Interact",
+    "Jog_Fwd_Loop",
+    "Push_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Walk_Formal_Loop",
+    "Walk_Loop"
+   ],
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.161
+  }
+ },
+ "korucu_kadin": {
+  "anahtar": "235c6d20f74ba412",
+  "glb_sha256": "d10031888cc7185335d3fcf32508c21cc1f035c8a8f3bc039aca0386a12e7019",
+  "bayt": 4178280,
+  "derleme_sn": 15.8,
+  "kaynaklar": [
+   "quaternius-stage/ModularCharacterOutfitsFantasy/SK_FemaleRanger.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_SuperheroFemaleFullBody.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_HairBunsFBX(Unity).usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsFemaleFBX(Unity).usda",
+   "ual1/UAL1_Standard.fbx"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 1.798,
+   "genislik_m": 1.669,
+   "ucgen": 39990,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [
+    "Death01",
+    "Driving_Loop",
+    "Fixing_Kneeling",
+    "Hit_Chest",
+    "Idle_Loop",
+    "Idle_Torch_Loop",
+    "Interact",
+    "Jog_Fwd_Loop",
+    "Push_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Walk_Formal_Loop",
+    "Walk_Loop"
+   ],
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.172
+  }
+ },
+ "koylu_kadin": {
+  "anahtar": "59bc5e08ceb634bb",
+  "glb_sha256": "def62a9c1d2856c54f3650c004021b105b53545c703a77053a2dc07925d69085",
+  "bayt": 2776216,
+  "derleme_sn": 13.4,
+  "kaynaklar": [
+   "quaternius-stage/ModularCharacterOutfitsFantasy/SK_FemalePeasant.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_SuperheroFemaleFullBody.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_HairLongFBX(Unity).usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsFemaleFBX(Unity).usda",
+   "ual1/UAL1_Standard.fbx"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 1.784,
+   "genislik_m": 1.669,
+   "ucgen": 26214,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [
+    "Death01",
+    "Driving_Loop",
+    "Fixing_Kneeling",
+    "Hit_Chest",
+    "Idle_Loop",
+    "Idle_Torch_Loop",
+    "Interact",
+    "Jog_Fwd_Loop",
+    "Push_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Walk_Formal_Loop",
+    "Walk_Loop"
+   ],
+   "doku_sayisi": 9,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.164
+  }
+ },
+ "stilize_asker": {
+  "anahtar": "df82a05cfbacc189",
+  "glb_sha256": "300f1d2306f7a4c98e224af2c3b04cfa8e406cffa46874a96c3378c9c734f42e",
+  "bayt": 267944,
+  "derleme_sn": 0.7,
+  "kaynaklar": [
+   "quaternius-stage/UltimateAnimatedCharacter/SK_SoldierMale.usda"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 3.284,
+   "genislik_m": 3.24,
+   "ucgen": 2994,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [],
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.375
+  }
+ },
+ "stilize_viking": {
+  "anahtar": "0142f5a7ccfbfe20",
+  "glb_sha256": "dfc3f7f00e6469b59937de755037c193cf87560b6372bdcfe72b472f3ffb8348",
+  "bayt": 456912,
+  "derleme_sn": 0.7,
+  "kaynaklar": [
+   "quaternius-stage/UltimateAnimatedCharacter/SK_VikingMale.usda"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 3.635,
+   "genislik_m": 3.24,
+   "ucgen": 6264,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [],
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.435
+  }
+ },
+ "stilize_sovalye": {
+  "anahtar": "4a30687e7ba7b809",
+  "glb_sha256": "0dfd8b521e8eafa64814eb84213450d8da32f6fcf1c7c3905bf1059ba5ac9e53",
+  "bayt": 284656,
+  "derleme_sn": 0.7,
+  "kaynaklar": [
+   "quaternius-stage/UltimateAnimatedCharacter/SK_KnightMale.usda"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 3.589,
+   "genislik_m": 3.24,
+   "ucgen": 2992,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [],
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.428
+  }
+ },
+ "stilize_kimono": {
+  "anahtar": "6ab5eb9d9b511b73",
+  "glb_sha256": "ca3c5a8268c1a14fbc1d587056382cda2e5e0365a6ca7b4d7369f46f7985318b",
+  "bayt": 225808,
+  "derleme_sn": 0.7,
+  "kaynaklar": [
+   "quaternius-stage/UltimateAnimatedCharacter/SK_KimonoMale.usda"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 3.338,
+   "genislik_m": 3.24,
+   "ucgen": 2540,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [],
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.385
+  }
+ },
+ "test_chibi_sovalye": {
+  "anahtar": "7425d5abe6f5223d",
+  "glb_sha256": "1a23b0f500f2a34e7fdfdaf1ca2f326b68b667b525a485351e7b981b95bd8d57",
+  "bayt": 376736,
+  "derleme_sn": 2.1,
+  "kaynaklar": [
+   "kaykit-adventurers/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 2.467,
+   "genislik_m": 2.689,
+   "ucgen": 6952,
+   "kemik_sayisi": 41,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [],
+   "doku_sayisi": 1,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.497
+  }
+ },
+ "test_renk_kopyasi": {
+  "anahtar": "aa61682db7da5ac5",
+  "glb_sha256": "09430bda37592dd499c5ef2eb9ec04b3dbad65655307aa40dd485412caa62f72",
+  "bayt": 3599716,
+  "derleme_sn": 14.6,
+  "kaynaklar": [
+   "quaternius-stage/ModularCharacterOutfitsFantasy/SK_MaleRanger.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda",
+   "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+   "ual1/UAL1_Standard.fbx"
+  ],
+  "lisanslar": [
+   "CC0-1.0"
+  ],
+  "olcum": {
+   "boy_m": 1.869,
+   "genislik_m": 1.859,
+   "ucgen": 36902,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "animasyonlar": [
+    "Death01",
+    "Driving_Loop",
+    "Fixing_Kneeling",
+    "Hit_Chest",
+    "Idle_Loop",
+    "Idle_Torch_Loop",
+    "Interact",
+    "Jog_Fwd_Loop",
+    "Push_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Walk_Formal_Loop",
+    "Walk_Loop"
+   ],
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.184
+  }
+ }
+}
