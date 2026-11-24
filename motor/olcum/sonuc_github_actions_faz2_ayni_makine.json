@@ -1,0 +1,27 @@
+{
+ "ortam": "github_actions_faz2_ayni_makine",
+ "sahne": "res://sahneler/olcum.tscn",
+ "tarih": "2026-11-24 11:51",
+ "cpu": "AMD EPYC 7763 64-Core Processor",
+ "cekirdek": 4,
+ "bellek_gb": 16.8,
+ "olculen": {
+  "ice_aktarma_sn": 3.0,
+  "render_kare": 180,
+  "render_cozunurluk": "1080x1920",
+  "uretilen_kare": 180,
+  "render_sn": 415.0,
+  "acilis_sn": 9.1,
+  "kare_basina_sn": 2.28,
+  "render_tepe_bellek_gb": 0.95,
+  "kodlama_sn": 4.6,
+  "ara_dosya_avi_mb": 27.9,
+  "mp4_mb": 6.94
+ },
+ "tahmin": {
+  "aciklama": "Ölçülen kare süresinin 50 sn x 30 fps'e doğrusal uzatılması. Sahne yükü değişirse değişir.",
+  "shorts_50sn_dk": 57.8,
+  "gunde_2_shorts_dk": 115.6,
+  "shorts_ara_dosya_gb": 0.23
+ }
+}
