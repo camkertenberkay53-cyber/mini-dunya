@@ -1,0 +1,36 @@
+{
+ "cekim": "S2_k05",
+ "kurulum_sn": 61,
+ "cekim_render_dahil_sn": 197,
+ "yeniden_birlestirme_sn": 497,
+ "toplam_sn": 755,
+ "cekim_olcum": {
+  "cekim": "S2_k05",
+  "kare": 147,
+  "karakter": 10,
+  "render_sn": 192.6,
+  "render_cikis": 0,
+  "render_tepe_gb": 1.22,
+  "render_cpu_sn": 677.9,
+  "ort_cekirdek": 3.52,
+  "kare_basina_sn": 1.31,
+  "godot_hata": [],
+  "kodlama_sn": 2.8,
+  "ara_avi_mb": 27.4,
+  "uretilen_kare": 147,
+  "cozunurluk": "1080x1920",
+  "mp4_mb": 13.29,
+  "durum": "TAMAM"
+ },
+ "birlestirme": {
+  "durum": "TAMAM",
+  "concat_sn": 2.5,
+  "son_kodlama_sn": 409.9,
+  "birlestirme_toplam_sn": 412.5,
+  "kare": 14412,
+  "cozunurluk": "1080x1920",
+  "sure_sn": 480.4,
+  "mb": 651.9,
+  "cekirdek": 4
+ }
+}
