@@ -111,7 +111,7 @@ def render(plan_yolu: str, cekim_id: str, cikti: Path | None = None, onbellek: b
     rnd_sn, rnd_kb, gunluk = _calistir(komut, 7200)
     hatalar = [s for s in gunluk.splitlines() if "ERROR" in s or "SCRIPT ERROR" in s]
     kod_sn, _, _ = _calistir(["ffmpeg", "-y", "-loglevel", "error", "-i", str(avi), "-c:v", "libx264", "-preset", "veryfast",
-                              "-crf", "18", "-pix_fmt", "yuv420p", str(mp4)], 3600)
+                              "-crf", "18", "-pix_fmt", "yuv420p", "-an", str(mp4)], 3600)
     pr = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries",
                          "stream=width,height,nb_read_frames", "-of", "json", str(mp4)], capture_output=True, text=True)
     akis = json.loads(pr.stdout)["streams"][0]

@@ -89,7 +89,9 @@ def _altyazi(plan: dict, senaryo: dict, cikti: Path) -> Path:
     for z in plan["ses"]["cizelge"]:
         satirlar += sinema.altyazi_parcala(metin[z["cumle"]], z["ses_bas_sn"], z["ses_sure_sn"])
     ass = cikti / "altyazi.ass"
-    sinema.ass_yaz(satirlar, str(ass), W, H)
+    # kanca cümlesi ilk çekim boyunca büyük harfle üstte de durur (ilk 2 saniyenin merak unsuru görsel olarak da taşınır)
+    kanca = metin[senaryo["kanca"]]
+    sinema.ass_yaz(satirlar, str(ass), W, H, kanca=kanca, kanca_sure=plan["cekimler"][0]["sure_sn"] - 0.1)
     # ekran yazıları (tarih, yer): çekim boyunca üstte, eski botun "Kanca" biçemiyle
     t = 0.0
     with open(ass, "a", encoding="utf-8") as f:
@@ -155,6 +157,7 @@ def uret(klasor: Path) -> dict:
     from kaos import paths
     final = cikti / f"{plan['konu']}.mp4"
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", str(goruntu), "-i", ses["wav"],
+                    "-map", "0:v:0", "-map", "1:a:0",   # çekim dosyalarındaki sessiz Godot ses izi değil, karışım
                     "-vf", f"ass={ass}:fontsdir={os.path.dirname(paths.FONT)}", "-c:v", "libx264", "-preset", "medium",
                     "-crf", "19", "-maxrate", "12M", "-bufsize", "24M", "-profile:v", "high", "-pix_fmt", "yuv420p",
                     "-movflags", "+faststart", "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-ac", "2", "-shortest", str(final)], check=True)
