@@ -1,0 +1,13 @@
+{
+ "cekim": "S1",
+ "profil": "D11",
+ "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+ "kare": 72,
+ "render_sn": 70.7,
+ "kare_basina_sn": 0.982,
+ "tepe_gb": 0.6,
+ "cpu_sn": 232.4,
+ "cikis": 0,
+ "godot_hata": [],
+ "durum": "TAMAM"
+}
