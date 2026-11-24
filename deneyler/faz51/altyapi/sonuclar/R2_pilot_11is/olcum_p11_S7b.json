@@ -1,0 +1,33 @@
+{
+ "is": "p11_S7b",
+ "makine": {
+  "cpu": "AMD EPYC 7763 64-Core Processor",
+  "cekirdek": 4,
+  "bellek_gb": 16.8
+ },
+ "kurulum_sn": 47.0,
+ "baslangic_utc": "2026-11-24T18:51:06Z",
+ "cekimler": [
+  {
+   "cekim": "S7b",
+   "kare": 79,
+   "karakter": 5,
+   "render_sn": 112.5,
+   "render_cikis": 0,
+   "render_tepe_gb": 0.92,
+   "render_cpu_sn": 370.6,
+   "ort_cekirdek": 3.29,
+   "kare_basina_sn": 1.42,
+   "godot_hata": [],
+   "kodlama_sn": 1.9,
+   "ara_avi_mb": 13.8,
+   "uretilen_kare": 79,
+   "cozunurluk": "1080x1920",
+   "mp4_mb": 5.83,
+   "durum": "TAMAM"
+  }
+ ],
+ "is_render_toplam_sn": 115.2,
+ "bitis_utc": "2026-11-24T18:53:01Z",
+ "basarili": true
+}

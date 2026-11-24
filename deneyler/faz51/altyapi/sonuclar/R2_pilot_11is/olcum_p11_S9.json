@@ -1,0 +1,33 @@
+{
+ "is": "p11_S9",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) 6975P-C",
+  "cekirdek": 4,
+  "bellek_gb": 16.5
+ },
+ "kurulum_sn": 67.0,
+ "baslangic_utc": "2026-11-24T18:51:31Z",
+ "cekimler": [
+  {
+   "cekim": "S9",
+   "kare": 133,
+   "karakter": 12,
+   "render_sn": 149.3,
+   "render_cikis": 0,
+   "render_tepe_gb": 1.32,
+   "render_cpu_sn": 514.5,
+   "ort_cekirdek": 3.45,
+   "kare_basina_sn": 1.12,
+   "godot_hata": [],
+   "kodlama_sn": 2.5,
+   "ara_avi_mb": 25.3,
+   "uretilen_kare": 133,
+   "cozunurluk": "1080x1920",
+   "mp4_mb": 9.0,
+   "durum": "TAMAM"
+  }
+ ],
+ "is_render_toplam_sn": 152.9,
+ "bitis_utc": "2026-11-24T18:54:04Z",
+ "basarili": true
+}
