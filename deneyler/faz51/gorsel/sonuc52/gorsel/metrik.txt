@@ -1,0 +1,18 @@
+S4a (ufuk bandı %30-50)
+  D0   {'zemin_koyu': 0.17, 'ufuk_beyaz': 13.8, 'ufuk_doyg': 0.061, 'ufuk_ayrinti': 1.027, 'kontrast': 0.122}
+  D1   {'zemin_koyu': 0.09, 'ufuk_beyaz': 13.8, 'ufuk_doyg': 0.061, 'ufuk_ayrinti': 1.027, 'kontrast': 0.119}
+  D2   {'zemin_koyu': 0.02, 'ufuk_beyaz': 13.8, 'ufuk_doyg': 0.061, 'ufuk_ayrinti': 1.027, 'kontrast': 0.118}
+  D3   {'zemin_koyu': 0.0, 'ufuk_beyaz': 13.8, 'ufuk_doyg': 0.061, 'ufuk_ayrinti': 1.027, 'kontrast': 0.118}
+  D4   {'zemin_koyu': 0.0, 'ufuk_beyaz': 26.6, 'ufuk_doyg': 0.047, 'ufuk_ayrinti': 1.054, 'kontrast': 0.122}
+  D5   {'zemin_koyu': 0.0, 'ufuk_beyaz': 26.6, 'ufuk_doyg': 0.047, 'ufuk_ayrinti': 1.054, 'kontrast': 0.123}
+  D6   {'zemin_koyu': 0.0, 'ufuk_beyaz': 69.4, 'ufuk_doyg': 0.024, 'ufuk_ayrinti': 0.84, 'kontrast': 0.138}
+  D7   {'zemin_koyu': 0.0, 'ufuk_beyaz': 69.2, 'ufuk_doyg': 0.023, 'ufuk_ayrinti': 0.913, 'kontrast': 0.13}
+  D9   {'zemin_koyu': 0.0, 'ufuk_beyaz': 4.2, 'ufuk_doyg': 0.035, 'ufuk_ayrinti': 1.077, 'kontrast': 0.106}
+  D10  {'zemin_koyu': 0.24, 'ufuk_beyaz': 4.1, 'ufuk_doyg': 0.04, 'ufuk_ayrinti': 1.17, 'kontrast': 0.128}
+  D11  {'zemin_koyu': 3.76, 'ufuk_beyaz': 0.0, 'ufuk_doyg': 0.054, 'ufuk_ayrinti': 1.211, 'kontrast': 0.124}
+S1 (ufuk bandı (0.55, 0.8) )
+  D0   {'zemin_koyu': 5.79, 'ufuk_beyaz': 0.0, 'ufuk_doyg': 0.134, 'ufuk_ayrinti': 5.973, 'kontrast': 0.154}
+  D11  {'zemin_koyu': 11.82, 'ufuk_beyaz': 0.0, 'ufuk_doyg': 0.133, 'ufuk_ayrinti': 6.782, 'kontrast': 0.134}
+S2 (ufuk bandı (0.3, 0.45) )
+  D0   {'zemin_koyu': 8.44, 'ufuk_beyaz': 0.1, 'ufuk_doyg': 0.13, 'ufuk_ayrinti': 1.015, 'kontrast': 0.221}
+  D11  {'zemin_koyu': 35.29, 'ufuk_beyaz': 0.0, 'ufuk_doyg': 0.115, 'ufuk_ayrinti': 0.945, 'kontrast': 0.199}
