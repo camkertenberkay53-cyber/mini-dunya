@@ -6,7 +6,7 @@ kategoriler:
   kiyafet: [turkmen_kaftani, turkmen_kaftani_kahve, salvar_koyu, cizme_uzun_kahve]
   zirh: [zincir_levha_zirh]
   kalkan: [celik_kalkan]
-  silah: [osmanli_kilic, gurz, mizrak, kompozit_yay]
+  silah: [osmanli_kilic, gurz, mizrak, kargi, kompozit_yay]
   sancak: [tug, akkoyunlu_sancagi]
   aksesuar: [kusak_kirmizi, hancer, sadak]
   cevre: [topak_ev]
@@ -17,7 +17,7 @@ karakterler:
     - {ad: akk_zirhli_gurz, govde: erkek, sac: [kisa, sakal], giysiler: [turkmen_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_levha_zirh],
        takilanlar: {bas: sarik_migfer, sag_el: gurz, sol_kol: celik_kalkan, sirt: sadak}}
     - {ad: akk_zirhli_mizrak, govde: erkek, sac: [kisa, sakal], giysiler: [turkmen_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_levha_zirh],
-       takilanlar: {bas: sarik_migfer, sag_el_dik: mizrak}}
+       takilanlar: {bas: sarik_migfer, sag_el_dik: kargi}}
   okcu:
     - {ad: akk_okcu, govde: erkek, sac: [kisa, sakal], giysiler: [turkmen_kaftani_kahve, salvar_koyu, cizme_uzun_kahve, kusak_kirmizi],
        takilanlar: {bas: turkmen_tacli_sarik, sol_el: kompozit_yay, sirt: sadak, bel_sag: hancer}}
@@ -33,6 +33,6 @@ karakterler:
     - {ad: akk_sivil_kalpakli, govde: erkek, sac: [kisa, sakal], giysiler: [turkmen_kaftani_kahve, salvar_koyu, cizme_uzun_kahve, kusak_kirmizi], takilanlar: {bas: turkmen_kalpak, bel_sag: kese}}
   suvari:
     - {ad: akk_suvari, govde: erkek, sac: [kisa, sakal], giysiler: [turkmen_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_levha_zirh],
-       takilanlar: {bas: sarik_migfer, sag_el_dik: mizrak, sol_kol: celik_kalkan}, binek: at}
+       takilanlar: {bas: sarik_migfer, sag_el_dik: kargi, sol_kol: celik_kalkan}, binek: at}
     - {ad: akk_suvari_yay, govde: erkek, sac: [kisa, sakal], giysiler: [turkmen_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_levha_zirh], takilanlar: {bas: sarik_migfer, sol_el: kompozit_yay, sirt: sadak}, binek: at}
     - {ad: akk_suvari_gurz, govde: erkek, sac: [kisa, sakal], giysiler: [turkmen_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_levha_zirh], takilanlar: {bas: sarik_migfer, sag_el: gurz, sol_kol: celik_kalkan}, binek: at}

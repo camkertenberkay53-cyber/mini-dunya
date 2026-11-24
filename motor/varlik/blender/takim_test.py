@@ -14,6 +14,7 @@ bağlanır; "sag_el_dik" eli izler ama dünyada dik durur. Her örnek karede öl
 """
 import json
 import math
+import os
 import sys
 
 import bpy  # noqa: I001
@@ -73,6 +74,17 @@ def icinde_mi(agac, v, yon=1.0, tol=0.002, maks=0.05):
     return (v - p).dot(n) * yon < -tol
 
 
+def dik_izdusum(v, p, n) -> bool:
+    """Köşe, dış yüzeyin ÜSTÜNDE ya da ALTINDA mı (normal doğrultusunda)? En yakın nokta yüzeyin kenarındaysa ve köşe
+    yana doğru uzaktaysa (örneğin zırh eteğinin altından sarkan kumaş) köşe örtülü sayılmaz: orada taşma olamaz."""
+    d = v - p
+    L = d.length
+    if L < 0.002:
+        return True
+    dik = abs(d.dot(n))
+    return dik >= 0.8 * L
+
+
 def _kemik_parcalari(arm):
     return [(arm.matrix_world @ b.head_local, arm.matrix_world @ b.tail_local) for b in arm.data.bones]
 
@@ -106,27 +118,35 @@ def katman_belirle(arm, ten, giysiler):
             q = _en_yakin_eksen(c, parcalar)
             top += f.normal.dot(c - q)
         yon[g.name] = 1.0 if top >= 0 else -1.0
+    ortu = {}
     for g in giysiler:
         agac = BVHTree.FromBMesh(bms[g.name])
+        bms[g.name].faces.ensure_lookup_table()
+        sinir = {f.index for f in bms[g.name].faces if any(e.is_boundary for e in f.edges)}
         ic[g.name] = []
+        ortu[g.name] = {}
         for m in [ten] + giysiler:
             if m is g:
                 continue
             ortulu = disarda = 0
+            altta = []
             for v in bms[m.name].verts:
                 p, n, fi, d = agac.find_nearest(v.co, 0.03)
-                if p is None:
+                if p is None or fi in sinir or not dik_izdusum(v.co, p, n):
                     continue
                 ortulu += 1
                 if (v.co - p).dot(n) * yon[g.name] > 0.0:
                     disarda += 1
+                else:
+                    altta.append(v.index)
             if ortulu >= 20 and disarda / ortulu < 0.5:
                 ic[g.name].append(m.name)
+                ortu[g.name][m.name] = set(altta)  # dinlenmede GERÇEKTEN bu giysinin altında olan köşeler
     for b in bms.values():
         b.free()
     arm.data.pose_position = "POSE"
     bpy.context.view_layer.update()
-    return {"yon": yon, "ic": ic}
+    return {"yon": yon, "ic": ic, "ortu": ortu}
 
 
 def karakter_olc(k):
@@ -174,7 +194,7 @@ def karakter_olc(k):
         g = {x.index: x.name for x in o.vertex_groups}
         return [bool(v.groups) and g.get(max(v.groups, key=lambda q: q.weight).group, "").startswith(UZUV) for v in o.data.vertices]
     uzuv_maskesi = _uzuv(ten) + [m for gx in giysiler for m in _uzuv(gx)]
-    katman_ici = katman_belirle(arm, ten, giysiler) if IS.get("giysi_testi", True) else {"yon": {}, "ic": {}}
+    katman_ici = katman_belirle(arm, ten, giysiler) if IS.get("giysi_testi", True) else {"yon": {}, "ic": {}, "ortu": {}}
     ilk = {}
     sahne = bpy.context.scene
     gomulen_kare = {e["t"]["id"]: 0 for e in ekler}
@@ -281,14 +301,18 @@ def karakter_olc(k):
                     for m, mbm in tum:
                         if m is g or m.name not in katman_ici["ic"][g.name]:
                             continue  # yalnızca bu giysinin İÇİNDE kalması gereken katmanlar
-                        for v in mbm.verts:
+                        mbm.verts.ensure_lookup_table()
+                        for vi in katman_ici["ortu"][g.name].get(m.name, ()):
+                            v = mbm.verts[vi]
                             p, n, fi, d = agac.find_nearest(v.co, 0.03)
-                            if p is None or fi in sinir:
+                            if p is None or fi in sinir or not dik_izdusum(v.co, p, n):
                                 continue
                             ortulu += 1
                             if (v.co - p).dot(n) * yon > 0.004:
                                 tasan += 1
-                    oran = tasan / max(1, ortulu) if ortulu >= 50 else 0.0
+                                if os.environ.get("TEST_AYRINTI"):
+                                    print("TASAN", anim, g.name, m.name, round(v.co.z, 2), round(v.co.x, 2), round(v.co.y, 2))
+                    oran = tasan / max(ortulu, 50)  # az örtülü köşede bile taşan sayısı gizlenmez
                     rg = sonuc["giysi"][g.name]
                     rg["en_cok_tasan_kose"] = max(rg.get("en_cok_tasan_kose", 0), tasan)
                     rg.setdefault("animasyon", {})

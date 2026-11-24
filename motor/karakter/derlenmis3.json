@@ -1,7 +1,7 @@
 {
  "govdeler": {
   "erkek_e4a5611e4f": {
-   "anahtar": "3b97e783c0e2f9e7",
+   "anahtar": "e454de0c98938998",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -13,8 +13,8 @@
     "cizme_uzun_kahve",
     "zincir_levha_zirh"
    ],
-   "glb_sha256": "03cd2741ea3dae2359e0789110e15a7c7a656e3cb4da1f154981f419c47c006d",
-   "bayt": 2345348,
+   "glb_sha256": "0727a758f2feaf466cc4c1dc78c3afd9c03075ec69d43efac8dd9f7bb2258894",
+   "bayt": 2236736,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -27,9 +27,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 21650,
+    "ucgen": 18804,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -125,7 +125,7 @@
    }
   },
   "erkek_e2259e91b9": {
-   "anahtar": "f60d432cc20e7e31",
+   "anahtar": "dfbf218e5becb188",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -137,8 +137,8 @@
     "cizme_uzun_kahve",
     "kusak_kirmizi"
    ],
-   "glb_sha256": "b6f2914e3d3036364b23b1511f31b46aedfabe9a72a0721ac3d4c004f1ec518b",
-   "bayt": 2064996,
+   "glb_sha256": "725ca645f740825f24cda1769b4d4040247faec9319105190158aa5347af44aa",
+   "bayt": 2044204,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -151,9 +151,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 18414,
+    "ucgen": 17838,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -495,7 +495,7 @@
    }
   },
   "erkek_951dd3a170": {
-   "anahtar": "0eeac72959d0df0c",
+   "anahtar": "2e4955b7d552b789",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -506,8 +506,8 @@
     "cizme_uzun_kahve",
     "deri_kemer"
    ],
-   "glb_sha256": "af6cb5b54e583a21c3ab3c4fac6b5efc6985ff0acb776493f74d2b8a585a43cd",
-   "bayt": 2061860,
+   "glb_sha256": "716f078730128a5b2dcfff49ca98182fa73915d771ed2c8a2b9795568642df21",
+   "bayt": 2046032,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -520,9 +520,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 18202,
+    "ucgen": 17760,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -618,7 +618,7 @@
    }
   },
   "erkek_2dcdc63536": {
-   "anahtar": "f054a27e186732a3",
+   "anahtar": "0576359bbf6b1529",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -630,8 +630,8 @@
     "cizme_uzun_sari",
     "kusak_kirmizi"
    ],
-   "glb_sha256": "c5076de84e6650a707355e56d387aa7b808d6c775484174274f1fb883f45102b",
-   "bayt": 2068048,
+   "glb_sha256": "2468e703a2553192c5c0cf4e85db9502dea067dbbcc762983b28b8094ae50f8b",
+   "bayt": 2051656,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -644,9 +644,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 18414,
+    "ucgen": 17950,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -742,7 +742,7 @@
    }
   },
   "erkek_9fc220619b": {
-   "anahtar": "b412a9fd745efde9",
+   "anahtar": "3aedddf0656f5223",
    "govde": "erkek",
    "sac": [
     "sakal"
@@ -753,8 +753,8 @@
     "cizme_uzun_kahve",
     "kusak_kirmizi"
    ],
-   "glb_sha256": "769918d5866e1e1a3aa1967dc9e750aa02de89f2857094aa6152a3edba243e7b",
-   "bayt": 2034288,
+   "glb_sha256": "940e47d64521fd92fe831101d0d667d5862f9f1c4ed18e2e275f4a8051070c57",
+   "bayt": 2015908,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -766,9 +766,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.834,
+    "boy_m": 1.835,
     "genislik_m": 1.859,
-    "ucgen": 17588,
+    "ucgen": 17096,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -864,7 +864,7 @@
    }
   },
   "erkek_e69ad88ef3": {
-   "anahtar": "bc9c545e80ee0dd4",
+   "anahtar": "a9e23f63c7c3de01",
    "govde": "erkek",
    "sac": [
     "sakal"
@@ -875,8 +875,8 @@
     "cizme_uzun_kahve",
     "kusak_kirmizi"
    ],
-   "glb_sha256": "0ffbc65e281c597b225c0123f24296c9f19517f133770aa6d2d342630c946388",
-   "bayt": 2034972,
+   "glb_sha256": "93ad7e90afe0f93e8a80e3ca03bce5f4998a23ccf6a65ff0838489f7b37986d7",
+   "bayt": 2016592,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -888,9 +888,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.834,
+    "boy_m": 1.835,
     "genislik_m": 1.859,
-    "ucgen": 17588,
+    "ucgen": 17096,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -1110,7 +1110,7 @@
    }
   },
   "erkek_c418aa6d94": {
-   "anahtar": "9bd671e4886568fe",
+   "anahtar": "393095c78618703f",
    "govde": "erkek",
    "sac": [
     "kisa"
@@ -1121,8 +1121,8 @@
     "lorica_hamata",
     "deri_kemer"
    ],
-   "glb_sha256": "fef0974ebe1cb862c5d9df66556191c8e9855904415d6655a6f2086c08e85ed4",
-   "bayt": 2329760,
+   "glb_sha256": "065fa00875817c86ef97be1792bed9e9acd5b9dc829ca76465f10724358a3cc0",
+   "bayt": 2219504,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -1134,9 +1134,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.832,
+    "boy_m": 1.833,
     "genislik_m": 1.859,
-    "ucgen": 20952,
+    "ucgen": 18024,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -1232,7 +1232,7 @@
    }
   },
   "erkek_8cbba32f56": {
-   "anahtar": "7631674ec04cd42e",
+   "anahtar": "1375c49d24102ee3",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -1243,8 +1243,8 @@
     "caligae",
     "deri_kemer"
    ],
-   "glb_sha256": "8e5c3a6ebee583eca534c1f6d449d87e208ee56085c092ae5a1fc29c333259c4",
-   "bayt": 2057428,
+   "glb_sha256": "cb505aae9230941d795d30d7da4fed4373aa694b22b32ce2184d28f6149c1201",
+   "bayt": 2057020,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -1257,9 +1257,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.832,
+    "boy_m": 1.833,
     "genislik_m": 1.859,
-    "ucgen": 18022,
+    "ucgen": 17990,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -1355,7 +1355,7 @@
    }
   },
   "erkek_7b821306c9": {
-   "anahtar": "86fb3b4275df68c1",
+   "anahtar": "4a33609f66ea6042",
    "govde": "erkek",
    "sac": [
     "kisa"
@@ -1365,8 +1365,8 @@
     "caligae",
     "deri_kemer"
    ],
-   "glb_sha256": "36402173ddc9c36db5ecf0cafaf934c150c7287b69e26833bcc37dfb2d25c196",
-   "bayt": 2018812,
+   "glb_sha256": "de05e7f0cc02cc1453906b6f8fb94c5f340c24a373e21006227ec7f40778550f",
+   "bayt": 2018404,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -1378,9 +1378,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.832,
+    "boy_m": 1.833,
     "genislik_m": 1.859,
-    "ucgen": 16988,
+    "ucgen": 16956,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -1476,7 +1476,7 @@
    }
   },
   "erkek_9392f93500": {
-   "anahtar": "f515eb5553df408b",
+   "anahtar": "b312a63b04175ddf",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -1488,8 +1488,8 @@
     "lamel_zirh",
     "deri_kemer"
    ],
-   "glb_sha256": "f9e2b88d958c74eb11236485b7f522f43b178cd9e87a446ed533102c77687c6a",
-   "bayt": 2175692,
+   "glb_sha256": "08ef2f5d47375b5c217f37f13018e0023912532843f209ea8b174870e593924c",
+   "bayt": 2111216,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -1502,9 +1502,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 20696,
+    "ucgen": 18704,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -1600,7 +1600,7 @@
    }
   },
   "erkek_35c38e9239": {
-   "anahtar": "195b17bc5c6d2f15",
+   "anahtar": "cbc77a66adcc4989",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -1611,8 +1611,8 @@
     "cizme_uzun_kahve",
     "deri_kemer"
    ],
-   "glb_sha256": "d347d4146619a3daf9fdbcecf2045e5d5c1612b3726a8ab19254e6a9bbfa4516",
-   "bayt": 2072380,
+   "glb_sha256": "c3246cb4117fd22d39f12ef73645a6ddd14ebf8e900944daa70b4fb3432ad770",
+   "bayt": 2050536,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -1625,9 +1625,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 18506,
+    "ucgen": 17912,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -1723,7 +1723,7 @@
    }
   },
   "erkek_7959a03940": {
-   "anahtar": "4249bb4b38444c03",
+   "anahtar": "068f77cca8aa4e39",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -1735,8 +1735,8 @@
     "cizme_uzun_kahve",
     "zincir_zirh_gomlek"
    ],
-   "glb_sha256": "cf829a630c847cc15ab5fdcc8bf532a79eddacd1961d02e685876e12c4b2f857",
-   "bayt": 2320544,
+   "glb_sha256": "8a19732d0b644af69762fc98000cea1ceb2bee8240e501de84b8be261382fee8",
+   "bayt": 2222316,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -1749,9 +1749,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 21366,
+    "ucgen": 18828,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -1847,7 +1847,7 @@
    }
   },
   "erkek_cff0ab1ce3": {
-   "anahtar": "773039c343aaa8a7",
+   "anahtar": "b93e87bf4cc5c6f0",
    "govde": "erkek",
    "sac": [
     "kisa"
@@ -1858,8 +1858,8 @@
     "lamel_zirh",
     "deri_kemer"
    ],
-   "glb_sha256": "70aad95c1fa15826221ec571f434208544170b270b0f3b944e7d93bd696be913",
-   "bayt": 2136940,
+   "glb_sha256": "ac63faad1d78987969a9a5e71fcba992bb6f49ff9a4e8ee0e8762b9e9cc524cb",
+   "bayt": 2072608,
    "kaynaklar": [
     "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
     "ual1/UAL1_Standard.fbx",
@@ -1871,9 +1871,9 @@
     "kendi-uretim"
    ],
    "olcum": {
-    "boy_m": 1.838,
+    "boy_m": 1.839,
     "genislik_m": 1.859,
-    "ucgen": 19662,
+    "ucgen": 17670,
     "kemik_sayisi": 65,
     "evrensel_iskelet_eslesen": 65,
     "evrensel_iskelet_toplam": 65,
@@ -2011,7 +2011,7 @@
    "govde_id": "erkek_e4a5611e4f",
    "takilanlar": {
     "bas": "sarik_migfer",
-    "sag_el_dik": "mizrak"
+    "sag_el_dik": "kargi"
    },
    "giysiler": [
     "turkmen_kaftani",
@@ -2145,7 +2145,7 @@
    "govde_id": "erkek_e4a5611e4f",
    "takilanlar": {
     "bas": "sarik_migfer",
-    "sag_el_dik": "mizrak",
+    "sag_el_dik": "kargi",
     "sol_kol": "celik_kalkan"
    },
    "giysiler": [
@@ -2258,14 +2258,14 @@
    ],
    "binek": null
   },
-  "biz_arbaletci_konik": {
+  "biz_okcu_pavezli": {
    "kit": "bizans_15yy",
    "rol": "okcu",
    "govde_id": "erkek_9392f93500",
    "takilanlar": {
     "bas": "konik_migfer",
-    "sag_el": "arbalet",
-    "bel_sag": "kese"
+    "sol_el": "kompozit_yay",
+    "sirt": "pavez"
    },
    "giysiler": [
     "bizans_tunigi",
@@ -2275,19 +2275,18 @@
    ],
    "binek": null
   },
-  "biz_arbaletci_lamel": {
+  "biz_okcu_milis": {
    "kit": "bizans_15yy",
    "rol": "okcu",
-   "govde_id": "erkek_9392f93500",
+   "govde_id": "erkek_951dd3a170",
    "takilanlar": {
-    "bas": "sapel_migfer",
-    "sag_el": "arbalet",
+    "bas": "konik_migfer",
+    "sol_el": "kompozit_yay",
     "sirt": "pavez"
    },
    "giysiler": [
-    "bizans_tunigi",
+    "bizans_tunigi_hardal",
     "cizme_uzun_kahve",
-    "lamel_zirh",
     "deri_kemer"
    ],
    "binek": null
@@ -2390,13 +2389,13 @@
    ],
    "binek": "at"
   },
-  "biz_suvari_lamel": {
+  "biz_suvari_sancak": {
    "kit": "bizans_15yy",
    "rol": "suvari",
    "govde_id": "erkek_9392f93500",
    "takilanlar": {
-    "bas": "sapel_migfer",
-    "sag_el_dik": "mizrak",
+    "bas": "konik_migfer",
+    "sag_el_dik": "bizans_sancagi",
     "sol_kol": "badem_kalkan"
    },
    "giysiler": [
@@ -2713,18 +2712,19 @@
    ],
    "binek": null
   },
-  "rom_yardimci_okcu_kilic": {
+  "rom_yardimci_okcu_zirhli": {
    "kit": "roma_cumhuriyet",
    "rol": "okcu",
-   "govde_id": "erkek_8cbba32f56",
+   "govde_id": "erkek_c418aa6d94",
    "takilanlar": {
     "sol_el": "kompozit_yay",
     "sirt": "sadak",
     "sag_el": "gladius"
    },
    "giysiler": [
-    "roma_tunigi_beyaz",
+    "roma_tunigi",
     "caligae",
+    "lorica_hamata",
     "deri_kemer"
    ],
    "binek": null

@@ -10,6 +10,5 @@ karakterler: {}
 ekipman:
   varsayilan: {yakin: uygun_degil, orta: uygun}
   istisna:
-    pavez: {orta: uygun_degil, not: "24 üçgenlik düz levha; orta planda kutu gibi görünür"}
+    # pavez ve arbalet Faz 3b'de yeniden modellendi ve yeniden incelendi (yan/arka/orta çekim): orta planda uygun.
     roma_cadiri: {orta: uygun_degil, not: "18 üçgen; yalnızca uzak plan"}
-    arbalet: {orta: uygun_degil, not: "56 üçgen; yay kolları ve mekanizma yok"}

@@ -1,7 +1,7 @@
 {
  "yeniceri_borku": {
   "id": "yeniceri_borku",
-  "anahtar": "6dc28e9a26e9bc48",
+  "anahtar": "42613343c45f8531",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -16,7 +16,7 @@
   "parametreler": {
    "kece": "kece_beyaz"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "a3f2631d39599c1e2bc25a7a3d1188cc7a495ad698fb2b31548c573b37162daf",
   "olcum": {
    "ucgen": 404,
@@ -51,7 +51,7 @@
  },
  "osmanli_sarik": {
   "id": "osmanli_sarik",
-  "anahtar": "98b0c966949edd6b",
+  "anahtar": "c4df38a5719af05d",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -67,7 +67,7 @@
    "kavuk": "kece_kirmizi",
    "sarik": "sarik_bezi"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "f0fb5abd085f38a8f018a27e66364da5804cee543e88d9fa15afa172a9fbca50",
   "olcum": {
    "ucgen": 1184,
@@ -102,7 +102,7 @@
  },
  "sarik_migfer": {
   "id": "sarik_migfer",
-  "anahtar": "3d7769aafac3f9d4",
+  "anahtar": "0cf0b2f414c0b2bd",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -119,7 +119,7 @@
    "sus": "sus_altin",
    "zincir": "zincir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "937e1baa16af55a1eb3ebb136dfd26d1b2271a57a4f0476d4625b89d019e75b1",
   "olcum": {
    "ucgen": 1020,
@@ -154,7 +154,7 @@
  },
  "turkmen_kalpak": {
   "id": "turkmen_kalpak",
-  "anahtar": "6757dc83210e2181",
+  "anahtar": "bb1dd9dbb5c00356",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -169,7 +169,7 @@
    "kece": "kece_kahve",
    "kurk": "kurk"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "58db7b1253560d7d2c7ddcb79c3e6567e6f3a2cfa969b02812ee2d3201af077d",
   "olcum": {
    "ucgen": 384,
@@ -204,7 +204,7 @@
  },
  "konik_migfer": {
   "id": "konik_migfer",
-  "anahtar": "2f927b4eae86ff7f",
+  "anahtar": "25b7a5d39946c03e",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -219,7 +219,7 @@
    "celik": "celik",
    "zincir": "zincir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "6309a8d57ab27b42aa47663b6bd54c3ab447ae8f8283bda10273f52ffcdf1794",
   "olcum": {
    "ucgen": 464,
@@ -254,7 +254,7 @@
  },
  "sapel_migfer": {
   "id": "sapel_migfer",
-  "anahtar": "f3e12ade1ad31ee0",
+  "anahtar": "6672d2e6b3dfeeac",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -268,7 +268,7 @@
   "parametreler": {
    "celik": "celik"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "30b4504537b657412ca19ead3964fd76402676b81a7e5b35b6dee996451a2cfa",
   "olcum": {
    "ucgen": 732,
@@ -303,7 +303,7 @@
  },
  "montefortino": {
   "id": "montefortino",
-  "anahtar": "db40bef7178ea765",
+  "anahtar": "8d5b2b9f9c487723",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -318,7 +318,7 @@
   "parametreler": {
    "tunc": "tunc"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "073babd406502dbe6025bcbe8dc2c13d31ad17b6fecb15c64aa67152a18bc660",
   "olcum": {
    "ucgen": 904,
@@ -353,7 +353,7 @@
  },
  "hasir_kalkan": {
   "id": "hasir_kalkan",
-  "anahtar": "65a55d90f5330f9a",
+  "anahtar": "655398659585b8c2",
   "kategori": "kalkan",
   "yuva": "sol_kol",
   "donem": [
@@ -369,7 +369,7 @@
    "hasir": "hasir",
    "demir": "demir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "fe11272d7e1dae4934f48d723e4fee0ec29aaf42f37423f532f6d75f30ea79f3",
   "olcum": {
    "ucgen": 2928,
@@ -404,7 +404,7 @@
  },
  "celik_kalkan": {
   "id": "celik_kalkan",
-  "anahtar": "c1aa396d144396a2",
+  "anahtar": "f7f836379040ba24",
   "kategori": "kalkan",
   "yuva": "sol_kol",
   "donem": [
@@ -419,7 +419,7 @@
    "celik": "celik",
    "sus": "sus_altin"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "f3f2f6f69467dafbf4111bec0f4c63692dc0e5e76180e182d43ed4cff0b62554",
   "olcum": {
    "ucgen": 3120,
@@ -454,7 +454,7 @@
  },
  "pavez": {
   "id": "pavez",
-  "anahtar": "53d6d3f4b3cab68a",
+  "anahtar": "8b7da02a3f94ebc1",
   "kategori": "kalkan",
   "yuva": "sirt",
   "donem": [
@@ -469,21 +469,21 @@
    "yuz": "pavez_yuz",
    "demir": "demir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "d288f46cdf62299f57b1e81cccfae894c832339ffedfc989d9c6d1a661d59288",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "2d8a3db7b0f19d7a9d59325bbf422d46e71086bc7bedff51d472f8197b83225d",
   "olcum": {
-   "ucgen": 24,
-   "kose": 16,
+   "ucgen": 792,
+   "kose": 436,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
     0.58,
-    0.03,
+    0.055,
     1.115
    ],
    "min": [
     -0.29,
-    -0.045,
+    -0.07,
     -0.43
    ],
    "max": [
@@ -496,7 +496,7 @@
     256,
     512
    ],
-   "bayt": 16020
+   "bayt": 40736
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -504,7 +504,7 @@
  },
  "badem_kalkan": {
   "id": "badem_kalkan",
-  "anahtar": "c374f7e2f0892d36",
+  "anahtar": "ade3de66c739361c",
   "kategori": "kalkan",
   "yuva": "sol_kol",
   "donem": [
@@ -516,36 +516,37 @@
   },
   "uretici": "badem_kalkan",
   "parametreler": {
-   "yuz": "badem_yuz"
+   "yuz": "badem_yuz",
+   "demir": "demir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "b8c84b8cf2de3639de40dd99084d8dd14454bbcc952405074e07075df948b432",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "695b58bd0f2739c708d22c40a631826ff0bb7ab32bba4c8da64b0eed5b1ff494",
   "olcum": {
-   "ucgen": 96,
-   "kose": 50,
+   "ucgen": 332,
+   "kose": 177,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
-    0.56,
-    0.071,
+    0.563,
+    0.11,
     0.701
    ],
    "min": [
-    -0.28,
-    -0.067,
+    -0.281,
+    -0.107,
     -0.461
    ],
    "max": [
-    0.28,
+    0.281,
     0.003,
     0.24
    ],
-   "malzeme": 1,
+   "malzeme": 2,
    "doku": [
     256,
     512
    ],
-   "bayt": 10000
+   "bayt": 25436
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -553,7 +554,7 @@
  },
  "scutum": {
   "id": "scutum",
-  "anahtar": "8a8cb5e67b3cf2e2",
+  "anahtar": "bcf117628e00c896",
   "kategori": "kalkan",
   "yuva": "sol_kol",
   "donem": [
@@ -569,7 +570,7 @@
    "yuz": "scutum_yuz",
    "demir": "demir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "20499d50bc632dc7ffd5d5b9de75358c47d4e7c832d90ec0e725c207c366683a",
   "olcum": {
    "ucgen": 1720,
@@ -604,7 +605,7 @@
  },
  "osmanli_kilic": {
   "id": "osmanli_kilic",
-  "anahtar": "accb7ece695efdf5",
+  "anahtar": "94ecf7a1fba91d6a",
   "kategori": "silah",
   "yuva": "sag_el",
   "donem": [
@@ -621,7 +622,7 @@
    "sus": "sus_altin",
    "celik": "celik"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "933ba3d44b60bbc1a54711813312d4c64954f5f7d3d6752eefca1b3d2b41f38d",
   "olcum": {
    "ucgen": 304,
@@ -656,7 +657,7 @@
  },
  "duz_kilic": {
   "id": "duz_kilic",
-  "anahtar": "5f102a61a2020426",
+  "anahtar": "a603e18a14b0d8f5",
   "kategori": "silah",
   "yuva": "sag_el",
   "donem": [
@@ -671,7 +672,7 @@
    "sap": "deri_koyu",
    "celik": "celik"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "315fd9e8f6a220ba796d66ead53f93848d0bee1499663f651ee3eb1905990076",
   "olcum": {
    "ucgen": 284,
@@ -706,7 +707,7 @@
  },
  "gladius": {
   "id": "gladius",
-  "anahtar": "e5966cfba2ba442d",
+  "anahtar": "9b108d9a307fe357",
   "kategori": "silah",
   "yuva": "sag_el",
   "donem": [
@@ -722,7 +723,7 @@
    "sap": "sap",
    "celik": "celik"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "3309a7dcf8a53062adad615dca1fae922faf90a23b8459161650ff2b25c8cc0f",
   "olcum": {
    "ucgen": 356,
@@ -757,7 +758,7 @@
  },
  "pilum": {
   "id": "pilum",
-  "anahtar": "b8f5d924adc69180",
+  "anahtar": "eda42b2bb362ae37",
   "kategori": "silah",
   "yuva": "sag_el_dik",
   "donem": [
@@ -773,11 +774,11 @@
    "sap": "sap",
    "demir": "demir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "5d17f8e58f6695ca816377c09032aaf6e7d1a6332f8fdac1e7abd2a6d6b567b9",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "c6c792c9a7ec9427ee7551309e2410389fe46e12e47c54fd9b24db6fd7d8b8cd",
   "olcum": {
-   "ucgen": 108,
-   "kose": 81,
+   "ucgen": 216,
+   "kose": 157,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
@@ -800,7 +801,7 @@
     256,
     512
    ],
-   "bayt": 22140
+   "bayt": 25344
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -808,7 +809,7 @@
  },
  "mizrak": {
   "id": "mizrak",
-  "anahtar": "6513e6e3f9fad9f8",
+  "anahtar": "fe368a504916424b",
   "kategori": "silah",
   "yuva": "sag_el_dik",
   "donem": [
@@ -827,26 +828,26 @@
    "celik": "celik",
    "demir": "demir"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "352b767c3237fa77f91843f9683d48e29fa8d902cf5a6217f2a4e1dbb7413f35",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "850249eca0f2fbe847bb7cd0f092f7a150fc9129ebbee8bb337c7a92199413d6",
   "olcum": {
-   "ucgen": 98,
-   "kose": 66,
+   "ucgen": 352,
+   "kose": 226,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
     0.052,
-    0.032,
+    0.04,
     2.81
    ],
    "min": [
     -0.026,
-    -0.016,
+    -0.02,
     -1.09
    ],
    "max": [
     0.026,
-    0.016,
+    0.02,
     1.72
    ],
    "malzeme": 3,
@@ -854,7 +855,7 @@
     256,
     512
    ],
-   "bayt": 31820
+   "bayt": 39072
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -862,7 +863,7 @@
  },
  "gurz": {
   "id": "gurz",
-  "anahtar": "4261319f8e0a1125",
+  "anahtar": "bdb03cea0c7370b8",
   "kategori": "silah",
   "yuva": "sag_el",
   "donem": [
@@ -878,11 +879,11 @@
    "sap": "deri_koyu",
    "celik": "celik"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "398f986ba4ec3b9756ccd8345aa24f6b1b3bcb456408192814b3f7da1a8d533c",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "d0db44bb9b8625523cdf1b6364896f409ebef713f77de6a43e7c68c0bb0c280e",
   "olcum": {
-   "ucgen": 196,
-   "kose": 133,
+   "ucgen": 208,
+   "kose": 145,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
@@ -905,7 +906,7 @@
     256,
     512
    ],
-   "bayt": 29472
+   "bayt": 30024
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -913,7 +914,7 @@
  },
  "kompozit_yay": {
   "id": "kompozit_yay",
-  "anahtar": "21db2703c28877b2",
+  "anahtar": "d123a8fcd0696851",
   "kategori": "silah",
   "yuva": "sol_el",
   "donem": [
@@ -930,7 +931,7 @@
    "govde": "yay_govde",
    "kiris": "kiris"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "4a4e2e4d0beea4b0ee6eb5f778c4c6c885bfd5d66f40f326854aa5ae3a1949ae",
   "olcum": {
    "ucgen": 300,
@@ -965,7 +966,7 @@
  },
  "arbalet": {
   "id": "arbalet",
-  "anahtar": "153a369064f8e408",
+  "anahtar": "778d7df587101257",
   "kategori": "silah",
   "yuva": "sag_el",
   "donem": [
@@ -980,16 +981,16 @@
    "sap": "sap",
    "celik": "celik"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "eba1a5b311f91da20cbd29390ffa412abefa414c645b15f6fde0b219c0bceb29",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "2f7079c92dc4bb25ca4f303b2c8b5fbbdd1954df80ff7cfe05d568dea044d044",
   "olcum": {
-   "ucgen": 56,
-   "kose": 48,
+   "ucgen": 224,
+   "kose": 145,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
     0.7,
-    0.06,
+    0.095,
     0.885
    ],
    "min": [
@@ -999,7 +1000,7 @@
    ],
    "max": [
     0.35,
-    0.03,
+    0.065,
     0.675
    ],
    "malzeme": 2,
@@ -1007,7 +1008,7 @@
     256,
     512
    ],
-   "bayt": 22588
+   "bayt": 31368
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1015,7 +1016,7 @@
  },
  "sadak": {
   "id": "sadak",
-  "anahtar": "6d59c4a9e00a2962",
+  "anahtar": "d7a5b12a2849b6b5",
   "kategori": "sirt",
   "yuva": "sirt",
   "donem": [
@@ -1033,7 +1034,7 @@
    "ok": "ok_sapi",
    "tuy": "tuy"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "54b0e214c0e055d30f4bed6f7914cb4669c471a0fb69efa6125b888bb1dc7af7",
   "olcum": {
    "ucgen": 248,
@@ -1068,7 +1069,7 @@
  },
  "hancer": {
   "id": "hancer",
-  "anahtar": "8583d10bfbf6b375",
+  "anahtar": "5b0856d59595c884",
   "kategori": "aksesuar",
   "yuva": "bel_sag",
   "donem": [
@@ -1084,7 +1085,7 @@
    "kin": "deri_koyu",
    "sap": "sus_altin"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "03f0436284047bbec564d86c2a21b19410e472d3da088b9f27d632eb6b293a00",
   "olcum": {
    "ucgen": 90,
@@ -1119,7 +1120,7 @@
  },
  "pugio": {
   "id": "pugio",
-  "anahtar": "70fda506f83a154e",
+  "anahtar": "76d2ae2e7bc19e8d",
   "kategori": "aksesuar",
   "yuva": "bel_sol",
   "donem": [
@@ -1135,7 +1136,7 @@
    "kin": "demir",
    "sap": "tunc"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "d5998fafec99f733b54f15fd66fa352b71c3c3c0ea54c3506df96b5ddaca8ad0",
   "olcum": {
    "ucgen": 90,
@@ -1170,7 +1171,7 @@
  },
  "kese": {
   "id": "kese",
-  "anahtar": "3e0dcbfc8ad20522",
+  "anahtar": "f9d81868f61f44e3",
   "kategori": "aksesuar",
   "yuva": "bel_sag",
   "donem": [
@@ -1187,7 +1188,7 @@
   "parametreler": {
    "deri": "deri_kahve"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "b506f493a6c992395746a2b175d5855c6dac6e8ba4973f1e51a203acb89cb44b",
   "olcum": {
    "ucgen": 112,
@@ -1222,7 +1223,7 @@
  },
  "osmanli_sancagi": {
   "id": "osmanli_sancagi",
-  "anahtar": "1ac39763a7a146e3",
+  "anahtar": "92452346abb54511",
   "kategori": "sancak",
   "yuva": "sag_el_dik",
   "donem": [
@@ -1230,7 +1231,7 @@
   ],
   "tarih": {
    "guven": "belirsiz",
-   "not": "Kırlangıç kuyruklu kırmızı sancak. 15. yy Osmanlı sancak desenleri kesin değil; hilal bilerek konmadı."
+   "not": "Uzun, kırlangıç kuyruklu kırmızı sancak. Kırlangıç kuyruklu biçim Osmanlı sancaklarında görülür; ancak 15. yy'a ait kesin desen ve renk doğrulanmadı, hilal bilerek konmadı. Biçim uzak planda ayırt edici olsun diye seçildi."
   },
   "uretici": "sancak",
   "parametreler": {
@@ -1238,18 +1239,18 @@
    "alem": "altin",
    "kumas": "sancak_kirmizi",
    "kirlangic": true,
-   "gen": 1.1,
-   "yuk": 0.75
+   "gen": 1.55,
+   "yuk": 0.62
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "ce70593e13be902b261f1d23e7918bc0a370ab02768a03ccc37afd4b391d7384",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "3b32f91c1f304c5ef9bbdc698ad9ec960c90266c0ec4c923e62fef3c579fe6e8",
   "olcum": {
-   "ucgen": 420,
-   "kose": 260,
+   "ucgen": 432,
+   "kose": 272,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
-    1.158,
+    1.608,
     0.076,
     3.12
    ],
@@ -1259,7 +1260,7 @@
     -1.0
    ],
    "max": [
-    1.12,
+    1.57,
     0.038,
     2.12
    ],
@@ -1268,7 +1269,7 @@
     256,
     512
    ],
-   "bayt": 36304
+   "bayt": 36764
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1276,7 +1277,7 @@
  },
  "tug": {
   "id": "tug",
-  "anahtar": "b5088db770a6a90b",
+  "anahtar": "75e8c669d0db8809",
   "kategori": "sancak",
   "yuva": "sag_el_dik",
   "donem": [
@@ -1293,11 +1294,11 @@
    "alem": "altin",
    "sac": "at_kili"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "202be9f55ce41ed068a2f6ab2ebf507d6150701e0434d12bf0cbfd087272eb52",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "cfa75e75640d6b9f3e2cc33229982e3b13cccfecc8c43271b27cedbdabf2f90c",
   "olcum": {
-   "ucgen": 276,
-   "kose": 181,
+   "ucgen": 288,
+   "kose": 193,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
@@ -1320,7 +1321,7 @@
     256,
     512
    ],
-   "bayt": 32724
+   "bayt": 33180
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1328,7 +1329,7 @@
  },
  "akkoyunlu_sancagi": {
   "id": "akkoyunlu_sancagi",
-  "anahtar": "9c3bfc6d77638fdb",
+  "anahtar": "62d68b97adbcf3bd",
   "kategori": "sancak",
   "yuva": "sag_el_dik",
   "donem": [
@@ -1336,25 +1337,25 @@
   ],
   "tarih": {
    "guven": "belirsiz",
-   "not": "Akkoyunlu sancağının rengi ve deseni bilinmiyor; düz beyaz kumaş temsilî."
+   "not": "Akkoyunlu sancağının rengi, biçimi ve deseni bilinmiyor. Dik, uzun ve dar beyaz kumaş TEMSİLÎDİR: yalnızca uzak planda Osmanlı sancağından ayırt edilsin diye seçildi; anlatımda kesin bilgi gibi sunulmaz."
   },
   "uretici": "sancak",
   "parametreler": {
    "direk": "direk",
    "alem": "altin",
    "kumas": "sancak_beyaz",
-   "gen": 1.0,
-   "yuk": 0.8
+   "gen": 0.55,
+   "yuk": 1.35
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "d7bc0188a4cc986ec3a9aaf0506f99a470f50e86124e5b0e50d8fa49d1681700",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "da7f6a3f8aa479445b2b8cba591b53e0d79d468c14b28a50be06ca0aff6d71a9",
   "olcum": {
-   "ucgen": 452,
-   "kose": 272,
+   "ucgen": 464,
+   "kose": 284,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
-    1.058,
+    0.608,
     0.076,
     3.12
    ],
@@ -1364,7 +1365,7 @@
     -1.0
    ],
    "max": [
-    1.02,
+    0.57,
     0.038,
     2.12
    ],
@@ -1373,7 +1374,7 @@
     256,
     512
    ],
-   "bayt": 37352
+   "bayt": 37812
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1381,7 +1382,7 @@
  },
  "bizans_sancagi": {
   "id": "bizans_sancagi",
-  "anahtar": "04ce105b3411624a",
+  "anahtar": "acaeb848da51d606",
   "kategori": "sancak",
   "yuva": "sag_el_dik",
   "donem": [
@@ -1399,11 +1400,11 @@
    "gen": 0.9,
    "yuk": 0.9
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "6bb21a915791aec2735f349c4729c4437b8e02b875eea631602f5dd85ed390ae",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "d0b5b34f25f390166372ff5d676ed4fb2056ec86f8023753a97474bb07e93d90",
   "olcum": {
-   "ucgen": 452,
-   "kose": 272,
+   "ucgen": 464,
+   "kose": 284,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
@@ -1426,7 +1427,7 @@
     256,
     512
    ],
-   "bayt": 36880
+   "bayt": 37336
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1434,7 +1435,7 @@
  },
  "vexillum": {
   "id": "vexillum",
-  "anahtar": "c1983a9ad1e73792",
+  "anahtar": "a47862d23c78ac8b",
   "kategori": "sancak",
   "yuva": "sag_el_dik",
   "donem": [
@@ -1450,26 +1451,26 @@
    "alem": "tunc",
    "kumas": "sancak_kirmizi"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "d489095ac9b0877f7997378eaf064bc61fff8fd32e7ae415dca0c801a902b4b6",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "4718238f4bc204144e320f6a9b1260149501a721f8075b86603aefa0145b6185",
   "olcum": {
-   "ucgen": 254,
-   "kose": 170,
+   "ucgen": 266,
+   "kose": 182,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
     0.9,
-    0.038,
+    0.04,
     2.78
    ],
    "min": [
     -0.45,
-    -0.019,
+    -0.02,
     -1.0
    ],
    "max": [
     0.45,
-    0.019,
+    0.02,
     1.78
    ],
    "malzeme": 3,
@@ -1477,7 +1478,7 @@
     256,
     512
    ],
-   "bayt": 30664
+   "bayt": 31120
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1485,7 +1486,7 @@
  },
  "aquila": {
   "id": "aquila",
-  "anahtar": "3c8191a303b12068",
+  "anahtar": "8c4d9977eefe338a",
   "kategori": "sancak",
   "yuva": "sag_el_dik",
   "donem": [
@@ -1500,11 +1501,11 @@
    "direk": "direk",
    "altin": "altin"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "d37af58d93f8ae97ac3ebeac4be4847c7a80abb457ece43dbf8fc24201174a09",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "67e591d946c57bb70156a4f8a67bc1f6ed41dbe03f3d80f0eca606a25da26587",
   "olcum": {
-   "ucgen": 154,
-   "kose": 106,
+   "ucgen": 166,
+   "kose": 118,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
@@ -1527,7 +1528,7 @@
     256,
     512
    ],
-   "bayt": 28292
+   "bayt": 28844
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1535,7 +1536,7 @@
  },
  "osmanli_cadiri": {
   "id": "osmanli_cadiri",
-  "anahtar": "3e38df9c8e485e5a",
+  "anahtar": "a4b31000d879127e",
   "kategori": "cevre",
   "yuva": "zemin",
   "donem": [
@@ -1552,11 +1553,11 @@
    "direk": "direk",
    "alem": "altin"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
-  "sha256": "f4b037fca90a389fd33125c2a1ca4d3b15ccb17204c4ec3eacf2dee9c5b8f59b",
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "72139a4de25540eb3fbb93cc537338e623b6ed1e24b131c9332607b8a787dae8",
   "olcum": {
-   "ucgen": 532,
-   "kose": 405,
+   "ucgen": 544,
+   "kose": 417,
    "yalniz_kose": 0,
    "bozuk_yuz": 0,
    "boyut_m": [
@@ -1579,7 +1580,7 @@
     256,
     512
    ],
-   "bayt": 46060
+   "bayt": 46516
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -1587,7 +1588,7 @@
  },
  "topak_ev": {
   "id": "topak_ev",
-  "anahtar": "d9ab62ac96286dbe",
+  "anahtar": "773c9c49e6148237",
   "kategori": "cevre",
   "yuva": "zemin",
   "donem": [
@@ -1603,7 +1604,7 @@
    "ahsap": "sap",
    "ip": "ip"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "6159458b99216f35f0e9893d705015a2d5b634b3359cdfb88765d412b52afb0d",
   "olcum": {
    "ucgen": 460,
@@ -1638,7 +1639,7 @@
  },
  "sur_kule": {
   "id": "sur_kule",
-  "anahtar": "d6ad7298463eb388",
+  "anahtar": "bb4fdaccc7279135",
   "kategori": "cevre",
   "yuva": "zemin",
   "donem": [
@@ -1653,7 +1654,7 @@
    "tas": "tas",
    "tugla": "tugla"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "c87bf210573ed51a65a5fa5caadc10dd8d9735a13e77b5c806c5b89c7864224a",
   "olcum": {
    "ucgen": 204,
@@ -1688,7 +1689,7 @@
  },
  "roma_cadiri": {
   "id": "roma_cadiri",
-  "anahtar": "0454d54e735d345e",
+  "anahtar": "b78bf70de5b682fb",
   "kategori": "cevre",
   "yuva": "zemin",
   "donem": [
@@ -1703,7 +1704,7 @@
    "deri": "roma_derisi",
    "ahsap": "sap"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "26faaae2489299abd5a3fb394aa7a062961993d8e769722a4e7ca2c564d197c6",
   "olcum": {
    "ucgen": 18,
@@ -1738,7 +1739,7 @@
  },
  "turkmen_tacli_sarik": {
   "id": "turkmen_tacli_sarik",
-  "anahtar": "de105d267adae8a6",
+  "anahtar": "30a38ac93c8e8c7f",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -1753,7 +1754,7 @@
    "sarik": "sarik_bezi",
    "kulah": "kece_kirmizi"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "9cbce033f5145240f4ffbd6e190a8464445f1f3e851f15f393893cf1e55ee8dc",
   "olcum": {
    "ucgen": 1120,
@@ -1788,7 +1789,7 @@
  },
  "montefortino_sorguclu": {
   "id": "montefortino_sorguclu",
-  "anahtar": "6abd498b0e9fbbe4",
+  "anahtar": "186d043ba473c121",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -1804,7 +1805,7 @@
    "tuy": "kece_kirmizi",
    "sorguc": true
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "3745e01384328754e546da766e3c434e2c7cda681ba86cdedf2c0185052cdf1c",
   "olcum": {
    "ucgen": 916,
@@ -1839,7 +1840,7 @@
  },
  "kece_kulah": {
   "id": "kece_kulah",
-  "anahtar": "21ae13ef079e0f0e",
+  "anahtar": "b0a736bb5dee18ad",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -1853,7 +1854,7 @@
   "parametreler": {
    "kece": "kece_kahve"
   },
-  "betik_ozeti": "7d05b6773b7a6dad",
+  "betik_ozeti": "afa81e128955897d",
   "sha256": "44c827e4e419045097a64e8ecaf523a3796cdc4d2926864224131e328559aa70",
   "olcum": {
    "ucgen": 224,
@@ -1881,6 +1882,58 @@
     512
    ],
    "bayt": 9892
+  },
+  "lisans": "kendi-uretim",
+  "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
+  "not": "Dış varlık içermez; kaynak kod ve parametrelerden yeniden üretilebilir."
+ },
+ "kargi": {
+  "id": "kargi",
+  "anahtar": "af3a9c58954ff455",
+  "kategori": "silah",
+  "yuva": "sag_el_dik",
+  "donem": [
+   "akkoyunlu-15yy"
+  ],
+  "tarih": {
+   "guven": "belirsiz",
+   "not": "Uçta küçük flamalı süvari mızrağı. Flamalı mızrak hem Türkmen hem Osmanlı süvarisi için makul; bu kitte ayırt edici olarak yalnızca Akkoyunlu'ya verildi. Rengi ve biçimi temsilî."
+  },
+  "uretici": "kargi",
+  "parametreler": {
+   "sap": "direk",
+   "celik": "celik",
+   "demir": "demir",
+   "flama": "sancak_beyaz"
+  },
+  "betik_ozeti": "afa81e128955897d",
+  "sha256": "2a7cded9857f69a43800babb1d35852fe304f41f26911dcf2fdabbb9121fa07f",
+  "olcum": {
+   "ucgen": 460,
+   "kose": 299,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    0.466,
+    0.04,
+    2.81
+   ],
+   "min": [
+    -0.026,
+    -0.02,
+    -1.09
+   ],
+   "max": [
+    0.44,
+    0.02,
+    1.72
+   ],
+   "malzeme": 4,
+   "doku": [
+    256,
+    512
+   ],
+   "bayt": 46212
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",

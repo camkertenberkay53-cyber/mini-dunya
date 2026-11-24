@@ -122,23 +122,27 @@ def test_taşan_animasyon_yasaklanir_ve_kayitli(mt):
 
 
 def test_kopuk_ve_gomulu_ekipman_yakalanir():
-    """Negatif örnekler: yuvaya bağlanmayan kılıç kayar; 6 cm aşağı itilen (başa oturan) miğfer başa gömülür.
-    Uzun börk gibi içi boş başlıkta aşağı itmek gömülme yaratmaz; bu yüzden başı saran Montefortino kullanılır."""
+    """Negatif örnekler: yuvaya bağlanmayan kılıç kayar; başa uymayan miğfer (7 cm yana kaymış ya da 12 cm aşağı
+    itilmiş) başa gömülür. (6 cm aşağı itilen Montefortino başı hâlâ sarar: gömülme değildir, ölçüldü.)"""
     t = json.loads((takim.TAKIM_CIKTI / "rom_lejyoner_gladius.json").read_text())
     kopuk = copy.deepcopy(t)
     kopuk["ad"] = "test_kopuk"
     for e in kopuk["takilanlar"]:
         if e["kategori"] == "silah":
             e["kopuk"] = True
-    gomulu = copy.deepcopy(t)
-    gomulu["ad"] = "test_gomulu"
-    gomulu["govde_id"] = "test"
-    for e in gomulu["takilanlar"]:
-        if e["kategori"] == "baslik":
-            e["ince_ayar"] = [0, 0, -0.06]
-    r = montaj.test_et(adlar=["__yok__"], hizli=True, ek=[kopuk, gomulu])
+    ekler = [kopuk]
+    for ad, kay in (("test_gomulu_yan", [0.07, 0, 0]), ("test_gomulu_asagi", [0, 0, -0.12])):
+        g = copy.deepcopy(t)
+        g["ad"] = ad
+        g["govde_id"] = "test_" + ad
+        for e in g["takilanlar"]:
+            if e["kategori"] == "baslik":
+                e["ince_ayar"] = kay
+        ekler.append(g)
+    r = montaj.test_et(adlar=["__yok__"], hizli=True, ek=ekler)
     assert not r["test_kopuk"]["gecti"] and any("kayıyor" in h for h in r["test_kopuk"]["hatalar"])
-    assert not r["test_gomulu"]["gecti"] and any("taşıyor" in h for h in r["test_gomulu"]["hatalar"])
+    for ad in ("test_gomulu_yan", "test_gomulu_asagi"):
+        assert not r[ad]["gecti"] and any("taşıyor" in h for h in r[ad]["hatalar"]), (ad, r[ad]["hatalar"])
 
 
 # ---------------------------------------------------------------- siluet ayrışması

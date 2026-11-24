@@ -88,7 +88,19 @@ def _kumas(gen, yuk, mat, ad, kirlangic=False, nx=16, ny=10):
 
 
 def _direk(uz, r, mat, alt=0.0, ad="direk"):
-    return ortak.nesne(ad, ortak.torna([(r, alt + uz), (r, alt)], 10, 1.0), mat)
+    return ortak.nesne(ad, ortak.torna([(r, alt + uz), (r, alt)], 16, 1.0), mat)
+
+
+def _bant(z, r, mat, ad="bant", h=0.05):
+    """Sapa sarılı deri/metal bant (tutuş yeri, halka)."""
+    return ortak.nesne(ad, ortak.torna([(r, z + h / 2), (r * 1.25, z + h / 2 - 0.006), (r * 1.25, z - h / 2 + 0.006), (r, z - h / 2)], 16, 2.0), mat)
+
+
+def _cikinti(r, mat, ad="gobek"):
+    """Kalkan göbeği/perçin başı: -Y'ye bakan küçük kubbe."""
+    o = ortak.nesne(ad, ortak.torna([(0.0, r * 0.7), (r * 0.6, r * 0.55), (r, 0.0)], 16, 2.0), mat)
+    _don(o, Matrix.Rotation(math.radians(90), 4, "X"))
+    return o
 
 
 # ---------------------------------------------------------------- başlıklar
@@ -236,12 +248,18 @@ def celik_kalkan(p):
 
 def pavez(p):
     bm = ortak.kutu(0.56, 0.03, 1.10, (0, -0.03, 0.12))
+    bmesh.ops.subdivide_edges(bm, edges=bm.edges[:], cuts=6, use_grid_fill=True)
     o = ortak.nesne("pavez", bm, M(p["yuz"]))
     for v in o.data.vertices:  # dikey sırt çıkıntısı
         v.co.y -= 0.035 * max(0.0, 1 - abs(v.co.x) / 0.14)
     _duz_uv(o, 1.15, ("x", "z"))
     kenar = ortak.nesne("kenar", ortak.kutu(0.58, 0.02, 0.03, (0, -0.03, 0.67)), M(p["demir"]))
-    return [o, kenar]
+    percin = []
+    for x, z in ((-0.2, 0.55), (0.2, 0.55), (-0.2, -0.3), (0.2, -0.3)):
+        c = _cikinti(0.018, M(p["demir"]), "percin")
+        _tasi(c, (x, -0.05, z))
+        percin.append(c)
+    return [o, kenar] + percin
 
 
 def badem_kalkan(p):
@@ -254,14 +272,19 @@ def badem_kalkan(p):
     sag = kont[2:-1]
     kont += [(-x, z) for x, z in sag[::-1]]
     vs = [bm.verts.new((x, 0, z)) for x, z in kont]
-    bm.faces.new(vs)
+    f = bm.faces.new(vs)
+    bmesh.ops.inset_region(bm, faces=[f], thickness=0.03)       # kenar bandı
+    bmesh.ops.inset_region(bm, faces=[f], thickness=0.08)       # iç halka (eğrilik için)
     bmesh.ops.triangulate(bm, faces=bm.faces)
+    bmesh.ops.subdivide_edges(bm, edges=bm.edges[:], cuts=1, use_grid_fill=True)
     o = ortak.nesne("badem", bm, M(p["yuz"]))
     for v in o.data.vertices:
         v.co.y = -0.06 * (1 - (v.co.x / 0.29) ** 2)
     _duz_uv(o, 0.95, ("x", "z"))
     _kalinlastir(o, 0.015)
-    return [o]
+    gobek = _cikinti(0.06, M(p.get("demir", p["yuz"])))
+    _tasi(gobek, (0, -0.065, 0.02))
+    return [o, gobek]
 
 
 def scutum(p):
@@ -345,15 +368,25 @@ def pilum(p):
     sap = _direk(1.30, 0.014, M(p["sap"]), alt=-0.55)
     sapma = ortak.nesne("baglanti", ortak.torna([(0.02, 0.80), (0.022, 0.75), (0.02, 0.70)], 12, 2.0), M(p["demir"]))
     demir = ortak.nesne("demir", ortak.torna([(0.0, 1.42), (0.012, 1.38), (0.005, 1.36), (0.005, 0.75)], 8, 2.0), M(p["demir"]))
-    return [sap, sapma, demir]
+    return [sap, sapma, demir, _bant(0.05, 0.014, M(p["demir"]), "tutus", 0.10)]
 
 
 def mizrak(p):
     sap = _direk(2.45, 0.016, M(p["sap"]), alt=-1.0)
-    uc = ortak.nesne("uc", ortak.torna([(0.0, 1.72), (0.022, 1.58), (0.026, 1.52), (0.01, 1.47), (0.018, 1.43), (0.018, 1.40)], 6, 2.0), M(p["celik"]))
+    uc = ortak.nesne("uc", ortak.torna([(0.0, 1.72), (0.012, 1.66), (0.022, 1.58), (0.026, 1.52), (0.018, 1.49), (0.01, 1.47),
+                                        (0.018, 1.43), (0.018, 1.40)], 8, 2.0), M(p["celik"]))
     _don(uc, Matrix.Diagonal((1.0, 0.35, 1.0, 1.0)))
     dip = ortak.nesne("dip", ortak.torna([(0.016, -1.0), (0.012, -1.06), (0.0, -1.09)], 8, 2.0), M(p["demir"]))
-    return [sap, uc, dip]
+    return [sap, uc, dip, _bant(0.0, 0.016, M(p["demir"]), "tutus", 0.12), _bant(1.37, 0.016, M(p["demir"]), "halka", 0.03)]
+
+
+def kargi(p):
+    """Uzun süvari mızrağı (kargı), ucun altında küçük çatallı flama. Mızrakla aynı sap ve uç; flama, uzak planda
+    sopadan ayırt edilebilen bir siluet verir."""
+    parcalar = mizrak(p)
+    fl = _kumas(0.42, 0.16, M(p["flama"]), "flama", kirlangic=True, nx=10, ny=6)
+    _tasi(fl, (0.02, 0, 1.40))
+    return parcalar + [fl]
 
 
 def gurz(p):
@@ -394,12 +427,18 @@ def turk_yayi(p):
 
 def arbalet(p):
     kundak = ortak.nesne("kundak", ortak.kutu(0.05, 0.06, 0.78, (0, 0, 0.18)), M(p["sap"]))
-    yay = ortak.nesne("yay", ortak.kutu(0.70, 0.03, 0.025, (0, 0, 0.55)), M(p["celik"]))
+    ybm = ortak.kutu(0.70, 0.03, 0.025, (0, 0, 0.55))
+    bmesh.ops.subdivide_edges(ybm, edges=[e for e in ybm.edges if abs(e.verts[0].co.x - e.verts[1].co.x) > 0.5], cuts=12)
+    yay = ortak.nesne("yay", ybm, M(p["celik"]))
     for v in yay.data.vertices:
         v.co.z -= 0.08 * (v.co.x / 0.35) ** 2
+    kiris = ortak.nesne("kiris", ortak.kutu(0.66, 0.004, 0.004, (0, 0.03, 0.47)), M(p["celik"]))
+    tetik = ortak.nesne("tetik", ortak.kutu(0.012, 0.03, 0.10, (0, 0.05, 0.02)), M(p["celik"]))
+    ceviz = _cikinti(0.02, M(p["celik"]), "ceviz")
+    _tasi(ceviz, (0, 0.035, 0.30))
     uz = ortak.nesne("uzengi", ortak.torna([(0.06, 0.60), (0.065, 0.62)], 16, 1.0), M(p["celik"]))
     _don(uz, Matrix.Translation((0, 0, 0.61)) @ Matrix.Rotation(math.radians(90), 4, "X") @ Matrix.Translation((0, 0, -0.61)))
-    return [kundak, yay, uz]
+    return [kundak, yay, uz, kiris, tetik, ceviz]
 
 
 def hancer(p):
@@ -533,7 +572,7 @@ def sur_kule(p):
 
 URETICILER = {f.__name__: f for f in [yeniceri_borku, osmanli_sarik, sarik_migfer, turkmen_tacli_sarik, kece_kulah, turkmen_kalpak, konik_migfer, sapel_migfer, montefortino,
                                       hasir_kalkan, celik_kalkan, pavez, badem_kalkan, scutum, osmanli_kilic, duz_kilic, gladius, pilum, mizrak,
-                                      gurz, turk_yayi, arbalet, hancer, kese, sadak, sancak, tug, vexillum, aquila, osmanli_cadiri, topak_ev,
+                                      gurz, kargi, turk_yayi, arbalet, hancer, kese, sadak, sancak, tug, vexillum, aquila, osmanli_cadiri, topak_ev,
                                       roma_cadiri, sur_kule]}
 
 

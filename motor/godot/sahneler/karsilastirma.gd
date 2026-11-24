@@ -5,7 +5,8 @@ extends Node3D
 ## Karakterler +Z'ye bakar; burada 180° çevrilip -Z'deki kameraya döndürülür. Kamera ortografik görünümlerde boya göre ölçeklenir.
 
 const D := preload("res://sahneler/donatici.gd")
-const POZ_ANI := 0.35
+var POZ_ANI := 0.35
+var POZ_ADI := "Idle_Loop"   # --poz <animasyon> <saniye>: aynı çekimleri başka bir pozda (örn. yürüyüş adımı) almak için
 var kamera: Camera3D
 var ortam: WorldEnvironment
 var zemin: MeshInstance3D
@@ -14,6 +15,11 @@ var _siyah: StandardMaterial3D
 func _ready() -> void:
 	var a := OS.get_cmdline_user_args()
 	var cikti: String = a[0]
+	var pi := a.find("--poz")
+	if pi >= 0:
+		POZ_ADI = a[pi + 1]
+		POZ_ANI = float(a[pi + 2])
+		a = a.slice(0, pi) + a.slice(pi + 3)
 	DirAccess.make_dir_recursive_absolute(cikti)
 	_isik_kur()
 	if a.size() > 1 and a[1] == "--dizi":
@@ -62,8 +68,8 @@ func _takim(yol: String) -> Dictionary:
 func _poz(kok: Node3D) -> void:
 	kok.rotation.y = PI   # yüzü -Z'deki kameraya
 	var ap := D.animasyon_oynatici(kok)
-	if ap and ap.has_animation("Idle_Loop"):
-		ap.play("Idle_Loop")
+	if ap and ap.has_animation(POZ_ADI):
+		ap.play(POZ_ADI)
 		ap.seek(POZ_ANI, true)
 		ap.pause()
 

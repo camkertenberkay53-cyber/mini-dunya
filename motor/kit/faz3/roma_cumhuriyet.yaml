@@ -22,7 +22,7 @@ karakterler:
     - {ad: rom_yardimci_okcu, govde: erkek, sac: [kisa, sakal], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer],
        takilanlar: {sol_el: kompozit_yay, sirt: sadak}}
     - {ad: rom_yardimci_okcu_migferli, govde: erkek, sac: [kisa, sakal], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer], takilanlar: {bas: montefortino, sol_el: kompozit_yay, sirt: sadak}}
-    - {ad: rom_yardimci_okcu_kilic, govde: erkek, sac: [kisa, sakal], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer], takilanlar: {sol_el: kompozit_yay, sirt: sadak, sag_el: gladius}}
+    - {ad: rom_yardimci_okcu_zirhli, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer], takilanlar: {sol_el: kompozit_yay, sirt: sadak, sag_el: gladius}}
   komutan:
     - {ad: rom_centurio, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer],
        takilanlar: {bas: montefortino_sorguclu, sag_el: gladius, bel_sol: pugio}}

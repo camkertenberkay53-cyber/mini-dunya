@@ -84,13 +84,18 @@ def kabuk(govde, arm, secim: set[int], ofset: float, mat, ad: str, uv_ekseni="z"
     bm.from_mesh(k.data)
     bm.verts.ensure_lookup_table()
     bm.normal_update()
+    kaynak = bm.verts.layers.int.new("kaynak")  # gövdedeki asıl köşe numarası (türetilen katmanlar için)
+    for v in bm.verts:
+        v[kaynak] = v.index
     sil = [v for v in bm.verts if v.index not in secim]
     bmesh.ops.delete(bm, geom=sil, context="VERTS")
     bm.normal_update()
     ic = [v for v in bm.verts if not v.is_boundary]
     kenar = [v for v in bm.verts if v.is_boundary]
+    # Hacmi koruyan Laplace yumuşatması: kas hatlarını siler ama kol ağzı/omuzda kabuğu gövdenin içine katlamaz
     for _ in range(yumusatma):
-        bmesh.ops.smooth_vert(bm, verts=ic, factor=0.5, use_axis_x=True, use_axis_y=True, use_axis_z=True)
+        bmesh.ops.smooth_laplacian_vert(bm, verts=ic, lambda_factor=0.4, lambda_border=0.0,
+                                        use_x=True, use_y=True, use_z=True, preserve_volume=True)
     # yaka/kol ağzı/etek ucu: seçim üçgenleri izlediği için dişli çıkar; kenar halkası kendi içinde düzleştirilir
     for _ in range(8):
         yeni = {}
@@ -119,6 +124,53 @@ def kabuk(govde, arm, secim: set[int], ofset: float, mat, ad: str, uv_ekseni="z"
     for m in k.modifiers:
         if m.type == "ARMATURE":
             m.object = arm
+    return k
+
+
+def turet(alt, secim: set[int], ofset_farki: float, mat, ad: str):
+    """Dış kabuğu (zırh, levha, omuzluk) gövdeden değil, hemen altındaki kabuktan türetir: aynı köşeler, aynı kemik
+    ağırlıkları, normal boyunca ofset_farki kadar dışarıda. İki katman her pozda birlikte deforme olur; kıvrımlarda
+    (koltuk altı) ayrı ayrı türetilen kabukların birbirine girmesi böylece önlenir."""
+    k = alt.copy()
+    k.data = alt.data.copy()
+    k.name = ad
+    k.data.name = ad
+    bpy.context.scene.collection.objects.link(k)
+    bm = bmesh.new()
+    bm.from_mesh(k.data)
+    kaynak = bm.verts.layers.int.get("kaynak")
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if v[kaynak] not in secim], context="VERTS")
+    bm.normal_update()
+    # kenar halkasına (etek ucu, kol ağzı) yakın köşeler 2 cm'ye kadar daha açılır: alttaki katman kenarda dışarı çıkmasın
+    from mathutils.kdtree import KDTree
+    # türetilen kabuğun kenar halkası düzleştirilir (yaka ve kol ağzında dişli görünüm olmasın)
+    for _ in range(8):
+        yeni = {}
+        for v in bm.verts:
+            if not v.is_boundary:
+                continue
+            ks = [e.other_vert(v) for e in v.link_edges if e.is_boundary]
+            if len(ks) == 2:
+                yeni[v] = v.co * 0.5 + (ks[0].co + ks[1].co) * 0.25
+        for v, c in yeni.items():
+            v.co = c
+    bm.normal_update()
+    zort = sum((v.co.z for v in bm.verts), 0.0) / max(1, len(bm.verts))
+    # yalnızca ALT kenar (etek ucu) açılır; yaka ve kol ağzı açılırsa fırfır gibi diken diken görünür
+    kenar = [v.co.copy() for v in bm.verts if v.is_boundary and v.co.z < zort]
+    kd = KDTree(max(1, len(kenar)))
+    for i, c in enumerate(kenar):
+        kd.insert(c, i)
+    kd.balance()
+    for v in bm.verts:
+        d = kd.find(v.co)[2] if kenar else 1.0
+        ek = 0.020 * max(0.0, 1.0 - d / 0.06)
+        v.co += v.normal * (ofset_farki + ek)
+    bm.normal_update()
+    bm.to_mesh(k.data)
+    bm.free()
+    k.data.materials.clear()
+    k.data.materials.append(mat)
     return k
 
 
@@ -207,6 +259,18 @@ def etek(govde, arm, ust_z: float, alt_z: float, acilma: float, ofset: float, ma
     return o
 
 
+def _yon_isareti(bm, govde_agaci) -> float:
+    """Yüz sarımı tutarlı kabuğun normallerinin dışa mı içe mi baktığı: bütün yüzlerin gövdeye göre çoğunluk oyu.
+    Noktasal karar (en yakın gövde noktası) koltuk altı gibi kıvrımlarda karşı uzva düşüp yanılır; oy yanılmaz."""
+    oy = 0
+    for f in bm.faces:
+        c = f.calc_center_median()
+        q = govde_agaci.find_nearest(c)[0]
+        if q is not None:
+            oy += 1 if f.normal.dot(c - q) >= 0 else -1
+    return 1.0 if oy >= 0 else -1.0
+
+
 # İç içe giyim sırası: küçük sayı içte. Her katman, kendinden içteki bütün katmanların en az KATMAN_BOSLUGU dışında kalır.
 KATMAN = {"cizme": 0, "caligae": 0, "salvar": 1, "pantolon": 1, "govde": 2, "etek": 3, "zirh": 4, "lamel": 4,
           "levha": 5, "omuzluk": 5, "zirh_etek": 5, "lamel_etek": 5, "kusak": 6, "kemer": 6}
@@ -231,13 +295,11 @@ def ic_ice_yerlestir(govde, nesneler: list, adlar: list[str]):
         if agaclar:
             for v in o.data.vertices:
                 w = mw @ v.co
-                for a in agaclar:
+                for a, isaret in agaclar:
                     p, n, _f, _d = a.find_nearest(w, 0.06)
                     if p is None:
                         continue
-                    q = govde_agaci.find_nearest(p)[0]
-                    if q is not None and n.dot(p - q) < 0:
-                        n = -n
+                    n = n * isaret
                     sm = (w - p).dot(n)
                     if sm < KATMAN_BOSLUGU:
                         w = w + n * (KATMAN_BOSLUGU - sm)
@@ -246,8 +308,45 @@ def ic_ice_yerlestir(govde, nesneler: list, adlar: list[str]):
         bm = bmesh.new()
         bm.from_mesh(o.data)
         bm.transform(mw)
-        icteki.append((k, BVHTree.FromBMesh(bm)))
+        bm.normal_update()
+        icteki.append((k, (BVHTree.FromBMesh(bm), _yon_isareti(bm, govde_agaci))))
         bm.free()
+    # İkinci yön: dış katmanın normal doğrultusunda örttüğü iç köşeler dış yüzeyin en az KATMAN_BOSLUGU altına çekilir
+    # (köşeler arası yüzeyde iç katman dışa çıkmasın). Dıştan içe sırayla, iki tur.
+    _say = {}
+    for _tur in range(6):
+        agaclar_tum = []
+        for i in range(len(nesneler)):
+            bm = bmesh.new()
+            bm.from_mesh(nesneler[i].data)
+            bm.transform(nesneler[i].matrix_world)
+            bm.normal_update()
+            agaclar_tum.append((KATMAN.get(adlar[i], 3), (BVHTree.FromBMesh(bm), _yon_isareti(bm, govde_agaci))))
+            bm.free()
+        for i in sorted(range(len(nesneler)), key=lambda i: -KATMAN.get(adlar[i], 3)):
+            o, k = nesneler[i], KATMAN.get(adlar[i], 3)
+            dislar = [a for kk, a in agaclar_tum if kk > k]
+            if not dislar:
+                continue
+            mw, mwi = o.matrix_world.copy(), o.matrix_world.inverted()
+            for v in o.data.vertices:
+                w = mw @ v.co
+                for a, isaret in dislar:
+                    p, n, _f, _d = a.find_nearest(w, 0.06)
+                    if p is None:
+                        continue
+                    dv = w - p
+                    if dv.length > 0.002 and abs(dv.dot(n)) < 0.8 * dv.length:
+                        continue  # dış katmanın kenarının yanında: örtülü değil
+                    n = n * isaret
+                    sm = dv.dot(n)
+                    if sm > -KATMAN_BOSLUGU:
+                        w = w - n * (sm + KATMAN_BOSLUGU)
+                        _say[adlar[i]] = _say.get(adlar[i], 0) + 1
+                v.co = mwi @ w
+            o.data.update()
+    if os.environ.get("GIYSI_HATA_AYIKLA"):
+        print("ICE_CEKILEN", _say)
 
 
 def agirlik_aktar(govde, o, karisim=None):
@@ -300,6 +399,72 @@ def agirlik_aktar(govde, o, karisim=None):
             gruplar[g].add([vi], x, "REPLACE")
 
 
+GIZLI_KENAR_PAYI = 0.02   # dış katmanın kenarına (yaka, etek ucu, yırtmaç) bu kadar yakın iç yüzler silinmez
+GIZLI_DERINLIK = 0.06     # iç yüz dış katmanın en çok bu kadar altında olmalı (uzaktaki ilgisiz yüzler değil)
+
+
+def gizli_yuzleri_sil(govde, nesneler: list, adlar: list[str]) -> dict:
+    """Dış katmanın tamamen örttüğü iç katman yüzlerini siler (oyunlarda standart "hidden surface removal").
+    Bir yüz, bütün köşeleri bir dış katmanın İÇİNDE, o katmana GIZLI_DERINLIK'ten yakın ve dış katmanın kenarından
+    GIZLI_KENAR_PAYI'ndan uzaksa silinir. Görünmeyen yüz animasyonda dışarı taşamaz; kenara yakın yüzler kaldığı için
+    yakadan, etek ucundan ve yırtmaçtan bakınca delik oluşmaz. Silinen yüz sayısı döner."""
+    from mathutils.bvhtree import BVHTree
+    from mathutils.kdtree import KDTree
+    tam = bmesh.new()
+    tam.from_mesh(govde.data)
+    tam.transform(govde.matrix_world)
+    govde_agaci = BVHTree.FromBMesh(tam)
+    tam.free()
+    dislar = []
+    for o, ad in zip(nesneler, adlar):
+        bm = bmesh.new()
+        bm.from_mesh(o.data)
+        bm.transform(o.matrix_world)
+        bm.normal_update()
+        kenar = [v.co.copy() for v in bm.verts if v.is_boundary]
+        isaret = _yon_isareti(bm, govde_agaci)
+        kd = KDTree(max(1, len(kenar)))
+        for i, c in enumerate(kenar):
+            kd.insert(c, i)
+        kd.balance()
+        dislar.append((KATMAN.get(ad, 3), BVHTree.FromBMesh(bm), kd, bool(kenar), isaret))
+        bm.free()
+    silinen = {}
+    for i, (o, ad) in enumerate(zip(nesneler, adlar)):
+        k_i = KATMAN.get(ad, 3)
+        ust = [d for j, d in enumerate(dislar) if j != i and d[0] > k_i]
+        if not ust:
+            continue
+        mw = o.matrix_world
+        bm = bmesh.new()
+        bm.from_mesh(o.data)
+        bm.verts.ensure_lookup_table()
+        ortulu = []
+        for v in bm.verts:
+            w = mw @ v.co
+            ok = False
+            for _k, agac, kd, var, isaret in ust:
+                p, n, _f, d = agac.find_nearest(w, GIZLI_DERINLIK)
+                if p is None:
+                    continue
+                n = n * isaret
+                if (w - p).dot(n) > 0:
+                    continue  # dış katmanın dışında
+                if var and kd.find(p)[2] < GIZLI_KENAR_PAYI:
+                    continue  # kenara yakın: görünebilir
+                ok = True
+                break
+            ortulu.append(ok)
+        sil = [f for f in bm.faces if all(ortulu[v.index] for v in f.verts)]
+        if sil:
+            bmesh.ops.delete(bm, geom=sil, context="FACES_ONLY")
+            bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
+            bm.to_mesh(o.data)
+        bm.free()
+        silinen[ad] = len(sil)
+    return silinen
+
+
 def govdeyi_kirp(govde, silinecek: set[int]):
     bm = bmesh.new()
     bm.from_mesh(govde.data)
@@ -312,6 +477,7 @@ def govdeyi_kirp(govde, silinecek: set[int]):
 def giydir(govde, arm, giysiler: list[dict], malzeme_al) -> list:
     """giysiler: [{tur: kabuk|etek, ...}] -> eklenen nesneler. Kabukların altındaki gövde silinir."""
     eklenen, gizli = [], set()
+    kabuklar = []  # (katman, seçim, nesne, ofset)
     for i, g in enumerate(giysiler):
         mat = malzeme_al(g["malzeme"])
         ad = f"giysi_{i}_{g['ad']}"
@@ -319,7 +485,19 @@ def giydir(govde, arm, giysiler: list[dict], malzeme_al) -> list:
             sec = bolge_sec(govde, g["bolgeler"], g.get("zmin", -9), g.get("zmax", 9), g.get("xmax"), g.get("ymin"))
             if not sec:
                 raise RuntimeError(f"boş giysi bölgesi: {g['ad']}")
-            eklenen.append(kabuk(govde, arm, sec, g["ofset"], mat, ad, g.get("uv", "z"), yumusatma=g.get("yumusatma", 10)))
+            k_g = KATMAN.get(g["ad"], 3)
+            # Bölgesinin en az %90'ını kapsayan, daha içteki bir kabuk varsa ondan türet
+            taban = None
+            for kk, ss, oo, of in sorted(kabuklar, key=lambda t: -t[0]):
+                if kk < k_g and len(sec & ss) >= 0.9 * len(sec) and g["ofset"] > of:
+                    taban = (oo, ss, of)
+                    break
+            if taban:
+                yeni = turet(taban[0], sec & taban[1], g["ofset"] - taban[2], mat, ad)
+            else:
+                yeni = kabuk(govde, arm, sec, g["ofset"], mat, ad, g.get("uv", "z"), yumusatma=g.get("yumusatma", 10))
+            eklenen.append(yeni)
+            kabuklar.append((k_g, sec, yeni, g["ofset"]))
             if g.get("gizle", True):
                 gizli |= sec
         elif g["tur"] == "etek":
@@ -330,9 +508,29 @@ def giydir(govde, arm, giysiler: list[dict], malzeme_al) -> list:
     ic_ice_yerlestir(govde, eklenen, [g["ad"] for g in giysiler])
     for o, g in zip(eklenen, giysiler):
         if g["tur"] == "kabuk":
-            agirlik_aktar(govde, o)
+            pass  # gövdeden kopyalanan özgün ağırlık: aynı kaynak köşe her katmanda aynı ağırlık
         else:  # etek: 0,95 m üstü tamamen gövde, 0,80 m altı tamamen bacak izleyen ağırlık
             agirlik_aktar(govde, o, karisim=lambda z: max(0.0, min(1.0, (z - 0.80) / 0.15)))
+    gizli_yuzleri_sil(govde, eklenen, [g["ad"] for g in giysiler])
+    if os.environ.get("GIYSI_HATA_AYIKLA"):
+        from mathutils.bvhtree import BVHTree
+        ad2 = {g["ad"]: o for o, g in zip(eklenen, giysiler)}
+        if "zirh" in ad2 and "govde" in ad2:
+            def _bm(o):
+                b = bmesh.new(); b.from_mesh(o.data); b.transform(o.matrix_world); b.normal_update(); return b
+            zb, gb = _bm(ad2["zirh"]), _bm(ad2["govde"])
+            t = BVHTree.FromBMesh(zb)
+            tas = 0
+            for v in gb.verts:
+                p_, n_, f_, d_ = t.find_nearest(v.co, 0.03)
+                if p_ is None:
+                    continue
+                dv = v.co - p_
+                if dv.length > 0.002 and abs(dv.dot(n_)) < 0.8 * dv.length:
+                    continue
+                if dv.dot(n_) > 0.004:
+                    tas += 1
+            print("DERLEMEDE_TASAN", tas, "zirh mw", [round(x, 2) for x in ad2["zirh"].matrix_world.translation], ad2["zirh"].matrix_world.to_euler())
     govdeyi_kirp(govde, gizli)
     return eklenen
 
