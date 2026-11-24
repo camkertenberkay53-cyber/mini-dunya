@@ -1,0 +1,56 @@
+{
+ "kosu_id": "R1_paralel_S2",
+ "aciklama": "Aynı çekim (S2) 1, 2 ve 4 eşzamanlı işte",
+ "isler": [
+  {
+   "ad": "g1_1",
+   "grup": "1",
+   "cekimler": [
+    "S2"
+   ]
+  },
+  {
+   "ad": "g2_1",
+   "grup": "2",
+   "cekimler": [
+    "S2"
+   ]
+  },
+  {
+   "ad": "g2_2",
+   "grup": "2",
+   "cekimler": [
+    "S2"
+   ]
+  },
+  {
+   "ad": "g4_1",
+   "grup": "4",
+   "cekimler": [
+    "S2"
+   ]
+  },
+  {
+   "ad": "g4_2",
+   "grup": "4",
+   "cekimler": [
+    "S2"
+   ]
+  },
+  {
+   "ad": "g4_3",
+   "grup": "4",
+   "cekimler": [
+    "S2"
+   ]
+  },
+  {
+   "ad": "g4_4",
+   "grup": "4",
+   "cekimler": [
+    "S2"
+   ]
+  }
+ ],
+ "birlestir": false
+}

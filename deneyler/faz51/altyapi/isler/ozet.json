@@ -1,0 +1,79 @@
+[
+ {
+  "cekim": "S1",
+  "kare": 72,
+  "karakter": 1,
+  "karma": "9cf4646c543ddcf4",
+  "yerel_render_sn": 67.3
+ },
+ {
+  "cekim": "S2",
+  "kare": 147,
+  "karakter": 10,
+  "karma": "6e779f62aa46064c",
+  "yerel_render_sn": 327.7
+ },
+ {
+  "cekim": "S3",
+  "kare": 103,
+  "karakter": 12,
+  "karma": "166fc137c525e5fb",
+  "yerel_render_sn": 163.3
+ },
+ {
+  "cekim": "S4a",
+  "kare": 81,
+  "karakter": 13,
+  "karma": "0e8f4169bbf8d1d7",
+  "yerel_render_sn": 119.6
+ },
+ {
+  "cekim": "S4b",
+  "kare": 81,
+  "karakter": 13,
+  "karma": "adcc0eb4cb59d271",
+  "yerel_render_sn": 139.7
+ },
+ {
+  "cekim": "S5",
+  "kare": 107,
+  "karakter": 4,
+  "karma": "8071de294a16c140",
+  "yerel_render_sn": 138.7
+ },
+ {
+  "cekim": "S6",
+  "kare": 66,
+  "karakter": 1,
+  "karma": "a926d30515e02f6f",
+  "yerel_render_sn": 83.9
+ },
+ {
+  "cekim": "S7a",
+  "kare": 79,
+  "karakter": 5,
+  "karma": "17024dc242a6bbf9",
+  "yerel_render_sn": 114.6
+ },
+ {
+  "cekim": "S7b",
+  "kare": 79,
+  "karakter": 5,
+  "karma": "881f4f0b6aa202f5",
+  "yerel_render_sn": 129.6
+ },
+ {
+  "cekim": "S8",
+  "kare": 104,
+  "karakter": 2,
+  "karma": "20e2163a2627a5b1",
+  "yerel_render_sn": 133.7
+ },
+ {
+  "cekim": "S9",
+  "kare": 133,
+  "karakter": 12,
+  "karma": "043a38c211e1a398",
+  "yerel_render_sn": 254.8
+ }
+]
