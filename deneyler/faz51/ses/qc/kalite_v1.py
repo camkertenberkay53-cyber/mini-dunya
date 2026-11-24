@@ -98,12 +98,8 @@ def konusma_etkinligi(x: np.ndarray, sr: int, pencere_sn: float = 0.03) -> tuple
 def denetle(x: np.ndarray, sr: int, konusma: str, ozel: list[dict], asr: dict, hiz_harf_sn: float | None) -> dict:
     ref = normal(konusma)
     # ASR kelimelerini normalleştirilmiş belirteçlere yay (her belirteç kendi zaman aralığını taşır)
-    hip, zaman, olas = [], [], []
-    for w in asr["kelimeler"]:
-        for tok in normal(w["kelime"]):
-            hip.append(tok)
-            zaman.append((w["bas"], w["son"]))
-            olas.append(w["olasilik"])
+    from asr_birim import hip_olustur
+    hip, zaman, olas = hip_olustur(asr["kelimeler"], normal, _SAYI_RE, _SAYI_EKLI_RE)
     ops = hizala(ref, hip)
     hata = sum(o[0] != "esit" for o in ops)
     wer = hata / max(1, len(ref))

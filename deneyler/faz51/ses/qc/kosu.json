@@ -1,1 +1,1 @@
-{"kosu_id":"QC2","aciklama":"QC kural sürümü v2 (QC1 yanlış alarm analizinden sonra); güvenilirlik testi v1 ve v2 kurallarını aynı veriyle karşılaştırır"}
+{"kosu_id":"QC2","aciklama":"QC kural sürümü v2 + ASR belirteç düzeltmesi (kesme eki ve sayı birleştirme; v1 ve v2 ortak). İlk QC2 denemesi bu hata nedeniyle iptal edildi."}

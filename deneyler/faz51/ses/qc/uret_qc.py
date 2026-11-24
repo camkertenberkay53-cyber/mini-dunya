@@ -51,7 +51,7 @@ class ASR:
         for s in segs:
             metin.append(s.text.strip())
             for w in s.words or []:
-                kel.append({"kelime": w.word.strip(), "bas": w.start, "son": w.end, "olasilik": w.probability})
+                kel.append({"kelime": w.word.strip(), "ham": w.word, "bas": w.start, "son": w.end, "olasilik": w.probability})
         return {"kelimeler": kel, "metin": " ".join(metin)}
 
 
