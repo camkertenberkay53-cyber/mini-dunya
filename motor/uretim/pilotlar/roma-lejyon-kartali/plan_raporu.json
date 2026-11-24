@@ -1,0 +1,1612 @@
+{
+ "konu": "roma-lejyon-kartali",
+ "hatalar": {
+  "konu": [],
+  "arastirma": [],
+  "senaryo": [],
+  "anlati": [],
+  "sure": [],
+  "plan_denetimi": [],
+  "ortu": [],
+  "cesitlilik": [],
+  "uyum": []
+ },
+ "uyarilar": [],
+ "seslendirme": {
+  "S1": {
+   "sure_sn": 1.738,
+   "harf_sn": 11.5,
+   "motor": "piper",
+   "okunus": "Bir kuş için otuz üç yıl."
+  },
+  "S2": {
+   "sure_sn": 4.55,
+   "harf_sn": 13.6,
+   "motor": "piper",
+   "okunus": "Bu, lejyonun kartalıydı: akvila. Onu taşıyan askere akvilifer denirdi."
+  },
+  "S3": {
+   "sure_sn": 3.071,
+   "harf_sn": 15.0,
+   "motor": "piper",
+   "okunus": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı."
+  },
+  "S4": {
+   "sure_sn": 5.079,
+   "harf_sn": 15.6,
+   "motor": "piper",
+   "okunus": "Milattan önce elli üçte, bugünkü Harran yakınlarında, Krassus'un ordusu Partlara yenildi."
+  },
+  "S5": {
+   "sure_sn": 3.208,
+   "harf_sn": 14.7,
+   "motor": "piper",
+   "okunus": "Kartallar düşmanın eline geçti; Krassus da öldürüldü."
+  },
+  "S6": {
+   "sure_sn": 1.843,
+   "harf_sn": 15.2,
+   "motor": "piper",
+   "okunus": "Roma yıllarca bu utançla yaşadı."
+  },
+  "S7": {
+   "sure_sn": 4.37,
+   "harf_sn": 14.0,
+   "motor": "piper",
+   "okunus": "Otuz üç yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı."
+  },
+  "S8": {
+   "sure_sn": 2.644,
+   "harf_sn": 15.5,
+   "motor": "piper",
+   "okunus": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı."
+  }
+ },
+ "anlati_olcum": {
+  "kanca_sure_sn": 1.738,
+  "kanca_merak_isaretleri": [
+   "rakam"
+  ]
+ },
+ "toplam_sure_sn": 31.3,
+ "cesitlilik": {
+  "cekim_sayisi": 9,
+  "dagilim": {
+   "plan": {
+    "orta": 3,
+    "uzak": 6
+   },
+   "hareket": {
+    "yaklasma": 1,
+    "yanal_kayma": 1,
+    "sabit_suzulme": 1,
+    "yorunge": 2,
+    "sabit": 2,
+    "geri_takip": 1,
+    "yukselme": 1
+   },
+   "yukseklik": {
+    "alcak": 2,
+    "goz": 5,
+    "yuksek": 2
+   },
+   "aci_kovasi": {
+    "onden": 4,
+    "capraz_arka": 1,
+    "capraz": 3,
+    "arka": 1
+   },
+   "tur": {
+    "alcak_yaklasma": 1,
+    "goz_pan": 1,
+    "yuksek_genis": 1,
+    "capraz_yorunge": 2,
+    "arkadan_uzak": 1,
+    "sabit_uzak": 1,
+    "alcak_geri_takip": 1,
+    "yukselme": 1
+   }
+  },
+  "sira": [
+   {
+    "tur": "alcak_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "alcak",
+    "aci_kovasi": "onden",
+    "dizilis": "tek",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "id": "S1",
+    "plan": "orta"
+   },
+   {
+    "tur": "goz_pan",
+    "hareket": "yanal_kayma",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Göz hizasında hattı tarayan yatay kaydırma",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "id": "S2",
+    "plan": "orta"
+   },
+   {
+    "tur": "yuksek_genis",
+    "hareket": "sabit_suzulme",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "capraz_arka",
+    "dizilis": "sira",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Yüksekten genel görünüm (kuş bakışına yakın)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "id": "S3",
+    "plan": "uzak"
+   },
+   {
+    "tur": "capraz_yorunge",
+    "hareket": "yorunge",
+    "yukseklik": "goz",
+    "aci_kovasi": "capraz",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_pilum"
+    ],
+    "id": "S4a",
+    "plan": "uzak"
+   },
+   {
+    "tur": "arkadan_uzak",
+    "hareket": "sabit",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "arka",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Uzaklaşan kolu arkadan izleme (yolculuk",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "id": "S4b",
+    "plan": "uzak"
+   },
+   {
+    "tur": "capraz_yorunge",
+    "hareket": "yorunge",
+    "yukseklik": "goz",
+    "aci_kovasi": "capraz",
+    "dizilis": "dagin",
+    "odak": "rom_lejyoner_gladius",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "id": "S5",
+    "plan": "uzak"
+   },
+   {
+    "tur": "sabit_uzak",
+    "hareket": "sabit",
+    "yukseklik": "goz",
+    "aci_kovasi": "capraz",
+    "dizilis": "tek",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Sabit uzak kadraj (sonuç",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "id": "S6",
+    "plan": "uzak"
+   },
+   {
+    "tur": "alcak_geri_takip",
+    "hareket": "geri_takip",
+    "yukseklik": "alcak",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Gelen kolun önünde",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "id": "S7",
+    "plan": "orta"
+   },
+   {
+    "tur": "yukselme",
+    "hareket": "yukselme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Yerden yükselen vinç hareketi (kapanış",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum"
+    ],
+    "id": "S8",
+    "plan": "uzak"
+   }
+  ],
+  "benzer_gruplar": []
+ },
+ "uyum": [
+  {
+   "cumle": "S1",
+   "metin": "Bir kuş için 33 yıl.",
+   "cekimler": [
+    "S1"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S1 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S1 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S1 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S1 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S1 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S1 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S1 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S2",
+   "metin": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "cekimler": [
+    "S2"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S2 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S2 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "10 görünür"
+    },
+    {
+     "kontrol": "S2 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S2 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "10 görünür"
+    },
+    {
+     "kontrol": "S2 eylem 'yuruyus'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Loop"
+    },
+    {
+     "kontrol": "S2 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S2 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S2 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S3",
+   "metin": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "cekimler": [
+    "S3"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S3 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S3 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S3 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S3 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S3 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S3 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S3 mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S3 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S3 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    },
+    {
+     "kontrol": "S3 çevre 'roma_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    },
+    {
+     "kontrol": "S3 çevre 'roma_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S4",
+   "metin": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "cekimler": [
+    "S4a",
+    "S4b"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "2 çekim"
+    },
+    {
+     "kontrol": "S4a görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S4a ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 53 · Carrhae (bugünkü Harran)"
+    },
+    {
+     "kontrol": "S4a 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "12 görünür"
+    },
+    {
+     "kontrol": "S4a 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S4a 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "12 görünür"
+    },
+    {
+     "kontrol": "S4a eylem 'yuruyus'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Loop"
+    },
+    {
+     "kontrol": "S4a mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S4a arazi",
+     "gecti": true,
+     "ayrinti": "istenen kuru_bozkir, planlanan kuru_bozkir"
+    },
+    {
+     "kontrol": "S4a isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    },
+    {
+     "kontrol": "S4b görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S4b ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 53 · Carrhae (bugünkü Harran)"
+    },
+    {
+     "kontrol": "S4b 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "13 görünür"
+    },
+    {
+     "kontrol": "S4b 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S4b 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "13 görünür"
+    },
+    {
+     "kontrol": "S4b eylem 'yuruyus'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Loop"
+    },
+    {
+     "kontrol": "S4b mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S4b arazi",
+     "gecti": true,
+     "ayrinti": "istenen kuru_bozkir, planlanan kuru_bozkir"
+    },
+    {
+     "kontrol": "S4b isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S5",
+   "metin": "Kartallar düşmanın eline geçti; Crassus da öldürüldü.",
+   "cekimler": [
+    "S5"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S5 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S5 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "4 görünür"
+    },
+    {
+     "kontrol": "S5 eylem 'olum'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Death01"
+    },
+    {
+     "kontrol": "S5 mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S5 arazi",
+     "gecti": true,
+     "ayrinti": "istenen kuru_bozkir, planlanan kuru_bozkir"
+    },
+    {
+     "kontrol": "S5 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S6",
+   "metin": "Roma yıllarca bu utançla yaşadı.",
+   "cekimler": [
+    "S6"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S6 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S6 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S6 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S6 mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S6 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S6 isik",
+     "gecti": true,
+     "ayrinti": "istenen sabah_puslu, planlanan sabah_puslu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S7",
+   "metin": "33 yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı.",
+   "cekimler": [
+    "S7"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S7 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S7 ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 20"
+    },
+    {
+     "kontrol": "S7 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S7 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S7 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S7 eylem 'toren_yuruyusu'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Formal_Loop"
+    },
+    {
+     "kontrol": "S7 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S7 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S7 isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S8",
+   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "cekimler": [
+    "S8"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S8 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S8 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S8 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S8 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S8 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S8 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S8 mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S8 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S8 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    },
+    {
+     "kontrol": "S8 çevre 'roma_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    }
+   ],
+   "gecti": true
+  }
+ ],
+ "kaynak_izi": [
+  {
+   "cumle": "S1",
+   "metin": "Bir kuş için 33 yıl.",
+   "amac": "kanca",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C14",
+     "iddia": "Carrhae (MÖ 53) ile standartların geri alınması (MÖ 20) arasında 33 yıl vardır.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K3",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://www.britannica.com/event/Battle-of-Carrhae"
+      },
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      }
+     ]
+    },
+    {
+     "id": "C9",
+     "iddia": "MÖ 20'de Augustus, Carrhae'de kaybedilen standartları Partlardan müzakereyle geri aldı.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      },
+      {
+       "id": "K5",
+       "baslik": "Res Gestae Divi Augusti 29",
+       "tur": "birincil",
+       "url": "https://lexundria.com/aug_anc/29/cf"
+      },
+      {
+       "id": "K4",
+       "baslik": "Cassius Dio, Roman History 54.8 (E. Cary çevirisi)",
+       "tur": "birincil",
+       "url": "https://lexundria.com/dio/54.8/cy"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "kesin"
+  },
+  {
+   "cumle": "S2",
+   "metin": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "amac": "baglam",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C1",
+     "iddia": "Aquila (kartal) Roma lejyonunun standardıydı; onu taşıyan askere aquilifer ('kartal taşıyıcı') denirdi.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K2",
+       "baslik": "Aquila (Roman)",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Aquila_(Roman)"
+      },
+      {
+       "id": "K8",
+       "baslik": "Roman Legionaries: Standards",
+       "tur": "ikincil",
+       "url": "https://www.roman-britain.co.uk/military/roman-military-standards-signa-et-vexillia"
+      },
+      {
+       "id": "K1",
+       "baslik": "Signa Militaria (W. Smith, A Dictionary of Greek and Roman Antiquities, 1875; Plinius NH 10.16'ya dayanır)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/secondary/SMIGRA*/Signa_Militaria.html"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "kesin"
+  },
+  {
+   "cumle": "S3",
+   "metin": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "amac": "baglam",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C4",
+     "iddia": "Kartalı kaybetmek ağır bir onursuzluk ve utanç sayılırdı; Roma ordusu kaybedilen kartalı geri almak için büyük çaba gösterirdi.",
+     "guven": "makul",
+     "kaynaklar": [
+      {
+       "id": "K2",
+       "baslik": "Aquila (Roman)",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Aquila_(Roman)"
+      },
+      {
+       "id": "K8",
+       "baslik": "Roman Legionaries: Standards",
+       "tur": "ikincil",
+       "url": "https://www.roman-britain.co.uk/military/roman-military-standards-signa-et-vexillia"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "makul"
+  },
+  {
+   "cumle": "S4",
+   "metin": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "amac": "olay",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C5",
+     "iddia": "Carrhae Savaşı MÖ 53'te, bugünkü Harran (Şanlıurfa) yakınında yapıldı.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K3",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://www.britannica.com/event/Battle-of-Carrhae"
+      },
+      {
+       "id": "K10",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Battle_of_Carrhae"
+      },
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      }
+     ]
+    },
+    {
+     "id": "C6",
+     "iddia": "Crassus'un ordusu Partlara ağır biçimde yenildi; Crassus savaştan sonra öldürüldü.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K3",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://www.britannica.com/event/Battle-of-Carrhae"
+      },
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      },
+      {
+       "id": "K10",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Battle_of_Carrhae"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "kesin"
+  },
+  {
+   "cumle": "S5",
+   "metin": "Kartallar düşmanın eline geçti; Crassus da öldürüldü.",
+   "amac": "gerilim",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C7",
+     "iddia": "Carrhae'de Roma lejyonlarının standartları (kartalları) Partların eline geçti.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      },
+      {
+       "id": "K2",
+       "baslik": "Aquila (Roman)",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Aquila_(Roman)"
+      },
+      {
+       "id": "K10",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Battle_of_Carrhae"
+      }
+     ]
+    },
+    {
+     "id": "C6",
+     "iddia": "Crassus'un ordusu Partlara ağır biçimde yenildi; Crassus savaştan sonra öldürüldü.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K3",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://www.britannica.com/event/Battle-of-Carrhae"
+      },
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      },
+      {
+       "id": "K10",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Battle_of_Carrhae"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "kesin"
+  },
+  {
+   "cumle": "S6",
+   "metin": "Roma yıllarca bu utançla yaşadı.",
+   "amac": "gerilim",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C4",
+     "iddia": "Kartalı kaybetmek ağır bir onursuzluk ve utanç sayılırdı; Roma ordusu kaybedilen kartalı geri almak için büyük çaba gösterirdi.",
+     "guven": "makul",
+     "kaynaklar": [
+      {
+       "id": "K2",
+       "baslik": "Aquila (Roman)",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Aquila_(Roman)"
+      },
+      {
+       "id": "K8",
+       "baslik": "Roman Legionaries: Standards",
+       "tur": "ikincil",
+       "url": "https://www.roman-britain.co.uk/military/roman-military-standards-signa-et-vexillia"
+      }
+     ]
+    },
+    {
+     "id": "C14",
+     "iddia": "Carrhae (MÖ 53) ile standartların geri alınması (MÖ 20) arasında 33 yıl vardır.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K3",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://www.britannica.com/event/Battle-of-Carrhae"
+      },
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "makul"
+  },
+  {
+   "cumle": "S7",
+   "metin": "33 yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı.",
+   "amac": "donum",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C14",
+     "iddia": "Carrhae (MÖ 53) ile standartların geri alınması (MÖ 20) arasında 33 yıl vardır.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K3",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://www.britannica.com/event/Battle-of-Carrhae"
+      },
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      }
+     ]
+    },
+    {
+     "id": "C9",
+     "iddia": "MÖ 20'de Augustus, Carrhae'de kaybedilen standartları Partlardan müzakereyle geri aldı.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      },
+      {
+       "id": "K5",
+       "baslik": "Res Gestae Divi Augusti 29",
+       "tur": "birincil",
+       "url": "https://lexundria.com/aug_anc/29/cf"
+      },
+      {
+       "id": "K4",
+       "baslik": "Cassius Dio, Roman History 54.8 (E. Cary çevirisi)",
+       "tur": "birincil",
+       "url": "https://lexundria.com/dio/54.8/cy"
+      }
+     ]
+    },
+    {
+     "id": "C10",
+     "iddia": "Standartların geri alınması için savaş yapılmadı; Dio'ya göre Augustus 'savaşta kaybedileni savaşmadan geri aldığı' için övündü.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K4",
+       "baslik": "Cassius Dio, Roman History 54.8 (E. Cary çevirisi)",
+       "tur": "birincil",
+       "url": "https://lexundria.com/dio/54.8/cy"
+      },
+      {
+       "id": "K7",
+       "baslik": "Arch of Augustus (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/romanforum/archaugustus.html"
+      },
+      {
+       "id": "K6",
+       "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "kesin"
+  },
+  {
+   "cumle": "S8",
+   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "amac": "final",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C12",
+     "iddia": "Augustus standartları bir savaş kazanmış gibi karşıladı: kurbanlar, zafer takı ve 'SIGNIS RECEPTIS' (standartlar geri alındı) yazılı sikkeler.",
+     "guven": "kesin",
+     "kaynaklar": [
+      {
+       "id": "K4",
+       "baslik": "Cassius Dio, Roman History 54.8 (E. Cary çevirisi)",
+       "tur": "birincil",
+       "url": "https://lexundria.com/dio/54.8/cy"
+      },
+      {
+       "id": "K7",
+       "baslik": "Arch of Augustus (Encyclopaedia Romana)",
+       "tur": "ikincil",
+       "url": "https://penelope.uchicago.edu/encyclopaedia_romana/romanforum/archaugustus.html"
+      },
+      {
+       "id": "K9",
+       "baslik": "Augustus ve Partlar: sikkeler (SIGN RECE)",
+       "tur": "ikincil",
+       "url": "https://parthia.com/rome_augustus.htm"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "kesin"
+  }
+ ],
+ "kullanilmayan_kartlar": [
+  "C2",
+  "C3",
+  "C8",
+  "C11",
+  "C13"
+ ],
+ "eksikler": [],
+ "olcum": {
+  "S1": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
+     "ekran_orani": 0.651,
+     "mesafe": "orta"
+    }
+   },
+   "kamera_plani_olculen": "orta"
+  },
+  "S2": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
+     "ekran_orani": 0.806,
+     "mesafe": "orta"
+    },
+    "1": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.434,
+     "mesafe": "orta"
+    },
+    "2": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.502,
+     "mesafe": "orta"
+    },
+    "3": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.484,
+     "mesafe": "orta"
+    },
+    "4": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.374,
+     "mesafe": "orta"
+    },
+    "5": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.391,
+     "mesafe": "orta"
+    },
+    "6": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.38,
+     "mesafe": "orta"
+    },
+    "7": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.328,
+     "mesafe": "orta"
+    },
+    "8": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.32,
+     "mesafe": "orta"
+    },
+    "9": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.313,
+     "mesafe": "orta"
+    }
+   },
+   "kamera_plani_olculen": "orta"
+  },
+  "S3": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
+     "ekran_orani": 0.154,
+     "mesafe": "uzak"
+    },
+    "1": {
+     "takim": "rom_centurio",
+     "gorunur": true,
+     "ekran_orani": 0.146,
+     "mesafe": "uzak"
+    },
+    "2": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.152,
+     "mesafe": "uzak"
+    },
+    "3": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.158,
+     "mesafe": "uzak"
+    },
+    "4": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.165,
+     "mesafe": "uzak"
+    },
+    "5": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.172,
+     "mesafe": "uzak"
+    },
+    "6": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.18,
+     "mesafe": "uzak"
+    },
+    "7": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.189,
+     "mesafe": "uzak"
+    },
+    "8": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.162,
+     "mesafe": "uzak"
+    },
+    "9": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.173,
+     "mesafe": "uzak"
+    },
+    "10": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.181,
+     "mesafe": "uzak"
+    },
+    "11": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.19,
+     "mesafe": "uzak"
+    }
+   },
+   "cevre": {
+    "0:roma_cadiri": {
+     "mesafe": "uzak",
+     "ekran_orani": 0.074
+    },
+    "1:roma_cadiri": {
+     "mesafe": "uzak",
+     "ekran_orani": 0.064
+    }
+   },
+   "kamera_plani_olculen": "uzak"
+  },
+  "S4a": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
+     "ekran_orani": 0.179,
+     "mesafe": "uzak"
+    },
+    "1": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.156,
+     "mesafe": "uzak"
+    },
+    "2": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.163,
+     "mesafe": "uzak"
+    },
+    "3": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.173,
+     "mesafe": "uzak"
+    },
+    "4": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.147,
+     "mesafe": "uzak"
+    },
+    "5": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.155,
+     "mesafe": "uzak"
+    },
+    "6": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.158,
+     "mesafe": "uzak"
+    },
+    "7": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.14,
+     "mesafe": "uzak"
+    },
+    "8": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.142,
+     "mesafe": "uzak"
+    },
+    "9": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.143,
+     "mesafe": "uzak"
+    },
+    "10": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.129,
+     "mesafe": "uzak"
+    },
+    "11": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.13,
+     "mesafe": "uzak"
+    }
+   },
+   "kamera_plani_olculen": "uzak"
+  },
+  "S4b": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
+     "ekran_orani": 0.135,
+     "mesafe": "uzak"
+    },
+    "1": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.149,
+     "mesafe": "uzak"
+    },
+    "2": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.15,
+     "mesafe": "uzak"
+    },
+    "3": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.152,
+     "mesafe": "uzak"
+    },
+    "4": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.162,
+     "mesafe": "uzak"
+    },
+    "5": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.164,
+     "mesafe": "uzak"
+    },
+    "6": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.166,
+     "mesafe": "uzak"
+    },
+    "7": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.179,
+     "mesafe": "uzak"
+    },
+    "8": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.181,
+     "mesafe": "uzak"
+    },
+    "9": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.184,
+     "mesafe": "uzak"
+    },
+    "10": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.199,
+     "mesafe": "uzak"
+    },
+    "11": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.202,
+     "mesafe": "uzak"
+    },
+    "12": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.205,
+     "mesafe": "uzak"
+    }
+   },
+   "kamera_plani_olculen": "uzak"
+  },
+  "S5": {
+   "karakter": {
+    "0": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.178,
+     "mesafe": "uzak"
+    },
+    "1": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.145,
+     "mesafe": "uzak"
+    },
+    "2": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.139,
+     "mesafe": "uzak"
+    },
+    "3": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.126,
+     "mesafe": "uzak"
+    }
+   },
+   "kamera_plani_olculen": "uzak"
+  },
+  "S6": {
+   "karakter": {
+    "0": {
+     "takim": "rom_centurio",
+     "gorunur": true,
+     "ekran_orani": 0.17,
+     "mesafe": "uzak"
+    }
+   },
+   "kamera_plani_olculen": "uzak"
+  },
+  "S7": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
+     "ekran_orani": 0.631,
+     "mesafe": "orta"
+    },
+    "1": {
+     "takim": "rom_centurio",
+     "gorunur": true,
+     "ekran_orani": 0.411,
+     "mesafe": "orta"
+    }
+   },
+   "kamera_plani_olculen": "orta"
+  },
+  "S8": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
+     "ekran_orani": 0.19,
+     "mesafe": "uzak"
+    },
+    "1": {
+     "takim": "rom_centurio",
+     "gorunur": true,
+     "ekran_orani": 0.156,
+     "mesafe": "uzak"
+    },
+    "2": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.161,
+     "mesafe": "uzak"
+    },
+    "3": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.166,
+     "mesafe": "uzak"
+    },
+    "4": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.172,
+     "mesafe": "uzak"
+    },
+    "5": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.178,
+     "mesafe": "uzak"
+    },
+    "6": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.184,
+     "mesafe": "uzak"
+    },
+    "7": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.146,
+     "mesafe": "uzak"
+    },
+    "8": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.15,
+     "mesafe": "uzak"
+    },
+    "9": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.155,
+     "mesafe": "uzak"
+    },
+    "10": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.159,
+     "mesafe": "uzak"
+    },
+    "11": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.164,
+     "mesafe": "uzak"
+    }
+   },
+   "cevre": {
+    "0:roma_cadiri": {
+     "mesafe": "uzak",
+     "ekran_orani": 0.075
+    }
+   },
+   "kamera_plani_olculen": "uzak"
+  }
+ },
+ "planlama_sn": 0.25,
+ "gecti": true
+}

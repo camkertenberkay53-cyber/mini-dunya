@@ -82,3 +82,17 @@ def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
             sinif = "yakin" if en_buyuk > m["sinirlar"]["yakin"] else ("uzak" if en_buyuk < m["sinirlar"]["uzak"] else "orta")
         sonuc[i] = {"takim": c["takim"], "gorunur": gorunur, "ekran_orani": round(en_buyuk, 3), "mesafe": sinif}
     return sonuc
+
+
+def nokta_gorunurlugu(cekim: dict, k: dict, yukseklik: float, en_boy: float, n: int = 9) -> float:
+    """Karakterin ayağının `yukseklik` m üstündeki noktanın (örn. taşıdığı sancağın tepesi) kamera hareketi boyunca
+    kadrajda kaldığı anların oranı (0..1)."""
+    icinde = 0
+    for j in range(n):
+        t = j / (n - 1)
+        kk, h, fov = kamera_ani(cekim["kamera"], t)
+        p = karakter_konumu(k, t * cekim["sure_sn"]) + np.array([0, yukseklik, 0])
+        e = ekran(kk, h, fov, p, en_boy)
+        if e and -1 <= e[0] <= 1 and -1 <= e[1] <= 1:
+            icinde += 1
+    return icinde / n

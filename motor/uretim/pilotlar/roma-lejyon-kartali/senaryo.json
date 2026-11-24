@@ -1,0 +1,255 @@
+{
+ "surum": 1,
+ "konu": "roma-lejyon-kartali",
+ "format": "shorts",
+ "baslik": "Lejyonun Kartalı",
+ "ana_fikir": "Roma, Carrhae'de kaybettiği kartalları 33 yıl sonra savaşmadan geri aldı ve bunu bir zafer gibi kutladı.",
+ "kanca": "S1",
+ "final": "S8",
+ "cumleler": [
+  {
+   "id": "S1",
+   "metin": "Bir kuş için 33 yıl.",
+   "kartlar": [
+    "C14",
+    "C9"
+   ],
+   "amac": "kanca",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "nesne": "aquila",
+      "odak": true
+     }
+    ],
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "aksam_ustu"
+    },
+    "eylem": "bekleme",
+    "aciklama": "Kartal, alçak açıdan gökyüzüne karşı; tek başına kartal taşıyıcı",
+    "kamera": "alcak_yaklasma"
+   }
+  },
+  {
+   "id": "S2",
+   "metin": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "kartlar": [
+    "C1"
+   ],
+   "amac": "baglam",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "nesne": "aquila",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "adet": 9
+     }
+    ],
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "aksam_ustu"
+    },
+    "eylem": "yuruyus",
+    "aciklama": "Kartal taşıyıcı yürüyen kolun önünde"
+   },
+   "okunus": "Bu, lejyonun kartalıydı: akvila. Onu taşıyan askere akvilifer denirdi."
+  },
+  {
+   "id": "S3",
+   "metin": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "kartlar": [
+    "C4"
+   ],
+   "amac": "baglam",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "nesne": "aquila",
+      "odak": true
+     },
+     {
+      "rol": "komutan"
+     },
+     {
+      "rol": "piyade",
+      "adet": 10
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "aksam_ustu",
+     "cevre": [
+      "roma_cadiri",
+      "roma_cadiri"
+     ]
+    },
+    "eylem": "bekleme",
+    "aciklama": "Kampta hat halinde duran lejyon, ortada kartal"
+   }
+  },
+  {
+   "id": "S4",
+   "metin": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "kartlar": [
+    "C5",
+    "C6"
+   ],
+   "amac": "olay",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "nesne": "aquila",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "adet": 12
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "kuru_bozkir",
+     "isik": "oglen_acik"
+    },
+    "eylem": "yuruyus",
+    "metin_katmani": "MÖ 53 · Carrhae (bugünkü Harran)",
+    "aciklama": "Kurak bozkırda ilerleyen kol; düşman gösterilmez (varlık yok)"
+   },
+   "okunus": "Milattan önce elli üçte, bugünkü Harran yakınlarında, Krassus'un ordusu Partlara yenildi."
+  },
+  {
+   "id": "S5",
+   "metin": "Kartallar düşmanın eline geçti; Crassus da öldürüldü.",
+   "kartlar": [
+    "C7",
+    "C6"
+   ],
+   "amac": "gerilim",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "adet": 4
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "kuru_bozkir",
+     "isik": "aksam_ustu"
+    },
+    "eylem": "olum",
+    "aciklama": "Bozkırda düşen askerler; kartal yok (kaybedildi)"
+   },
+   "okunus": "Kartallar düşmanın eline geçti; Krassus da öldürüldü."
+  },
+  {
+   "id": "S6",
+   "metin": "Roma yıllarca bu utançla yaşadı.",
+   "kartlar": [
+    "C4",
+    "C14"
+   ],
+   "amac": "gerilim",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "komutan",
+      "odak": true
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "sabah_puslu"
+    },
+    "eylem": "bekleme",
+    "aciklama": "Puslu sabah, tek başına bekleyen komutan; kartal yok"
+   }
+  },
+  {
+   "id": "S7",
+   "metin": "33 yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı.",
+   "kartlar": [
+    "C14",
+    "C9",
+    "C10"
+   ],
+   "amac": "donum",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "nesne": "aquila",
+      "odak": true
+     },
+     {
+      "rol": "komutan"
+     }
+    ],
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "oglen_acik"
+    },
+    "eylem": "toren_yuruyusu",
+    "metin_katmani": "MÖ 20",
+    "aciklama": "Kartal yeniden lejyonda: tören yürüyüşü. Augustus gösterilmez (varlık yok)"
+   },
+   "okunus": "Otuz üç yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı."
+  },
+  {
+   "id": "S8",
+   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "kartlar": [
+    "C12"
+   ],
+   "amac": "final",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "nesne": "aquila",
+      "odak": true
+     },
+     {
+      "rol": "komutan"
+     },
+     {
+      "rol": "piyade",
+      "adet": 12
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "aksam_ustu",
+     "cevre": [
+      "roma_cadiri"
+     ]
+    },
+    "eylem": "bekleme",
+    "aciklama": "Kapanış: hat halinde lejyon, ortada kartal; vinç yükselir",
+    "kamera": "yukselme"
+   }
+  }
+ ]
+}

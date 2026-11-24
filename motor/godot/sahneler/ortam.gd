@@ -153,7 +153,7 @@ static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Ar
 	sh.code = OT_SHADER
 	var mat := ShaderMaterial.new()
 	mat.shader = sh
-	mat.set_shader_parameter("alt", _v3(a["zemin"]["cimen"]) * 0.6)
+	mat.set_shader_parameter("alt", _v3(a["zemin"]["cimen"]) * 0.85)
 	mat.set_shader_parameter("ust", _v3(a["zemin"]["cimen2"]))
 	q.material = mat
 	var mm := MultiMesh.new()

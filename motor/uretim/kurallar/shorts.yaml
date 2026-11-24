@@ -1,0 +1,20 @@
+# Shorts anlatı yapısı (konudan bağımsız). Uzun video ayrı bir kural dosyası kullanacak.
+amac_sirasi: [kanca, baglam, olay, gerilim, donum, final]   # cümle amaçları bu sırayı bozamaz (aynı amaç ardışık olabilir)
+kanca:
+  en_cok_sure_sn: 2.0          # ÖLÇÜLEN seslendirme süresi; kanca ilk 2 saniyede bitmeli
+  merak_isaretleri:            # kanca bunlardan en az birini içermeli: sayı, soru, çelişki/sıradışılık
+    rakam: true
+    soru: true
+    kelimeler: [ama, bile, yalnızca, sadece, hiç, tek, kimse, neden, nasıl, gizli, kayıp]
+cumle:
+  en_cok: 10
+  en_cok_kelime: 14
+duraklama_sn:                  # seslendirme sonrasında bırakılan boşluk (çekim süresine eklenir)
+  baslangic: 0.15
+  kanca_sonrasi: 0.5
+  cumle_arasi: 0.35
+  final_oncesi: 0.6
+  kapanis: 1.8
+cekim:
+  en_cok_sure_sn: 5.0          # daha uzun cümle iki çekime bölünür (Shorts kurgu temposu)
+  en_az_sure_sn: 1.2

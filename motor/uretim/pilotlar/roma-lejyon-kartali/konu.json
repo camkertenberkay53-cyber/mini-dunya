@@ -1,0 +1,19 @@
+{
+ "surum": 1,
+ "kimlik": "roma-lejyon-kartali",
+ "baslik": "Lejyonun Kartalı",
+ "format": "shorts",
+ "hedef_sure_sn": [
+  30,
+  40
+ ],
+ "donemler": [
+  "roma-cumhuriyet"
+ ],
+ "dil": "tr",
+ "ozet": "Roma lejyonunun kartalı (aquila), MÖ 53'te Carrhae'de (Harran) Partlara kaptırılması ve Augustus'un MÖ 20'de onları savaşmadan geri alması.",
+ "notlar": [
+  "Pilot: üretim sisteminin gerçek kapasitesini ölçmek için.",
+  "Part tarafı için hiçbir varlık yok: düşman gösterilmez."
+ ]
+}

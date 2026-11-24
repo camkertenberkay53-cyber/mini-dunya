@@ -3,53 +3,320 @@
  "title": "cekim_plani",
  "description": "Plan katmanının çıktısı, render katmanının tek girdisi. Godot sahne kurucusu yalnızca bunu okur.",
  "type": "object",
- "required": ["surum", "konu", "donem", "fps", "cozunurluk", "cekimler", "eksikler"],
+ "required": [
+  "surum",
+  "konu",
+  "donem",
+  "fps",
+  "cozunurluk",
+  "cekimler",
+  "eksikler"
+ ],
  "additionalProperties": false,
  "$defs": {
-  "v3": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
-  "kamera_an": {"type": "object", "required": ["konum", "hedef", "fov"], "additionalProperties": false,
-   "properties": {"konum": {"$ref": "#/$defs/v3"}, "hedef": {"$ref": "#/$defs/v3"}, "fov": {"type": "number", "minimum": 10, "maximum": 90}}},
-  "karakter": {"type": "object", "required": ["takim", "konum", "yon_derece", "animasyon"], "additionalProperties": false,
+  "v3": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   },
+   "minItems": 3,
+   "maxItems": 3
+  },
+  "kamera_an": {
+   "type": "object",
+   "required": [
+    "konum",
+    "hedef",
+    "fov"
+   ],
+   "additionalProperties": false,
    "properties": {
-    "takim": {"type": "string"},
-    "konum": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
-    "yon_derece": {"type": "number"},
-    "animasyon": {"type": "string"},
-    "faz_sn": {"type": "number", "minimum": 0},
-    "hiz_m_sn": {"type": "number", "minimum": 0, "maximum": 8},
-    "rol": {"type": "string"}
-   }},
-  "cevre": {"type": "object", "required": ["id", "konum"], "additionalProperties": false,
-   "properties": {"id": {"type": "string"}, "konum": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
-                  "yon_derece": {"type": "number"}, "olcek": {"type": "number", "exclusiveMinimum": 0}, "temsili": {"type": "boolean"}}}
+    "konum": {
+     "$ref": "#/$defs/v3"
+    },
+    "hedef": {
+     "$ref": "#/$defs/v3"
+    },
+    "fov": {
+     "type": "number",
+     "minimum": 10,
+     "maximum": 90
+    }
+   }
+  },
+  "karakter": {
+   "type": "object",
+   "required": [
+    "takim",
+    "konum",
+    "yon_derece",
+    "animasyon"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "takim": {
+     "type": "string"
+    },
+    "konum": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "yon_derece": {
+     "type": "number"
+    },
+    "animasyon": {
+     "type": "string"
+    },
+    "faz_sn": {
+     "type": "number",
+     "minimum": 0
+    },
+    "hiz_m_sn": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 8
+    },
+    "rol": {
+     "type": "string"
+    },
+    "gecikme_sn": {
+     "type": "number",
+     "minimum": 0,
+     "description": "Tek seferlik animasyon bu süre sonra başlar; o ana kadar ilk karede bekler."
+    }
+   }
+  },
+  "cevre": {
+   "type": "object",
+   "required": [
+    "id",
+    "konum"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "konum": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "yon_derece": {
+     "type": "number"
+    },
+    "olcek": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "temsili": {
+     "type": "boolean"
+    }
+   }
+  }
  },
  "properties": {
-  "surum": {"const": 1},
-  "konu": {"type": "string"},
-  "donem": {"type": "string"},
-  "fps": {"type": "integer", "enum": [24, 25, 30]},
-  "cozunurluk": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2},
-  "tohum": {"type": "integer"},
-  "cekimler": {"type": "array", "minItems": 1, "items": {
-   "type": "object", "required": ["id", "cumleler", "sure_sn", "tur"], "additionalProperties": false,
-   "properties": {
-    "id": {"type": "string"},
-    "cumleler": {"type": "array", "items": {"type": "string"}},
-    "sure_sn": {"type": "number", "exclusiveMinimum": 0, "maximum": 60},
-    "tur": {"enum": ["3d", "harita", "bilgi_karti"]},
-    "ortam": {"type": "object", "additionalProperties": false, "required": ["arazi", "isik"],
-     "properties": {"arazi": {"type": "string"}, "isik": {"type": "string"}, "cevre": {"type": "array", "items": {"$ref": "#/$defs/cevre"}}}},
-    "karakterler": {"type": "array", "items": {"$ref": "#/$defs/karakter"}},
-    "kamera": {"type": "object", "required": ["plan", "hareket", "bas", "son"], "additionalProperties": false,
-     "properties": {"plan": {"enum": ["yakin", "orta", "uzak"]}, "hareket": {"type": "string"},
-                    "bas": {"$ref": "#/$defs/kamera_an"}, "son": {"$ref": "#/$defs/kamera_an"},
-                    "yumusatma": {"enum": ["dogrusal", "giris", "cikis", "giris_cikis"]},
-                    "takip": {"type": "string"}}},
-    "metin": {"type": "string"},
-    "notlar": {"type": "array", "items": {"type": "string"}}
-   }}},
-  "eksikler": {"type": "array", "items": {"type": "object", "required": ["tur", "ne", "nerede"], "additionalProperties": false,
-   "properties": {"tur": {"enum": ["karakter", "ekipman", "animasyon", "ortam", "binek", "diger"]}, "ne": {"type": "string"},
-                  "nerede": {"type": "string"}, "cozum": {"type": "string"}}}}
+  "surum": {
+   "const": 1
+  },
+  "konu": {
+   "type": "string"
+  },
+  "donem": {
+   "type": "string"
+  },
+  "fps": {
+   "type": "integer",
+   "enum": [
+    24,
+    25,
+    30
+   ]
+  },
+  "cozunurluk": {
+   "type": "array",
+   "items": {
+    "type": "integer"
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "tohum": {
+   "type": "integer"
+  },
+  "cekimler": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "cumleler",
+     "sure_sn",
+     "tur"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "cumleler": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "sure_sn": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 60
+     },
+     "tur": {
+      "enum": [
+       "3d",
+       "harita",
+       "bilgi_karti"
+      ]
+     },
+     "ortam": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "arazi",
+       "isik"
+      ],
+      "properties": {
+       "arazi": {
+        "type": "string"
+       },
+       "isik": {
+        "type": "string"
+       },
+       "cevre": {
+        "type": "array",
+        "items": {
+         "$ref": "#/$defs/cevre"
+        }
+       }
+      }
+     },
+     "karakterler": {
+      "type": "array",
+      "items": {
+       "$ref": "#/$defs/karakter"
+      }
+     },
+     "kamera": {
+      "type": "object",
+      "required": [
+       "plan",
+       "hareket",
+       "bas",
+       "son"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "plan": {
+        "enum": [
+         "yakin",
+         "orta",
+         "uzak"
+        ]
+       },
+       "hareket": {
+        "type": "string"
+       },
+       "bas": {
+        "$ref": "#/$defs/kamera_an"
+       },
+       "son": {
+        "$ref": "#/$defs/kamera_an"
+       },
+       "yumusatma": {
+        "enum": [
+         "dogrusal",
+         "giris",
+         "cikis",
+         "giris_cikis"
+        ]
+       },
+       "takip": {
+        "type": "string"
+       }
+      }
+     },
+     "metin": {
+      "type": "string"
+     },
+     "notlar": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "amac": {
+      "enum": [
+       "kanca",
+       "baglam",
+       "olay",
+       "gerilim",
+       "donum",
+       "final"
+      ]
+     },
+     "metin_katmani": {
+      "type": "string"
+     },
+     "meta": {
+      "type": "object",
+      "description": "Planlayıcının kaydettiği bilgiler (çekim türü, diziliş, odak); render'ı etkilemez."
+     }
+    }
+   }
+  },
+  "eksikler": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "tur",
+     "ne",
+     "nerede"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "tur": {
+      "enum": [
+       "karakter",
+       "ekipman",
+       "animasyon",
+       "ortam",
+       "binek",
+       "diger"
+      ]
+     },
+     "ne": {
+      "type": "string"
+     },
+     "nerede": {
+      "type": "string"
+     },
+     "cozum": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "ses": {
+   "type": "object",
+   "description": "Seslendirme ölçümü ve zaman çizelgesi (planlayıcı doldurur)."
+  }
  }
 }

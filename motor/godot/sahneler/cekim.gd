@@ -51,8 +51,12 @@ func _ready() -> void:
 		var an := ap.get_animation(anim)
 		an.loop_mode = Animation.LOOP_LINEAR if is_["dongu"].get(anim, true) else Animation.LOOP_NONE
 		ap.play(anim)
-		ap.seek(float(k.get("faz_sn", 0.0)) + t, true)
-		oyuncular.append({"kok": kok, "bas": bas, "ileri": Vector3(sin(yon), 0, cos(yon)), "hiz": float(k.get("hiz_m_sn", 0.0))})
+		var gecikme := float(k.get("gecikme_sn", 0.0))
+		ap.seek(float(k.get("faz_sn", 0.0)) + maxf(0.0, t - gecikme), true)
+		if gecikme > t:
+			ap.pause()   # tek seferlik animasyon gecikme anına kadar ilk karesinde bekler
+		oyuncular.append({"kok": kok, "bas": bas, "ileri": Vector3(sin(yon), 0, cos(yon)), "hiz": float(k.get("hiz_m_sn", 0.0)),
+			"ap": ap, "gecikme": gecikme, "basladi": gecikme <= t})
 	kam = c["kamera"]
 	kamera = Camera3D.new()
 	kamera.near = 0.1
@@ -74,6 +78,10 @@ func _guncelle() -> void:
 	var sure: float = is_["cekim"]["sure_sn"]
 	for o in oyuncular:
 		(o["kok"] as Node3D).position = o["bas"] + o["ileri"] * o["hiz"] * t
+		var ap: AnimationPlayer = o["ap"]
+		if not o["basladi"] and t >= o["gecikme"]:
+			ap.play()
+			o["basladi"] = true
 		D.guncelle(o["kok"])
 	var u := _kolay(clampf(t / sure, 0.0, 1.0), kam.get("yumusatma", "giris_cikis"))
 	var b: Dictionary = kam["bas"]

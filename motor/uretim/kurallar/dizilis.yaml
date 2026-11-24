@@ -1,0 +1,17 @@
+# Dizilişler (konudan bağımsız). Odak karakter (varsa) önde ve ortadadır; diğerleri arkasına/yanına dizilir.
+# Birimler metre; +Z karakterlerin baktığı yön.
+dizilisler:
+  tek:    {aciklama: Tek karakter.}
+  kol:    {aciklama: Yürüyüş kolu (sıra sıra), yan: 3, yan_aralik: 1.1, sira_aralik: 1.5, odak_onde: 2.0}
+  sira:   {aciklama: Yan yana hat, yan_aralik: 1.2, sira_aralik: 1.6, en_cok_yan: 7, odak_onde: 1.6}
+  dagin:  {aciklama: Dağınık küçük grup, yaricap: 3.0, en_az_aralik: 1.2}
+eylem_dizilisi:                # eylem -> adet > 1 iken varsayılan diziliş
+  yuruyus: kol
+  toren_yuruyusu: kol
+  bekleme: sira
+  durma: sira
+  olum: dagin
+  darbe_alma: dagin
+  jest: sira
+  isaret: sira
+faz_yayilimi_sn: 0.18          # aynı animasyondaki karakterlerin adım fazları bu aralıkta dağıtılır (robot görünmesin)
