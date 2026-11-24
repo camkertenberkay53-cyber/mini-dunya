@@ -47,8 +47,9 @@ def planla(klasor: Path, tohum: int = 7) -> dict:
     taslaklar = sahne_bolucu.cekimlere_bol(sen, cizelge)
     donem = konu["donemler"][0]
     cekimler, eksikler, gecmis = [], [], []
-    tercihler = {c["niyet"].get("kamera") for c in sen["cumleler"]} - {None}
     for i, t in enumerate(taslaklar):
+        # yalnızca SONRAKİ cümlelerin tercih ettiği kamera türleri saklı tutulur
+        tercihler = {x["niyet"].get("kamera") for x in taslaklar[i + 1:]} - {None, t["niyet"].get("kamera")}
         c, eks, kayit = planlayici.cekim_kur(t, donem, 1080 / 1920, gecmis, tohum + i, tercihler)
         cekimler.append(c)
         if kayit:

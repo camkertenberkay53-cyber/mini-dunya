@@ -63,7 +63,7 @@ def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
             t = j / (n - 1)
             k, h, fov = kamera_ani(cekim["kamera"], t)
             ayak = karakter_konumu(c, t * cekim["sure_sn"])
-            bas = ayak + np.array([0, boy, 0])
+            bas = ayak + np.array([0, boy * c.get("olcek", 1.0), 0])
             e1, e2 = ekran(k, h, fov, ayak, en_boy), ekran(k, h, fov, bas, en_boy)
             if e1 is None and e2 is None:
                 continue
@@ -75,7 +75,7 @@ def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
             gorunur = True
             z = min(e[2] for e in (e1, e2) if e)
             th = (e1 or e2)[3]
-            oran = boy / (2 * z * th)
+            oran = boy * c.get("olcek", 1.0) / (2 * z * th)
             en_buyuk = max(en_buyuk, oran)
         sinif = None
         if gorunur:

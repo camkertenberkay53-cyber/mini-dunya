@@ -40,6 +40,7 @@ func _ready() -> void:
 		add_child(kok)
 		var yon := deg_to_rad(float(k.get("yon_derece", 0.0)))
 		kok.rotation.y = yon
+		kok.scale = Vector3.ONE * float(k.get("olcek", 1.0))
 		var bas := Vector3(k["konum"][0], 0, k["konum"][1])
 		kok.position = bas
 		var ap := D.animasyon_oynatici(kok)

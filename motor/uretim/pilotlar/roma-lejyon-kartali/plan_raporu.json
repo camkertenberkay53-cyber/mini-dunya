@@ -50,12 +50,18 @@
    "okunus": "Roma yıllarca bu utançla yaşadı."
   },
   "S7": {
-   "sure_sn": 4.37,
-   "harf_sn": 14.0,
+   "sure_sn": 4.909,
+   "harf_sn": 14.1,
    "motor": "piper",
-   "okunus": "Otuz üç yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı."
+   "okunus": "Otuz üç yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı."
   },
   "S8": {
+   "sure_sn": 2.852,
+   "harf_sn": 16.5,
+   "motor": "piper",
+   "okunus": "Bazı kaynaklara göre kartalları Tiberius teslim aldı."
+  },
+  "S9": {
    "sure_sn": 2.644,
    "harf_sn": 15.5,
    "motor": "piper",
@@ -68,41 +74,43 @@
    "rakam"
   ]
  },
- "toplam_sure_sn": 31.3,
+ "toplam_sure_sn": 35.04,
  "cesitlilik": {
-  "cekim_sayisi": 9,
+  "cekim_sayisi": 11,
   "dagilim": {
    "plan": {
-    "orta": 3,
-    "uzak": 6
+    "orta": 7,
+    "uzak": 4
    },
    "hareket": {
-    "yaklasma": 1,
-    "yanal_kayma": 1,
-    "sabit_suzulme": 1,
-    "yorunge": 2,
-    "sabit": 2,
+    "yaklasma": 3,
+    "yanal_kayma": 2,
+    "sabit_suzulme": 2,
+    "yorunge": 1,
+    "sabit": 1,
     "geri_takip": 1,
     "yukselme": 1
    },
    "yukseklik": {
-    "alcak": 2,
+    "alcak": 3,
     "goz": 5,
-    "yuksek": 2
+    "yuksek": 3
    },
    "aci_kovasi": {
-    "onden": 4,
+    "onden": 6,
     "capraz_arka": 1,
-    "capraz": 3,
-    "arka": 1
+    "capraz": 2,
+    "arka": 1,
+    "yan": 1
    },
    "tur": {
-    "alcak_yaklasma": 1,
-    "goz_pan": 1,
+    "alcak_yaklasma": 2,
+    "goz_pan": 2,
     "yuksek_genis": 1,
-    "capraz_yorunge": 2,
+    "capraz_yorunge": 1,
     "arkadan_uzak": 1,
-    "sabit_uzak": 1,
+    "yan_profil": 1,
+    "ust_aci_yaklasma": 1,
     "alcak_geri_takip": 1,
     "yukselme": 1
    }
@@ -160,9 +168,7 @@
     "arazi": "kuru_bozkir",
     "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
     "odak_indeks": 0,
-    "budanan_gorunmeyen": [
-     "rom_lejyoner_pilum"
-    ],
+    "budanan_gorunmeyen": [],
     "id": "S4a",
     "plan": "uzak"
    },
@@ -181,32 +187,73 @@
     "plan": "uzak"
    },
    {
-    "tur": "capraz_yorunge",
-    "hareket": "yorunge",
-    "yukseklik": "goz",
-    "aci_kovasi": "capraz",
+    "tur": "alcak_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "alcak",
+    "aci_kovasi": "onden",
     "dizilis": "dagin",
     "odak": "rom_lejyoner_gladius",
     "arazi": "kuru_bozkir",
-    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
     "odak_indeks": 0,
-    "budanan_gorunmeyen": [],
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum"
+    ],
     "id": "S5",
-    "plan": "uzak"
+    "plan": "orta"
    },
    {
-    "tur": "sabit_uzak",
-    "hareket": "sabit",
+    "tur": "yan_profil",
+    "hareket": "sabit_suzulme",
     "yukseklik": "goz",
-    "aci_kovasi": "capraz",
+    "aci_kovasi": "yan",
     "dizilis": "tek",
     "odak": "rom_centurio",
     "arazi": "ova_cimen",
-    "aciklama": "Sabit uzak kadraj (sonuç",
+    "aciklama": "Yandan sabit profil",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
     "id": "S6",
-    "plan": "uzak"
+    "plan": "orta"
+   },
+   {
+    "tur": "ust_aci_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "capraz",
+    "dizilis": "sira",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Omuz üstü yükseklikten yavaş yaklaşma (gözlem",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius"
+    ],
+    "id": "S7a",
+    "plan": "orta"
+   },
+   {
+    "tur": "goz_pan",
+    "hareket": "yanal_kayma",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Göz hizasında hattı tarayan yatay kaydırma",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius"
+    ],
+    "id": "S7b",
+    "plan": "orta"
    },
    {
     "tur": "alcak_geri_takip",
@@ -219,7 +266,7 @@
     "aciklama": "Gelen kolun önünde",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
-    "id": "S7",
+    "id": "S8",
     "plan": "orta"
    },
    {
@@ -236,7 +283,7 @@
      "rom_lejyoner_pilum",
      "rom_lejyoner_pilum"
     ],
-    "id": "S8",
+    "id": "S9",
     "plan": "uzak"
    }
   ],
@@ -444,7 +491,7 @@
     {
      "kontrol": "S4a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "12 görünür"
+     "ayrinti": "13 görünür"
     },
     {
      "kontrol": "S4a 'aquila' tepesi kadrajda",
@@ -454,7 +501,7 @@
     {
      "kontrol": "S4a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "12 görünür"
+     "ayrinti": "13 görünür"
     },
     {
      "kontrol": "S4a eylem 'yuruyus'",
@@ -552,9 +599,9 @@
      "ayrinti": "odak animasyonu Death01"
     },
     {
-     "kontrol": "S5 mesafe 'uzak'",
+     "kontrol": "S5 mesafe 'orta'",
      "gecti": true,
-     "ayrinti": "ölçülen uzak"
+     "ayrinti": "ölçülen orta"
     },
     {
      "kontrol": "S5 arazi",
@@ -597,9 +644,9 @@
      "ayrinti": "odak animasyonu Idle_Loop"
     },
     {
-     "kontrol": "S6 mesafe 'uzak'",
+     "kontrol": "S6 mesafe 'orta'",
      "gecti": true,
-     "ayrinti": "ölçülen uzak"
+     "ayrinti": "ölçülen orta"
     },
     {
      "kontrol": "S6 arazi",
@@ -616,58 +663,94 @@
   },
   {
    "cumle": "S7",
-   "metin": "33 yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı.",
+   "metin": "33 yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
    "cekimler": [
-    "S7"
+    "S7a",
+    "S7b"
    ],
    "kontroller": [
     {
      "kontrol": "çekim var",
      "gecti": true,
-     "ayrinti": "1 çekim"
+     "ayrinti": "2 çekim"
     },
     {
-     "kontrol": "S7 görsel türü",
+     "kontrol": "S7a görsel türü",
      "gecti": true,
      "ayrinti": "istenen 3d, planlanan 3d"
     },
     {
-     "kontrol": "S7 ekran yazısı",
+     "kontrol": "S7a ekran yazısı",
      "gecti": true,
      "ayrinti": "MÖ 20"
     },
     {
-     "kontrol": "S7 'piyade' görünüyor",
+     "kontrol": "S7a 'komutan' görünüyor",
      "gecti": true,
      "ayrinti": "1 görünür"
     },
     {
-     "kontrol": "S7 'aquila' tepesi kadrajda",
+     "kontrol": "S7a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+     "ayrinti": "4 görünür"
     },
     {
-     "kontrol": "S7 'komutan' görünüyor",
+     "kontrol": "S7a eylem 'bekleme'",
      "gecti": true,
-     "ayrinti": "1 görünür"
+     "ayrinti": "odak animasyonu Idle_Loop"
     },
     {
-     "kontrol": "S7 eylem 'toren_yuruyusu'",
-     "gecti": true,
-     "ayrinti": "odak animasyonu Walk_Formal_Loop"
-    },
-    {
-     "kontrol": "S7 mesafe 'orta'",
+     "kontrol": "S7a mesafe 'orta'",
      "gecti": true,
      "ayrinti": "ölçülen orta"
     },
     {
-     "kontrol": "S7 arazi",
+     "kontrol": "S7a arazi",
      "gecti": true,
      "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
     },
     {
-     "kontrol": "S7 isik",
+     "kontrol": "S7a isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    },
+    {
+     "kontrol": "S7b görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S7b ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 20"
+    },
+    {
+     "kontrol": "S7b 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S7b 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "4 görünür"
+    },
+    {
+     "kontrol": "S7b eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S7b mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S7b arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S7b isik",
      "gecti": true,
      "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
     }
@@ -676,7 +759,7 @@
   },
   {
    "cumle": "S8",
-   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "metin": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
    "cekimler": [
     "S8"
    ],
@@ -694,7 +777,7 @@
     {
      "kontrol": "S8 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "11 görünür"
+     "ayrinti": "1 görünür"
     },
     {
      "kontrol": "S8 'aquila' tepesi kadrajda",
@@ -707,19 +790,14 @@
      "ayrinti": "1 görünür"
     },
     {
-     "kontrol": "S8 'piyade' görünüyor",
+     "kontrol": "S8 eylem 'toren_yuruyusu'",
      "gecti": true,
-     "ayrinti": "11 görünür"
+     "ayrinti": "odak animasyonu Walk_Formal_Loop"
     },
     {
-     "kontrol": "S8 eylem 'bekleme'",
+     "kontrol": "S8 mesafe 'orta'",
      "gecti": true,
-     "ayrinti": "odak animasyonu Idle_Loop"
-    },
-    {
-     "kontrol": "S8 mesafe 'uzak'",
-     "gecti": true,
-     "ayrinti": "ölçülen uzak"
+     "ayrinti": "ölçülen orta"
     },
     {
      "kontrol": "S8 arazi",
@@ -730,9 +808,69 @@
      "kontrol": "S8 isik",
      "gecti": true,
      "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S9",
+   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "cekimler": [
+    "S9"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
     },
     {
-     "kontrol": "S8 çevre 'roma_cadiri'",
+     "kontrol": "S9 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S9 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S9 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S9 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S9 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S9 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S9 mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S9 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S9 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    },
+    {
+     "kontrol": "S9 çevre 'roma_cadiri'",
      "gecti": true,
      "ayrinti": ""
     }
@@ -1023,7 +1161,7 @@
   },
   {
    "cumle": "S7",
-   "metin": "33 yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı.",
+   "metin": "33 yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
    "amac": "donum",
    "olgusal": true,
    "kartlar": [
@@ -1095,12 +1233,71 @@
        "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html"
       }
      ]
+    },
+    {
+     "id": "C11",
+     "iddia": "Anlaşma güce dayanan bir diplomasiydi: aynı yaz Tiberius komutasında bir Roma ordusu Ermenistan'a girdi, Augustus da devir için Suriye'ye gitti.",
+     "guven": "makul",
+     "kaynaklar": [
+      {
+       "id": "K12",
+       "baslik": "The Parthians in Augustan Rome (American Journal of Archaeology 109, 2005)",
+       "tur": "ikincil",
+       "url": "https://ajaonline.org/wp-content/uploads/2013/09/1091_Rose.pdf"
+      },
+      {
+       "id": "K11",
+       "baslik": "Augustus's Parthian honours, the temple of Mars Ultor and the arch in the Forum Romanum (Papers of the British School at Rome, 1998)",
+       "tur": "ikincil",
+       "url": "https://resolve.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/augustuss-parthian-honours-the-temple-of-mars-ultor-and-the-arch-in-the-forum-romanum/AA870C2F21D5D95BA04C36B936E8C515"
+      },
+      {
+       "id": "K10",
+       "baslik": "Battle of Carrhae",
+       "tur": "ansiklopedi",
+       "url": "https://en.wikipedia.org/wiki/Battle_of_Carrhae"
+      }
+     ]
     }
    ],
-   "en_zayif_guven": "kesin"
+   "en_zayif_guven": "makul"
   },
   {
    "cumle": "S8",
+   "metin": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "amac": "donum",
+   "olgusal": true,
+   "kartlar": [
+    {
+     "id": "C15",
+     "iddia": "Suetonius'a göre Carrhae standartlarını Partlardan Tiberius geri aldı; diğer antik yazarlar dönüşü Augustus'a bağlar.",
+     "guven": "tartismali",
+     "kaynaklar": [
+      {
+       "id": "K13",
+       "baslik": "Suetonius, The Life of Tiberius 9 (J. C. Rolfe çevirisi)",
+       "tur": "birincil",
+       "url": "https://lexundria.com/suet_tib/9/r"
+      },
+      {
+       "id": "K12",
+       "baslik": "The Parthians in Augustan Rome (American Journal of Archaeology 109, 2005)",
+       "tur": "ikincil",
+       "url": "https://ajaonline.org/wp-content/uploads/2013/09/1091_Rose.pdf"
+      },
+      {
+       "id": "K14",
+       "baslik": "How did Tiberius become famous?",
+       "tur": "ansiklopedi",
+       "url": "https://www.britannica.com/question/How-did-Tiberius-become-famous"
+      }
+     ]
+    }
+   ],
+   "en_zayif_guven": "tartismali"
+  },
+  {
+   "cumle": "S9",
    "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
    "amac": "final",
    "olgusal": true,
@@ -1138,7 +1335,6 @@
   "C2",
   "C3",
   "C8",
-  "C11",
   "C13"
  ],
  "eksikler": [],
@@ -1165,55 +1361,55 @@
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.434,
+     "ekran_orani": 0.409,
      "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.502,
+     "ekran_orani": 0.453,
      "mesafe": "orta"
     },
     "3": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.484,
+     "ekran_orani": 0.509,
      "mesafe": "orta"
     },
     "4": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.374,
+     "ekran_orani": 0.341,
      "mesafe": "orta"
     },
     "5": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.391,
+     "ekran_orani": 0.418,
      "mesafe": "orta"
     },
     "6": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.38,
+     "ekran_orani": 0.358,
      "mesafe": "orta"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.328,
+     "ekran_orani": 0.321,
      "mesafe": "orta"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.32,
-     "mesafe": "orta"
+     "ekran_orani": 0.298,
+     "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.313,
+     "ekran_orani": 0.325,
      "mesafe": "orta"
     }
    },
@@ -1230,67 +1426,67 @@
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.146,
+     "ekran_orani": 0.149,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.152,
+     "ekran_orani": 0.158,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.158,
+     "ekran_orani": 0.163,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.165,
+     "ekran_orani": 0.168,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.172,
+     "ekran_orani": 0.166,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.18,
+     "ekran_orani": 0.177,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.189,
+     "ekran_orani": 0.197,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.162,
+     "ekran_orani": 0.159,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.173,
+     "ekran_orani": 0.171,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.181,
+     "ekran_orani": 0.178,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.19,
+     "ekran_orani": 0.185,
      "mesafe": "uzak"
     }
    },
@@ -1317,67 +1513,73 @@
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.156,
+     "ekran_orani": 0.159,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.163,
+     "ekran_orani": 0.165,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.173,
+     "ekran_orani": 0.178,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.147,
+     "ekran_orani": 0.152,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.155,
+     "ekran_orani": 0.151,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.158,
+     "ekran_orani": 0.152,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.14,
+     "ekran_orani": 0.144,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.142,
+     "ekran_orani": 0.146,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.143,
+     "ekran_orani": 0.144,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.129,
+     "ekran_orani": 0.126,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
      "ekran_orani": 0.13,
+     "mesafe": "uzak"
+    },
+    "12": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.123,
      "mesafe": "uzak"
     }
    },
@@ -1388,79 +1590,79 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.135,
+     "ekran_orani": 0.128,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.149,
+     "ekran_orani": 0.146,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.15,
+     "ekran_orani": 0.142,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.152,
+     "ekran_orani": 0.146,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.162,
+     "ekran_orani": 0.158,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.164,
+     "ekran_orani": 0.16,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.166,
+     "ekran_orani": 0.149,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.179,
+     "ekran_orani": 0.159,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.181,
+     "ekran_orani": 0.176,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.184,
+     "ekran_orani": 0.165,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.199,
+     "ekran_orani": 0.187,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.202,
+     "ekran_orani": 0.178,
      "mesafe": "uzak"
     },
     "12": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.205,
+     "ekran_orani": 0.198,
      "mesafe": "uzak"
     }
    },
@@ -1471,53 +1673,106 @@
     "0": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.178,
-     "mesafe": "uzak"
+     "ekran_orani": 0.602,
+     "mesafe": "orta"
     },
     "1": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.145,
-     "mesafe": "uzak"
+     "ekran_orani": 0.331,
+     "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.139,
+     "ekran_orani": 0.256,
      "mesafe": "uzak"
     },
     "3": {
-     "takim": "rom_lejyoner_pilum",
+     "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.126,
-     "mesafe": "uzak"
+     "ekran_orani": 0.348,
+     "mesafe": "orta"
     }
    },
-   "kamera_plani_olculen": "uzak"
+   "kamera_plani_olculen": "orta"
   },
   "S6": {
    "karakter": {
     "0": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.17,
-     "mesafe": "uzak"
+     "ekran_orani": 0.553,
+     "mesafe": "orta"
     }
    },
-   "kamera_plani_olculen": "uzak"
+   "kamera_plani_olculen": "orta"
   },
-  "S7": {
+  "S7a": {
    "karakter": {
     "0": {
-     "takim": "rom_aquilifer",
+     "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.631,
+     "ekran_orani": 0.568,
      "mesafe": "orta"
     },
     "1": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.363,
+     "mesafe": "orta"
+    },
+    "2": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.398,
+     "mesafe": "orta"
+    },
+    "3": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.441,
+     "mesafe": "orta"
+    },
+    "4": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.313,
+     "mesafe": "orta"
+    }
+   },
+   "kamera_plani_olculen": "orta"
+  },
+  "S7b": {
+   "karakter": {
+    "0": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.411,
+     "ekran_orani": 0.552,
+     "mesafe": "orta"
+    },
+    "1": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.41,
+     "mesafe": "orta"
+    },
+    "2": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.403,
+     "mesafe": "orta"
+    },
+    "3": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.401,
+     "mesafe": "orta"
+    },
+    "4": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.338,
      "mesafe": "orta"
     }
    },
@@ -1528,73 +1783,90 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
+     "ekran_orani": 0.615,
+     "mesafe": "orta"
+    },
+    "1": {
+     "takim": "rom_centurio",
+     "gorunur": true,
+     "ekran_orani": 0.397,
+     "mesafe": "orta"
+    }
+   },
+   "kamera_plani_olculen": "orta"
+  },
+  "S9": {
+   "karakter": {
+    "0": {
+     "takim": "rom_aquilifer",
+     "gorunur": true,
      "ekran_orani": 0.19,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.156,
+     "ekran_orani": 0.157,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.161,
+     "ekran_orani": 0.166,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.166,
+     "ekran_orani": 0.164,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.172,
+     "ekran_orani": 0.177,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.178,
+     "ekran_orani": 0.172,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.184,
+     "ekran_orani": 0.173,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.146,
+     "ekran_orani": 0.144,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.15,
+     "ekran_orani": 0.153,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.155,
+     "ekran_orani": 0.156,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.159,
+     "ekran_orani": 0.155,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.164,
+     "ekran_orani": 0.166,
      "mesafe": "uzak"
     }
    },
@@ -1607,6 +1879,6 @@
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.25,
+ "planlama_sn": 0.55,
  "gecti": true
 }

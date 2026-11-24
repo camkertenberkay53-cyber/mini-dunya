@@ -31,7 +31,7 @@ static func isik(kok: Node, i: Dictionary) -> void:
 	env.fog_density = i["sis"]["yogunluk"]
 	env.fog_sky_affect = 0.35
 	env.fog_height = 2.0
-	env.fog_height_density = 0.06
+	env.fog_height_density = float(i["sis"].get("yukseklik_yogunlugu", 0.06))
 	env.glow_enabled = true
 	env.glow_intensity = 0.45
 	env.glow_bloom = 0.05
@@ -78,6 +78,7 @@ void fragment(){
   vec3 c = mix(cimen, cimen2, d);
   c = mix(c, kuru, smoothstep(0.55,0.75,fbm(wp.xz*0.08)));
   vec3 t = mix(toprak, toprak2, d) * (0.85 + 0.25*iz);
+  c *= 0.9 + 0.2 * fbm(wp.xz*2.3);   // ince ölçekli renk dalgalanması (düz renk alanları kırılsın)
   ALBEDO = mix(c, t, yol);
   ROUGHNESS = 1.0;
 }
@@ -117,29 +118,33 @@ static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez:
 		mat.roughness = 1.0
 		for i in 7:
 			var s := SphereMesh.new()
-			s.radial_segments = 14
-			s.rings = 8
+			s.radial_segments = 40
+			s.rings = 20
 			var mi := MeshInstance3D.new()
 			mi.mesh = s
 			mi.material_override = mat
 			var p := merkez + ileri * (110.0 + kat * 70.0 + rng.randf_range(0, 25)) + yan * (-150.0 + i * 50.0 + rng.randf_range(-15, 15))
 			mi.position = Vector3(p.x, -8, p.y)
-			mi.scale = Vector3(rng.randf_range(40, 70), rng.randf_range(22, 45) + kat * 12, rng.randf_range(25, 40))
+			mi.scale = Vector3(rng.randf_range(55, 90), rng.randf_range(16, 34) + kat * 10, rng.randf_range(30, 45))
 			mi.rotation.y = yon
 			kok.add_child(mi)
 
 const OT_SHADER := """
 shader_type spatial;
 render_mode cull_disabled, diffuse_burley;
-uniform vec3 alt; uniform vec3 ust;
+uniform vec3 alt; uniform vec3 ust; uniform vec3 kuru;
+varying float renk_payi;
 void vertex(){
+  vec3 m = (MODEL_MATRIX * vec4(0,0,0,1)).xyz;
+  renk_payi = fract(sin(dot(m.xz, vec2(12.9898, 78.233))) * 43758.5453);
   vec3 w = (MODEL_MATRIX * vec4(0,0,0,1)).xyz;
   float tepe = 1.0 - UV.y;
   VERTEX.x += (sin(TIME*1.8 + w.x*0.7 + w.z*0.4)*0.07 + sin(TIME*4.1 + w.z)*0.02) * tepe * tepe;
-  VERTEX.x *= mix(1.0, 0.15, tepe);
+  VERTEX.x *= mix(1.0, 0.35, tepe);
 }
 void fragment(){
-  ALBEDO = mix(alt, ust, 1.0 - UV.y);
+  vec3 u = mix(ust, kuru, smoothstep(0.55, 1.0, renk_payi));
+  ALBEDO = mix(alt, u, 1.0 - UV.y) * (0.85 + 0.3 * renk_payi);
   ROUGHNESS = 1.0;
 }
 """
@@ -147,14 +152,16 @@ void fragment(){
 ## Otlar yalnızca kameranın gördüğü bölgeye (alan = [xmin, xmax, zmin, zmax]) ekilir; yol şeridi boş kalır.
 static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Array) -> void:
 	var q := QuadMesh.new()
-	q.size = Vector2(0.035, 0.36)
-	q.center_offset = Vector3(0, 0.18, 0)
+	var boy: float = a.get("ot_boy", 0.36)
+	q.size = Vector2(a.get("ot_genislik", 0.035), boy)
+	q.center_offset = Vector3(0, boy * 0.5, 0)
 	var sh := Shader.new()
 	sh.code = OT_SHADER
 	var mat := ShaderMaterial.new()
 	mat.shader = sh
 	mat.set_shader_parameter("alt", _v3(a["zemin"]["cimen"]) * 0.85)
 	mat.set_shader_parameter("ust", _v3(a["zemin"]["cimen2"]))
+	mat.set_shader_parameter("kuru", _v3(a["zemin"]["kuru"]))
 	q.material = mat
 	var mm := MultiMesh.new()
 	mm.transform_format = MultiMesh.TRANSFORM_3D

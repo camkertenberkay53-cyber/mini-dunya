@@ -1,0 +1,5 @@
+# Kurgu ses ayarları (konudan bağımsız). Bütün sesler kodla üretilir (telifsiz); müzik dosyası kullanılmaz.
+ruzgar_duzeyi: 0.20          # bütün video boyunca hafif rüzgâr
+davul_amaclari: [olay, gerilim]   # bu amaçlı cümlelerin çekimlerinin altında davul
+davul_duzeyi: 0.30
+konusmada_kisma: 0.6         # konuşma sırasında alt katmanın kısılma oranı

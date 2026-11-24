@@ -87,6 +87,12 @@
      "type": "number",
      "minimum": 0,
      "description": "Tek seferlik animasyon bu süre sonra başlar; o ana kadar ilk karede bekler."
+    },
+    "olcek": {
+     "type": "number",
+     "minimum": 0.9,
+     "maximum": 1.1,
+     "description": "Boy çeşitliliği (tek tip ordu hissini azaltır). Yer değiştirme hızı ve kadraj ölçümü bununla ölçeklenir."
     }
    }
   },

@@ -14,4 +14,9 @@ eylem_dizilisi:                # eylem -> adet > 1 iken varsayılan diziliş
   darbe_alma: dagin
   jest: sira
   isaret: sira
-faz_yayilimi_sn: 0.18          # aynı animasyondaki karakterlerin adım fazları bu aralıkta dağıtılır (robot görünmesin)
+faz_yayilimi_sn: 0.35          # aynı animasyondaki karakterlerin adım fazları bu aralıkta dağıtılır (robot görünmesin)
+cesitlilik:                    # tek tip ordu hissini azaltan küçük, belirlenimci sapmalar (odak karaktere uygulanmaz)
+  olcek: [0.95, 1.05]          # boy
+  konum_sapmasi_m: 0.14        # dizilişte yerinden kayma
+  yon_sapmasi_derece: 6        # yalnızca yerinde duranlarda
+tek_sefer_bitis_payi_sn: 0.3   # tek seferlik animasyon (düşme) çekim bitmeden en az bu kadar önce tamamlanmalı

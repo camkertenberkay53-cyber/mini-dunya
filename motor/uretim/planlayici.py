@@ -48,7 +48,8 @@ def oyuncu_sec(niyet: dict, donem: str) -> tuple[list[dict], list[str]]:
     return secilen, eksik
 
 
-def dizilis_kur(oyuncular: list[dict], eylem: str | None, tohum: int, dizilis: str | None = None) -> tuple[list[dict], str, int]:
+def dizilis_kur(oyuncular: list[dict], eylem: str | None, tohum: int, dizilis: str | None = None,
+                sure: float | None = None) -> tuple[list[dict], str, int]:
     """Konumları ve yönleri atar. Odak (0, odak_onde) konumunda; +Z'ye bakar. Dönüş: (karakterler, diziliş, odak indeksi)."""
     k = veri.kural("dizilis")
     ad = dizilis or (k["eylem_dizilisi"].get(eylem, "kol") if len(oyuncular) > 1 else "tek")
@@ -80,16 +81,34 @@ def dizilis_kur(oyuncular: list[dict], eylem: str | None, tohum: int, dizilis: s
             noktalar.append(p)
             yer.append((o, (float(p[0]), float(p[1])), float(rng.uniform(-40, 40))))
     yayilim = k["faz_yayilimi_sn"]
+    cs = k["cesitlilik"]
     odak_i = next((i for i, (o, _, _) in enumerate(yer) if o["odak"]), 0)
     sonuc = []
     for i, (o, (x, z), yon) in enumerate(yer):
         kural = veri.kural("animasyon")["animasyonlar"][o["animasyon"]]
-        hiz = animasyon_izni.zemin_hizi(o["animasyon"]) if kural["tur"] == "yer_degistiren" else 0.0
+        r = np.random.default_rng(tohum * 1000 + i)
+        olcek = 1.0 if i == odak_i else float(r.uniform(*cs["olcek"]))
+        if i != odak_i and ad != "dagin":
+            x += float(r.uniform(-1, 1)) * cs["konum_sapmasi_m"]
+            z += float(r.uniform(-1, 1)) * cs["konum_sapmasi_m"]
+            if kural["tur"] != "yer_degistiren":
+                yon += float(r.uniform(-1, 1)) * cs["yon_sapmasi_derece"]
+        hiz = animasyon_izni.zemin_hizi(o["animasyon"]) * olcek if kural["tur"] == "yer_degistiren" else 0.0
         faz = 0.0 if kural["tur"] == "tek_sefer" else round((i * ALTIN) % 1.0 * yayilim, 3)
         c = {"takim": o["takim"], "rol": o["rol"], "konum": [round(x, 2), round(z, 2)], "yon_derece": round(yon, 1),
-             "animasyon": o["animasyon"], "faz_sn": faz, "hiz_m_sn": round(hiz, 3)}
-        if kural["tur"] == "tek_sefer" and ad == "dagin":
-            c["gecikme_sn"] = round(0.25 + (i * ALTIN) % 1.0 * 1.2, 2)   # hepsi aynı anda düşmesin
+             "animasyon": o["animasyon"], "faz_sn": faz, "hiz_m_sn": round(hiz, 4)}
+        if olcek != 1.0:
+            c["olcek"] = round(olcek, 3)
+        if kural["tur"] == "tek_sefer" and ad == "dagin" and sure is not None:
+            # hepsi aynı anda düşmesin; ama her düşüş çekim bitmeden tamamlansın
+            uzunluk = veri.animasyon_olcum()[o["animasyon"]]["sure_sn"]
+            bos = max(0.0, sure - k["tek_sefer_bitis_payi_sn"] - uzunluk)
+            pay = (i * ALTIN) % 1.0
+            if bos >= 0.3:
+                c["gecikme_sn"] = round(pay * bos, 2)
+            else:   # çekim düşüşten kısa: düşüş ortasından başlar, yine de çekim içinde biter
+                gerekli = max(0.0, uzunluk - (sure - k["tek_sefer_bitis_payi_sn"]))
+                c["faz_sn"] = round(min(uzunluk * 0.9, gerekli + pay * 0.4), 2)
         sonuc.append(c)
     return sonuc, ad, odak_i
 
@@ -148,6 +167,8 @@ def kamera_kur(tur: str, odak: dict, sure: float, oran: float, tepe: float | Non
     sm = (s0 + s1) / 2
     yon = _yon(odak.get("yon_derece", 0.0) + x["aci_derece"])
     h, hy = x["yukseklik_m"], x["hedef_y_m"]
+    if veri.kural("animasyon")["animasyonlar"].get(odak.get("animasyon"), {}).get("son_poz") == "yerde":
+        hy = min(hy, 0.5)   # çekim sonunda karakterler yerde: bakış yere iner
     if tepe and tepe > boy:
         hy += (tepe - boy) * 0.35   # odak uzun bir nesne (sancak, standart) taşıyorsa bakış noktası biraz yükselir
     yuk = np.array([0, 1.0, 0])
@@ -237,7 +258,7 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     oyuncular, eksik = oyuncu_sec(n, donem)
     if not oyuncular:
         return c, [f"{taslak['id']}: {e}" for e in eksik] or [f"{taslak['id']}: niyette rol yok"], {}
-    karakterler, dizilis, odak_i = dizilis_kur(oyuncular, n.get("eylem"), tohum, n.get("dizilis"))
+    karakterler, dizilis, odak_i = dizilis_kur(oyuncular, n.get("eylem"), tohum, n.get("dizilis"), taslak["sure_sn"])
     o = n.get("ortam") or {}
     c["ortam"] = {"arazi": o.get("arazi", "ova_cimen"), "isik": o.get("isik", "aksam_ustu")}
     c["karakterler"] = karakterler

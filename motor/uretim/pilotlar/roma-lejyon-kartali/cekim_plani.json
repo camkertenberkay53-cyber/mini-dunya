@@ -110,109 +110,118 @@
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      -1.1,
-      0.0
+      -1.11,
+      0.12
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.111,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.8217,
+     "olcek": 1.006
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      0.0,
-      0.0
+      0.06,
+      -0.07
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.042,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.7762,
+     "olcek": 0.95
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      1.1,
-      0.0
+      1.01,
+      0.07
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.154,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.8337,
+     "olcek": 1.02
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      -1.1,
-      -1.5
+      -1.14,
+      -1.45
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.085,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.8016,
+     "olcek": 0.981
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      0.0,
-      -1.5
+      0.05,
+      -1.49
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.016,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.032,
+     "hiz_m_sn": 0.8524,
+     "olcek": 1.043
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      1.1,
-      -1.5
+      0.98,
+      -1.4
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.127,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.7775,
+     "olcek": 0.952
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      -1.1,
+      -1.0,
+      -2.91
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.8004,
+     "olcek": 0.98
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -0.07,
+      -3.07
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.7808,
+     "olcek": 0.956
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      0.98,
       -3.0
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.059,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      0.0,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.17,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      1.1,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.101,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.8372,
+     "olcek": 1.025
     }
    ],
    "kamera": {
@@ -306,133 +315,144 @@
      "takim": "rom_centurio",
      "rol": "komutan",
      "konum": [
-      -3.6,
-      0.0
+      -3.51,
+      -0.09
      ],
-     "yon_derece": 0.0,
+     "yon_derece": 4.4,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.111,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.013
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      -2.4,
-      0.0
+      -2.45,
+      -0.02
      ],
-     "yon_derece": 0.0,
+     "yon_derece": 2.4,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.042,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.043
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      -1.2,
-      0.0
+      -1.28,
+      0.07
      ],
-     "yon_derece": 0.0,
+     "yon_derece": -4.9,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.154,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.034
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      0.0,
-      0.0
+      -0.12,
+      -0.08
      ],
-     "yon_derece": 0.0,
+     "yon_derece": 4.6,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.085,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.02
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      1.2,
-      0.0
+      1.25,
+      0.1
      ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.016,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      2.4,
-      0.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.127,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      3.6,
-      0.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.059,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      -1.8,
-      -1.6
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.17,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      -0.6,
-      -1.6
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.101,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      0.6,
-      -1.6
-     ],
-     "yon_derece": 0.0,
+     "yon_derece": 2.7,
      "animasyon": "Idle_Loop",
      "faz_sn": 0.032,
-     "hiz_m_sn": 0.0
+     "hiz_m_sn": 0.0,
+     "olcek": 0.967
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      2.34,
+      0.03
+     ],
+     "yon_derece": -2.8,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.987
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      1.8,
-      -1.6
+      3.66,
+      -0.13
      ],
-     "yon_derece": 0.0,
+     "yon_derece": -4.9,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.144,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.029
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      -1.79,
+      -1.59
+     ],
+     "yon_derece": 0.1,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.98
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -0.7,
+      -1.66
+     ],
+     "yon_derece": -0.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.994
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      0.61,
+      -1.65
+     ],
+     "yon_derece": 4.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.063,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.982
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      1.69,
+      -1.61
+     ],
+     "yon_derece": 4.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.279,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.981
     }
    ],
    "kamera": {
@@ -510,133 +530,157 @@
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      -1.1,
-      0.0
+      -1.06,
+      -0.05
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.111,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.8345,
+     "olcek": 1.021
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      0.0,
-      0.0
+      -0.07,
+      0.01
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.042,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.828,
+     "olcek": 1.014
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      1.1,
-      0.0
+      1.17,
+      0.14
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.154,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.8324,
+     "olcek": 1.019
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      -1.1,
-      -1.5
+      -1.16,
+      -1.51
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.085,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.8447,
+     "olcek": 1.034
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      0.0,
-      -1.5
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.016,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      1.1,
-      -1.5
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.127,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      -1.1,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.059,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      0.0,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.17,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      1.1,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.101,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      -1.1,
-      -4.5
+      -0.05,
+      -1.37
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.032,
-     "hiz_m_sn": 0.817
+     "hiz_m_sn": 0.7934,
+     "olcek": 0.971
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      1.16,
+      -1.52
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.7876,
+     "olcek": 0.964
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      0.0,
-      -4.5
+      -1.23,
+      -3.03
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.144,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.8434,
+     "olcek": 1.032
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -0.01,
+      -2.96
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.8232,
+     "olcek": 1.008
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      1.12,
+      -2.97
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.8188,
+     "olcek": 1.002
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -1.23,
+      -4.44
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.063,
+     "hiz_m_sn": 0.7864,
+     "olcek": 0.963
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      0.1,
+      -4.55
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.279,
+     "hiz_m_sn": 0.8169,
+     "olcek": 1.0
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      1.02,
+      -4.4
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.146,
+     "hiz_m_sn": 0.7836,
+     "olcek": 0.959
     }
    ],
    "kamera": {
@@ -680,9 +724,7 @@
     "arazi": "kuru_bozkir",
     "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
     "odak_indeks": 0,
-    "budanan_gorunmeyen": [
-     "rom_lejyoner_pilum"
-    ]
+    "budanan_gorunmeyen": []
    }
   },
   {
@@ -716,145 +758,157 @@
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      -1.1,
-      0.0
+      -1.11,
+      0.08
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.111,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.8513,
+     "olcek": 1.042
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      0.0,
-      0.0
+      -0.1,
+      0.03
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.042,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.8215,
+     "olcek": 1.006
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      1.1,
-      0.0
+      1.01,
+      0.11
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.154,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.8389,
+     "olcek": 1.027
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      -1.1,
-      -1.5
+      -1.2,
+      -1.38
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.085,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.8519,
+     "olcek": 1.043
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      0.0,
-      -1.5
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.016,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      1.1,
-      -1.5
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.127,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      -1.1,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.059,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      0.0,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.17,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      1.1,
-      -3.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.101,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      -1.1,
-      -4.5
+      -0.09,
+      -1.55
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.032,
-     "hiz_m_sn": 0.817
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      0.0,
-      -4.5
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Walk_Loop",
-     "faz_sn": 0.144,
-     "hiz_m_sn": 0.817
+     "hiz_m_sn": 0.8435,
+     "olcek": 1.032
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      1.1,
+      1.15,
+      -1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.7763,
+     "olcek": 0.95
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      -1.11,
+      -3.04
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.7772,
+     "olcek": 0.951
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -0.07,
+      -2.95
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.8542,
+     "olcek": 1.046
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      0.97,
+      -2.96
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.792,
+     "olcek": 0.969
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -1.19,
       -4.5
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
-     "faz_sn": 0.075,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.063,
+     "hiz_m_sn": 0.8302,
+     "olcek": 1.016
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      0.06,
+      -4.49
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.279,
+     "hiz_m_sn": 0.7781,
+     "olcek": 0.952
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      1.04,
+      -4.59
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.146,
+     "hiz_m_sn": 0.8486,
+     "olcek": 1.039
     }
    ],
    "kamera": {
@@ -862,9 +916,9 @@
     "hareket": "sabit",
     "bas": {
      "konum": [
-      3.549,
+      3.727,
       2.4,
-      -17.02
+      -18.03
      ],
      "hedef": [
       0.0,
@@ -875,9 +929,9 @@
     },
     "son": {
      "konum": [
-      3.549,
+      3.727,
       2.4,
-      -17.02
+      -18.03
      ],
      "hedef": [
       0.0,
@@ -925,8 +979,7 @@
      "yon_derece": -24.9,
      "animasyon": "Death01",
      "faz_sn": 0.0,
-     "hiz_m_sn": 0.0,
-     "gecikme_sn": 0.25
+     "hiz_m_sn": 0.0
     },
     {
      "takim": "rom_lejyoner_pilum",
@@ -937,9 +990,9 @@
      ],
      "yon_derece": -21.6,
      "animasyon": "Death01",
-     "faz_sn": 0.0,
+     "faz_sn": 0.25,
      "hiz_m_sn": 0.0,
-     "gecikme_sn": 0.99
+     "olcek": 0.986
     },
     {
      "takim": "rom_lejyoner_gladius",
@@ -950,49 +1003,49 @@
      ],
      "yon_derece": 31.7,
      "animasyon": "Death01",
-     "faz_sn": 0.0,
+     "faz_sn": 0.09,
      "hiz_m_sn": 0.0,
-     "gecikme_sn": 0.53
+     "olcek": 0.951
     },
     {
-     "takim": "rom_lejyoner_pilum",
+     "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      2.15,
-      -2.98
+      -0.5,
+      -0.28
      ],
-     "yon_derece": 3.3,
+     "yon_derece": -2.5,
      "animasyon": "Death01",
-     "faz_sn": 0.0,
+     "faz_sn": 0.19,
      "hiz_m_sn": 0.0,
-     "gecikme_sn": 1.27
+     "olcek": 0.99
     }
    ],
    "kamera": {
-    "plan": "uzak",
-    "hareket": "yorunge",
+    "plan": "orta",
+    "hareket": "yaklasma",
     "bas": {
      "konum": [
-      -0.133,
-      1.4,
-      17.994
+      -2.44,
+      0.6,
+      8.064
      ],
      "hedef": [
       -1.5,
-      1.3,
+      0.5,
       2.68
      ],
      "fov": 38.0
     },
     "son": {
      "konum": [
-      8.404,
-      1.4,
-      14.441
+      -2.252,
+      0.6,
+      6.987
      ],
      "hedef": [
       -1.5,
-      1.3,
+      0.5,
       2.68
      ],
      "fov": 38.0
@@ -1000,16 +1053,19 @@
     "yumusatma": "giris_cikis"
    },
    "meta": {
-    "tur": "capraz_yorunge",
-    "hareket": "yorunge",
-    "yukseklik": "goz",
-    "aci_kovasi": "capraz",
+    "tur": "alcak_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "alcak",
+    "aci_kovasi": "onden",
     "dizilis": "dagin",
     "odak": "rom_lejyoner_gladius",
     "arazi": "kuru_bozkir",
-    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
     "odak_indeks": 0,
-    "budanan_gorunmeyen": []
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum"
+    ]
    }
   },
   {
@@ -1040,30 +1096,30 @@
     }
    ],
    "kamera": {
-    "plan": "uzak",
-    "hareket": "sabit",
+    "plan": "orta",
+    "hareket": "sabit_suzulme",
     "bas": {
      "konum": [
-      13.315,
-      1.3,
-      7.688
+      4.734,
+      1.5,
+      -0.414
      ],
      "hedef": [
       0.0,
-      0.6,
+      1.2,
       0.0
      ],
      "fov": 38.0
     },
     "son": {
      "konum": [
-      13.315,
-      1.3,
-      7.688
+      4.924,
+      1.9,
+      -0.431
      ],
      "hedef": [
       0.0,
-      0.6,
+      1.2,
       0.0
      ],
      "fov": 38.0
@@ -1071,30 +1127,287 @@
     "yumusatma": "giris_cikis"
    },
    "meta": {
-    "tur": "sabit_uzak",
-    "hareket": "sabit",
+    "tur": "yan_profil",
+    "hareket": "sabit_suzulme",
     "yukseklik": "goz",
-    "aci_kovasi": "capraz",
+    "aci_kovasi": "yan",
     "dizilis": "tek",
     "odak": "rom_centurio",
     "arazi": "ova_cimen",
-    "aciklama": "Sabit uzak kadraj (sonuç",
+    "aciklama": "Yandan sabit profil",
     "odak_indeks": 0,
     "budanan_gorunmeyen": []
    }
   },
   {
-   "id": "S7",
+   "id": "S7a",
    "cumleler": [
     "S7"
    ],
-   "sure_sn": 4.97,
+   "sure_sn": 2.63,
    "tur": "3d",
    "amac": "donum",
    "metin_katmani": "MÖ 20",
    "ortam": {
     "arazi": "ova_cimen",
     "isik": "oglen_acik",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "rom_centurio",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -2.4,
+      0.06
+     ],
+     "yon_derece": -2.7,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.964
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      -1.07,
+      -0.11
+     ],
+     "yon_derece": 5.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.973
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      0.11,
+      -0.06
+     ],
+     "yon_derece": 2.1,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.972
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -0.01,
+      -1.48
+     ],
+     "yon_derece": 2.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.957
+    }
+   ],
+   "kamera": {
+    "plan": "orta",
+    "hareket": "yaklasma",
+    "bas": {
+     "konum": [
+      3.135,
+      3.4,
+      6.077
+     ],
+     "hedef": [
+      0.0,
+      1.0,
+      1.6
+     ],
+     "fov": 38.0
+    },
+    "son": {
+     "konum": [
+      2.508,
+      3.4,
+      5.181
+     ],
+     "hedef": [
+      0.0,
+      1.0,
+      1.6
+     ],
+     "fov": 38.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "ust_aci_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "capraz",
+    "dizilis": "sira",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Omuz üstü yükseklikten yavaş yaklaşma (gözlem",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius"
+    ]
+   }
+  },
+  {
+   "id": "S7b",
+   "cumleler": [
+    "S7"
+   ],
+   "sure_sn": 2.63,
+   "tur": "3d",
+   "amac": "donum",
+   "metin_katmani": "MÖ 20",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "oglen_acik",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "rom_centurio",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      -1.09,
+      -0.01
+     ],
+     "yon_derece": -2.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.978
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      0.05,
+      0.14
+     ],
+     "yon_derece": 0.9,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.954
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      1.3,
+      -0.1
+     ],
+     "yon_derece": 5.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.032,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.987
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -0.03,
+      -1.57
+     ],
+     "yon_derece": 3.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.021
+    }
+   ],
+   "kamera": {
+    "plan": "orta",
+    "hareket": "yanal_kayma",
+    "bas": {
+     "konum": [
+      0.855,
+      1.55,
+      6.352
+     ],
+     "hedef": [
+      0.0,
+      1.3,
+      1.6
+     ],
+     "fov": 38.0
+    },
+    "son": {
+     "konum": [
+      -0.855,
+      1.55,
+      6.352
+     ],
+     "hedef": [
+      0.0,
+      1.3,
+      1.6
+     ],
+     "fov": 38.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "goz_pan",
+    "hareket": "yanal_kayma",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Göz hizasında hattı tarayan yatay kaydırma",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius"
+    ]
+   }
+  },
+  {
+   "id": "S8",
+   "cumleler": [
+    "S8"
+   ],
+   "sure_sn": 3.452,
+   "tur": "3d",
+   "amac": "donum",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "aksam_ustu",
     "cevre": []
    },
    "karakterler": [
@@ -1114,13 +1427,14 @@
      "takim": "rom_centurio",
      "rol": "komutan",
      "konum": [
-      -1.1,
-      0.0
+      -0.98,
+      0.05
      ],
      "yon_derece": 0.0,
      "animasyon": "Walk_Formal_Loop",
-     "faz_sn": 0.111,
-     "hiz_m_sn": 0.817
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.7937,
+     "olcek": 0.972
     }
    ],
    "kamera": {
@@ -1143,12 +1457,12 @@
      "konum": [
       1.625,
       0.9,
-      10.526
+      9.286
      ],
      "hedef": [
       0.0,
       1.815,
-      6.06
+      4.82
      ],
      "fov": 38.0
     },
@@ -1168,9 +1482,9 @@
    }
   },
   {
-   "id": "S8",
+   "id": "S9",
    "cumleler": [
-    "S8"
+    "S9"
    ],
    "sure_sn": 4.444,
    "tur": "3d",
@@ -1206,133 +1520,144 @@
      "takim": "rom_centurio",
      "rol": "komutan",
      "konum": [
-      -3.6,
-      0.0
+      -3.48,
+      -0.06
      ],
-     "yon_derece": 0.0,
+     "yon_derece": 5.0,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.111,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.004
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      -2.4,
-      0.0
+      -2.49,
+      -0.02
      ],
-     "yon_derece": 0.0,
+     "yon_derece": 4.2,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.042,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.036
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      -1.2,
-      0.0
+      -1.26,
+      0.05
      ],
-     "yon_derece": 0.0,
+     "yon_derece": 3.7,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.154,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.986
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      0.0,
-      0.0
+      -0.12,
+      0.1
      ],
-     "yon_derece": 0.0,
+     "yon_derece": -0.2,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.085,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.029
     },
     {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      1.2,
-      0.0
+      1.24,
+      0.07
      ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.016,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      2.4,
-      0.0
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.127,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      -3.0,
-      -1.6
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.17,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      -1.8,
-      -1.6
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.101,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_gladius",
-     "rol": "piyade",
-     "konum": [
-      -0.6,
-      -1.6
-     ],
-     "yon_derece": 0.0,
+     "yon_derece": 5.5,
      "animasyon": "Idle_Loop",
      "faz_sn": 0.032,
-     "hiz_m_sn": 0.0
-    },
-    {
-     "takim": "rom_lejyoner_pilum",
-     "rol": "piyade",
-     "konum": [
-      0.6,
-      -1.6
-     ],
-     "yon_derece": 0.0,
-     "animasyon": "Idle_Loop",
-     "faz_sn": 0.144,
-     "hiz_m_sn": 0.0
+     "hiz_m_sn": 0.0,
+     "olcek": 0.96
     },
     {
      "takim": "rom_lejyoner_gladius",
      "rol": "piyade",
      "konum": [
-      1.8,
+      2.44,
+      -0.08
+     ],
+     "yon_derece": 3.7,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.951
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      -3.07,
+      -1.47
+     ],
+     "yon_derece": -5.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.983
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      -1.86,
+      -1.47
+     ],
+     "yon_derece": 2.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.012
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      -0.63,
       -1.6
      ],
-     "yon_derece": 0.0,
+     "yon_derece": 0.4,
      "animasyon": "Idle_Loop",
-     "faz_sn": 0.075,
-     "hiz_m_sn": 0.0
+     "faz_sn": 0.063,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.01
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      0.51,
+      -1.47
+     ],
+     "yon_derece": -3.3,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.279,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.966
+    },
+    {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      1.77,
+      -1.52
+     ],
+     "yon_derece": -5.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.146,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.004
     }
    ],
    "kamera": {
@@ -1432,18 +1757,25 @@
    {
     "cumle": "S7",
     "ses_bas_sn": 21.889,
-    "ses_sure_sn": 4.37,
+    "ses_sure_sn": 4.909,
     "goruntu_bas_sn": 21.889,
-    "goruntu_son_sn": 26.859
+    "goruntu_son_sn": 27.148
    },
    {
     "cumle": "S8",
-    "ses_bas_sn": 26.859,
+    "ses_bas_sn": 27.148,
+    "ses_sure_sn": 2.852,
+    "goruntu_bas_sn": 27.148,
+    "goruntu_son_sn": 30.6
+   },
+   {
+    "cumle": "S9",
+    "ses_bas_sn": 30.6,
     "ses_sure_sn": 2.644,
-    "goruntu_bas_sn": 26.859,
-    "goruntu_son_sn": 31.303
+    "goruntu_bas_sn": 30.6,
+    "goruntu_son_sn": 35.044
    }
   ],
-  "toplam_sn": 31.3
+  "toplam_sn": 35.04
  }
 }

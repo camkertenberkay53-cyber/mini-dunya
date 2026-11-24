@@ -5,7 +5,7 @@
  "baslik": "Lejyonun Kartalı",
  "ana_fikir": "Roma, Carrhae'de kaybettiği kartalları 33 yıl sonra savaşmadan geri aldı ve bunu bir zafer gibi kutladı.",
  "kanca": "S1",
- "final": "S8",
+ "final": "S9",
  "cumleler": [
   {
    "id": "S1",
@@ -145,16 +145,16 @@
     "roller": [
      {
       "rol": "piyade",
-      "adet": 4
+      "adet": 6
      }
     ],
-    "mesafe": "uzak",
+    "mesafe": "orta",
     "ortam": {
      "arazi": "kuru_bozkir",
      "isik": "aksam_ustu"
     },
     "eylem": "olum",
-    "aciklama": "Bozkırda düşen askerler; kartal yok (kaybedildi)"
+    "aciklama": "Bozkırda sırayla düşen askerler, yerde kalkanlar; kartal yok (kaybedildi). Orta planda, olay net okunur."
    },
    "okunus": "Kartallar düşmanın eline geçti; Krassus da öldürüldü."
   },
@@ -174,22 +174,53 @@
       "odak": true
      }
     ],
-    "mesafe": "uzak",
+    "mesafe": "orta",
     "ortam": {
      "arazi": "ova_cimen",
      "isik": "sabah_puslu"
     },
     "eylem": "bekleme",
-    "aciklama": "Puslu sabah, tek başına bekleyen komutan; kartal yok"
+    "aciklama": "Puslu sabah, tek başına bekleyen komutan (orta plan)"
    }
   },
   {
    "id": "S7",
-   "metin": "33 yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı.",
+   "metin": "33 yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
    "kartlar": [
     "C14",
     "C9",
-    "C10"
+    "C10",
+    "C11"
+   ],
+   "amac": "donum",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "komutan",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "adet": 8
+     }
+    ],
+    "eylem": "bekleme",
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "oglen_acik"
+    },
+    "metin_katmani": "MÖ 20",
+    "aciklama": "Hazır bekleyen lejyon hattı: diplomasinin arkasındaki güç. Augustus gösterilmez (varlık yok); kartal yok (henüz Partlarda)."
+   },
+   "okunus": "Otuz üç yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı."
+  },
+  {
+   "id": "S8",
+   "metin": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "kartlar": [
+    "C15"
    ],
    "amac": "donum",
    "niyet": {
@@ -204,19 +235,17 @@
       "rol": "komutan"
      }
     ],
+    "eylem": "toren_yuruyusu",
     "mesafe": "orta",
     "ortam": {
      "arazi": "ova_cimen",
-     "isik": "oglen_acik"
+     "isik": "aksam_ustu"
     },
-    "eylem": "toren_yuruyusu",
-    "metin_katmani": "MÖ 20",
-    "aciklama": "Kartal yeniden lejyonda: tören yürüyüşü. Augustus gösterilmez (varlık yok)"
-   },
-   "okunus": "Otuz üç yıl sonra Augustus, onları savaşmadan, diplomasiyle geri aldı."
+    "aciklama": "Kartal yeniden lejyonda: tören yürüyüşü. Tiberius gösterilmez (varlık yok)."
+   }
   },
   {
-   "id": "S8",
+   "id": "S9",
    "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
    "kartlar": [
     "C12"

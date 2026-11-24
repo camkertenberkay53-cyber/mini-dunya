@@ -21,8 +21,9 @@ animasyonlar:
   Push_Loop:        {tur: yer_degistiren, eylemler: [itme], gerekli: {nesne: itilecek}}
   Fixing_Kneeling:  {tur: yerinde, eylemler: [tamir, diz_cokme], gerekli: {alet: true}}
   Interact:         {tur: tek_sefer, eylemler: [isaret, jest]}
-  Death01:          {tur: tek_sefer, eylemler: [olum]}
+  Death01:          {tur: tek_sefer, eylemler: [olum], son_poz: yerde}
   Hit_Chest:        {tur: tek_sefer, eylemler: [darbe_alma]}
+# son_poz: yerde -> animasyon karakteri yerde bırakır; planlayıcı kameranın bakış noktasını alçaltır (yerdekiler kadrajda kalsın).
 # Yerinde animasyonda karakter sahnede kımıldamaz; yer değiştirende ölçülen hızla ilerler (ayak kayması olmaz).
 # Ölçülen hız ile plandaki hız arasında izin verilen fark (oran):
 hiz_toleransi: 0.05

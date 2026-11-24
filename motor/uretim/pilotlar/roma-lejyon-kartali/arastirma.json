@@ -80,6 +80,28 @@
    "url": "https://resolve.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/augustuss-parthian-honours-the-temple-of-mars-ultor-and-the-arch-in-the-forum-romanum/AA870C2F21D5D95BA04C36B936E8C515",
    "yazar": "J. W. Rich",
    "yil": 1998
+  },
+  {
+   "id": "K12",
+   "baslik": "The Parthians in Augustan Rome (American Journal of Archaeology 109, 2005)",
+   "tur": "ikincil",
+   "url": "https://ajaonline.org/wp-content/uploads/2013/09/1091_Rose.pdf",
+   "yazar": "C. B. Rose",
+   "yil": 2005
+  },
+  {
+   "id": "K13",
+   "baslik": "Suetonius, The Life of Tiberius 9 (J. C. Rolfe çevirisi)",
+   "tur": "birincil",
+   "url": "https://lexundria.com/suet_tib/9/r",
+   "yazar": "Suetonius"
+  },
+  {
+   "id": "K14",
+   "baslik": "How did Tiberius become famous?",
+   "tur": "ansiklopedi",
+   "url": "https://www.britannica.com/question/How-did-Tiberius-become-famous",
+   "yazar": "Encyclopaedia Britannica"
   }
  ],
  "kartlar": [
@@ -187,13 +209,14 @@
   },
   {
    "id": "C11",
-   "iddia": "Anlaşmanın arkasında askerî baskı vardı: aynı yıl Tiberius komutasında bir Roma ordusu Ermenistan'daydı.",
+   "iddia": "Anlaşma güce dayanan bir diplomasiydi: aynı yaz Tiberius komutasında bir Roma ordusu Ermenistan'a girdi, Augustus da devir için Suriye'ye gitti.",
    "guven": "makul",
    "kaynaklar": [
+    "K12",
     "K11",
     "K10"
    ],
-   "not": "'Diplomasiyle' ifadesi doğru ama baskısız bir barış gibi sunulmamalı. Senaryoda kullanılmadı."
+   "not": "'Savaşmadan' doğru; ama baskısız bir barış gibi sunulmamalı."
   },
   {
    "id": "C12",
@@ -224,6 +247,17 @@
     "K6"
    ],
    "not": "C5 ve C9'dan hesaplanmıştır (53 - 20 = 33)."
+  },
+  {
+   "id": "C15",
+   "iddia": "Suetonius'a göre Carrhae standartlarını Partlardan Tiberius geri aldı; diğer antik yazarlar dönüşü Augustus'a bağlar.",
+   "guven": "tartismali",
+   "kaynaklar": [
+    "K13",
+    "K12",
+    "K14"
+   ],
+   "not": "K12 (Rose): bu bilgiyi antik yazarlardan yalnızca Suetonius verir. Senaryoda 'bazı kaynaklara göre' diye temkinli anlatılır."
   }
  ]
 }

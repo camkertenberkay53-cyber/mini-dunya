@@ -66,11 +66,11 @@ def zemin_hizi(anim: str) -> float:
     return float(veri.animasyon_olcum()[anim]["zemin_hizi_m_sn"])
 
 
-def hiz_durumu(anim: str, hiz: float | None) -> tuple[bool, list[str]]:
+def hiz_durumu(anim: str, hiz: float | None, olcek: float = 1.0) -> tuple[bool, list[str]]:
     kural = veri.kural("animasyon")["animasyonlar"].get(anim, {})
     hiz = hiz or 0.0
     if kural.get("tur") == "yer_degistiren":
-        olculen = zemin_hizi(anim)
+        olculen = zemin_hizi(anim) * olcek   # ölçeklenmiş karakterin adımı da aynı oranda uzar
         tol = veri.kural("animasyon")["hiz_toleransi"]
         if abs(hiz - olculen) > tol * olculen:
             return False, [f"{anim}: hız {hiz:.2f} m/sn, ölçülen zemin hızı {olculen:.3f} m/sn (ayak kayar)"]
@@ -79,7 +79,7 @@ def hiz_durumu(anim: str, hiz: float | None) -> tuple[bool, list[str]]:
     return True, []
 
 
-def izinli(takim: str, anim: str, baglam: dict | None = None, hiz: float | None = None) -> tuple[bool, list[str]]:
+def izinli(takim: str, anim: str, baglam: dict | None = None, hiz: float | None = None, olcek: float = 1.0) -> tuple[bool, list[str]]:
     sonuc, neden = True, []
     for ok, n in (teknik_durum(takim, anim), anlamsal_durum(takim, anim, baglam), hiz_durumu(anim, hiz)):
         sonuc &= ok

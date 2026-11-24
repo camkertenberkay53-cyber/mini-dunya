@@ -14,6 +14,8 @@ cekimler:
   arkadan_uzak:     {aciklama: Uzaklaşan kolu arkadan izleme (yolculuk, gidiş), aci_derece: 170, yukseklik_m: 2.4, hedef_y_m: 1.0, hareket: sabit, mesafeler: [uzak], gerekli: hareketli}
   capraz_yorunge:   {aciklama: Çapraz açıdan yarım yörünge (gerilim), aci_derece: 45, yukseklik_m: 1.4, hedef_y_m: 1.3, hareket: yorunge, mesafeler: [orta, uzak]}
   goz_pan:          {aciklama: Göz hizasında hattı tarayan yatay kaydırma, aci_derece: 0, yukseklik_m: 1.55, hedef_y_m: 1.3, hareket: yanal_kayma, mesafeler: [orta, uzak]}
+  ust_aci_yaklasma: {aciklama: Omuz üstü yükseklikten yavaş yaklaşma (gözlem, yargı), aci_derece: 35, yukseklik_m: 3.4, hedef_y_m: 1.0, hareket: yaklasma, mesafeler: [orta]}
+  yan_profil:       {aciklama: Yandan sabit profil, hafif süzülme (bekleyiş, yalnızlık), aci_derece: 95, yukseklik_m: 1.5, hedef_y_m: 1.2, hareket: sabit_suzulme, mesafeler: [orta, uzak]}
   sabit_uzak:       {aciklama: Sabit uzak kadraj (sonuç, kayıp), aci_derece: 60, yukseklik_m: 1.3, hedef_y_m: 0.6, hareket: sabit, mesafeler: [uzak]}
 yukseklik_siniflari: {alcak: 1.0, yuksek: 2.2}   # < alcak: alçak açı; > yuksek: yüksek açı; arası göz hizası
 aci_kovalari: {onden: 35, capraz: 70, yan: 115, capraz_arka: 150}   # |açı| bu sınırların altında: o kova; üstü: arka

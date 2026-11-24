@@ -55,7 +55,7 @@ def cekim_denetle(c: dict, donem: str, en_boy: float) -> dict:
             olculen_en_yakin = mesafe
         ok, n = secici.karakter_uygun_mu(ad, donem, mesafe)
         h += [f"{c['id']}: {x}" + ("" if m["gorunur"] else " (kadraj dışı)") for x in n]
-        ok, n = animasyon_izni.izinli(ad, k["animasyon"], {"binek": False, "nesneler": []}, k.get("hiz_m_sn"))
+        ok, n = animasyon_izni.izinli(ad, k["animasyon"], {"binek": False, "nesneler": []}, k.get("hiz_m_sn"), k.get("olcek", 1.0))
         h += [f"{c['id']}: {x}" for x in n]
         for e in veri.takimlar()[ad]["takilanlar"]:
             g = (veri.parca(e["id"]) or {}).get("tarih", {}).get("guven")

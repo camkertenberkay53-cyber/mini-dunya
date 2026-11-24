@@ -60,10 +60,19 @@ def test_kaynak_izi_her_olgusal_cumleyi_kaynaga_baglar():
 
 
 def test_pilot_tartismali_ve_belirsiz_kartlari_kesin_dille_kullanmaz():
+    """KN3'te değişti: KN2'de pilot hiç tartışmalı kart kullanmıyordu ve test bunu arıyordu. Yönetim S7'de Tiberius'un
+    rolünün anlatılmasını istedi; bu bilgi tek antik kaynağa dayandığı için 'tartışmalı' kartla ve temkinli dille
+    girdi. Test artık asıl kuralı denetler: tartışmalı/belirsiz karta dayanan her cümle temkin ifadesi taşır ve
+    en az bir cümle bu sınamadan gerçekten geçer (kural boşta kalmaz)."""
     a, s = _y("arastirma"), _y("senaryo")
     guven = {c["id"]: c["guven"] for c in a["kartlar"]}
+    temkin = veri.kural("dil_tr")["temkin_ifadeleri"]
+    sinanan = 0
     for c in s["cumleler"]:
-        assert all(guven[k] in ("kesin", "makul") for k in c["kartlar"]), c["id"]
+        if any(guven[k] in ("belirsiz", "tartismali") for k in c["kartlar"]):
+            sinanan += 1
+            assert any(t in c["metin"].lower() for t in temkin), c["id"]
+    assert sinanan >= 1
 
 
 # ---------------------------------------------------------------- anlatı yapısı
