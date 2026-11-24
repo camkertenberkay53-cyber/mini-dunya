@@ -1,0 +1,229 @@
+{
+ "motor": "piper_fettah",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) 6975P-C",
+  "cekirdek": 4,
+  "bellek_gb": 16.5
+ },
+ "yukleme_sn": 1.0,
+ "yukleme_cpu_sn": 2.3,
+ "test": [
+  {
+   "no": 0,
+   "metin": "Milattan önce elli üç yılında, Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı.",
+   "uretim_sn": 0.27,
+   "cpu_sn": 1.1,
+   "ses_sn": 6.82,
+   "rtf": 0.039,
+   "wav_kb": 293.7,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_00.wav"
+  },
+  {
+   "no": 1,
+   "metin": "Lejyonun kartalı düşman eline geçti; bu, bir askerin yaşayabileceği en büyük utançtı.",
+   "uretim_sn": 0.21,
+   "cpu_sn": 0.8,
+   "ses_sn": 5.75,
+   "rtf": 0.037,
+   "wav_kb": 247.6,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_01.wav"
+  },
+  {
+   "no": 2,
+   "metin": "Otuz üç yıl sonra, tek bir kılıç bile çekilmeden, kartallar Roma'ya geri döndü.",
+   "uretim_sn": 0.2,
+   "cpu_sn": 0.8,
+   "ses_sn": 5.15,
+   "rtf": 0.038,
+   "wav_kb": 221.9,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_02.wav"
+  },
+  {
+   "no": 3,
+   "metin": "Şimdi düşünün: bir sancak, binlerce insanın onurunu nasıl taşıyabilir?",
+   "uretim_sn": 0.17,
+   "cpu_sn": 0.7,
+   "ses_sn": 4.52,
+   "rtf": 0.038,
+   "wav_kb": 194.9,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_03.wav"
+  },
+  {
+   "no": 4,
+   "metin": "Bin dört yüz elli üç baharında, Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı.",
+   "uretim_sn": 0.24,
+   "cpu_sn": 1.0,
+   "ses_sn": 6.71,
+   "rtf": 0.036,
+   "wav_kb": 288.9,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_04.wav"
+  },
+  {
+   "no": 5,
+   "metin": "Cengiz Han'ın atlıları, Semerkant'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü.",
+   "uretim_sn": 0.22,
+   "cpu_sn": 0.9,
+   "ses_sn": 5.66,
+   "rtf": 0.038,
+   "wav_kb": 244.0,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_05.wav"
+  },
+  {
+   "no": 6,
+   "metin": "Kraliçe Kleopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mühürledi.",
+   "uretim_sn": 0.22,
+   "cpu_sn": 0.9,
+   "ses_sn": 5.8,
+   "rtf": 0.037,
+   "wav_kb": 249.9,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_06.wav"
+  },
+  {
+   "no": 7,
+   "metin": "Gece çöktüğünde, kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu.",
+   "uretim_sn": 0.19,
+   "cpu_sn": 0.8,
+   "ses_sn": 5.12,
+   "rtf": 0.037,
+   "wav_kb": 220.4,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_07.wav"
+  },
+  {
+   "no": 8,
+   "metin": "Peki ama bu imparatorluk, en güçlü olduğu anda neden çöktü?",
+   "uretim_sn": 0.15,
+   "cpu_sn": 0.6,
+   "ses_sn": 3.9,
+   "rtf": 0.038,
+   "wav_kb": 168.0,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_08.wav"
+  },
+  {
+   "no": 9,
+   "metin": "Zafer haberi geldiğinde, şehrin dört bir yanında çanlar çalmaya başladı!",
+   "uretim_sn": 0.17,
+   "cpu_sn": 0.7,
+   "ses_sn": 4.49,
+   "rtf": 0.038,
+   "wav_kb": 193.6,
+   "sr": 22050,
+   "dosya": "piper_fettah_test_09.wav"
+  }
+ ],
+ "pilot": [
+  {
+   "no": 0,
+   "metin": "Bir kuş için 33 yıl.",
+   "uretim_sn": 0.07,
+   "cpu_sn": 0.3,
+   "ses_sn": 1.75,
+   "rtf": 0.039,
+   "wav_kb": 75.5,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_00.wav"
+  },
+  {
+   "no": 1,
+   "metin": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "uretim_sn": 0.19,
+   "cpu_sn": 0.8,
+   "ses_sn": 5.12,
+   "rtf": 0.037,
+   "wav_kb": 220.5,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_01.wav"
+  },
+  {
+   "no": 2,
+   "metin": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "uretim_sn": 0.13,
+   "cpu_sn": 0.5,
+   "ses_sn": 3.59,
+   "rtf": 0.037,
+   "wav_kb": 154.5,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_02.wav"
+  },
+  {
+   "no": 3,
+   "metin": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "uretim_sn": 0.2,
+   "cpu_sn": 0.8,
+   "ses_sn": 5.33,
+   "rtf": 0.037,
+   "wav_kb": 229.8,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_03.wav"
+  },
+  {
+   "no": 4,
+   "metin": "Kartallar düşmanın eline geçti; Crassus da öldürüldü.",
+   "uretim_sn": 0.14,
+   "cpu_sn": 0.6,
+   "ses_sn": 3.59,
+   "rtf": 0.038,
+   "wav_kb": 154.7,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_04.wav"
+  },
+  {
+   "no": 5,
+   "metin": "Roma yıllarca bu utançla yaşadı.",
+   "uretim_sn": 0.08,
+   "cpu_sn": 0.3,
+   "ses_sn": 2.12,
+   "rtf": 0.038,
+   "wav_kb": 91.5,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_05.wav"
+  },
+  {
+   "no": 6,
+   "metin": "33 yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
+   "uretim_sn": 0.2,
+   "cpu_sn": 0.8,
+   "ses_sn": 5.34,
+   "rtf": 0.037,
+   "wav_kb": 230.1,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_06.wav"
+  },
+  {
+   "no": 7,
+   "metin": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "uretim_sn": 0.13,
+   "cpu_sn": 0.5,
+   "ses_sn": 3.59,
+   "rtf": 0.037,
+   "wav_kb": 154.5,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_07.wav"
+  },
+  {
+   "no": 8,
+   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "uretim_sn": 0.13,
+   "cpu_sn": 0.5,
+   "ses_sn": 3.24,
+   "rtf": 0.039,
+   "wav_kb": 139.5,
+   "sr": 22050,
+   "dosya": "piper_fettah_pilot_08.wav"
+  }
+ ],
+ "tepe_bellek_gb": 0.33,
+ "test_toplam_uretim_sn": 2.0,
+ "test_toplam_ses_sn": 53.9,
+ "pilot_toplam_uretim_sn": 1.3,
+ "pilot_toplam_ses_sn": 33.7,
+ "pilot_anlatim_toplam_sn_yukleme_dahil": 2.3
+}

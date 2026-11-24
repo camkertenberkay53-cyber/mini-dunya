@@ -1,0 +1,1035 @@
+{
+ "asr": "faster-whisper medium int8 (cpu, tr, beam 5)",
+ "motorlar": {
+  "chatterbox": {
+   "ozet": {
+    "wer_ort": 0.084,
+    "cer_ort": 0.023,
+    "atlanan_kelime_toplam": 0,
+    "kelime_toplam": 105,
+    "isim_dogruluk": "7/11",
+    "f0_std_yarimton_ort": 5.87,
+    "kelime_dk_ort": 124.8,
+    "filigran_ham_ort": 1.0,
+    "filigran_aac128k_ort": 1.0,
+    "filigran_mp3_64k_ort": 1.0,
+    "yukleme_sn": 38.9,
+    "test_uretim_sn": 405.9,
+    "test_ses_sn": 51.1,
+    "rtf": 7.943,
+    "pilot_anlatim_sn_yukleme_dahil": 396.0,
+    "pilot_ses_sn": 45.9,
+    "tepe_bellek_gb": 5.54,
+    "wav_kb_saniye_basina": 46.9,
+    "ornekleme_hz": 24000
+   },
+   "cumleler": [
+    {
+     "no": 0,
+     "dokum": "Milattan önce 53 yılında Roma'nın en büyük ordularından biri Haren yakınlarında bozguna uğradı.",
+     "wer": 0.077,
+     "cer": 0.023,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "harran",
+       "haren"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 4.08,
+     "kelime_dk": 118.9,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 1,
+     "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı.",
+     "wer": 0.083,
+     "cer": 0.028,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "lejyonun",
+       "legionun"
+      ]
+     ],
+     "isim": 1,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 6.15,
+     "kelime_dk": 136.4,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 2,
+     "dokum": "33 yıl sonra tek bir kalış bile çekilmeden Kartallar Roma'ya geri döndü.",
+     "wer": 0.083,
+     "cer": 0.032,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "kılıç",
+       "kalış"
+      ]
+     ],
+     "isim": 1,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 5.43,
+     "kelime_dk": 148.8,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 3,
+     "dokum": "Şimdi düşünün, bir sancak binlerce insanın onurunu nasıl taşıyabilir?",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 7.81,
+     "kelime_dk": 104.7,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 4,
+     "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surların önüne dayandı.",
+     "wer": 0.1,
+     "cer": 0.025,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "surlarının",
+       "surların"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 4.79,
+     "kelime_dk": 118.1,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 5,
+     "dokum": "Cengiz Han'ın atlıları, Semerkamp'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü.",
+     "wer": 0.091,
+     "cer": 0.026,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "semerkanttan",
+       "semerkamptan"
+      ]
+     ],
+     "isim": 3,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 8.18,
+     "kelime_dk": 100.0,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 6,
+     "dokum": "Kraliçek Leopatra, Mısır'ın kaderini değiştirecek o mektubu tüccarın ellerle mühürledi.",
+     "wer": 0.3,
+     "cer": 0.08,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "kraliçe",
+       "kraliçek"
+      ],
+      [
+       "kleopatra",
+       "leopatra"
+      ],
+      [
+       "titreyen",
+       "tüccarın"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 4.52,
+     "kelime_dk": 124.0,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 7,
+     "dokum": "Gece çöptüğünde kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu.",
+     "wer": 0.111,
+     "cer": 0.014,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "çöktüğünde",
+       "çöptüğünde"
+      ]
+     ],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 4.99,
+     "kelime_dk": 117.4,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 8,
+     "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöktü?",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 7.72,
+     "kelime_dk": 151.5,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    },
+    {
+     "no": 9,
+     "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 5.0,
+     "kelime_dk": 128.6,
+     "filigran": {
+      "ham": 1.0,
+      "aac128k": 1.0,
+      "mp3_64k": 1.0
+     }
+    }
+   ],
+   "makine": {
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "cekirdek": 4,
+    "bellek_gb": 16.8
+   }
+  },
+  "piper_dfki": {
+   "ozet": {
+    "wer_ort": 0.068,
+    "cer_ort": 0.011,
+    "atlanan_kelime_toplam": 0,
+    "kelime_toplam": 105,
+    "isim_dogruluk": "9/11",
+    "f0_std_yarimton_ort": 2.28,
+    "kelime_dk_ort": 126.1,
+    "filigran_ham_ort": 0.0,
+    "filigran_aac128k_ort": 0.0,
+    "filigran_mp3_64k_ort": 0.0,
+    "yukleme_sn": 1.2,
+    "test_uretim_sn": 3.0,
+    "test_ses_sn": 50.5,
+    "rtf": 0.059,
+    "pilot_anlatim_sn_yukleme_dahil": 3.1,
+    "pilot_ses_sn": 31.6,
+    "tepe_bellek_gb": 0.32,
+    "wav_kb_saniye_basina": 43.1,
+    "ornekleme_hz": 22050
+   },
+   "cumleler": [
+    {
+     "no": 0,
+     "dokum": "Milattan önce 53 yılında Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 2,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 1.99,
+     "kelime_dk": 126.8,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 1,
+     "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı.",
+     "wer": 0.083,
+     "cer": 0.028,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "lejyonun",
+       "legionun"
+      ]
+     ],
+     "isim": 1,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 2.58,
+     "kelime_dk": 139.3,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 2,
+     "dokum": "33 yıl sonra tek bir kılıç bile çekilmeden Kartalılar Roma'ya geri döndü.",
+     "wer": 0.083,
+     "cer": 0.016,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "kartallar",
+       "kartalılar"
+      ]
+     ],
+     "isim": 1,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 2.35,
+     "kelime_dk": 137.1,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 3,
+     "dokum": "Şimdi düşünün bir sancak binlerce insanın onurunu nasıl taşıyabilir?",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 2.63,
+     "kelime_dk": 123.0,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 4,
+     "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 2,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 2.03,
+     "kelime_dk": 102.6,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 5,
+     "dokum": "Cengiz Han'ın atlıları, Semerkantan, Buhara'ya kadar uzanan şehirleri birer birer düşürdü.",
+     "wer": 0.091,
+     "cer": 0.013,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "semerkanttan",
+       "semerkantan"
+      ]
+     ],
+     "isim": 3,
+     "isim_taninan": 3,
+     "f0_std_yarimton": 2.46,
+     "kelime_dk": 119.8,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 6,
+     "dokum": "Kölyçek Leopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mühürledi.",
+     "wer": 0.2,
+     "cer": 0.04,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "kraliçe",
+       "kölyçek"
+      ],
+      [
+       "kleopatra",
+       "leopatra"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 2.11,
+     "kelime_dk": 110.1,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 7,
+     "dokum": "Gece çöktüğünde kuşa atılmış kalenin içinde yalnızca davulların sesi duyuluyordu.",
+     "wer": 0.222,
+     "cer": 0.014,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [
+      "kuşa"
+     ],
+     "degisen": [
+      [
+       "kuşatılmış",
+       "atılmış"
+      ]
+     ],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 2.33,
+     "kelime_dk": 113.4,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 8,
+     "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöktü?",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 2.28,
+     "kelime_dk": 167.6,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 9,
+     "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 2.02,
+     "kelime_dk": 121.6,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    }
+   ],
+   "makine": {
+    "cpu": "AMD EPYC 7763 64-Core Processor",
+    "cekirdek": 4,
+    "bellek_gb": 16.8
+   }
+  },
+  "piper_fahrettin": {
+   "ozet": {
+    "wer_ort": 0.127,
+    "cer_ort": 0.019,
+    "atlanan_kelime_toplam": 0,
+    "kelime_toplam": 105,
+    "isim_dogruluk": "7/11",
+    "f0_std_yarimton_ort": 3.6,
+    "kelime_dk_ort": 145.0,
+    "filigran_ham_ort": 0.0,
+    "filigran_aac128k_ort": 0.0,
+    "filigran_mp3_64k_ort": 0.0,
+    "yukleme_sn": 0.9,
+    "test_uretim_sn": 2.6,
+    "test_ses_sn": 43.8,
+    "rtf": 0.059,
+    "pilot_anlatim_sn_yukleme_dahil": 2.6,
+    "pilot_ses_sn": 28.6,
+    "tepe_bellek_gb": 0.28,
+    "wav_kb_saniye_basina": 43.1,
+    "ornekleme_hz": 22050
+   },
+   "cumleler": [
+    {
+     "no": 0,
+     "dokum": "Milattan önce 53 yılında, Roma'nın en büyük ordularından biri Haranya kınlarında bozbuna uğradı.",
+     "wer": 0.231,
+     "cer": 0.023,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "harran",
+       "haranya"
+      ],
+      [
+       "yakınlarında",
+       "kınlarında"
+      ],
+      [
+       "bozguna",
+       "bozbuna"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 3.36,
+     "kelime_dk": 144.2,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 1,
+     "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı.",
+     "wer": 0.083,
+     "cer": 0.028,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "lejyonun",
+       "legionun"
+      ]
+     ],
+     "isim": 1,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 3.48,
+     "kelime_dk": 157.5,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 2,
+     "dokum": "33 yıl sonra tek bir kılıç bile çekilmeden Kartarlar Roma'ya geri döndü.",
+     "wer": 0.083,
+     "cer": 0.016,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "kartallar",
+       "kartarlar"
+      ]
+     ],
+     "isim": 1,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 4.07,
+     "kelime_dk": 174.8,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 3,
+     "dokum": "Şimdi düşünün bir sancak binlerce insanın onurunu nasıl taşıyabilir?",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 3.59,
+     "kelime_dk": 135.3,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 4,
+     "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 2,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 3.19,
+     "kelime_dk": 118.3,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 5,
+     "dokum": "Cengiz Han'ın adlıları, Semel Kamp tam buharaya kadar uzanan şehirleri birer birer düşürdü.",
+     "wer": 0.364,
+     "cer": 0.066,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [
+      "adlıları",
+      "semel"
+     ],
+     "degisen": [
+      [
+       "atlıları",
+       "kamp"
+      ],
+      [
+       "semerkanttan",
+       "tam"
+      ]
+     ],
+     "isim": 3,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 3.42,
+     "kelime_dk": 144.4,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 6,
+     "dokum": "Kraliçek Lopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen erlerle mühürledi.",
+     "wer": 0.3,
+     "cer": 0.027,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "kraliçe",
+       "kraliçek"
+      ],
+      [
+       "kleopatra",
+       "lopatra"
+      ],
+      [
+       "ellerle",
+       "erlerle"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 3.4,
+     "kelime_dk": 127.4,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 7,
+     "dokum": "Kece çöktüğünde kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu.",
+     "wer": 0.111,
+     "cer": 0.014,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "gece",
+       "kece"
+      ]
+     ],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 3.05,
+     "kelime_dk": 130.8,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 8,
+     "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöptü?",
+     "wer": 0.1,
+     "cer": 0.021,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "çöktü",
+       "çöptü"
+      ]
+     ],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 4.82,
+     "kelime_dk": 177.0,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 9,
+     "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 3.64,
+     "kelime_dk": 140.6,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    }
+   ],
+   "makine": {
+    "cpu": "AMD EPYC 7763 64-Core Processor",
+    "cekirdek": 4,
+    "bellek_gb": 16.8
+   }
+  },
+  "piper_fettah": {
+   "ozet": {
+    "wer_ort": 0.135,
+    "cer_ort": 0.022,
+    "atlanan_kelime_toplam": 0,
+    "kelime_toplam": 105,
+    "isim_dogruluk": "9/11",
+    "f0_std_yarimton_ort": 1.72,
+    "kelime_dk_ort": 118.8,
+    "filigran_ham_ort": 0.0,
+    "filigran_aac128k_ort": 0.0,
+    "filigran_mp3_64k_ort": 0.0,
+    "yukleme_sn": 1.0,
+    "test_uretim_sn": 2.0,
+    "test_ses_sn": 53.9,
+    "rtf": 0.037,
+    "pilot_anlatim_sn_yukleme_dahil": 2.3,
+    "pilot_ses_sn": 33.7,
+    "tepe_bellek_gb": 0.33,
+    "wav_kb_saniye_basina": 43.1,
+    "ornekleme_hz": 22050
+   },
+   "cumleler": [
+    {
+     "no": 0,
+     "dokum": "Milaptan önce 53 yılında Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı.",
+     "wer": 0.077,
+     "cer": 0.012,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "milattan",
+       "milaptan"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 1.57,
+     "kelime_dk": 114.4,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 1,
+     "dokum": "ve John'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtır.",
+     "wer": 0.25,
+     "cer": 0.056,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [
+      "ve"
+     ],
+     "degisen": [
+      [
+       "lejyonun",
+       "johnun"
+      ],
+      [
+       "utançtı",
+       "utançtır"
+      ]
+     ],
+     "isim": 1,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 1.21,
+     "kelime_dk": 125.2,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 2,
+     "dokum": "33 yıl sonra tek bir kılıç bile çekilmeden Kartallar Roma'ya geri döndü.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 1,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 1.64,
+     "kelime_dk": 139.8,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 3,
+     "dokum": "Şimdi düşünün, bir sancak binlerce insanın onurunu nasıl taşıyabilir?",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 1.54,
+     "kelime_dk": 119.5,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 4,
+     "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 2,
+     "isim_taninan": 2,
+     "f0_std_yarimton": 3.76,
+     "kelime_dk": 89.4,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 5,
+     "dokum": "Cengiz Han'ın atlıları, Semerkantan, Buhar'a kadar uzanan şehirleri birer birer düşürdü.",
+     "wer": 0.182,
+     "cer": 0.039,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "semerkanttan",
+       "semerkantan"
+      ],
+      [
+       "buharaya",
+       "buhara"
+      ]
+     ],
+     "isim": 3,
+     "isim_taninan": 3,
+     "f0_std_yarimton": 1.57,
+     "kelime_dk": 116.6,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 6,
+     "dokum": "Galicia Cleopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mürürledi.",
+     "wer": 0.3,
+     "cer": 0.093,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "kraliçe",
+       "galicia"
+      ],
+      [
+       "kleopatra",
+       "cleopatra"
+      ],
+      [
+       "mühürledi",
+       "mürürledi"
+      ]
+     ],
+     "isim": 2,
+     "isim_taninan": 1,
+     "f0_std_yarimton": 1.62,
+     "kelime_dk": 103.4,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 7,
+     "dokum": "Gece çöktüğünde kuş atılmış kalenin içinde yalnız cadavulların sesi duyuluyordu.",
+     "wer": 0.444,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [
+      "kuş"
+     ],
+     "degisen": [
+      [
+       "kuşatılmış",
+       "atılmış"
+      ],
+      [
+       "yalnızca",
+       "yalnız"
+      ],
+      [
+       "davulların",
+       "cadavulların"
+      ]
+     ],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 1.54,
+     "kelime_dk": 105.5,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 8,
+     "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöptü?",
+     "wer": 0.1,
+     "cer": 0.021,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [
+      [
+       "çöktü",
+       "çöptü"
+      ]
+     ],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 1.23,
+     "kelime_dk": 153.8,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    },
+    {
+     "no": 9,
+     "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı.",
+     "wer": 0.0,
+     "cer": 0.0,
+     "atlanan_kelime": [],
+     "eklenen_kelime": [],
+     "degisen": [],
+     "isim": 0,
+     "isim_taninan": 0,
+     "f0_std_yarimton": 1.51,
+     "kelime_dk": 120.3,
+     "filigran": {
+      "ham": 0.0,
+      "aac128k": 0.0,
+      "mp3_64k": 0.0
+     }
+    }
+   ],
+   "makine": {
+    "cpu": "Intel(R) Xeon(R) 6975P-C",
+    "cekirdek": 4,
+    "bellek_gb": 16.5
+   }
+  }
+ }
+}
