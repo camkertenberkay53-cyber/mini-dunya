@@ -22,6 +22,7 @@ jobs:
       matris: ${{ steps.m.outputs.matris }}
       birlestir: ${{ steps.m.outputs.birlestir }}
       kosu: ${{ steps.m.outputs.kosu }}
+      yeniden: ${{ steps.m.outputs.yeniden }}
     steps:
       - uses: actions/checkout@v4
       - id: m
@@ -32,6 +33,7 @@ jobs:
           print("matris=" + json.dumps({"include": k["isler"]}))
           print("birlestir=" + ("1" if k.get("birlestir") else "0"))
           print("kosu=" + k["kosu_id"])
+          print("yeniden=" + k.get("yeniden_cekim", ""))
           E
 
   render:
@@ -102,8 +104,52 @@ jobs:
             /tmp/birlestir/kare_*.jpg
           retention-days: 3
 
-  rapor:
+  yeniden:
+    # Yeniden render maliyeti: tek bir çekim baştan render edilir ve video yeniden birleştirilip kodlanır.
     needs: [plan, render, birlestir]
+    if: needs.plan.outputs.yeniden != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kurulum
+        run: |
+          T0=$(date +%s)
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xauth ffmpeg libgl1-mesa-dri libglu1-mesa > /dev/null
+          pip install --quiet psutil
+          curl -sSLo /tmp/g.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          echo "9aa00f7a605200940bce3027a567b782f49bd8e940dd06ae9e987bd65aee1b1467edd56ed84fcdcbdd44354bf613bdbb4e5d2913e925850368e150c59ed54c65  /tmp/g.zip" | sha512sum -c -
+          unzip -q /tmp/g.zip -d /tmp/godot
+          mkdir -p /tmp/motor_onbellek && cp -r deneyler/faz51/altyapi/onbellek/* /tmp/motor_onbellek/
+          "$GODOT" --headless --path motor/godot --import > /tmp/ice.log 2>&1 || true
+          echo "KURULUM_SN=$(( $(date +%s) - T0 ))" >> "$GITHUB_ENV"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: mp4-*
+          merge-multiple: true
+          path: /tmp/mp4
+      - name: Tek çekimi yeniden render et ve yeniden birleştir
+        run: |
+          C=${{ needs.plan.outputs.yeniden }}
+          T1=$(date +%s)
+          python3 deneyler/faz51/altyapi/olc_cekim.py yeniden /tmp/yeni $C
+          cp /tmp/yeni/$C.mp4 /tmp/mp4/$C.mp4
+          T2=$(date +%s)
+          python3 deneyler/faz51/altyapi/birlestir.py /tmp/mp4 /tmp/birlestir2
+          T3=$(date +%s)
+          mkdir -p /tmp/yeniden_sonuc
+          python3 -c "import json;b=json.load(open('/tmp/birlestir2/birlestirme.json'));o=json.load(open('/tmp/yeni/olcum_yeniden.json'));print(json.dumps({'cekim':'$C','kurulum_sn':$KURULUM_SN,'cekim_render_dahil_sn':$((T2-T1)),'yeniden_birlestirme_sn':$((T3-T2)),'toplam_sn':$KURULUM_SN+$((T3-T1)),'cekim_olcum':o['cekimler'][0],'birlestirme':b},ensure_ascii=False,indent=1))" > /tmp/yeniden_sonuc/yeniden_render.json
+          cat /tmp/yeniden_sonuc/yeniden_render.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: yeniden
+          path: /tmp/yeniden_sonuc/yeniden_render.json
+          retention-days: 3
+
+  rapor:
+    needs: [plan, render, birlestir, yeniden]
     if: always()
     runs-on: ubuntu-24.04
     steps:
@@ -117,8 +163,9 @@ jobs:
           mkdir -p "$D"
           find /tmp/sonuc -name 'olcum_*.json' -exec cp {} "$D"/ \;
           find /tmp/sonuc -name 'birlestirme.json' -exec cp {} "$D"/ \;
+          find /tmp/sonuc -name 'yeniden_render.json' -exec cp {} "$D"/ \;
           find /tmp/sonuc -name 'kare_*.jpg' -exec cp {} "$D"/ \;
-          echo '{"run_id": "${{ github.run_id }}", "render_sonucu": "${{ needs.render.result }}", "birlestirme_sonucu": "${{ needs.birlestir.result }}"}' > "$D/kosu.json"
+          echo '{"run_id": "${{ github.run_id }}", "render_sonucu": "${{ needs.render.result }}", "birlestirme_sonucu": "${{ needs.birlestir.result }}", "yeniden_sonucu": "${{ needs.yeniden.result }}"}' > "$D/kosu.json"
           git config user.name "faz51-olcum"
           git config user.email "actions@users.noreply.github.com"
           git add "$D"

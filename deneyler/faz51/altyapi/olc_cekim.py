@@ -53,8 +53,14 @@ def calistir(komut: list[str], zaman_asimi: int) -> dict:
 
 
 def cekim(cid: str, cikti: Path) -> dict:
-    is_yolu = BURASI / "isler" / f"{cid}.json"
-    is_ = json.loads(is_yolu.read_text())
+    # "S2_k07" = S2 çekiminin 7. kopyası: aynı iş, farklı tohum (uzun video yük testi; gerçek render işi)
+    taban, _, kopya = cid.partition("_k")
+    is_ = json.loads((BURASI / "isler" / f"{taban}.json").read_text())
+    if kopya:
+        is_["tohum"] = 1000 + int(kopya)
+    is_yolu = cikti / f"{cid}.is.json"
+    cikti.mkdir(parents=True, exist_ok=True)
+    is_yolu.write_text(json.dumps(is_, ensure_ascii=False))
     kare = round(is_["cekim"]["sure_sn"] * is_["fps"])
     avi = cikti / f"{cid}.avi"
     mp4 = cikti / f"{cid}.mp4"
