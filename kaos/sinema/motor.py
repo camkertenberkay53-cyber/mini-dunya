@@ -24,9 +24,9 @@ import soundfile as sf
 from .. import paths
 from . import efekt, kamera
 
-SURUM = 'sinema-1'
+SURUM = 'sinema-4'
 SR = 24000
-GECIS_FFMPEG = {'cozunme': 'fade', 'karartma': 'fadeblack', 'flas': 'fadewhite', 'savurma': 'smoothleft',
+GECIS_FFMPEG = {'cozunme': 'fade', 'karartma': 'fadeblack', 'flas': 'fade', 'savurma': 'smoothleft',
                 'zoom': 'zoomin', 'yonlu': 'wipeleft', 'kesme': 'fade'}
 
 
@@ -81,7 +81,8 @@ def _bilesik(katmanlar, W, H, cx, cy, z, aci, dx, dy):
 
 
 def sahne_anahtari(s, W, H, fps):
-    alan = {k: s.get(k) for k in ('gorsel', 'katmanlar', 'kamera', 'guc', 'odak', 'sarsinti', 'efektler', 'ton', 'sure_render')}
+    alan = {k: s.get(k) for k in ('gorsel', 'katmanlar', 'kamera', 'guc', 'odak', 'sarsinti', 'efektler', 'ton', 'sure_render', 'kirp',
+                                  'parallax', 'ozne', 'ufuk', 'atislar', 'darbeler', 'giris_flas', 'yorunge', 'gren', 'vinyet')}
     h = hashlib.sha1(json.dumps([SURUM, alan, W, H, fps], sort_keys=True, ensure_ascii=False).encode())
     for g in [s.get('gorsel')] + [k.get('gorsel') for k in s.get('katmanlar') or []]:
         if g and os.path.exists(g):
@@ -90,16 +91,78 @@ def sahne_anahtari(s, W, H, fps):
     return h.hexdigest()[:16]
 
 
+def _goruntu_konumu(M, p, iw, ih):
+    return (M[0, 0] * p[0] * iw + M[0, 1] * p[1] * ih + M[0, 2], M[1, 0] * p[0] * iw + M[1, 1] * p[1] * ih + M[1, 2])
+
+
+def _matris(img, W, H, cx, cy, z, aci, dx=0.0, dy=0.0):
+    ih, iw = img.shape[:2]
+    s_ = max(W / iw, H / ih) * 1.04 * z
+    hw, hh = W / (2 * s_), H / (2 * s_)
+    px = min(max(cx * iw, hw), iw - hw)
+    py = min(max(cy * ih, hh), ih - hh)
+    M = cv2.getRotationMatrix2D((px, py), aci, s_)
+    M[0, 2] += W / 2 - px + dx
+    M[1, 2] += H / 2 - py + dy
+    return M, s_
+
+
+def _isik(kare, xy, r, renk, guc):
+    """Noktasal ışık (namlu ışığı, ateş): yumuşak radyal parlama, eklemeli."""
+    if guc <= 0.01:
+        return kare
+    H, W = kare.shape[:2]
+    x0, y0 = int(max(0, xy[0] - 2 * r)), int(max(0, xy[1] - 2 * r))
+    x1, y1 = int(min(W, xy[0] + 2 * r)), int(min(H, xy[1] + 2 * r))
+    if x1 <= x0 or y1 <= y0:
+        return kare
+    yy, xx = np.mgrid[y0:y1, x0:x1].astype(np.float32)
+    m = np.exp(-((xx - xy[0]) ** 2 + (yy - xy[1]) ** 2) / (2 * (r * 0.6) ** 2)) * guc
+    bolge = kare[y0:y1, x0:x1].astype(np.float32) + m[..., None] * np.array(renk, np.float32)
+    kare = kare.copy()
+    kare[y0:y1, x0:x1] = np.clip(bolge, 0, 255).astype(np.uint8)
+    return kare
+
+
+def _omuz(kare, esik=0.78):
+    """Parlaklık koruması: açık tonları yumuşakça sıkıştırır, beyaza patlamayı önler."""
+    k = kare.astype(np.float32) / 255
+    ust = k > esik
+    k[ust] = esik + (1 - esik) * (1 - np.exp(-(k[ust] - esik) / (1 - esik) * 1.6)) / (1 - np.exp(-1.6))
+    return (k * 255).astype(np.uint8)
+
+
 def sahne_render(s, out, W, H, fps, log=print):
-    """Tek sahneyi (sessiz, altyazısız) render eder. Altyazı/ses ayrı katman olduğundan metin değişse de önbellek geçerli kalır."""
+    """Tek sahneyi (sessiz, altyazısız) render eder. Altyazı/ses ayrı katman olduğundan metin değişse de önbellek geçerli kalır.
+    Derinlik parallax'ı: yakın pikseller kamerayla daha çok kayar ve büyür; özne (ozne kutusu) nefes alır gibi hafifçe canlıdır."""
+    from . import derinlik
     sure = s['sure_render']
     n = int(round(sure * fps))
-    if s.get('katmanlar'):
-        katmanlar = [dict(k, img=_yukle(k['gorsel'], W, H)) for k in s['katmanlar']]
-    else:
-        katmanlar = [{'img': _yukle(s['gorsel'], W, H), 'derinlik': 1.0}]
+    img = _yukle(s['gorsel'], W, H)
+    if s.get('kirp'):  # görsele gömülü yazı vb. kısmı kesip atmak için
+        ih, iw = img.shape[:2]
+        x0, y0, x1, y1 = s['kirp']
+        img = img[int(y0 * ih):int(y1 * ih), int(x0 * iw):int(x1 * iw)].copy()
+    ih, iw = img.shape[:2]
     tohum = int(hashlib.md5(s['id'].encode()).hexdigest()[:6], 16)
-    fx = []
+    par = float(s.get('parallax', 1.0))
+    D = mask = on = None
+    if par > 0:
+        D, mask = derinlik.harita(img, s.get('ozne'), float(s.get('ufuk', 0.38)))
+        if mask is not None:
+            # Katmanlı parallax: özne bükülmeden ayrı katman olur; arkasındaki boşluk onarılır (inpaint)
+            k = 540 / max(ih, iw)
+            ks = cv2.resize(img, (int(iw * k), int(ih * k)), interpolation=cv2.INTER_AREA)
+            mk = cv2.resize(mask, (ks.shape[1], ks.shape[0]))
+            delik = cv2.dilate((mk > 0.25).astype(np.uint8) * 255, np.ones((15, 15), np.uint8))
+            onarim = cv2.resize(cv2.inpaint(ks, delik, 9, cv2.INPAINT_TELEA), (iw, ih), interpolation=cv2.INTER_CUBIC)
+            onarim = cv2.GaussianBlur(onarim, (0, 0), 3)
+            mf = cv2.GaussianBlur(cv2.resize(delik.astype(np.float32) / 255, (iw, ih)), (0, 0), 6)[..., None]
+            arka = (img.astype(np.float32) * (1 - mf) + onarim.astype(np.float32) * mf).astype(np.uint8)
+            on = np.dstack([img, (np.clip((mask - 0.25) * 2.2, 0, 1) * 255).astype(np.uint8)])  # keskin kenar: yarı saydam 'hayalet' olmasın
+            img = arka
+            D = derinlik.harita(arka, None, float(s.get('ufuk', 0.38)))[0]
+    fx, ateslar = [], []
     for e in s.get('efektler') or []:
         tip, g = e['tip'], float(e.get('guc', 1.0))
         if tip in efekt.Partikul.AYAR:
@@ -108,33 +171,60 @@ def sahne_render(s, out, W, H, fps, log=print):
             fx.append(efekt.Duman(tip, W, H, g, tohum))
         elif tip == 'isik':
             fx.append(efekt.IsikHuzmesi(W, H, tuple(e.get('kaynak', (0.75, -0.05))), g, tohum))
+        elif tip == 'ates':
+            ateslar.append(e)
         else:
             fx.append(e)  # kare-bazlı fonksiyonlar (parlama, dof)
+    atislar = s.get('atislar') or []
+    duman_doku = efekt._gurultu_dokusu(512, 512, tohum, (60, 20, 8)) if atislar else None
     vin = efekt.vinyet_maskesi(W, H, s.get('vinyet', 1.0))
-    sars = kamera.Sarsinti(guc=14 * float(s.get('sarsinti', 0)), tohum=tohum) if s.get('sarsinti') else None
-    darbe_zamanlari = s.get('darbeler') or []  # top atışı vb. anlarda ani sarsıntı
+    sars = kamera.Sarsinti(guc=14 * float(s.get('sarsinti', 0.15)), tohum=tohum)
+    darbeler = list(s.get('darbeler') or []) + [a['zaman'] for a in atislar]
+    X, Y = np.meshgrid(np.arange(W, dtype=np.float32), np.arange(H, dtype=np.float32))
+    k0 = kamera.konum(s.get('kamera', 'zoom_in'), 0, s.get('odak'), float(s.get('guc', 1.0)))
+    yorunge = float(s.get('yorunge', 0.6))  # parallax'ı görünür kılan hafif yanal kamera kayması
     tmp = out + '.tmp.mp4'
     enc = subprocess.Popen(['ffmpeg', '-loglevel', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', str(fps),
-                            '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '17', '-pix_fmt', 'yuv420p', '-r', str(fps), tmp],
+                            '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '15', '-pix_fmt', 'yuv420p', '-r', str(fps), tmp],
                            stdin=subprocess.PIPE)
-    onceki = None
     for i in range(n):
         t = i / fps
         u = t / max(sure, 1e-6)
         cx, cy, z, aci = kamera.konum(s.get('kamera', 'zoom_in'), u, s.get('odak'), float(s.get('guc', 1.0)))
-        dx = dy = 0.0
-        if sars:
-            darbe = 1.0 + sum(4.0 * math.exp(-(t - d) * 5) for d in darbe_zamanlari if t >= d)
-            dx, dy, da = sars(t, darbe)
-            aci += da
-        kare = _bilesik(katmanlar, W, H, cx, cy, z, aci, dx, dy)
-        # hızlı kamera hareketinde hareket bulanıklığı
-        if onceki is not None:
-            hiz = math.hypot(cx - onceki[0], cy - onceki[1]) * fps + abs(z - onceki[2]) * fps
-            if hiz > 0.35:
-                ara = _bilesik(katmanlar, W, H, (cx + onceki[0]) / 2, (cy + onceki[1]) / 2, (z + onceki[2]) / 2, aci, dx, dy)
-                kare = cv2.addWeighted(kare, 0.5, ara, 0.5, 0)
-        onceki = (cx, cy, z)
+        # top atışı geri tepmesi: ani geri çekilme + sarsıntı darbesi
+        tepme = sum(a.get('guc', 1.0) * math.exp(-(t - a['zaman']) * 7) for a in atislar if t >= a['zaman'])
+        z = max(1.0, z * (1 - 0.03 * min(tepme, 1.5)))
+        darbe = 1.0 + sum(5.0 * math.exp(-(t - d) * 6) for d in darbeler if t >= d)
+        dx, dy, da = sars(t, darbe)
+        if on is not None:
+            M, olcek = _matris(img, W, H, k0[0] + (cx - k0[0]) * 0.75, k0[1] + (cy - k0[1]) * 0.75, k0[2] + (z - k0[2]) * 0.8, aci + da, dx, dy)
+        else:
+            M, olcek = _matris(img, W, H, cx, cy, z, aci + da, dx, dy)
+        kare = cv2.warpAffine(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+        if D is not None:
+            # zemin derinliği: küçük ve sınırlı kayma (görüntüyü bükmeden derinlik hissi)
+            Dk = cv2.warpAffine(D, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+            sinir = W * 0.018
+            px_ = float(np.clip(((cx - k0[0]) * 1.2 + yorunge * 0.006 * math.sin(math.pi * u)) * W * par, -sinir, sinir))
+            py_ = float(np.clip((cy - k0[1]) * 0.8 * H * par, -sinir, sinir))
+            zz = float(np.clip((z - k0[2]) * 0.25 * par, -0.04, 0.04))
+            fark = Dk - 0.45
+            mx = X - fark * px_ - (X - W / 2) * fark * zz
+            my = Y - fark * py_ - (Y - H / 2) * fark * zz
+            kare = cv2.remap(kare, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+        if on is not None:
+            # özne katmanı: kamerayı biraz fazla izler (arka plan ~%75 izler) -> ayrışma; nefes: tabana sabit hafif dikey esneme
+            cxo = k0[0] + (cx - k0[0]) * (1 + 0.2 * par)
+            cyo = k0[1] + (cy - k0[1]) * (1 + 0.2 * par)
+            zo = k0[2] + (z - k0[2]) * (1 + 0.15 * par)
+            Mo, _ = _matris(on, W, H, cxo, cyo, zo, aci + da, dx * 1.3, dy * 1.3)
+            sy = 1 + 0.006 * math.sin(2 * math.pi * t / 3.2)
+            yb = H * 0.98
+            A = np.array([[1, 0, 2.0 * math.sin(2 * math.pi * t / 4.1)], [0, sy, (1 - sy) * yb]], np.float64)
+            Mo = A @ np.vstack([Mo, [0, 0, 1]])
+            ust = cv2.warpAffine(on, Mo, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0, 0))
+            al = ust[..., 3:4].astype(np.float32) / 255
+            kare = (kare.astype(np.float32) * (1 - al) + ust[..., :3].astype(np.float32) * al).astype(np.uint8)
         for f in fx:
             if isinstance(f, dict):
                 if f['tip'] == 'parlama':
@@ -143,10 +233,44 @@ def sahne_render(s, out, W, H, fps, log=print):
                     kare = efekt.alan_derinligi(kare, tuple(f.get('odak', (0.5, 0.45))), guc=float(f.get('guc', 1.0)))
             else:
                 kare = f.uygula(kare, t)
+        # ateş titremesi: düzensiz sıcak ışık
+        for e in ateslar:
+            xy = _goruntu_konumu(M, e['konum'], iw, ih)
+            fl = 0.72 + 0.14 * math.sin(t * 23) + 0.09 * math.sin(t * 37 + 1.3) + 0.06 * math.sin(t * 61 + 0.4)
+            kare = _isik(kare, xy, W * float(e.get('yaricap', 0.12)) * (0.9 + 0.2 * fl), (40, 130, 255), 0.9 * fl * float(e.get('guc', 1.0)))
+        # top atışı: namlu ışığı + sahne aydınlanması + büyüyen duman bulutu
+        for a in atislar:
+            dt = t - a['zaman']
+            if dt < 0:
+                continue
+            g = float(a.get('guc', 1.0))
+            xy = _goruntu_konumu(M, a['konum'], iw, ih)
+            fl = math.exp(-dt * 13) * g
+            if fl > 0.01:
+                kare = _isik(kare, xy, W * 0.2, (120, 200, 255), 1.1 * fl)
+                kare = np.clip(kare.astype(np.float32) * (1 + 0.12 * fl), 0, 255).astype(np.uint8)
+            if 0.03 < dt < 3.5:
+                r = int(W * (0.05 + 0.22 * (1 - math.exp(-dt * 1.4))) * g)
+                al = 0.5 * math.exp(-dt * 0.7) * min(1, dt * 12)
+                cx_, cy_ = int(xy[0] + W * 0.05 * dt), int(xy[1] - H * 0.02 * dt)
+                x0, y0, x1, y1 = max(0, cx_ - r), max(0, cy_ - r), min(W, cx_ + r), min(H, cy_ + r)
+                if x1 > x0 and y1 > y0:
+                    yy, xx = np.mgrid[y0:y1, x0:x1].astype(np.float32)
+                    rad = np.exp(-((xx - cx_) ** 2 + (yy - cy_) ** 2) / (2 * (r * 0.5) ** 2))
+                    tex = cv2.resize(duman_doku, (x1 - x0, y1 - y0))
+                    m = np.clip(rad * (0.5 + tex) - 0.25, 0, 1) * al
+                    bolge = kare[y0:y1, x0:x1].astype(np.float32)
+                    kare[y0:y1, x0:x1] = (bolge * (1 - m[..., None]) + np.array([205, 210, 215], np.float32) * m[..., None]).astype(np.uint8)
+        if s.get('giris_flas'):  # flaş geçişinin yumuşak devamı (beyaza patlamadan)
+            fl = math.exp(-t * 9)
+            if fl > 0.02:
+                kare = np.clip(kare.astype(np.float32) * (1 + 0.35 * fl) + 25 * fl, 0, 255).astype(np.uint8)
         if s.get('ton'):
             kare = efekt.renk_tonu(kare, s['ton'], float(s.get('ton_guc', 1.0)))
+        kare = _omuz(kare)
         kare = (kare.astype(np.float32) * vin).astype(np.uint8)
-        kare = efekt.gren(kare, t, 0.6, tohum)
+        if s.get('gren'):
+            kare = efekt.gren(kare, t, float(s['gren']), tohum)
         enc.stdin.write(kare.tobytes())
     enc.stdin.close()
     if enc.wait() != 0:
@@ -309,13 +433,15 @@ def altyazi_parcala(metin, bas, sure, en_cok=5):
     return out
 
 
-def ass_yaz(satirlar, path, W, H, kanca=None, kanca_sure=2.6):
-    boy = int(W * 0.084)
-    kboy = int(W * 0.105)
-    stil = (f'Style: Ana,Baloo 2,{boy},&H00FFFFFF,&H00FFFFFF,&H00101010,&H64000000,-1,0,0,0,100,100,0,0,1,{max(3, boy // 14)},2,2,'
-            f'{int(W * 0.07)},{int(W * 0.07)},{int(H * 0.27)},1\n'
+def ass_yaz(satirlar, path, W, H, kanca=None, kanca_sure=2.6, son_yazi=None, toplam=None):
+    # Shorts güvenli alanı: alt %25 (başlık/kanal) ve sağ %15 (beğen/yorum butonları) arayüzle kaplı; üst %8 arama/kamera
+    boy = int(W * 0.078)
+    kboy = int(W * 0.098)
+    # Ana altyazı: yarı saydam koyu kutu (BorderStyle 3) -> parlak/karışık zeminde de okunur, temiz tipografi
+    stil = (f'Style: Ana,Baloo 2,{boy},&H00FFFFFF,&H00FFFFFF,&H5A000000,&H5A000000,-1,0,0,0,100,100,0,0,3,{max(6, boy // 6)},0,2,'
+            f'{int(W * 0.09)},{int(W * 0.17)},{int(H * 0.33)},1\n'
             f'Style: Kanca,Baloo 2,{kboy},&H0030D8FF,&H0030D8FF,&H00101010,&H78000000,-1,0,0,0,100,100,0,0,1,{max(4, kboy // 12)},3,8,'
-            f'{int(W * 0.06)},{int(W * 0.06)},{int(H * 0.16)},1')
+            f'{int(W * 0.07)},{int(W * 0.17)},{int(H * 0.13)},1')
     with open(path, 'w', encoding='utf-8') as f:
         f.write(f'[Script Info]\nScriptType: v4.00+\nPlayResX: {W}\nPlayResY: {H}\nWrapStyle: 0\n\n[V4+ Styles]\n'
                 'Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, '
@@ -323,11 +449,70 @@ def ass_yaz(satirlar, path, W, H, kanca=None, kanca_sure=2.6):
                 f'{stil}\n\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n')
         for a, b, t in satirlar:
             f.write(f'Dialogue: 0,{_ass_zaman(a)},{_ass_zaman(b)},Ana,,0,0,0,,{{\\fad(80,80)}}{t}\n')
+        if son_yazi and toplam:
+            f.write(f'Dialogue: 1,{_ass_zaman(toplam - 2.3)},{_ass_zaman(toplam)},Kanca,,0,0,0,,{{\\fad(200,0)}}{son_yazi}\n')
         if kanca:
             f.write(f'Dialogue: 1,{_ass_zaman(0.05)},{_ass_zaman(kanca_sure)},Kanca,,0,0,0,,{{\\fad(120,250)}}{kanca}\n')
 
 
 # ---------------------------------------------------------------- kalite kontrol
+
+def ses_akisi_kontrol(anlatim, efektler, sesler, sahneler, basl, planlar, toplam, muzik_davul=False):
+    """Ses akışı: cümle kesilmesi, uzun sessizlik, ani seviye sıçraması, müzik/konuşma dengesi, son cümlenin tamamlanması."""
+    r = {'kritik': [], 'uyari': [], 'olcum': {}}
+    db = lambda v: 20 * math.log10(max(v, 1e-6))
+    # 1) cümle sonu kesilmesi: TTS dosyasının son 40 ms'i hâlâ yüksekse cümle yarıda kesilmiştir
+    for i, x in sesler.items():
+        son = x[-int(0.04 * SR):]
+        if len(son) and np.sqrt(np.mean(son ** 2)) > 0.08 * (np.abs(x).max() + 1e-6):
+            r['kritik'].append(f'{sahneler[i]["id"]}: cümle sonu kesik görünüyor')
+    # 2) son cümle video bitmeden tamamlanıyor mu
+    son_bitis = max([basl[i] + planlar[i][0] + planlar[i][1] for i in sesler] or [0])
+    r['olcum']['son_cumle_bitis'] = round(son_bitis, 2)
+    r['olcum']['video_sonu'] = round(toplam, 2)
+    if son_bitis > toplam - 0.5:
+        r['kritik'].append(f'son cümle video sonuna çok yakın ({son_bitis:.1f}/{toplam:.1f} sn)')
+    # 3) uzun sessizlik (konuşma da efekt de yok)
+    pen = int(0.1 * SR)
+    mix = (anlatim + efektler)[:int(toplam * SR)]
+    rms = np.array([np.sqrt(np.mean(mix[k:k + pen] ** 2)) for k in range(0, len(mix) - pen, pen)])
+    sessiz = 0
+    en_uzun = 0
+    for v in rms:
+        sessiz = sessiz + 1 if v < 10 ** (-48 / 20) else 0
+        en_uzun = max(en_uzun, sessiz)
+    r['olcum']['en_uzun_sessizlik_sn'] = round(en_uzun * 0.1, 1)
+    if en_uzun * 0.1 > 2.5:
+        r['kritik'].append(f'{en_uzun * 0.1:.1f} sn sessizlik')
+    elif en_uzun * 0.1 > 1.2:
+        r['uyari'].append(f'{en_uzun * 0.1:.1f} sn sessizlik')
+    # 4) ani seviye sıçraması (100 ms pencereler arası > 18 dB artış, top atışı gibi planlı efektler hariç)
+    planli = [basl[i] + (float(x.get('zaman', 0)) if isinstance(x, dict) else 0.0)
+              for i, s in enumerate(sahneler) for x in (s.get('sesler') or [])]  # planlı efekt girişleri (top, davul, rüzgâr)
+    a_rms = np.array([np.sqrt(np.mean(anlatim[k:k + pen] ** 2)) for k in range(0, len(mix) - pen, pen)])
+    e_rms = np.array([np.sqrt(np.mean(efektler[k:k + pen] ** 2)) for k in range(0, len(mix) - pen, pen)])
+    sicrama = []
+    for k in range(1, len(rms)):
+        if a_rms[k] > a_rms[k - 1] * 4 and a_rms[k] > 0.01:  # cümle içi duraktan sonra konuşmanın doğal yeniden başlaması
+            continue
+        if muzik_davul and db(e_rms[k]) - db(e_rms[k - 1] + 1e-6) > 12 and db(e_rms[k]) < db(a_rms.max()) - 3:  # ritmik davul vuruşu
+            continue
+        konusma_basi = any(abs(k * 0.1 - (basl[i] + planlar[i][0])) < 0.4 for i in sesler)
+        if rms[k - 1] > 1e-4 and db(rms[k]) - db(rms[k - 1]) > 18 and not konusma_basi and not any(abs(k * 0.1 - p) < 0.4 for p in planli):
+            sicrama.append(round(k * 0.1, 1))
+    if sicrama:
+        r['uyari'].append(f'ani seviye artışı: {sicrama[:4]} sn')
+    # 5) konuşma sırasında müzik/efekt dengesi
+    konusma = np.abs(anlatim) > 0.02
+    if konusma.any():
+        a_db = db(np.sqrt(np.mean(anlatim[konusma] ** 2)))
+        e_db = db(np.sqrt(np.mean(efektler[:len(konusma)][konusma] ** 2)))
+        r['olcum']['konusma_db'] = round(a_db, 1)
+        r['olcum']['konusma_altinda_efekt_db'] = round(e_db, 1)
+        if e_db > a_db - 8:
+            r['kritik'].append(f'müzik/efekt konuşmayı bastırıyor (fark {a_db - e_db:.1f} dB, en az 8 dB olmalı)')
+    return r
+
 
 def kalite_kontrol(path, W, H, fps, hedef_sure=None, sahneler=None):
     """Yayın öncesi teknik kontrol. Yalnızca gerçekten ölçülen değerler raporlanır."""
@@ -423,8 +608,12 @@ def video_uret(senaryo, outdir, cfg, W=1080, H=1920, fps=30, log=print):
     gecisler = []
     for i, s in enumerate(sahneler):
         g = s.get('gecis') or {'tip': 'cozunme', 'sure': 0.5}
-        T = 1.0 / fps if g['tip'] == 'kesme' else float(g.get('sure', 0.5))
+        # 'kesme': xfade 1 karelik süreyle çalışmıyor (video orada bitiyor, test edildi) -> 3 karelik, gözle kesme gibi görünen geçiş
+        T = 3.0 / fps if g['tip'] == 'kesme' else max(3.0 / fps, float(g.get('sure', 0.5)))
         gecisler.append((g['tip'], T) if i < len(sahneler) - 1 else ('yok', 0.0))
+    for i in range(1, len(sahneler)):
+        if gecisler[i - 1][0] == 'flas':
+            sahneler[i]['giris_flas'] = True
     planlar = []
     for i, s in enumerate(sahneler):
         T_in = gecisler[i - 1][1] if i else 0.0
@@ -466,7 +655,8 @@ def video_uret(senaryo, outdir, cfg, W=1080, H=1920, fps=30, log=print):
             fc.append(f'{son}[{i}:v]xfade=transition={GECIS_FFMPEG.get(tip, "fade")}:duration={T:.3f}:offset={basl[i]:.3f}{etiket}')
             son = etiket
         subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', *girdi, '-filter_complex', ';'.join(fc), '-map', son,
-                        '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '17', '-pix_fmt', 'yuv420p', '-r', str(fps), sessiz], check=True)
+                        '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '16', '-pix_fmt', 'yuv420p', sessiz], check=True)
+        # not: burada çıkışa '-r' verilirse xfade zaman damgaları bozulup video kısalıyor (test edildi)
 
     # 5) ses karışımı
     n = int(math.ceil(toplam * SR)) + SR
@@ -489,9 +679,13 @@ def video_uret(senaryo, outdir, cfg, W=1080, H=1920, fps=30, log=print):
     for j, tip in enumerate(senaryo.get('muzik') or []):  # tüm video boyunca altta
         efektler[:int(toplam * SR)] += _sentez(tip, toplam, 99 + j)[:int(toplam * SR)] * {'davul': 0.32, 'ruzgar': 0.22}.get(tip, 0.25)
     # konuşma varken efektleri kıs (ducking)
-    zarf = np.convolve((np.abs(anlatim) > 0.02).astype(np.float32), np.ones(SR // 5) / (SR // 5), 'same')
-    efektler *= (1 - 0.6 * np.clip(zarf * 3, 0, 1))
+    # yumuşak kısma: konuşmadan ~0,3 sn önce iner, bittikten sonra ~0,8 sn'de yavaşça açılır (ani yükselme olmaz)
+    aktif = (np.abs(anlatim) > 0.02).astype(np.float32)
+    aktif = np.convolve(aktif, np.ones(int(0.25 * SR)), 'same') > 0
+    zarf = np.convolve(aktif.astype(np.float32), np.hanning(int(0.8 * SR)) / (np.hanning(int(0.8 * SR)).sum() / 1.0), 'same')
+    efektler *= (1 - 0.6 * np.clip(zarf, 0, 1))
     mix = anlatim + efektler
+    ses_sorun = ses_akisi_kontrol(anlatim, efektler, sesler, sahneler, basl, planlar, toplam, 'davul' in (senaryo.get('muzik') or []))
     tepe = np.abs(mix).max()
     if tepe > 0.95:
         mix *= 0.95 / tepe
@@ -500,12 +694,13 @@ def video_uret(senaryo, outdir, cfg, W=1080, H=1920, fps=30, log=print):
 
     # 6) altyazı katmanı + birleştir
     ass = os.path.join(outdir, 'altyazi.ass')
-    ass_yaz(altyazi, ass, W, H, kanca=senaryo.get('kanca'))
+    ass_yaz(altyazi, ass, W, H, kanca=senaryo.get('kanca'), son_yazi=senaryo.get('son_yazi'), toplam=toplam)
     final = os.path.join(outdir, 'video.mp4')
     fontdir = os.path.dirname(paths.FONT)
     subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', sessiz, '-i', wav,
-                    '-vf', f"ass={ass}:fontsdir={fontdir}", '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18',
-                    '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-shortest', final], check=True)
+                    '-vf', f"ass={ass}:fontsdir={fontdir}", '-c:v', 'libx264', '-preset', 'slow', '-crf', str(senaryo.get('crf', 20)),
+                    '-maxrate', '12M', '-bufsize', '24M', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
+                    '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2', '-shortest', final], check=True)
     with open(os.path.join(outdir, 'altyazi.json'), 'w', encoding='utf-8') as f:
         json.dump([{'bas': round(a, 2), 'son': round(b, 2), 'metin': t} for a, b, t in altyazi], f, ensure_ascii=False, indent=1)
 
@@ -514,6 +709,11 @@ def video_uret(senaryo, outdir, cfg, W=1080, H=1920, fps=30, log=print):
     rapor['render_sn'] = round(time.time() - t0, 1)
     rapor['seslendirme'] = motor
     rapor['dinleme'] = dinleme
+    rapor['ses_akisi'] = ses_sorun
+    rapor['kritik'] += ses_sorun['kritik']
+    rapor['uyari'] += ses_sorun['uyari']
+    rapor['gecti'] = not rapor['kritik']
+    rapor['boyut_mb'] = round(os.path.getsize(final) / 1e6, 1)
     with open(os.path.join(outdir, 'kalite.json'), 'w', encoding='utf-8') as f:
         json.dump(rapor, f, ensure_ascii=False, indent=1)
     log(f"  Kalite: {'GEÇTİ' if rapor['gecti'] else 'KALDI'} | {rapor}")

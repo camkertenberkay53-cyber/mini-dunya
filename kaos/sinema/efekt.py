@@ -79,7 +79,7 @@ class Duman:
         ofs = int(t * self.hiz * self.W / 1080) % self.W
         d = self.doku[:, ofs:ofs + self.W]
         d = np.clip((d - 0.35) * 1.8, 0, 1) * self.maske
-        al = (d * (0.55 if self.tip == 'duman' else 0.45) * self.guc)[..., None]
+        al = (d * (0.36 if self.tip == 'duman' else 0.32) * self.guc)[..., None]
         return (kare.astype(np.float32) * (1 - al) + self.renk * al).astype(np.uint8)
 
 

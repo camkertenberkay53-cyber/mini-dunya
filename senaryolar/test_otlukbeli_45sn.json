@@ -1,0 +1,360 @@
+{
+ "baslik": "Otlukbeli Savaşı 1473 | 45 sn test",
+ "kanca": "1473: KADERİ DEĞİŞTİREN SAVAŞ",
+ "son_yazi": "Sıradaki savaş hangisi olsun?\\NYorumlara yaz!",
+ "muzik": [
+  "davul"
+ ],
+ "crf": 20,
+ "sahneler": [
+  {
+   "id": "hook_top",
+   "gorsel": "assets/gorsel/otlukbeli/kare_28_5.jpg",
+   "kamera": {
+    "bas": [
+     0.55,
+     0.55,
+     1.0
+    ],
+    "son": [
+     0.62,
+     0.52,
+     1.28
+    ],
+    "ease": "out"
+   },
+   "atislar": [
+    {
+     "zaman": 0.12,
+     "konum": [
+      0.86,
+      0.6
+     ],
+     "guc": 1.0
+    }
+   ],
+   "efektler": [
+    {
+     "tip": "ates",
+     "konum": [
+      0.88,
+      0.6
+     ],
+     "yaricap": 0.1
+    },
+    {
+     "tip": "kivilcim",
+     "guc": 0.6
+    }
+   ],
+   "sarsinti": 0.2,
+   "ton": "sicak",
+   "anlatim": "1473. Anadolu'nun kaderini değiştirecek savaş başlıyordu.",
+   "sesler": [
+    {
+     "tip": "top",
+     "zaman": 0.1
+    }
+   ],
+   "gecis": {
+    "tip": "kesme"
+   },
+   "sure": 5.4
+  },
+  {
+   "id": "suvariler",
+   "gorsel": "assets/gorsel/otlukbeli/kare_2_5.jpg",
+   "kirp": [
+    0.0,
+    0.25,
+    1.0,
+    1.0
+   ],
+   "kamera": "push_in",
+   "odak": [
+    0.5,
+    0.5
+   ],
+   "efektler": [
+    {
+     "tip": "toz",
+     "guc": 0.8
+    },
+    {
+     "tip": "sis",
+     "guc": 0.35
+    }
+   ],
+   "sarsinti": 0.3,
+   "ton": "sicak",
+   "ufuk": 0.25,
+   "anlatim": "Doğudan, Uzun Hasan'ın Akkoyunlu süvarileri geliyordu.",
+   "sesler": [
+    "ruzgar"
+   ],
+   "gecis": {
+    "tip": "cozunme",
+    "sure": 0.5
+   },
+   "sure": 5.0
+  },
+  {
+   "id": "top_hatti",
+   "gorsel": "assets/gorsel/otlukbeli/kare_10_5.jpg",
+   "kamera": "pan_sol",
+   "ufuk": 0.3,
+   "efektler": [
+    {
+     "tip": "toz",
+     "guc": 0.5
+    }
+   ],
+   "ton": "sicak",
+   "anlatim": "Karşılarında, Fatih Sultan Mehmed'in topları ve yeniçerileri bekliyordu.",
+   "sesler": [
+    "davul"
+   ],
+   "gecis": {
+    "tip": "savurma",
+    "sure": 0.35
+   },
+   "sure": 5.6
+  },
+  {
+   "id": "fatih",
+   "gorsel": "assets/gorsel/otlukbeli/kare_14_3.jpg",
+   "ozne": [
+    0.0,
+    0.04,
+    0.99,
+    1.0
+   ],
+   "ufuk": 0.45,
+   "kamera": {
+    "bas": [
+     0.5,
+     0.45,
+     1.02
+    ],
+    "son": [
+     0.66,
+     0.25,
+     1.32
+    ],
+    "ease": "inout"
+   },
+   "efektler": [
+    {
+     "tip": "isik",
+     "kaynak": [
+      0.9,
+      -0.05
+     ],
+     "guc": 0.6
+    }
+   ],
+   "ton": "teal_turuncu",
+   "anlatim": "Bir hafta önce Fırat kıyısında öncü birlikleri yenilmişti. Sultan bu kez hazırlıklıydı.",
+   "gecis": {
+    "tip": "karartma",
+    "sure": 0.5
+   },
+   "sure": 6.6
+  },
+  {
+   "id": "toz_bulutu",
+   "gorsel": "assets/gorsel/otlukbeli/kare_16.jpg",
+   "kamera": "pan_sag",
+   "ufuk": 0.35,
+   "efektler": [
+    {
+     "tip": "toz",
+     "guc": 1.0
+    }
+   ],
+   "sarsinti": 0.15,
+   "ton": "sicak",
+   "anlatim": "11 Ağustos sabahı, iki ordu Otlukbeli Ovası'nda karşı karşıya geldi.",
+   "sesler": [
+    "ruzgar"
+   ],
+   "gecis": {
+    "tip": "zoom",
+    "sure": 0.4
+   },
+   "sure": 5.8
+  },
+  {
+   "id": "fitil",
+   "gorsel": "assets/gorsel/otlukbeli/kare_23_5.jpg",
+   "kamera": {
+    "bas": [
+     0.45,
+     0.45,
+     1.0
+    ],
+    "son": [
+     0.47,
+     0.38,
+     1.22
+    ],
+    "ease": "in"
+   },
+   "parallax": 0.4,
+   "efektler": [
+    {
+     "tip": "ates",
+     "konum": [
+      0.47,
+      0.33
+     ],
+     "yaricap": 0.09,
+     "guc": 0.9
+    },
+    {
+     "tip": "kivilcim",
+     "guc": 0.7
+    }
+   ],
+   "ton": "sicak",
+   "anlatim": "Osmanlı topçuları fitilleri ateşledi.",
+   "gecis": {
+    "tip": "flas",
+    "sure": 0.2
+   },
+   "sure": 4.2
+  },
+  {
+   "id": "toplar_gurluyor",
+   "gorsel": "assets/gorsel/otlukbeli/kare_29.jpg",
+   "kamera": "pan_sag",
+   "ufuk": 0.3,
+   "atislar": [
+    {
+     "zaman": 0.1,
+     "konum": [
+      0.55,
+      0.5
+     ],
+     "guc": 0.9
+    },
+    {
+     "zaman": 0.9,
+     "konum": [
+      0.5,
+      0.62
+     ],
+     "guc": 1.0
+    },
+    {
+     "zaman": 1.7,
+     "konum": [
+      0.42,
+      0.75
+     ],
+     "guc": 0.8
+    }
+   ],
+   "efektler": [
+    {
+     "tip": "duman",
+     "guc": 0.5
+    }
+   ],
+   "sarsinti": 0.25,
+   "ton": "sicak",
+   "anlatim": "Ve toplar aynı anda gürledi.",
+   "sesler": [
+    {
+     "tip": "top",
+     "zaman": 0.08
+    },
+    {
+     "tip": "top",
+     "zaman": 0.88
+    },
+    {
+     "tip": "top",
+     "zaman": 1.68
+    }
+   ],
+   "gecis": {
+    "tip": "kesme"
+   },
+   "sure": 3.6
+  },
+  {
+   "id": "suvari_dagiliyor",
+   "gorsel": "assets/gorsel/otlukbeli/kare_33_5.jpg",
+   "ozne": [
+    0.02,
+    0.5,
+    0.62,
+    0.98
+   ],
+   "ufuk": 0.4,
+   "kamera": {
+    "bas": [
+     0.45,
+     0.55,
+     1.05
+    ],
+    "son": [
+     0.55,
+     0.48,
+     1.2
+    ],
+    "ease": "inout"
+   },
+   "efektler": [
+    {
+     "tip": "duman",
+     "guc": 0.35
+    },
+    {
+     "tip": "toz",
+     "guc": 0.6
+    }
+   ],
+   "ton": "sicak",
+   "anlatim": "Top ve tüfek ateşi karşısında Akkoyunlu süvarileri dağıldı.",
+   "sesler": [
+    {
+     "tip": "kalabalik",
+     "zaman": 0.3
+    }
+   ],
+   "gecis": {
+    "tip": "cozunme",
+    "sure": 0.6
+   },
+   "sure": 5.2
+  },
+  {
+   "id": "zafer",
+   "gorsel": "assets/gorsel/otlukbeli/kare_50_5.jpg",
+   "kamera": "pull_back",
+   "ufuk": 0.4,
+   "efektler": [
+    {
+     "tip": "isik",
+     "kaynak": [
+      0.2,
+      -0.05
+     ],
+     "guc": 0.5
+    }
+   ],
+   "ton": "teal_turuncu",
+   "anlatim": "Uzun Hasan geri çekildi. Anadolu'da artık Osmanlı'nın sözü geçiyordu.",
+   "sesler": [
+    "davul",
+    {
+     "tip": "kalabalik",
+     "zaman": 0.2
+    }
+   ],
+   "sure": 7.8
+  }
+ ]
+}
