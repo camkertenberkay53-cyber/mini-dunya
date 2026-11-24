@@ -28,6 +28,11 @@ tts:
 
 # Karakter sesleri. Ses kataloğu videosunu izledikten sonra beğendiğin sesleri buraya yazarız.
 voices:
+  anlatici:   # tarih / belgesel anlatıcısı (ücretsiz motorlar)
+    gemini: Charon
+    style: "Belgesel anlatıcısı gibi; derin, sakin, etkileyici ve gerilimli; cümle sonlarında kısa duraklarla, tane tane anlat."
+    edge: {voice: tr-TR-AhmetNeural, rate: "-4%", pitch: "-6Hz"}
+    piper: {voice: fahrettin-medium, speed: 0.92, pitch: 0.97}
   tuna:
     gemini: Puck
     style: "Cesur, enerjik ve kendinden emin genç bir maceracı gibi; hevesli, hızlı ve gülümseyerek konuş."

@@ -1,0 +1,114 @@
+{
+ "baslik": "Otlukbeli 1473 - 15 sn demo",
+ "muzik": [
+  "davul"
+ ],
+ "sahneler": [
+  {
+   "id": "toz_bulutu",
+   "gorsel": "assets/gorsel/otlukbeli/kare_16.jpg",
+   "kamera": "push_in",
+   "odak": [
+    0.5,
+    0.42
+   ],
+   "sarsinti": 0.25,
+   "efektler": [
+    {
+     "tip": "sis",
+     "guc": 0.45
+    },
+    {
+     "tip": "toz",
+     "guc": 1.0
+    }
+   ],
+   "ton": "sicak",
+   "anlatim": "Ağustos 1473. Otlukbeli Ovası'nda toz bulutu yükseliyor.",
+   "konusan": "anlatici",
+   "sesler": [
+    "ruzgar"
+   ],
+   "gecis": {
+    "tip": "cozunme",
+    "sure": 0.6
+   },
+   "sure": 6.0
+  },
+  {
+   "id": "fatih_emir",
+   "gorsel": "assets/gorsel/otlukbeli/kare_14_3.jpg",
+   "kamera": "zoom_in",
+   "odak": [
+    0.56,
+    0.3
+   ],
+   "efektler": [
+    {
+     "tip": "isik",
+     "kaynak": [
+      0.85,
+      -0.05
+     ],
+     "guc": 0.9
+    },
+    {
+     "tip": "dof",
+     "odak": [
+      0.56,
+      0.32
+     ],
+     "guc": 0.8
+    },
+    {
+     "tip": "parlama",
+     "guc": 0.6
+    }
+   ],
+   "ton": "teal_turuncu",
+   "anlatim": "Fatih Sultan Mehmed, ordusuna tek bir emir veriyor.",
+   "konusan": "anlatici",
+   "gecis": {
+    "tip": "flas",
+    "sure": 0.35
+   }
+  },
+  {
+   "id": "toplar_ates",
+   "gorsel": "assets/gorsel/otlukbeli/kare_29.jpg",
+   "kamera": "pan_sag",
+   "sarsinti": 0.35,
+   "darbeler": [
+    0.15
+   ],
+   "efektler": [
+    {
+     "tip": "duman",
+     "guc": 0.7
+    },
+    {
+     "tip": "kivilcim",
+     "guc": 1.0
+    },
+    {
+     "tip": "parlama",
+     "guc": 0.5
+    }
+   ],
+   "ton": "sicak",
+   "anlatim": "Ve Osmanlı topları, savaşın kaderini değiştiriyor!",
+   "konusan": "anlatici",
+   "sesler": [
+    {
+     "tip": "top",
+     "zaman": 0.1
+    },
+    {
+     "tip": "kalabalik",
+     "zaman": 2.5
+    }
+   ]
+  }
+ ],
+ "kanca": "1473: OTLUKBELİ"
+}

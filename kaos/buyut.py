@@ -84,3 +84,15 @@ def buyut(src, dst, log=print, hedef_kisa=1080):
     os.replace(tmp, dst)
     log(f'  Büyütüldü: {w}x{h} -> {ow}x{oh}, {n} kare, {time.time() - t0:.0f} sn')
     return dst
+
+
+def buyut_gorsel(src, dst):
+    """Tek görseli 4x büyütür (ücretsiz, CPU)."""
+    import cv2
+    torch, m = _model()
+    img = cv2.imread(src)[..., ::-1].copy()
+    x = torch.from_numpy(img).permute(2, 0, 1)[None].float() / 255.0
+    with torch.inference_mode():
+        y = m(x).clamp_(0, 1)[0].permute(1, 2, 0).mul_(255).round_().byte().numpy()
+    cv2.imwrite(dst, y[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, 95])
+    return dst
