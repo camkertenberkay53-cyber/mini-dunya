@@ -1,0 +1,38 @@
+ad: Roma, geç Cumhuriyet (MÖ 1. yüzyıl)
+etiket: roma-cumhuriyet
+kabul_edilen_donemler: [roma-cumhuriyet]
+kategoriler:
+  baslik: [montefortino, montefortino_sorguclu]
+  kiyafet: [roma_tunigi, roma_tunigi_beyaz, caligae]
+  zirh: [lorica_hamata]
+  kalkan: [scutum]
+  silah: [gladius, pilum, kompozit_yay]
+  sancak: [aquila, vexillum]
+  aksesuar: [deri_kemer, pugio, kese]
+  cevre: [roma_cadiri]
+karakterler:
+  piyade:
+    - {ad: rom_lejyoner_gladius, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer],
+       takilanlar: {bas: montefortino, sag_el: gladius, sol_kol: scutum, bel_sol: pugio}}
+    - {ad: rom_lejyoner_pilum, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer],
+       takilanlar: {bas: montefortino, sag_el_dik: pilum, sol_kol: scutum, bel_sol: pugio}}
+    - {ad: rom_aquilifer, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer],
+       takilanlar: {bas: montefortino, sag_el_dik: aquila, bel_sol: pugio}}
+  okcu:
+    - {ad: rom_yardimci_okcu, govde: erkek, sac: [kisa, sakal], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer],
+       takilanlar: {sol_el: kompozit_yay, sirt: sadak}}
+    - {ad: rom_yardimci_okcu_migferli, govde: erkek, sac: [kisa, sakal], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer], takilanlar: {bas: montefortino, sol_el: kompozit_yay, sirt: sadak}}
+    - {ad: rom_yardimci_okcu_kilic, govde: erkek, sac: [kisa, sakal], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer], takilanlar: {sol_el: kompozit_yay, sirt: sadak, sag_el: gladius}}
+  komutan:
+    - {ad: rom_centurio, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer],
+       takilanlar: {bas: montefortino_sorguclu, sag_el: gladius, bel_sol: pugio}}
+    - {ad: rom_centurio_kalkanli, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer], takilanlar: {bas: montefortino_sorguclu, sag_el: gladius, sol_kol: scutum, bel_sol: pugio}}
+  isci_sivil:
+    - {ad: rom_sivil, govde: erkek, sac: [kisa], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer],
+       takilanlar: {bel_sag: kese}}
+    - {ad: rom_sivil_avci, govde: erkek, sac: [kisa], giysiler: [roma_tunigi_beyaz, caligae, deri_kemer], takilanlar: {sol_el: kompozit_yay, sirt: sadak}}
+  suvari:
+    - {ad: rom_suvari, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer],
+       takilanlar: {bas: montefortino, sag_el: gladius}, binek: at}
+    - {ad: rom_suvari_mizrak, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer], takilanlar: {bas: montefortino, sag_el_dik: mizrak}, binek: at}
+    - {ad: rom_suvari_vexillum, govde: erkek, sac: [kisa], giysiler: [roma_tunigi, caligae, lorica_hamata, deri_kemer], takilanlar: {bas: montefortino, sag_el_dik: vexillum}, binek: at}

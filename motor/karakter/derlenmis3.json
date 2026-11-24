@@ -1,0 +1,2846 @@
+{
+ "govdeler": {
+  "erkek_e4a5611e4f": {
+   "anahtar": "3b97e783c0e2f9e7",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "glb_sha256": "03cd2741ea3dae2359e0789110e15a7c7a656e3cb4da1f154981f419c47c006d",
+   "bayt": 2345348,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 21650,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 22,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_e2259e91b9": {
+   "anahtar": "f60d432cc20e7e31",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "turkmen_kaftani_kahve",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "glb_sha256": "b6f2914e3d3036364b23b1511f31b46aedfabe9a72a0721ac3d4c004f1ec518b",
+   "bayt": 2064996,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 18414,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_4e93b61e59": {
+   "anahtar": "dfabbf69a1af7e3c",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "zincir_zirh_gomlek",
+    "deri_kemer"
+   ],
+   "glb_sha256": "0c008596a96fb6e189e08be02843ff2a876f2945fe941cb3217c10c679d78d51",
+   "bayt": 2331828,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 21534,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 22,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_df1fc578ad": {
+   "anahtar": "09db168522a410f5",
+   "govde": "erkek",
+   "sac": [
+    "kisa"
+   ],
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "zincir_zirh_gomlek",
+    "deri_kemer"
+   ],
+   "glb_sha256": "078e4615f815c99ac0fd16ceed0344ae2bd0e2fc148cd6cdb20cc0d4e5a5ff3d",
+   "bayt": 2293076,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 20500,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 22,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_951dd3a170": {
+   "anahtar": "0eeac72959d0df0c",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "bizans_tunigi_hardal",
+    "cizme_uzun_kahve",
+    "deri_kemer"
+   ],
+   "glb_sha256": "af6cb5b54e583a21c3ab3c4fac6b5efc6985ff0acb776493f74d2b8a585a43cd",
+   "bayt": 2061860,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 18202,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_2dcdc63536": {
+   "anahtar": "f054a27e186732a3",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "yeniceri_dolamasi",
+    "salvar",
+    "cizme_uzun_sari",
+    "kusak_kirmizi"
+   ],
+   "glb_sha256": "c5076de84e6650a707355e56d387aa7b808d6c775484174274f1fb883f45102b",
+   "bayt": 2068048,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 18414,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_9fc220619b": {
+   "anahtar": "b412a9fd745efde9",
+   "govde": "erkek",
+   "sac": [
+    "sakal"
+   ],
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "glb_sha256": "769918d5866e1e1a3aa1967dc9e750aa02de89f2857094aa6152a3edba243e7b",
+   "bayt": 2034288,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.834,
+    "genislik_m": 1.859,
+    "ucgen": 17588,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.158
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_e69ad88ef3": {
+   "anahtar": "bc9c545e80ee0dd4",
+   "govde": "erkek",
+   "sac": [
+    "sakal"
+   ],
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "glb_sha256": "0ffbc65e281c597b225c0123f24296c9f19517f133770aa6d2d342630c946388",
+   "bayt": 2034972,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.834,
+    "genislik_m": 1.859,
+    "ucgen": 17588,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.158
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_4f54ac2b9f": {
+   "anahtar": "12c8bf3f90e3f1c0",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "yeniceri_dolamasi",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_zirh_gomlek"
+   ],
+   "glb_sha256": "99fbf2f2aba7417af1af910a50b67946af2874dff05e98f548d4fc275fd0bbf5",
+   "bayt": 2327296,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 21522,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_c418aa6d94": {
+   "anahtar": "9bd671e4886568fe",
+   "govde": "erkek",
+   "sac": [
+    "kisa"
+   ],
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "glb_sha256": "fef0974ebe1cb862c5d9df66556191c8e9855904415d6655a6f2086c08e85ed4",
+   "bayt": 2329760,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.832,
+    "genislik_m": 1.859,
+    "ucgen": 20952,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.16
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_8cbba32f56": {
+   "anahtar": "7631674ec04cd42e",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "roma_tunigi_beyaz",
+    "caligae",
+    "deri_kemer"
+   ],
+   "glb_sha256": "8e5c3a6ebee583eca534c1f6d449d87e208ee56085c092ae5a1fc29c333259c4",
+   "bayt": 2057428,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.832,
+    "genislik_m": 1.859,
+    "ucgen": 18022,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 16,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.16
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_7b821306c9": {
+   "anahtar": "86fb3b4275df68c1",
+   "govde": "erkek",
+   "sac": [
+    "kisa"
+   ],
+   "giysiler": [
+    "roma_tunigi_beyaz",
+    "caligae",
+    "deri_kemer"
+   ],
+   "glb_sha256": "36402173ddc9c36db5ecf0cafaf934c150c7287b69e26833bcc37dfb2d25c196",
+   "bayt": 2018812,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.832,
+    "genislik_m": 1.859,
+    "ucgen": 16988,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 16,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.16
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_9392f93500": {
+   "anahtar": "f515eb5553df408b",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "glb_sha256": "f9e2b88d958c74eb11236485b7f522f43b178cd9e87a446ed533102c77687c6a",
+   "bayt": 2175692,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 20696,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 22,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_35c38e9239": {
+   "anahtar": "195b17bc5c6d2f15",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "deri_kemer"
+   ],
+   "glb_sha256": "d347d4146619a3daf9fdbcecf2045e5d5c1612b3726a8ab19254e6a9bbfa4516",
+   "bayt": 2072380,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 18506,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_7959a03940": {
+   "anahtar": "4249bb4b38444c03",
+   "govde": "erkek",
+   "sac": [
+    "kisa",
+    "sakal"
+   ],
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_zirh_gomlek"
+   ],
+   "glb_sha256": "cf829a630c847cc15ab5fdcc8bf532a79eddacd1961d02e685876e12c4b2f857",
+   "bayt": 2320544,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 21366,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 19,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  },
+  "erkek_cff0ab1ce3": {
+   "anahtar": "773039c343aaa8a7",
+   "govde": "erkek",
+   "sac": [
+    "kisa"
+   ],
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "glb_sha256": "70aad95c1fa15826221ec571f434208544170b270b0f3b944e7d93bd696be913",
+   "bayt": 2136940,
+   "kaynaklar": [
+    "quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda",
+    "ual1/UAL1_Standard.fbx",
+    "quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda",
+    "quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda"
+   ],
+   "lisanslar": [
+    "CC0-1.0",
+    "kendi-uretim"
+   ],
+   "olcum": {
+    "boy_m": 1.838,
+    "genislik_m": 1.859,
+    "ucgen": 19662,
+    "kemik_sayisi": 65,
+    "evrensel_iskelet_eslesen": 65,
+    "evrensel_iskelet_toplam": 65,
+    "animasyonlar": [
+     "Death01",
+     "Driving_Loop",
+     "Fixing_Kneeling",
+     "Hit_Chest",
+     "Idle_Loop",
+     "Idle_Torch_Loop",
+     "Interact",
+     "Jog_Fwd_Loop",
+     "Push_Loop",
+     "Sprint_Loop",
+     "Sword_Attack",
+     "Sword_Idle",
+     "Walk_Formal_Loop",
+     "Walk_Loop"
+    ],
+    "doku_sayisi": 22,
+    "en_buyuk_doku": 1024,
+    "bas_orani": 0.159
+   },
+   "yuvalar": {
+    "bas": {
+     "kemik": "Head",
+     "konum": [
+      0.0,
+      -0.0055,
+      1.8101
+     ],
+     "olcek": 0.996
+    },
+    "sag_el": {
+     "kemik": "hand_r",
+     "konum": [
+      0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_el": {
+     "kemik": "hand_l",
+     "konum": [
+      -0.7911,
+      -0.0654,
+      1.4335
+     ],
+     "olcek": 1.0
+    },
+    "sol_kol": {
+     "kemik": "lowerarm_l",
+     "konum": [
+      -0.5847,
+      -0.0692,
+      1.5305
+     ],
+     "olcek": 1.0
+    },
+    "sirt": {
+     "kemik": "spine_03",
+     "konum": [
+      0.0,
+      -0.1935,
+      1.2948
+     ],
+     "olcek": 1.0
+    },
+    "bel_sol": {
+     "kemik": "pelvis",
+     "konum": [
+      -0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "bel_sag": {
+     "kemik": "pelvis",
+     "konum": [
+      0.1766,
+      0.0,
+      0.986
+     ],
+     "olcek": 1.0
+    },
+    "_govde": {
+     "bas_tepe": 1.81,
+     "bas_genislik": 0.181,
+     "olcek": 0.996
+    }
+   }
+  }
+ },
+ "takimlar": {
+  "akk_zirhli_kilic": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sag_el": "osmanli_kilic",
+    "sol_kol": "celik_kalkan"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": null
+  },
+  "akk_zirhli_gurz": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sag_el": "gurz",
+    "sol_kol": "celik_kalkan",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": null
+  },
+  "akk_zirhli_mizrak": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sag_el_dik": "mizrak"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": null
+  },
+  "akk_okcu": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_e2259e91b9",
+   "takilanlar": {
+    "bas": "turkmen_tacli_sarik",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak",
+    "bel_sag": "hancer"
+   },
+   "giysiler": [
+    "turkmen_kaftani_kahve",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "akk_okcu_zirhli": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": null
+  },
+  "akk_okcu_kilic": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_e2259e91b9",
+   "takilanlar": {
+    "bas": "turkmen_tacli_sarik",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak",
+    "sag_el": "osmanli_kilic"
+   },
+   "giysiler": [
+    "turkmen_kaftani_kahve",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "akk_bey": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "komutan",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sag_el_dik": "akkoyunlu_sancagi"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": null
+  },
+  "akk_bey_gurz": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "komutan",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sag_el": "gurz",
+    "sol_kol": "celik_kalkan"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": null
+  },
+  "akk_sivil": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_e2259e91b9",
+   "takilanlar": {
+    "bas": "turkmen_tacli_sarik",
+    "bel_sag": "hancer"
+   },
+   "giysiler": [
+    "turkmen_kaftani_kahve",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "akk_sivil_kalpakli": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_e2259e91b9",
+   "takilanlar": {
+    "bas": "turkmen_kalpak",
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "turkmen_kaftani_kahve",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "akk_suvari": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sag_el_dik": "mizrak",
+    "sol_kol": "celik_kalkan"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": "at"
+  },
+  "akk_suvari_yay": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": "at"
+  },
+  "akk_suvari_gurz": {
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_e4a5611e4f",
+   "takilanlar": {
+    "bas": "sarik_migfer",
+    "sag_el": "gurz",
+    "sol_kol": "celik_kalkan"
+   },
+   "giysiler": [
+    "turkmen_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_levha_zirh"
+   ],
+   "binek": "at"
+  },
+  "biz_piyade_mizrak": {
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sag_el_dik": "mizrak",
+    "sol_kol": "badem_kalkan"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_piyade_kilic": {
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sag_el": "duz_kilic",
+    "sol_kol": "badem_kalkan"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_piyade_sancak": {
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sag_el_dik": "bizans_sancagi"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_arbaletci": {
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_cff0ab1ce3",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sag_el": "arbalet",
+    "sirt": "pavez",
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_arbaletci_konik": {
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "konik_migfer",
+    "sag_el": "arbalet",
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_arbaletci_lamel": {
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sag_el": "arbalet",
+    "sirt": "pavez"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_komutan": {
+   "kit": "bizans_15yy",
+   "rol": "komutan",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sag_el": "duz_kilic",
+    "sol_kol": "badem_kalkan"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_komutan_sancak": {
+   "kit": "bizans_15yy",
+   "rol": "komutan",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "konik_migfer",
+    "sag_el_dik": "bizans_sancagi"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_sivil": {
+   "kit": "bizans_15yy",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_951dd3a170",
+   "takilanlar": {
+    "sag_el_dik": "mizrak",
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "bizans_tunigi_hardal",
+    "cizme_uzun_kahve",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_sivil_pavezli": {
+   "kit": "bizans_15yy",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_951dd3a170",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sirt": "pavez",
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "bizans_tunigi_hardal",
+    "cizme_uzun_kahve",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "biz_suvari": {
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "konik_migfer",
+    "sag_el_dik": "mizrak",
+    "sol_kol": "badem_kalkan"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": "at"
+  },
+  "biz_suvari_kilic": {
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "konik_migfer",
+    "sag_el": "duz_kilic",
+    "sol_kol": "badem_kalkan"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": "at"
+  },
+  "biz_suvari_lamel": {
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_9392f93500",
+   "takilanlar": {
+    "bas": "sapel_migfer",
+    "sag_el_dik": "mizrak",
+    "sol_kol": "badem_kalkan"
+   },
+   "giysiler": [
+    "bizans_tunigi",
+    "cizme_uzun_kahve",
+    "lamel_zirh",
+    "deri_kemer"
+   ],
+   "binek": "at"
+  },
+  "osm_yeniceri_kilic": {
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_2dcdc63536",
+   "takilanlar": {
+    "bas": "yeniceri_borku",
+    "sag_el": "osmanli_kilic",
+    "sol_kol": "hasir_kalkan",
+    "bel_sag": "hancer"
+   },
+   "giysiler": [
+    "yeniceri_dolamasi",
+    "salvar",
+    "cizme_uzun_sari",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_yeniceri_mizrak": {
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_2dcdc63536",
+   "takilanlar": {
+    "bas": "yeniceri_borku",
+    "sag_el_dik": "mizrak",
+    "sol_kol": "hasir_kalkan"
+   },
+   "giysiler": [
+    "yeniceri_dolamasi",
+    "salvar",
+    "cizme_uzun_sari",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_yeniceri_sancak": {
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "govde_id": "erkek_2dcdc63536",
+   "takilanlar": {
+    "bas": "yeniceri_borku",
+    "sag_el_dik": "osmanli_sancagi",
+    "bel_sag": "hancer"
+   },
+   "giysiler": [
+    "yeniceri_dolamasi",
+    "salvar",
+    "cizme_uzun_sari",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_yeniceri_okcu": {
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_2dcdc63536",
+   "takilanlar": {
+    "bas": "yeniceri_borku",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak",
+    "bel_sag": "hancer"
+   },
+   "giysiler": [
+    "yeniceri_dolamasi",
+    "salvar",
+    "cizme_uzun_sari",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_yeniceri_okcu_kilic": {
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_2dcdc63536",
+   "takilanlar": {
+    "bas": "yeniceri_borku",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak",
+    "sag_el": "osmanli_kilic"
+   },
+   "giysiler": [
+    "yeniceri_dolamasi",
+    "salvar",
+    "cizme_uzun_sari",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_okcu_sarikli": {
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "govde_id": "erkek_e69ad88ef3",
+   "takilanlar": {
+    "bas": "osmanli_sarik",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_bey": {
+   "kit": "osmanli_15yy",
+   "rol": "komutan",
+   "govde_id": "erkek_9fc220619b",
+   "takilanlar": {
+    "bas": "osmanli_sarik",
+    "sag_el": "osmanli_kilic",
+    "bel_sag": "hancer"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_bey_tug": {
+   "kit": "osmanli_15yy",
+   "rol": "komutan",
+   "govde_id": "erkek_9fc220619b",
+   "takilanlar": {
+    "bas": "osmanli_sarik",
+    "sag_el_dik": "tug"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_sivil": {
+   "kit": "osmanli_15yy",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_e69ad88ef3",
+   "takilanlar": {
+    "bas": "osmanli_sarik",
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_sivil_kulahli": {
+   "kit": "osmanli_15yy",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_e69ad88ef3",
+   "takilanlar": {
+    "bas": "kece_kulah",
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar",
+    "cizme_uzun_kahve",
+    "kusak_kirmizi"
+   ],
+   "binek": null
+  },
+  "osm_sipahi": {
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_7959a03940",
+   "takilanlar": {
+    "bas": "osmanli_sarik",
+    "sag_el": "gurz",
+    "sol_kol": "hasir_kalkan"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_zirh_gomlek"
+   ],
+   "binek": "at"
+  },
+  "osm_sipahi_mizrak": {
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_7959a03940",
+   "takilanlar": {
+    "bas": "osmanli_sarik",
+    "sag_el_dik": "mizrak",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_zirh_gomlek"
+   ],
+   "binek": "at"
+  },
+  "osm_sipahi_yay": {
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "govde_id": "erkek_7959a03940",
+   "takilanlar": {
+    "bas": "osmanli_sarik",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak",
+    "sag_el": "osmanli_kilic"
+   },
+   "giysiler": [
+    "osmanli_kaftani",
+    "salvar_koyu",
+    "cizme_uzun_kahve",
+    "zincir_zirh_gomlek"
+   ],
+   "binek": "at"
+  },
+  "rom_lejyoner_gladius": {
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino",
+    "sag_el": "gladius",
+    "sol_kol": "scutum",
+    "bel_sol": "pugio"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_lejyoner_pilum": {
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino",
+    "sag_el_dik": "pilum",
+    "sol_kol": "scutum",
+    "bel_sol": "pugio"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_aquilifer": {
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino",
+    "sag_el_dik": "aquila",
+    "bel_sol": "pugio"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_yardimci_okcu": {
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "govde_id": "erkek_8cbba32f56",
+   "takilanlar": {
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "roma_tunigi_beyaz",
+    "caligae",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_yardimci_okcu_migferli": {
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "govde_id": "erkek_8cbba32f56",
+   "takilanlar": {
+    "bas": "montefortino",
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "roma_tunigi_beyaz",
+    "caligae",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_yardimci_okcu_kilic": {
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "govde_id": "erkek_8cbba32f56",
+   "takilanlar": {
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak",
+    "sag_el": "gladius"
+   },
+   "giysiler": [
+    "roma_tunigi_beyaz",
+    "caligae",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_centurio": {
+   "kit": "roma_cumhuriyet",
+   "rol": "komutan",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino_sorguclu",
+    "sag_el": "gladius",
+    "bel_sol": "pugio"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_centurio_kalkanli": {
+   "kit": "roma_cumhuriyet",
+   "rol": "komutan",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino_sorguclu",
+    "sag_el": "gladius",
+    "sol_kol": "scutum",
+    "bel_sol": "pugio"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_sivil": {
+   "kit": "roma_cumhuriyet",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_7b821306c9",
+   "takilanlar": {
+    "bel_sag": "kese"
+   },
+   "giysiler": [
+    "roma_tunigi_beyaz",
+    "caligae",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_sivil_avci": {
+   "kit": "roma_cumhuriyet",
+   "rol": "isci_sivil",
+   "govde_id": "erkek_7b821306c9",
+   "takilanlar": {
+    "sol_el": "kompozit_yay",
+    "sirt": "sadak"
+   },
+   "giysiler": [
+    "roma_tunigi_beyaz",
+    "caligae",
+    "deri_kemer"
+   ],
+   "binek": null
+  },
+  "rom_suvari": {
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino",
+    "sag_el": "gladius"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": "at"
+  },
+  "rom_suvari_mizrak": {
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino",
+    "sag_el_dik": "mizrak"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": "at"
+  },
+  "rom_suvari_vexillum": {
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "govde_id": "erkek_c418aa6d94",
+   "takilanlar": {
+    "bas": "montefortino",
+    "sag_el_dik": "vexillum"
+   },
+   "giysiler": [
+    "roma_tunigi",
+    "caligae",
+    "lorica_hamata",
+    "deri_kemer"
+   ],
+   "binek": "at"
+  }
+ },
+ "reddedilen": {}
+}

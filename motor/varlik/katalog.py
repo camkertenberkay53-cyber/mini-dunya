@@ -21,6 +21,9 @@ import yaml
 from motor import ayar
 
 BURASI = Path(__file__).resolve().parent
+# Öncelik sırası: CC0 > koşulları uygun diğer ücretsiz lisanslar > atıf gerektirenler (CC BY).
+# CC BY varlık ancak 'atif' alanı doluysa kabul edilir; atıf metni video açıklamasına otomatik eklenecek (Faz 6).
+IZINLI_LISANSLAR = ("CC0-1.0", "CC-BY-4.0", "CC-BY-3.0")
 ZORUNLU_ALANLAR = ("id", "kaynak", "yol", "lisans", "kaynak_commit", "sha256", "bayt", "tur", "donem", "durum", "kalite")
 
 
@@ -106,8 +109,10 @@ def dogrula(kayit: dict) -> list[str]:
         if v["id"] in gorulen:
             hatalar.append(f"{v['id']}: tekrar eden kimlik")
         gorulen.add(v["id"])
-        if v["lisans"] not in ("CC0-1.0",):
+        if v["lisans"] not in IZINLI_LISANSLAR:
             hatalar.append(f"{v['id']}: izin verilmeyen lisans {v['lisans']}")
+        elif v["lisans"].startswith("CC-BY") and not v.get("atif"):
+            hatalar.append(f"{v['id']}: {v['lisans']} atıf gerektirir; 'atif' alanı (yazar, lisans, adres) boş")
         k = kaynaklar.get(v["kaynak"])
         if not k:
             hatalar.append(f"{v['id']}: bilinmeyen kaynak")

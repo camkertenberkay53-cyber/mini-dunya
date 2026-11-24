@@ -1,0 +1,182 @@
+[
+ {
+  "ad": "osm_yeniceri_mizrak",
+  "kit": "osmanli_15yy",
+  "rol": "piyade",
+  "govde_id": "erkek_2dcdc63536",
+  "glb": "res://varlik/faz3/govde/erkek_2dcdc63536.glb",
+  "binek": null,
+  "takilanlar": [
+   {
+    "yuva": "bas",
+    "id": "yeniceri_borku",
+    "glb": "res://varlik/faz3/ekipman/yeniceri_borku.glb",
+    "kategori": "baslik"
+   },
+   {
+    "yuva": "sag_el_dik",
+    "id": "mizrak",
+    "glb": "res://varlik/faz3/ekipman/mizrak.glb",
+    "kategori": "silah"
+   },
+   {
+    "yuva": "sol_kol",
+    "id": "hasir_kalkan",
+    "glb": "res://varlik/faz3/ekipman/hasir_kalkan.glb",
+    "kategori": "kalkan"
+   }
+  ]
+ },
+ {
+  "ad": "akk_zirhli_mizrak",
+  "kit": "akkoyunlu_15yy",
+  "rol": "piyade",
+  "govde_id": "erkek_e4a5611e4f",
+  "glb": "res://varlik/faz3/govde/erkek_e4a5611e4f.glb",
+  "binek": null,
+  "takilanlar": [
+   {
+    "yuva": "bas",
+    "id": "sarik_migfer",
+    "glb": "res://varlik/faz3/ekipman/sarik_migfer.glb",
+    "kategori": "baslik"
+   },
+   {
+    "yuva": "sag_el_dik",
+    "id": "mizrak",
+    "glb": "res://varlik/faz3/ekipman/mizrak.glb",
+    "kategori": "silah"
+   }
+  ]
+ },
+ {
+  "ad": "biz_piyade_mizrak",
+  "kit": "bizans_15yy",
+  "rol": "piyade",
+  "govde_id": "erkek_9392f93500",
+  "glb": "res://varlik/faz3/govde/erkek_9392f93500.glb",
+  "binek": null,
+  "takilanlar": [
+   {
+    "yuva": "bas",
+    "id": "sapel_migfer",
+    "glb": "res://varlik/faz3/ekipman/sapel_migfer.glb",
+    "kategori": "baslik"
+   },
+   {
+    "yuva": "sag_el_dik",
+    "id": "mizrak",
+    "glb": "res://varlik/faz3/ekipman/mizrak.glb",
+    "kategori": "silah"
+   },
+   {
+    "yuva": "sol_kol",
+    "id": "badem_kalkan",
+    "glb": "res://varlik/faz3/ekipman/badem_kalkan.glb",
+    "kategori": "kalkan"
+   }
+  ]
+ },
+ {
+  "ad": "rom_lejyoner_pilum",
+  "kit": "roma_cumhuriyet",
+  "rol": "piyade",
+  "govde_id": "erkek_c418aa6d94",
+  "glb": "res://varlik/faz3/govde/erkek_c418aa6d94.glb",
+  "binek": null,
+  "takilanlar": [
+   {
+    "yuva": "bas",
+    "id": "montefortino",
+    "glb": "res://varlik/faz3/ekipman/montefortino.glb",
+    "kategori": "baslik"
+   },
+   {
+    "yuva": "sag_el_dik",
+    "id": "pilum",
+    "glb": "res://varlik/faz3/ekipman/pilum.glb",
+    "kategori": "silah"
+   },
+   {
+    "yuva": "sol_kol",
+    "id": "scutum",
+    "glb": "res://varlik/faz3/ekipman/scutum.glb",
+    "kategori": "kalkan"
+   },
+   {
+    "yuva": "bel_sol",
+    "id": "pugio",
+    "glb": "res://varlik/faz3/ekipman/pugio.glb",
+    "kategori": "aksesuar"
+   }
+  ]
+ },
+ {
+  "ad": "osm_yeniceri_kilic",
+  "kit": "osmanli_15yy",
+  "rol": "piyade",
+  "govde_id": "erkek_2dcdc63536",
+  "glb": "res://varlik/faz3/govde/erkek_2dcdc63536.glb",
+  "binek": null,
+  "takilanlar": [
+   {
+    "yuva": "bas",
+    "id": "yeniceri_borku",
+    "glb": "res://varlik/faz3/ekipman/yeniceri_borku.glb",
+    "kategori": "baslik"
+   },
+   {
+    "yuva": "sag_el",
+    "id": "osmanli_kilic",
+    "glb": "res://varlik/faz3/ekipman/osmanli_kilic.glb",
+    "kategori": "silah"
+   },
+   {
+    "yuva": "sol_kol",
+    "id": "hasir_kalkan",
+    "glb": "res://varlik/faz3/ekipman/hasir_kalkan.glb",
+    "kategori": "kalkan"
+   },
+   {
+    "yuva": "bel_sag",
+    "id": "hancer",
+    "glb": "res://varlik/faz3/ekipman/hancer.glb",
+    "kategori": "aksesuar"
+   }
+  ]
+ },
+ {
+  "ad": "rom_lejyoner_gladius",
+  "kit": "roma_cumhuriyet",
+  "rol": "piyade",
+  "govde_id": "erkek_c418aa6d94",
+  "glb": "res://varlik/faz3/govde/erkek_c418aa6d94.glb",
+  "binek": null,
+  "takilanlar": [
+   {
+    "yuva": "bas",
+    "id": "montefortino",
+    "glb": "res://varlik/faz3/ekipman/montefortino.glb",
+    "kategori": "baslik"
+   },
+   {
+    "yuva": "sag_el",
+    "id": "gladius",
+    "glb": "res://varlik/faz3/ekipman/gladius.glb",
+    "kategori": "silah"
+   },
+   {
+    "yuva": "sol_kol",
+    "id": "scutum",
+    "glb": "res://varlik/faz3/ekipman/scutum.glb",
+    "kategori": "kalkan"
+   },
+   {
+    "yuva": "bel_sol",
+    "id": "pugio",
+    "glb": "res://varlik/faz3/ekipman/pugio.glb",
+    "kategori": "aksesuar"
+   }
+  ]
+ }
+]

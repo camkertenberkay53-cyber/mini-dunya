@@ -1,0 +1,38 @@
+ad: Bizans, 15. yüzyıl (1453 savunucuları)
+etiket: bizans-15yy
+kabul_edilen_donemler: [bizans-15yy]
+kategoriler:
+  baslik: [konik_migfer, sapel_migfer]
+  kiyafet: [bizans_tunigi, bizans_tunigi_hardal, cizme_uzun_kahve]
+  zirh: [lamel_zirh, zincir_zirh_gomlek]
+  kalkan: [badem_kalkan, pavez]
+  silah: [mizrak, duz_kilic, arbalet]
+  sancak: [bizans_sancagi]
+  aksesuar: [deri_kemer, kese]
+  cevre: [sur_kule]
+karakterler:
+  piyade:
+    - {ad: biz_piyade_mizrak, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer],
+       takilanlar: {bas: sapel_migfer, sag_el_dik: mizrak, sol_kol: badem_kalkan}}
+    - {ad: biz_piyade_kilic, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer],
+       takilanlar: {bas: sapel_migfer, sag_el: duz_kilic, sol_kol: badem_kalkan}}
+    - {ad: biz_piyade_sancak, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer],
+       takilanlar: {bas: sapel_migfer, sag_el_dik: bizans_sancagi}}
+  okcu:
+    - {ad: biz_arbaletci, govde: erkek, sac: [kisa], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer],
+       takilanlar: {bas: sapel_migfer, sag_el: arbalet, sirt: pavez, bel_sag: kese}}
+    - {ad: biz_arbaletci_konik, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer], takilanlar: {bas: konik_migfer, sag_el: arbalet, bel_sag: kese}}
+    - {ad: biz_arbaletci_lamel, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer], takilanlar: {bas: sapel_migfer, sag_el: arbalet, sirt: pavez}}
+  komutan:
+    - {ad: biz_komutan, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer],
+       takilanlar: {bas: sapel_migfer, sag_el: duz_kilic, sol_kol: badem_kalkan}}
+    - {ad: biz_komutan_sancak, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer], takilanlar: {bas: konik_migfer, sag_el_dik: bizans_sancagi}}
+  isci_sivil:   # 1453 kuşatmasında surlara çıkan halk milisi: mızrak + kese
+    - {ad: biz_sivil, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi_hardal, cizme_uzun_kahve, deri_kemer],
+       takilanlar: {sag_el_dik: mizrak, bel_sag: kese}}
+    - {ad: biz_sivil_pavezli, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi_hardal, cizme_uzun_kahve, deri_kemer], takilanlar: {bas: sapel_migfer, sirt: pavez, bel_sag: kese}}
+  suvari:
+    - {ad: biz_suvari, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer],
+       takilanlar: {bas: konik_migfer, sag_el_dik: mizrak, sol_kol: badem_kalkan}, binek: at}
+    - {ad: biz_suvari_kilic, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer], takilanlar: {bas: konik_migfer, sag_el: duz_kilic, sol_kol: badem_kalkan}, binek: at}
+    - {ad: biz_suvari_lamel, govde: erkek, sac: [kisa, sakal], giysiler: [bizans_tunigi, cizme_uzun_kahve, lamel_zirh, deri_kemer], takilanlar: {bas: sapel_migfer, sag_el_dik: mizrak, sol_kol: badem_kalkan}, binek: at}

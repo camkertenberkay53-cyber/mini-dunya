@@ -1,0 +1,1763 @@
+{
+ "karakter": {
+  "akk_zirhli_kilic": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_zirhli_gurz": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_zirhli_mizrak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_okcu": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%9.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%5.3)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_okcu_zirhli": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_okcu_kilic": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%9.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%5.3)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_bey": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "komutan",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_bey_gurz": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "komutan",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_sivil": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%9.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%5.3)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_sivil_kalpakli": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%9.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%5.3)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_suvari": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_suvari_yay": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_suvari_gurz": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%5.3)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.6)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.0)",
+    "giysi_5_levha: Idle_Loop sırasında alt katman dışarı taşıyor (%9.0)",
+    "giysi_5_levha: Walk_Loop sırasında alt katman dışarı taşıyor (%8.7)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_piyade_mizrak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_piyade_kilic": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_piyade_sancak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_arbaletci": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_arbaletci_konik": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_arbaletci_lamel": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_komutan": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "komutan",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_komutan_sancak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "komutan",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_sivil": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_sivil_pavezli": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_suvari": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_suvari_kilic": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_suvari_lamel": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_0_govde: Idle_Loop sırasında alt katman dışarı taşıyor (%36.2)",
+    "giysi_0_govde: Walk_Loop sırasında alt katman dışarı taşıyor (%27.3)",
+    "giysi_4_lamel: Idle_Loop sırasında alt katman dışarı taşıyor (%13.9)",
+    "giysi_4_lamel: Walk_Loop sırasında alt katman dışarı taşıyor (%16.8)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_yeniceri_kilic": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_yeniceri_mizrak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_yeniceri_sancak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "neden": [
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_yeniceri_okcu": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_yeniceri_okcu_kilic": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%7.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_okcu_sarikli": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_bey": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "komutan",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_bey_tug": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "komutan",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_sivil": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_sivil_kulahli": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_sipahi": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.5)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.8)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_sipahi_mizrak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.5)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.8)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_sipahi_yay": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "neden": [
+    "giysi_1_etek: Idle_Loop sırasında alt katman dışarı taşıyor (%4.6)",
+    "giysi_1_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%11.5)",
+    "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%13.5)",
+    "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%14.8)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_lejyoner_gladius": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_lejyoner_pilum": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_aquilifer": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_yardimci_okcu": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "rom_yardimci_okcu_migferli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "rom_yardimci_okcu_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "rom_centurio": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "komutan",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_centurio_kalkanli": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "komutan",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_sivil": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "isci_sivil",
+   "neden": [],
+   "yasak_animasyon": []
+  },
+  "rom_sivil_avci": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "isci_sivil",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "rom_suvari": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_suvari_mizrak": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_suvari_vexillum": {
+   "sinif": "RED",
+   "kullanim": [],
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "neden": [
+    "giysi_3_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%11.9)",
+    "giysi_3_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%9.9)"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  }
+ },
+ "ekipman": {
+  "yeniceri_borku": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "404 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "osmanli_sarik": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "sarik_migfer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "kanitli",
+   "kategori": "baslik"
+  },
+  "turkmen_kalpak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "384 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "baslik"
+  },
+  "konik_migfer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "464 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "baslik"
+  },
+  "sapel_migfer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "montefortino": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "kanitli",
+   "kategori": "baslik"
+  },
+  "hasir_kalkan": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "kalkan"
+  },
+  "celik_kalkan": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "kalkan"
+  },
+  "pavez": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "24 üçgen: yalnızca uzak plan",
+    "görsel inceleme: 24 üçgenlik düz levha; orta planda kutu gibi görünür"
+   ],
+   "guven": "makul",
+   "kategori": "kalkan"
+  },
+  "badem_kalkan": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "96 üçgen: yalnızca uzak plan",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "kalkan"
+  },
+  "scutum": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "kanitli",
+   "kategori": "kalkan"
+  },
+  "osmanli_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "304 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "duz_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "284 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "gladius": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "356 üçgen: yakın çekim için az"
+   ],
+   "guven": "kanitli",
+   "kategori": "silah"
+  },
+  "pilum": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "108 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "kanitli",
+   "kategori": "silah"
+  },
+  "mizrak": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "98 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "gurz": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "196 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "kompozit_yay": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "300 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "arbalet": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "56 üçgen: yalnızca uzak plan",
+    "görsel inceleme: 56 üçgen; yay kolları ve mekanizma yok"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "sadak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "248 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sirt"
+  },
+  "hancer": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "90 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "makul",
+   "kategori": "aksesuar"
+  },
+  "pugio": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "90 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "kanitli",
+   "kategori": "aksesuar"
+  },
+  "kese": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "112 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "makul",
+   "kategori": "aksesuar"
+  },
+  "osmanli_sancagi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "420 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "sancak"
+  },
+  "tug": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "276 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sancak"
+  },
+  "akkoyunlu_sancagi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "452 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "sancak"
+  },
+  "bizans_sancagi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "452 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "sancak"
+  },
+  "vexillum": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "254 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sancak"
+  },
+  "aquila": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "154 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sancak"
+  },
+  "osmanli_cadiri": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "532 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "topak_ev": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "460 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "sur_kule": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "204 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "roma_cadiri": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "18 üçgen: yalnızca uzak plan",
+    "görsel inceleme: 18 üçgen; yalnızca uzak plan"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "turkmen_tacli_sarik": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "montefortino_sorguclu": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "kece_kulah": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "224 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "baslik"
+  }
+ },
+ "karakter_dagilimi": {
+  "A": 0,
+  "B": 5,
+  "C": 0,
+  "RED": 47
+ },
+ "ekipman_dagilimi": {
+  "A": 0,
+  "B": 28,
+  "C": 9,
+  "RED": 0
+ },
+ "siluet": {
+  "esikler": {
+   "ayrisma": 0.8,
+   "karisma": 0.9,
+   "uzak_boy_px": 24
+  },
+  "kit_ciftleri": {
+   "akkoyunlu_15yy|bizans_15yy": {
+    "isci_sivil": 0.661,
+    "komutan": 0.665,
+    "okcu": 0.719,
+    "piyade": 0.577,
+    "suvari": 0.59
+   },
+   "akkoyunlu_15yy|osmanli_15yy": {
+    "isci_sivil": 0.742,
+    "komutan": 0.704,
+    "okcu": 0.771,
+    "piyade": 0.776,
+    "suvari": 0.776
+   },
+   "akkoyunlu_15yy|roma_cumhuriyet": {
+    "isci_sivil": 0.746,
+    "komutan": 0.593,
+    "okcu": 0.731,
+    "piyade": 0.653,
+    "suvari": 0.659
+   },
+   "bizans_15yy|osmanli_15yy": {
+    "isci_sivil": 0.7,
+    "komutan": 0.582,
+    "okcu": 0.747,
+    "piyade": 0.648,
+    "suvari": 0.579
+   },
+   "bizans_15yy|roma_cumhuriyet": {
+    "isci_sivil": 0.605,
+    "komutan": 0.636,
+    "okcu": 0.693,
+    "piyade": 0.667,
+    "suvari": 0.658
+   },
+   "osmanli_15yy|roma_cumhuriyet": {
+    "isci_sivil": 0.589,
+    "komutan": 0.62,
+    "okcu": 0.618,
+    "piyade": 0.635,
+    "suvari": 0.641
+   }
+  },
+  "ayrismayan": [],
+  "karisabilir": [],
+  "uzak_tanima_orani": 0.808,
+  "karakterler": {
+   "akk_bey": {
+    "en_yakin": "osm_yeniceri_sancak",
+    "benzerlik": 0.882,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "osm_yeniceri_sancak",
+    "baska_kit_benzerlik": 0.882,
+    "uzak_en_yakin": "osm_yeniceri_sancak",
+    "uzak_dogru_kit": false
+   },
+   "akk_bey_gurz": {
+    "en_yakin": "akk_suvari_gurz",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sivil_kulahli",
+    "baska_kit_benzerlik": 0.774,
+    "uzak_en_yakin": "akk_suvari_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_okcu": {
+    "en_yakin": "akk_okcu_kilic",
+    "benzerlik": 0.809,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_yardimci_okcu_migferli",
+    "baska_kit_benzerlik": 0.731,
+    "uzak_en_yakin": "akk_okcu_kilic",
+    "uzak_dogru_kit": true
+   },
+   "akk_okcu_kilic": {
+    "en_yakin": "akk_okcu",
+    "benzerlik": 0.809,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_suvari_kilic",
+    "baska_kit_benzerlik": 0.755,
+    "uzak_en_yakin": "akk_okcu",
+    "uzak_dogru_kit": true
+   },
+   "akk_okcu_zirhli": {
+    "en_yakin": "akk_suvari_yay",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.771,
+    "uzak_en_yakin": "akk_suvari_yay",
+    "uzak_dogru_kit": true
+   },
+   "akk_sivil": {
+    "en_yakin": "akk_sivil_kalpakli",
+    "benzerlik": 0.828,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.72,
+    "uzak_en_yakin": "akk_sivil_kalpakli",
+    "uzak_dogru_kit": true
+   },
+   "akk_sivil_kalpakli": {
+    "en_yakin": "akk_sivil",
+    "benzerlik": 0.828,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.757,
+    "uzak_en_yakin": "akk_sivil",
+    "uzak_dogru_kit": true
+   },
+   "akk_suvari": {
+    "en_yakin": "akk_zirhli_mizrak",
+    "benzerlik": 0.928,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_mizrak",
+    "baska_kit_benzerlik": 0.818,
+    "uzak_en_yakin": "akk_zirhli_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "akk_suvari_gurz": {
+    "en_yakin": "akk_bey_gurz",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sivil_kulahli",
+    "baska_kit_benzerlik": 0.774,
+    "uzak_en_yakin": "akk_bey_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_suvari_yay": {
+    "en_yakin": "akk_okcu_zirhli",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.771,
+    "uzak_en_yakin": "akk_okcu_zirhli",
+    "uzak_dogru_kit": true
+   },
+   "akk_zirhli_gurz": {
+    "en_yakin": "akk_bey_gurz",
+    "benzerlik": 0.992,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sivil_kulahli",
+    "baska_kit_benzerlik": 0.772,
+    "uzak_en_yakin": "akk_bey_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_zirhli_kilic": {
+    "en_yakin": "akk_zirhli_gurz",
+    "benzerlik": 0.809,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_kilic",
+    "baska_kit_benzerlik": 0.766,
+    "uzak_en_yakin": "akk_zirhli_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_zirhli_mizrak": {
+    "en_yakin": "akk_suvari",
+    "benzerlik": 0.928,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sipahi_mizrak",
+    "baska_kit_benzerlik": 0.82,
+    "uzak_en_yakin": "akk_suvari",
+    "uzak_dogru_kit": true
+   },
+   "biz_arbaletci": {
+    "en_yakin": "biz_arbaletci_lamel",
+    "benzerlik": 0.999,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu",
+    "baska_kit_benzerlik": 0.719,
+    "uzak_en_yakin": "biz_arbaletci_lamel",
+    "uzak_dogru_kit": true
+   },
+   "biz_arbaletci_konik": {
+    "en_yakin": "rom_suvari",
+    "benzerlik": 0.82,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "rom_suvari",
+    "baska_kit_benzerlik": 0.82,
+    "uzak_en_yakin": "rom_centurio",
+    "uzak_dogru_kit": false
+   },
+   "biz_arbaletci_lamel": {
+    "en_yakin": "biz_arbaletci",
+    "benzerlik": 0.999,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu",
+    "baska_kit_benzerlik": 0.719,
+    "uzak_en_yakin": "biz_arbaletci",
+    "uzak_dogru_kit": true
+   },
+   "biz_komutan": {
+    "en_yakin": "biz_piyade_kilic",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_yardimci_okcu",
+    "baska_kit_benzerlik": 0.712,
+    "uzak_en_yakin": "biz_piyade_kilic",
+    "uzak_dogru_kit": true
+   },
+   "biz_komutan_sancak": {
+    "en_yakin": "biz_piyade_sancak",
+    "benzerlik": 0.97,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_suvari_vexillum",
+    "baska_kit_benzerlik": 0.803,
+    "uzak_en_yakin": "biz_piyade_sancak",
+    "uzak_dogru_kit": true
+   },
+   "biz_piyade_kilic": {
+    "en_yakin": "biz_komutan",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_yardimci_okcu",
+    "baska_kit_benzerlik": 0.712,
+    "uzak_en_yakin": "biz_komutan",
+    "uzak_dogru_kit": true
+   },
+   "biz_piyade_mizrak": {
+    "en_yakin": "biz_suvari_lamel",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_suvari_mizrak",
+    "baska_kit_benzerlik": 0.658,
+    "uzak_en_yakin": "biz_suvari_lamel",
+    "uzak_dogru_kit": true
+   },
+   "biz_piyade_sancak": {
+    "en_yakin": "biz_komutan_sancak",
+    "benzerlik": 0.97,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_suvari_vexillum",
+    "baska_kit_benzerlik": 0.8,
+    "uzak_en_yakin": "biz_komutan_sancak",
+    "uzak_dogru_kit": true
+   },
+   "biz_sivil": {
+    "en_yakin": "osm_sipahi_mizrak",
+    "benzerlik": 0.785,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "osm_sipahi_mizrak",
+    "baska_kit_benzerlik": 0.785,
+    "uzak_en_yakin": "osm_sipahi_mizrak",
+    "uzak_dogru_kit": false
+   },
+   "biz_sivil_pavezli": {
+    "en_yakin": "osm_sipahi_yay",
+    "benzerlik": 0.716,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "osm_sipahi_yay",
+    "baska_kit_benzerlik": 0.716,
+    "uzak_en_yakin": "osm_sipahi_yay",
+    "uzak_dogru_kit": false
+   },
+   "biz_suvari": {
+    "en_yakin": "biz_piyade_mizrak",
+    "benzerlik": 0.97,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_suvari_mizrak",
+    "baska_kit_benzerlik": 0.657,
+    "uzak_en_yakin": "biz_piyade_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "biz_suvari_kilic": {
+    "en_yakin": "biz_komutan",
+    "benzerlik": 0.861,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu_kilic",
+    "baska_kit_benzerlik": 0.755,
+    "uzak_en_yakin": "biz_komutan",
+    "uzak_dogru_kit": true
+   },
+   "biz_suvari_lamel": {
+    "en_yakin": "biz_piyade_mizrak",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_suvari_mizrak",
+    "baska_kit_benzerlik": 0.658,
+    "uzak_en_yakin": "biz_piyade_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "osm_bey": {
+    "en_yakin": "osm_sipahi_yay",
+    "benzerlik": 0.956,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.748,
+    "uzak_en_yakin": "osm_sipahi_yay",
+    "uzak_dogru_kit": true
+   },
+   "osm_bey_tug": {
+    "en_yakin": "osm_sipahi_mizrak",
+    "benzerlik": 0.794,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_bey",
+    "baska_kit_benzerlik": 0.702,
+    "uzak_en_yakin": "osm_sipahi_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "osm_okcu_sarikli": {
+    "en_yakin": "osm_sivil",
+    "benzerlik": 0.96,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_gurz",
+    "baska_kit_benzerlik": 0.755,
+    "uzak_en_yakin": "osm_sivil",
+    "uzak_dogru_kit": true
+   },
+   "osm_sipahi": {
+    "en_yakin": "osm_sivil",
+    "benzerlik": 0.906,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_gurz",
+    "baska_kit_benzerlik": 0.741,
+    "uzak_en_yakin": "osm_sivil",
+    "uzak_dogru_kit": true
+   },
+   "osm_sipahi_mizrak": {
+    "en_yakin": "akk_zirhli_mizrak",
+    "benzerlik": 0.82,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "akk_zirhli_mizrak",
+    "baska_kit_benzerlik": 0.82,
+    "uzak_en_yakin": "akk_zirhli_mizrak",
+    "uzak_dogru_kit": false
+   },
+   "osm_sipahi_yay": {
+    "en_yakin": "osm_bey",
+    "benzerlik": 0.956,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.749,
+    "uzak_en_yakin": "osm_bey",
+    "uzak_dogru_kit": true
+   },
+   "osm_sivil": {
+    "en_yakin": "osm_okcu_sarikli",
+    "benzerlik": 0.96,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_gurz",
+    "baska_kit_benzerlik": 0.752,
+    "uzak_en_yakin": "osm_okcu_sarikli",
+    "uzak_dogru_kit": true
+   },
+   "osm_sivil_kulahli": {
+    "en_yakin": "osm_sivil",
+    "benzerlik": 0.924,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_bey_gurz",
+    "baska_kit_benzerlik": 0.774,
+    "uzak_en_yakin": "osm_sivil",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_kilic": {
+    "en_yakin": "osm_yeniceri_okcu_kilic",
+    "benzerlik": 0.883,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.766,
+    "uzak_en_yakin": "osm_yeniceri_okcu_kilic",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_mizrak": {
+    "en_yakin": "akk_suvari",
+    "benzerlik": 0.818,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "akk_suvari",
+    "baska_kit_benzerlik": 0.818,
+    "uzak_en_yakin": "akk_suvari",
+    "uzak_dogru_kit": false
+   },
+   "osm_yeniceri_okcu": {
+    "en_yakin": "osm_yeniceri_okcu_kilic",
+    "benzerlik": 0.853,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu_zirhli",
+    "baska_kit_benzerlik": 0.771,
+    "uzak_en_yakin": "osm_yeniceri_okcu_kilic",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_okcu_kilic": {
+    "en_yakin": "osm_yeniceri_kilic",
+    "benzerlik": 0.883,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.76,
+    "uzak_en_yakin": "osm_yeniceri_kilic",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_sancak": {
+    "en_yakin": "akk_bey",
+    "benzerlik": 0.882,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "akk_bey",
+    "baska_kit_benzerlik": 0.882,
+    "uzak_en_yakin": "akk_bey",
+    "uzak_dogru_kit": false
+   },
+   "rom_aquilifer": {
+    "en_yakin": "rom_suvari_mizrak",
+    "benzerlik": 0.791,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_piyade_sancak",
+    "baska_kit_benzerlik": 0.667,
+    "uzak_en_yakin": "rom_suvari_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "rom_centurio": {
+    "en_yakin": "biz_arbaletci_konik",
+    "benzerlik": 0.816,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "biz_arbaletci_konik",
+    "baska_kit_benzerlik": 0.816,
+    "uzak_en_yakin": "biz_arbaletci_konik",
+    "uzak_dogru_kit": false
+   },
+   "rom_centurio_kalkanli": {
+    "en_yakin": "rom_lejyoner_gladius",
+    "benzerlik": 0.83,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_arbaletci_lamel",
+    "baska_kit_benzerlik": 0.651,
+    "uzak_en_yakin": "rom_lejyoner_gladius",
+    "uzak_dogru_kit": true
+   },
+   "rom_lejyoner_gladius": {
+    "en_yakin": "rom_centurio_kalkanli",
+    "benzerlik": 0.83,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.644,
+    "uzak_en_yakin": "rom_centurio_kalkanli",
+    "uzak_dogru_kit": true
+   },
+   "rom_lejyoner_pilum": {
+    "en_yakin": "rom_centurio_kalkanli",
+    "benzerlik": 0.676,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_suvari",
+    "baska_kit_benzerlik": 0.651,
+    "uzak_en_yakin": "rom_centurio_kalkanli",
+    "uzak_dogru_kit": true
+   },
+   "rom_sivil": {
+    "en_yakin": "akk_sivil_kalpakli",
+    "benzerlik": 0.746,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "akk_sivil_kalpakli",
+    "baska_kit_benzerlik": 0.746,
+    "uzak_en_yakin": "akk_sivil_kalpakli",
+    "uzak_dogru_kit": false
+   },
+   "rom_sivil_avci": {
+    "en_yakin": "rom_yardimci_okcu",
+    "benzerlik": 0.999,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.712,
+    "uzak_en_yakin": "rom_yardimci_okcu",
+    "uzak_dogru_kit": true
+   },
+   "rom_suvari": {
+    "en_yakin": "biz_arbaletci_konik",
+    "benzerlik": 0.82,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "biz_arbaletci_konik",
+    "baska_kit_benzerlik": 0.82,
+    "uzak_en_yakin": "rom_centurio",
+    "uzak_dogru_kit": true
+   },
+   "rom_suvari_mizrak": {
+    "en_yakin": "rom_aquilifer",
+    "benzerlik": 0.791,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_sivil",
+    "baska_kit_benzerlik": 0.671,
+    "uzak_en_yakin": "rom_aquilifer",
+    "uzak_dogru_kit": true
+   },
+   "rom_suvari_vexillum": {
+    "en_yakin": "biz_komutan_sancak",
+    "benzerlik": 0.803,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "biz_komutan_sancak",
+    "baska_kit_benzerlik": 0.803,
+    "uzak_en_yakin": "biz_komutan_sancak",
+    "uzak_dogru_kit": false
+   },
+   "rom_yardimci_okcu": {
+    "en_yakin": "rom_sivil_avci",
+    "benzerlik": 0.999,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.712,
+    "uzak_en_yakin": "rom_yardimci_okcu_kilic",
+    "uzak_dogru_kit": true
+   },
+   "rom_yardimci_okcu_kilic": {
+    "en_yakin": "rom_yardimci_okcu",
+    "benzerlik": 0.997,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.712,
+    "uzak_en_yakin": "rom_yardimci_okcu",
+    "uzak_dogru_kit": true
+   },
+   "rom_yardimci_okcu_migferli": {
+    "en_yakin": "rom_yardimci_okcu",
+    "benzerlik": 0.747,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu",
+    "baska_kit_benzerlik": 0.731,
+    "uzak_en_yakin": "rom_yardimci_okcu",
+    "uzak_dogru_kit": true
+   }
+  }
+ },
+ "inceleme": "Claude (kontak sayfaları ve yakın/orta çekimler incelendi, 24 Kasım 2026)"
+}

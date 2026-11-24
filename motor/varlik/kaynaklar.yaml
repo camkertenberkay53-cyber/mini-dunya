@@ -1,4 +1,6 @@
 # Varlık kaynakları. Yalnızca lisansı dosyadan doğrulanmış kaynaklar burada olabilir.
+# Lisans önceliği: CC0-1.0 > koşulları uygun diğer ücretsiz lisanslar > CC-BY-4.0 / CC-BY-3.0.
+# CC BY kaynak için ayrıca 'atif' alanı zorunludur (yazar, eser adı, lisans, adres); yoksa kayıt reddedilir.
 # commit: kayıt bu commit'e sabitlenir; kaynak değişirse katalog farkı gösterir.
 quaternius-stage:
   klasor: quaternius-stage

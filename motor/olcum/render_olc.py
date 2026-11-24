@@ -54,7 +54,7 @@ def _calistir(komut: list[str], zaman_asimi: int) -> tuple[float, int, str]:
     return sure, tepe // 1024, metin
 
 
-def olc(ortam: str, kare: int = 180) -> dict:
+def olc(ortam: str, kare: int = 180, sahne: str = "res://sahneler/olcum.tscn") -> dict:
     proje = str(ayar.GODOT_PROJE)
     is_klasoru = ayar.ONBELLEK / "olcum"
     shutil.rmtree(is_klasoru, ignore_errors=True)
@@ -64,7 +64,7 @@ def olc(ortam: str, kare: int = 180) -> dict:
     ice_sn, ice_ram, _ = _calistir([ayar.GODOT, "--headless", "--path", proje, "--import"], 1800)
     def render(n: int, avi: Path):
         return _calistir(xvfb + [ayar.GODOT, "--path", proje, "--rendering-driver", "opengl3",
-                                 "res://sahneler/olcum.tscn", "--write-movie", str(avi),
+                                 sahne, "--write-movie", str(avi),
                                  "--fixed-fps", str(FPS), "--quit-after", str(n)], 7200)
 
     # Sabit açılış maliyeti (sahne kurulumu, shader derleme) kare maliyetinden ayrı ölçülür.
@@ -82,6 +82,7 @@ def olc(ortam: str, kare: int = 180) -> dict:
     shorts_dk = (acilis_sn + kare_sn * shorts_kare + kod_sn / kare * shorts_kare) / 60
     sonuc = {
         "ortam": ortam,
+        "sahne": sahne,
         "tarih": time.strftime("%Y-%m-%d %H:%M"),
         "cpu": open("/proc/cpuinfo").read().split("model name")[1].split("\n")[0].strip(": \t"),
         "cekirdek": os.cpu_count(),
@@ -114,4 +115,5 @@ def olc(ortam: str, kare: int = 180) -> dict:
 
 
 if __name__ == "__main__":
-    print(json.dumps(olc(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 180), ensure_ascii=False, indent=1))
+    print(json.dumps(olc(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 180,
+                         sys.argv[3] if len(sys.argv) > 3 else "res://sahneler/olcum.tscn"), ensure_ascii=False, indent=1))

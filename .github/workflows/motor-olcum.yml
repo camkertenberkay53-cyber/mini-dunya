@@ -4,7 +4,7 @@ name: Motor render olcumu
 
 on:
   push:
-    branches: [motor-faz2]
+    branches: [motor-faz2, motor-faz3]
     paths:
       - "motor/godot/**"
       - "motor/olcum/render_olc.py"
@@ -40,12 +40,18 @@ jobs:
       - name: Olcum (180 kare = 6 sn, 1080x1920, 30 fps)
         run: |
           nproc; free -g; df -h /
-          MOTOR_ONBELLEK=/tmp/motor_onbellek python3 -m motor.olcum.render_olc github_actions 180
+          if [ "${GITHUB_REF_NAME}" = "motor-faz3" ]; then
+            # Faz 3: aynı sahne yükü, askerler dönem kitlerinden; karşılaştırma için Faz 2 sahnesi de aynı makinede
+            MOTOR_ONBELLEK=/tmp/motor_onbellek python3 -m motor.olcum.render_olc github_actions_faz3 180 res://sahneler/olcum3.tscn
+            MOTOR_ONBELLEK=/tmp/motor_onbellek python3 -m motor.olcum.render_olc github_actions_faz2_ayni_makine 180
+          else
+            MOTOR_ONBELLEK=/tmp/motor_onbellek python3 -m motor.olcum.render_olc github_actions 180
+          fi
 
       - name: Sonucu dala yaz
         run: |
           git config user.name "motor-olcum"
           git config user.email "actions@users.noreply.github.com"
-          git add motor/olcum/sonuc_github_actions.json motor/olcum/kare_github_actions.jpg
+          git add motor/olcum/sonuc_github_actions*.json motor/olcum/kare_github_actions*.jpg
           git commit -m "Render olcumu: GitHub Actions sonucu [skip ci]" || exit 0
           git push

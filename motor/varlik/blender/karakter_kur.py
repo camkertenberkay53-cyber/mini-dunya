@@ -11,6 +11,7 @@ tarif: {kiyafet, govde?, ekler[], animasyon_fbx?, animasyonlar[], doku_siniri, r
 - renk: [r,g,b] çarpanı. Yalnızca test içindir (renk kopyası negatif örneği).
 """
 import json
+import os
 import sys
 
 import bpy  # noqa: I001 (bpy önce yüklenmeli)
@@ -33,6 +34,19 @@ def al(yol):
 
 A = al(t["kiyafet"])
 arm = [o for o in A if o.type == "ARMATURE"][0]
+
+if t.get("giysiler") is not None:
+    # Faz 3: dönem giysileri gövdenin kendisinden türetilir; kıyafet alanı burada çıplak gövdedir.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import giysi  # noqa: E402
+    import ortak  # noqa: E402
+    govde_m = max((o for o in A if o.type == "MESH"), key=lambda o: len(o.data.vertices))
+    profil = giysi.yuvalari_kur(govde_m, arm)
+    MZ = t.get("malzemeler", {})
+    giysi.giydir(govde_m, arm, t["giysiler"],
+                 lambda ad: ortak.malzeme(ad, MZ[ad]["tur"], MZ[ad]["renk"], MZ[ad].get("tohum", 1), MZ[ad].get("metalik", 0.0)))
+    json.dump(profil, open(t["cikti"].replace(".glb", ".yuva.json"), "w"), indent=1)
+    t["govde"] = None
 
 parcalar = []
 if t.get("govde"):
