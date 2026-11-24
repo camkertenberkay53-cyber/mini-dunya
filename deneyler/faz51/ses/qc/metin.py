@@ -89,7 +89,7 @@ def hazirla(metin: str) -> tuple[str, list[str], list[dict]]:
         n = int(m.group(1).replace(".", ""))
         ok = sayi_oku(n)
         ek = m.group(2) or ""
-        ozel.append({"tur": "sayi", "yazim": m.group(0), "okunus": ok + ek.lstrip("'")})
+        ozel.append({"tur": "sayi", "yazim": m.group(0), "okunus": ok + ek.lstrip("'"), "kok": ok})
         return ok + ek.lstrip("'")
     t = re.sub(r"(\d{1,3}(?:\.\d{3})+|\d+)('\w+)?", _sayi, t)
     for k, v in (sz.get("telaffuz") or {}).items():

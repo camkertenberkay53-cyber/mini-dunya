@@ -150,7 +150,8 @@ def denetle(x: np.ndarray, sr: int, konusma: str, ozel: list[dict], asr: dict, h
     # Özel öğeler: okunuşun (ya da yazımın) dökümde art arda bulunması
     ozel_sonuc = []
     for o in ozel:
-        adaylar = [normal(o["okunus"]), normal(o["yazim"])]
+        # Sayılarda sayının kendisi denetlenir; ek yazımı (53'te / 53'de) ASR imlasıdır, sayı doğrulamasını etkilemez.
+        adaylar = [normal(o.get("kok", o["okunus"])), normal(o["okunus"]), normal(o["yazim"])]
         bulundu = False
         for toks in adaylar:
             if not toks:

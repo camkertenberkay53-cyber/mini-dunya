@@ -1,1 +1,1 @@
-{"kosu_id":"QC2","aciklama":"QC kural sürümü v2 + ASR belirteç düzeltmesi (kesme eki ve sayı birleştirme; v1 ve v2 ortak). İlk QC2 denemesi bu hata nedeniyle iptal edildi."}
+{"kosu_id":"QC3","aciklama":"QC v2 + sayı denetiminde ek yazımı düzeltmesi (53te/53de ASR imlası; sayının kendisi denetlenir, yanlış sayı yine KRİTİK)"}
