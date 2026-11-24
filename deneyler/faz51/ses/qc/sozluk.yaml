@@ -1,0 +1,31 @@
+# Seslendirme sözlüğü (deneysel). Konudan bağımsız VERİ dosyasıdır; kod değil.
+# kisaltmalar: yazım → okunuş (metinde her geçtiği yerde açılır)
+# telaffuz: yazım → TTS'in doğru okuması için Türkçe okunuş (yabancı/tarihî isimler); kalite kontrolde ayrıca denetlenir
+# isimler: okunuşu değiştirilmeyen ama kalite kontrolde ayrıca denetlenecek özel isimler
+kisaltmalar:
+  M.Ö.: milattan önce
+  M.S.: milattan sonra
+  MÖ: milattan önce
+  MS: milattan sonra
+  yy.: yüzyıl
+  km: kilometre
+telaffuz:
+  aquilifer: akuilifer
+  aquila: akuila
+  Crassus: Krassus
+  Carrhae: Karre
+  Kleopatra: Kleopatra
+  Semerkant: Semerkant
+isimler:
+  - Roma
+  - Harran
+  - Tiberius
+  - Augustus
+  - Fatih Sultan Mehmet
+  - İstanbul
+  - Cengiz Han
+  - Buhara
+  - Mısır
+  - Partlar
+  - Partlara
+  - Partlarla
