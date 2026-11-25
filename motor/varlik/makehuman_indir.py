@@ -13,6 +13,7 @@ import io
 import json
 import re
 import sys
+import urllib.parse
 import urllib.request
 import zipfile
 from pathlib import Path
@@ -33,14 +34,24 @@ def main(istek_yolu: str) -> int:
     for p in istek["paketler"]:
         k = {"ad": p["ad"], "durum": "BASARISIZ"}
         try:
-            m = re.search(r'href="([^"]*' + re.escape(p["dosya_deseni"]) + r'[^"]*\.zip)"', h)
+            m = re.search(r'href="([^"]*' + re.escape(p["dosya_deseni"]) + r'[^"]*)"', h)
             if not m:
                 k["durum"] = "BAGLANTI_YOK"
+                k["sayfadaki_baglantilar"] = re.findall(r'href="([^"]+)"', h)[:200]
                 kayit["paketler"].append(k)
                 continue
-            url = html.unescape(m.group(1))
-            if not url.startswith("http"):
-                url = "https://static.makehumancommunity.org/assets/" + url.lstrip("./")
+            url = urllib.parse.urljoin(SAYFA, html.unescape(m.group(1)))
+            if not url.lower().endswith(".zip"):   # paket alt sayfası: zip bağlantısı orada
+                alt = al(url).decode("utf-8", "replace")
+                k["alt_sayfa"] = url
+                z2 = re.search(r'href="([^"]+\.zip)"', alt)
+                if not z2:
+                    k["durum"] = "ZIP_YOK"
+                    k["alt_baglantilar"] = re.findall(r'href="([^"]+)"', alt)[:100]
+                    kayit["paketler"].append(k)
+                    continue
+                k["alt_sayfa_lisans"] = re.findall(r"(CC0|CC-BY[^<\s]*)", alt)[:5]
+                url = urllib.parse.urljoin(url, html.unescape(z2.group(1)))
             # bağlantıdan önceki son bölüm başlığı ("... shared under CC0:" / "... under CC-BY:")
             once = h[: m.start()]
             bolumler = re.findall(r"shared under ([A-Za-z0-9\-\.]+)", once)
