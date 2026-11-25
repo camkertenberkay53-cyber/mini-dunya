@@ -1,1 +1,360 @@
-{"katalog": true, "varliklar": []}
+{
+ "katalog": false,
+ "varliklar": [
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "dutch_ship_medium",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "liman: tarihî ahşap yelkenli (orta)"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "dutch_ship_large_02",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "liman: tarihî büyük yelkenli"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "modular_fort_01",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "kale: taş tahkimat/sur modülleri"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "large_castle_door",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "kale: büyük ahşap kale kapısı"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "modular_wooden_pier",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "liman/nehir: ahşap iskele"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_face_01",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "dağ: fotogrametrik kaya yüzü"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_face_02",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "dağ: fotogrametrik kaya yüzü"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "namaqualand_cliff_01",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "dağ/kıyı: uçurum kayası"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "mountainside",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "dağ: büyük yamaç kayası"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "boulder_01",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "ön plan kaya"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_moss_set_01",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "orman: yosunlu taş grubu"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "wooden_barrels_01",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "liman/kasaba: fıçılar"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "wooden_crate_01",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "amac": "liman/kasaba: sandık"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "castle_wall_slates",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kale: sur taşı"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "medieval_blocks_05",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kale: kesme taş blok"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "castle_brick_07",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kale: kale tuğlası/taş"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rustic_stone_wall",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ev: moloz taş duvar"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "medieval_wall_01",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ev: ortaçağ sıva"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "clay_plaster",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ev: kerpiç sıva"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "white_rough_plaster",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ev: kaba beyaz sıva"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "medieval_wood",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ahşap: ortaçağ ahşap kaplama"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "weathered_planks",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ahşap: yıpranmış tahta"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rough_wood",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ahşap: kaba kereste"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "clay_roof_tiles_02",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "çatı: kil kiremit"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "red_slate_roof_tiles_01",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "çatı: kırmızı kayrak kiremit"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "roof_slates_02",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "çatı: gri kayrak"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "thatch_roof_angled",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "çatı: saman/kamış"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_face_03",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kaya: kaya yüzü"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "cliff_side",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kaya: uçurum yüzü"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "aerial_rocks_02",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "arazi: kayalık yamaç"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "coast_sand_01",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "arazi: kıyı kumu"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "cobblestone_floor_04",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kasaba: arnavut kaldırımı"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "sparse_grass",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "arazi: seyrek çim"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "forest_leaves_04",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "arazi: orman yaprak örtüsü"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rocky_terrain_02",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "arazi: taşlı toprak"
+  }
+ ]
+}
