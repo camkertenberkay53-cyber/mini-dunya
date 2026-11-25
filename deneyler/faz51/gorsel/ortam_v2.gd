@@ -20,6 +20,11 @@ static func _resim(yol: String, mip: bool) -> ImageTexture:
 		img.generate_mipmaps()
 	return ImageTexture.create_from_image(img)
 
+# Faz 5.2 D14: isik() sahne atmosferini hesaplar, daglar() uzak pusu bundan türetir (aynı ortam).
+static var _sis_etkin := Color(0.5, 0.52, 0.54)
+static var _gunes_renk := Color(1, 1, 1)
+static var _gunes_yon := Vector3(0, 1, 0)
+
 static func isik(kok: Node, i: Dictionary) -> void:
 	var g: Dictionary = i.get("gorsel", {})
 	var env := Environment.new()
@@ -51,6 +56,7 @@ static func isik(kok: Node, i: Dictionary) -> void:
 	var sis_c := _renk(g.get("sis_renk", i["sis"]["renk"]))
 	var sk := float(g.get("sis_renk_carpan", 1.0))
 	env.fog_light_color = Color(sis_c.r * sk, sis_c.g * sk, sis_c.b * sk)
+	_sis_etkin = env.fog_light_color
 	env.fog_density = float(i["sis"]["yogunluk"]) * float(g.get("sis_carpan", 1.0))
 	env.fog_sky_affect = float(g.get("sis_gok", 0.35))
 	env.fog_height = 2.0
@@ -71,10 +77,12 @@ static func isik(kok: Node, i: Dictionary) -> void:
 	gunes.light_energy = float(i["gunes"]["guc"]) * float(g.get("gunes_carpan", 1.0))
 	if g.has("gunes_renk"):
 		gunes.light_color = _renk(g["gunes_renk"])
-	gunes.shadow_enabled = true
+	gunes.shadow_enabled = not bool(g.get("tani_golge_yok", false))
 	gunes.shadow_blur = float(g.get("golge_yumusaklik", 1.0))
 	gunes.directional_shadow_max_distance = 60.0
 	kok.add_child(gunes)
+	_gunes_yon = gunes.global_transform.basis.z.normalized()
+	_gunes_renk = gunes.light_color
 	var dolgu := DirectionalLight3D.new()
 	dolgu.rotation_degrees = _v3(i["dolgu"]["aci"])
 	dolgu.light_color = _renk(i["dolgu"]["renk"])
@@ -90,6 +98,9 @@ uniform float duz_yari = 6.0;
 uniform sampler2D d_alb : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D d_nor : hint_normal, filter_linear_mipmap, repeat_enable;
 uniform float doku_acik = 0.0; uniform float doku_olcek = 0.5; uniform float doku_karisim = 0.8;
+uniform float batma_bas = 0.0;
+uniform float iz_tekerlek = 0.0; uniform float teker_derinlik = 0.35; uniform float teker_genislik = 0.18;  // Faz 5.2 D15: yönlü çizgi gürültüsü yerine iki tekerlek izi + mesafeyle sönen ince doku
+uniform float tani_iz_yok = 0.0; uniform float tani_ince_yok = 0.0;   // Faz 5.2 D15 teşhis anahtarları   // Faz 5.2 D13: >0 ise ana zemin bu yarıçaptan sonra uzak arazinin altına batar
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
 float n(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
   return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }
@@ -99,16 +110,24 @@ void vertex(){
   wp = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz;
   float uzak = smoothstep(duz_yari, duz_yari * 10.0, abs(wp.x - yol_x));
   VERTEX.y += fbm(wp.xz*0.02)*tepe*uzak + fbm(wp.xz*0.25)*0.35*uzak;
+  if (batma_bas > 0.0) { VERTEX.y -= 40.0 * smoothstep(batma_bas, batma_bas + 30.0, length(VERTEX.xz)); }
   wp.y = VERTEX.y;
 }
 void fragment(){
   float yol = yol_acik * (1.0 - smoothstep(yol_gen*0.7, yol_gen*1.4, abs(wp.x - yol_x + sin(wp.z*0.05)*1.2)));
   float d = fbm(wp.xz*0.6);
-  float iz = fbm(wp.xz*vec2(4.0,0.6));
+  float iz = tani_iz_yok > 0.5 ? 0.5 : fbm(wp.xz*vec2(4.0,0.6));
+  if (iz_tekerlek > 0.5) {
+    float yx = wp.x - yol_x + sin(wp.z*0.05)*1.2;
+    float teker = exp(-pow((abs(yx) - 0.75) / teker_genislik, 2.0));
+    float ayak = length(fwidth(wp.xz));                 // piksel başına dünya birimi (uzaklık ölçüsü)
+    float ince = mix(fbm(wp.xz*1.5), 0.5, smoothstep(0.08, 0.5, ayak));
+    iz = 0.5 - teker * teker_derinlik + (ince - 0.5) * 0.3;
+  }
   vec3 c = mix(cimen, cimen2, d);
   c = mix(c, kuru, smoothstep(0.55,0.75,fbm(wp.xz*0.08)));
   vec3 t = mix(toprak, toprak2, d) * (0.85 + 0.25*iz);
-  c *= 0.9 + 0.2 * fbm(wp.xz*2.3);   // ince ölçekli renk dalgalanması (düz renk alanları kırılsın)
+  c *= 0.9 + 0.2 * (tani_ince_yok > 0.5 ? 0.5 : fbm(wp.xz*2.3));   // ince ölçekli renk dalgalanması (düz renk alanları kırılsın)
   vec3 taban = mix(c, t, yol);
   if (doku_acik > 0.5) {
     vec2 uv = wp.xz * doku_olcek;
@@ -145,6 +164,13 @@ static func arazi(kok: Node, a: Dictionary, merkez: Vector2) -> void:
 	mat.set_shader_parameter("yol_x", a.get("yol_x", 0.0))
 	mat.set_shader_parameter("duz_yari", a.get("duz_yari", 6.0))
 	var g: Dictionary = a.get("gorsel", {})
+	mat.set_shader_parameter("iz_tekerlek", 1.0 if g.get("zemin_iz", "") == "tekerlek" else 0.0)
+	mat.set_shader_parameter("teker_derinlik", float(g.get("teker_derinlik", 0.35)))
+	mat.set_shader_parameter("teker_genislik", float(g.get("teker_genislik", 0.18)))
+	mat.set_shader_parameter("tani_iz_yok", 1.0 if g.get("tani_iz_yok", false) else 0.0)
+	mat.set_shader_parameter("tani_ince_yok", 1.0 if g.get("tani_ince_yok", false) else 0.0)
+	if g.get("dag_gecis", false):
+		mat.set_shader_parameter("batma_bas", float(g.get("gecis_bas", 200.0)) + 5.0)
 	if g.has("zemin_alb"):
 		mat.set_shader_parameter("d_alb", _resim(g["zemin_alb"], true))
 		mat.set_shader_parameter("d_nor", _resim(g["zemin_nor"], true))
@@ -162,14 +188,30 @@ shader_type spatial;
 render_mode diffuse_burley, specular_disabled;
 uniform vec3 r0; uniform vec3 r1; uniform vec3 r2; uniform vec2 merkez; uniform float yukseklik = 45.0;
 uniform float bas = 180.0; uniform float tam = 420.0;
+uniform float gecis = 0.0; uniform float gecis_bas = 200.0;
+uniform float tepe = 14.0; uniform float duz_yari = 6.0; uniform float yol_x = 0.0;
+uniform vec3 cimen; uniform vec3 cimen2; uniform vec3 kuru;
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
 float n(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
   return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }
 float fbm(vec2 p){ float s=0.0, a=0.5; for(int i=0;i<6;i++){ s+=a*n(p); p*=2.07; a*=0.5; } return s; }
+// Ana zeminin gürültüsü ve yükseklik fonksiyonu ile birebir aynı (sürekli yüzey için)
+float zfbm(vec2 p){ float s=0.0, a=0.5; for(int i=0;i<5;i++){ s+=a*n(p); p*=2.03; a*=0.5; } return s; }
+float zemin_h(vec2 w){
+  float uzak = smoothstep(duz_yari, duz_yari * 10.0, abs(w.x - yol_x));
+  return zfbm(w*0.02)*tepe*uzak + zfbm(w*0.25)*0.35*uzak;
+}
 float sirt(vec2 p){ float s=0.0, a=0.5; for(int i=0;i<5;i++){ s+=a*(1.0-abs(n(p)*2.0-1.0)); p*=2.11; a*=0.5; } return s; }
 float yuk(vec2 w){
-  float k = smoothstep(bas, tam, distance(w, merkez));
-  return -2.0 + (fbm(w*0.004)*0.55 + sirt(w*0.009)*0.45) * yukseklik * k;
+  float d = distance(w, merkez);
+  float k = smoothstep(bas, tam, d);
+  float dag = (fbm(w*0.004)*0.55 + sirt(w*0.009)*0.45) * yukseklik * k;
+  if (gecis > 0.5) {
+    float kg = smoothstep(gecis_bas, tam, d);
+    float ic = smoothstep(gecis_bas - 10.0, gecis_bas, d);
+    return zemin_h(w) + 0.15 + (fbm(w*0.004)*0.55 + sirt(w*0.009)*0.45) * yukseklik * kg - 6.0 * (1.0 - ic);
+  }
+  return -2.0 + dag;
 }
 varying float hv; varying vec3 wp;
 void vertex(){
@@ -183,9 +225,18 @@ void vertex(){
 }
 void fragment(){
   float d = fbm(wp.xz*0.05);
+  float kr = gecis > 0.5 ? smoothstep(gecis_bas, gecis_bas + 160.0, distance(wp.xz, merkez)) : 1.0;
   vec3 c = mix(r0, r1, smoothstep(0.1, 0.6, hv + (d-0.5)*0.3));
   c = mix(c, r2, smoothstep(0.65, 1.0, hv));
   c *= 0.82 + 0.3*fbm(wp.xz*0.4);
+  if (gecis > 0.5) {
+    // ana zeminin renk mantığı (yol hariç), uzaklaştıkça dağ paletine yumuşak geçiş
+    float dz = zfbm(wp.xz*0.6);
+    vec3 cz = mix(cimen, cimen2, dz);
+    cz = mix(cz, kuru, smoothstep(0.55, 0.75, zfbm(wp.xz*0.08)));
+    cz *= 0.9 + 0.2 * zfbm(wp.xz*2.3);
+    c = mix(cz, c, kr);
+  }
   ALBEDO = c;
   ROUGHNESS = 1.0;
 }
@@ -204,7 +255,10 @@ static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez:
 		m.subdivide_depth = 240
 		var sh := Shader.new()
 		sh.code = UZAK_SHADER
-		if g.has("dag_pus_renk"):
+		if g.get("dag_pus", "") == "dinamik":
+			# Faz 5.2 D14: uzak pus = sahne sisiyle aynı ortam (preset sis rengi) + güneşe bakışta güneş rengine ileri saçılma
+			sh.code = UZAK_SHADER.replace("ROUGHNESS = 1.0;", "ROUGHNESS = 1.0;\n  float uz = length(VERTEX);\n  vec3 bakis = normalize(wp - CAMERA_POSITION_WORLD);\n  float sac = pow(max(dot(bakis, gunes_yon), 0.0), 6.0);\n  vec3 pr = mix(pus_taban, gunes_renk * dot(pus_taban, vec3(0.333)) * 1.3, sac * 0.6);\n  FOG = vec4(pr, min(pus_max, 1.0 - exp(-uz * pus_yogunluk)));").replace("uniform float bas = 180.0;", "uniform vec3 pus_taban; uniform vec3 gunes_renk; uniform vec3 gunes_yon; uniform float pus_yogunluk = 0.0025; uniform float pus_max = 0.35; uniform float bas = 180.0;")
+		elif g.has("dag_pus_renk"):
 			# Faz 5.2 D8: uzak arazi sahnenin genel sisini değil kendi hava perspektifini kullanır (FOG çıkışı)
 			sh.code = UZAK_SHADER.replace("ROUGHNESS = 1.0;", "ROUGHNESS = 1.0;\n  float uz = length(VERTEX);\n  FOG = vec4(pus_renk, min(pus_max, 1.0 - exp(-uz * pus_yogunluk)));").replace("uniform float bas = 180.0;", "uniform vec3 pus_renk; uniform float pus_yogunluk = 0.004; uniform float pus_max = 0.6; uniform float bas = 180.0;")
 		if g.get("dag_tani", "") == "sabit_renk":
@@ -213,7 +267,14 @@ static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez:
 			sh.code = sh.code.replace("  NORMAL = normalize(vec3(", "  vec3 _n = normalize(vec3(")
 		var mat := ShaderMaterial.new()
 		mat.shader = sh
-		if g.has("dag_pus_renk"):
+		if g.get("dag_pus", "") == "dinamik":
+			var pk := float(g.get("dag_pus_katsayi", 0.68))
+			mat.set_shader_parameter("pus_taban", Vector3(_sis_etkin.r * pk, _sis_etkin.g * pk, _sis_etkin.b * pk))
+			mat.set_shader_parameter("gunes_renk", Vector3(_gunes_renk.r, _gunes_renk.g, _gunes_renk.b))
+			mat.set_shader_parameter("gunes_yon", _gunes_yon)
+			mat.set_shader_parameter("pus_yogunluk", float(g.get("dag_pus_yogunluk", 0.0025)))
+			mat.set_shader_parameter("pus_max", float(g.get("dag_pus_max", 0.35)))
+		elif g.has("dag_pus_renk"):
 			mat.set_shader_parameter("pus_renk", _v3(g["dag_pus_renk"]))
 			mat.set_shader_parameter("pus_yogunluk", float(g.get("dag_pus_yogunluk", 0.004)))
 			mat.set_shader_parameter("pus_max", float(g.get("dag_pus_max", 0.6)))
@@ -223,6 +284,14 @@ static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez:
 		mat.set_shader_parameter("r1", _v3(rk[min(1, rk.size() - 1)]) * ton)
 		mat.set_shader_parameter("r2", _v3(rk[rk.size() - 1]) * ton)
 		mat.set_shader_parameter("bas", float(g.get("dag_bas", 180.0)))
+		if g.get("dag_gecis", false):
+			mat.set_shader_parameter("gecis", 1.0)
+			mat.set_shader_parameter("gecis_bas", float(g.get("gecis_bas", 200.0)))
+			mat.set_shader_parameter("tepe", float(a["tepe_yuksekligi"]))
+			mat.set_shader_parameter("duz_yari", float(a.get("duz_yari", 6.0)))
+			mat.set_shader_parameter("yol_x", float(a.get("yol_x", 0.0)))
+			for kz in ["cimen", "cimen2", "kuru"]:
+				mat.set_shader_parameter(kz, _v3(a["zemin"][kz]))
 		mat.set_shader_parameter("tam", float(g.get("dag_tam", 420.0)))
 		mat.set_shader_parameter("merkez", merkez)
 		mat.set_shader_parameter("yukseklik", float(g.get("dag_yukseklik", 45.0)))

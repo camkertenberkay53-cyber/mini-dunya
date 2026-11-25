@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq xvfb xauth ffmpeg libgl1-mesa-dri libglu1-mesa > /dev/null
-          pip install --quiet psutil
+          pip install --quiet psutil pillow pyyaml
           curl -sSLo /tmp/g.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
           echo "9aa00f7a605200940bce3027a567b782f49bd8e940dd06ae9e987bd65aee1b1467edd56ed84fcdcbdd44354bf613bdbb4e5d2913e925850368e150c59ed54c65  /tmp/g.zip" | sha512sum -c -
           unzip -q /tmp/g.zip -d /tmp/godot
@@ -33,17 +33,26 @@ jobs:
       - name: Aynı makinede sırayla render
         run: |
           cd deneyler/faz51/gorsel
+          PROFILLER=$(python3 -c "import json;print(' '.join(json.load(open('kosu52.json'))['profiller']))")
+          TEKRAR=$(python3 -c "import json;print(' '.join(json.load(open('kosu52.json')).get('tekrar',[])))")
           for c in "S4a 45" "S1 36" "S2 75"; do set -- $c
-            for p in D0 D3 D11; do python3 render_profil.py $1 $p $2 /tmp/m; done
+            for p in $PROFILLER; do python3 render_profil.py $1 $p $2 /tmp/m; done
           done
-          EK=_tekrar python3 render_profil.py S4a D0 45 /tmp/m
-          EK=_tekrar python3 render_profil.py S4a D11 45 /tmp/m
+          for p in $TEKRAR; do EK=_tekrar python3 render_profil.py S4a $p 45 /tmp/m; done
+          python3 -c "
+          from PIL import Image; import glob
+          for f in glob.glob('/tmp/m/*.png'):
+              im=Image.open(f).convert('RGB'); im.thumbnail((540,960)); im.save(f[:-4]+'.jpg', quality=85)
+          "
       - name: Sonucu dala yaz
         if: always()
         run: |
           D=deneyler/faz51/gorsel/sonuc52
           mkdir -p "$D"
-          cp /tmp/m/*.json "$D"/ 2>/dev/null || true
+          K=$(python3 -c "import json;print(json.load(open('deneyler/faz51/gorsel/kosu52.json'))['kosu_id'])")
+          D=$D/$K
+          mkdir -p "$D"
+          cp /tmp/m/*.json /tmp/m/*.jpg "$D"/ 2>/dev/null || true
           rm -f "$D"/*.is.json
           git config user.name "faz51-olcum"
           git config user.email "actions@users.noreply.github.com"

@@ -34,6 +34,11 @@ def main() -> int:
     is_ = json.loads((REPO / "deneyler/faz51/altyapi/isler" / f"{cid}.json").read_text())
     if profil != "uretim":
         p = profiller[profil]
+        if p.get("isik_preset"):   # deney: aynı çekimi başka ışık preset'iyle dene (yalnız ışık alanları değişir)
+            import yaml
+            pr = yaml.safe_load((REPO / "motor/uretim/kurallar/arazi.yaml").read_text())["isiklar"][p["isik_preset"]]
+            for alan in ("gunes", "dolgu", "gok", "sis"):
+                is_["isik"][alan] = pr[alan]
         is_["isik"]["gorsel"] = p.get("isik", {})
         is_["arazi"]["gorsel"] = p.get("arazi", {})
     gecici = Path(f"/tmp/kare_{cid}_{profil}")
