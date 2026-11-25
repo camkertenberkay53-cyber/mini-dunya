@@ -1,0 +1,92 @@
+{
+ "tarih": "2026-11-25 11:13 UTC",
+ "lisans_politikasi": {
+  "ad": "CC0 1.0",
+  "kaynak": "https://polyhaven.com/license"
+ },
+ "varliklar": [
+  {
+   "kimlik": "rocks_ground_02",
+   "ad": "Rocks Ground 02",
+   "sayfa": "https://polyhaven.com/a/rocks_ground_02",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "amac": "zemin: çakıllı toprak (bozkır, yol kenarı)",
+   "dosyalar": [
+    {
+     "dosya": "rocks_ground_02/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_02/rocks_ground_02_col_1k.jpg",
+     "bayt": 881510,
+     "md5_dogru": true
+    },
+    {
+     "dosya": "rocks_ground_02/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_02/rocks_ground_02_nor_gl_1k.jpg",
+     "bayt": 1466816,
+     "md5_dogru": true
+    }
+   ]
+  },
+  {
+   "kimlik": "mud_cracked_dry_03",
+   "ad": "Mud Cracked Dry 03",
+   "sayfa": "https://polyhaven.com/a/mud_cracked_dry_03",
+   "yazarlar": {
+    "Dario Barresi": "Processing",
+    "Dimitrios Savva": "Photography"
+   },
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "amac": "çöl/kurak: çatlak kuru toprak",
+   "dosyalar": [
+    {
+     "dosya": "mud_cracked_dry_03/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mud_cracked_dry_03/mud_cracked_dry_03_diff_1k.jpg",
+     "bayt": 974865,
+     "md5_dogru": true
+    },
+    {
+     "dosya": "mud_cracked_dry_03/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mud_cracked_dry_03/mud_cracked_dry_03_nor_gl_1k.jpg",
+     "bayt": 1292317,
+     "md5_dogru": true
+    }
+   ]
+  },
+  {
+   "kimlik": "forest_ground_04",
+   "ad": "Forest Ground 04",
+   "sayfa": "https://polyhaven.com/a/forest_ground_04",
+   "yazarlar": {
+    "Rob Tuytel": "Photography, Processing",
+    "Rico Cilliers": "Minor adjustment"
+   },
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "amac": "orman zemini",
+   "dosyalar": [
+    {
+     "dosya": "forest_ground_04/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_diff_1k.jpg",
+     "bayt": 1113899,
+     "md5_dogru": true
+    },
+    {
+     "dosya": "forest_ground_04/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+     "bayt": 1326812,
+     "md5_dogru": true
+    }
+   ]
+  }
+ ]
+}
