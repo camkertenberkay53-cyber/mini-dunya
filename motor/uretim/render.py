@@ -28,7 +28,8 @@ KOK = ayar.ONBELLEK / "uretim"
 def gorsel_profili(g: dict, arazi: str, ad: str | None = None) -> dict:
     """Aktif görsel profil: 'taban' zinciri birleştirilir, arazi_ozel uygulanır, 'varlik/...' yolları motor/ köküne
     göre mutlak yapılır (Godot dosyayı is.json'daki yoldan okur)."""
-    p = g["profiller"][ad or g["aktif"]]
+    sr = g.get("sinematik_render", {})
+    p = g["profiller"][ad or (sr["profil"] if sr.get("acik") and sr.get("profil") else g["aktif"])]
     sonuc = {"isik": {}, "arazi": {}}
     if p.get("taban"):
         t = gorsel_profili(g, arazi, p["taban"])
@@ -96,7 +97,8 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "yerlesim": (yer := _yerlesim(plan, c)),
         "malzeme": _malzeme(yer, {}),
         "kalabalik": _kalabalik(c),
-        "sinema": veri.kural("gorsel").get("sinema", {"acik": False}),
+        "sinema": _sinema(),
+        "film": _film(c),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
                                        if any(k["animasyon"].startswith(ad + "/") for k in c.get("karakterler", []))},
         "sahne_merkezi": [sum(xs) / len(xs), sum(zs) / len(zs)],
@@ -159,6 +161,32 @@ def _yerlesim(plan: dict, c: dict) -> dict:
     if hd:
         k["boylar"] = _boylar(k["cadirlar"] + [g for v in k.get("roller", {}).values() for g in v])
     return k
+
+
+def _sinema() -> dict:
+    """Son işlem katmanı (vinyet/ton/gren); sinematik render açıkken onun 'sinema' ekleri uygulanır."""
+    g = veri.kural("gorsel")
+    s = dict(g.get("sinema", {"acik": False}))
+    sr = g.get("sinematik_render", {})
+    if sr.get("acik") and s.get("acik"):
+        s.update(sr.get("sinema", {}))
+    return s
+
+
+def _film(c: dict) -> dict:
+    """Sinematik render geçişi (godot/sahneler/film.gd): gorsel.yaml 'film'; ışık hazır ayarına özel ek ayarlar 'isik_ozel'."""
+    sr = veri.kural("gorsel").get("sinematik_render", {})
+    if not sr.get("acik"):
+        return {"acik": False}
+    f = dict(sr.get("film", {}), acik=True)
+    f.update(f.pop("isik_ozel", {}).get(c["ortam"]["isik"], {}))
+    isik = veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
+    gp = gorsel_profili(veri.kural("gorsel"), c["ortam"]["arazi"])["isik"]
+    if "pus_renk" not in f:   # hava rengi: sahne sis rengi ile gök tepe rengi karışımı (uzak plan maviye/soğuğa kayar)
+        k = float(f.get("pus_gok_karisim", 0.4))
+        sis, tepe = isik["sis"]["renk"], gp.get("gok_tepe", isik["gok"]["tepe"])
+        f["pus_renk"] = [sis[i] * (1 - k) + tepe[i] * k for i in range(3)]
+    return f
 
 
 def _mekan_kalite_acik() -> bool:

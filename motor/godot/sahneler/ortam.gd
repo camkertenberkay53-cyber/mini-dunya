@@ -147,7 +147,7 @@ static func isik(kok: Node, i: Dictionary) -> void:
 		gunes.light_color = _renk(g["gunes_renk"])
 	gunes.shadow_enabled = not bool(g.get("tani_golge_yok", false))
 	gunes.shadow_blur = float(g.get("golge_yumusaklik", 1.0))
-	gunes.directional_shadow_max_distance = 60.0
+	gunes.directional_shadow_max_distance = float(g.get("golge_mesafe", 60.0))   # sinematik profil: uzak kaya/yapı da gölge atar
 	if g.get("hacimsel_sis", false):
 		gunes.light_volumetric_fog_energy = float(g.get("hsis_gunes", 1.5))
 	kok.add_child(gunes)

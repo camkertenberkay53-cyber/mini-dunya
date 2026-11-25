@@ -1,0 +1,38 @@
+{
+ "durum": "TAMAM",
+ "konu": "mekan-M3",
+ "cekim": "M3",
+ "karma": "dab04e4d9feb78aa",
+ "video": "/tmp/motor_onbellek/uretim/mekan-M3/M3_dab04e4d9feb78aa/cekim.mp4",
+ "tarih": "2026-11-25 22:56",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+  "cekirdek": 2
+ },
+ "olculen": {
+  "plan_denetim_sn": 0.12,
+  "render_sn": 239.0,
+  "kare": 120,
+  "uretilen_kare": 120,
+  "cozunurluk": "1080x1920",
+  "kare_basina_sn_acilis_dahil": 1.99,
+  "render_tepe_bellek_gb": 1.46,
+  "kodlama_sn": 4.0,
+  "ara_avi_mb": 39.7,
+  "mp4_mb": 19.47,
+  "karakter": 9,
+  "cevre_varligi": 0
+ },
+ "godot_hatalari": [],
+ "denetim_uyarilari": [
+  "M3: biz_komutan 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_kilic 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_mizrak 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_kilic 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_mizrak 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_kilic 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_mizrak 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_kilic 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "M3: biz_piyade_mizrak 'badem_kalkan' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz"
+ ]
+}

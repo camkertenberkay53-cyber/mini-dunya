@@ -13,6 +13,8 @@ const S := preload("res://sahneler/sinema.gd")
 const Serp := preload("res://sahneler/serpme.gd")
 const Y := preload("res://sahneler/yerlesim.gd")
 const Mz := preload("res://sahneler/malzeme.gd")
+const F := preload("res://sahneler/film.gd")
+var _film: ShaderMaterial = null
 const K := preload("res://sahneler/kalabalik.gd")
 var _sinema: ShaderMaterial
 
@@ -154,6 +156,8 @@ func _ready() -> void:
 	kamera.near = 0.1
 	kamera.far = 800.0
 	add_child(kamera)
+	if is_.get("film", {}).get("acik", false):   # sinematik render: derinlik tabanlı hava, temas gölgesi, alan derinliği, renk
+		_film = F.kur(kamera, is_["film"], is_["isik"])
 	_guncelle()
 
 func _kolay(u: float, tip: String) -> float:
@@ -185,6 +189,8 @@ func _guncelle() -> void:
 	kamera.fov = lerpf(b["fov"], s["fov"], u)
 	kamera.position = _vec(b["konum"]).lerp(_vec(s["konum"]), u)
 	kamera.look_at(_vec(b["hedef"]).lerp(_vec(s["hedef"]), u), Vector3.UP)
+	if _film:
+		F.guncelle(_film, O._gunes_yon, kamera.position.distance_to(_vec(b["hedef"]).lerp(_vec(s["hedef"]), u)))
 
 func _process(delta: float) -> void:
 	_guncelle()   # kare n, t = n / fps anını gösterir
