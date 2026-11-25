@@ -55,6 +55,80 @@
    ],
    "guven": "makul",
    "kategori": "cevre"
+  },
+  "agac_yaprakli_1": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "agac_yaprakli_2": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "cam_1": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "cam_2": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "kuru_agac": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "kaya_1": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "342 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "kaya_2": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "244 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
   }
  }
 }

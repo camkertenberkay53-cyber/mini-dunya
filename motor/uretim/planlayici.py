@@ -322,6 +322,16 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     karakterler, dizilis, odak_i = dizilis_kur(oyuncular, n.get("eylem"), tohum, n.get("dizilis"), taslak["sure_sn"])
     o = n.get("ortam") or {}
     c["ortam"] = {"arazi": o.get("arazi", "ova_cimen"), "isik": o.get("isik", "aksam_ustu")}
+    if o.get("yerlesim"):   # sinematik paket 2: prosedürel yerleşim; kuralı yoksa uydurulmaz, eksik raporlanır
+        if o["yerlesim"] in veri.kural("yerlesim")["yerlesimler"]:
+            c["ortam"]["yerlesim"] = o["yerlesim"]
+        else:
+            eksik.append(f"{taslak['id']}: '{o['yerlesim']}' yerleşim kuralı yok")
+    if o.get("kalabalik"):
+        if o["kalabalik"] in veri.kural("kalabalik")["kalabaliklar"]:
+            c["ortam"]["kalabalik"] = o["kalabalik"]
+        else:
+            eksik.append(f"{taslak['id']}: '{o['kalabalik']}' kalabalık kuralı yok")
     c["karakterler"] = karakterler
     hareketli = karakterler[odak_i]["hiz_m_sn"] > 0
     mesafe = n.get("mesafe", "orta")

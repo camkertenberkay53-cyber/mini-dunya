@@ -1,0 +1,14 @@
+# Sinematik paket 2: prosedürel doğa serpmesi (godot/sahneler/serpme.gd). Konudan bağımsız; araziye göre katmanlar.
+# Modeller CC0 (Quaternius Stylized Nature MegaKit; dış model kaydı varlik/dis_cevre_kaydi.json). Bir parça yalnız
+# çekimin döneminde kayıtlıysa ve kalite sınıfı RED değilse serpilir. acik: false → serpme yok (geri alma).
+acik: true
+serit_payi_m: 2.5        # oyuncu şeridinin (duz_yari) dışına bu kadar pay
+gorus_payi_m: 5.0        # kamera→hedef görüş çizgisine bu kadar yaklaşılmaz (kadrajı kapatmasın)
+araziler:
+  ova_cimen:
+    - {parcalar: [agac_yaprakli_1, agac_yaprakli_2], adet: 26, yaricap_m: [16, 110], en_az_aralik_m: 7, olcek: [0.8, 1.25]}
+    - {parcalar: [cam_1, cam_2], adet: 18, yaricap_m: [30, 140], en_az_aralik_m: 6, olcek: [0.9, 1.4]}
+    - {parcalar: [kaya_1, kaya_2], adet: 16, yaricap_m: [10, 80], en_az_aralik_m: 5, olcek: [0.5, 1.3], golge: true}
+  kuru_bozkir:
+    - {parcalar: [kuru_agac], adet: 8, yaricap_m: [18, 120], en_az_aralik_m: 14, olcek: [0.7, 1.1]}
+    - {parcalar: [kaya_1, kaya_2], adet: 22, yaricap_m: [9, 90], en_az_aralik_m: 5, olcek: [0.5, 1.5]}

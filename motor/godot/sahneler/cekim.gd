@@ -10,6 +10,9 @@ const D := preload("res://sahneler/donatici.gd")
 const O := preload("res://sahneler/ortam.gd")
 const V := preload("res://sahneler/vfx.gd")
 const S := preload("res://sahneler/sinema.gd")
+const Serp := preload("res://sahneler/serpme.gd")
+const Y := preload("res://sahneler/yerlesim.gd")
+const K := preload("res://sahneler/kalabalik.gd")
 var _sinema: ShaderMaterial
 
 var is_: Dictionary
@@ -18,6 +21,7 @@ var kamera: Camera3D
 var oyuncular: Array = []     # [{kok, bas, ileri, hiz}]
 var kam: Dictionary
 var _sira := 0
+var _toplar: Array = []
 
 func _ready() -> void:
 	var a := OS.get_cmdline_user_args()
@@ -32,12 +36,30 @@ func _ready() -> void:
 	O.arazi(self, is_["arazi"], Vector2(m[0], m[1]))
 	O.daglar(self, is_["arazi"], rng, Vector2(m[0], m[1]), deg_to_rad(float(is_["bakis_yonu_derece"])))
 	O.otlar(self, is_["arazi"], rng, is_["ot_alani"])
+	var sp: Dictionary = is_.get("serpme", {})
+	if sp.get("acik", false):   # sinematik paket 2: prosedürel ağaç/kaya serpmesi (görüş çizgisi ve oyuncu şeridi boş)
+		var kk: Dictionary = c["kamera"]
+		var kameralar := [[_vec(kk["bas"]["konum"]), _vec(kk["bas"]["hedef"])], [_vec(kk["son"]["konum"]), _vec(kk["son"]["hedef"])]]
+		Serp.serp(self, sp, is_["arazi"], Vector2(m[0], m[1]), kameralar, int(is_.get("tohum", 1)) * 131 + str(c["id"]).hash() % 1000)
+	var yl: Dictionary = is_.get("yerlesim", {})
+	if yl.get("acik", false):   # sinematik paket 2: prosedürel ordugâh
+		var kb2: Dictionary = c["kamera"]["bas"]
+		var il := _vec(kb2["hedef"]) - _vec(kb2["konum"])
+		il.y = 0
+		var kk2: Dictionary = c["kamera"]
+		var kam2 := [[_vec(kk2["bas"]["konum"]), _vec(kk2["bas"]["hedef"])], [_vec(kk2["son"]["konum"]), _vec(kk2["son"]["hedef"])]]
+		Y.ordugah(self, yl, is_["arazi"], Vector3(m[0], 0, m[1]), il.normalized(), kam2, int(is_.get("tohum", 1)) * 173 + str(c["id"]).hash() % 1000, t)
 	for cv in is_.get("cevre", []):
 		var n := D.glb_yukle(cv["glb"])
 		n.position = Vector3(cv["konum"][0], 0, cv["konum"][1])
 		n.rotation.y = deg_to_rad(float(cv.get("yon_derece", 0.0)))
 		n.scale = Vector3.ONE * float(cv.get("olcek", 1.0))
+		if is_.get("vfx", {}).get("zemine_otur", false):   # tepeye düşen çevre varlığı gömülmesin/havada kalmasın
+			n.position.y = V.zemin_y(n.position.x, n.position.z, is_["arazi"])
 		add_child(n)
+		var vt: Dictionary = is_.get("vfx", {})
+		if vt.get("acik", false) and str(cv["id"]) in vt.get("top", {}).get("parcalar", []):   # top atışı: ağız alevi + duman
+			_toplar.append(V.top_atisi(self, n, vt["top"], int(is_.get("tohum", 1)) * 59 + _toplar.size() * 17, t))
 	for k in c.get("karakterler", []):
 		var takim: Dictionary = is_["takimlar"][k["takim"]]
 		var kok := D.kur(takim)
@@ -111,6 +133,13 @@ func _ready() -> void:
 		var ileri := kh - (_vec(kb["konum"]) + _vec(ks["konum"])) * 0.5
 		ileri.y = 0
 		V.duman(self, kh * Vector3(1, 0, 1), ileri.normalized(), vx2["duman"], int(is_.get("tohum", 1)) * 97, t, is_["arazi"])
+	var kl: Dictionary = is_.get("kalabalik", {})
+	if kl.get("acik", false):   # sinematik paket 2: arka plan ordusu (pişirilmiş poz + MultiMesh)
+		var kb3: Dictionary = c["kamera"]["bas"]
+		var il3 := _vec(kb3["hedef"]) - _vec(kb3["konum"])
+		il3.y = 0
+		var mm3: Array = is_["sahne_merkezi"]
+		K.kur(self, kl, is_["takimlar"], is_["arazi"], Vector3(mm3[0], 0, mm3[1]), il3.normalized(), int(is_.get("tohum", 1)) * 211 + str(c["id"]).hash() % 1000)
 	if is_.get("sinema", {}).get("acik", false):   # sinematik paket: vinyet + bölünmüş tonlama + gren
 		_sinema = S.kur(self, is_["sinema"])
 	kam = c["kamera"]
@@ -154,4 +183,7 @@ func _process(delta: float) -> void:
 	_guncelle()   # kare n, t = n / fps anını gösterir
 	if _sinema:
 		_sinema.set_shader_parameter("kare", roundf(t * 30.0))
+	Y.guncelle(t)
+	for tp in _toplar:
+		V.top_guncelle(tp, t)
 	t += delta

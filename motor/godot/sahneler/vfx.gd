@@ -123,3 +123,66 @@ static func duman(sahne: Node3D, merkez: Vector3, ileri: Vector3, k: Dictionary,
 		p.initial_velocity_max = 1.1
 		p.gravity = Vector3(0.12, 0.1, 0)
 		sahne.add_child(p)
+
+
+## Top atışı: namlu ağzında kısa alev + kıvılcım (toplamalı karışım), kalın beyaz barut dumanı, anlık ışık. Atış anları
+## tohumlu ve sabittir (kare hızında belirlenimci); önizleme anı t'den önceki son atışın dumanı ön işlemeyle görünür.
+static func top_atisi(sahne: Node3D, top: Node3D, k: Dictionary, tohum: int, t: float) -> Dictionary:
+	var r := RandomNumberGenerator.new()
+	r.seed = tohum
+	var agiz: Array = k.get("agiz_yerel", [0.0, 1.0, 1.7])
+	var p := top.global_transform * Vector3(agiz[0], agiz[1], agiz[2])
+	var yon := (top.global_transform.basis * Vector3(0, 0.15, 1)).normalized()
+	var alev := CPUParticles3D.new()
+	_ortak(alev, {"doku": k["alev_doku"], "adet": 16, "omur": 0.25, "boyut": [0.8, 1.8], "opaklik": 1.0, "renk": [1.0, 0.75, 0.4]}, tohum, 0.0)
+	(alev.mesh.material as StandardMaterial3D).blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	alev.one_shot = true
+	alev.explosiveness = 0.95
+	alev.preprocess = 0.0
+	alev.emitting = false
+	alev.position = p
+	alev.direction = yon
+	alev.spread = 18.0
+	alev.initial_velocity_min = 4.0
+	alev.initial_velocity_max = 9.0
+	alev.gravity = Vector3.ZERO
+	sahne.add_child(alev)
+	var duman := CPUParticles3D.new()
+	_ortak(duman, {"doku": k["duman_doku"], "adet": 30, "omur": 5.0, "boyut": [3.0, 6.5], "opaklik": 0.85, "renk": [0.88, 0.87, 0.84]}, tohum + 3, 0.0)
+	duman.one_shot = true
+	duman.explosiveness = 0.8
+	duman.preprocess = 0.0
+	duman.emitting = false
+	duman.position = p
+	duman.direction = yon
+	duman.spread = 25.0
+	duman.initial_velocity_min = 2.0
+	duman.initial_velocity_max = 6.0
+	duman.damping_min = 2.0
+	duman.damping_max = 3.5
+	duman.gravity = Vector3(0.2, 0.25, 0)
+	sahne.add_child(duman)
+	var isik := OmniLight3D.new()
+	isik.light_color = Color(1.0, 0.7, 0.4)
+	isik.omni_range = 9.0
+	isik.light_energy = 0.0
+	isik.position = p
+	sahne.add_child(isik)
+	var anlar: Array = []
+	var s := r.randf_range(0.3, 1.2)
+	while s < 60.0:
+		anlar.append(s)
+		s += r.randf_range(float(k.get("aralik_sn", [2.2, 3.4])[0]), float(k.get("aralik_sn", [2.2, 3.4])[1]))
+	return {"alev": alev, "duman": duman, "isik": isik, "anlar": anlar, "son": -1.0, "guc": float(k.get("isik_guc", 6.0))}
+
+static func top_guncelle(d: Dictionary, t: float) -> void:
+	var son := -1.0
+	for a in d["anlar"]:
+		if a <= t:
+			son = a
+	if son >= 0.0 and son != float(d["son"]):
+		d["son"] = son
+		(d["alev"] as CPUParticles3D).restart()
+		(d["duman"] as CPUParticles3D).restart()
+	var gecen := t - float(d["son"]) if float(d["son"]) >= 0.0 else 99.0
+	(d["isik"] as OmniLight3D).light_energy = float(d["guc"]) * maxf(0.0, 1.0 - gecen / 0.15)

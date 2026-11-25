@@ -217,6 +217,14 @@
         "items": {
          "$ref": "#/$defs/cevre"
         }
+       },
+       "kalabalik": {
+        "type": "string",
+        "description": "Arka plan kalabalığı (kurallar/kalabalik.yaml), ör. ordu."
+       },
+       "yerlesim": {
+        "type": "string",
+        "description": "Prosedürel yerleşim (kurallar/yerlesim.yaml), ör. ordugah."
        }
       }
      },

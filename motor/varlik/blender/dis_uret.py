@@ -48,6 +48,12 @@ def dis_usd(p):
         o.data.transform(kay)
     for o in [o for o in bpy.context.scene.objects if o.type != "MESH"]:
         bpy.data.objects.remove(o, do_unlink=True)
+    dm = int(p.get("doku_max", 0))   # doku çözünürlüğü sınırı (dosya boyutu/bellek); geometri değişmez
+    if dm:
+        for im in bpy.data.images:
+            if im.size[0] > dm or im.size[1] > dm:
+                k = dm / max(im.size[0], im.size[1])
+                im.scale(max(1, int(im.size[0] * k)), max(1, int(im.size[1] * k)))
     return mesh
 
 

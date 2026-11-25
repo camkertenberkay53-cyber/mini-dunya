@@ -1,0 +1,70 @@
+{
+ "paket": "Sinematik paket 2 — prosedürel doğa serpmesi, ordugâh, arka plan ordusu (pişirilmiş poz + MultiMesh + LOD), top atışı; Forward+ (lavapipe) denendi, reddedildi",
+ "olculen_render": {
+  "S2": {
+   "render_sn": 319.8,
+   "tepe_bellek_gb": 1.52,
+   "kare": 135
+  },
+  "S3b": {
+   "render_sn": 225.0,
+   "tepe_bellek_gb": 1.47,
+   "kare": 84
+  },
+  "S6": {
+   "render_sn": 235.1,
+   "tepe_bellek_gb": 1.0,
+   "kare": 102
+  },
+  "S8a": {
+   "render_sn": 152.6,
+   "tepe_bellek_gb": 1.33,
+   "kare": 79
+  },
+  "V3": {
+   "render_sn": 171.2,
+   "tepe_bellek_gb": 1.14,
+   "kare": 120
+  },
+  "V4": {
+   "render_sn": 330.9,
+   "tepe_bellek_gb": 1.52,
+   "kare": 120
+  }
+ },
+ "onceki": {
+  "S2_v2": {
+   "render_sn": 166.7,
+   "tepe_bellek_gb": 1.11
+  },
+  "S3b_paket1": {
+   "render_sn": 172.3,
+   "tepe_bellek_gb": 1.26
+  },
+  "S6_paket1": {
+   "render_sn": 186.8,
+   "tepe_bellek_gb": 0.84
+  },
+  "S8a_cesit": {
+   "render_sn": 131.5,
+   "tepe_bellek_gb": 1.15
+  }
+ },
+ "kalabalik_optimizasyon": {
+  "S2_ilk": {
+   "render_sn": 865.3,
+   "tepe_bellek_gb": 3.41
+  },
+  "S3b_ilk": {
+   "render_sn": 322.4,
+   "tepe_bellek_gb": 1.91
+  },
+  "not": "180 asker tam ağ → 130 asker, %10 LOD, tek poz"
+ },
+ "forward_plus": {
+  "calisti": true,
+  "surucu": "Vulkan lavapipe (llvmpipe)",
+  "sonuc": "zemin dokusu ve sis davranışı bozuldu; görüntü kötüleşti, varsayılan kapalı"
+ },
+ "testler": "118/118"
+}

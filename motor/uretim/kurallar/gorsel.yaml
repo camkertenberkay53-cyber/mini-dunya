@@ -76,6 +76,14 @@ vfx:
     mesafe_m: [14.0, 30.0]
     doku: varlik/kenney_parcacik/smoke_07.png
     renk: [0.44, 0.42, 0.40]
+  zemine_otur: true
+  top:
+    parcalar: [top_arabasi]
+    agiz_yerel: [0.0, 1.0, 1.7]
+    aralik_sn: [2.2, 3.4]
+    isik_guc: 6.0
+    alev_doku: varlik/kenney_parcacik/flame_02.png
+    duman_doku: varlik/kenney_parcacik/smoke_04.png
   savas_animasyonlari: [Sword_Attack, Sword_Idle, Death01, Hit_Chest, ual2/Sword_Regular_Combo, ual2/Sword_Block, ual2/Hit_Knockback, ual2/Shield_OneShot]
 # Sinematik paket: son işlem katmanı (godot/sahneler/sinema.gd; kendi yazımımız). acik: false → katman yok (geri alma).
 sinema:
@@ -86,3 +94,4 @@ sinema:
   isik_ton: [1.03, 1.0, 0.965]     # ışıklar hafif sıcak
   ton_guc: 1.0
   gren: 0.022
+# (vfx ek) Sinematik paket 2: top atışı (namlu alevi + barut dumanı + ışık) ve çevre varlıklarını zemine oturtma.

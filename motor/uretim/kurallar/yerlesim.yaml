@@ -1,0 +1,19 @@
+# Sinematik paket 2: prosedürel yerleşimler (godot/sahneler/yerlesim.gd). Senaryo niyetinde ortam.yerlesim ile istenir.
+# Parçalar dönem kataloğundan seçilir (dönemde kayıtlı olmayan çadır kullanılmaz; uydurulmaz).
+yerlesimler:
+  ordugah:
+    aciklama: Ordugâh — dönemin çadırları sıra sıra, aralarda yük arabaları ve kamp ateşleri.
+    cadir_adaylari: [osmanli_cadiri, topak_ev, roma_cadiri]   # dönemine uyan(lar) kullanılır
+    ek_adaylari: [yuk_arabasi]
+    adet: 16
+    mesafe_m: [16.0, 62.0]
+    yan_oran: 0.55
+    aralik_m: 9.0
+    oyuncu_payi_m: 10.0
+    gorus_payi_m: 4.0
+    araba_her: 5
+    ates_her: 3
+    isik_guc: 1.6
+    isik_menzil_m: 7.0
+    alev_doku: varlik/kenney_parcacik/flame_02.png
+    duman_doku: varlik/kenney_parcacik/smoke_04.png

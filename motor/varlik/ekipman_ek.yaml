@@ -37,3 +37,53 @@ parcalar:
     p: {kaynak: quaternius-stage/UltimateModularRuins/S_WallArchRoundBroken.usda, olcek: 1.3}
     donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
     tarih: {guven: makul, not: "Yıkık yuvarlak kemerli taş duvar (antik/ortaçağ kalıntısı); genel temsil."}
+  # --- Sinematik paket 2: doğa (Quaternius Stylized Nature MegaKit, CC0; quaternius-stage). Prosedürel serpme (dogal.yaml) kullanır. ---
+  agac_yaprakli_1:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_CommonTree_1.usda, olcek: 1.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Yaprak döken ağaç (genel; bölge türü belirtilmez)."}
+  agac_yaprakli_2:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_CommonTree_3.usda, olcek: 1.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Yaprak döken ağaç (genel)."}
+  cam_1:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_Pine_1.usda, olcek: 1.1, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Çam (Anadolu dağ ormanları için genel)."}
+  cam_2:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_Pine_3.usda, olcek: 1.1, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Çam (genel)."}
+  kuru_agac:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_DeadTree_1.usda, olcek: 0.8, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kuru ağaç (bozkır, savaş alanı)."}
+  kaya_1:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_RockMedium_1.usda, olcek: 1.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kaya (genel)."}
+  kaya_2:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_RockMedium_2.usda, olcek: 1.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kaya (genel)."}

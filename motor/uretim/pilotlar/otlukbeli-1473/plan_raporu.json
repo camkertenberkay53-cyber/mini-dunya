@@ -795,6 +795,16 @@
      "kontrol": "S6 isik",
      "gecti": true,
      "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    },
+    {
+     "kontrol": "S6 çevre 'top_arabasi'",
+     "gecti": true,
+     "ayrinti": ""
+    },
+    {
+     "kontrol": "S6 çevre 'top_arabasi'",
+     "gecti": true,
+     "ayrinti": ""
     }
    ],
    "gecti": true
@@ -1504,6 +1514,16 @@
      "gorunur": true,
      "ekran_orani": 0.347,
      "mesafe": "orta"
+    }
+   },
+   "cevre": {
+    "0:top_arabasi": {
+     "mesafe": null,
+     "ekran_orani": 0.0
+    },
+    "1:top_arabasi": {
+     "mesafe": "uzak",
+     "ekran_orani": 0.045
     }
    },
    "kamera_kusur": [],

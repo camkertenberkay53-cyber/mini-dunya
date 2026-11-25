@@ -167,5 +167,423 @@
    "dosya": "quaternius-stage/UltimateModularRuins/S_WallArchRoundBroken.usda",
    "sha256": "718fe7a52e46f8afbb46061547c5c0aec4b1c1512609a83716419585d831f56c"
   }
+ },
+ "agac_yaprakli_1": {
+  "id": "agac_yaprakli_1",
+  "anahtar": "5be522d43668608b",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Yaprak döken ağaç (genel; bölge türü belirtilmez)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/StylizedNatureMegaKit/S_CommonTree_1.usda",
+   "olcek": 1.0,
+   "doku_max": 512
+  },
+  "betik_ozeti": "b5889be07663ed73",
+  "sha256": "f0511f3f1a9fb971efde42375a0ac199867e13e6bc4e693ae72895a482eb84f0",
+  "olcum": {
+   "ucgen": 6265,
+   "kose": 6132,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    4.311,
+    4.578,
+    7.265
+   ],
+   "min": [
+    -2.156,
+    -2.289,
+    0.0
+   ],
+   "max": [
+    2.156,
+    2.289,
+    7.265
+   ],
+   "malzeme": 2,
+   "doku": [
+    512
+   ],
+   "bayt": 375836
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/StylizedNatureMegaKit/S_CommonTree_1.usda",
+   "sha256": "d7bf2dff6ec956baa71603881a6114fd7b865cfedd074dce00f06ebe03427d62"
+  }
+ },
+ "agac_yaprakli_2": {
+  "id": "agac_yaprakli_2",
+  "anahtar": "ba0cc1e5fd93d54b",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Yaprak döken ağaç (genel)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/StylizedNatureMegaKit/S_CommonTree_3.usda",
+   "olcek": 1.0,
+   "doku_max": 512
+  },
+  "betik_ozeti": "b5889be07663ed73",
+  "sha256": "f2ef6f4c84668fef901d42957f11797c757bf5b7d0a9c7406777b4ffd549b837",
+  "olcum": {
+   "ucgen": 3505,
+   "kose": 4699,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    4.063,
+    4.241,
+    9.425
+   ],
+   "min": [
+    -2.031,
+    -2.121,
+    0.0
+   ],
+   "max": [
+    2.031,
+    2.121,
+    9.425
+   ],
+   "malzeme": 2,
+   "doku": [
+    512
+   ],
+   "bayt": 273996
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/StylizedNatureMegaKit/S_CommonTree_3.usda",
+   "sha256": "16976fec9e80b9fdfb9898ab97f3c39a87249625a2244e5ac20df4c35fa37ae8"
+  }
+ },
+ "cam_1": {
+  "id": "cam_1",
+  "anahtar": "ac2bac1eddfc719a",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Çam (Anadolu dağ ormanları için genel)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/StylizedNatureMegaKit/S_Pine_1.usda",
+   "olcek": 1.1,
+   "doku_max": 512
+  },
+  "betik_ozeti": "b5889be07663ed73",
+  "sha256": "7022b675a56d55a0319c4e2c7b3a6363e3cc5a9e91529e85cc0cb39444260f88",
+  "olcum": {
+   "ucgen": 3947,
+   "kose": 2350,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    5.439,
+    4.992,
+    8.049
+   ],
+   "min": [
+    -2.72,
+    -2.496,
+    0.0
+   ],
+   "max": [
+    2.72,
+    2.496,
+    8.049
+   ],
+   "malzeme": 2,
+   "doku": [
+    512
+   ],
+   "bayt": 206296
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/StylizedNatureMegaKit/S_Pine_1.usda",
+   "sha256": "4e0a637c5954546c66e06748d04aa450472c051bcde164f9207f5c2815a174db"
+  }
+ },
+ "cam_2": {
+  "id": "cam_2",
+  "anahtar": "ca4e9ac251ff00d8",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Çam (genel)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/StylizedNatureMegaKit/S_Pine_3.usda",
+   "olcek": 1.1,
+   "doku_max": 512
+  },
+  "betik_ozeti": "b5889be07663ed73",
+  "sha256": "001a41e36ec086f53ae187e6db379b6ce855ac6532ee733071155ed915e7e325",
+  "olcum": {
+   "ucgen": 4964,
+   "kose": 2769,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    3.973,
+    4.395,
+    8.131
+   ],
+   "min": [
+    -1.986,
+    -2.198,
+    0.0
+   ],
+   "max": [
+    1.986,
+    2.198,
+    8.131
+   ],
+   "malzeme": 2,
+   "doku": [
+    512
+   ],
+   "bayt": 212956
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/StylizedNatureMegaKit/S_Pine_3.usda",
+   "sha256": "9259a95d6eb3955c907b6101344c606be6bd988a85440106d9c3daa2854cb25f"
+  }
+ },
+ "kuru_agac": {
+  "id": "kuru_agac",
+  "anahtar": "3d9343a9b06764e5",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Kuru ağaç (bozkır, savaş alanı)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/StylizedNatureMegaKit/S_DeadTree_1.usda",
+   "olcek": 0.8,
+   "doku_max": 512
+  },
+  "betik_ozeti": "b5889be07663ed73",
+  "sha256": "d7225eeccef9a4a781e31e2546756b6d3e3cf07efe7628f6bdbdd00468e726a5",
+  "olcum": {
+   "ucgen": 6169,
+   "kose": 3280,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    4.919,
+    4.599,
+    7.596
+   ],
+   "min": [
+    -2.46,
+    -2.299,
+    0.0
+   ],
+   "max": [
+    2.46,
+    2.299,
+    7.596
+   ],
+   "malzeme": 1,
+   "doku": [
+    512
+   ],
+   "bayt": 239204
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/StylizedNatureMegaKit/S_DeadTree_1.usda",
+   "sha256": "9e770429debe4c52102e061e9c212048b169de4b319e4e95052826895d66858e"
+  }
+ },
+ "kaya_1": {
+  "id": "kaya_1",
+  "anahtar": "569f70900d73bbf1",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Kaya (genel)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/StylizedNatureMegaKit/S_RockMedium_1.usda",
+   "olcek": 1.0
+  },
+  "betik_ozeti": "11c07e7ee2102247",
+  "sha256": "9355450f4c9b06884d75711f39962719d57b275329237728d2bc139d7b3bb63d",
+  "olcum": {
+   "ucgen": 342,
+   "kose": 173,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    3.225,
+    2.989,
+    2.26
+   ],
+   "min": [
+    -1.613,
+    -1.495,
+    0.0
+   ],
+   "max": [
+    1.613,
+    1.495,
+    2.26
+   ],
+   "malzeme": 1,
+   "doku": [
+    2048
+   ],
+   "bayt": 124068
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/StylizedNatureMegaKit/S_RockMedium_1.usda",
+   "sha256": "e3b2ac379573e88c22a109428c3472842a92b30b40d03ec1f696ffd623917a43"
+  }
+ },
+ "kaya_2": {
+  "id": "kaya_2",
+  "anahtar": "b2978b8cebba4f98",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Kaya (genel)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/StylizedNatureMegaKit/S_RockMedium_2.usda",
+   "olcek": 1.0
+  },
+  "betik_ozeti": "11c07e7ee2102247",
+  "sha256": "69e133303faefbe3f87d257c9a1c20b3ec7c49b43e950b4509269aa87c3944fe",
+  "olcum": {
+   "ucgen": 244,
+   "kose": 124,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    3.049,
+    2.479,
+    1.899
+   ],
+   "min": [
+    -1.524,
+    -1.24,
+    0.0
+   ],
+   "max": [
+    1.524,
+    1.24,
+    1.899
+   ],
+   "malzeme": 1,
+   "doku": [
+    2048
+   ],
+   "bayt": 120216
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/StylizedNatureMegaKit/S_RockMedium_2.usda",
+   "sha256": "4ccbadcfec6724078ab995ca6a4e188b5cae9c79b69b08b89214bd8ded534cc3"
+  }
  }
 }

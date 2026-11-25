@@ -65,7 +65,8 @@
      "cevre": [
       "topak_ev",
       "topak_ev"
-     ]
+     ],
+     "kalabalik": "ordu"
     },
     "eylem": "bekleme",
     "aciklama": "Akkoyunlu ordugâhı: bey ve hat halinde askerler (temsilî)"
@@ -95,7 +96,8 @@
     "mesafe": "uzak",
     "ortam": {
      "arazi": "ova_cimen",
-     "isik": "oglen_acik"
+     "isik": "oglen_acik",
+     "kalabalik": "ordu"
     },
     "eylem": "yuruyus",
     "aciklama": "İlerleyen Osmanlı kolu",
@@ -186,7 +188,11 @@
     "mesafe": "orta",
     "ortam": {
      "arazi": "ova_cimen",
-     "isik": "aksam_ustu"
+     "isik": "aksam_ustu",
+     "cevre": [
+      "top_arabasi",
+      "top_arabasi"
+     ]
     },
     "eylem": "savas",
     "aciklama": "Çarpışan yeniçeri hattı (kılıç); toplar gösterilmez (varlık yok)"
@@ -252,7 +258,8 @@
       "osmanli_cadiri",
       "yuk_arabasi",
       "osmanli_cadiri"
-     ]
+     ],
+     "yerlesim": "ordugah"
     },
     "eylem": "bekleme",
     "aciklama": "Kapanış: hat halinde Osmanlı ordusu ve bey"

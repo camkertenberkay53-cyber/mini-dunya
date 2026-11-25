@@ -118,6 +118,24 @@ static func isik(kok: Node, i: Dictionary) -> void:
 	env.adjustment_contrast = float(g.get("kontrast", 1.1))
 	env.adjustment_saturation = float(g.get("doygunluk", 0.82))
 	env.adjustment_brightness = float(g.get("parlaklik", 1.0))
+	# Sinematik paket 2: yalnız Forward+ (Vulkan; yazılımda lavapipe) işleyicide etkin özellikler. Compatibility'de
+	# Godot bunları yok sayar; varsayılan profil değişmez.
+	if g.get("ssao", false):   # ortam perdelemesi: karakterler/yapılar yere ve birbirine oturur
+		env.ssao_enabled = true
+		env.ssao_radius = float(g.get("ssao_yaricap", 1.2))
+		env.ssao_intensity = float(g.get("ssao_guc", 2.0))
+		env.ssao_power = 1.5
+	if g.get("ssil", false):
+		env.ssil_enabled = true
+		env.ssil_intensity = float(g.get("ssil_guc", 0.8))
+	if g.get("hacimsel_sis", false):   # hacimsel sis: güneş huzmeleri, derinlik, havadaki toz
+		env.volumetric_fog_enabled = true
+		env.volumetric_fog_density = float(g.get("hsis_yogunluk", 0.012))
+		env.volumetric_fog_albedo = _renk(g.get("hsis_renk", [0.9, 0.85, 0.78]))
+		env.volumetric_fog_anisotropy = float(g.get("hsis_anizotropi", 0.6))
+		env.volumetric_fog_length = float(g.get("hsis_uzunluk", 90.0))
+		env.volumetric_fog_sky_affect = float(g.get("hsis_gok", 0.15))
+		env.volumetric_fog_gi_inject = 0.0
 	var we := WorldEnvironment.new()
 	we.environment = env
 	kok.add_child(we)
@@ -130,6 +148,8 @@ static func isik(kok: Node, i: Dictionary) -> void:
 	gunes.shadow_enabled = not bool(g.get("tani_golge_yok", false))
 	gunes.shadow_blur = float(g.get("golge_yumusaklik", 1.0))
 	gunes.directional_shadow_max_distance = 60.0
+	if g.get("hacimsel_sis", false):
+		gunes.light_volumetric_fog_energy = float(g.get("hsis_gunes", 1.5))
 	kok.add_child(gunes)
 	_gunes_yon = gunes.global_transform.basis.z.normalized()
 	_gunes_renk = gunes.light_color

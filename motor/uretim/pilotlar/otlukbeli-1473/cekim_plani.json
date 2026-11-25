@@ -161,6 +161,7 @@
    "ortam": {
     "arazi": "kuru_bozkir",
     "isik": "oglen_acik",
+    "kalabalik": "ordu",
     "cevre": [
      {
       "id": "topak_ev",
@@ -372,6 +373,7 @@
    "ortam": {
     "arazi": "ova_cimen",
     "isik": "oglen_acik",
+    "kalabalik": "ordu",
     "cevre": []
    },
    "karakterler": [
@@ -496,6 +498,7 @@
    "ortam": {
     "arazi": "ova_cimen",
     "isik": "oglen_acik",
+    "kalabalik": "ordu",
     "cevre": []
    },
    "karakterler": [
@@ -955,7 +958,24 @@
    "ortam": {
     "arazi": "ova_cimen",
     "isik": "aksam_ustu",
-    "cevre": []
+    "cevre": [
+     {
+      "id": "top_arabasi",
+      "konum": [
+       -6.8,
+       -21.79
+      ],
+      "yon_derece": 0.0
+     },
+     {
+      "id": "top_arabasi",
+      "konum": [
+       -23.29,
+       -20.35
+      ],
+      "yon_derece": 37.0
+     }
+    ]
    },
    "karakterler": [
     {
@@ -1197,6 +1217,7 @@
    "ortam": {
     "arazi": "ova_cimen",
     "isik": "aksam_ustu",
+    "yerlesim": "ordugah",
     "cevre": [
      {
       "id": "top_arabasi",
@@ -1439,6 +1460,7 @@
    "ortam": {
     "arazi": "ova_cimen",
     "isik": "aksam_ustu",
+    "yerlesim": "ordugah",
     "cevre": [
      {
       "id": "top_arabasi",

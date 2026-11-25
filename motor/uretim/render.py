@@ -21,7 +21,7 @@ from motor import ayar
 from motor.olcum.render_olc import _calistir
 from motor.uretim import kadraj, plan_denetim, veri
 
-BETIKLER = [ayar.GODOT_PROJE / "sahneler" / x for x in ("cekim.gd", "ortam.gd", "donatici.gd", "vfx.gd", "binici_bacak.gd", "sinema.gd")]
+BETIKLER = [ayar.GODOT_PROJE / "sahneler" / x for x in ("cekim.gd", "ortam.gd", "donatici.gd", "vfx.gd", "binici_bacak.gd", "sinema.gd", "serpme.gd", "yerlesim.gd", "kalabalik.gd")]
 KOK = ayar.ONBELLEK / "uretim"
 
 
@@ -82,6 +82,9 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "cevre": [dict(cv, glb=str(veri.ekipman_glb(cv["id"]))) for cv in c["ortam"].get("cevre", [])],
         "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
         "vfx": _vfx(c, ar),
+        "serpme": _serpme(plan, c),
+        "yerlesim": _yerlesim(plan, c),
+        "kalabalik": _kalabalik(c),
         "sinema": veri.kural("gorsel").get("sinema", {"acik": False}),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
                                        if any(k["animasyon"].startswith(ad + "/") for k in c.get("karakterler", []))},
@@ -89,6 +92,67 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "bakis_yonu_derece": math.degrees(math.atan2(ileri[0], ileri[1])),
         "ot_alani": [min(xs) - pay, max(xs) + pay, min(zs) - pay, max(zs) + pay],
     }
+
+
+def _kalabalik(c: dict) -> dict:
+    """Arka plan ordusu: çekimdeki oyuncuların takımlarından (sancaksız, nesnesiz) en çok N tanesi."""
+    ad = c["ortam"].get("kalabalik")
+    if not ad:
+        return {"acik": False}
+    k = dict(veri.kural("kalabalik")["kalabaliklar"][ad])
+    from motor.uretim import planlayici
+    adaylar = []
+    for x in c.get("karakterler", []):
+        if x["takim"] not in adaylar and not planlayici._sancakli(x["takim"]) and not x.get("binek"):
+            adaylar.append(x["takim"])
+    k["takimlar"] = adaylar[: k.pop("en_cok_takim", 3)]
+    cev = c["ortam"].get("cevre", [])
+    if cev:   # çevre varlığı (sur, çadır) varsa ordu onun ÖNÜNDE kalır (arkasında görünmez)
+        xs = [x["konum"][0] for x in c["karakterler"]]
+        zs = [x["konum"][1] for x in c["karakterler"]]
+        mx, mz = sum(xs) / len(xs), sum(zs) / len(zs)
+        yakin = min(math.dist((mx, mz), cv["konum"]) for cv in cev) - 4.0
+        if yakin > 14.0:
+            k["mesafe_m"] = [max(8.0, yakin - 16.0), yakin]
+    k["cesit"] = veri.kural("gorsel").get("karakter_cesit", {"acik": False})
+    k["acik"] = bool(k["takimlar"])
+    return k
+
+
+def _yerlesim(plan: dict, c: dict) -> dict:
+    """Prosedürel yerleşim: dönemin çadırları/ekleri (katalogda dönemde kayıtlı, RED değil) ve doku yolları."""
+    ad = c["ortam"].get("yerlesim")
+    if not ad:
+        return {"acik": False}
+    k = dict(veri.kural("yerlesim")["yerlesimler"][ad])
+    donem = c.get("donem") or plan.get("donem")
+
+    def uygun(ids):
+        return [str(veri.ekipman_glb(p)) for p in ids if (pr := veri.parca(p)) and donem in pr.get("donem", [])
+                and veri.kalite()["ekipman"].get(p, {}).get("sinif") not in (None, "RED") and veri.ekipman_glb(p).exists()]
+    k["cadirlar"], k["ekler"] = uygun(k.pop("cadir_adaylari")), uygun(k.pop("ek_adaylari"))
+    for d in ("alev_doku", "duman_doku"):
+        k[d] = str(ayar.MOTOR / k[d])
+    k["tur"] = ad
+    k["acik"] = bool(k["cadirlar"])
+    return k
+
+
+def _serpme(plan: dict, c: dict) -> dict:
+    """Prosedürel doğa serpmesi: araziye göre katmanlar; yalnız çekimin döneminde kayıtlı, RED olmayan parçalar."""
+    k = veri.kural("dogal")
+    if not k.get("acik"):
+        return {"acik": False}
+    donem = c.get("donem") or plan.get("donem")
+    katlar = []
+    for kural in k["araziler"].get(c["ortam"]["arazi"], []):
+        uygun = [pid for pid in kural["parcalar"] if (p := veri.parca(pid)) and donem in p.get("donem", [])
+                 and veri.kalite()["ekipman"].get(pid, {}).get("sinif") not in (None, "RED") and veri.ekipman_glb(pid).exists()]
+        for pid in uygun:
+            katlar.append({"glb": str(veri.ekipman_glb(pid)), "adet": max(1, round(kural["adet"] / len(uygun))),
+                           "yaricap_m": kural["yaricap_m"], "en_az_aralik_m": kural["en_az_aralik_m"], "olcek": kural["olcek"],
+                           "golge": kural.get("golge", True)})
+    return {"acik": bool(katlar), "serit_payi_m": k["serit_payi_m"], "gorus_payi_m": k["gorus_payi_m"], "katmanlar": katlar}
 
 
 def _vfx(c: dict, ar) -> dict:
@@ -99,6 +163,9 @@ def _vfx(c: dict, ar) -> dict:
     arazi_adi = c["ortam"]["arazi"]
     for ad in ("toz", "duman"):
         v[ad]["doku"] = str(ayar.MOTOR / v[ad]["doku"])
+    if "top" in v:
+        for d in ("alev_doku", "duman_doku"):
+            v["top"][d] = str(ayar.MOTOR / v["top"][d])
     v["toz"]["renk"] = v["toz"].get("renk_arazi", {}).get(arazi_adi, v["toz"]["renk"])
     v["savas"] = any(k["animasyon"] in v.get("savas_animasyonlari", []) for k in c.get("karakterler", []))
     return v
@@ -123,6 +190,8 @@ def _karma(is_: dict) -> str:
         h.update(b.read_bytes())
     dosyalar = {t["glb"] for t in is_["takimlar"].values()} | {e["glb"] for t in is_["takimlar"].values() for e in t["takilanlar"]}
     dosyalar |= {cv["glb"] for cv in is_["cevre"]}
+    dosyalar |= {kt["glb"] for kt in is_.get("serpme", {}).get("katmanlar", [])}
+    dosyalar |= set(is_.get("yerlesim", {}).get("cadirlar", [])) | set(is_.get("yerlesim", {}).get("ekler", []))
     dosyalar |= {is_["vfx"][a]["doku"] for a in ("toz", "duman") if is_.get("vfx", {}).get("acik")}
     dosyalar |= {k["binek"]["glb"] for k in is_["cekim"].get("karakterler", []) if k.get("binek")}
     for d in sorted(dosyalar):
