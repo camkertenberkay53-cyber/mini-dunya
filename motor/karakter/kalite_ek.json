@@ -19,6 +19,42 @@
    "neden": [],
    "guven": "makul",
    "kategori": "cevre"
+  },
+  "sur_burclu": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "gozetleme_kulesi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "harabe_kemer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
   }
  }
 }

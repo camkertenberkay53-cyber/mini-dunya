@@ -21,7 +21,7 @@ from motor import ayar
 from motor.olcum.render_olc import _calistir
 from motor.uretim import kadraj, plan_denetim, veri
 
-BETIKLER = [ayar.GODOT_PROJE / "sahneler" / x for x in ("cekim.gd", "ortam.gd", "donatici.gd")]
+BETIKLER = [ayar.GODOT_PROJE / "sahneler" / x for x in ("cekim.gd", "ortam.gd", "donatici.gd", "vfx.gd", "binici_bacak.gd", "sinema.gd")]
 KOK = ayar.ONBELLEK / "uretim"
 
 
@@ -74,13 +74,15 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "tohum": plan.get("tohum", 1),
         "fps": plan["fps"],
         "cozunurluk": plan["cozunurluk"],
-        "cekim": c,
+        "cekim": _binekli(c),
         "arazi": ar,
         "isik": isik,
         "takimlar": takimlar,
         "dongu": {a: k["tur"] != "tek_sefer" for a, k in kurallar.items()},
         "cevre": [dict(cv, glb=str(veri.ekipman_glb(cv["id"]))) for cv in c["ortam"].get("cevre", [])],
         "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
+        "vfx": _vfx(c, ar),
+        "sinema": veri.kural("gorsel").get("sinema", {"acik": False}),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
                                        if any(k["animasyon"].startswith(ad + "/") for k in c.get("karakterler", []))},
         "sahne_merkezi": [sum(xs) / len(xs), sum(zs) / len(zs)],
@@ -89,12 +91,40 @@ def is_hazirla(plan: dict, c: dict) -> dict:
     }
 
 
+def _vfx(c: dict, ar) -> dict:
+    """Parçacık efekti ayarı: doku yolları mutlak, toz rengi araziye göre; çarpışma çekimi mi (savaş dumanı)."""
+    v = json.loads(json.dumps(veri.kural("gorsel").get("vfx", {"acik": False})))
+    if not v.get("acik"):
+        return {"acik": False}
+    arazi_adi = c["ortam"]["arazi"]
+    for ad in ("toz", "duman"):
+        v[ad]["doku"] = str(ayar.MOTOR / v[ad]["doku"])
+    v["toz"]["renk"] = v["toz"].get("renk_arazi", {}).get(arazi_adi, v["toz"]["renk"])
+    v["savas"] = any(k["animasyon"] in v.get("savas_animasyonlari", []) for k in c.get("karakterler", []))
+    return v
+
+
+def _binekli(c: dict) -> dict:
+    """Atlı karakterlere render bilgisi (GLB yolu, don paleti, eyer ayarı) eklenmiş çekim kopyası."""
+    if not any(k.get("binek") for k in c.get("karakterler", [])):
+        return c
+    from motor.uretim import binek
+    c = json.loads(json.dumps(c))
+    for k in c["karakterler"]:
+        if k.get("binek"):
+            binek.hazir(k["binek"]["id"])
+            k["binek"] = binek.render_bilgisi(k["binek"])
+    return c
+
+
 def _karma(is_: dict) -> str:
     h = hashlib.sha256(json.dumps(is_, sort_keys=True, ensure_ascii=False).encode())
     for b in BETIKLER:
         h.update(b.read_bytes())
     dosyalar = {t["glb"] for t in is_["takimlar"].values()} | {e["glb"] for t in is_["takimlar"].values() for e in t["takilanlar"]}
     dosyalar |= {cv["glb"] for cv in is_["cevre"]}
+    dosyalar |= {is_["vfx"][a]["doku"] for a in ("toz", "duman") if is_.get("vfx", {}).get("acik")}
+    dosyalar |= {k["binek"]["glb"] for k in is_["cekim"].get("karakterler", []) if k.get("binek")}
     for d in sorted(dosyalar):
         h.update(Path(d).read_bytes())
     return h.hexdigest()[:16]

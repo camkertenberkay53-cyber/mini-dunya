@@ -83,6 +83,13 @@
     "rol": {
      "type": "string"
     },
+    "binek": {
+     "type": "object",
+     "description": "Atlı karakter: binici yerinde oturur, binek (kurallar/binek.yaml) ölçülen yürüyüş hızıyla ilerler.",
+     "required": ["id", "animasyon"],
+     "additionalProperties": false,
+     "properties": {"id": {"type": "string"}, "animasyon": {"type": "string"}}
+    },
     "gecikme_sn": {
      "type": "number",
      "minimum": 0,

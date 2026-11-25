@@ -1,0 +1,58 @@
+{
+ "paket": "Sinematik paket — süvari/at, toz ve savaş dumanı, sinema son işlemi, CC0 sur/kule/harabe",
+ "olculen_render": {
+  "S3b": {
+   "render_sn": 172.3,
+   "tepe_bellek_gb": 1.26,
+   "kare": 84,
+   "karakter": 12
+  },
+  "S4": {
+   "render_sn": 116.9,
+   "tepe_bellek_gb": 0.74,
+   "kare": 120,
+   "karakter": 2
+  },
+  "S6": {
+   "render_sn": 186.8,
+   "tepe_bellek_gb": 0.84,
+   "kare": 102,
+   "karakter": 4
+  },
+  "V1": {
+   "render_sn": 184.2,
+   "tepe_bellek_gb": 1.2,
+   "kare": 120,
+   "karakter": 10
+  },
+  "V2": {
+   "render_sn": 159.6,
+   "tepe_bellek_gb": 0.75,
+   "kare": 120,
+   "karakter": 2
+  }
+ },
+ "onceki_referans": {
+  "S3b_cesitlilik_paketi": {
+   "render_sn": 164.6,
+   "tepe_bellek_gb": 1.24
+  },
+  "S4_v2_yaya": {
+   "render_sn": 148.1,
+   "tepe_bellek_gb": 1.01,
+   "karakter": 7
+  },
+  "S6_v2": {
+   "render_sn": 158.1,
+   "tepe_bellek_gb": 0.81
+  }
+ },
+ "not": "S4 önce 7 yaya 'süvari', sonra planlayıcı yan takipte kadraj dışını budadı (2 atlı görünür); süreler doğrudan karşılaştırılamaz. S6 ve S3b aynı içerik: fark efekt + son işlem maliyeti.",
+ "testler": "111/111",
+ "geri_alma": {
+  "karakter_cesit": "gorsel.yaml karakter_cesit.acik",
+  "vfx": "gorsel.yaml vfx.acik",
+  "sinema": "gorsel.yaml sinema.acik",
+  "suvari": "senaryoda eylem 'yuruyus' (binek.yaml eylemleri dışında binek kullanılmaz)"
+ }
+}

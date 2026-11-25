@@ -45,6 +45,8 @@ eylem_kamera:
   isaret:  {once: [orta_konusma]}
   jest:    {once: [orta_konusma]}
   dinleme: {once: [orta_konusma]}
+  suvari_hucum:   {once: [yan_takip, alcak_geri_takip, capraz_yorunge]}   # atlı hücum: yanından/önünden takip
+  suvari_yuruyus: {once: [yan_takip, arkadan_uzak]}
 # Rol kuralı: yerinde duran komutan → medium (konuşma, emir). Hareketli komutanda uygulanmaz.
 rol_kamera:
   komutan: {once: [orta_konusma], yalniz_yerinde: true, amaclar_haric: [kanca, gerilim]}   # gerilimde dramatik dil önce gelir

@@ -51,6 +51,14 @@ def ekran(kamera_konum, hedef, fov, nokta, en_boy):
     return x, y, z, th
 
 
+def _binek_ek(c: dict) -> float:
+    """Atlı karakterin başı ayaktakine göre bu kadar yüksekte (kurallar/binek.yaml boy_ek_m)."""
+    if not c.get("binek"):
+        return 0.0
+    from motor.uretim import veri
+    return float(veri.kural("binek")["binekler"][c["binek"]["id"]]["boy_ek_m"])
+
+
 def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
     """Her karakter için: görünür mü, en büyük ekran oranı, o oranın sınıfı."""
     m = veri.kural("mesafe")
@@ -63,7 +71,7 @@ def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
             t = j / (n - 1)
             k, h, fov = kamera_ani(cekim["kamera"], t)
             ayak = karakter_konumu(c, t * cekim["sure_sn"])
-            bas = ayak + np.array([0, boy * c.get("olcek", 1.0), 0])
+            bas = ayak + np.array([0, boy * c.get("olcek", 1.0) + _binek_ek(c), 0])
             e1, e2 = ekran(k, h, fov, ayak, en_boy), ekran(k, h, fov, bas, en_boy)
             if e1 is None and e2 is None:
                 continue

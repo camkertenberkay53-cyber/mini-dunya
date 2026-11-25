@@ -50,3 +50,39 @@ karakter_cesit:
   ten_sicak: 0.35
   sac: [0.12, 1.0]
   genislik: [0.95, 1.07]
+# Sinematik paket: parçacık efektleri (CPU, belirlenimci). acik: false → efekt yok (geri alma).
+# Doku: Kenney Particle Pack (CC0; varlik/kenney_parcacik/LICENSE.txt). renk_arazi: tozun rengi araziye göre.
+vfx:
+  acik: true
+  toz:
+    esik_hiz: 2.5              # m/sn; bundan hızlı ilerleyen (dörtnala at, koşan asker) toz kaldırır
+    adet: 30
+    omur: 2.2
+    boyut: [2.6, 5.0]
+    opaklik: 0.6
+    geri_m: -0.4
+    geri_binek_m: -1.3
+    doku: varlik/kenney_parcacik/smoke_04.png
+    renk: [0.80, 0.72, 0.60]
+    renk_arazi: {kuru_bozkir: [0.84, 0.76, 0.62], ova_cimen: [0.66, 0.60, 0.50]}
+  duman:                       # çarpışma (kılıç/ölüm animasyonu olan) çekimlerde arka plan savaş dumanı
+    obek: 3
+    adet: 7
+    omur: 7.0
+    boyut: [10.0, 17.0]
+    opaklik: 0.55
+    yaricap_m: 5.0
+    yan_oran: 0.3
+    mesafe_m: [14.0, 30.0]
+    doku: varlik/kenney_parcacik/smoke_07.png
+    renk: [0.44, 0.42, 0.40]
+  savas_animasyonlari: [Sword_Attack, Sword_Idle, Death01, Hit_Chest, ual2/Sword_Regular_Combo, ual2/Sword_Block, ual2/Hit_Knockback, ual2/Shield_OneShot]
+# Sinematik paket: son işlem katmanı (godot/sahneler/sinema.gd; kendi yazımımız). acik: false → katman yok (geri alma).
+sinema:
+  acik: true
+  vinyet: 0.42
+  vinyet_yumusak: 0.55
+  golge_ton: [0.96, 0.99, 1.04]   # gölgeler hafif soğuk
+  isik_ton: [1.03, 1.0, 0.965]     # ışıklar hafif sıcak
+  ton_guc: 1.0
+  gren: 0.022

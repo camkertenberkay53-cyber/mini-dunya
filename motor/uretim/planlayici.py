@@ -19,7 +19,7 @@ import math
 
 import numpy as np
 
-from motor.uretim import animasyon_izni, kadraj, kamera_denetim, secici, veri
+from motor.uretim import binek, animasyon_izni, kadraj, kamera_denetim, secici, veri
 
 ALTIN = 0.6180339887
 
@@ -35,9 +35,12 @@ def oyuncu_sec(niyet: dict, donem: str) -> tuple[list[dict], list[str]]:
     secilen, eksik, kullanilan = [], [], set()
     for r in niyet.get("roller", []):
         rd = r.get("donem") or donem   # çok taraflı konular: rol kendi dönemini (tarafını) taşıyabilir
+        bn = None
         for e in [eylem] + list(veri.kural("animasyon").get("eylem_yedekleri", {}).get(eylem, [])):
-            s = secici.sec(r["rol"], rd, mesafe, e, r.get("nesne"), {"binek": False, "nesneler": []})
-            uygun = [(a, an) for a, an in s["uygun"] if r.get("nesne") or not _sancakli(a)]
+            bn = binek.plan_bilgisi(e)   # sinematik paket: atlı eylemde binek sahnede (yalnız 'binek' taşıyan takımlar)
+            s = secici.sec(r["rol"], rd, mesafe, e, r.get("nesne"), {"binek": bn is not None, "nesneler": []})
+            uygun = [(a, an) for a, an in s["uygun"] if (r.get("nesne") or not _sancakli(a))
+                     and (bn is None or veri.takimlar()[a].get("binek") == bn["id"])]
             if uygun:
                 break
         if not uygun:
@@ -48,7 +51,8 @@ def oyuncu_sec(niyet: dict, donem: str) -> tuple[list[dict], list[str]]:
         tazeler = [x for x in uygun if x[0] not in kullanilan] or uygun
         for i in range(adet):
             ad, an = tazeler[i % len(tazeler)]
-            secilen.append({"takim": ad, "animasyon": an, "rol": r["rol"], "odak": bool(r.get("odak")) and i == 0})
+            secilen.append({"takim": ad, "animasyon": an, "rol": r["rol"], "odak": bool(r.get("odak")) and i == 0,
+                            **({"binek": dict(bn)} if bn else {})})
             kullanilan.add(ad)
     if secilen and not any(x["odak"] for x in secilen):
         secilen[0]["odak"] = True
@@ -67,12 +71,12 @@ def dizilis_kur(oyuncular: list[dict], eylem: str | None, tohum: int, dizilis: s
     yer = []
     if ad == "tek":
         yer = [(odak[0] if odak else oyuncular[0], (0.0, 0.0), 0.0)]
-    elif ad == "kol":
+    elif ad in ("kol", "suvari_kol"):
         yer.append((odak[0], (0.0, d["odak_onde"]), 0.0)) if odak else None
         for i, o in enumerate(digerleri):
             sira, yan = divmod(i, d["yan"])
             yer.append((o, ((yan - (d["yan"] - 1) / 2) * d["yan_aralik"], -sira * d["sira_aralik"]), 0.0))
-    elif ad == "sira":
+    elif ad in ("sira", "suvari_sira"):
         yer.append((odak[0], (0.0, d["odak_onde"]), 0.0)) if odak else None
         for i, o in enumerate(digerleri):
             sira, yan = divmod(i, d["en_cok_yan"])
@@ -101,9 +105,13 @@ def dizilis_kur(oyuncular: list[dict], eylem: str | None, tohum: int, dizilis: s
             if kural["tur"] != "yer_degistiren":
                 yon += float(r.uniform(-1, 1)) * cs["yon_sapmasi_derece"]
         hiz = animasyon_izni.zemin_hizi(o["animasyon"]) * olcek if kural["tur"] == "yer_degistiren" else 0.0
+        if o.get("binek"):   # binici yerinde oturur; at ölçülen yürüyüş hızıyla ilerler (at ölçeklenmez)
+            hiz = o["binek"]["hiz_m_sn"]
         faz = 0.0 if kural["tur"] == "tek_sefer" else round((i * ALTIN) % 1.0 * yayilim, 3)
         c = {"takim": o["takim"], "rol": o["rol"], "konum": [round(x, 2), round(z, 2)], "yon_derece": round(yon, 1),
              "animasyon": o["animasyon"], "faz_sn": faz, "hiz_m_sn": round(hiz, 4)}
+        if o.get("binek"):
+            c["binek"] = {"id": o["binek"]["id"], "animasyon": o["binek"]["animasyon"]}
         if olcek != 1.0:
             c["olcek"] = round(olcek, 3)
         if kural["tur"] == "tek_sefer" and ad == "dagin" and sure is not None:

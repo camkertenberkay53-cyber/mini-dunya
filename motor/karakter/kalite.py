@@ -75,7 +75,7 @@ def siniflandir() -> dict:
     oz = json.loads((BURASI / "derlenmis3.json").read_text())
     montaj = json.loads((BURASI / "montaj_testi.json").read_text())["takimlar"]
     kat = ekipman_mod.katalog()
-    ekip = json.loads(ekipman_mod.KAYIT.read_text())
+    ekip = ekipman_mod.kayit_oku()
     inceleme = yaml.safe_load((BURASI / "gorsel_inceleme.yaml").read_text(encoding="utf-8"))
     sil = siluet.analiz(oz["takimlar"])
     karisan = {s.split(" ")[0] for s in sil["karisabilir"]}

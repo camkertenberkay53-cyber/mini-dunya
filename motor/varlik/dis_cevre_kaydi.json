@@ -1,0 +1,171 @@
+{
+ "sur_burclu": {
+  "id": "sur_burclu",
+  "anahtar": "5afd48836d8cfc9a",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Mazgallı taş sur ve iki burç; genel ortaçağ biçimi, ölçekli temsil (belirli bir kale değil)."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/UltimateFantasyRTS/S_WallTowersSecondAge.usda",
+   "olcek": 11.0
+  },
+  "betik_ozeti": "11c07e7ee2102247",
+  "sha256": "3d598e38c73244eb2d4e5fb4fe4912c7a5e7de62189cb34b775197bf4670473e",
+  "olcum": {
+   "ucgen": 1792,
+   "kose": 1190,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    21.732,
+    3.668,
+    8.088
+   ],
+   "min": [
+    -10.866,
+    -1.834,
+    0.0
+   ],
+   "max": [
+    10.866,
+    1.834,
+    8.088
+   ],
+   "malzeme": 4,
+   "doku": [],
+   "bayt": 125220
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/UltimateFantasyRTS/S_WallTowersSecondAge.usda",
+   "sha256": "0fd422cb23a14fcb4b4cad9a9b2e4670cd41386fe444e86daecb6b559486072e"
+  }
+ },
+ "gozetleme_kulesi": {
+  "id": "gozetleme_kulesi",
+  "anahtar": "f9f1acecd730fe44",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Taş gözetleme kulesi; genel biçim, temsilî."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/UltimateFantasyRTS/S_WatchTowerSecondAgeLevel3.usda",
+   "olcek": 9.0
+  },
+  "betik_ozeti": "11c07e7ee2102247",
+  "sha256": "a209016217dedd2862bfc375b77f8689fd44dc73fba5818d271242e3f749aac6",
+  "olcum": {
+   "ucgen": 3200,
+   "kose": 1912,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    7.319,
+    8.028,
+    13.061
+   ],
+   "min": [
+    -3.66,
+    -4.014,
+    0.0
+   ],
+   "max": [
+    3.66,
+    4.014,
+    13.061
+   ],
+   "malzeme": 5,
+   "doku": [],
+   "bayt": 188984
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/UltimateFantasyRTS/S_WatchTowerSecondAgeLevel3.usda",
+   "sha256": "9a36e87defddc653b102f9f71ad4d78d088393b2c32dc0613e2499ee572b9e58"
+  }
+ },
+ "harabe_kemer": {
+  "id": "harabe_kemer",
+  "anahtar": "9fff90cbdc31855a",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Yıkık yuvarlak kemerli taş duvar (antik/ortaçağ kalıntısı); genel temsil."
+  },
+  "uretici": "dis_usd",
+  "parametreler": {
+   "kaynak": "quaternius-stage/UltimateModularRuins/S_WallArchRoundBroken.usda",
+   "olcek": 1.3
+  },
+  "betik_ozeti": "11c07e7ee2102247",
+  "sha256": "4c9ffde9060d77722dfdb3284f6f75387906ea73d77f8e92e7de9a49ae7ae77a",
+  "olcum": {
+   "ucgen": 1604,
+   "kose": 866,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    5.191,
+    0.403,
+    5.18
+   ],
+   "min": [
+    -2.596,
+    -0.201,
+    0.0
+   ],
+   "max": [
+    2.596,
+    0.201,
+    5.18
+   ],
+   "malzeme": 2,
+   "doku": [],
+   "bayt": 79852
+  },
+  "lisans": "CC0-1.0",
+  "yazar": "Quaternius (quaternius.com); USD kopyası chibifire-stages",
+  "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı.",
+  "kaynak": {
+   "id": "quaternius-stage",
+   "url": "https://github.com/chibifire-stages/quaternius-stage",
+   "commit": "ed5dc51b1e44006c0fc843e6c7b4a840dfb498ab",
+   "dosya": "quaternius-stage/UltimateModularRuins/S_WallArchRoundBroken.usda",
+   "sha256": "718fe7a52e46f8afbb46061547c5c0aec4b1c1512609a83716419585d831f56c"
+  }
+ }
+}

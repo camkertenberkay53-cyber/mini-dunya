@@ -22,7 +22,8 @@ from motor import ayar
 BURASI = Path(__file__).resolve().parent
 BETIK = BURASI / "blender"
 CIKTI = ayar.ONBELLEK / "ekipman"
-KAYIT = BURASI / "ekipman_kaydi.json"
+KAYIT = BURASI / "ekipman_kaydi.json"            # yalnız kendi üretimimiz (lisans: kendi-uretim)
+KAYIT_DIS = BURASI / "dis_cevre_kaydi.json"      # dış CC0 modeller (uretici: dis_usd); lisans kaynak kaydından
 KATALOG = BURASI / "ekipman.yaml"
 KATALOG_EK = BURASI / "ekipman_ek.yaml"   # dondurulmuş katalogdan sonra eklenen parçalar
 LISANS = {"lisans": "kendi-uretim", "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
@@ -52,18 +53,44 @@ def _malzemeler_of(p: dict, malz: dict) -> dict:
     return {v: malz[v] for v in p.values() if isinstance(v, str) and v in malz}
 
 
+def dis_kaynak(tanim: dict) -> tuple[Path, dict] | None:
+    """'dis_usd' üreticisi: kaynak dosya (KAYNAK_KOK altında) ve kaynaklar.yaml lisans kaydı."""
+    if tanim["uretici"] != "dis_usd":
+        return None
+    kaynak = tanim["p"]["kaynak"]
+    kayitlar = yaml.safe_load((BURASI / "kaynaklar.yaml").read_text(encoding="utf-8"))
+    kid = kaynak.split("/", 1)[0]
+    k = next((v | {"id": a} for a, v in kayitlar.items() if v["klasor"] == kid), None)
+    if k is None:
+        raise ValueError(f"{kaynak}: kaynaklar.yaml'da lisansı doğrulanmış kaynak yok")
+    return ayar.KAYNAK_KOK / kid / k["kok"] / kaynak.split("/", 1)[1], k
+
+
 def anahtar(pid: str, tanim: dict, malz: dict) -> str:
     h = hashlib.sha256(json.dumps({"u": tanim["uretici"], "p": tanim.get("p", {}), "m": _malzemeler_of(tanim.get("p", {}), malz)},
                                   sort_keys=True).encode())
+    dk = dis_kaynak(tanim)
+    if dk:   # dış model: kaynak dosya + dönüştürme betiği (kendi üretim betikleri anahtara girmez)
+        h.update(dk[0].read_bytes())
+        h.update(betik_ozeti(("dis_uret.py", "ortak.py")).encode())
+        return h.hexdigest()[:16]
     h.update(betik_ozeti().encode())
     return h.hexdigest()[:16]
+
+
+def kayit_oku() -> dict:
+    """Kendi üretim + dış model kayıtları birlikte (kalite sınıflandırması ve katalog için)."""
+    k = json.loads(KAYIT.read_text()) if KAYIT.exists() else {}
+    if KAYIT_DIS.exists():
+        k |= json.loads(KAYIT_DIS.read_text())
+    return k
 
 
 def uret(idler: list[str] | None = None, zorla: bool = False) -> dict:
     CIKTI.mkdir(parents=True, exist_ok=True)
     k = katalog()
     malz = k["malzemeler"]
-    kayit = json.loads(KAYIT.read_text()) if KAYIT.exists() else {}
+    kayit = kayit_oku()
     isler = []
     for pid, t in k["parcalar"].items():
         if idler and pid not in idler:
@@ -74,13 +101,19 @@ def uret(idler: list[str] | None = None, zorla: bool = False) -> dict:
             continue
         isler.append((pid, t, a, glb))
     if isler:
-        is_json = CIKTI / "_is.json"
-        is_json.write_text(json.dumps({"parcalar": [{"id": pid, "uretici": t["uretici"], "p": t.get("p", {}), "cikti": str(glb)} for pid, t, a, glb in isler],
-                                       "malzemeler": malz}))
-        p = subprocess.run([sys.executable, str(BETIK / "ekipman_uret.py"), str(is_json)], capture_output=True, text=True, timeout=1800)
-        if p.returncode != 0:
-            print(p.stdout[-3000:], p.stderr[-4000:])
-            raise SystemExit("EKİPMAN ÜRETİMİ BAŞARISIZ")
+        for betik, grup in (("ekipman_uret.py", [x for x in isler if not dis_kaynak(x[1])]),
+                            ("dis_uret.py", [x for x in isler if dis_kaynak(x[1])])):
+            if not grup:
+                continue
+            is_json = CIKTI / "_is.json"
+            is_json.write_text(json.dumps({"parcalar": [{"id": pid, "uretici": t["uretici"],
+                                                         "p": (dict(t["p"], kaynak=str(dis_kaynak(t)[0])) if dis_kaynak(t) else t.get("p", {})),
+                                                         "cikti": str(glb)} for pid, t, a, glb in grup],
+                                           "malzemeler": malz}))
+            p = subprocess.run([sys.executable, str(BETIK / betik), str(is_json)], capture_output=True, text=True, timeout=1800)
+            if p.returncode != 0:
+                print(p.stdout[-3000:], p.stderr[-4000:])
+                raise SystemExit("EKİPMAN ÜRETİMİ BAŞARISIZ")
     for pid, t, a, glb in isler:
         olc = json.loads(glb.with_suffix(".olc.json").read_text())
         kayit[pid] = {
@@ -89,10 +122,18 @@ def uret(idler: list[str] | None = None, zorla: bool = False) -> dict:
             "betik_ozeti": betik_ozeti(), "sha256": hashlib.sha256(glb.read_bytes()).hexdigest(),
             "olcum": olc, **LISANS,
         }
+        dk = dis_kaynak(t)
+        if dk:   # dış CC0 model: lisans kaynak kaydından (kaynaklar.yaml; depo ve commit sabit)
+            kk = dk[1]
+            kayit[pid].update({"betik_ozeti": betik_ozeti(("dis_uret.py", "ortak.py")), "lisans": kk["lisans"], "yazar": kk["yazar"], "kaynak": {"id": kk["id"], "url": kk["url"], "commit": kk["commit"],
+                               "dosya": t["p"]["kaynak"], "sha256": hashlib.sha256(dk[0].read_bytes()).hexdigest()},
+                               "not": "Dış model; yalnız ölçek/yön ve tabana oturtma uygulandı."})
         print("URETILDI", pid, olc["ucgen"], "üçgen", round(olc["bayt"] / 1024), "KB")
     # katalogdan çıkarılmış parçalar kayıttan da düşer
     kayit = {pid: v for pid, v in kayit.items() if pid in k["parcalar"]}
-    KAYIT.write_text(json.dumps(kayit, ensure_ascii=False, indent=1))
+    dis = {pid: v for pid, v in kayit.items() if v.get("uretici") == "dis_usd"}
+    KAYIT.write_text(json.dumps({pid: v for pid, v in kayit.items() if pid not in dis}, ensure_ascii=False, indent=1))
+    KAYIT_DIS.write_text(json.dumps(dis, ensure_ascii=False, indent=1))
     return kayit
 
 

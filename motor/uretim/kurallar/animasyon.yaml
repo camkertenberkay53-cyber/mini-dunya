@@ -16,7 +16,7 @@ animasyonlar:
   Sprint_Loop:      {tur: yer_degistiren, eylemler: [kosu, hucum]}
   Sword_Attack:     {tur: yerinde, eylemler: [kilic_saldirisi], gerekli: {yuva_turu: {sag_el: [kilic]}}}
   Sword_Idle:       {tur: yerinde, eylemler: [kilicla_bekleme], gerekli: {yuva_turu: {sag_el: [kilic]}}}
-  Driving_Loop:     {tur: yerinde, eylemler: [binicilik], gerekli: {binek: true}}
+  Driving_Loop:     {tur: yerinde, eylemler: [binicilik, suvari_hucum, suvari_yuruyus, suvari_bekleme], gerekli: {binek: true}}   # binek varken at ilerler (kurallar/binek.yaml)
   Idle_Torch_Loop:  {tur: yerinde, eylemler: [mesale_tutma], gerekli: {nesne: mesale}}
   Push_Loop:        {tur: yer_degistiren, eylemler: [itme], gerekli: {nesne: itilecek}}
   Fixing_Kneeling:  {tur: yerinde, eylemler: [tamir, diz_cokme], gerekli: {alet: true}}

@@ -5,6 +5,8 @@ dizilisler:
   kol:    {aciklama: Yürüyüş kolu (sıra sıra), yan: 3, yan_aralik: 1.1, sira_aralik: 1.5, odak_onde: 2.0}
   sira:   {aciklama: Yan yana hat, yan_aralik: 1.2, sira_aralik: 1.6, en_cok_yan: 7, odak_onde: 1.6}
   dagin:  {aciklama: Dağınık küçük grup, yaricap: 3.0, en_az_aralik: 1.2}
+  suvari_kol:  {aciklama: Atlı kol (at boyu ~2.6 m), yan: 3, yan_aralik: 2.4, sira_aralik: 4.2, odak_onde: 3.5}
+  suvari_sira: {aciklama: Atlı hat, yan_aralik: 2.3, sira_aralik: 4.4, en_cok_yan: 6, odak_onde: 3.2}
 eylem_dizilisi:                # eylem -> adet > 1 iken varsayılan diziliş
   yuruyus: kol
   toren_yuruyusu: kol
@@ -14,6 +16,10 @@ eylem_dizilisi:                # eylem -> adet > 1 iken varsayılan diziliş
   darbe_alma: dagin
   jest: sira
   isaret: sira
+  suvari_hucum: suvari_kol
+  suvari_yuruyus: suvari_kol
+  binicilik: suvari_sira
+  suvari_bekleme: suvari_sira
 faz_yayilimi_sn: 0.35          # aynı animasyondaki karakterlerin adım fazları bu aralıkta dağıtılır (robot görünmesin)
 cesitlilik:                    # tek tip ordu hissini azaltan küçük, belirlenimci sapmalar (odak karaktere uygulanmaz)
   olcek: [0.95, 1.05]          # boy

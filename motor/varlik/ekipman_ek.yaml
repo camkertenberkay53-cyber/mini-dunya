@@ -15,3 +15,25 @@ parcalar:
     p: {ahsap: sap, ortu: cadir_bezi}
     donem: [osmanli-15yy, bizans-15yy, akkoyunlu-15yy, roma-cumhuriyet]
     tarih: {guven: makul, not: "Dört tekerlekli ahşap yük arabası; çağlar boyunca benzer biçim (genel, temsilî)."}
+  # --- Sinematik paket: dış CC0 modeller (Quaternius; kaynaklar.yaml 'quaternius-stage', commit sabit). Geometri değişmez. ---
+  sur_burclu:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateFantasyRTS/S_WallTowersSecondAge.usda, olcek: 11.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Mazgallı taş sur ve iki burç; genel ortaçağ biçimi, ölçekli temsil (belirli bir kale değil)."}
+  gozetleme_kulesi:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateFantasyRTS/S_WatchTowerSecondAgeLevel3.usda, olcek: 9.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Taş gözetleme kulesi; genel biçim, temsilî."}
+  harabe_kemer:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateModularRuins/S_WallArchRoundBroken.usda, olcek: 1.3}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Yıkık yuvarlak kemerli taş duvar (antik/ortaçağ kalıntısı); genel temsil."}

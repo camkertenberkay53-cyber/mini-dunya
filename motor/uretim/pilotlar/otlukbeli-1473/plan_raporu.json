@@ -84,10 +84,10 @@
    "hareket": {
     "itme": 1,
     "genis_suzulme": 1,
-    "takip": 1,
+    "takip": 2,
     "sabit_suzulme": 3,
-    "yorunge": 2,
     "yaklasma": 1,
+    "yorunge": 1,
     "yukselme": 1
    },
    "yukseklik": {
@@ -97,17 +97,17 @@
    },
    "aci_kovasi": {
     "onden": 4,
-    "capraz": 3,
-    "yan": 2,
+    "capraz": 2,
+    "yan": 3,
     "capraz_arka": 1
    },
    "tur": {
     "itme_dramatik": 1,
     "kurulus_genis": 1,
-    "yan_takip": 1,
+    "yan_takip": 2,
     "tele_kalabalik": 1,
-    "capraz_yorunge": 2,
     "alcak_yaklasma": 1,
+    "capraz_yorunge": 1,
     "yan_profil": 1,
     "yukselme": 1,
     "yuksek_genis": 1
@@ -244,27 +244,35 @@
     "plan": "uzak"
    },
    {
-    "tur": "capraz_yorunge",
-    "hareket": "yorunge",
+    "tur": "yan_takip",
+    "hareket": "takip",
     "yukseklik": "goz",
-    "aci_kovasi": "capraz",
-    "dizilis": "kol",
+    "aci_kovasi": "yan",
+    "dizilis": "suvari_kol",
     "odak": "akk_suvari",
     "arazi": "kuru_bozkir",
-    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "aciklama": "Göz hizasında yandan paralel takip",
     "odak_indeks": 0,
-    "budanan_gorunmeyen": [],
+    "budanan_gorunmeyen": [
+     "akk_suvari_yay",
+     "akk_suvari_gurz",
+     "akk_suvari_yay",
+     "akk_suvari_gurz",
+     "akk_suvari_yay"
+    ],
     "lens_fov": [
      38,
      38
     ],
     "secim_gerekcesi": [
+     "eylem 'suvari_hucum': ['yan_takip', 'alcak_geri_takip', 'capraz_yorunge'] önce",
      "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
     ],
     "tercih_sirasi": [
-     "alcak_yaklasma",
-     "capraz_yorunge",
+     "yan_takip",
      "alcak_geri_takip",
+     "capraz_yorunge",
+     "alcak_yaklasma",
      "yan_profil"
     ],
     "reddedilen_adaylar": [],
@@ -661,17 +669,17 @@
     {
      "kontrol": "S4 'suvari' görünüyor",
      "gecti": true,
-     "ayrinti": "7 görünür"
+     "ayrinti": "2 görünür"
     },
     {
      "kontrol": "S4 'suvari' görünüyor",
      "gecti": true,
-     "ayrinti": "7 görünür"
+     "ayrinti": "2 görünür"
     },
     {
-     "kontrol": "S4 eylem 'yuruyus'",
+     "kontrol": "S4 eylem 'suvari_hucum'",
      "gecti": true,
-     "ayrinti": "odak animasyonu Walk_Loop"
+     "ayrinti": "odak animasyonu Driving_Loop"
     },
     {
      "kontrol": "S4 mesafe 'uzak'",
@@ -1434,43 +1442,13 @@
     "0": {
      "takim": "akk_suvari",
      "gorunur": true,
-     "ekran_orani": 0.179,
+     "ekran_orani": 0.251,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "akk_suvari_gurz",
      "gorunur": true,
-     "ekran_orani": 0.163,
-     "mesafe": "uzak"
-    },
-    "2": {
-     "takim": "akk_suvari_yay",
-     "gorunur": true,
-     "ekran_orani": 0.164,
-     "mesafe": "uzak"
-    },
-    "3": {
-     "takim": "akk_suvari_gurz",
-     "gorunur": true,
-     "ekran_orani": 0.177,
-     "mesafe": "uzak"
-    },
-    "4": {
-     "takim": "akk_suvari_yay",
-     "gorunur": true,
-     "ekran_orani": 0.153,
-     "mesafe": "uzak"
-    },
-    "5": {
-     "takim": "akk_suvari_gurz",
-     "gorunur": true,
-     "ekran_orani": 0.16,
-     "mesafe": "uzak"
-    },
-    "6": {
-     "takim": "akk_suvari_yay",
-     "gorunur": true,
-     "ekran_orani": 0.149,
+     "ekran_orani": 0.194,
      "mesafe": "uzak"
     }
    },
@@ -1730,6 +1708,6 @@
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.34,
+ "planlama_sn": 0.32,
  "gecti": true
 }

@@ -182,3 +182,45 @@ static func iskelet(n: Node) -> Skeleton3D:
 		if r:
 			return r
 	return null
+
+
+## Sinematik paket: binek (at). Model bir kez yüklenir (ekipman önbelleği). Binici atın köküne oturtulur; eyer yüksekliği
+## binicinin oturma pozundaki leğen kemiğinden hesaplanır (karaktere göre değişmez ayar gerekmez). Atın gövde kemiğinin
+## inip kalkması her karede biniciye aktarılır. Renk: tohumlu don paleti (klon at görünümünü azaltır).
+const BINICI_BACAK := preload("res://sahneler/binici_bacak.gd")
+
+static func iskelet_kemik_y(kok: Node3D, kemik: String) -> float:
+	var sk := iskelet(kok)
+	if sk == null:
+		return 0.0
+	var i := sk.find_bone(kemik)
+	if i < 0:
+		return 0.0
+	return (sk.global_transform * sk.get_bone_global_pose(i)).origin.y
+
+static func binek_kur(binici: Node3D, b: Dictionary, tohum: int) -> Node3D:
+	var at := ekipman(b["glb"])
+	at.name = "BINEK"
+	var r := RandomNumberGenerator.new()
+	r.seed = tohum
+	var donlar: Array = b.get("donlar", [[0.46, 0.30, 0.24]])
+	var d: Array = donlar[r.randi() % donlar.size()]
+	var v := r.randf_range(0.9, 1.06)
+	var don := Color(d[0] * v, d[1] * v, d[2] * v, 1.0)
+	for m in at.find_children("*", "MeshInstance3D", true, false):
+		var mi: MeshInstance3D = m
+		for i in mi.mesh.get_surface_count():
+			var mat := mi.get_active_material(i)
+			if not (mat is BaseMaterial3D):
+				continue
+			var yeni: BaseMaterial3D = mat.duplicate()
+			yeni.albedo_color = don if i == 0 else don.darkened(0.82)
+			yeni.roughness = 0.85
+			mi.set_surface_override_material(i, yeni)
+	var bacak := BINICI_BACAK.new()
+	bacak.asagi_derece = float(b.get("uyluk_asagi_derece", 40.0))
+	bacak.disa_derece = float(b.get("uyluk_disa_derece", 24.0))
+	var sk := iskelet(binici)
+	if sk:
+		sk.add_child(bacak)
+	return at

@@ -66,9 +66,16 @@ def zemin_hizi(anim: str) -> float:
     return float(veri.animasyon_olcum()[anim]["zemin_hizi_m_sn"])
 
 
-def hiz_durumu(anim: str, hiz: float | None, olcek: float = 1.0) -> tuple[bool, list[str]]:
+def hiz_durumu(anim: str, hiz: float | None, olcek: float = 1.0, binek_: dict | None = None) -> tuple[bool, list[str]]:
     kural = veri.kural("animasyon")["animasyonlar"].get(anim, {})
     hiz = hiz or 0.0
+    if binek_:   # atlı: binici yerinde oturur, at kendi ölçülen yürüyüş hızıyla ilerler
+        from motor.uretim import binek as binek_mod
+        olculen = binek_mod.hiz(binek_["id"], binek_["animasyon"])
+        tol = veri.kural("animasyon")["hiz_toleransi"]
+        if abs(hiz - olculen) > tol * max(olculen, 0.05) and not (olculen == 0 and hiz == 0):
+            return False, [f"{anim}: atlı hız {hiz:.2f} m/sn, atın ölçülen yürüyüş hızı {olculen:.3f} m/sn (toynak kayar)"]
+        return True, []
     if kural.get("tur") == "yer_degistiren":
         olculen = zemin_hizi(anim) * olcek   # ölçeklenmiş karakterin adımı da aynı oranda uzar
         tol = veri.kural("animasyon")["hiz_toleransi"]
@@ -79,9 +86,12 @@ def hiz_durumu(anim: str, hiz: float | None, olcek: float = 1.0) -> tuple[bool, 
     return True, []
 
 
-def izinli(takim: str, anim: str, baglam: dict | None = None, hiz: float | None = None, olcek: float = 1.0) -> tuple[bool, list[str]]:
+def izinli(takim: str, anim: str, baglam: dict | None = None, hiz: float | None = None, olcek: float = 1.0,
+           binek_: dict | None = None) -> tuple[bool, list[str]]:
     sonuc, neden = True, []
-    for ok, n in (teknik_durum(takim, anim), anlamsal_durum(takim, anim, baglam), hiz_durumu(anim, hiz)):
+    if binek_ and veri.takimlar().get(takim, {}).get("binek") != binek_.get("id"):
+        return False, [f"{takim}: '{binek_.get('id')}' bineği olan bir takım değil"]
+    for ok, n in (teknik_durum(takim, anim), anlamsal_durum(takim, anim, baglam), hiz_durumu(anim, hiz, olcek, binek_)):
         sonuc &= ok
         neden += n
     return sonuc, neden

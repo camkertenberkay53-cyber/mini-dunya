@@ -8,6 +8,9 @@ extends Node3D
 
 const D := preload("res://sahneler/donatici.gd")
 const O := preload("res://sahneler/ortam.gd")
+const V := preload("res://sahneler/vfx.gd")
+const S := preload("res://sahneler/sinema.gd")
+var _sinema: ShaderMaterial
 
 var is_: Dictionary
 var t := 0.0
@@ -66,8 +69,50 @@ func _ready() -> void:
 		ap.seek(float(k.get("faz_sn", 0.0)) + maxf(0.0, t - gecikme), true)
 		if gecikme > t:
 			ap.pause()   # tek seferlik animasyon gecikme anına kadar ilk karesinde bekler
-		oyuncular.append({"kok": kok, "bas": bas, "ileri": Vector3(sin(yon), 0, cos(yon)), "hiz": float(k.get("hiz_m_sn", 0.0)),
-			"ap": ap, "gecikme": gecikme, "basladi": gecikme <= t})
+		var o := {"kok": kok, "bas": bas, "ileri": Vector3(sin(yon), 0, cos(yon)), "hiz": float(k.get("hiz_m_sn", 0.0)),
+			"ap": ap, "gecikme": gecikme, "basladi": gecikme <= t}
+		if k.has("binek"):   # sinematik paket: binici atın üstünde; at ilerler, binici atla birlikte gelir
+			var b: Dictionary = k["binek"]
+			var at := D.binek_kur(kok, b, int(is_.get("tohum", 1)) * 7919 + _sira * 104729 + 17)
+			add_child(at)
+			at.rotation.y = yon
+			at.position = bas
+			at.scale = Vector3.ONE * float(b.get("olcek", 1.0))
+			var aap := D.animasyon_oynatici(at)
+			var aan := aap.get_animation(b["animasyon"])
+			aan.loop_mode = Animation.LOOP_LINEAR
+			aap.play(b["animasyon"])
+			aap.seek(float(k.get("faz_sn", 0.0)) * 1.7 + t, true)
+			var legen := D.iskelet_kemik_y(kok, "pelvis") - kok.global_position.y
+			var eyer_kemik: String = b.get("eyer_kemik", "Torso")
+			var govde_y := D.iskelet_kemik_y(at, eyer_kemik) - at.global_position.y
+			remove_child(kok)
+			at.add_child(kok)
+			kok.rotation = Vector3.ZERO
+			var taban := (govde_y + float(b.get("eyer_ust_m", 0.18)) - legen) / at.scale.y
+			kok.position = Vector3(0, taban, float(b.get("eyer_z_m", 0.0)))
+			o["kok"] = at
+			o["binici"] = kok
+			o["eyer_kemik"] = eyer_kemik
+			o["govde_y0"] = govde_y
+			o["taban"] = taban
+		var vx: Dictionary = is_.get("vfx", {})
+		if vx.get("acik", false) and float(k.get("hiz_m_sn", 0.0)) >= float(vx["toz"].get("esik_hiz", 2.5)):
+			var tk: Dictionary = vx["toz"].duplicate()
+			tk["geri_m"] = float(tk.get("geri_binek_m", -1.3)) if o.has("binici") else float(tk.get("geri_m", -0.4))
+			(o["kok"] as Node3D).position = o["bas"] + o["ileri"] * o["hiz"] * t   # ön işleme tozu şimdiki konumda başlasın
+			V.toz(o["kok"], tk, int(is_.get("tohum", 1)) * 31 + _sira, t)   # sinematik paket: hızlı ilerleyenin tozu
+		oyuncular.append(o)
+	var vx2: Dictionary = is_.get("vfx", {})
+	if vx2.get("acik", false) and vx2.get("savas", false):   # çarpışma sahnesi: arka planda savaş dumanı
+		var kb: Dictionary = c["kamera"]["bas"]
+		var ks: Dictionary = c["kamera"]["son"]
+		var kh := (_vec(kb["hedef"]) + _vec(ks["hedef"])) * 0.5   # kamera hareketinin ortası: duman çekim boyunca kadrajda
+		var ileri := kh - (_vec(kb["konum"]) + _vec(ks["konum"])) * 0.5
+		ileri.y = 0
+		V.duman(self, kh * Vector3(1, 0, 1), ileri.normalized(), vx2["duman"], int(is_.get("tohum", 1)) * 97, t, is_["arazi"])
+	if is_.get("sinema", {}).get("acik", false):   # sinematik paket: vinyet + bölünmüş tonlama + gren
+		_sinema = S.kur(self, is_["sinema"])
 	kam = c["kamera"]
 	kamera = Camera3D.new()
 	kamera.near = 0.1
@@ -89,11 +134,15 @@ func _guncelle() -> void:
 	var sure: float = is_["cekim"]["sure_sn"]
 	for o in oyuncular:
 		(o["kok"] as Node3D).position = o["bas"] + o["ileri"] * o["hiz"] * t
+		if o.has("binici"):   # atın gövde kemiği inip kalktıkça binici de inip kalkar
+			var at: Node3D = o["kok"]
+			var dy := D.iskelet_kemik_y(at, o["eyer_kemik"]) - at.global_position.y - float(o["govde_y0"])
+			(o["binici"] as Node3D).position.y = float(o["taban"]) + dy / at.scale.y
 		var ap: AnimationPlayer = o["ap"]
 		if not o["basladi"] and t >= o["gecikme"]:
 			ap.play()
 			o["basladi"] = true
-		D.guncelle(o["kok"])
+		D.guncelle(o.get("binici", o["kok"]))
 	var u := _kolay(clampf(t / sure, 0.0, 1.0), kam.get("yumusatma", "giris_cikis"))
 	var b: Dictionary = kam["bas"]
 	var s: Dictionary = kam["son"]
@@ -103,4 +152,6 @@ func _guncelle() -> void:
 
 func _process(delta: float) -> void:
 	_guncelle()   # kare n, t = n / fps anını gösterir
+	if _sinema:
+		_sinema.set_shader_parameter("kare", roundf(t * 30.0))
 	t += delta
