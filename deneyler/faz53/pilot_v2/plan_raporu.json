@@ -26,14 +26,13 @@
    },
    "yukseklik": {
     "alcak": 2,
-    "goz": 6,
-    "yuksek": 3
+    "goz": 7,
+    "yuksek": 2
    },
    "aci_kovasi": {
     "onden": 7,
-    "arka": 1,
-    "yan": 1,
-    "capraz": 2
+    "capraz": 3,
+    "yan": 1
    },
    "tur": {
     "alcak_yaklasma": 2,
@@ -113,16 +112,16 @@
     "tur": "kurulus_genis",
     "hareket": "genis_suzulme",
     "yukseklik": "yuksek",
-    "aci_kovasi": "arka",
+    "aci_kovasi": "capraz",
     "dizilis": "sira",
     "odak": "rom_aquilifer",
     "arazi": "ova_cimen",
-    "aciklama": "Mekân tanıtımı; yüksekten geniş lensle yavaş yanal süzülme (establishing)",
+    "aciklama": "Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing)",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
     "lens_fov": [
-     52,
-     52
+     55,
+     55
     ],
     "secim_gerekcesi": [
      "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
@@ -158,6 +157,8 @@
      "rom_lejyoner_gladius",
      "rom_lejyoner_pilum",
      "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
      "rom_lejyoner_pilum"
     ],
     "lens_fov": [
@@ -183,17 +184,17 @@
    {
     "tur": "tele_kalabalik",
     "hareket": "sabit_suzulme",
-    "yukseklik": "yuksek",
+    "yukseklik": "goz",
     "aci_kovasi": "onden",
     "dizilis": "kol",
     "odak": "rom_aquilifer",
     "arazi": "kuru_bozkir",
-    "aciklama": "Ordunun büyüklüğü; uzaktan tele lens kalabalığı sıkıştırır",
+    "aciklama": "Ordunun büyüklüğü; önden uzun lens",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
     "lens_fov": [
-     20,
-     20
+     18,
+     18
     ],
     "secim_gerekcesi": [
      "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
@@ -619,7 +620,7 @@
     {
      "kontrol": "S4a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "5 görünür"
+     "ayrinti": "3 görünür"
     },
     {
      "kontrol": "S4a 'aquila' tepesi kadrajda",
@@ -629,7 +630,7 @@
     {
      "kontrol": "S4a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "5 görünür"
+     "ayrinti": "3 görünür"
     },
     {
      "kontrol": "S4a eylem 'yuruyus'",

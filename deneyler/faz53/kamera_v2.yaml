@@ -9,7 +9,7 @@ fov: 38
 cekimler:
   alcak_yaklasma:   {aciklama: Alçak açıdan yavaş yaklaşma (güç, kahramanlık), aci_derece: 15, yukseklik_m: 0.6, hedef_y_m: 1.6, hareket: yaklasma, fov: 34, mesafeler: [orta]}
   alcak_geri_takip: {aciklama: Gelen kolun önünde, alçak açıyla geri çekilerek takip, aci_derece: 20, yukseklik_m: 0.9, hedef_y_m: 1.5, hareket: geri_takip, fov: 36, mesafeler: [orta], gerekli: hareketli}
-  yan_takip:        {aciklama: Göz hizasında yandan paralel takip, aci_derece: 80, yukseklik_m: 1.6, hedef_y_m: 1.3, hareket: takip, fov: 38, mesafeler: [orta, uzak], gerekli: hareketli}
+  yan_takip:        {aciklama: Göz hizasında yandan paralel takip, aci_derece: 80, yukseklik_m: 1.6, hedef_y_m: 1.3, hareket: takip, fov: 38, oran_uzak: 0.25, mesafeler: [orta, uzak], gerekli: hareketli}
   yuksek_genis:     {aciklama: Yüksekten genel görünüm (kuş bakışına yakın), aci_derece: 140, yukseklik_m: 9.0, hedef_y_m: 0.5, hareket: sabit_suzulme, fov: 46, mesafeler: [uzak]}
   yukselme:         {aciklama: Yerden yükselen vinç hareketi (kapanış, büyüklük), aci_derece: 25, yukseklik_m: 1.0, hedef_y_m: 1.4, hareket: yukselme, fov: 42, mesafeler: [uzak]}
   arkadan_uzak:     {aciklama: Uzaklaşan kolu arkadan izleme (yolculuk, gidiş), aci_derece: 170, yukseklik_m: 2.4, hedef_y_m: 1.0, hareket: sabit, fov: 30, mesafeler: [uzak], gerekli: hareketli}
@@ -19,8 +19,8 @@ cekimler:
   yan_profil:       {aciklama: Yandan sabit profil, hafif süzülme (bekleyiş, yalnızlık), aci_derece: 95, yukseklik_m: 1.5, hedef_y_m: 1.2, hareket: sabit_suzulme, fov: 30, mesafeler: [orta, uzak]}
   sabit_uzak:       {aciklama: Sabit uzak kadraj (sonuç, kayıp), aci_derece: 60, yukseklik_m: 1.3, hedef_y_m: 0.6, hareket: sabit, fov: 34, mesafeler: [uzak]}
   # --- Faz 5.3 yeni türler ---
-  kurulus_genis:    {aciklama: Mekân tanıtımı; yüksekten geniş lensle yavaş yanal süzülme (establishing), aci_derece: 150, yukseklik_m: 6.0, hedef_y_m: 0.8, hareket: genis_suzulme, fov: 52, mesafeler: [uzak]}
-  tele_kalabalik:   {aciklama: Ordunun büyüklüğü; uzaktan tele lens kalabalığı sıkıştırır, aci_derece: 30, yukseklik_m: 2.6, hedef_y_m: 1.0, hareket: sabit_suzulme, fov: 20, mesafeler: [uzak]}
+  kurulus_genis:    {aciklama: Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing), aci_derece: -40, yukseklik_m: 4.0, hedef_y_m: 3.2, hareket: genis_suzulme, fov: 55, oran: 0.12, mesafeler: [uzak]}
+  tele_kalabalik:   {aciklama: Ordunun büyüklüğü; önden uzun lens, sıraları üst üste sıkıştırır, aci_derece: 12, yukseklik_m: 2.2, hedef_y_m: 1.1, hareket: sabit_suzulme, fov: 18, oran: 0.26, mesafeler: [uzak]}
   itme_dramatik:    {aciklama: Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma), aci_derece: 10, yukseklik_m: 1.45, hedef_y_m: 1.5, hareket: itme, fov: 40, fov_son: 32, mesafeler: [orta]}
   orta_konusma:     {aciklama: Komutanın konuşması / dinleyen; medium plan, göz hizası, hafif çapraz, aci_derece: 25, yukseklik_m: 1.6, hedef_y_m: 1.4, hareket: sabit_suzulme, fov: 32, oran: 0.85, mesafeler: [orta]}
 yukseklik_siniflari: {alcak: 1.0, yuksek: 2.2}   # < alcak: alçak açı; > yuksek: yüksek açı; arası göz hizası

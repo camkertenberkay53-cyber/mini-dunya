@@ -35,8 +35,8 @@
   "v1": "yuksek_genis",
   "v2": "kurulus_genis",
   "v2_lens": [
-   52,
-   52
+   55,
+   55
   ],
   "gerekce": [
    "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
@@ -65,8 +65,8 @@
   "v1": "arkadan_uzak",
   "v2": "tele_kalabalik",
   "v2_lens": [
-   20,
-   20
+   18,
+   18
   ],
   "gerekce": [
    "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",

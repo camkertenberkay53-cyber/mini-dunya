@@ -39,8 +39,8 @@
    38
   ],
   "kusur": [],
-  "odak_orani": 0.17,
-  "karakter": 5,
+  "odak_orani": 0.25,
+  "karakter": 3,
   "hareketli_kolda_kusur": null,
   "durum": "temiz"
  },
@@ -166,30 +166,30 @@
  },
  {
   "tur": "kurulus_genis",
-  "aciklama": "Mekân tanıtımı; yüksekten geniş lensle yavaş yanal süzülme (establishing)",
+  "aciklama": "Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing)",
   "mesafe": "uzak",
   "hareket": "genis_suzulme",
   "lens": [
-   52,
-   52
+   55,
+   55
   ],
   "kusur": [],
-  "odak_orani": 0.143,
-  "karakter": 12,
+  "odak_orani": 0.127,
+  "karakter": 13,
   "hareketli_kolda_kusur": null,
   "durum": "temiz"
  },
  {
   "tur": "tele_kalabalik",
-  "aciklama": "Ordunun büyüklüğü; uzaktan tele lens kalabalığı sıkıştırır",
+  "aciklama": "Ordunun büyüklüğü; önden uzun lens",
   "mesafe": "uzak",
   "hareket": "sabit_suzulme",
   "lens": [
-   20,
-   20
+   18,
+   18
   ],
   "kusur": [],
-  "odak_orani": 0.171,
+  "odak_orani": 0.269,
   "karakter": 13,
   "hareketli_kolda_kusur": null,
   "durum": "temiz"

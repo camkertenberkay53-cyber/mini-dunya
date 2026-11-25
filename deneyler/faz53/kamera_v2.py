@@ -94,7 +94,8 @@ def kamera_kur_v2(tur: str, odak: dict, sure: float, oran: float, tepe: float | 
 def kamera_ayarla_v2(cekim: dict, odak_i: int, mesafe: str, en_boy: float, tur: str, tepe: float | None = None) -> dict:
     """Üretimdeki kamera_ayarla ile aynı döngü; hedef oran türün 'oran' alanından (yoksa mesafe sınıfından)."""
     m = veri.kural("mesafe")["sinirlar"]
-    hedef = float(_KURAL["cekimler"][tur].get("oran", _KURAL["hedef_oran"][mesafe]))
+    x = _KURAL["cekimler"][tur]
+    hedef = float(x.get(f"oran_{mesafe}", x.get("oran", _KURAL["hedef_oran"][mesafe])))
     oran = hedef
     for _ in range(6):
         cekim["kamera"] = kamera_kur_v2(tur, cekim["karakterler"][odak_i], cekim["sure_sn"], oran, tepe)
