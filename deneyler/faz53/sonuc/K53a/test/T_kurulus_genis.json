@@ -1,0 +1,13 @@
+{
+ "cekim": "T_kurulus_genis",
+ "profil": "D17",
+ "cpu": "AMD EPYC 9V45 96-Core Processor",
+ "kare": 120,
+ "render_sn": 104.5,
+ "kare_basina_sn": 0.871,
+ "tepe_gb": 1.15,
+ "cpu_sn": 365.3,
+ "cikis": 0,
+ "godot_hata": [],
+ "durum": "TAMAM"
+}
