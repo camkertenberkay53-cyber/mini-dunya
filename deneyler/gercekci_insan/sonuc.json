@@ -1,0 +1,13 @@
+{"paket": "Gerçekçi insan araştırması (MPFB2/MakeHuman, CharMorph, Meta 3D Gen)",
+ "karar": "Entegre EDİLMEDİ — üretim hattına alınmadı; araçlar deneyler/ altında arşivlendi",
+ "calisan": ["MPFB2 Blender 5.3 bpy içinde kuruldu ve çalıştı (CPU, GPU gerekmez)",
+             "Makro + tohumlu yüz hedefleriyle farklı insanlar üretiliyor (~13.4k köşe)",
+             "MPFB gövdesi motorun UBC evrensel iskeletine dönüştürüldü (temiz T-poz)",
+             "Animasyon aktarımı: kol yönü sapması 0.0° (Idle/Walk), Godot'ta doğru oynuyor"],
+ "basarisiz": ["Faz 3b giysi türetme hattı (giysi.py) MPFB topolojisinde bozuk giysi üretti: gövde kabuğu başı örtüyor ve dikenleniyor, çizmeler gerilip çubuklaşıyor",
+               "Saç/kaş/göz/ten dokusu için MakeHuman system assets (CC0) gerekiyor; indirme Actions'ta sürüyordu",
+               "Orta/uzak planda dokusuz, kılsız MPFB yüzü mevcut UBC yüzünden daha iyi okunmuyor"],
+ "lisans": {"MPFB2_kod": "GPL-3 (yalnız araç olarak çalıştırıldı, depoya alınmadı)", "MakeHuman_varliklar": "CC0",
+            "CharMorph": "kod GPL-3; Vitruvian CC0, Antonia/Reom CC-BY, MB-Lab AGPL (çıktıya bulaşır)",
+            "Meta_3D_Gen": "açık ağırlık yok; ayrıca GPU gerektirir"},
+ "riskler": ["Gerçekçi gövdeye geçiş Faz 3b'nin giysi, montaj testi ve kalite sınıflandırmasının yeni gövde için yeniden yapılmasını gerektiriyor (mimari risk)"]}
