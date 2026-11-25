@@ -1,1 +1,1 @@
-{"kosu_id":"K53c","aciklama":"Faz 5.3 entegrasyon: pilot eski (Faz 5.3 öncesi plan) ve yeni (üretim planlayıcısı) — üretim renderer (V0), aynı makinede","profil":"V0","gruplar":["pilot_ikili"]}
+{"kosu_id":"K52e","aciklama":"Faz 5.2 üretim entegrasyonu: pilot (Faz 5.3 kamera planı) gorsel=yok (eski görüntü) ve gorsel=faz52 — üretim renderer, aynı makinede","profil":"V0","gruplar":["gorsel_ikili"]}

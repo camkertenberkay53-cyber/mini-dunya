@@ -1,0 +1,31 @@
+# Görsel profil (konudan bağımsız) — Faz 5.2 iyileştirmeleri. render.is_hazirla aktif profili her işe ekler:
+# isik → is.json isik.gorsel, arazi → is.json arazi.gorsel (sahneler/ortam.gd okur).
+# faz52: yönetimin kabul ettiği D1–D5, D9–D15b, D16s, D17 zinciri (deney profili D17, Faz 5.2 raporu); V2 renk
+#        profili dahil. Ölçüm ve karşılaştırmalar: deneyler/faz51/gorsel/sonuc52.
+# yok:   geri dönüş — Faz 5.2 öncesi üretim görüntüsü (piksel eşitliği test edilir).
+aktif: faz52
+profiller:
+  faz52:
+    isik:
+      tonemap: filmic
+      pozlama: 1.24
+      kontrast: 1.15
+      doygunluk: 1.0
+      glow: 0.12
+      gok_tepe: [0.16, 0.34, 0.62]
+      gok_ufuk: [0.86, 0.74, 0.6]
+      gok_egri: 0.25
+      sis_carpan: 0.6
+      sis_gok: 0.25
+      yer_sisi_carpan: 0.4
+      gunes_carpan: 1.2
+      golge_yumusaklik: 1.6
+      ortam_isik: 0.42
+      sis_renk_carpan: 0.67
+    arazi: {ot_alt_parlaklik: 0.75, ot_genislik_carpan: 5.0, ot_boy_carpan: 0.85, ot_sayi_carpan: 1.2, ot_normal: yukari, ot_bicim: tutam, ot_dagilim: kume,
+      kume_yaricap: 0.45, dag_bicim: arazi, dag_yukseklik: 70.0, ot_ust_carpan: 0.7, dag_bas: 110.0, dag_tam: 330.0, dag_ton: 0.65, dag_pus_yogunluk: 0.0025,
+      dag_pus_max: 0.35, dag_gecis: true, gecis_bas: 200.0, dag_pus: dinamik, dag_pus_katsayi: 0.68, zemin_iz: tekerlek, teker_derinlik: 0.15,
+      teker_genislik: 0.3, ot_parca: 4.0, dag_golge_al: yok, dag_golge: yok, ot_cesit: true}
+  yok:
+    isik: {}
+    arazi: {}

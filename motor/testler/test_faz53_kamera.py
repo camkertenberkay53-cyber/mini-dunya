@@ -150,3 +150,30 @@ def test_pilot_kamera_plani_render_alanlari_gecerli():
         assert set(c["kamera"]) <= {"plan", "hareket", "bas", "son", "yumusatma", "takip"}
         assert 10 <= c["kamera"]["bas"]["fov"] <= 70 and 10 <= c["kamera"]["son"]["fov"] <= 70
         assert kadraj.olc(c, EN_BOY)[c["meta"]["odak_indeks"]]["gorunur"]
+
+
+# ---------------------------------------------------------------- Faz 5.2 görsel profil entegrasyonu
+
+def test_gorsel_profil_islere_eklenir_ve_geri_donus_var():
+    from motor.uretim import render
+    g = veri.kural("gorsel")
+    assert g["aktif"] in g["profiller"] and "yok" in g["profiller"]
+    assert g["profiller"]["yok"] == {"isik": {}, "arazi": {}}
+    plan = json.loads((PILOT / "cekim_plani.json").read_text())
+    c = next(x for x in plan["cekimler"] if x["tur"] == "3d")
+    is_ = render.is_hazirla(plan, c)
+    p = g["profiller"][g["aktif"]]
+    assert is_["isik"]["gorsel"] == p["isik"] and is_["arazi"]["gorsel"] == p["arazi"]
+    # hazır ayarların kendisi değişmez (profil kopyaya eklenir)
+    assert "gorsel" not in veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
+    assert "gorsel" not in veri.kural("arazi")["araziler"][c["ortam"]["arazi"]]
+
+
+def test_kabul_edilen_faz52_anahtarlari_ortamda_tanimli():
+    kod = (Path(__file__).resolve().parents[1] / "godot/sahneler/ortam.gd").read_text()
+    p = veri.kural("gorsel")["profiller"]["faz52"]
+    for alan in ("isik", "arazi"):
+        for k in p[alan]:
+            assert f'"{k}"' in kod, k
+    # reddedilen ot LOD'u (D16c/D16d) üretim profilinde açık değil
+    assert "ot_lod" not in p["arazi"]

@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        grup: [test, pilot_v1, pilot_v2, pilot_ikili]
+        grup: [test, pilot_v1, pilot_v2, pilot_ikili, gorsel_ikili]
     steps:
       - uses: actions/checkout@v4
       - name: Kurulum
@@ -42,6 +42,7 @@ jobs:
             test) CIFTLER="T:$PWD/deneyler/faz53/test/isler" ;;
             pilot_v1) CIFTLER="P:$PWD/deneyler/faz51/altyapi/isler" ;;
             pilot_v2) CIFTLER="P:$PWD/deneyler/faz53/pilot_v2/isler" ;;
+            gorsel_ikili) CIFTLER="eski:$PWD/deneyler/faz52_entegrasyon/isler_yok yeni:$PWD/deneyler/faz52_entegrasyon/isler_faz52" ;;   # Faz 5.2 entegrasyonu: aynı makinede
             pilot_ikili) CIFTLER="eski:$PWD/deneyler/faz51/altyapi/isler yeni:$PWD/deneyler/faz53/pilot_uretim/isler" ;;   # aynı makinede eski/yeni
           esac
           PROFIL=$(python3 -c "import json;print(json.load(open('deneyler/faz53/kosu53.json'))['profil'])")

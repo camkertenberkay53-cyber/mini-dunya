@@ -29,6 +29,11 @@ def is_hazirla(plan: dict, c: dict) -> dict:
     ar = dict(veri.kural("arazi")["araziler"][c["ortam"]["arazi"]])
     isik = veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
     kurallar = veri.kural("animasyon")["animasyonlar"]
+    # Faz 5.2 görsel profili (kurallar/gorsel.yaml); hazır ayarların kendisi değişmez, kopyalarına eklenir
+    gp = veri.kural("gorsel")
+    gp = gp["profiller"][gp["aktif"]]
+    isik = dict(isik, gorsel=dict(gp.get("isik", {})))
+    ar["gorsel"] = dict(gp.get("arazi", {}))
     takimlar = {k["takim"]: veri.takimlar()[k["takim"]] for k in c.get("karakterler", [])}
     # sahne merkezi ve ot alanı: karakterlerin (başta ve sonda) ve kamera hedeflerinin kapsadığı bölge
     noktalar = []
