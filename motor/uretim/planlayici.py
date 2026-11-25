@@ -3,8 +3,11 @@
 1. Oyuncu seçimi: her rol için secici.sec (dönem, kalite/mesafe, animasyon izni, nesne). Tek bir nesneyi (sancak)
    taşıyan karakterler, o nesne açıkça istenmedikçe kalabalığa katılmaz (bir birlikte iki ana sancak olmasın).
 2. Diziliş: kurallar/dizilis.yaml (kol, sıra, dağınık, tek). Odak karakter önde.
-3. Kamera: kurallar/kamera.yaml kataloğundan, önceki çekimlerle çeşitlilik kurallarına uyan tür seçilir; uzaklık
-   hedef ekran oranından hesaplanır, kadraj ÖLÇÜMÜYLE doğrulanıp düzeltilir.
+3. Kamera (Faz 5.3): kurallar/kamera.yaml kataloğundan tercih sırası anlatı amacına, eyleme, odağın rolüne ve
+   kalabalığa göre kurulur (amac_kamera, eylem_kamera, rol_kamera, kalabalik_kamera); çeşitlilik kuralları (ardışık
+   aynı hareket yasak, tekrar cezası) korunur. Tür başına lens ve hedef ekran oranı; uzaklık kadraj ÖLÇÜMÜYLE
+   doğrulanıp düzeltilir. Her aday kamera_denetim ile denetlenir; kusurlu aday reddedilir, sıradakine geçilir
+   ve gerekçe çekimin meta kaydına yazılır.
 4. Çevre varlıkları: istenen dönem varlıkları kameranın baktığı yönde, sahnenin arkasına yerleştirilir.
 
 Hiçbir şey uydurulmaz: rol, eylem ya da nesne için uygun karakter yoksa çekim "eksik" kaydıyla döner.
@@ -16,7 +19,7 @@ import math
 
 import numpy as np
 
-from motor.uretim import animasyon_izni, kadraj, secici, veri
+from motor.uretim import animasyon_izni, kadraj, kamera_denetim, secici, veri
 
 ALTIN = 0.6180339887
 
@@ -126,31 +129,64 @@ def _aci_kovasi(a: float) -> str:
     return "arka"
 
 
+def kamera_tercihleri(amac: str | None, eylem: str | None, odak_rol: str | None, hareketli: bool, kalabalik: int,
+                      niyet_kamera: str | None = None) -> tuple[list[str], set, list[str]]:
+    """Anlatı grameri: (tercih sırası, yasak türler, gerekçe). Senaryo niyetindeki tür her zaman önce gelir."""
+    k = veri.kural("kamera")
+    g, yasak, liste = [], set(), []
+    if niyet_kamera:
+        liste.append(niyet_kamera)
+        g.append(f"senaryo niyeti: {niyet_kamera}")
+    e = k.get("eylem_kamera", {}).get(eylem or "")
+    if e:
+        liste += e.get("once", [])
+        yasak |= set(e.get("yasak", []))
+        g.append(f"eylem '{eylem}': {e.get('once', [])} önce" + (f", yasak {sorted(yasak)}" if yasak else ""))
+    r = k.get("rol_kamera", {}).get(odak_rol or "")
+    if r and not (r.get("yalniz_yerinde") and hareketli) and amac not in r.get("amaclar_haric", []):
+        liste += r["once"]
+        g.append(f"rol '{odak_rol}' (yerinde): {r['once']}")
+    a = list(k.get("amac_kamera", {}).get(amac or "", []))
+    kk = k.get("kalabalik_kamera")
+    if kk and kalabalik >= kk["en_az"] and amac in ("baglam", "olay", "final", "gerilim"):
+        a = a[:1] + [t for t in kk["once"] if t not in a[:1]] + [t for t in a[1:] if t not in kk["once"]]
+        g.append(f"kalabalık ({kalabalik} karakter): {kk['once']} öne alındı")
+    liste += a
+    g.append(f"amaç '{amac}': {a}")
+    sira = []
+    for t in liste:
+        if t not in sira and t not in yasak and t in k["cekimler"]:
+            sira.append(t)
+    return sira, yasak, g
+
+
 def cekim_turu_adaylari(mesafe: str, hareketli: bool, gecmis: list[dict], indeks: int, tercih: str | None = None,
-                        ayrilmis: set | None = None) -> list[str]:
-    """Çeşitlilik sırasına dizilmiş uygun türler: kullanılmamış türler önce; önceki çekimle aynı hareket, yükseklik ve
-    açı kovası cezalandırılır. Niyetin tercih ettiği tür, önceki çekimle aynı hareket değilse başa alınır."""
+                        ayrilmis: set | None = None, tercih_sirasi: list[str] | None = None,
+                        yasak: set | None = None) -> list[str]:
+    """Uygun türler, sıralı: (1) başka cümlenin ayırdığı tür sona, (2) önceki çekimle aynı hareket sona (çeşitlilik
+    kuralı), (3) anlatı tercih sırası, (4) tekrar / aynı yükseklik / aynı açı cezası."""
     kat = veri.kural("kamera")["cekimler"]
-    adaylar = [ad for ad, x in kat.items() if mesafe in x["mesafeler"] and (x.get("gerekli") != "hareketli" or hareketli)]
+    tercih_sirasi = list(tercih_sirasi or ([tercih] if tercih else []))
+    adaylar = [ad for ad, x in kat.items() if mesafe in x["mesafeler"] and (x.get("gerekli") != "hareketli" or hareketli)
+               and ad not in (yasak or set())]
     if not adaylar:
-        return ""
+        return []
     onceki = gecmis[-1] if gecmis else None
-    sayac = {}
+    sayac: dict = {}
     for g in gecmis:
         sayac[g["tur"]] = sayac.get(g["tur"], 0) + 1
-    def puan(ad):
+    ayrilmis = (ayrilmis or set()) - set(tercih_sirasi[:1])
+
+    def anahtar(ad):
         x = kat[ad]
-        p = sayac.get(ad, 0) * 10
+        ayni_hareket = bool(onceki and x["hareket"] == onceki["hareket"])
+        sira = tercih_sirasi.index(ad) if ad in tercih_sirasi else len(tercih_sirasi) + 2
+        p = sayac.get(ad, 0) * 5
         if onceki:
-            p += 6 * (x["hareket"] == onceki["hareket"]) + 3 * (_yukseklik_sinifi(x["yukseklik_m"]) == onceki["yukseklik"])
+            p += 3 * (_yukseklik_sinifi(x["yukseklik_m"]) == onceki["yukseklik"])
             p += 2 * (_aci_kovasi(x["aci_derece"]) == onceki["aci_kovasi"])
-        return (p, (adaylar.index(ad) - indeks) % len(adaylar))
-    ayrilmis = (ayrilmis or set()) - {tercih}
-    sirali = sorted(adaylar, key=lambda ad: (ad in ayrilmis,) + puan(ad))   # başka cümlenin tercih ettiği tür sona
-    if tercih in sirali and not (onceki and kat[tercih]["hareket"] == onceki["hareket"]):
-        sirali.remove(tercih)
-        sirali.insert(0, tercih)
-    return sirali
+        return (ad in ayrilmis, ayni_hareket, sira * 4 + p, (adaylar.index(ad) - indeks) % len(adaylar))
+    return sorted(adaylar, key=anahtar)
 
 
 def _yon(a_derece: float) -> np.ndarray:
@@ -160,7 +196,8 @@ def _yon(a_derece: float) -> np.ndarray:
 
 def kamera_kur(tur: str, odak: dict, sure: float, oran: float, tepe: float | None = None) -> dict:
     x = veri.kural("kamera")["cekimler"][tur]
-    fov = float(veri.kural("kamera")["fov"])
+    fov = float(x.get("fov", veri.kural("kamera")["fov"]))
+    fov_son = float(x.get("fov_son", fov))
     boy = veri.kural("mesafe")["karakter_boyu_m"]
     d = boy / (2 * oran * math.tan(math.radians(fov) / 2))
     s0, s1 = kadraj.karakter_konumu(odak, 0.0), kadraj.karakter_konumu(odak, sure)
@@ -173,38 +210,47 @@ def kamera_kur(tur: str, odak: dict, sure: float, oran: float, tepe: float | Non
         hy += (tepe - boy) * 0.35   # odak uzun bir nesne (sancak, standart) taşıyorsa bakış noktası biraz yükselir
     yuk = np.array([0, 1.0, 0])
 
-    def an(merkez, uzaklik, yukseklik, yon_v, hedef_kayma=np.zeros(3)):
+    def an(merkez, uzaklik, yukseklik, yon_v, f=fov):
         return {"konum": [round(float(v), 3) for v in merkez + yon_v * uzaklik + yuk * yukseklik],
-                "hedef": [round(float(v), 3) for v in merkez + yuk * hy + hedef_kayma], "fov": fov}
+                "hedef": [round(float(v), 3) for v in merkez + yuk * hy], "fov": f}
 
     hr = x["hareket"]
+    yan = np.cross(yon, yuk)
     if hr in ("takip", "geri_takip"):
         bas, son = an(s0, d, h, yon), an(s1, d, h, yon)
     elif hr == "yaklasma":
         bas, son = an(s0, d * 1.15, h, yon), an(s1, d * 0.92, h, yon)
+    elif hr == "itme":   # dramatik yaklaşma: dolly + daralan lens
+        d_son = d * math.tan(math.radians(fov) / 2) / math.tan(math.radians(fov_son) / 2) * 0.82
+        bas, son = an(s0, d * 1.45, h, yon, fov), an(s1, d_son, h, yon, fov_son)
     elif hr == "yukselme":
         bas, son = an(sm, d * 0.9, h, yon), an(sm, d * 1.05, h + 4.5, yon)
     elif hr == "yorunge":
-        bas, son = an(s0, d, h, _yon(odak.get("yon_derece", 0.0) + x["aci_derece"] - 15)), an(s1, d, h, _yon(odak.get("yon_derece", 0.0) + x["aci_derece"] + 20))
+        a0 = odak.get("yon_derece", 0.0) + x["aci_derece"]
+        bas, son = an(s0, d, h, _yon(a0 - 15)), an(s1, d, h, _yon(a0 + 20))
     elif hr == "yanal_kayma":
-        yan = np.cross(yon, yuk)
-        bas = an(sm, d, h, yon, -yan * 0.0)
+        bas, son = an(sm, d, h, yon), an(sm, d, h, yon)
         bas["konum"] = [round(float(v), 3) for v in np.array(bas["konum"]) - yan * d * 0.18]
-        son = an(sm, d, h, yon)
         son["konum"] = [round(float(v), 3) for v in np.array(son["konum"]) + yan * d * 0.18]
+    elif hr == "genis_suzulme":   # mekân tanıtımı: yanal süzülme + hafif yükselme, hedef sabit
+        bas, son = an(sm, d, h, yon), an(sm, d, h + 1.0, yon)
+        bas["konum"] = [round(float(v), 3) for v in np.array(bas["konum"]) - yan * d * 0.10]
+        son["konum"] = [round(float(v), 3) for v in np.array(son["konum"]) + yan * d * 0.10]
     elif hr == "sabit_suzulme":
         bas = an(sm, d, h, yon)
         son = an(sm, d * 1.04, h + 0.4, yon)
     else:  # sabit
         bas = son = an(sm, d, h, yon)
-    return {"plan": None, "hareket": hr, "bas": bas, "son": son, "yumusatma": "giris_cikis" if hr != "takip" else "dogrusal"}
+    yum = "dogrusal" if hr == "takip" else ("giris" if hr == "itme" else "giris_cikis")
+    return {"plan": None, "hareket": hr, "bas": bas, "son": son, "yumusatma": yum}
 
 
 def kamera_ayarla(cekim: dict, odak_i: int, mesafe: str, en_boy: float, tur: str, tepe: float | None = None) -> dict:
     """Kadraj ölçümüyle doğrulama: odak karakterin ölçülen en büyük oranı hedef sınıfın içine düşene kadar
     uzaklığı ölçekler (en çok 6 deneme). Sınıf tutmazsa çekim olduğu gibi döner; plan denetimi reddeder."""
     m = veri.kural("mesafe")["sinirlar"]
-    hedef = veri.kural("kamera")["hedef_oran"][mesafe]
+    x = veri.kural("kamera")["cekimler"][tur]
+    hedef = float(x.get(f"oran_{mesafe}", x.get("oran", veri.kural("kamera")["hedef_oran"][mesafe])))
     oran = hedef
     for _ in range(6):
         cekim["kamera"] = kamera_kur(tur, cekim["karakterler"][odak_i], cekim["sure_sn"], oran, tepe)
@@ -263,27 +309,37 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     c["ortam"] = {"arazi": o.get("arazi", "ova_cimen"), "isik": o.get("isik", "aksam_ustu")}
     c["karakterler"] = karakterler
     hareketli = karakterler[odak_i]["hiz_m_sn"] > 0
-    adaylar = cekim_turu_adaylari(n.get("mesafe", "orta"), hareketli, gecmis, len(gecmis), n.get("kamera"), ayrilmis)
+    mesafe = n.get("mesafe", "orta")
+    odak_rol = veri.takimlar()[karakterler[odak_i]["takim"]].get("rol")
+    tercih, yasak, gerekce = kamera_tercihleri(taslak.get("amac"), n.get("eylem"), odak_rol, hareketli,
+                                               len(karakterler), n.get("kamera"))
+    adaylar = cekim_turu_adaylari(mesafe, hareketli, gecmis, len(gecmis), n.get("kamera"), ayrilmis, tercih, yasak)
     from motor.uretim import uyum
     nesne = next((r["nesne"] for r in n.get("roller", []) if r.get("nesne")), None)
     tepe = uyum.nesne_tepesi(karakterler[odak_i]["takim"], nesne) if nesne else None
     if not adaylar:
-        return c, eksik + [f"{taslak['id']}: '{n.get('mesafe')}' mesafesi için çekim türü yok"], {}
+        return c, eksik + [f"{taslak['id']}: '{mesafe}' mesafesi için çekim türü yok"], {}
     esik = veri.kural("kamera")["en_az_gorunur_oran"]
-    en_iyi = None
-    for tur in adaylar:   # çeşitlilik sırasıyla dene; görünürlük ve ölçek sınıfı tutan ilk tür seçilir
-        kamera_ayarla(c, odak_i, n.get("mesafe", "orta"), en_boy, tur, tepe)
+    en_iyi, reddedilen = None, []
+    for tur in adaylar:   # tercih/çeşitlilik sırasıyla dene; kusursuz, ölçek sınıfı ve görünürlük tutan ilk tür seçilir
+        kamera_ayarla(c, odak_i, mesafe, en_boy, tur, tepe)
         olc = kadraj.olc(c, en_boy)
         nesne_ok = tepe is None or kadraj.nokta_gorunurlugu(c, c["karakterler"][odak_i], tepe, en_boy) >= 0.8
         oran = sum(x["gorunur"] for x in olc.values()) / len(olc)
         en_buyuk = max((x["ekran_orani"] for x in olc.values() if x["gorunur"]), default=0.0)
-        sinif_tutuyor = olc[odak_i]["gorunur"] and (0.3 <= en_buyuk <= 1.0 if n.get("mesafe", "orta") == "orta" else en_buyuk < 0.3)
-        puan = (sinif_tutuyor and nesne_ok, oran >= esik, oran)
+        sinif_tutuyor = olc[odak_i]["gorunur"] and (0.3 <= en_buyuk <= 1.0 if mesafe == "orta" else en_buyuk < 0.3)
+        kusur = kamera_denetim.denetle(c, odak_i, en_boy)
+        if not sinif_tutuyor:
+            kusur.append(f"ölçek sınıfı tutmadı (en büyük oran {en_buyuk:.2f})")
+        if not nesne_ok:
+            kusur.append("taşınan nesne kadrajda kalmıyor")
+        puan = (not kusur, sinif_tutuyor and nesne_ok, oran >= esik, -len(kusur), oran)
         if en_iyi is None or puan > en_iyi[0]:
-            en_iyi = (puan, tur, json.loads(json.dumps(c["kamera"])))
-        if sinif_tutuyor and nesne_ok and oran >= esik:
+            en_iyi = (puan, tur, json.loads(json.dumps(c["kamera"])), kusur)
+        if not kusur:
             break
-    _, tur, c["kamera"] = en_iyi
+        reddedilen.append({"tur": tur, "neden": kusur})
+    _, tur, c["kamera"], kalan_kusur = en_iyi
     # hiç görünmeyen yan karakterler budanır: render maliyeti var, anlatıya katkısı yok (odak asla budanmaz)
     olc = kadraj.olc(c, en_boy)
     budanan = [c["karakterler"][i]["takim"] for i, x in olc.items() if not x["gorunur"] and i != odak_i]
@@ -297,6 +353,8 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     kayit = {"tur": tur, "hareket": x["hareket"], "yukseklik": _yukseklik_sinifi(x["yukseklik_m"]),
              "aci_kovasi": _aci_kovasi(x["aci_derece"]), "dizilis": dizilis, "odak": karakterler[odak_i]["takim"],
              "arazi": c["ortam"]["arazi"]}
-    c["meta"] = dict(kayit, aciklama=x["aciklama"], odak_indeks=odak_i, budanan_gorunmeyen=budanan)
+    c["meta"] = dict(kayit, aciklama=x["aciklama"], odak_indeks=odak_i, budanan_gorunmeyen=budanan,
+                     lens_fov=[x.get("fov", veri.kural("kamera")["fov"]), x.get("fov_son", x.get("fov", veri.kural("kamera")["fov"]))],
+                     secim_gerekcesi=gerekce, tercih_sirasi=tercih, reddedilen_adaylar=reddedilen)
     c["kamera"]["hareket"] = x["hareket"]
     return c, [f"{taslak['id']}: {e}" for e in eksik + ce], kayit

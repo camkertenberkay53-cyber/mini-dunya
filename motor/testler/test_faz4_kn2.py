@@ -162,8 +162,13 @@ def test_ardisik_ayni_hareket_ve_benzer_cekim_reddedilir(pilot):
     p = copy.deepcopy(plan)
     p["cekimler"][2]["meta"]["hareket"] = p["cekimler"][1]["meta"]["hareket"]
     assert any("ardışık" in h for h in cesitlilik.denetle(p, den)[0])
+    # Benzer çekim: bir çekimin kaydı, ÖLÇÜLEN plan ölçeği aynı olan ve bitişik olmayan başka bir çekime kopyalanır
+    # (Faz 5.3: sabit 5←2 indeksi planın kamera seçimine bağlıydı; ölçek farklıysa kopya gerçek bir tekrar değildir).
+    olc = {c["id"]: den["cekimler"][c["id"]]["olcum"].get("kamera_plani_olculen") for c in plan["cekimler"]}
+    i, j = next((i, j) for i in range(len(plan["cekimler"])) for j in range(i + 2, len(plan["cekimler"]))
+                if olc[plan["cekimler"][i]["id"]] == olc[plan["cekimler"][j]["id"]])
     p = copy.deepcopy(plan)
-    p["cekimler"][5]["meta"] = dict(p["cekimler"][2]["meta"])
+    p["cekimler"][j]["meta"] = dict(p["cekimler"][i]["meta"])
     h = cesitlilik.denetle(p, den)[0]
     assert any("benzer çekim" in x for x in h) or any("ardışık" in x for x in h)
 

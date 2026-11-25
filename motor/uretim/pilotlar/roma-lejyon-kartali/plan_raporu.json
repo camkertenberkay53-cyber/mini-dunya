@@ -84,34 +84,34 @@
    },
    "hareket": {
     "yaklasma": 3,
-    "yanal_kayma": 2,
+    "yanal_kayma": 1,
+    "genis_suzulme": 1,
+    "takip": 1,
     "sabit_suzulme": 2,
     "yorunge": 1,
-    "sabit": 1,
-    "geri_takip": 1,
+    "itme": 1,
     "yukselme": 1
    },
    "yukseklik": {
-    "alcak": 3,
-    "goz": 5,
-    "yuksek": 3
+    "alcak": 2,
+    "goz": 7,
+    "yuksek": 2
    },
    "aci_kovasi": {
-    "onden": 6,
-    "capraz_arka": 1,
-    "capraz": 2,
-    "arka": 1,
+    "onden": 7,
+    "capraz": 3,
     "yan": 1
    },
    "tur": {
     "alcak_yaklasma": 2,
-    "goz_pan": 2,
-    "yuksek_genis": 1,
+    "goz_pan": 1,
+    "kurulus_genis": 1,
+    "yan_takip": 1,
+    "tele_kalabalik": 1,
     "capraz_yorunge": 1,
-    "arkadan_uzak": 1,
-    "yan_profil": 1,
+    "orta_konusma": 1,
     "ust_aci_yaklasma": 1,
-    "alcak_geri_takip": 1,
+    "itme_dramatik": 1,
     "yukselme": 1
    }
   },
@@ -127,6 +127,20 @@
     "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
+    "lens_fov": [
+     34,
+     34
+    ],
+    "secim_gerekcesi": [
+     "senaryo niyeti: alcak_yaklasma",
+     "amaç 'kanca': ['itme_dramatik', 'alcak_yaklasma', 'capraz_yorunge']"
+    ],
+    "tercih_sirasi": [
+     "alcak_yaklasma",
+     "itme_dramatik",
+     "capraz_yorunge"
+    ],
+    "reddedilen_adaylar": [],
     "id": "S1",
     "plan": "orta"
    },
@@ -141,21 +155,124 @@
     "aciklama": "Göz hizasında hattı tarayan yatay kaydırma",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
+    "lens_fov": [
+     36,
+     36
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (10 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+    ],
+    "tercih_sirasi": [
+     "kurulus_genis",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "goz_pan",
+     "yan_takip"
+    ],
+    "reddedilen_adaylar": [],
     "id": "S2",
     "plan": "orta"
    },
    {
-    "tur": "yuksek_genis",
-    "hareket": "sabit_suzulme",
+    "tur": "kurulus_genis",
+    "hareket": "genis_suzulme",
     "yukseklik": "yuksek",
-    "aci_kovasi": "capraz_arka",
+    "aci_kovasi": "capraz",
     "dizilis": "sira",
     "odak": "rom_aquilifer",
     "arazi": "ova_cimen",
-    "aciklama": "Yüksekten genel görünüm (kuş bakışına yakın)",
+    "aciklama": "Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing)",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
+    "lens_fov": [
+     55,
+     55
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+    ],
+    "tercih_sirasi": [
+     "kurulus_genis",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "goz_pan",
+     "yan_takip"
+    ],
+    "reddedilen_adaylar": [],
     "id": "S3",
+    "plan": "uzak"
+   },
+   {
+    "tur": "yan_takip",
+    "hareket": "takip",
+    "yukseklik": "goz",
+    "aci_kovasi": "yan",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Göz hizasında yandan paralel takip",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yan_takip",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "capraz_yorunge",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": [],
+    "id": "S4a",
+    "plan": "uzak"
+   },
+   {
+    "tur": "tele_kalabalik",
+    "hareket": "sabit_suzulme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Ordunun büyüklüğü; önden uzun lens",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     18,
+     18
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yan_takip",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "capraz_yorunge",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": [],
+    "id": "S4b",
     "plan": "uzak"
    },
    {
@@ -163,58 +280,97 @@
     "hareket": "yorunge",
     "yukseklik": "goz",
     "aci_kovasi": "capraz",
-    "dizilis": "kol",
-    "odak": "rom_aquilifer",
+    "dizilis": "dagin",
+    "odak": "rom_lejyoner_gladius",
     "arazi": "kuru_bozkir",
     "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
     "odak_indeks": 0,
-    "budanan_gorunmeyen": [],
-    "id": "S4a",
-    "plan": "uzak"
-   },
-   {
-    "tur": "arkadan_uzak",
-    "hareket": "sabit",
-    "yukseklik": "yuksek",
-    "aci_kovasi": "arka",
-    "dizilis": "kol",
-    "odak": "rom_aquilifer",
-    "arazi": "kuru_bozkir",
-    "aciklama": "Uzaklaşan kolu arkadan izleme (yolculuk",
-    "odak_indeks": 0,
-    "budanan_gorunmeyen": [],
-    "id": "S4b",
-    "plan": "uzak"
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'itme_dramatik']",
+     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+    ],
+    "tercih_sirasi": [
+     "sabit_uzak",
+     "yan_profil",
+     "yuksek_genis",
+     "capraz_yorunge"
+    ],
+    "reddedilen_adaylar": [],
+    "id": "S5",
+    "plan": "orta"
    },
    {
     "tur": "alcak_yaklasma",
     "hareket": "yaklasma",
     "yukseklik": "alcak",
     "aci_kovasi": "onden",
-    "dizilis": "dagin",
-    "odak": "rom_lejyoner_gladius",
-    "arazi": "kuru_bozkir",
-    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
-    "odak_indeks": 0,
-    "budanan_gorunmeyen": [
-     "rom_lejyoner_pilum",
-     "rom_lejyoner_pilum"
-    ],
-    "id": "S5",
-    "plan": "orta"
-   },
-   {
-    "tur": "yan_profil",
-    "hareket": "sabit_suzulme",
-    "yukseklik": "goz",
-    "aci_kovasi": "yan",
     "dizilis": "tek",
     "odak": "rom_centurio",
     "arazi": "ova_cimen",
-    "aciklama": "Yandan sabit profil",
+    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
+    "lens_fov": [
+     34,
+     34
+    ],
+    "secim_gerekcesi": [
+     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+    ],
+    "tercih_sirasi": [
+     "alcak_yaklasma",
+     "capraz_yorunge",
+     "alcak_geri_takip",
+     "yan_profil"
+    ],
+    "reddedilen_adaylar": [],
     "id": "S6",
+    "plan": "orta"
+   },
+   {
+    "tur": "orta_konusma",
+    "hareket": "sabit_suzulme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Komutanın konuşması / dinleyen; medium plan",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     32,
+     32
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "itme_dramatik",
+     "ust_aci_yaklasma",
+     "alcak_geri_takip",
+     "alcak_yaklasma"
+    ],
+    "reddedilen_adaylar": [],
+    "id": "S7a",
     "plan": "orta"
    },
    {
@@ -231,41 +387,53 @@
      "rom_lejyoner_gladius",
      "rom_lejyoner_gladius",
      "rom_lejyoner_pilum",
-     "rom_lejyoner_gladius"
-    ],
-    "id": "S7a",
-    "plan": "orta"
-   },
-   {
-    "tur": "goz_pan",
-    "hareket": "yanal_kayma",
-    "yukseklik": "goz",
-    "aci_kovasi": "onden",
-    "dizilis": "sira",
-    "odak": "rom_centurio",
-    "arazi": "ova_cimen",
-    "aciklama": "Göz hizasında hattı tarayan yatay kaydırma",
-    "odak_indeks": 0,
-    "budanan_gorunmeyen": [
      "rom_lejyoner_gladius",
-     "rom_lejyoner_pilum",
-     "rom_lejyoner_pilum",
-     "rom_lejyoner_gladius"
+     "rom_lejyoner_pilum"
     ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "itme_dramatik",
+     "ust_aci_yaklasma",
+     "alcak_geri_takip",
+     "alcak_yaklasma"
+    ],
+    "reddedilen_adaylar": [],
     "id": "S7b",
     "plan": "orta"
    },
    {
-    "tur": "alcak_geri_takip",
-    "hareket": "geri_takip",
-    "yukseklik": "alcak",
+    "tur": "itme_dramatik",
+    "hareket": "itme",
+    "yukseklik": "goz",
     "aci_kovasi": "onden",
     "dizilis": "kol",
     "odak": "rom_aquilifer",
     "arazi": "ova_cimen",
-    "aciklama": "Gelen kolun önünde",
+    "aciklama": "Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma)",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
+    "lens_fov": [
+     40,
+     32
+    ],
+    "secim_gerekcesi": [
+     "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+    ],
+    "tercih_sirasi": [
+     "itme_dramatik",
+     "ust_aci_yaklasma",
+     "alcak_geri_takip",
+     "alcak_yaklasma"
+    ],
+    "reddedilen_adaylar": [],
     "id": "S8",
     "plan": "orta"
    },
@@ -283,6 +451,24 @@
      "rom_lejyoner_pilum",
      "rom_lejyoner_pilum"
     ],
+    "lens_fov": [
+     42,
+     42
+    ],
+    "secim_gerekcesi": [
+     "senaryo niyeti: yukselme",
+     "kalabalık (14 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yukselme",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "sabit_uzak",
+     "kurulus_genis",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": [],
     "id": "S9",
     "plan": "uzak"
    }
@@ -365,7 +551,7 @@
     {
      "kontrol": "S2 'aquila' tepesi kadrajda",
      "gecti": true,
-     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+     "ayrinti": "anların %89'inde (tepe yüksekliği yaklaşık)"
     },
     {
      "kontrol": "S2 'piyade' görünüyor",
@@ -491,7 +677,7 @@
     {
      "kontrol": "S4a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "13 görünür"
+     "ayrinti": "3 görünür"
     },
     {
      "kontrol": "S4a 'aquila' tepesi kadrajda",
@@ -501,7 +687,7 @@
     {
      "kontrol": "S4a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "13 görünür"
+     "ayrinti": "3 görünür"
     },
     {
      "kontrol": "S4a eylem 'yuruyus'",
@@ -591,7 +777,7 @@
     {
      "kontrol": "S5 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "4 görünür"
+     "ayrinti": "3 görünür"
     },
     {
      "kontrol": "S5 eylem 'olum'",
@@ -692,7 +878,7 @@
     {
      "kontrol": "S7a 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "4 görünür"
+     "ayrinti": "2 görünür"
     },
     {
      "kontrol": "S7a eylem 'bekleme'",
@@ -732,7 +918,7 @@
     {
      "kontrol": "S7b 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "4 görünür"
+     "ayrinti": "3 görünür"
     },
     {
      "kontrol": "S7b eylem 'bekleme'",
@@ -1344,10 +1530,11 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.651,
+     "ekran_orani": 0.64,
      "mesafe": "orta"
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "orta"
   },
   "S2": {
@@ -1355,64 +1542,65 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.806,
+     "ekran_orani": 0.886,
      "mesafe": "orta"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.409,
+     "ekran_orani": 0.441,
      "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.453,
+     "ekran_orani": 0.49,
      "mesafe": "orta"
     },
     "3": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.509,
+     "ekran_orani": 0.504,
      "mesafe": "orta"
     },
     "4": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.341,
+     "ekran_orani": 0.342,
      "mesafe": "orta"
     },
     "5": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.418,
+     "ekran_orani": 0.451,
      "mesafe": "orta"
     },
     "6": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.358,
+     "ekran_orani": 0.386,
      "mesafe": "orta"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.321,
+     "ekran_orani": 0.325,
      "mesafe": "orta"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.298,
-     "mesafe": "uzak"
+     "ekran_orani": 0.32,
+     "mesafe": "orta"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.325,
+     "ekran_orani": 0.349,
      "mesafe": "orta"
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "orta"
   },
   "S3": {
@@ -1420,86 +1608,87 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.154,
+     "ekran_orani": 0.119,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.149,
+     "ekran_orani": 0.131,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.158,
+     "ekran_orani": 0.128,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.163,
+     "ekran_orani": 0.12,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.168,
+     "ekran_orani": 0.112,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.166,
+     "ekran_orani": 0.101,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.177,
+     "ekran_orani": 0.099,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.197,
+     "ekran_orani": 0.099,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.159,
+     "ekran_orani": 0.108,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.171,
+     "ekran_orani": 0.104,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.178,
+     "ekran_orani": 0.097,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.185,
+     "ekran_orani": 0.094,
      "mesafe": "uzak"
     }
    },
    "cevre": {
     "0:roma_cadiri": {
      "mesafe": "uzak",
-     "ekran_orani": 0.074
+     "ekran_orani": 0.048
     },
     "1:roma_cadiri": {
      "mesafe": "uzak",
-     "ekran_orani": 0.064
+     "ekran_orani": 0.042
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "uzak"
   },
   "S4a": {
@@ -1507,82 +1696,23 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.179,
+     "ekran_orani": 0.25,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.159,
+     "ekran_orani": 0.225,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.165,
-     "mesafe": "uzak"
-    },
-    "3": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.178,
-     "mesafe": "uzak"
-    },
-    "4": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.152,
-     "mesafe": "uzak"
-    },
-    "5": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.151,
-     "mesafe": "uzak"
-    },
-    "6": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.152,
-     "mesafe": "uzak"
-    },
-    "7": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.144,
-     "mesafe": "uzak"
-    },
-    "8": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.146,
-     "mesafe": "uzak"
-    },
-    "9": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.144,
-     "mesafe": "uzak"
-    },
-    "10": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.126,
-     "mesafe": "uzak"
-    },
-    "11": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.13,
-     "mesafe": "uzak"
-    },
-    "12": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.123,
+     "ekran_orani": 0.244,
      "mesafe": "uzak"
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "uzak"
   },
   "S4b": {
@@ -1590,82 +1720,83 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.128,
+     "ekran_orani": 0.262,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.146,
+     "ekran_orani": 0.25,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.142,
+     "ekran_orani": 0.242,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.146,
+     "ekran_orani": 0.251,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.158,
+     "ekran_orani": 0.236,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.16,
+     "ekran_orani": 0.234,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.149,
+     "ekran_orani": 0.216,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.159,
+     "ekran_orani": 0.201,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.176,
+     "ekran_orani": 0.225,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.165,
+     "ekran_orani": 0.209,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.187,
+     "ekran_orani": 0.205,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.178,
+     "ekran_orani": 0.193,
      "mesafe": "uzak"
     },
     "12": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.198,
+     "ekran_orani": 0.212,
      "mesafe": "uzak"
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "uzak"
   },
   "S5": {
@@ -1673,28 +1804,23 @@
     "0": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.602,
+     "ekran_orani": 0.598,
      "mesafe": "orta"
     },
     "1": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.331,
+     "ekran_orani": 0.336,
      "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.256,
-     "mesafe": "uzak"
-    },
-    "3": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.348,
+     "ekran_orani": 0.361,
      "mesafe": "orta"
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "orta"
   },
   "S6": {
@@ -1702,13 +1828,38 @@
     "0": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.553,
+     "ekran_orani": 0.626,
      "mesafe": "orta"
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "orta"
   },
   "S7a": {
+   "karakter": {
+    "0": {
+     "takim": "rom_centurio",
+     "gorunur": true,
+     "ekran_orani": 0.854,
+     "mesafe": "orta"
+    },
+    "1": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.538,
+     "mesafe": "orta"
+    },
+    "2": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.594,
+     "mesafe": "orta"
+    }
+   },
+   "kamera_kusur": [],
+   "kamera_plani_olculen": "orta"
+  },
+  "S7b": {
    "karakter": {
     "0": {
      "takim": "rom_centurio",
@@ -1719,63 +1870,23 @@
     "1": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.363,
+     "ekran_orani": 0.376,
      "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.398,
+     "ekran_orani": 0.404,
      "mesafe": "orta"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.441,
-     "mesafe": "orta"
-    },
-    "4": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.313,
+     "ekran_orani": 0.44,
      "mesafe": "orta"
     }
    },
-   "kamera_plani_olculen": "orta"
-  },
-  "S7b": {
-   "karakter": {
-    "0": {
-     "takim": "rom_centurio",
-     "gorunur": true,
-     "ekran_orani": 0.552,
-     "mesafe": "orta"
-    },
-    "1": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.41,
-     "mesafe": "orta"
-    },
-    "2": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.403,
-     "mesafe": "orta"
-    },
-    "3": {
-     "takim": "rom_lejyoner_gladius",
-     "gorunur": true,
-     "ekran_orani": 0.401,
-     "mesafe": "orta"
-    },
-    "4": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.338,
-     "mesafe": "orta"
-    }
-   },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "orta"
   },
   "S8": {
@@ -1783,16 +1894,17 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.615,
+     "ekran_orani": 0.689,
      "mesafe": "orta"
     },
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.397,
+     "ekran_orani": 0.454,
      "mesafe": "orta"
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "orta"
   },
   "S9": {
@@ -1806,79 +1918,80 @@
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.157,
+     "ekran_orani": 0.154,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.166,
+     "ekran_orani": 0.164,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.164,
+     "ekran_orani": 0.162,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.177,
+     "ekran_orani": 0.176,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.172,
+     "ekran_orani": 0.171,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.173,
+     "ekran_orani": 0.174,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.144,
+     "ekran_orani": 0.14,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.153,
+     "ekran_orani": 0.149,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.156,
+     "ekran_orani": 0.153,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.155,
+     "ekran_orani": 0.152,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.166,
+     "ekran_orani": 0.163,
      "mesafe": "uzak"
     }
    },
    "cevre": {
     "0:roma_cadiri": {
      "mesafe": "uzak",
-     "ekran_orani": 0.075
+     "ekran_orani": 0.07
     }
    },
+   "kamera_kusur": [],
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.39,
+ "planlama_sn": 0.31,
  "gecti": true
 }

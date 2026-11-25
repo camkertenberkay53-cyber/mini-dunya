@@ -1,1 +1,1 @@
-{"kosu_id":"K53b","aciklama":"Faz 5.3 düzeltme: kurulus_genis (ufuk, ön-çapraz), tele_kalabalik (önden, 18°, büyük figür), yan_takip uzak oranı; profil D17","profil":"D17"}
+{"kosu_id":"K53c","aciklama":"Faz 5.3 entegrasyon: pilot eski (Faz 5.3 öncesi plan) ve yeni (üretim planlayıcısı) — üretim renderer (V0), aynı makinede","profil":"V0","gruplar":["pilot_ikili"]}

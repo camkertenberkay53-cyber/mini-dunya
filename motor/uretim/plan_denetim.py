@@ -9,7 +9,7 @@ import json
 import math
 import sys
 
-from motor.uretim import animasyon_izni, kadraj, ortam_secici, secici, sozlesme, veri
+from motor.uretim import animasyon_izni, kadraj, kamera_denetim, ortam_secici, secici, sozlesme, veri
 
 EN_AZ_ARALIK_M = 0.6      # iki karakterin ayak noktaları arası en az uzaklık (iç içe geçmesinler)
 MESAFE_SIRA = {"uzak": 0, "orta": 1, "yakin": 2}
@@ -92,6 +92,12 @@ def cekim_denetle(c: dict, donem: str, en_boy: float) -> dict:
     for i, m in kad.items():
         if not m["gorunur"]:
             u.append(f"{c['id']}: {m['takim']}#{i} çekim boyunca hiç görünmüyor (render maliyeti var, katkısı yok)")
+    # Faz 5.3 kamera QC: planlayıcının kurduğu çekimlerde (odak kaydı olan) kalan kadraj/çarpışma kusuru hatadır
+    odak_i = c.get("meta", {}).get("odak_indeks")
+    if odak_i is not None and c.get("karakterler"):
+        kusur = kamera_denetim.denetle(c, odak_i, en_boy)
+        olcum["kamera_kusur"] = kusur
+        h += [f"{c['id']}: kamera kusuru: {x}" for x in kusur]
     olcum["kamera_plani_olculen"] = olculen_en_yakin
     return {"hatalar": h, "uyarilar": u, "olcum": olcum}
 

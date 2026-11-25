@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        grup: [test, pilot_v1, pilot_v2]
+        grup: [test, pilot_v1, pilot_v2, pilot_ikili]
     steps:
       - uses: actions/checkout@v4
       - name: Kurulum
@@ -37,16 +37,19 @@ jobs:
           mkdir -p /tmp/motor_onbellek && cp -r deneyler/faz51/altyapi/onbellek/* /tmp/motor_onbellek/
       - name: Render (aynı makinede sırayla)
         run: |
+          if ! python3 -c "import json,sys;g=json.load(open('deneyler/faz53/kosu53.json')).get('gruplar');sys.exit(0 if (g is None or '${{ matrix.grup }}' in g) else 1)"; then echo "grup bu koşuda yok"; mkdir -p /tmp/m; exit 0; fi
           case "${{ matrix.grup }}" in
-            test) ISLER=$PWD/deneyler/faz53/test/isler ;;
-            pilot_v1) ISLER=$PWD/deneyler/faz51/altyapi/isler ;;
-            pilot_v2) ISLER=$PWD/deneyler/faz53/pilot_v2/isler ;;
+            test) CIFTLER="T:$PWD/deneyler/faz53/test/isler" ;;
+            pilot_v1) CIFTLER="P:$PWD/deneyler/faz51/altyapi/isler" ;;
+            pilot_v2) CIFTLER="P:$PWD/deneyler/faz53/pilot_v2/isler" ;;
+            pilot_ikili) CIFTLER="eski:$PWD/deneyler/faz51/altyapi/isler yeni:$PWD/deneyler/faz53/pilot_uretim/isler" ;;   # aynı makinede eski/yeni
           esac
-          export ISLER_KLASORU=$ISLER
           PROFIL=$(python3 -c "import json;print(json.load(open('deneyler/faz53/kosu53.json'))['profil'])")
           cd deneyler/faz51/gorsel
-          for f in $(ls $ISLER/*.json | sort); do c=$(basename $f .json)
-            python3 render_profil.py $c $PROFIL 0 /tmp/m || true
+          for cift in $CIFTLER; do ET=${cift%%:*}; export ISLER_KLASORU=${cift#*:}
+          for f in $(ls $ISLER_KLASORU/*.json | sort); do c0=$(basename $f .json); c=$c0; if [ "$ET" = eski ] || [ "$ET" = yeni ]; then c=${ET}_$c0; fi
+            python3 render_profil.py $c0 $PROFIL 0 /tmp/m || true
+            for x in json mp4 png; do [ -f /tmp/m/${c0}_${PROFIL}.$x ] && [ "$c" != "$c0" ] && mv /tmp/m/${c0}_${PROFIL}.$x /tmp/m/${c}_${PROFIL}.$x || true; done
             mv /tmp/m/${c}_${PROFIL}.json /tmp/m/${c}.json 2>/dev/null || true
             if [ -f /tmp/m/${c}_${PROFIL}.mp4 ]; then
               mv /tmp/m/${c}_${PROFIL}.mp4 /tmp/m/${c}.mp4
@@ -61,7 +64,7 @@ jobs:
               rm -f /tmp/m/${c}_k*.png /tmp/m/${c}_${PROFIL}.png
               ffmpeg -loglevel error -y -i /tmp/m/${c}.mp4 -vf "scale=360:640,drawtext=text='${c}':x=8:y=8:fontsize=18:fontcolor=white:box=1:boxcolor=black@0.5" -c:v libx264 -crf 28 -preset veryfast -pix_fmt yuv420p /tmp/m/onz_${c}.mp4 || ffmpeg -loglevel error -y -i /tmp/m/${c}.mp4 -vf scale=360:640 -c:v libx264 -crf 28 -preset veryfast -pix_fmt yuv420p /tmp/m/onz_${c}.mp4
             fi
-          done
+          done; done
           ls /tmp/m/onz_*.mp4 | sort | sed "s/^/file '/;s/$/'/" > /tmp/m/liste.txt
           ffmpeg -loglevel error -y -f concat -safe 0 -i /tmp/m/liste.txt -c copy /tmp/m/onizleme_${{ matrix.grup }}.mp4
       - name: Sonucu dala yaz
@@ -69,6 +72,7 @@ jobs:
         run: |
           K=$(python3 -c "import json;print(json.load(open('deneyler/faz53/kosu53.json'))['kosu_id'])")
           D=deneyler/faz53/sonuc/$K/${{ matrix.grup }}
+          ls /tmp/m/*.json >/dev/null 2>&1 || exit 0
           mkdir -p "$D"
           cp /tmp/m/*.json /tmp/m/*.jpg /tmp/m/onizleme_*.mp4 "$D"/ 2>/dev/null || true
           rm -f "$D"/*.is.json
