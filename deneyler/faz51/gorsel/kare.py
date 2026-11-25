@@ -24,6 +24,8 @@ def deney_projesi(hedef: Path) -> Path:
         shutil.copytree(REPO / "motor" / "godot", hedef, ignore=shutil.ignore_patterns(".godot"))
         shutil.copy(BURASI / "ortam_v2.gd", hedef / "sahneler" / "ortam.gd")
         subprocess.run([GODOT, "--headless", "--path", str(hedef), "--import"], capture_output=True)
+    # Faz 5.2 D16: kopya bayatlamasın — deney ortamı her çağrıda güncel ortam_v2.gd ile eşitlenir
+    shutil.copy(BURASI / "ortam_v2.gd", hedef / "sahneler" / "ortam.gd")
     return hedef
 
 

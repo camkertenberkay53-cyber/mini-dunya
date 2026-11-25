@@ -251,8 +251,8 @@ static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez:
 		# Faz 5.2 D4: küre tepeler yerine yükseklik alanı (sırt gürültüsü); ana zeminin (500 m) dışında yükselir
 		var m := PlaneMesh.new()
 		m.size = Vector2(1800, 1800)
-		m.subdivide_width = 240
-		m.subdivide_depth = 240
+		m.subdivide_width = int(g.get("dag_bolum", 240))
+		m.subdivide_depth = int(g.get("dag_bolum", 240))
 		var sh := Shader.new()
 		sh.code = UZAK_SHADER
 		if g.get("dag_pus", "") == "dinamik":
@@ -300,6 +300,16 @@ static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez:
 		mi.material_override = mat
 		mi.position = Vector3(merkez.x, 0, merkez.y)
 		mi.extra_cull_margin = 200.0
+		if g.has("dag_oncelik"):   # Faz 5.2 D16: uzak arazi en son çizilir (önündeki zeminin altında boşuna gölgelenmez)
+			mat.render_priority = int(g["dag_oncelik"])
+		if g.get("dag_golge_al", "") == "yok":   # Faz 5.2 D16: uzak arazi gölge örneklemez (gölge mesafesinin ötesinde zaten gölgesiz)
+			sh.code = sh.code.replace("render_mode diffuse_burley, specular_disabled;", "render_mode diffuse_burley, specular_disabled, shadows_disabled;")
+		if g.get("tani_dag_isiksiz", false):
+			sh.code = sh.code.replace("render_mode diffuse_burley, specular_disabled;", "render_mode unshaded;")
+		if g.get("tani_dag_duz", false):
+			sh.code = sh.code.replace("void fragment(){", "void fragment(){ ALBEDO = r0; ROUGHNESS = 1.0; }\nvoid _eski(){")
+		if g.get("dag_golge", "") == "yok":   # Faz 5.2 D16: uzak arazi gölge geçişine girmez
+			mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		kok.add_child(mi)
 		return
 	## Dağ sıraları kameranın baktığı yönde, sahne merkezinin ötesine dizilir.
@@ -328,33 +338,67 @@ render_mode cull_disabled, diffuse_burley;
 uniform vec3 alt; uniform vec3 ust; uniform vec3 kuru;
 uniform float yukari_normal = 0.0;  // Faz 5.2 D1: aydınlatma normali yukarı (arka yüz siyahlığı biter)
 uniform float tutam = 0.0;          // Faz 5.2 D2: kart başına 7 ince yaprak (opak kama yerine)
+// Faz 5.2 D16: mesafe LOD (kapalıyken hiçbir şey değişmez). kam her kare yardımcı düğümce yazılır.
+uniform float lod = 0.0; uniform vec3 kam = vec3(0.0);
+uniform float lod_bas = 6.0; uniform float lod_son = 16.0; uniform float lod_oran = 0.35;
+uniform float lod_yaprak = 4.0; uniform float lod_telafi = 1.0;
+uniform float golge_bas = 1000.0; uniform float golge_son = 1001.0;  // gölge geçişinde ot gölgesi yalnız yakında
+// Faz 5.2 D17: aynı kartlarla bitki çeşitliliği (yeni geometri/örnek yok). 0 = kapalı.
+uniform float cesit = 0.0; uniform float oran_basak = 0.12; uniform float oran_genis = 0.10;
 varying float renk_payi;
+varying float yaprak_n;
+varying float tur;   // 0 ot tutamı, 1 başaklı uzun ot, 2 geniş yapraklı alçak bitki
 void vertex(){
   vec3 m = (MODEL_MATRIX * vec4(0,0,0,1)).xyz;
   renk_payi = fract(sin(dot(m.xz, vec2(12.9898, 78.233))) * 43758.5453);
   vec3 w = (MODEL_MATRIX * vec4(0,0,0,1)).xyz;
   float tepe = 1.0 - UV.y;
   VERTEX.x += (sin(TIME*1.8 + w.x*0.7 + w.z*0.4)*0.07 + sin(TIME*4.1 + w.z)*0.02) * tepe * tepe;
+  tur = 0.0;
+  if (cesit > 0.5) {
+    float ht = fract(sin(dot(m.xz, vec2(7.131, 157.17))) * 31871.37);
+    if (ht < oran_basak) { tur = 1.0; VERTEX.y *= 1.45; }
+    else if (ht < oran_basak + oran_genis) { tur = 2.0; VERTEX.y *= 0.55; VERTEX.x *= 1.3; }
+  }
   VERTEX.x *= mix(1.0, mix(0.35, 1.0, tutam), tepe);
+  yaprak_n = tur > 0.5 ? (tur < 1.5 ? 3.0 : 5.0) : 7.0;
+  if (lod > 0.5) {
+    float f = smoothstep(lod_bas, lod_son, distance(m.xz, kam.xz));
+    float tut = mix(1.0, lod_oran, f);                       // uzakta kartların ancak bu kadarı kalır
+    float h = fract(sin(dot(m.xz, vec2(3.171, 91.73))) * 23421.631);
+    float olcek = clamp((tut - h) / 0.1, 0.0, 1.0);          // kaybolmadan önce küçülür (pop-in yok)
+    VERTEX.x *= mix(1.0, inversesqrt(tut), lod_telafi);      // kalan kartlar örtüyü korumak için genişler
+    VERTEX *= olcek;                                         // 0 → dejenere üçgen, piksel maliyeti yok
+    yaprak_n = mix(yaprak_n, min(yaprak_n, lod_yaprak), f);
+    if (IN_SHADOW_PASS) { VERTEX *= 1.0 - smoothstep(golge_bas, golge_son, distance(m.xz, kam.xz)); }
+  }
 }
 void fragment(){
+  float bas_k = 0.0;
   if (tutam > 0.5) {
     float t = 1.0 - UV.y;
     float ic = 0.0;
+    int n = int(ceil(yaprak_n));
+    float gen_k = tur > 1.5 ? 2.2 : (tur > 0.5 ? 0.8 : sqrt(7.0 / yaprak_n));
     for (int k = 0; k < 7; k++) {
+      if (k >= n) { break; }
       float fk = float(k);
       float s = fract(sin(fk * 12.9898 + renk_payi * 78.233) * 43758.5453);
       float s2 = fract(sin(fk * 39.346 + renk_payi * 11.135) * 24634.6345);
       float boy = 0.5 + 0.5 * s2;
       float merkez = 0.12 + 0.76 * s + (s2 - 0.5) * 0.35 * t * t;
-      float gen = 0.05 * (1.0 - t / boy);
+      float gen = 0.05 * gen_k * (1.0 - t / boy);
       if (t < boy && abs(UV.x - merkez) < gen) { ic = 1.0; }
+      if (tur > 0.5 && tur < 1.5 && t < boy && t > boy * 0.72 && abs(UV.x - merkez) < 0.028) { ic = 1.0; bas_k = 1.0; }
     }
     if (ic < 0.5) { discard; }
   }
   if (yukari_normal > 0.5) { NORMAL = normalize((VIEW_MATRIX * vec4(0.0, 1.0, 0.0, 0.0)).xyz); }
   vec3 u = mix(ust, kuru, smoothstep(0.55, 1.0, renk_payi));
-  ALBEDO = mix(alt, u, 1.0 - UV.y) * (0.85 + 0.3 * renk_payi);
+  vec3 c = mix(alt, u, 1.0 - UV.y) * (0.85 + 0.3 * renk_payi);
+  if (tur > 1.5) { c = mix(alt, ust, 0.45) * vec3(0.78, 0.9, 0.82) * (0.85 + 0.3 * renk_payi); }
+  if (tur > 0.5 && tur < 1.5) { c = mix(c, kuru * 1.15, 0.35 + 0.65 * bas_k); }
+  ALBEDO = c;
   ROUGHNESS = 1.0;
 }
 """
@@ -380,6 +424,26 @@ static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Ar
 	mm.transform_format = MultiMesh.TRANSFORM_3D
 	mm.mesh = q
 	mm.instance_count = int(float(a["ot_sayisi"]) * float(g.get("ot_sayi_carpan", 1.0)))
+	if g.get("ot_cesit", false):
+		mat.set_shader_parameter("cesit", 1.0)
+		for k in ["oran_basak", "oran_genis"]:
+			if g.has(k):
+				mat.set_shader_parameter(k, float(g[k]))
+	if g.get("tani_ot_yok", false):
+		mm.instance_count = 0
+	if g.get("ot_lod", "") == "mesafe":
+		mat.set_shader_parameter("lod", 1.0)
+		for k in ["lod_bas", "lod_son", "lod_oran", "lod_yaprak", "lod_telafi", "golge_bas", "golge_son"]:
+			if g.has(k):
+				mat.set_shader_parameter(k, float(g[k]))
+		var yard := Node.new()
+		var gs := GDScript.new()
+		gs.source_code = "extends Node\nvar mat: ShaderMaterial\nfunc _process(_d):\n\tvar c := get_viewport().get_camera_3d()\n\tif c:\n\t\tmat.set_shader_parameter(\"kam\", c.global_position)\n"
+		gs.reload()
+		yard.set_script(gs)
+		yard.set("mat", mat)
+		yard.process_priority = 1000
+		kok.add_child(yard)
 	var yx: float = a.get("yol_x", 0.0)
 	var yg: float = a["yol"]["genislik"] if a["yol"]["acik"] else 0.0
 	# Faz 5.2 D3: kümelenmiş dağılım (aynı toplam sayı; doğada ot öbek öbek büyür)
@@ -401,6 +465,33 @@ static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Ar
 			x = yx + signf(x - yx + 0.001) * rng.randf_range(yg, yg + 1.4)
 		var b := Basis(Vector3.UP, rng.randf() * TAU).rotated(Vector3(1, 0, 0), rng.randf_range(-0.25, 0.25)).scaled(Vector3.ONE * rng.randf_range(0.5, 1.3))
 		mm.set_instance_transform(i, Transform3D(b, Vector3(x, 0.02, z)))
-	var mmi := MultiMeshInstance3D.new()
-	mmi.multimesh = mm
-	kok.add_child(mmi)
+	var parca: float = float(g.get("ot_parca", 0.0))
+	if parca <= 0.0:
+		var mmi := MultiMeshInstance3D.new()
+		mmi.multimesh = mm
+		if g.get("ot_golge", "") == "yok":
+			mmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		kok.add_child(mmi)
+		return
+	# Faz 5.2 D16: aynı örnekler parça parça (ızgara) bölünür → görüş dışındaki parçalar motorca elenir.
+	# Dönüşümler ve RNG sırası değişmez; görüntü birebir aynı kalır, yalnız çizilen örnek sayısı azalır.
+	var kova := {}
+	for i in mm.instance_count:
+		var tr := mm.get_instance_transform(i)
+		var anahtar := Vector2i(floori(tr.origin.x / parca), floori(tr.origin.z / parca))
+		if not kova.has(anahtar):
+			kova[anahtar] = []
+		kova[anahtar].append(tr)
+	for anahtar in kova:
+		var liste: Array = kova[anahtar]
+		var pm := MultiMesh.new()
+		pm.transform_format = MultiMesh.TRANSFORM_3D
+		pm.mesh = q
+		pm.instance_count = liste.size()
+		for j in liste.size():
+			pm.set_instance_transform(j, liste[j])
+		var pmi := MultiMeshInstance3D.new()
+		pmi.multimesh = pm
+		if g.get("ot_golge", "") == "yok":
+			pmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		kok.add_child(pmi)

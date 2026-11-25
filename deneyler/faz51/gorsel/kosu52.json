@@ -1,1 +1,1 @@
-{"kosu_id":"M52b","aciklama":"Faz 5.2 D12-D15 aynı makinede maliyet: S4a/S1/S2 × D0/D11/D12e/D13/D14/D15b; S4a D0 ve D15b tekrar","profiller":["D0","D11","D12e","D13","D14","D15b"],"tekrar":["D0","D15b"]}
+{"kosu_id":"M52c","aciklama":"Faz 5.2 D16-D17 aynı makinede maliyet: S4a/S1/S2 × D0/D15b/D16s/D16c/D16d/D17; D15b ve D16s tekrar","profiller":["D0","D15b","D16s","D16c","D16d","D17"],"tekrar":["D15b","D16s"]}
