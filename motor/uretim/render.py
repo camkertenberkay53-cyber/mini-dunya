@@ -92,6 +92,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "dongu": {a: k["tur"] != "tek_sefer" for a, k in kurallar.items()},
         "cevre": [dict(cv, glb=str(veri.ekipman_glb(cv["id"]))) for cv in c["ortam"].get("cevre", [])],
         "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
+        "yuzey": _yuzey(),
         "vfx": _vfx(c, ar),
         "serpme": _serpme(plan, c),
         "yerlesim": (yer := _yerlesim(plan, c)),
@@ -163,6 +164,26 @@ def _yerlesim(plan: dict, c: dict) -> dict:
     return k
 
 
+def _belgesel(alt: str) -> bool:
+    """Belgesel kalite paketi: ana anahtar ve alt özellik birlikte açık mı."""
+    b = veri.kural("gorsel").get("belgesel_kalite", {})
+    return bool(b.get("acik")) and bool(b.get(alt, True))
+
+
+def _yuzey() -> dict:
+    """Gerçekçi karakter yüzeyi kuralları (kurallar/yuzey.yaml); gorsel.yaml gercekci_karakter.acik iken. Yollar mutlak."""
+    if not _belgesel("karakter_yuzey"):
+        return {"acik": False}
+    kok = ayar.MOTOR / "varlik" / "cc0"
+    kur = []
+    for r in veri.kural("yuzey")["kurallar"]:
+        d = kok / r["doku"]
+        arm = r.get("pur_arm", True)
+        kur.append({**{k: v for k, v in r.items() if k != "doku"}, "diff": str(d / "diff.jpg"), "nor": str(d / "nor_gl.jpg"),
+                    "pur": str(d / ("arm.jpg" if arm else "rough.jpg")), "pur_arm": arm})
+    return {"acik": True, "kurallar": kur}
+
+
 def _sinema() -> dict:
     """Son işlem katmanı (vinyet/ton/gren); sinematik render açıkken onun 'sinema' ekleri uygulanır."""
     g = veri.kural("gorsel")
@@ -179,6 +200,9 @@ def _film(c: dict) -> dict:
     if not sr.get("acik"):
         return {"acik": False}
     f = dict(sr.get("film", {}), acik=True)
+    klasik = f.pop("dof_klasik", {})
+    if not _belgesel("fiziksel_lens"):
+        f.update(klasik)
     f.update(f.pop("isik_ozel", {}).get(c["ortam"]["isik"], {}))
     isik = veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
     gp = gorsel_profili(veri.kural("gorsel"), c["ortam"]["arazi"])["isik"]
@@ -200,11 +224,12 @@ def _cevre_glb(ids: list, donem: str | None, hd: bool) -> list[Path]:
     from motor.varlik import mekan_varlik as mv
     katalog = mv.katalog()["varliklar"]
     out: list[Path] = []
+    agac_acik = _belgesel("agac")
     for pid in ids:
         if pid in katalog:
             adaylar = [g] if hd and (g := mv.kullanilabilir(pid, donem)) else []
         else:
-            adaylar = mv.yerine_gecen(pid, donem) if hd else []
+            adaylar = [g for g in mv.yerine_gecen(pid, donem) if agac_acik or katalog.get(g.stem, {}).get("uretici") != "agac"] if hd else []
             if not adaylar and (pr := veri.parca(pid)) and donem in pr.get("donem", []) \
                     and veri.kalite()["ekipman"].get(pid, {}).get("sinif") not in (None, "RED") and veri.ekipman_glb(pid).exists():
                 adaylar = [veri.ekipman_glb(pid)]

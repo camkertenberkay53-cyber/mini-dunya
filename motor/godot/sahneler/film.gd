@@ -27,6 +27,11 @@ uniform float odak = 20.0;
 uniform float dof_guc = 0.0;
 uniform float dof_max = 2.5;
 uniform float dof_bas = 1.0;
+// fiziksel lens: bulanıklık çemberi = f² / (N (S - f)) · |D - S| / D   (f: FOV'dan odak uzaklığı, N: diyafram)
+uniform float dof_fizik = 0.0;
+uniform float fov_derece = 50.0;
+uniform float diyafram = 2.8;
+uniform float sensor_m = 0.036;      // dikey kadrajın uzun kenarı (35 mm tam kare)
 uniform float egri = 0.12;
 uniform float siyah = 0.012;
 uniform float doygunluk = 0.92;
@@ -53,17 +58,24 @@ void fragment(){
   // --- alan derinliği (yalnız odak ötesi; dairesel 8 örnek, mip ile) ---
   if (dof_guc > 0.0 && !gok) {
     float r = clamp((uz - odak * dof_bas) / max(odak, 1.0) * dof_guc, 0.0, dof_max);   // odak ötesi ancak dof_bas katından sonra
+    if (dof_fizik > 0.5) {
+      float f = sensor_m * 0.5 / tan(radians(fov_derece) * 0.5);
+      float coc = f * f / (diyafram * max(odak - f, 0.05)) * abs(uz - odak) / max(uz, 0.1);
+      r = clamp(coc / sensor_m * VIEWPORT_SIZE.y * 0.5 * dof_guc, 0.0, dof_max);   // yarıçap (piksel)
+    }
     if (r > 0.15) {
       vec3 s = c; float w = 1.0;
-      for (int i = 0; i < 8; i++) {
-        float a = float(i) * 0.785398 + 0.39;
-        vec2 o = vec2(cos(a), sin(a)) * r * px * 1.6;
-        s += textureLod(ekran, uv + o, log2(max(r, 1.0)) * 0.5).rgb; w += 1.0;
+      for (int i = 0; i < 12; i++) {
+        float a = float(i) * 2.39996;                       // altın açı: halka yerine disk örneklemesi
+        float rr = sqrt((float(i) + 0.5) / 12.0);
+        vec2 o = vec2(cos(a), sin(a)) * r * rr * px * 1.4;
+        s += textureLod(ekran, uv + o, clamp(log2(max(r * 0.5, 1.0)), 0.0, 3.0)).rgb; w += 1.0;
       }
       c = s / w;
     }
   } else if (dof_guc > 0.0 && gok) {
-    c = mix(c, textureLod(ekran, uv, 1.5).rgb, clamp(dof_guc * 0.4, 0.0, 1.0));
+    float rg = dof_fizik > 0.5 ? clamp(pow(sensor_m * 0.5 / tan(radians(fov_derece) * 0.5), 2.0) / (diyafram * max(odak, 0.1)) / sensor_m * VIEWPORT_SIZE.y * 0.5 * dof_guc, 0.0, dof_max) : 0.0;
+    c = mix(c, textureLod(ekran, uv, clamp(log2(max(rg * 0.5, 1.0)), 0.0, 3.0) + 1.0).rgb, clamp(dof_fizik > 0.5 ? rg / 3.0 : dof_guc * 0.4, 0.0, 1.0));
   }
   // --- temas gölgesi (8 örnekli ekran-uzayı perdeleme; uzakta söner) ---
   if (ao_guc > 0.0 && !gok && uz < 60.0) {
@@ -117,7 +129,7 @@ static func kur(kamera: Camera3D, k: Dictionary, isik: Dictionary) -> ShaderMate
 	var m := ShaderMaterial.new()
 	m.shader = sh
 	m.render_priority = 127
-	for ad in ["pus_yogunluk", "pus_bas", "pus_max", "pus_yukseklik", "ao_guc", "ao_yaricap", "dof_guc", "dof_max", "dof_bas", "egri",
+	for ad in ["pus_yogunluk", "pus_bas", "pus_max", "pus_yukseklik", "ao_guc", "ao_yaricap", "dof_guc", "dof_max", "dof_bas", "dof_fizik", "diyafram", "sensor_m", "egri",
 			"siyah", "doygunluk", "hata_ayikla"]:
 		if k.has(ad):
 			m.set_shader_parameter(ad, float(k[ad]))
@@ -131,6 +143,7 @@ static func kur(kamera: Camera3D, k: Dictionary, isik: Dictionary) -> ShaderMate
 	return m
 
 ## Güneş yönü (dünya uzayı, güneşe doğru) ve odak uzaklığı her karede güncellenir.
-static func guncelle(m: ShaderMaterial, gunes_yon: Vector3, odak: float) -> void:
+static func guncelle(m: ShaderMaterial, gunes_yon: Vector3, odak: float, fov: float = 50.0) -> void:
 	m.set_shader_parameter("gunes_yon", gunes_yon)
 	m.set_shader_parameter("odak", odak)
+	m.set_shader_parameter("fov_derece", fov)

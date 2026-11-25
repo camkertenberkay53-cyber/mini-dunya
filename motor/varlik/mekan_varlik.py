@@ -23,6 +23,8 @@ CC0 = BURASI / "cc0"
 KATALOG = BURASI / "mekan_varliklari.yaml"
 KAYIT = BURASI / "mekan_varlik_kaydi.json"
 BETIK = BURASI / "blender" / "mekan_uret.py"
+AGAC_BETIK = BURASI / "blender" / "agac_uret.py"
+AGAC_KAYNAK = {"yaprakli": ["ambientcg/Leaf001"], "igne": ["polyhaven/fir_sapling_medium"], "kuru": []}
 CIKTI = ayar.ONBELLEK / "mekan"
 
 
@@ -48,14 +50,36 @@ def gltf_yolu(kaynak: str) -> Path:
     return g[0]
 
 
+def kaynaklar(t: dict) -> list[str]:
+    """Varlığın dayandığı CC0 kaynakları (lisansı doğrulanır). Prosedürel ağaç: kabuk + yaprak/iğne fotoğrafı."""
+    if t.get("uretici") == "agac":
+        return [t["kabuk"]] + AGAC_KAYNAK[t["tur"]]
+    return [t["kaynak"]]
+
+
 def anahtar(vid: str, t: dict) -> str:
-    h = hashlib.sha256(json.dumps({k: t.get(k) for k in ("kaynak", "nesneler", "olcek", "yon_derece", "ucgen_hedef", "doku_max")},
+    h = hashlib.sha256(json.dumps({k: v for k, v in t.items() if k not in ("donem", "tarih", "yerine", "rol")},
                                   sort_keys=True).encode())
-    for f in sorted((CC0 / t["kaynak"]).rglob("*")):
-        if f.is_file():
-            h.update(f.name.encode() + hashlib.sha256(f.read_bytes()).digest())
-    h.update(BETIK.read_bytes())
+    for kay in kaynaklar(t):
+        for f in sorted((CC0 / kay).rglob("*")):
+            if f.is_file():
+                h.update(f.name.encode() + hashlib.sha256(f.read_bytes()).digest())
+    if t.get("uretici") == "agac":
+        h.update(AGAC_BETIK.read_bytes() + (BURASI / "agac_doku.py").read_bytes())
+    else:
+        h.update(BETIK.read_bytes())
     return h.hexdigest()[:16]
+
+
+def _agac_isi(vid: str, t: dict, glb: Path) -> dict:
+    kart_kok = CIKTI / "_agac_doku"
+    if not (kart_kok / "yaprak_salkim.png").exists() or not (kart_kok / "igne_dal.png").exists():
+        from motor.varlik import agac_doku
+        agac_doku.main(str(kart_kok))
+    k = CC0 / t["kabuk"]
+    return {**{a: b for a, b in t.items() if a not in ("donem", "tarih", "yerine", "rol", "uretici")}, "id": vid,
+            "kabuk": {"diff": str(k / "diff.jpg"), "nor": str(k / "nor_gl.jpg"), "arm": str(k / "arm.jpg")},
+            "kart": str(kart_kok / ("igne_dal.png" if t["tur"] == "igne" else "yaprak_salkim.png")), "cikti": str(glb)}
 
 
 def kalite_sinifi(olcum: dict, sinir: dict) -> tuple[str, list]:
@@ -88,13 +112,24 @@ def uret(idler: list[str] | None = None, zorla: bool = False) -> dict:
     for vid, t in k["varliklar"].items():
         if idler and vid not in idler:
             continue
-        lisans_kaydi(t["kaynak"])   # lisans doğrulanmadan üretim yok
+        for kay in kaynaklar(t):
+            lisans_kaydi(kay)   # lisans doğrulanmadan üretim yok
         a = anahtar(vid, t)
         glb = CIKTI / f"{vid}.glb"
         if not zorla and kayit.get(vid, {}).get("anahtar") == a and glb.exists():
             continue
         isler.append((vid, t, a, glb))
-    if isler:
+    agac = [x for x in isler if x[1].get("uretici") == "agac"]
+    isler_gltf = [x for x in isler if x[1].get("uretici") != "agac"]
+    if agac:
+        is_json = CIKTI / "_agac_is.json"
+        is_json.write_text(json.dumps({"parcalar": [_agac_isi(vid, t, glb) for vid, t, a, glb in agac]}))
+        p = subprocess.run([sys.executable, str(AGAC_BETIK), str(is_json)], capture_output=True, text=True, timeout=3600)
+        if p.returncode != 0:
+            print(p.stdout[-3000:], p.stderr[-4000:])
+            raise SystemExit("AĞAÇ ÜRETİMİ BAŞARISIZ")
+    if isler_gltf:
+        isler, tum = isler_gltf, isler
         is_json = CIKTI / "_is.json"
         is_json.write_text(json.dumps({"parcalar": [{"id": vid, "gltf": str(gltf_yolu(t["kaynak"])), "nesneler": t.get("nesneler"),
                                                      "olcek": t.get("olcek", 1.0), "yon_derece": t.get("yon_derece", 0.0),
@@ -104,16 +139,21 @@ def uret(idler: list[str] | None = None, zorla: bool = False) -> dict:
         if p.returncode != 0:
             print(p.stdout[-3000:], p.stderr[-4000:])
             raise SystemExit("MEKÂN VARLIĞI ÜRETİMİ BAŞARISIZ")
+        isler = tum
     for vid, t, a, glb in isler:
         olc = json.loads(glb.with_suffix(".olc.json").read_text())
         sinif, neden = kalite_sinifi(olc, k["kalite"])
-        lk = lisans_kaydi(t["kaynak"])
+        lks = [lisans_kaydi(kay) for kay in kaynaklar(t)]
+        lk = lks[0]
         kayit[vid] = {"id": vid, "anahtar": a, "sha256": hashlib.sha256(glb.read_bytes()).hexdigest(), "olcum": olc,
                       "sinif": sinif, "neden": neden, "donem": t["donem"], "tarih": t["tarih"], "yerine": t.get("yerine", []),
                       "rol": t.get("rol"), "lisans": lk["lisans"]["ad"], "lisans_kaynak": lk["lisans"]["kaynak"],
                       "yazar": lk.get("yazarlar"), "kaynak": {"sayfa": lk["sayfa"], "kimlik": lk["kimlik"], "nesneler": t.get("nesneler"),
-                                                              "dosyalar": [{"dosya": f["dosya"], "sha256": f["sha256"]} for f in lk["dosyalar"]]},
-                      "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."}
+                                                              "dosyalar": [{"dosya": f["dosya"], "sha256": f["sha256"]} for x in lks for f in x["dosyalar"]],
+                                                              "tum_kaynaklar": [x["sayfa"] for x in lks]},
+                      "not": ("Geometri kendi prosedürel üretimimiz (blender/agac_uret.py); dokular CC0 fotoğraflardan (agac_doku.py)."
+                              if t.get("uretici") == "agac" else
+                              "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı.")}
         print(sinif, vid, olc["ucgen"], "üçgen", round(olc["bayt"] / 1024), "KB", olc["boyut_m"], neden)
     kayit = {v: x for v, x in kayit.items() if v in k["varliklar"]}
     KAYIT.write_text(json.dumps(kayit, ensure_ascii=False, indent=1))

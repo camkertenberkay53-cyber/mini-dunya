@@ -18,7 +18,7 @@ def test_cc0_lisans_kaydi_tam():
     for v in json.loads((CC0 / "lisans.json").read_text())["varliklar"]:
         assert v["durum"] == "TAMAM", v["kimlik"]
         assert v["lisans"]["ad"] == "CC0 1.0" and v["lisans"]["kaynak"].startswith("https://")
-        assert v["sayfa"].startswith("https://polyhaven.com/a/")
+        assert v["sayfa"].startswith(("https://polyhaven.com/a/", "https://ambientcg.com/view?id="))
         for f in v["dosyalar"]:
             assert hashlib.sha256((CC0 / f["dosya"]).read_bytes()).hexdigest() == f["sha256"], f["dosya"]
 
@@ -27,7 +27,8 @@ def test_katalog_varliklari_lisansli_ve_kaliteli():
     kat = mv.katalog()
     kayit = mv.kayit_oku()
     for vid, t in kat["varliklar"].items():
-        mv.lisans_kaydi(t["kaynak"])                       # doğrulanmamışsa hata
+        for kay in mv.kaynaklar(t):
+            mv.lisans_kaydi(kay)                           # doğrulanmamışsa hata
         k = kayit[vid]
         assert k["sinif"] == "A", (vid, k["neden"])
         assert k["lisans"] == "CC0 1.0"

@@ -89,6 +89,96 @@ varliklar:
     donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
     tarih: {guven: makul, not: "Ahşap sandık; genel."}
 
+  # --- Ağaçlar: kendi prosedürel üretecimiz (gövde/dal geometrisi) + CC0 fotoğraf dokuları (kabuk, yaprak, iğne) ---
+  yaprakli_hd_1:
+    uretici: agac
+    tur: yaprakli
+    kabuk: polyhaven/jolcham_oak_bark_01
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 9.5
+    tohum: 3
+    yerine: [agac_yaprakli_1, agac_yaprakli_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Ilıman yaprak döken ağaç (meşe/kayın tipi)."}
+  yaprakli_hd_2:
+    uretici: agac
+    tur: yaprakli
+    kabuk: polyhaven/jolcham_oak_bark_01
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 10.5
+    tohum: 8
+    yerine: [agac_yaprakli_1, agac_yaprakli_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Ilıman yaprak döken ağaç (meşe/kayın tipi)."}
+  yaprakli_hd_3:
+    uretici: agac
+    tur: yaprakli
+    kabuk: polyhaven/jolcham_oak_bark_01
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 8.5
+    tohum: 21
+    yerine: [agac_yaprakli_1, agac_yaprakli_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Ilıman yaprak döken ağaç (meşe/kayın tipi)."}
+  cam_hd_1:
+    uretici: agac
+    tur: igne
+    kabuk: polyhaven/pine_bark
+    seviye: 1
+    boy_m: 12.0
+    tohum: 5
+    yerine: [cam_1, cam_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Köknar/çam tipi kozalaklı."}
+  cam_hd_2:
+    uretici: agac
+    tur: igne
+    kabuk: polyhaven/pine_bark
+    seviye: 1
+    boy_m: 13.5
+    tohum: 14
+    yerine: [cam_1, cam_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Köknar/çam tipi kozalaklı."}
+  kuru_hd_1:
+    uretici: agac
+    tur: kuru
+    kabuk: polyhaven/bark_brown_02
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 8.5
+    tohum: 33
+    yerine: [kuru_agac]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Kurumuş ağaç."}
+
 # Kalite sınırları (çevre ölçeği; karakter ekipmanı sınırından ayrı — el ekipmanı değil, sahne yapısı).
 kalite:
   ucgen_en_cok: 60000

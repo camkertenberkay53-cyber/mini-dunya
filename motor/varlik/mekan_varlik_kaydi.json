@@ -1,7 +1,7 @@
 {
  "sur_kalin_hd": {
   "id": "sur_kalin_hd",
-  "anahtar": "1dca48fb4c74a2b8",
+  "anahtar": "464d2636d479ed3b",
   "sha256": "a75d9c28ffb74f303cb6a4dc50e8df111795ac3cfeb3cd45794158c9b8762310",
   "olcum": {
    "ucgen": 5996,
@@ -97,13 +97,16 @@
      "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_trim_arm_1k.jpg",
      "sha256": "d6a9e67be3f171857bb06af436ebaefedd1fd3ca4e1212c8ad42be7ef6038c91"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/modular_fort_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "sur_kapi_hd": {
   "id": "sur_kapi_hd",
-  "anahtar": "5bde067b4167fae1",
+  "anahtar": "6d4d08f5588b58fd",
   "sha256": "f0fb09ee47958c0fdd6e17ca08516bf120d1808c6573d9496a27e0d4fd8c7965",
   "olcum": {
    "ucgen": 1368,
@@ -199,13 +202,16 @@
      "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_trim_arm_1k.jpg",
      "sha256": "d6a9e67be3f171857bb06af436ebaefedd1fd3ca4e1212c8ad42be7ef6038c91"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/modular_fort_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "kule_yuvarlak_hd": {
   "id": "kule_yuvarlak_hd",
-  "anahtar": "c11604af51acfc7a",
+  "anahtar": "cdfe0e1f7ad677eb",
   "sha256": "87692e34b97cd4a783ebb69e95be7edd8481a982fe0cd86834089af03a3956a2",
   "olcum": {
    "ucgen": 4772,
@@ -301,13 +307,16 @@
      "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_trim_arm_1k.jpg",
      "sha256": "d6a9e67be3f171857bb06af436ebaefedd1fd3ca4e1212c8ad42be7ef6038c91"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/modular_fort_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "yelkenli_orta_hd": {
   "id": "yelkenli_orta_hd",
-  "anahtar": "7c416d118a41c6fd",
+  "anahtar": "604dbc1232599129",
   "sha256": "0151510ebd724f64b71836c574a65654cb94c67fc78e99d77ada163a41012f7f",
   "olcum": {
    "ucgen": 28000,
@@ -403,13 +412,16 @@
      "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_rigging_diff_1k.jpg",
      "sha256": "e88492e5cceef5b17e31d727b7d67ddce07ca58418e86581d845b949df2cb2d7"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/dutch_ship_medium"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "yelkenli_buyuk_hd": {
   "id": "yelkenli_buyuk_hd",
-  "anahtar": "9fbae41f10c3c8ad",
+  "anahtar": "6c8a8dc2cd8f9406",
   "sha256": "53c8a244068bd385f9db63e7dc346cb54ab63792f03cd9c86a04ae385207b8b8",
   "olcum": {
    "ucgen": 32000,
@@ -505,13 +517,16 @@
      "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_rigging_arm_1k.jpg",
      "sha256": "7429a00828ab899e00460c128e06dcd8fb291ab906f4af9a5bd49568e6d3062e"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/dutch_ship_large_02"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "iskele_hd": {
   "id": "iskele_hd",
-  "anahtar": "3b3526e3b2db75a4",
+  "anahtar": "a38caecb9d3f13a6",
   "sha256": "5c5b1a8dd34d40c8d29e7dc59495c66d53850c0e19fd017b9580c8e66cf242a9",
   "olcum": {
    "ucgen": 14000,
@@ -593,13 +608,16 @@
      "dosya": "polyhaven/modular_wooden_pier/textures/modular_wooden_pier_planks_nor_gl_1k.jpg",
      "sha256": "b23d7b0c23c9a41d50b7e1691e183902765aa4c21ac6ca6da678e874c4ddfb04"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/modular_wooden_pier"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "yamac_kaya_hd": {
   "id": "yamac_kaya_hd",
-  "anahtar": "73048eda8c4f9882",
+  "anahtar": "7e2eb05530e4a5f1",
   "sha256": "cbb3d07be011a40875286aae8e0bfee06c20b4aaf95ac98a00f0e005a23dc5bb",
   "olcum": {
    "ucgen": 14000,
@@ -671,13 +689,16 @@
      "dosya": "polyhaven/mountainside/textures/mountainside_nor_gl_1k.jpg",
      "sha256": "1eec8a8f32a2e61fb3ca431ddb1f364ea49cfead59369da3e7466cf7ddcb49e9"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/mountainside"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "ucurum_kaya_hd": {
   "id": "ucurum_kaya_hd",
-  "anahtar": "2db5b56e9b40fefb",
+  "anahtar": "ca5e366b49729b93",
   "sha256": "ca231ea18d75d341a24c0f9efa8da41ce7f05762600c53d37df5afb716cb7467",
   "olcum": {
    "ucgen": 12000,
@@ -749,13 +770,16 @@
      "dosya": "polyhaven/namaqualand_cliff_01/textures/namaqualand_cliff_01_arm_1k.jpg",
      "sha256": "42accffb1ad7d9a4faa8caada34427220ed3d90bf65eafcdd1bbed420d8dae2a"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/namaqualand_cliff_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "kaya_yuzu_hd": {
   "id": "kaya_yuzu_hd",
-  "anahtar": "e2d8d45fbdd5bac1",
+  "anahtar": "5ff4b77c1e8be1b2",
   "sha256": "2dc34b096d02023ff77e6b453127c84e8412ea1a7715a32dcc99b9dbddef13dd",
   "olcum": {
    "ucgen": 10000,
@@ -826,13 +850,16 @@
      "dosya": "polyhaven/rock_face_01/rock_face_01.bin",
      "sha256": "873eac0319333e92bc96ddeedf8ebf69dc3c68ff1dfe32d8c14ddc165cdb20ac"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/rock_face_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "fici_grubu_hd": {
   "id": "fici_grubu_hd",
-  "anahtar": "acb0f37b0d39c86e",
+  "anahtar": "863853f0d3c87eef",
   "sha256": "f6bd3b18db5686d5168f212c09cf2a4267c08896f540d61b86fb564b54ade72e",
   "olcum": {
    "ucgen": 8000,
@@ -926,13 +953,16 @@
      "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_pieces_arm_1k.jpg",
      "sha256": "785b59a19add1951bcd54d7607c18fcafa5a09068349ac437640d495b45a62fd"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/wooden_barrels_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "sandik_hd": {
   "id": "sandik_hd",
-  "anahtar": "550c322538ceba9b",
+  "anahtar": "e0b5a59f84d152fc",
   "sha256": "4774e1e591ec821aa6736a3f38e2a09ce2dc6847b2dab8782a5205a262259b52",
   "olcum": {
    "ucgen": 6550,
@@ -1001,13 +1031,16 @@
      "dosya": "polyhaven/wooden_crate_01/textures/wooden_crate_01_arm_1k.jpg",
      "sha256": "cd0b031c3924905e16ffd78ead062c2cc274148c4104d09635310097738b4679"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/wooden_crate_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
  },
  "kaya_iri_hd": {
   "id": "kaya_iri_hd",
-  "anahtar": "ec8efbea3529eaa4",
+  "anahtar": "ca9b37b59dad1874",
   "sha256": "3380712307ca0573af2b94e73efb54d65c66de5506d748a38a64bdf7700458db",
   "olcum": {
    "ucgen": 6000,
@@ -1079,8 +1112,545 @@
      "dosya": "polyhaven/boulder_01/textures/boulder_01_nor_gl_1k.jpg",
      "sha256": "0810cf6e89d89bb6eb065b4d2e2855288f5dcbd2c15c6e40ab90d462021b50aa"
     }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/boulder_01"
    ]
   },
   "not": "Modelin kendi PBR malzemesi/UV'si korunur; yalnız modül seçimi, ölçek/yön, taban, üçgen azaltma, doku sınırı."
+ },
+ "yaprakli_hd_1": {
+  "id": "yaprakli_hd_1",
+  "anahtar": "11fb53d7df744982",
+  "sha256": "a47cd9877237c7fb30926305f819b7c76a703b8600e83146ed6fba03e407532d",
+  "olcum": {
+   "ucgen": 6852,
+   "kose": 8134,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    6.026,
+    6.566,
+    8.201
+   ],
+   "malzeme": 2,
+   "uv": 1,
+   "doku": [
+    1024
+   ],
+   "kart": 1071,
+   "bayt": 757600
+  },
+  "sinif": "A",
+  "neden": [],
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "kesin",
+   "not": "Ilıman yaprak döken ağaç (meşe/kayın tipi)."
+  },
+  "yerine": [
+   "agac_yaprakli_1",
+   "agac_yaprakli_2"
+  ],
+  "rol": null,
+  "lisans": "CC0 1.0",
+  "lisans_kaynak": "https://polyhaven.com/license",
+  "yazar": {
+   "Charlotte Baglioni": "All"
+  },
+  "kaynak": {
+   "sayfa": "https://polyhaven.com/a/jolcham_oak_bark_01",
+   "kimlik": "jolcham_oak_bark_01",
+   "nesneler": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/diff.jpg",
+     "sha256": "08c26b3ea38718dfc3902d0889ac06e2ce0ae9cddb31d8988723eee1780a71c8"
+    },
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/nor_gl.jpg",
+     "sha256": "bdc5a310b183fdb3dee4c2c8871b15f57f2fbbaf68253a73303d8320976b1826"
+    },
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/arm.jpg",
+     "sha256": "db24dfda99d304a8f3d7660f838d76106259a00ac386709732cd3c9196b7667f"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/ao.jpg",
+     "sha256": "cda51201395cc471f9e33c399769d1d95dd45812c85df423b6646496aa45ab66"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/diff.jpg",
+     "sha256": "98f388b8ec1775666104a6bb4361f0e99123e4e20527e1716553838d7fd78fe2"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/disp.jpg",
+     "sha256": "6f376e386e1617b3e977e0b16676cfc7e37c171c879c7caa36fcc97f49e9d6ff"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/nor_gl.jpg",
+     "sha256": "179609efca2bec044706767163243f9e861765f153a529d45a7e7a9c3a33c099"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/opak.jpg",
+     "sha256": "857aa2fc78b606d70298608cabe95cea51c07f6a88b09028c1b463d2c3057226"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/rough.jpg",
+     "sha256": "96c12e83ad12ba866eaf65cf6dec7c09dc47db3b36fea42e52d35787bcc88b96"
+    }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/jolcham_oak_bark_01",
+    "https://ambientcg.com/view?id=Leaf001"
+   ]
+  },
+  "not": "Geometri kendi prosedürel üretimimiz (blender/agac_uret.py); dokular CC0 fotoğraflardan (agac_doku.py)."
+ },
+ "yaprakli_hd_2": {
+  "id": "yaprakli_hd_2",
+  "anahtar": "f0ac47550f8d6ef1",
+  "sha256": "fb0d81b4e4853d0c0cb23abc318fcef69fc9ed22fde8720c0adf8c63ef322b70",
+  "olcum": {
+   "ucgen": 6996,
+   "kose": 8345,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    7.831,
+    8.249,
+    9.011
+   ],
+   "malzeme": 2,
+   "uv": 1,
+   "doku": [
+    1024
+   ],
+   "kart": 1116,
+   "bayt": 765204
+  },
+  "sinif": "A",
+  "neden": [],
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "kesin",
+   "not": "Ilıman yaprak döken ağaç (meşe/kayın tipi)."
+  },
+  "yerine": [
+   "agac_yaprakli_1",
+   "agac_yaprakli_2"
+  ],
+  "rol": null,
+  "lisans": "CC0 1.0",
+  "lisans_kaynak": "https://polyhaven.com/license",
+  "yazar": {
+   "Charlotte Baglioni": "All"
+  },
+  "kaynak": {
+   "sayfa": "https://polyhaven.com/a/jolcham_oak_bark_01",
+   "kimlik": "jolcham_oak_bark_01",
+   "nesneler": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/diff.jpg",
+     "sha256": "08c26b3ea38718dfc3902d0889ac06e2ce0ae9cddb31d8988723eee1780a71c8"
+    },
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/nor_gl.jpg",
+     "sha256": "bdc5a310b183fdb3dee4c2c8871b15f57f2fbbaf68253a73303d8320976b1826"
+    },
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/arm.jpg",
+     "sha256": "db24dfda99d304a8f3d7660f838d76106259a00ac386709732cd3c9196b7667f"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/ao.jpg",
+     "sha256": "cda51201395cc471f9e33c399769d1d95dd45812c85df423b6646496aa45ab66"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/diff.jpg",
+     "sha256": "98f388b8ec1775666104a6bb4361f0e99123e4e20527e1716553838d7fd78fe2"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/disp.jpg",
+     "sha256": "6f376e386e1617b3e977e0b16676cfc7e37c171c879c7caa36fcc97f49e9d6ff"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/nor_gl.jpg",
+     "sha256": "179609efca2bec044706767163243f9e861765f153a529d45a7e7a9c3a33c099"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/opak.jpg",
+     "sha256": "857aa2fc78b606d70298608cabe95cea51c07f6a88b09028c1b463d2c3057226"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/rough.jpg",
+     "sha256": "96c12e83ad12ba866eaf65cf6dec7c09dc47db3b36fea42e52d35787bcc88b96"
+    }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/jolcham_oak_bark_01",
+    "https://ambientcg.com/view?id=Leaf001"
+   ]
+  },
+  "not": "Geometri kendi prosedürel üretimimiz (blender/agac_uret.py); dokular CC0 fotoğraflardan (agac_doku.py)."
+ },
+ "yaprakli_hd_3": {
+  "id": "yaprakli_hd_3",
+  "anahtar": "6dd44e04a0e39f6b",
+  "sha256": "5141a98c37ff4b6d7b3461b4f17917259af614e879df9e0a6bb151f6dc2a2997",
+  "olcum": {
+   "ucgen": 6900,
+   "kose": 8299,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    6.353,
+    5.903,
+    7.729
+   ],
+   "malzeme": 2,
+   "uv": 1,
+   "doku": [
+    1024
+   ],
+   "kart": 1119,
+   "bayt": 763164
+  },
+  "sinif": "A",
+  "neden": [],
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "kesin",
+   "not": "Ilıman yaprak döken ağaç (meşe/kayın tipi)."
+  },
+  "yerine": [
+   "agac_yaprakli_1",
+   "agac_yaprakli_2"
+  ],
+  "rol": null,
+  "lisans": "CC0 1.0",
+  "lisans_kaynak": "https://polyhaven.com/license",
+  "yazar": {
+   "Charlotte Baglioni": "All"
+  },
+  "kaynak": {
+   "sayfa": "https://polyhaven.com/a/jolcham_oak_bark_01",
+   "kimlik": "jolcham_oak_bark_01",
+   "nesneler": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/diff.jpg",
+     "sha256": "08c26b3ea38718dfc3902d0889ac06e2ce0ae9cddb31d8988723eee1780a71c8"
+    },
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/nor_gl.jpg",
+     "sha256": "bdc5a310b183fdb3dee4c2c8871b15f57f2fbbaf68253a73303d8320976b1826"
+    },
+    {
+     "dosya": "polyhaven/jolcham_oak_bark_01/arm.jpg",
+     "sha256": "db24dfda99d304a8f3d7660f838d76106259a00ac386709732cd3c9196b7667f"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/ao.jpg",
+     "sha256": "cda51201395cc471f9e33c399769d1d95dd45812c85df423b6646496aa45ab66"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/diff.jpg",
+     "sha256": "98f388b8ec1775666104a6bb4361f0e99123e4e20527e1716553838d7fd78fe2"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/disp.jpg",
+     "sha256": "6f376e386e1617b3e977e0b16676cfc7e37c171c879c7caa36fcc97f49e9d6ff"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/nor_gl.jpg",
+     "sha256": "179609efca2bec044706767163243f9e861765f153a529d45a7e7a9c3a33c099"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/opak.jpg",
+     "sha256": "857aa2fc78b606d70298608cabe95cea51c07f6a88b09028c1b463d2c3057226"
+    },
+    {
+     "dosya": "ambientcg/Leaf001/rough.jpg",
+     "sha256": "96c12e83ad12ba866eaf65cf6dec7c09dc47db3b36fea42e52d35787bcc88b96"
+    }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/jolcham_oak_bark_01",
+    "https://ambientcg.com/view?id=Leaf001"
+   ]
+  },
+  "not": "Geometri kendi prosedürel üretimimiz (blender/agac_uret.py); dokular CC0 fotoğraflardan (agac_doku.py)."
+ },
+ "kuru_hd_1": {
+  "id": "kuru_hd_1",
+  "anahtar": "80d40faaaea5c4be",
+  "sha256": "c713a093ff5ada349e950ef877e6990878110bab0d519d8d02e21497ffb251e7",
+  "olcum": {
+   "ucgen": 4674,
+   "kose": 3830,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    4.404,
+    5.56,
+    6.348
+   ],
+   "malzeme": 1,
+   "uv": 1,
+   "doku": [
+    512
+   ],
+   "kart": 0,
+   "bayt": 320488
+  },
+  "sinif": "A",
+  "neden": [],
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "kesin",
+   "not": "Kurumuş ağaç."
+  },
+  "yerine": [
+   "kuru_agac"
+  ],
+  "rol": null,
+  "lisans": "CC0 1.0",
+  "lisans_kaynak": "https://polyhaven.com/license",
+  "yazar": {
+   "Rob Tuytel": "All"
+  },
+  "kaynak": {
+   "sayfa": "https://polyhaven.com/a/bark_brown_02",
+   "kimlik": "bark_brown_02",
+   "nesneler": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/bark_brown_02/diff.jpg",
+     "sha256": "920fa0bed0c9d78c1d530e99795113afd532d7db746de440f4a85d7c83ed0f1a"
+    },
+    {
+     "dosya": "polyhaven/bark_brown_02/nor_gl.jpg",
+     "sha256": "0d5e691e8ad8bcd093a3587887fda2a6b4a948b5708a4f256f7919584c6eb857"
+    },
+    {
+     "dosya": "polyhaven/bark_brown_02/arm.jpg",
+     "sha256": "6bd86d37b3b9b40cc30a4b661e382ec41fa7463a8b1144ff44708b19fa675af1"
+    }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/bark_brown_02"
+   ]
+  },
+  "not": "Geometri kendi prosedürel üretimimiz (blender/agac_uret.py); dokular CC0 fotoğraflardan (agac_doku.py)."
+ },
+ "cam_hd_1": {
+  "id": "cam_hd_1",
+  "anahtar": "3720c0d9ea0b6104",
+  "sha256": "9331bc27d1f2ee202a34f170e4a14b3b80b247879efbfda2cea7e25643d0318e",
+  "olcum": {
+   "ucgen": 2660,
+   "kose": 2944,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    9.062,
+    8.795,
+    12.983
+   ],
+   "malzeme": 2,
+   "uv": 1,
+   "doku": [
+    512,
+    1024
+   ],
+   "kart": 246,
+   "bayt": 502952
+  },
+  "sinif": "A",
+  "neden": [],
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "kesin",
+   "not": "Köknar/çam tipi kozalaklı."
+  },
+  "yerine": [
+   "cam_1",
+   "cam_2"
+  ],
+  "rol": null,
+  "lisans": "CC0 1.0",
+  "lisans_kaynak": "https://polyhaven.com/license",
+  "yazar": {
+   "Dimitrios Savva": "All"
+  },
+  "kaynak": {
+   "sayfa": "https://polyhaven.com/a/pine_bark",
+   "kimlik": "pine_bark",
+   "nesneler": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/pine_bark/diff.jpg",
+     "sha256": "89ddfbff0388d30caff902ba600cdf75eb1e651ca71ece6594b5a9b27abb47ab"
+    },
+    {
+     "dosya": "polyhaven/pine_bark/nor_gl.jpg",
+     "sha256": "666e5f175a010f12577687dd8029125bff99110e6a97958afb295b34266437db"
+    },
+    {
+     "dosya": "polyhaven/pine_bark/arm.jpg",
+     "sha256": "1ba20ec25c9f43327d6aa0ea809917854cff553ad7f21fb548e853a5b5ec701a"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_branches_nor_gl_1k.jpg",
+     "sha256": "6a570ab53ab2249ecdfa93e7d3b9a8a2cb1a8ad391400e5a64c708914779b2c3"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_branches_diff_1k.jpg",
+     "sha256": "a5d25150ba1bee10008c039f98aa3c73b4477a404d6715c511ca9b5b0f4a9077"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_branches_arm_1k.jpg",
+     "sha256": "95d4e9e62cd309fbc38a175e2306379c76c062425b09c0fb72c5b7356a719123"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_twigs_nor_gl_1k.jpg",
+     "sha256": "d470dc39b1d02bbeba06feb0ad818680ef3c24623b4db597270301a5fb8c9369"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_twigs_diff_1k.jpg",
+     "sha256": "db1113d37d68d960b84eb14ce67a4022d02bf10d6f0c078d689063f6296eaa1d"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_twigs_arm_1k.jpg",
+     "sha256": "d66c81fc073ee7ea97a76b6da2399769f16944e50ef0e007f09c95619f597c79"
+    }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/pine_bark",
+    "https://polyhaven.com/a/fir_sapling_medium"
+   ]
+  },
+  "not": "Geometri kendi prosedürel üretimimiz (blender/agac_uret.py); dokular CC0 fotoğraflardan (agac_doku.py)."
+ },
+ "cam_hd_2": {
+  "id": "cam_hd_2",
+  "anahtar": "950e0d39cb55010b",
+  "sha256": "7c0c86ba8db35e675c9e80060c50bdbfd6061d1edb88502975414af918562d92",
+  "olcum": {
+   "ucgen": 2820,
+   "kose": 3128,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    10.023,
+    9.898,
+    14.5
+   ],
+   "malzeme": 2,
+   "uv": 1,
+   "doku": [
+    512,
+    1024
+   ],
+   "kart": 262,
+   "bayt": 509800
+  },
+  "sinif": "A",
+  "neden": [],
+  "donem": [
+   "bizans-15yy",
+   "osmanli-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "kesin",
+   "not": "Köknar/çam tipi kozalaklı."
+  },
+  "yerine": [
+   "cam_1",
+   "cam_2"
+  ],
+  "rol": null,
+  "lisans": "CC0 1.0",
+  "lisans_kaynak": "https://polyhaven.com/license",
+  "yazar": {
+   "Dimitrios Savva": "All"
+  },
+  "kaynak": {
+   "sayfa": "https://polyhaven.com/a/pine_bark",
+   "kimlik": "pine_bark",
+   "nesneler": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/pine_bark/diff.jpg",
+     "sha256": "89ddfbff0388d30caff902ba600cdf75eb1e651ca71ece6594b5a9b27abb47ab"
+    },
+    {
+     "dosya": "polyhaven/pine_bark/nor_gl.jpg",
+     "sha256": "666e5f175a010f12577687dd8029125bff99110e6a97958afb295b34266437db"
+    },
+    {
+     "dosya": "polyhaven/pine_bark/arm.jpg",
+     "sha256": "1ba20ec25c9f43327d6aa0ea809917854cff553ad7f21fb548e853a5b5ec701a"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_branches_nor_gl_1k.jpg",
+     "sha256": "6a570ab53ab2249ecdfa93e7d3b9a8a2cb1a8ad391400e5a64c708914779b2c3"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_branches_diff_1k.jpg",
+     "sha256": "a5d25150ba1bee10008c039f98aa3c73b4477a404d6715c511ca9b5b0f4a9077"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_branches_arm_1k.jpg",
+     "sha256": "95d4e9e62cd309fbc38a175e2306379c76c062425b09c0fb72c5b7356a719123"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_twigs_nor_gl_1k.jpg",
+     "sha256": "d470dc39b1d02bbeba06feb0ad818680ef3c24623b4db597270301a5fb8c9369"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_twigs_diff_1k.jpg",
+     "sha256": "db1113d37d68d960b84eb14ce67a4022d02bf10d6f0c078d689063f6296eaa1d"
+    },
+    {
+     "dosya": "polyhaven/fir_sapling_medium/textures/fir_sapling_medium_twigs_arm_1k.jpg",
+     "sha256": "d66c81fc073ee7ea97a76b6da2399769f16944e50ef0e007f09c95619f597c79"
+    }
+   ],
+   "tum_kaynaklar": [
+    "https://polyhaven.com/a/pine_bark",
+    "https://polyhaven.com/a/fir_sapling_medium"
+   ]
+  },
+  "not": "Geometri kendi prosedürel üretimimiz (blender/agac_uret.py); dokular CC0 fotoğraflardan (agac_doku.py)."
  }
 }

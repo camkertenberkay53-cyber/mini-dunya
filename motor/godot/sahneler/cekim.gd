@@ -14,6 +14,7 @@ const Serp := preload("res://sahneler/serpme.gd")
 const Y := preload("res://sahneler/yerlesim.gd")
 const Mz := preload("res://sahneler/malzeme.gd")
 const F := preload("res://sahneler/film.gd")
+const Yz := preload("res://sahneler/yuzey.gd")
 var _film: ShaderMaterial = null
 const K := preload("res://sahneler/kalabalik.gd")
 var _sinema: ShaderMaterial
@@ -69,6 +70,7 @@ func _ready() -> void:
 		var vt: Dictionary = is_.get("vfx", {})
 		if vt.get("acik", false) and str(cv["id"]) in vt.get("top", {}).get("parcalar", []):   # top atışı: ağız alevi + duman
 			_toplar.append(V.top_atisi(self, n, vt["top"], int(is_.get("tohum", 1)) * 59 + _toplar.size() * 17, t))
+	Yz.kur(is_.get("yuzey", {}))   # gerçekçi karakter yüzeyi (kapalıysa etkisiz)
 	for k in c.get("karakterler", []):
 		var takim: Dictionary = is_["takimlar"][k["takim"]]
 		var kok := D.kur(takim)
@@ -80,6 +82,7 @@ func _ready() -> void:
 		var kc: Dictionary = is_.get("karakter_cesit", {})
 		if kc.get("acik", false):   # Faz 5.6: kişi başına tohumlu görünüm çeşitliliği
 			D.cesitle(kok, int(is_.get("tohum", 1)) * 7919 + _sira * 104729, kc)
+		Yz.uygula(kok)
 		var bas := Vector3(k["konum"][0], 0, k["konum"][1])
 		kok.position = bas
 		var ap := D.animasyon_oynatici(kok)
@@ -190,7 +193,7 @@ func _guncelle() -> void:
 	kamera.position = _vec(b["konum"]).lerp(_vec(s["konum"]), u)
 	kamera.look_at(_vec(b["hedef"]).lerp(_vec(s["hedef"]), u), Vector3.UP)
 	if _film:
-		F.guncelle(_film, O._gunes_yon, kamera.position.distance_to(_vec(b["hedef"]).lerp(_vec(s["hedef"]), u)))
+		F.guncelle(_film, O._gunes_yon, kamera.position.distance_to(_vec(b["hedef"]).lerp(_vec(s["hedef"]), u)), kamera.fov)
 
 func _process(delta: float) -> void:
 	_guncelle()   # kare n, t = n / fps anını gösterir

@@ -123,9 +123,23 @@ sinematik_render:
     pus_gok_karisim: 0.45      # hava rengi: sis rengi ile gök (tepe) rengi arası — uzak plan hafif soğur
     ao_guc: 0.5
     ao_yaricap: 0.6
-    dof_guc: 0.3
-    dof_max: 1.4
+    dof_guc: 1.0
+    dof_max: 9.0
     dof_bas: 2.5
+    dof_fizik: 1      # fiziksel lens (belgesel_kalite.fiziksel_lens): geniş planda derin odak, tele yakın planda arka plan ayrışır
+    dof_klasik: {dof_guc: 0.3, dof_max: 1.4, dof_fizik: 0}   # fiziksel lens kapalıyken (sinematik render kabul ayarı)
+    diyafram: 2.8
+    sensor_m: 0.036
     egri: 0.15
     siyah: 0.0
     doygunluk: 0.88
+# Belgesel kalite paketi — TEK ANAHTAR belgesel_kalite.acik (alt anahtarlarla ayrı ayrı da kapatılabilir):
+#  karakter_yuzey: kıyafet/deri/zırh/ekipmana gerçek PBR ayrıntısı (godot/sahneler/yuzey.gd, kurallar/yuzey.yaml)
+#  agac: prosedürel gerçekçi ağaçlar (blender/agac_uret.py; mekan_varliklari.yaml 'uretici: agac') stilize ağaçların yerine
+#  fiziksel_lens: alan derinliği objektif odak uzaklığı/odak mesafesi/diyaframdan (film geçişi); kapalıysa klasik ayar
+# acik: false → önceki görüntü (sinematik render ve mekân paketleri olduğu gibi).
+belgesel_kalite:
+  acik: true
+  karakter_yuzey: true
+  agac: true
+  fiziksel_lens: true
