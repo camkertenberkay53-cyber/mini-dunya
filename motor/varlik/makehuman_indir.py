@@ -57,7 +57,11 @@ def main(istek_yolu: str) -> int:
             bolumler = re.findall(r"shared under ([A-Za-z0-9\-\.]+)", once)
             k["bolum_lisansi"] = bolumler[-1] if bolumler else None
             k["url"] = url
-            if k["bolum_lisansi"] != "CC0":
+            # Lisans: ana sayfa bölüm başlığı CC0 ya da (paket alt sayfası yalnız CC0 diyor ve zip adı _cc0)
+            alt_lis = k.get("alt_sayfa_lisans") or []
+            cc0 = k["bolum_lisansi"] == "CC0" or (alt_lis and all(x == "CC0" for x in alt_lis) and url.lower().endswith("_cc0.zip"))
+            k["lisans_karari"] = "CC0" if cc0 else None
+            if not cc0:
                 k["durum"] = f"LISANS_RED ({k['bolum_lisansi']})"
                 kayit["paketler"].append(k)
                 continue
