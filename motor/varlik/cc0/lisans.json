@@ -1,4 +1,2286 @@
 {
  "politika": "Yalnız CC0; lisans kaynağın API'sinden doğrulanır, doğrulanamayan indirilmez.",
- "varliklar": []
+ "varliklar": [
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "dutch_ship_medium",
+   "ad": "Dutch Ship Medium",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/dutch_ship_medium",
+   "yazarlar": {
+    "James Ray Cock": "model, textures, cleanup",
+    "Rico Cilliers": "sails model, textures",
+    "Nicolò Zubbini": "original model"
+   },
+   "kategoriler": [
+    "ships",
+    "collection: smugglers_cove"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "liman: tarihî ahşap yelkenli (orta)",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    6808.822154998779,
+    24070.354461669922,
+    24657.122135162354
+   ],
+   "poligon": 69162,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/dutch_ship_medium/dutch_ship_medium_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/dutch_ship_medium/dutch_ship_medium_1k.gltf",
+     "bayt": 7494,
+     "sha256": "208112252d4f83a9c404563371053820a90963a53b465fd6c745b16868f4bade",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_hull_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_hull_arm_1k.jpg",
+     "bayt": 992318,
+     "sha256": "10274d6f3815b73f559a920d01a7e9df8feba2ee2e3f574fdc106cedd769106b",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_sails_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_sails_diff_1k.jpg",
+     "bayt": 579788,
+     "sha256": "0a877ee5b446ee5fe624618b3bc7224bd4555a077804c4f1afe61d8ae4600147",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_rigging_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_rigging_arm_1k.jpg",
+     "bayt": 556896,
+     "sha256": "7429a00828ab899e00460c128e06dcd8fb291ab906f4af9a5bd49568e6d3062e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/dutch_ship_medium.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/dutch_ship_medium/dutch_ship_medium.bin",
+     "bayt": 2480380,
+     "sha256": "7ff5d886d3baea1f60afdc17c50b99029d7abca159db10212c89c95e39c5437e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_hull_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_hull_nor_gl_1k.jpg",
+     "bayt": 967533,
+     "sha256": "9f2c281b1b34182a8487cb2358d5e926bd1b2a5b898e8a22d17e0c4a5de9fb23",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_rigging_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_rigging_nor_gl_1k.jpg",
+     "bayt": 535119,
+     "sha256": "1a6c2fd46ba46239c6fe8d19b7462d86252f161d2dc21954780c12addbb6622c",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_sails_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_sails_arm_1k.jpg",
+     "bayt": 532281,
+     "sha256": "ecc0c3b7903ae642cd74214d6a20e6804386cab98759c2f0738a6b0268f825c5",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_hull_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_hull_diff_1k.jpg",
+     "bayt": 745169,
+     "sha256": "8bb56d0a31b08c5ca133041cf703daa33d6742d6df0d267c7fe5eced45c9d605",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_sails_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_sails_nor_gl_1k.jpg",
+     "bayt": 770917,
+     "sha256": "3ba665979b047c91386e89a855d1b9038f1c2e5cda116ecea1a54f976cf12fa4",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_medium/textures/dutch_ship_medium_rigging_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_medium/dutch_ship_medium_rigging_diff_1k.jpg",
+     "bayt": 567644,
+     "sha256": "e88492e5cceef5b17e31d727b7d67ddce07ca58418e86581d845b949df2cb2d7",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 8735539,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "dutch_ship_large_02",
+   "ad": "Dutch Ship Large 02",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/dutch_ship_large_02",
+   "yazarlar": {
+    "James Ray Cock": "model, textures, cleanup",
+    "Rico Cilliers": "sails model, textures",
+    "Nicolò Zubbini": "original model"
+   },
+   "kategoriler": [
+    "ships",
+    "collection: smugglers_cove"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "liman: tarihî büyük yelkenli",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    8537.703037261963,
+    34251.2149810791,
+    32078.845977783203
+   ],
+   "poligon": 96506,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/dutch_ship_large_02_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/dutch_ship_large_02/dutch_ship_large_02_1k.gltf",
+     "bayt": 7544,
+     "sha256": "93db4cfc0e0e5e8606041c7b69b7292ab2aa0a570f2e710bf0395393d60eb3a6",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_sails_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_sails_arm_1k.jpg",
+     "bayt": 532281,
+     "sha256": "ecc0c3b7903ae642cd74214d6a20e6804386cab98759c2f0738a6b0268f825c5",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_sails_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_sails_diff_1k.jpg",
+     "bayt": 579788,
+     "sha256": "0a877ee5b446ee5fe624618b3bc7224bd4555a077804c4f1afe61d8ae4600147",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_hull_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_hull_arm_1k.jpg",
+     "bayt": 992318,
+     "sha256": "10274d6f3815b73f559a920d01a7e9df8feba2ee2e3f574fdc106cedd769106b",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_sails_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_sails_nor_gl_1k.jpg",
+     "bayt": 770917,
+     "sha256": "3ba665979b047c91386e89a855d1b9038f1c2e5cda116ecea1a54f976cf12fa4",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_hull_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_hull_diff_1k.jpg",
+     "bayt": 745169,
+     "sha256": "8bb56d0a31b08c5ca133041cf703daa33d6742d6df0d267c7fe5eced45c9d605",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_rigging_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_rigging_diff_1k.jpg",
+     "bayt": 567644,
+     "sha256": "e88492e5cceef5b17e31d727b7d67ddce07ca58418e86581d845b949df2cb2d7",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/dutch_ship_large_02.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/dutch_ship_large_02/dutch_ship_large_02.bin",
+     "bayt": 3559996,
+     "sha256": "74fed27b1e5673e64281e830473ba3efcce66bda48ebeee020af65182510e246",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_rigging_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_rigging_nor_gl_1k.jpg",
+     "bayt": 535119,
+     "sha256": "1a6c2fd46ba46239c6fe8d19b7462d86252f161d2dc21954780c12addbb6622c",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_hull_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_hull_nor_gl_1k.jpg",
+     "bayt": 967533,
+     "sha256": "9f2c281b1b34182a8487cb2358d5e926bd1b2a5b898e8a22d17e0c4a5de9fb23",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/dutch_ship_large_02/textures/dutch_ship_large_02_rigging_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dutch_ship_large_02/dutch_ship_large_02_rigging_arm_1k.jpg",
+     "bayt": 556896,
+     "sha256": "7429a00828ab899e00460c128e06dcd8fb291ab906f4af9a5bd49568e6d3062e",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 9815205,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "modular_fort_01",
+   "ad": "Modular Fort 01",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/modular_fort_01",
+   "yazarlar": {
+    "Rico Cilliers": "All"
+   },
+   "kategoriler": [
+    "structures",
+    "buildings",
+    "collection: smugglers_cove"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kale: taş tahkimat/sur modülleri",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    71375.29754638672,
+    42669.87609863281,
+    13672.092854976654
+   ],
+   "poligon": 28218,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/modular_fort_01/modular_fort_01_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/modular_fort_01/modular_fort_01_1k.gltf",
+     "bayt": 71433,
+     "sha256": "829ac97d4c5c5672d3055d772e0ef4b545ad93cb4b639296f34e3ddf04cf9faf",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/modular_fort_01.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/modular_fort_01/modular_fort_01.bin",
+     "bayt": 1288144,
+     "sha256": "de86e71af4cd5b37006914a8e7ae7de59b245b73364317f1886285a6aa797f57",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_plaster_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_plaster_diff_1k.jpg",
+     "bayt": 995332,
+     "sha256": "d453b45cec06da3da9e67b38d016f6358c7c310a99db9b066e07e3a494731f4d",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_wall_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_wall_nor_gl_1k.jpg",
+     "bayt": 1194253,
+     "sha256": "6e8b0e1abac9c6ab0f9a36c04300ea3d0ca83dede3b49485c969a71494ce8d53",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_trim_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_trim_nor_gl_1k.jpg",
+     "bayt": 1070875,
+     "sha256": "c5a21bd71f1ed0186fedaad18edb74713527a9426f5d136a5b21c3e09a71e1c3",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_plaster_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_plaster_nor_gl_1k.jpg",
+     "bayt": 1478355,
+     "sha256": "567953f0b7da39f6d4f173cc98ff948d31e07b516c8d2e0e0b0ec69de35cab3e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_wall_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_wall_arm_1k.jpg",
+     "bayt": 936858,
+     "sha256": "6d3327658794a90fc1b52c19dfbb57059b7ea9801f59abd13417e4be7bf40a34",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_plaster_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_plaster_arm_1k.jpg",
+     "bayt": 872242,
+     "sha256": "d51902ce06084dd828cf82d60fcbc733160cc27ada41d5e57b38bafbe5d12327",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_trim_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_trim_diff_1k.jpg",
+     "bayt": 945345,
+     "sha256": "fe5811560cf0471321fe6af08114f279a7f957412b8aa6e2c224112990760556",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_wall_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_wall_diff_1k.jpg",
+     "bayt": 978641,
+     "sha256": "8bdefadca0688e9b3fd91b4d12f341918b0a3670c25537c18a777fa51bb90bea",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_fort_01/textures/modular_fort_01_trim_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_fort_01/modular_fort_01_trim_arm_1k.jpg",
+     "bayt": 807245,
+     "sha256": "d6a9e67be3f171857bb06af436ebaefedd1fd3ca4e1212c8ad42be7ef6038c91",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 10638723,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "large_castle_door",
+   "ad": "Large Castle Door",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/large_castle_door",
+   "yazarlar": {
+    "Tina": "All"
+   },
+   "kategoriler": [
+    "structures",
+    "buildings",
+    "collection: hidden_alley"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kale: büyük ahşap kale kapısı",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2012.115716934204,
+    338.9068990945816,
+    2964.752435684204
+   ],
+   "poligon": 12640,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/large_castle_door/large_castle_door_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/large_castle_door/large_castle_door_1k.gltf",
+     "bayt": 6111,
+     "sha256": "e43e0a7bf56cb4f37402a133ae8bed3a010120362ef1a52ff4e59b0d83b2d656",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/large_castle_door/large_castle_door.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/large_castle_door/large_castle_door.bin",
+     "bayt": 422436,
+     "sha256": "7db2eb9d2b81207a30c849ba5de0f2c25085add88e437bc69764ce792758ff76",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/large_castle_door/textures/large_castle_door_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/large_castle_door/large_castle_door_nor_gl_1k.jpg",
+     "bayt": 1023095,
+     "sha256": "297929524f3a2e6634543ec1c6f0278369d3649a2eba888fa3bf9caf72ab2af1",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/large_castle_door/textures/large_castle_door_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/large_castle_door/large_castle_door_arm_1k.jpg",
+     "bayt": 1016111,
+     "sha256": "2b1e832840d7393ac8a4d058630f8a8378254ad56f6601da08f1135851861955",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/large_castle_door/textures/large_castle_door_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/large_castle_door/large_castle_door_diff_1k.jpg",
+     "bayt": 803253,
+     "sha256": "06b9640df9702ceee23cfd042e858ca03b8c68818a691c55d4ea2a65258db97a",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 3271006,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "modular_wooden_pier",
+   "ad": "Modular Wooden Pier",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/modular_wooden_pier",
+   "yazarlar": {
+    "Rico Cilliers": "All"
+   },
+   "kategoriler": [
+    "structures",
+    "collection: smugglers_cove"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "liman/nehir: ahşap iskele",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    3101.5628576278687,
+    19026.371479034424,
+    7515.67667722702
+   ],
+   "poligon": 84780,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/modular_wooden_pier/modular_wooden_pier_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/modular_wooden_pier/modular_wooden_pier_1k.gltf",
+     "bayt": 21127,
+     "sha256": "eeea9853deb63e43510f8d9d6af21963c88adab77e17ccac9f9b8d3a7d34a923",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_wooden_pier/textures/modular_wooden_pier_poles_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_wooden_pier/modular_wooden_pier_poles_arm_1k.jpg",
+     "bayt": 813524,
+     "sha256": "dacaff86f936bef10220aa60843efadae53039f064ad1a6fad735b912f1ba285",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_wooden_pier/modular_wooden_pier.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/modular_wooden_pier/modular_wooden_pier.bin",
+     "bayt": 2651092,
+     "sha256": "6ec10b84aaaa02800b095850fc92cf850632e5becd76698dc6609f40f05e1b60",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_wooden_pier/textures/modular_wooden_pier_planks_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_wooden_pier/modular_wooden_pier_planks_arm_1k.jpg",
+     "bayt": 722511,
+     "sha256": "4c03bcee7d0fb9708be5e5ebc4dd5fd73789f4eb24b6391dff6167f11c3ce95d",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_wooden_pier/textures/modular_wooden_pier_planks_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_wooden_pier/modular_wooden_pier_planks_diff_1k.jpg",
+     "bayt": 764066,
+     "sha256": "2670a7eae2a3104e8537e61d90a8d8b169c7eb0f69b51622bec10e9472dc4573",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_wooden_pier/textures/modular_wooden_pier_poles_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_wooden_pier/modular_wooden_pier_poles_diff_1k.jpg",
+     "bayt": 836152,
+     "sha256": "da9e017b41e052d5e47558bb98e61b577f66e9d44eb2d26dc9b085e317bede9e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_wooden_pier/textures/modular_wooden_pier_poles_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_wooden_pier/modular_wooden_pier_poles_nor_gl_1k.jpg",
+     "bayt": 978238,
+     "sha256": "9b2d7ca04642e249428969fa32189f36fcea8577a282dbccca1ac15d59dce18e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/modular_wooden_pier/textures/modular_wooden_pier_planks_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modular_wooden_pier/modular_wooden_pier_planks_nor_gl_1k.jpg",
+     "bayt": 1055218,
+     "sha256": "b23d7b0c23c9a41d50b7e1691e183902765aa4c21ac6ca6da678e874c4ddfb04",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 7841928,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_face_01",
+   "ad": "Rock Face 01",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/rock_face_01",
+   "yazarlar": {
+    "Dario Barresi": "All"
+   },
+   "kategoriler": [
+    "rocks",
+    "nature",
+    "collection: verdant_trail"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "dağ: fotogrametrik kaya yüzü",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    7108.232021331787,
+    5624.304533004761,
+    4980.4371148347855
+   ],
+   "poligon": 20174,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/rock_face_01/rock_face_01_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/rock_face_01/rock_face_01_1k.gltf",
+     "bayt": 2793,
+     "sha256": "96c332c01d173a2431115f3bac29be101fba341e5500e2a08e384f4edd17299e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_01/textures/rock_face_01_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_face_01/rock_face_01_arm_1k.jpg",
+     "bayt": 693610,
+     "sha256": "59128c79d207a50a69a38002986135ade3b19642d26158cec141eca41578c9ca",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_01/textures/rock_face_01_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_face_01/rock_face_01_nor_gl_1k.jpg",
+     "bayt": 1023400,
+     "sha256": "9a9d85b9a01f4e24fc9ceec8baf96c019f552bca69591ff544c7a725e28b1d97",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_01/textures/rock_face_01_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_face_01/rock_face_01_diff_1k.jpg",
+     "bayt": 853749,
+     "sha256": "41bd26ed2db1332b1ebb4b1326fd8af4d21f0f0eb57b8ea385033115c722cfdb",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_01/rock_face_01.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/rock_face_01/rock_face_01.bin",
+     "bayt": 476436,
+     "sha256": "873eac0319333e92bc96ddeedf8ebf69dc3c68ff1dfe32d8c14ddc165cdb20ac",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 3049988,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_face_02",
+   "ad": "Rock Face 02",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/rock_face_02",
+   "yazarlar": {
+    "Dario Barresi": "All",
+    "Rico Cilliers": "processing"
+   },
+   "kategoriler": [
+    "rocks",
+    "nature",
+    "collection: verdant_trail"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "dağ: fotogrametrik kaya yüzü",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    4870.411515235901,
+    3472.859501838684,
+    4734.235167503357
+   ],
+   "poligon": 29566,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/rock_face_02/rock_face_02_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/rock_face_02/rock_face_02_1k.gltf",
+     "bayt": 2794,
+     "sha256": "ebeab82d463c89eb5f894b85807da111280a73b552d694257118f3f2d47bf760",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_02/textures/rock_face_02_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_face_02/rock_face_02_nor_gl_1k.jpg",
+     "bayt": 1082942,
+     "sha256": "a9dc200810f5488395fdc928b5a9441c007c33047d0375d946f33dcd2ff1c853",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_02/textures/rock_face_02_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_face_02/rock_face_02_arm_1k.jpg",
+     "bayt": 820389,
+     "sha256": "0f3f64b9f56e3c5cecbb99e45d8fa0d4cbf025d4455439d1c5f6672a408365ee",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_02/rock_face_02.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/rock_face_02/rock_face_02.bin",
+     "bayt": 702068,
+     "sha256": "cfa3dea8f0f91525b5dfe93d889acacf961d20f7174aae100eae2c6e101edf31",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_02/textures/rock_face_02_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_face_02/rock_face_02_diff_1k.jpg",
+     "bayt": 920193,
+     "sha256": "d777f2c9b598773c2143751c34913cf5eef0ae392af31fb73c28b98afab6fb7b",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 3528386,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "namaqualand_cliff_01",
+   "ad": "Namaqualand Cliff 01",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/namaqualand_cliff_01",
+   "yazarlar": {
+    "Jenelle van Heerden": "Photography",
+    "Rico Cilliers": "modeling"
+   },
+   "kategoriler": [
+    "nature",
+    "rocks",
+    "collection: namaqualand"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "dağ/kıyı: uçurum kayası",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    8279.043674468994,
+    4390.161573886871,
+    4961.063176393509
+   ],
+   "poligon": 176938,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/namaqualand_cliff_01/namaqualand_cliff_01_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/namaqualand_cliff_01/namaqualand_cliff_01_1k.gltf",
+     "bayt": 2848,
+     "sha256": "cd225f3d1e088bd358fe5c426963d335eda9d8b78f084c555abf809b32b8cc85",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/namaqualand_cliff_01/textures/namaqualand_cliff_01_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/namaqualand_cliff_01/namaqualand_cliff_01_nor_gl_1k.jpg",
+     "bayt": 975864,
+     "sha256": "0a7f41c277c963a4300a83fe63adf2f7b74642e6285ea7c7db159b8e9a184a4d",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/namaqualand_cliff_01/namaqualand_cliff_01.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/namaqualand_cliff_01/namaqualand_cliff_01.bin",
+     "bayt": 2179752,
+     "sha256": "401ecb3bcd3cdb655fa971a3db3a460055911fb35a3b18eaaeae0d860358ddda",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/namaqualand_cliff_01/textures/namaqualand_cliff_01_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/namaqualand_cliff_01/namaqualand_cliff_01_diff_1k.jpg",
+     "bayt": 702723,
+     "sha256": "188303dfc45530c2ed4d73be4b3c4fb3257c5fdbae9bc32a60af3688bf58162d",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/namaqualand_cliff_01/textures/namaqualand_cliff_01_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/namaqualand_cliff_01/namaqualand_cliff_01_arm_1k.jpg",
+     "bayt": 683173,
+     "sha256": "42accffb1ad7d9a4faa8caada34427220ed3d90bf65eafcdd1bbed420d8dae2a",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 4544360,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "mountainside",
+   "ad": "Mountainside",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/mountainside",
+   "yazarlar": {
+    "Dario Barresi": "Photography",
+    "Rico Cilliers": "processing"
+   },
+   "kategoriler": [
+    "nature",
+    "rocks",
+    "collection: verdant_trail"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "dağ: büyük yamaç kayası",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    10214.37692642212,
+    5254.634857177734,
+    10526.674702763557
+   ],
+   "poligon": 287755,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/mountainside/mountainside_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/mountainside/mountainside_1k.gltf",
+     "bayt": 2776,
+     "sha256": "73241a50748582e6a13b2462afbd57d18a1bae5ffef777b3119d064709604fcd",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/mountainside/textures/mountainside_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/mountainside/mountainside_arm_1k.jpg",
+     "bayt": 791031,
+     "sha256": "8e81fdefb8c3a64e763d266c3c4025cc4c04287b81f250dc777025a64caf5f75",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/mountainside/textures/mountainside_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/mountainside/mountainside_diff_1k.jpg",
+     "bayt": 942046,
+     "sha256": "e4613465418060de6b5f536820d04e0e945a88d87168f3fa4ce9da662ebc1696",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/mountainside/mountainside.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/mountainside/mountainside.bin",
+     "bayt": 4409280,
+     "sha256": "08e4ca60e050045de8224d12d23af84f9406bc558943038114d81e184158d953",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/mountainside/textures/mountainside_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/mountainside/mountainside_nor_gl_1k.jpg",
+     "bayt": 1240239,
+     "sha256": "1eec8a8f32a2e61fb3ca431ddb1f364ea49cfead59369da3e7466cf7ddcb49e9",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 7385372,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "boulder_01",
+   "ad": "Boulder 01",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/boulder_01",
+   "yazarlar": {
+    "Rico Cilliers": "All"
+   },
+   "kategoriler": [
+    "rocks",
+    "nature",
+    "collection: verdant_trail"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ön plan kaya",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    1272.6830840110779,
+    1830.7338953018188,
+    1003.8918256759644
+   ],
+   "poligon": 123976,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/boulder_01/boulder_01_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/boulder_01/boulder_01_1k.gltf",
+     "bayt": 2773,
+     "sha256": "51487934db898b4c24072780a451e34eca5c02e3ada24a62bbc600bbc4019e92",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/boulder_01/textures/boulder_01_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_arm_1k.jpg",
+     "bayt": 659386,
+     "sha256": "c57187c5746b6be913fa53846cb44ff78743e7ca5000f131c9627b99563c2b87",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/boulder_01/textures/boulder_01_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_diff_1k.jpg",
+     "bayt": 987467,
+     "sha256": "c38f0e918f6dc16b8d386ba3cdd89805c78320c119a1ceec85856f82b09a65b8",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/boulder_01/boulder_01.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/boulder_01/boulder_01.bin",
+     "bayt": 2938808,
+     "sha256": "7f5b06503d62bd95bfe9c6b8a354a5cc8ff04a4d271a8cf87a3e3125db4232d7",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/boulder_01/textures/boulder_01_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_nor_gl_1k.jpg",
+     "bayt": 1183552,
+     "sha256": "0810cf6e89d89bb6eb065b4d2e2855288f5dcbd2c15c6e40ab90d462021b50aa",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 5771986,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_moss_set_01",
+   "ad": "Rock Moss Set 01",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/rock_moss_set_01",
+   "yazarlar": {
+    "Kless Gyzen": "All"
+   },
+   "kategoriler": [
+    "rocks",
+    "nature",
+    "collection: pine_forest"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "orman: yosunlu taş grubu",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    8004.603862762451,
+    6948.764801025391,
+    1768.319845199585
+   ],
+   "poligon": 63127,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/rock_moss_set_01/rock_moss_set_01_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/rock_moss_set_01/rock_moss_set_01_1k.gltf",
+     "bayt": 9987,
+     "sha256": "c36675aca9c6b2be7785c2534cf413b03ec82a5a2a5407a2b1c0cdb0346c9727",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_01/rock_moss_set_01_nor_gl_1k.jpg",
+     "bayt": 209975,
+     "sha256": "eb4aad3f207f1dc5b624d74ae240372171626a66912bd71adf7bd3e518181d6e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_moss_set_01/rock_moss_set_01.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/rock_moss_set_01/rock_moss_set_01.bin",
+     "bayt": 1466380,
+     "sha256": "de8360e6175879aaf02c171911069cf5f1852547f9ca7f10e440085dbcc3315e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_01/rock_moss_set_01_rough_1k.jpg",
+     "bayt": 82624,
+     "sha256": "4d6ec46623abd8e2cdb855f59c7ce31873ad61b36b60e4de579e9e776a497c6b",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_01/rock_moss_set_01_diff_1k.jpg",
+     "bayt": 168099,
+     "sha256": "40cea65d8aa4ee73a93b04af19963834d061eee9779c3fc2c1cba76eef812ccc",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1937065,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "wooden_barrels_01",
+   "ad": "Wooden Barrels 01",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/wooden_barrels_01",
+   "yazarlar": {
+    "James Ray Cock": "All"
+   },
+   "kategoriler": [
+    "containers",
+    "props",
+    "collection: smugglers_cove"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "liman/kasaba: fıçılar",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    4440.432071685791,
+    3344.5359468460083,
+    956.7059241235256
+   ],
+   "poligon": 33142,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/wooden_barrels_01/wooden_barrels_01_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/wooden_barrels_01/wooden_barrels_01_1k.gltf",
+     "bayt": 31017,
+     "sha256": "ff785e2150198c4cdb3cc74e532b02ce9574d6a7fc3606f5801fcbf68e3136af",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_barrel02_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_barrel02_nor_gl_1k.jpg",
+     "bayt": 555954,
+     "sha256": "57c3d5682f299c97270228e3ec08f6c982fb2c2696ec30a74d0edbfe067235dd",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_barrel02_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_barrel02_arm_1k.jpg",
+     "bayt": 848051,
+     "sha256": "970de5e9f682d4ac2a2098c88dafc1e5a6c27cf1dbe31eb7ed3f8bc2a92eb58f",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_barrel01_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_barrel01_arm_1k.jpg",
+     "bayt": 852652,
+     "sha256": "35e34115f7657cadce27422730e936418a30e23397fb5c126591dff711acbf4b",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_pieces_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_pieces_nor_gl_1k.jpg",
+     "bayt": 620276,
+     "sha256": "3be77f6310507c9c37414809ba31c39c89621e8bde916893bd676d54a5ceade2",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/wooden_barrels_01.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/wooden_barrels_01/wooden_barrels_01.bin",
+     "bayt": 1243556,
+     "sha256": "7de8294b07ecb6bd57ea3542760fa45bbefc296a47dd044723eb599ffc56084f",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_barrel01_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_barrel01_nor_gl_1k.jpg",
+     "bayt": 538634,
+     "sha256": "3dfa658b4a38a711887c9e4a492a319b20e2a821e4e08435368f98fe0c78a1b8",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_pieces_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_pieces_diff_1k.jpg",
+     "bayt": 672604,
+     "sha256": "399134703c974ad4c8bc71107d513e8c89f5ca09f9b6175dc02e2e607b75c43d",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_barrel01_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_barrel01_diff_1k.jpg",
+     "bayt": 605063,
+     "sha256": "639e616e8d69acaadbf69725bb3d13f07a28fdff6c6b15e1d7f0574336564c72",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_barrel02_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_barrel02_diff_1k.jpg",
+     "bayt": 618495,
+     "sha256": "c75f506a0c31093d4d3d425d4c979f49fce2dc99a8e6caefb50809fcf329845e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_barrels_01/textures/wooden_barrels_01_pieces_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_barrels_01/wooden_barrels_01_pieces_arm_1k.jpg",
+     "bayt": 904545,
+     "sha256": "785b59a19add1951bcd54d7607c18fcafa5a09068349ac437640d495b45a62fd",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 7490847,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "wooden_crate_01",
+   "ad": "Wooden Crate 01",
+   "tur": "model",
+   "sayfa": "https://polyhaven.com/a/wooden_crate_01",
+   "yazarlar": {
+    "James Ray Cock": "All"
+   },
+   "kategoriler": [
+    "containers",
+    "collection: smugglers_cove"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "liman/kasaba: sandık",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    825.2729177474976,
+    408.9537411928177,
+    349.6182831004262
+   ],
+   "poligon": 6576,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/wooden_crate_01/wooden_crate_01_1k.gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/wooden_crate_01/wooden_crate_01_1k.gltf",
+     "bayt": 5612,
+     "sha256": "fd9c6073acfc671e12b64666053f2805ae33aff5d3dbbcfe5c97c08c06644927",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_crate_01/textures/wooden_crate_01_diff_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_crate_01/wooden_crate_01_diff_1k.jpg",
+     "bayt": 711292,
+     "sha256": "16653f4abaf4c1d9bca94bde3bd8c54d0ea9a5298d1648abcf57de1f7ecc34cc",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_crate_01/textures/wooden_crate_01_nor_gl_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_crate_01/wooden_crate_01_nor_gl_1k.jpg",
+     "bayt": 594076,
+     "sha256": "f4ea44c7dc1686123d337039cb713d74e8a2dbc6d1bd2beeac276d06f5df3fab",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_crate_01/wooden_crate_01.bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/wooden_crate_01/wooden_crate_01.bin",
+     "bayt": 189408,
+     "sha256": "85f381f8035f7a6f2f3b848640894c6d3333b261946dd8a338c0fe19e0bea21e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/wooden_crate_01/textures/wooden_crate_01_arm_1k.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_crate_01/wooden_crate_01_arm_1k.jpg",
+     "bayt": 776699,
+     "sha256": "cd0b031c3924905e16ffd78ead062c2cc274148c4104d09635310097738b4679",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2277087,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "castle_wall_slates",
+   "ad": "Castle Wall Slates",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/castle_wall_slates",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "rock",
+    "outdoor",
+    "wall",
+    "clean",
+    "man made"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kale: sur taşı",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2500,
+    2500
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/castle_wall_slates/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_wall_slates/castle_wall_slates_diff_1k.jpg",
+     "bayt": 625282,
+     "sha256": "1c42fe616560553caf8f61f298750e6a2cee06bf2a4af9156a930057d02da003",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/castle_wall_slates/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_wall_slates/castle_wall_slates_nor_gl_1k.jpg",
+     "bayt": 1072473,
+     "sha256": "9be1475eb6dde811e8cea0f950f2700ed75bc23c7b3fd66b6d7731c639b7faba",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/castle_wall_slates/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_wall_slates/castle_wall_slates_arm_1k.jpg",
+     "bayt": 298965,
+     "sha256": "b43fb950dc5396c5dc1b747191bb5e044c9d59ba6e9a8376cd0973faf367a01e",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1996720,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "medieval_blocks_05",
+   "ad": "Medieval Blocks 05",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/medieval_blocks_05",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "wall",
+    "rock",
+    "man made",
+    "outdoor",
+    "dirty",
+    "floor"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kale: kesme taş blok",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2000,
+    2000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/medieval_blocks_05/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_blocks_05/medieval_blocks_05_diff_1k.jpg",
+     "bayt": 653290,
+     "sha256": "dbaf760ed384c2202f2723b1a846bf4e2f9b128e4e7eb5fe549f51fdbbc4db84",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/medieval_blocks_05/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_blocks_05/medieval_blocks_05_nor_gl_1k.jpg",
+     "bayt": 1167772,
+     "sha256": "f8cf72d17b2f15b981921fd5cb29cf8daa721f754fe8996794b705dbbee7b28c",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/medieval_blocks_05/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_blocks_05/medieval_blocks_05_arm_1k.jpg",
+     "bayt": 188538,
+     "sha256": "4c4b918f1126d75956a74a3fef7d56b59e1f42a01bbefedc2e5facbea7b0b4c6",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2009600,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "castle_brick_07",
+   "ad": "Castle Brick 07",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/castle_brick_07",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "brick",
+    "outdoor",
+    "man made",
+    "indoor",
+    "wall",
+    "dirty"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kale: kale tuğlası/taş",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2500,
+    2500
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/castle_brick_07/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_07/castle_brick_07_diff_1k.jpg",
+     "bayt": 658783,
+     "sha256": "86c90b92c19922e8f051f1130e45dbf1adc72aa0f51d7cb8aafa275dbec63937",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/castle_brick_07/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_07/castle_brick_07_nor_gl_1k.jpg",
+     "bayt": 999461,
+     "sha256": "bf602e16fdedae9eea5933748e48b94cb3cc0b250fda3a0089f57125b781de46",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/castle_brick_07/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_07/castle_brick_07_arm_1k.jpg",
+     "bayt": 266906,
+     "sha256": "05c38daf0634378a5b7a9ed83e5a912ea1c1c074ee09c73ff36818e84a2dfa7a",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1925150,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rustic_stone_wall",
+   "ad": "Rustic Stone Wall",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/rustic_stone_wall",
+   "yazarlar": {
+    "Dimitrios Savva": "All"
+   },
+   "kategoriler": [
+    "outdoor",
+    "wall",
+    "rock",
+    "man made"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ev: moloz taş duvar",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    1519.9998617172241,
+    1519.9998617172241
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/rustic_stone_wall/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rustic_stone_wall/rustic_stone_wall_diff_1k.jpg",
+     "bayt": 849830,
+     "sha256": "6e9ab9ab9a406f9d47efcf9224d09f06b3b22e88053d8eb6d0e8a78cf4ec66d9",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rustic_stone_wall/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rustic_stone_wall/rustic_stone_wall_nor_gl_1k.jpg",
+     "bayt": 1206685,
+     "sha256": "c5af47086405e28c6979a88b23b46533d6eec33323560ed4dcabfe3bed50cf41",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rustic_stone_wall/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rustic_stone_wall/rustic_stone_wall_arm_1k.jpg",
+     "bayt": 723204,
+     "sha256": "a53a8722effb6c2af13caa2e821b9f55927f08d69b8e1f0bce10d5d6d34c2ac1",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2779719,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "medieval_wall_01",
+   "ad": "Medieval Wall 01",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/medieval_wall_01",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "plaster-concrete",
+    "wall",
+    "man made",
+    "outdoor",
+    "indoor",
+    "dirty"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ev: ortaçağ sıva",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2000,
+    2000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/medieval_wall_01/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_wall_01/medieval_wall_01_diff_1k.jpg",
+     "bayt": 598413,
+     "sha256": "73abffef4f875462fbe7379c771f4d55792a3ad11d60eeb757473cc832b0b1a1",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/medieval_wall_01/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_wall_01/medieval_wall_01_nor_gl_1k.jpg",
+     "bayt": 861497,
+     "sha256": "4d11552658659d941bfe590d2e4c2e2fbaf5ea4c71e0d77c1e5778fa55ec459c",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/medieval_wall_01/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_wall_01/medieval_wall_01_arm_1k.jpg",
+     "bayt": 137562,
+     "sha256": "5996a56794c8ea662b68828efec07cb98fbdafe29dd3ea23cce459eb44fbcd03",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1597472,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "clay_plaster",
+   "ad": "Clay Plaster",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/clay_plaster",
+   "yazarlar": {
+    "Amal Kumar": "All"
+   },
+   "kategoriler": [
+    "wall",
+    "man made",
+    "plaster-concrete",
+    "outdoor"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ev: kerpiç sıva",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    1999.9996423721313,
+    1999.9996423721313
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/clay_plaster/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_plaster/clay_plaster_diff_1k.jpg",
+     "bayt": 354209,
+     "sha256": "82e43c68bddebb55a18577ae3cb0d01c02c23f086d342a854ff8a174d9f4fd73",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/clay_plaster/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_plaster/clay_plaster_nor_gl_1k.jpg",
+     "bayt": 784921,
+     "sha256": "359f814292005ab16be86807678a4a51e8256a87c282ebf5f5333ce18c428fba",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/clay_plaster/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_plaster/clay_plaster_arm_1k.jpg",
+     "bayt": 385592,
+     "sha256": "f1a6f4c5aa27147b77e9b66a13d96b53814c8b4eb604074e74556ecfa9cabf7e",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1524722,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "white_rough_plaster",
+   "ad": "White Rough Plaster",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/white_rough_plaster",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "plaster-concrete",
+    "man made",
+    "wall",
+    "outdoor",
+    "indoor",
+    "dirty"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ev: kaba beyaz sıva",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    1000,
+    1000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/white_rough_plaster/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_rough_plaster/white_rough_plaster_diff_1k.jpg",
+     "bayt": 726568,
+     "sha256": "8de3dbca955bc3c719863015b6542326d76e2004c5d4a1f60928525a2031a71a",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/white_rough_plaster/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_rough_plaster/white_rough_plaster_nor_gl_1k.jpg",
+     "bayt": 814762,
+     "sha256": "29420864bc82c81d0ca0f23420ddc669ad2ab74b6dd2fb6a2c93db4f315a033d",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/white_rough_plaster/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_rough_plaster/white_rough_plaster_arm_1k.jpg",
+     "bayt": 161450,
+     "sha256": "76fecb90505f14378ae6230e76d47f0162577acd0cf8ffd2ce68d4eb05c46b4b",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1702780,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "medieval_wood",
+   "ad": "Medieval Wood",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/medieval_wood",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "wood",
+    "wall",
+    "man made",
+    "outdoor",
+    "indoor"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ahşap: ortaçağ ahşap kaplama",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2000,
+    2000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/medieval_wood/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_wood/medieval_wood_diff_1k.jpg",
+     "bayt": 747216,
+     "sha256": "66a36635dc3f2db696dbb6939b1d4f86c0b666c898c1b55c6b5d6d9f1896b43e",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/medieval_wood/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_wood/medieval_wood_nor_gl_1k.jpg",
+     "bayt": 827061,
+     "sha256": "90b0ce551282d55830497397edad9b0c3ea690728483de45b7df13eb0850df01",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/medieval_wood/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/medieval_wood/medieval_wood_arm_1k.jpg",
+     "bayt": 170315,
+     "sha256": "0b1f8d9cef2b2b23d1e2b4d5c2322a1e0cd62ff6193cf5a819301266cc0a5734",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1744592,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "weathered_planks",
+   "ad": "Weathered Planks",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/weathered_planks",
+   "yazarlar": {
+    "Dario Barresi": "Processing",
+    "Dimitrios Savva": "Photography"
+   },
+   "kategoriler": [
+    "outdoor",
+    "wood",
+    "man made",
+    "wall",
+    "floor"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ahşap: yıpranmış tahta",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2000,
+    2000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/weathered_planks/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/weathered_planks/weathered_planks_diff_1k.jpg",
+     "bayt": 599581,
+     "sha256": "01c9a372cfd7a7bf471b59c2458ed3ccecc93448aebf7ba0cc5b3b5b6ed24349",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/weathered_planks/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/weathered_planks/weathered_planks_nor_gl_1k.jpg",
+     "bayt": 681552,
+     "sha256": "381d298f3194ec4961b04b4912b9b6efea4b2ff7b914dac57e24c8b6b0be6a25",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/weathered_planks/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/weathered_planks/weathered_planks_arm_1k.jpg",
+     "bayt": 528272,
+     "sha256": "f0d81d945dbb267ed8b411af4db55141ae52b87313403667dd06aead9532fbef",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1809405,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rough_wood",
+   "ad": "Rough Wood",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/rough_wood",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "wood",
+    "natural",
+    "outdoor"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "ahşap: kaba kereste",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    500,
+    500
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/rough_wood/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_wood/rough_wood_diff_1k.jpg",
+     "bayt": 567074,
+     "sha256": "abc46d8e3163d911220f4ec3a4043b68d2b0c6d750513f80871211acfefb2a98",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rough_wood/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_wood/rough_wood_nor_gl_1k.jpg",
+     "bayt": 790334,
+     "sha256": "3d1c6f098b66d93e52071b41834dd14a424d8cd2f7c4130c62dc062acfa65011",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rough_wood/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_wood/rough_wood_arm_1k.jpg",
+     "bayt": 137749,
+     "sha256": "3d64915bf2898e6068fa4a55f9ffdd3361170265b47e145852eb3ef5e6196560",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1495157,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "clay_roof_tiles_02",
+   "ad": "Clay Roof Tiles 02",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/clay_roof_tiles_02",
+   "yazarlar": {
+    "Amal Kumar": "All"
+   },
+   "kategoriler": [
+    "man made",
+    "roofing",
+    "outdoor"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "çatı: kil kiremit",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2500,
+    2500
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/clay_roof_tiles_02/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_roof_tiles_02/clay_roof_tiles_02_diff_1k.jpg",
+     "bayt": 903929,
+     "sha256": "227a062b38b170e02c27eaa513dae45dc8bc893a62cbd8d0c08e2c32b381fc25",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/clay_roof_tiles_02/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_roof_tiles_02/clay_roof_tiles_02_nor_gl_1k.jpg",
+     "bayt": 990101,
+     "sha256": "1548d3ebce335a4590d9e421556c4189a7b63852c793a568c71b9e533f8b62d5",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/clay_roof_tiles_02/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_roof_tiles_02/clay_roof_tiles_02_arm_1k.jpg",
+     "bayt": 564611,
+     "sha256": "da94d4ce78607c4cb0450c669e8ca5d18852eb284def75445663f959cc1af63b",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2458641,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "red_slate_roof_tiles_01",
+   "ad": "Red Slate Roof Tiles 01",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/red_slate_roof_tiles_01",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "roofing",
+    "outdoor",
+    "man made",
+    "dirty"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "çatı: kırmızı kayrak kiremit",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2500,
+    2500
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/red_slate_roof_tiles_01/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_slate_roof_tiles_01/red_slate_roof_tiles_01_diff_1k.jpg",
+     "bayt": 449249,
+     "sha256": "7e30309de4bebe242b4ce9f5d0505af632caa75dcf7f2e5a53180926130f149b",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/red_slate_roof_tiles_01/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_slate_roof_tiles_01/red_slate_roof_tiles_01_nor_gl_1k.jpg",
+     "bayt": 642878,
+     "sha256": "c7aa2b9e63106561dd9fea050973f79dbba31936188517b67f7186a984f6aee7",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/red_slate_roof_tiles_01/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_slate_roof_tiles_01/red_slate_roof_tiles_01_arm_1k.jpg",
+     "bayt": 162043,
+     "sha256": "ba27e3afe995a2b7404c7934d726a1d9041f134d51d9b5a8ba8352991103d503",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1254170,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "roof_slates_02",
+   "ad": "Roof Slates 02",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/roof_slates_02",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "roofing",
+    "man made",
+    "outdoor"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "çatı: gri kayrak",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    3000,
+    3000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/roof_slates_02/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/roof_slates_02/roof_slates_02_diff_1k.jpg",
+     "bayt": 515626,
+     "sha256": "de3d2729ab385c5f7dd7106d3b435c737f6d2c3ea8883cea37de53cec2a34867",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/roof_slates_02/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/roof_slates_02/roof_slates_02_nor_gl_1k.jpg",
+     "bayt": 763206,
+     "sha256": "32be0c0ba1565856156a315dc98a773d72f1a03415930657b8a8ad62bf60c1bf",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/roof_slates_02/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/roof_slates_02/roof_slates_02_arm_1k.jpg",
+     "bayt": 224234,
+     "sha256": "a43d670bb04a70d32502e8b976b0cb97dd975ccab04b8a612ac6543f2b89ad2a",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1503066,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "thatch_roof_angled",
+   "ad": "Thatch Roof Angled",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/thatch_roof_angled",
+   "yazarlar": {
+    "Rob Tuytel": "Processing",
+    "Dimitrios Savva": "Photography"
+   },
+   "kategoriler": [
+    "outdoor",
+    "man made",
+    "roofing"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "çatı: saman/kamış",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    539.9999618530273,
+    539.9999618530273
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/thatch_roof_angled/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/thatch_roof_angled/thatch_roof_angled_diff_1k.jpg",
+     "bayt": 860319,
+     "sha256": "ad84b9bf0a826c6e573f4bac09a0b96f33aec673a7e31cdd360667dc355f3599",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/thatch_roof_angled/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/thatch_roof_angled/thatch_roof_angled_nor_gl_1k.jpg",
+     "bayt": 1278796,
+     "sha256": "073e2b374f2477605e23a1054e605de5268a012d2701865040d4551816b70d06",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/thatch_roof_angled/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/thatch_roof_angled/thatch_roof_angled_arm_1k.jpg",
+     "bayt": 848888,
+     "sha256": "c953702de5afbae44cc975bd9867d0e4bbd4a33718b6789d8ecb692734999bc3",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2988003,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rock_face_03",
+   "ad": "Rock Face 03",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/rock_face_03",
+   "yazarlar": {
+    "Dario Barresi": "Photography",
+    "Rico Cilliers": "Processing"
+   },
+   "kategoriler": [
+    "natural",
+    "terrain",
+    "rock",
+    "outdoor",
+    "collection: verdant_trail"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kaya: kaya yüzü",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2699.9995708465576,
+    2699.9995708465576
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/rock_face_03/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_diff_1k.jpg",
+     "bayt": 927082,
+     "sha256": "ea48e0e47ad42c8bd312476178b1248ec66f0eb19156a26a1c222f2a40caaf2d",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_03/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_nor_gl_1k.jpg",
+     "bayt": 1146788,
+     "sha256": "c6423169583f31715cf0636954bad524e806848a5f2861fcea6794275f726ff0",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rock_face_03/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_arm_1k.jpg",
+     "bayt": 793241,
+     "sha256": "a1f8e60eaf4f119071840e36e165d3a9185be62bd3ac7068ab6d886aa639d29f",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2867111,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "cliff_side",
+   "ad": "Cliff Side",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/cliff_side",
+   "yazarlar": {
+    "James Ray Cock": "Photography",
+    "Jenelle van Heerden": "Processing",
+    "Dario Barresi": "Photography"
+   },
+   "kategoriler": [
+    "outdoor",
+    "rock",
+    "natural",
+    "collection: namaqualand"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kaya: uçurum yüzü",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    1830.0000429153442,
+    1830.0000429153442
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/cliff_side/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cliff_side/cliff_side_diff_1k.jpg",
+     "bayt": 859756,
+     "sha256": "5c6858541108fc34e5726ecf4d8d942d6301155c489e7341619260f2909570c5",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/cliff_side/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cliff_side/cliff_side_nor_gl_1k.jpg",
+     "bayt": 1007837,
+     "sha256": "28583860810a7d6d8ffddeaaff463408fc580338fd5a92c67b058207e75375a3",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/cliff_side/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cliff_side/cliff_side_arm_1k.jpg",
+     "bayt": 551350,
+     "sha256": "6ec77eadb99d00a0a0e68ae40b09e4cc4931941ada1114e5a4d9dd94e8a046dd",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2418943,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "aerial_rocks_02",
+   "ad": "Aerial Rocks 02",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/aerial_rocks_02",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "terrain",
+    "outdoor",
+    "natural",
+    "rock",
+    "aerial"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "arazi: kayalık yamaç",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    50000,
+    50000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/aerial_rocks_02/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_rocks_02/aerial_rocks_02_diff_1k.jpg",
+     "bayt": 785923,
+     "sha256": "708373b2af7fd07ac8de1500556006aaf904c41a99985a849cacc78874f38eac",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/aerial_rocks_02/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_rocks_02/aerial_rocks_02_nor_gl_1k.jpg",
+     "bayt": 1177932,
+     "sha256": "6df5263ba6c30e9343ee324d87078b926024d710b0b349025083600369df8d25",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/aerial_rocks_02/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_rocks_02/aerial_rocks_02_arm_1k.jpg",
+     "bayt": 211113,
+     "sha256": "de3ffa2b107d3b9144979a1f683028c74ec86823b2b8eefe16bf5bb9a655ad0c",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2174968,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "coast_sand_01",
+   "ad": "Coast Sand 01",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/coast_sand_01",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "outdoor",
+    "terrain",
+    "sand",
+    "natural",
+    "aerial",
+    "collection: smugglers_cove",
+    "collection: verdant_trail"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "arazi: kıyı kumu",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    15000,
+    15000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/coast_sand_01/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/coast_sand_01/coast_sand_01_diff_1k.jpg",
+     "bayt": 960614,
+     "sha256": "58af2e40100f7f405703a86d593af64379f822c4786850def23ecfc921450d54",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/coast_sand_01/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/coast_sand_01/coast_sand_01_nor_gl_1k.jpg",
+     "bayt": 1146826,
+     "sha256": "fe4d045aec99e71e80f682fcf0ad958d2dff1fe614b73178b304d1bac047b54a",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/coast_sand_01/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/coast_sand_01/coast_sand_01_arm_1k.jpg",
+     "bayt": 662421,
+     "sha256": "eeb552fb26de45ae5c52d3db6f96f8f0414fdbfa335c1d27ef5f59b6ef01a5c8",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2769861,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "cobblestone_floor_04",
+   "ad": "Cobblestone Floor 04",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/cobblestone_floor_04",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "floor",
+    "outdoor",
+    "dirty",
+    "man made",
+    "cobblestone"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "kasaba: arnavut kaldırımı",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    1500,
+    1500
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/cobblestone_floor_04/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_04/cobblestone_floor_04_diff_1k.jpg",
+     "bayt": 575440,
+     "sha256": "b0662eaec38a2056ef00abc66d1a0e8da421d704ed3ff8f9e268ad4c7b2aa58c",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/cobblestone_floor_04/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_04/cobblestone_floor_04_nor_gl_1k.jpg",
+     "bayt": 781854,
+     "sha256": "a5c71dffb3f25b8b33cfeeb1bfc2fc0f158b8ebc04f3987d68f64343868d1065",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/cobblestone_floor_04/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_04/cobblestone_floor_04_arm_1k.jpg",
+     "bayt": 233474,
+     "sha256": "ad52fe50a0f756f91c87b0cb4f52809c5742fc9ec0a070f788b17350aaf81eea",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1590768,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "sparse_grass",
+   "ad": "Sparse Grass",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/sparse_grass",
+   "yazarlar": {
+    "Amal Kumar": "All"
+   },
+   "kategoriler": [
+    "floor",
+    "natural"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "arazi: seyrek çim",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    2000,
+    2000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/sparse_grass/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sparse_grass/sparse_grass_diff_1k.jpg",
+     "bayt": 955945,
+     "sha256": "ae94f2b34597b9108eefd88217f55eccaec6d6b382e858a478ee92df90e66617",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/sparse_grass/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sparse_grass/sparse_grass_nor_gl_1k.jpg",
+     "bayt": 1440314,
+     "sha256": "1c840a24807346ddaaf94a5057aee4078fcec3a4cd84bfe45da7d3b480ef460b",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/sparse_grass/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sparse_grass/sparse_grass_arm_1k.jpg",
+     "bayt": 978007,
+     "sha256": "209f6793060a176272ace42cabab21fdf21fe963f79267988320614b374414a8",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 3374266,
+   "tarih": "2026-11-25 18:40 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "forest_leaves_04",
+   "ad": "Forest Leaves 04",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/forest_leaves_04",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "outdoor",
+    "terrain",
+    "natural",
+    "collection: pine_forest",
+    "collection: verdant_trail"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "arazi: orman yaprak örtüsü",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    1500,
+    1500.0001192092896
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/forest_leaves_04/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_leaves_04/forest_leaves_04_diff_1k.jpg",
+     "bayt": 423500,
+     "sha256": "a898e6ef0668a40faaf1bcbc6b024f6ef437ec424a10fa47aa6d35d013c9dade",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/forest_leaves_04/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_leaves_04/forest_leaves_04_nor_gl_1k.jpg",
+     "bayt": 581919,
+     "sha256": "6b7c4086fc28b7b1f11f4d04aedcc27772ce3bb894cfc00835b4637092c1bb0c",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/forest_leaves_04/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_leaves_04/forest_leaves_04_arm_1k.jpg",
+     "bayt": 355419,
+     "sha256": "e253ba0615d1da2376a18d8edf26dd02a0be92e5729efd3402be02f7f2ae53be",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 1360838,
+   "tarih": "2026-11-25 18:41 UTC"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rocky_terrain_02",
+   "ad": "Rocky Terrain 02",
+   "tur": "doku",
+   "sayfa": "https://polyhaven.com/a/rocky_terrain_02",
+   "yazarlar": {
+    "Amal Kumar": "All"
+   },
+   "kategoriler": [
+    "outdoor",
+    "terrain",
+    "natural",
+    "aerial"
+   ],
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "lisans_dogrulama": "Poly Haven tüm varlıklarını CC0 yayımlar (polyhaven.com/license); varlık API'de mevcut.",
+   "amac": "arazi: taşlı toprak",
+   "cozunurluk": "1k",
+   "boyut_mm": [
+    90000,
+    90000
+   ],
+   "poligon": null,
+   "dosyalar": [
+    {
+     "dosya": "polyhaven/rocky_terrain_02/diff.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_terrain_02/rocky_terrain_02_diff_1k.jpg",
+     "bayt": 843188,
+     "sha256": "d570c10b1d5302f4fde9e0e94f4cbab0d5e112fc3fe2b3b91c38a98bd3ddaf4b",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rocky_terrain_02/nor_gl.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_terrain_02/rocky_terrain_02_nor_gl_1k.jpg",
+     "bayt": 993692,
+     "sha256": "f4f9d9671c660f4e509e96d5da3091887dfd557e1353e313fa2d1dc789499ffd",
+     "md5_dogru": true
+    },
+    {
+     "dosya": "polyhaven/rocky_terrain_02/arm.jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_terrain_02/rocky_terrain_02_arm_1k.jpg",
+     "bayt": 524868,
+     "sha256": "1894a2b068c006b27087703b8b8ffb9ac67af469481897d395f54735d699a8a1",
+     "md5_dogru": true
+    }
+   ],
+   "durum": "TAMAM",
+   "toplam_bayt": 2361748,
+   "tarih": "2026-11-25 18:41 UTC"
+  }
+ ]
 }
