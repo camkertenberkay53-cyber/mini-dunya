@@ -1,0 +1,52 @@
+# Poly Haven CC0 varlıklarını üretim varlık klasörüne indirir (lisans kaydıyla). Sandbox polyhaven.com'a erişemediği
+# için Actions'ta çalışır. Yalnızca faz51-altyapi dalında, motor/varlik/polyhaven/istek.json değişince çalışır.
+name: Varlik Poly Haven
+
+on:
+  push:
+    branches: [faz51-altyapi]
+    paths: ["motor/varlik/polyhaven/istek.json"]
+
+permissions:
+  contents: write
+
+jobs:
+  indir:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: İndir (MD5 doğrulamalı) ve seç
+        run: |
+          python3 deneyler/faz51/gorsel/polyhaven.py /tmp/ph /tmp/ph_kayit.json
+          python3 - <<'PY'
+          import json, shutil
+          from pathlib import Path
+          istek = json.load(open("motor/varlik/polyhaven/istek.json"))
+          k = json.load(open("/tmp/ph_kayit.json"))
+          hedef = Path("motor/varlik/polyhaven")
+          lisans = []
+          for v in k["varliklar"]:
+              if v["kimlik"] not in istek["varliklar"] or v["durum"] != "TAMAM":
+                  continue
+              d = hedef / v["kimlik"]; d.mkdir(parents=True, exist_ok=True)
+              dosyalar = []
+              for f in v["dosyalar"]:
+                  if f["harita"] in istek.get("haritalar", ["diff", "nor_gl"]):
+                      ad = Path(f["dosya"]).name
+                      shutil.copy(f["dosya"], d / ad)
+                      dosyalar.append({"dosya": f"{v['kimlik']}/{ad}", "url": f["url"], "bayt": f["bayt"], "md5_dogru": f["md5_dogru"]})
+              lisans.append({"kimlik": v["kimlik"], "ad": v.get("ad"), "sayfa": v["sayfa"], "yazarlar": v.get("yazarlar"),
+                             "lisans": v["lisans"], "amac": v["amac"], "dosyalar": dosyalar})
+          (hedef / "lisans.json").write_text(json.dumps({"tarih": k["tarih"], "lisans_politikasi": k["lisans_politikasi"],
+              "varliklar": lisans}, ensure_ascii=False, indent=1))
+          print(json.dumps(lisans, ensure_ascii=False)[:2000])
+          PY
+      - name: Dala yaz
+        run: |
+          git config user.name "varlik-polyhaven"
+          git config user.email "actions@users.noreply.github.com"
+          git add motor/varlik/polyhaven
+          git commit -m "Poly Haven CC0 varlıkları (lisans kaydıyla) [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push && exit 0; sleep 5; done
+          exit 1
