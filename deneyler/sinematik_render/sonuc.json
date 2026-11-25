@@ -1,7 +1,7 @@
 {
  "paket": "sinematik_render",
- "testler": "134/134",
- "anahtar": "gorsel.yaml sinematik_render.acik (şu an false: Faz 5.2 kabul zinciri testi nedeniyle onay bekliyor)",
+ "testler": "134/134 (test_faz53 profil testi: faz52 anahtarlarının tümü + sinema profilinin yazdığı değerler birebir; kapalı modda faz52 değerleri birebir)",
+ "anahtar": "gorsel.yaml sinematik_render.acik: true (yönetim onayıyla varsayılan); false → Faz 5.2/faz54 görüntüsü",
  "olcum": {
   "M1": {
    "once_sn": 239.4,
@@ -38,5 +38,25 @@
   "dA": "AgX pozlama 1.15: doğal ama gölgeler çöküyor — geliştirildi",
   "dB": "filmic pozlama 1.1: hâlâ oyunsu doygunluk — RED",
   "dC": "AgX 1.32 + ortam 0.38 + gölge 120 m: kabul; DoF fazla — azaltıldı (dE = son)"
+ },
+ "dogrulama": {
+  "isik_hazir_ayarlari": [
+   "aksam_ustu",
+   "oglen_acik",
+   "sabah_puslu",
+   "gun_batimi",
+   "kapali_kasvetli"
+  ],
+  "pilot_cekimler": 9,
+  "mekanlar": [
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6"
+  ],
+  "godot_hatasi": 0,
+  "geri_alma": "kapalı modda liman önizlemesi piksel farkı 0, kale 0.2/255"
  }
 }

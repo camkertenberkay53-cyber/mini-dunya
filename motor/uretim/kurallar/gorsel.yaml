@@ -112,7 +112,7 @@ mekan_kalite:
 # (ışık/sis/tonlama ayarları; taban faz54), (2) film geçişi (godot/sahneler/film.gd) eklenir: derinlik tabanlı tek
 # hava kütlesi, temas gölgesi, alan derinliği, film renk derecelendirmesi. acik: false → önceki görüntü aynen.
 sinematik_render:
-  acik: false   # varsayılan yapılması Faz 5.2 kabul zincirini (test_faz53 profil testi) değiştirir: yönetim onayı bekliyor
+  acik: true    # yönetim onayıyla varsayılan (2026-11-25). false → Faz 5.2/faz54 görüntüsü aynen
   profil: sinema
   sinema: {vinyet: 0.3, gren: 0.016}   # son işlem katmanına ek: AgX ile daha hafif vinyet ve gren (ayrıntı korunur)
   film:

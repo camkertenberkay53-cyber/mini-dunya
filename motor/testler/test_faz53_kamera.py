@@ -164,10 +164,22 @@ def test_gorsel_profil_islere_eklenir_ve_geri_donus_var():
     is_ = render.is_hazirla(plan, c)
     p = render.gorsel_profili(g, c["ortam"]["arazi"])
     assert is_["isik"]["gorsel"] == p["isik"] and is_["arazi"]["gorsel"] == p["arazi"]
-    # aktif profil Faz 5.2 kabul zincirini eksiksiz içerir (faz52 anahtarları ve değerleri korunur)
+    # aktif profil Faz 5.2 kabul zincirini eksiksiz içerir: her faz52 anahtarı vardır; değeri, sinematik render açıksa
+    # sinema profilinin açıkça yazdığı değer (yönetim onayıyla yeni kabul), değilse faz52 değeridir. Sinema profilinin
+    # yazmadığı hiçbir faz52 değeri değişmez.
     f52 = g["profiller"]["faz52"]
+    sr = g.get("sinematik_render", {})
+    ust = g["profiller"][sr["profil"]] if sr.get("acik") else {"isik": {}, "arazi": {}}
+    assert ust.get("taban") in (None, g["aktif"])       # sinema profili aktif (faz54) zincirinin üstüne kurulur
     for alan in ("isik", "arazi"):
-        assert all(p[alan].get(k) == v for k, v in f52[alan].items())
+        for k, v in f52[alan].items():
+            assert k in p[alan], k
+            assert p[alan][k] == ust.get(alan, {}).get(k, v), (alan, k)
+    # geri dönüş: sinematik render kapalıyken aktif profil Faz 5.2 değerlerini aynen taşır (tek ayarla eski görüntü)
+    kapali = dict(g, sinematik_render=dict(sr, acik=False))
+    pk = render.gorsel_profili(kapali, c["ortam"]["arazi"])
+    for alan in ("isik", "arazi"):
+        assert all(pk[alan].get(k) == v for k, v in f52[alan].items())
     # dosya yolları var olan, lisans kaydı bulunan varlıklara çözülür
     lisans = json.loads((Path(__file__).resolve().parents[1] / "varlik/polyhaven/lisans.json").read_text())
     kayitli = {v["kimlik"] for v in lisans["varliklar"] if v["lisans"]["ad"] == "CC0 1.0"}
