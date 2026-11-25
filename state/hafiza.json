@@ -644,6 +644,9 @@
   ],
   "2026-11-24": [
    "fikir"
+  ],
+  "2026-11-25": [
+   "fikir"
   ]
  },
  "en_bolumler": [
@@ -767,79 +770,9 @@
  "oynatma_en": {
   "Mini World · Season 1": "PLIvGBQws7jrw"
  },
- "_gun": 6,
+ "_gun": 7,
  "fikir_havuzu": {
   "tr": {
-   "2026-11-23": {
-    "sabah": {
-     "slot": "sabah",
-     "ad": "Körleşen Rehber",
-     "ana_karakter": "pire",
-     "mekan": "baharat",
-     "nesne": "çay kaşığı",
-     "tehlike": "yiyeceklerin düşmesi",
-     "mekanizma": "hata",
-     "ilk_saniye": "Pire'nin biber kavanozunun kapağını merakla açmasıyla dev bir tohumun üzerine düşmesi.",
-     "problem": "Pire meraktan karabiber kavanozunun kapağını zorlar, açılan kapaktan dökülen tane biberler tırmanma yolunu tıkar.",
-     "surpriz": "Yuvarlanan karabiber taneleri zincirleme reaksiyonla diğer kavanozları da sarsar.",
-     "cozum": "Pire çay kaşığını kalkan gibi kullanarak gelen tane biberleri sırayla savuşturur ve yoldan temizler.",
-     "final": "Pire gözleri yaşarmış halde zafer pozu verir ancak hapşırarak geri savrulur.",
-     "final_turu": "komik",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    },
-    "oglen": {
-     "slot": "oglen",
-     "ad": "Yıldızların Sesi",
-     "ana_karakter": "nil",
-     "mekan": "baharat",
-     "nesne": "düğme",
-     "tehlike": "büyük bir titreşim",
-     "mekanizma": "beklenmedik dostluk",
-     "ilk_saniye": "Raftaki titremeyle dev bir yıldız anasonun çan gibi ses çıkararak sallanması.",
-     "problem": "Labirentteki titreşimler yol tarif haritasını yırtar.",
-     "surpriz": "Titreşimi yapan şey rafın arkasında yuza yapmış sevimli bir örümcektir.",
-     "cozum": "Nil düğmenin deliğinden örümceğe iplik uzatır, örümcek onlara labirentin kuşbakışı ağ haritasını örer.",
-     "final": "Örümceğin ördüğü ağ haritasıyla labirent kolayca geçilir.",
-     "final_turu": "sasirtici",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    },
-    "aksam": {
-     "slot": "aksam",
-     "ad": "Zirvedeki Dev Mutfak",
-     "ana_karakter": "tuna",
-     "mekan": "baharat",
-     "nesne": "şişe kapağı",
-     "tehlike": "dev bir elin yaklaşması",
-     "mekanizma": "keşif",
-     "ilk_saniye": "Kamera rafın en üst zirvesinden aşağıya doğru geniş açıyla bakar; devasa mutfak ayaklar altındadır.",
-     "problem": "Zirveye ulaşıldığında tüm mutfak görünür ancak dev bir el rafa yeni bir kavanoz koymak için yaklaşır.",
-     "surpriz": "Dev el kavanozu tam ekibin durduğu noktaya koyacaktır.",
-     "cozum": "Tuna ekibi şişe kapağının altına saklayarak dev elin kavanozu koyarken onları ezmesini engeller.",
-     "final": "Dev el uzaklaşır; yeni konan kavanozun arkasından harika bir manzara açılır.",
-     "final_turu": "tatmin",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    },
-    "gece": {
-     "slot": "gece",
-     "ad": "Sallanan Beşik",
-     "ana_karakter": "bulut",
-     "mekan": "cekmece",
-     "nesne": "lastik bant",
-     "tehlike": "çekmecenin açılması",
-     "mekanizma": "yeni icat",
-     "ilk_saniye": "Çekmecenin hafifçe aralanmasıyla içeri dolan gece rüzgarı.",
-     "problem": "Kamp alanındaki zemin sert olduğu için kimse uyuyamamaktadır.",
-     "surpriz": "Çekmece rayı hafifçe sallanmaktadır.",
-     "cozum": "Bulut lastik bantları çatal uçlarına bağlayarak ekibe sallanan harika hamağı inşa eder.",
-     "final": "Tüm ekip hamakta mışıl mışıl uyur.",
-     "final_turu": "tatmin",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    }
-   },
    "2026-11-24": {
     "sabah": {
      "slot": "sabah",
@@ -975,6 +908,76 @@
      "surpriz": "Kedi şeker küpünden ziyade Pire'nin arkasındaki gölgeyle oynamak ister.",
      "cozum": "Tuna bozuk parayı tezgahta yuvarlayıp kedinin dikkatini başka yöne çeker.",
      "final": "Pire cebinde tek bir şeker kristaliyle yatağına döner.",
+     "final_turu": "komik",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    }
+   },
+   "2026-11-26": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Makarna Tüneli Krizi",
+     "ana_karakter": "tuna",
+     "mekan": "cekmece",
+     "nesne": "makarna",
+     "tehlike": "çekmecenin açılması",
+     "mekanizma": "kaçış",
+     "ilk_saniye": "Karanlık çekmecenin hızla açılarak içeriye göz kamaştırıcı bir ışık süzmesi dolması.",
+     "problem": "Tuna karınca kervanını boru makarna içinden gizlice geçirmek ister ama çekmece aniden çekilince makarna yuvarlanmaya başlar.",
+     "surpriz": "Karıncalar kaçmak yerine makarnayı içeriden ters yöne koşturup dev bir silindir gibi frenler.",
+     "cozum": "Tuna lastik bantla makarnayı çekmece kenarına sabitleyerek tahliyeyi tamamlar.",
+     "final": "Karınca lideri Tuna'ya başıyla saygıyla selam verir.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "Pipetle Şerbet Seferi",
+     "ana_karakter": "bulut",
+     "mekan": "lavabo",
+     "nesne": "pipet",
+     "tehlike": "ani su akışı",
+     "mekanizma": "yeni icat",
+     "ilk_saniye": "Bulut'un pipetten yaptığı şeker dağıtım borusunun içinden jet hızıyla kayıp çıkması.",
+     "problem": "Bulut karıncalara şekeri eritip sıvı olarak boru hattıyla teslim etmeyi önerir ama musluk aniden damlatıp debiyi artırır.",
+     "surpriz": "Fazla su pipetin ucundaki şeker tortusunu roket yakıtı gibi fışkırtıp su baskınını tersine iter.",
+     "cozum": "Bulut pipeti lavabo giderine doğru eğerek kontrollü bir şerbet çeşmesi inşa eder.",
+     "final": "Karınca kervanı sıraya girip pipetten şeker şerbeti doldurur ve Bulut'a teşekkür eder.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Çay Kaşığındaki Yansıma",
+     "ana_karakter": "nil",
+     "mekan": "tezgah",
+     "nesne": "çay kaşığı",
+     "tehlike": "kaygan yüzey",
+     "mekanizma": "keşif",
+     "ilk_saniye": "Çay kaşığının dışbükey yüzeyinde devasa mutfağın baş aşağı ve bükülmüş görüntüsü.",
+     "problem": "Yaşlı karınca gezginin bıraktığı işaretin doğrudan görülemediğini, sadece ters yansımayla okunabileceğini söyler.",
+     "surpriz": "Nil çay kaşığını doğru açıyla tuttuğunda tezgâh altındaki görünmez havalandırma deliğindeki oklar belirir.",
+     "cozum": "Nil kaşığın yansıttığı ışık huzmesini takip ederek gizli harita parçasının yerini kaydeder.",
+     "final": "Eski gezginin adının ilk harfi tezgâhın gizli köşesinde ışıldar: 'B'.",
+     "final_turu": "merak",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Ataş Salıncağı Düellosu",
+     "ana_karakter": "pire",
+     "mekan": "zemin",
+     "nesne": "ataş",
+     "tehlike": "rüzgâr/vantilatör",
+     "mekanizma": "yarış",
+     "ilk_saniye": "Pire'nin tavandan sarkan dev bir ataşın üzerinde amuda kalkıp 'Bakın, hiç düşmüyorum!' diye bağırması.",
+     "problem": "Pire kervanın en çevik genç karıncasıyla ataş üzerinde en uzun süre dengede kalma iddiasına girer ama çalışan vantilatör fırtına yaratır.",
+     "surpriz": "Vantilatör estikçe ataş bir lunapark salıncağı gibi tam tur dönmeye başlar ve Pire kahkahalar atar.",
+     "cozum": "Benek havada uçup ataşın ucuna konarak salınımı dengeler ve karınca ile Pire aynı anda yere güvenle iner.",
+     "final": "Yarış berabere biter; karınca Pire'ye tebrik olarak bir fıstık kabuğu kaskı armağan eder.",
      "final_turu": "komik",
      "yenilik_puani": 9,
      "izlenme_potansiyeli": 9
