@@ -33,6 +33,9 @@ static func serp(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector2, ka
 		var parcalar: Array = []
 		for m in sahne.find_children("*", "MeshInstance3D", true, false):
 			parcalar.append([(m as MeshInstance3D).mesh, (m as Node3D).transform])
+		var boy := 0.0
+		for pr in parcalar:
+			boy = maxf(boy, ((pr[1] as Transform3D) * (pr[0] as Mesh).get_aabb()).size.y)
 		var yer: Array = []
 		var aralik := float(kat.get("en_az_aralik_m", 6.0))
 		var yr: Array = kat.get("yaricap_m", [15.0, 120.0])
@@ -41,6 +44,9 @@ static func serp(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector2, ka
 			if yer.size() >= int(kat.get("adet", 20)):
 				break
 			var aci := r.randf() * TAU
+			if kat.has("on_yay_derece") and kameralar.size() > 0:   # yalnız kameranın baktığı yay içinde (uzak sırtlar)
+				var ky: Vector3 = (kameralar[0][1] as Vector3) - (kameralar[0][0] as Vector3)
+				aci = atan2(ky.z, ky.x) + (aci / TAU - 0.5) * deg_to_rad(float(kat["on_yay_derece"]))
 			var d := sqrt(r.randf_range(float(yr[0]) ** 2, float(yr[1]) ** 2))   # alanca eşit dağılım
 			var p := Vector3(merkez.x + cos(aci) * d, 0, merkez.y + sin(aci) * d)
 			if absf(p.x - yol_x) < bos or _gorus_uzakligi(p, kameralar) < gorus:
@@ -54,8 +60,15 @@ static func serp(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector2, ka
 				continue
 			if V.su_k(p.x, p.z, ar) > 0.02:   # suya ve kumsala ağaç/kaya dikilmez
 				continue
+			var don := r.randf() * TAU
+			var sc := r.randf_range(float(ol[0]), float(ol[1]))
+			if kat.get("on_yuz", false):   # tek yüzlü taranmış kaya: ön yüzü (+Z) sahneye dönük, ±35° sapma
+				var yn := Vector2(merkez.x - p.x, merkez.y - p.z).normalized()
+				don = atan2(yn.x, yn.y) + (don / TAU - 0.5) * deg_to_rad(70.0)
 			p.y = V.zemin_y(p.x, p.z, ar) - float(kat.get("gomme_m", 0.15))
-			var t := Transform3D(Basis(Vector3.UP, r.randf() * TAU).scaled(Vector3.ONE * r.randf_range(float(ol[0]), float(ol[1]))), p)
+			if kat.has("gomme_oran"):   # büyük kaya: yüksekliğinin bir oranı kadar toprağa gömülür (havada durmaz)
+				p.y = V.zemin_y(p.x, p.z, ar) - float(kat["gomme_oran"]) * boy * sc
+			var t := Transform3D(Basis(Vector3.UP, don).scaled(Vector3.ONE * sc), p)
 			yer.append(t)
 			noktalar.append([p, aralik])
 		for pr in parcalar:
@@ -79,6 +92,8 @@ static func serp(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector2, ka
 				km.albedo_color = Color(kr[0], kr[1], kr[2])
 				km.roughness = 0.95
 				mi.material_override = km
+			if kat.get("gercek", false):   # gerçekçi varlık: kendi PBR malzemesi, aynasal güç kısılır
+				preload("res://sahneler/malzeme.gd").gercek_mm(mi, float(kat.get("spekuler", 0.25)))
 			mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON if kat.get("golge", true) else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			kok.add_child(mi)
 		sahne.free()

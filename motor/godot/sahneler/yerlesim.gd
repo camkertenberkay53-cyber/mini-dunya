@@ -4,9 +4,11 @@ extends RefCounted
 ## parçacığı, titreşen ışık) serpilir. Kendi yazımımız; dokular Kenney Particle Pack (CC0). Tohumlu, belirlenimci.
 const V := preload("res://sahneler/vfx.gd")
 const D := preload("res://sahneler/donatici.gd")
+const Mz := preload("res://sahneler/malzeme.gd")
 
 static var _atesler: Array = []   # [OmniLight3D, taban enerji, faz]
-static var _salinan: Array = []   # [Node3D, taban konum, taban yön, faz, derece] — su üstündeki gemi/sandal
+static var _salinan: Array = []
+static var k_spek := 0.3   # gerçekçi varlıkların aynasal yansıma gücü (is.json malzeme.spekuler)   # [Node3D, taban konum, taban yön, faz, derece] — su üstündeki gemi/sandal
 
 static func _yerlestir(kok: Node3D, glb: String, p: Vector3, yon: float, olcek: float) -> void:
 	var n := D.ekipman(glb)
@@ -119,7 +121,14 @@ static func _koy(kok: Node3D, glb: String, p: Vector3, yon: float, ar: Dictionar
 	n.position = p
 	n.rotation.y = yon
 	n.scale = Vector3.ONE * olcek
+	Mz.uygula(n)   # mekân kalite paketi: düz renkli malzemelere PBR (kural yoksa etkisiz)
+	if glb.contains("/mekan/"):
+		Mz.gercek(n, float(k_spek))
 	return n
+
+static func _boy(k: Dictionary, glb: String, eksen: int = 0, varsayilan: float = 10.0) -> float:
+	var b: Array = k.get("boylar", {}).get(glb, [])
+	return float(b[eksen]) if b.size() > eksen else varsayilan
 
 static func dizi(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector3, ileri: Vector3, kameralar: Array,
 		tohum: int, t: float) -> int:
@@ -129,6 +138,24 @@ static func dizi(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector3, il
 	var rol: Dictionary = k["roller"]
 	var n := 0
 	match str(k["tur"]):
+		"kale" when k.get("dose", false):   # gerçekçi modüler sur: kapı ortada, sur modülleri uç uca, uçlarda kule
+			var d := float(k.get("mesafe_m", 34.0))
+			var on := merkez + ileri * d
+			var duz := _yon_aci(yan)
+			var kapi := _sec(r, rol.get("kapi", []))
+			if _koy(kok, kapi, on, duz, ar): n += 1
+			var bind := float(k.get("bindirme_m", 0.4))
+			for s in [-1.0, 1.0]:
+				var x := _boy(k, kapi, 0, 7.0) * 0.5 - bind
+				var son := float(k.get("sur_yari_m", 34.0))
+				while x < son:
+					var g := _sec(r, rol.get("sur", []))
+					var L := _boy(k, g, 0, 14.0)
+					if _koy(kok, g, on + yan * float(s) * (x + L * 0.5), duz + (PI if r.randf() < 0.5 else 0.0), ar): n += 1
+					x += L - bind
+				var kule := _sec(r, rol.get("kule", []))
+				if _koy(kok, kule, on + yan * float(s) * (x + _boy(k, kule, 0, 8.0) * 0.3) + ileri * 1.0, duz, ar): n += 1
+			if _koy(kok, _sec(r, rol.get("ic_kale", [])), on + ileri * 22.0, duz, ar, 1.3): n += 1
 		"kale":
 			var d := float(k.get("mesafe_m", 34.0))
 			var on := merkez + ileri * d
@@ -148,6 +175,8 @@ static func dizi(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector3, il
 					var yuz: float = _yon_aci(ileri) + (PI * 0.5 if float(s) > 0 else -PI * 0.5)   # kapılar sokağa
 					if r.randf() < 0.18 and rol.get("tezgah", []).size() > 0:
 						_koy(kok, _sec(r, rol["tezgah"]), p - yan * float(s) * 3.0, yuz, ar)
+						if rol.get("ayrinti", []).size() > 0:   # tezgâh yanında fıçı/sandık
+							_koy(kok, _sec(r, rol["ayrinti"]), p - yan * float(s) * 4.6 + ileri * r.randf_range(1.5, 3.0), r.randf() * TAU, ar)
 					elif _koy(kok, _sec(r, rol.get("ev", [])), p, yuz + r.randf_range(-0.08, 0.08), ar, r.randf_range(0.92, 1.08)):
 						n += 1
 					d += r.randf_range(float(ar_[0]), float(ar_[1]))
@@ -161,7 +190,16 @@ static func dizi(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector3, il
 				kiyi -= float(su.get("genislik_m", 14.0)) * 0.5
 			var isk := merkez + ileri * (kiyi + 3.0) + yan * r.randf_range(-6.0, 6.0)
 			isk.y = seviye + 0.35
-			if _koy(kok, _sec(r, rol.get("iskele", [])), isk, _yon_aci(yan), ar, 1.0, false): n += 1
+			var iskele := _sec(r, rol.get("iskele", []))
+			if str(k.get("iskele_yon", "yan")) == "ileri" and iskele != "":   # kıyıdan suya dik uzanan iskele
+				var il_ := _boy(k, iskele, 0, 19.0)
+				isk = merkez + ileri * (kiyi + il_ * 0.5 - 2.0) + yan * (r.randf_range(4.0, 9.0) * (1.0 if r.randf() < 0.5 else -1.0))
+				isk.y = seviye - 1.2
+				if _koy(kok, iskele, isk, _yon_aci(ileri), ar, 1.0, false): n += 1
+				for j in rol.get("ayrinti", []).size() * 2:   # iskele dibinde, kıyıda fıçı/sandık
+					var ap: Vector3 = isk - ileri * (il_ * 0.5 + r.randf_range(-1.0, 3.0)) + yan * r.randf_range(-4.0, 4.0)
+					if V.su_k(ap.x, ap.z, ar) < 0.05 and _koy(kok, _sec(r, rol["ayrinti"]), ap, r.randf() * TAU, ar): n += 1
+			elif _koy(kok, iskele, isk, _yon_aci(yan), ar, 1.0, false): n += 1
 			var gm: Array = k.get("gemi_mesafe_m", [14.0, 60.0])
 			var hedefler: Array = []
 			for i in int(k.get("gemi_adet", 0)):

@@ -12,6 +12,7 @@ const V := preload("res://sahneler/vfx.gd")
 const S := preload("res://sahneler/sinema.gd")
 const Serp := preload("res://sahneler/serpme.gd")
 const Y := preload("res://sahneler/yerlesim.gd")
+const Mz := preload("res://sahneler/malzeme.gd")
 const K := preload("res://sahneler/kalabalik.gd")
 var _sinema: ShaderMaterial
 
@@ -42,6 +43,8 @@ func _ready() -> void:
 		var kk: Dictionary = c["kamera"]
 		var kameralar := [[_vec(kk["bas"]["konum"]), _vec(kk["bas"]["hedef"])], [_vec(kk["son"]["konum"]), _vec(kk["son"]["hedef"])]]
 		Serp.serp(self, sp, is_["arazi"], Vector2(m[0], m[1]), kameralar, int(is_.get("tohum", 1)) * 131 + str(c["id"]).hash() % 1000)
+	Mz.kur(is_.get("malzeme", {}))
+	Y.k_spek = float(is_.get("malzeme", {}).get("spekuler", 0.3))   # mekân kalite paketi: stilize parçalara PBR malzeme (kapalıysa etkisiz)
 	var yl: Dictionary = is_.get("yerlesim", {})
 	if yl.get("acik", false):   # sinematik paket 2: prosedürel ordugâh
 		var kb2: Dictionary = c["kamera"]["bas"]

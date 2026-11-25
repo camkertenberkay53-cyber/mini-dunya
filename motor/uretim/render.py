@@ -51,6 +51,10 @@ def is_hazirla(plan: dict, c: dict) -> dict:
     gp = gorsel_profili(veri.kural("gorsel"), c["ortam"]["arazi"])
     isik = dict(isik, gorsel=dict(gp.get("isik", {})))
     ar["gorsel"] = dict(gp.get("arazi", {}))
+    mk = veri.kural("gorsel").get("mekan_kalite", {})
+    if mk.get("acik"):   # mekân kalite paketi: arazi doku eklemeleri (yamaç kayası vb.); kapalıyken eski görünüm
+        ek = {**mk.get("arazi", {}), **mk.get("arazi_ozel", {}).get(c["ortam"]["arazi"], {})}
+        ar["gorsel"].update({k: (str(ayar.REPO / "motor" / v) if isinstance(v, str) and v.startswith("varlik/") else v) for k, v in ek.items()})
     takimlar = {k["takim"]: veri.takimlar()[k["takim"]] for k in c.get("karakterler", [])}
     # sahne merkezi ve ot alanı: karakterlerin (başta ve sonda) ve kamera hedeflerinin kapsadığı bölge
     noktalar = []
@@ -89,7 +93,8 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
         "vfx": _vfx(c, ar),
         "serpme": _serpme(plan, c),
-        "yerlesim": _yerlesim(plan, c),
+        "yerlesim": (yer := _yerlesim(plan, c)),
+        "malzeme": _malzeme(yer, {}),
         "kalabalik": _kalabalik(c),
         "sinema": veri.kural("gorsel").get("sinema", {"acik": False}),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
@@ -133,9 +138,13 @@ def _yerlesim(plan: dict, c: dict) -> dict:
     k = dict(veri.kural("yerlesim")["yerlesimler"][ad])
     donem = c.get("donem") or plan.get("donem")
 
+    hd = _mekan_kalite_acik()
+    if hd and "hd" in k:   # mekân kalite paketi: gerçekçi varlıklara özgü yerleşim ayarları (kapalıyken eski davranış)
+        k = {**{a: b for a, b in k.items() if a != "hd"}, **k["hd"]}
+    k.pop("hd", None)
+
     def uygun(ids):
-        return [str(veri.ekipman_glb(p)) for p in ids if (pr := veri.parca(p)) and donem in pr.get("donem", [])
-                and veri.kalite()["ekipman"].get(p, {}).get("sinif") not in (None, "RED") and veri.ekipman_glb(p).exists()]
+        return [str(g) for g in _cevre_glb(ids, donem, hd)]
     if "cadir_adaylari" in k:
         k["cadirlar"], k["ekler"] = uygun(k.pop("cadir_adaylari")), uygun(k.pop("ek_adaylari"))
     else:   # mekân paketi yerleşimleri: rol → glb listesi
@@ -147,7 +156,54 @@ def _yerlesim(plan: dict, c: dict) -> dict:
         k[d] = str(ayar.MOTOR / k[d])
     k["tur"] = ad
     k["acik"] = bool(k["cadirlar"])
+    if hd:
+        k["boylar"] = _boylar(k["cadirlar"] + [g for v in k.get("roller", {}).values() for g in v])
     return k
+
+
+def _mekan_kalite_acik() -> bool:
+    return bool(veri.kural("gorsel").get("mekan_kalite", {}).get("acik", False))
+
+
+def _cevre_glb(ids: list, donem: str | None, hd: bool) -> list[Path]:
+    """Rol/katman aday kimliklerinden kullanılabilir GLB'ler. Mekân kalite paketi açıkken stilize parçanın yerine geçen
+    gerçekçi varlık (mekan_varliklari.yaml 'yerine') kullanılır; doğrudan gerçekçi kimlik de yazılabilir. Gerçekçi varlık
+    yoksa/RED ise eski parça kalır (kırılmaz). Sıra korunur, tekrar yok."""
+    from motor.varlik import mekan_varlik as mv
+    katalog = mv.katalog()["varliklar"]
+    out: list[Path] = []
+    for pid in ids:
+        if pid in katalog:
+            adaylar = [g] if hd and (g := mv.kullanilabilir(pid, donem)) else []
+        else:
+            adaylar = mv.yerine_gecen(pid, donem) if hd else []
+            if not adaylar and (pr := veri.parca(pid)) and donem in pr.get("donem", []) \
+                    and veri.kalite()["ekipman"].get(pid, {}).get("sinif") not in (None, "RED") and veri.ekipman_glb(pid).exists():
+                adaylar = [veri.ekipman_glb(pid)]
+        out += [g for g in adaylar if g not in out]
+    return out
+
+
+def _boylar(glbler: list[str]) -> dict:
+    """GLB yolu → [x, y, z] boyut (m; Blender ekseninde) — dizi yerleşimi modülleri uç uca dizebilsin."""
+    from motor.varlik import ekipman, mekan_varlik as mv
+    kayit = {**{str(veri.ekipman_glb(p)): v["olcum"]["boyut_m"] for p, v in ekipman.kayit_oku().items()},
+             **{str(mv.CIKTI / f"{p}.glb"): v["olcum"]["boyut_m"] for p, v in mv.kayit_oku().items()}}
+    return {g: kayit[g] for g in glbler if g in kayit}
+
+
+def _malzeme(yerlesim: dict, serpme: dict) -> dict:
+    """Malzeme yükseltme kuralları (kurallar/malzeme.yaml): stilize parçaların düz renkli malzemeleri adına göre gerçek
+    PBR dokulara (CC0) çevrilir. Yalnız mekân kalite paketi açıkken; doku yolları mutlak."""
+    m = veri.kural("malzeme")
+    if not (_mekan_kalite_acik() and m.get("acik")):
+        return {"acik": False}
+    kur = []
+    for r in m["kurallar"]:
+        d = ayar.MOTOR / "varlik" / "cc0" / r["doku"]
+        kur.append({"desen": r["desen"], "diff": str(d / "diff.jpg"), "nor": str(d / "nor_gl.jpg"), "arm": str(d / "arm.jpg"),
+                    "tekrar_m": r.get("tekrar_m", 2.0), "renk": r.get("renk", [1.0, 1.0, 1.0]), "normal_guc": r.get("normal_guc", 1.0)})
+    return {"acik": True, "kurallar": kur, "spekuler": m.get("spekuler_gercek", 0.3)}
 
 
 def _serpme(plan: dict, c: dict) -> dict:
@@ -158,14 +214,20 @@ def _serpme(plan: dict, c: dict) -> dict:
     donem = c.get("donem") or plan.get("donem")
     katlar = []
     for kural in k["araziler"].get(c["ortam"]["arazi"], []):
-        uygun = [pid for pid in kural["parcalar"] if (p := veri.parca(pid)) and donem in p.get("donem", [])
-                 and veri.kalite()["ekipman"].get(pid, {}).get("sinif") not in (None, "RED") and veri.ekipman_glb(pid).exists()]
-        for pid in uygun:
-            katlar.append({"glb": str(veri.ekipman_glb(pid)), "adet": max(1, round(kural["adet"] / len(uygun))),
-                           "yaricap_m": kural["yaricap_m"], "en_az_aralik_m": kural["en_az_aralik_m"], "olcek": kural["olcek"],
+        hd = _mekan_kalite_acik()
+        uygun = _cevre_glb(kural["parcalar"], donem, hd)
+        gercek = hd and any(str(g).startswith(str(ayar.ONBELLEK / "mekan")) for g in uygun)
+        for g in uygun:
+            katlar.append({"glb": str(g), "adet": max(1, round(kural["adet"] / len(uygun))),
+                           "yaricap_m": kural["yaricap_m"], "en_az_aralik_m": kural["en_az_aralik_m"],
+                           "olcek": kural.get("olcek_hd", kural["olcek"]) if gercek else kural["olcek"],
                            "golge": kural.get("golge", True),
+                           **({"gomme_oran": kural["gomme_oran_hd"]} if gercek and "gomme_oran_hd" in kural else {}),
+                           **({"on_yay_derece": kural["on_yay_derece_hd"]} if gercek and "on_yay_derece_hd" in kural else {}),
+                           **({"gercek": True, "on_yuz": bool(kural.get("on_yuz_hd", False)),
+                               "spekuler": veri.kural("malzeme").get("spekuler_gercek", 0.25)} if gercek else {}),
                            **({"kaya_doku": str(ayar.MOTOR / kural["kaya_doku"]), "kaya_olcek": kural.get("kaya_olcek", 0.18)}
-                              if kural.get("kaya_doku") else {})})
+                              if kural.get("kaya_doku") and not gercek else {})})
     return {"acik": bool(katlar), "serit_payi_m": k["serit_payi_m"], "gorus_payi_m": k["gorus_payi_m"], "katmanlar": katlar}
 
 

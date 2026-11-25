@@ -95,3 +95,13 @@ sinema:
   ton_guc: 1.0
   gren: 0.022
 # (vfx ek) Sinematik paket 2: top atışı (namlu alevi + barut dumanı + ışık) ve çevre varlıklarını zemine oturtma.
+# Mekân kalite paketi: gerçekçi CC0 varlıklar (motor/varlik/mekan_varliklari.yaml 'yerine') ve PBR malzeme yükseltme
+# (kurallar/malzeme.yaml). acik: false → önceki stilize mekânlar aynen (geri alma / önce-sonra karşılaştırması).
+mekan_kalite:
+  acik: true
+  arazi: {}                # bütün arazilere ortak arazi doku eklemeleri
+  arazi_ozel:              # dik yamaçlara gerçek kaya yüzeyi (yalnız tepeli arazilerde)
+    dagli_vadi: {yamac_alb: varlik/cc0/polyhaven/rock_face_03/diff.jpg, yamac_egim: [0.07, 0.17], yamac_olcek: 0.09, yamac_renk: [0.95, 0.93, 0.9],
+                 yamac_egim_uzak: [0.12, 0.3], yamac_olcek_uzak: 0.015}
+    orman_kenari: {yamac_alb: varlik/cc0/polyhaven/rock_face_03/diff.jpg, yamac_egim: [0.12, 0.26], yamac_olcek: 0.1, yamac_renk: [0.8, 0.8, 0.76],
+                   yamac_egim_uzak: [0.3, 0.55], yamac_olcek_uzak: 0.015}

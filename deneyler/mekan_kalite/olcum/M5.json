@@ -1,0 +1,28 @@
+{
+ "durum": "TAMAM",
+ "konu": "mekan-M5",
+ "cekim": "M5",
+ "karma": "bfdeb4475c9b13ca",
+ "video": "/tmp/motor_onbellek/uretim/mekan-M5/M5_bfdeb4475c9b13ca/cekim.mp4",
+ "tarih": "2026-11-25 22:24",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+  "cekirdek": 2
+ },
+ "olculen": {
+  "plan_denetim_sn": 0.11,
+  "render_sn": 204.8,
+  "kare": 120,
+  "uretilen_kare": 120,
+  "cozunurluk": "1080x1920",
+  "kare_basina_sn_acilis_dahil": 1.71,
+  "render_tepe_bellek_gb": 1.31,
+  "kodlama_sn": 3.5,
+  "ara_avi_mb": 39.5,
+  "mp4_mb": 17.67,
+  "karakter": 6,
+  "cevre_varligi": 0
+ },
+ "godot_hatalari": [],
+ "denetim_uyarilari": []
+}

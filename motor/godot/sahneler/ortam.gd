@@ -170,6 +170,7 @@ uniform int su_tur = 0; uniform vec2 su_merkez = vec2(0.0); uniform vec2 su_yon 
 uniform float su_bas = 30.0; uniform float su_kiyi = 10.0; uniform float su_derin = 4.0; uniform float su_gen = 14.0;
 uniform vec3 kum = vec3(0.55, 0.49, 0.38);
 varying float su_k;
+varying vec3 yamac_n;
 float su_alcal(vec2 p){
   if (su_tur == 0) return 0.0;
   float d = dot(p - su_merkez, su_yon) - su_bas;
@@ -181,6 +182,9 @@ uniform sampler2D d_nor : hint_normal, filter_linear_mipmap, repeat_enable;
 uniform float doku_acik = 0.0; uniform float doku_olcek = 0.5; uniform float doku_karisim = 0.8;
 uniform float doku_renk = 1.0; uniform float doku_ort = 0.4; uniform float doku_normal = 1.0;   // Faz 5.4: 0 = yalnız ayrıntı (renk hazır ayardan)
 uniform float batma_bas = 0.0;
+// Mekân kalite paketi: dik yamaçlarda gerçek kaya yüzeyi (üç yönlü; Poly Haven CC0). yamac_acik 0 = önceki davranış.
+uniform float yamac_acik = 0.0; uniform sampler2D y_alb : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform vec2 yamac_egim = vec2(0.16, 0.40); uniform float yamac_olcek = 0.12; uniform vec3 yamac_renk = vec3(1.0);
 uniform float iz_tekerlek = 0.0; uniform float teker_derinlik = 0.35; uniform float teker_genislik = 0.18;  // Faz 5.2 D15: yönlü çizgi gürültüsü yerine iki tekerlek izi + mesafeyle sönen ince doku
 uniform float tani_iz_yok = 0.0; uniform float tani_ince_yok = 0.0;   // Faz 5.2 D15 teşhis anahtarları   // Faz 5.2 D13: >0 ise ana zemin bu yarıçaptan sonra uzak arazinin altına batar
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
@@ -193,6 +197,12 @@ void vertex(){
   float uzak = smoothstep(duz_yari, duz_yari * 10.0, abs(wp.x - yol_x));
   VERTEX.y += fbm(wp.xz*0.02)*tepe*uzak + fbm(wp.xz*0.25)*0.35*uzak;
   su_k = su_alcal(wp.xz);
+  yamac_n = vec3(0.0, 1.0, 0.0);
+  if (yamac_acik > 0.5) {   // tepe yükseklik fonksiyonunun sonlu farkı: yumuşak eğim (üçgen normali basamaklı görünür)
+    float e_ = 1.5;
+    #define ZY(p) (fbm((p)*0.02)*tepe*smoothstep(duz_yari, duz_yari * 10.0, abs((p).x - yol_x)))
+    yamac_n = vec3(ZY(wp.xz - vec2(e_, 0.0)) - ZY(wp.xz + vec2(e_, 0.0)), 2.0 * e_, ZY(wp.xz - vec2(0.0, e_)) - ZY(wp.xz + vec2(0.0, e_)));
+  }
   VERTEX.y = mix(VERTEX.y, -su_derin, su_k);
   if (batma_bas > 0.0) { VERTEX.y -= 40.0 * smoothstep(batma_bas, batma_bas + 30.0, length(VERTEX.xz)); }
   wp.y = VERTEX.y;
@@ -227,6 +237,18 @@ void fragment(){
     NORMAL_MAP_DEPTH = doku_normal * uzak_k;
   } else {
     ALBEDO = taban;
+  }
+  if (yamac_acik > 0.5) {   // eğim = 1 - |n.y|; gürültüyle kırılmış geçiş, üç yönlü örnekleme (dik yüzde esneme yok)
+    vec3 nn = normalize(yamac_n);   // köşe gölgelendiricisinde hesaplanan yumuşak eğim normali (piksel başına maliyet yok)
+    float egim = 1.0 - abs(nn.y) + (fbm(wp.xz * 0.11) - 0.5) * 0.18;
+    float yk = smoothstep(yamac_egim.x, yamac_egim.y, egim);
+    if (yk > 0.001) {
+      vec3 bw = pow(abs(nn), vec3(4.0)); bw /= (bw.x + bw.y + bw.z);
+      vec3 ra = texture(y_alb, wp.zy * yamac_olcek).rgb * bw.x + texture(y_alb, wp.xz * yamac_olcek).rgb * bw.y
+              + texture(y_alb, wp.xy * yamac_olcek).rgb * bw.z;
+      vec3 rb = texture(y_alb, wp.xz * yamac_olcek * 0.21 + vec2(0.3, 0.7)).rgb;
+      ALBEDO = mix(ALBEDO, mix(ra, rb, 0.3) * yamac_renk, yk);
+    }
   }
   ALBEDO = mix(ALBEDO, kum, smoothstep(0.02, 0.45, su_k) * (su_tur > 0 ? 1.0 : 0.0));   // kıyı kumu / ıslak toprak
   ROUGHNESS = 1.0;
@@ -284,6 +306,13 @@ static func arazi(kok: Node, a: Dictionary, merkez: Vector2) -> void:
 		mat.set_shader_parameter("doku_acik", 1.0)
 		mat.set_shader_parameter("doku_olcek", float(g.get("doku_olcek", 0.5)))
 		mat.set_shader_parameter("doku_karisim", float(g.get("doku_karisim", 0.8)))
+	if g.has("yamac_alb"):   # mekân kalite paketi: yamaç kaya dokusu
+		mat.set_shader_parameter("y_alb", _resim(g["yamac_alb"], true))
+		mat.set_shader_parameter("yamac_acik", 1.0)
+		var ye: Array = g.get("yamac_egim", [0.16, 0.40])
+		mat.set_shader_parameter("yamac_egim", Vector2(ye[0], ye[1]))
+		mat.set_shader_parameter("yamac_olcek", float(g.get("yamac_olcek", 0.12)))
+		mat.set_shader_parameter("yamac_renk", _v3(g.get("yamac_renk", [1.0, 1.0, 1.0])))
 	var mi := MeshInstance3D.new()
 	mi.mesh = m
 	mi.material_override = mat
@@ -298,6 +327,10 @@ uniform float bas = 180.0; uniform float tam = 420.0;
 uniform float gecis = 0.0; uniform float gecis_bas = 200.0;
 uniform float tepe = 14.0; uniform float duz_yari = 6.0; uniform float yol_x = 0.0;
 uniform vec3 cimen; uniform vec3 cimen2; uniform vec3 kuru;
+// Mekân kalite paketi: uzak dağların dik yamaçlarında gerçek kaya yüzeyi (renk paletle uyumlu; pus sonradan uygulanır)
+uniform float yamac_acik = 0.0; uniform sampler2D y_alb : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform vec2 yamac_egim = vec2(0.25, 0.5); uniform float yamac_olcek = 0.02; uniform vec3 yamac_renk = vec3(1.0);
+varying vec3 nw;
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
 float n(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
   return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }
@@ -326,6 +359,7 @@ void vertex(){
   float y = yuk(w.xz);
   VERTEX.y += y;
   float e = 3.0;
+  nw = normalize(vec3(yuk(w.xz - vec2(e,0)) - yuk(w.xz + vec2(e,0)), 2.0*e, yuk(w.xz - vec2(0,e)) - yuk(w.xz + vec2(0,e))));
   NORMAL = normalize(vec3(yuk(w.xz - vec2(e,0)) - yuk(w.xz + vec2(e,0)), 2.0*e, yuk(w.xz - vec2(0,e)) - yuk(w.xz + vec2(0,e))));
   hv = clamp(y / max(yukseklik, 1.0), 0.0, 1.0);
   wp = w;
@@ -343,6 +377,16 @@ void fragment(){
     cz = mix(cz, kuru, smoothstep(0.55, 0.75, zfbm(wp.xz*0.08)));
     cz *= 0.9 + 0.2 * zfbm(wp.xz*2.3);
     c = mix(cz, c, kr);
+  }
+  if (yamac_acik > 0.5) {
+    float eg = 1.0 - nw.y + (fbm(wp.xz * 0.03) - 0.5) * 0.22;
+    float yk = smoothstep(yamac_egim.x, yamac_egim.y, eg) * kr;
+    vec3 bw = pow(abs(nw), vec3(4.0)); bw /= (bw.x + bw.y + bw.z);
+    vec3 ra = texture(y_alb, wp.zy * yamac_olcek).rgb * bw.x + texture(y_alb, wp.xz * yamac_olcek).rgb * bw.y
+            + texture(y_alb, wp.xy * yamac_olcek).rgb * bw.z;
+    float l = dot(ra, vec3(0.299, 0.587, 0.114));
+    vec3 kaya = mix(mix(r1, r2, 0.4) * (0.45 + l * 1.6), ra * yamac_renk, 0.45);   // paletin tonu + dokunun ayrıntısı
+    c = mix(c * (0.8 + 0.5 * l), kaya, yk);
   }
   ALBEDO = c;
   ROUGHNESS = 1.0;
@@ -400,6 +444,13 @@ static func daglar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, merkez:
 			for kz in ["cimen", "cimen2", "kuru"]:
 				mat.set_shader_parameter(kz, _v3(a["zemin"][kz]))
 		mat.set_shader_parameter("tam", float(g.get("dag_tam", 420.0)))
+		if g.has("yamac_alb"):   # mekân kalite paketi: uzak dağ yamaçlarında kaya
+			mat.set_shader_parameter("y_alb", _resim(g["yamac_alb"], true))
+			mat.set_shader_parameter("yamac_acik", 1.0)
+			var yu: Array = g.get("yamac_egim_uzak", [0.25, 0.5])
+			mat.set_shader_parameter("yamac_egim", Vector2(yu[0], yu[1]))
+			mat.set_shader_parameter("yamac_olcek", float(g.get("yamac_olcek_uzak", 0.02)))
+			mat.set_shader_parameter("yamac_renk", _v3(g.get("yamac_renk", [1.0, 1.0, 1.0])))
 		mat.set_shader_parameter("merkez", merkez)
 		mat.set_shader_parameter("yukseklik", float(g.get("dag_yukseklik", 45.0)))
 		var mi := MeshInstance3D.new()
