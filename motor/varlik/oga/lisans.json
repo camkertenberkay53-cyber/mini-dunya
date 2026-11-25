@@ -1,0 +1,221 @@
+{
+ "kaynak": "OpenGameArt.org",
+ "varliklar": [
+  {
+   "kimlik": "ual2",
+   "sayfa": "https://opengameart.org/content/universal-animation-library-2",
+   "amac": "insan animasyonları (savaş kombinasyonları, mızrak, yay, tepki) — UAL1 ile aynı evrensel iskelet",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "ual2/universal_animation_library_2standard.zip",
+     "url": "https://opengameart.org/sites/default/files/universal_animation_library_2standard.zip",
+     "bayt": 10257419,
+     "sha256": "ec0e40d6d78fe9aaad59e322f40865a8675c22f0745e291622e54520391a9217",
+     "acilan": [
+      "Universal Animation Library 2 [Standard]/Female Mannequin/README.txt",
+      "Universal Animation Library 2 [Standard]/Female Mannequin/Unreal-Godot/Mannequin_F.glb",
+      "Universal Animation Library 2 [Standard]/License.txt",
+      "Universal Animation Library 2 [Standard]/Unreal-Godot/UAL2_Standard.glb"
+     ]
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "quaternius"
+  },
+  {
+   "kimlik": "ruzgar_ignasd",
+   "sayfa": "https://opengameart.org/content/wind",
+   "amac": "rüzgâr ambiyansı",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "ruzgar_ignasd/wind.zip",
+     "url": "https://opengameart.org/sites/default/files/wind.zip",
+     "bayt": 263555,
+     "sha256": "8f6185f6eb836a5c35c492e8dabd276e507ba3e4dca0e7d551d04c689d0c0d63",
+     "acilan": [
+      "wind/Wind.m4a",
+      "wind/Wind.ogg",
+      "wind/Wind2.m4a",
+      "wind/Wind2.ogg",
+      "wind/Wind3.m4a",
+      "wind/Wind3.ogg"
+     ]
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "IgnasD"
+  },
+  {
+   "kimlik": "park_ambiyans",
+   "sayfa": "https://opengameart.org/content/park-ambiences",
+   "amac": "açık alan rüzgâr/kuş ambiyansı (saha kaydı)",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "park_ambiyans/park_ambience_wind.wav",
+     "url": "https://opengameart.org/sites/default/files/park_ambience_wind.wav",
+     "bayt": 73960096,
+     "sha256": "5c381856745b4706e7eba55eb9271a61a530e90c05df8126adb2db89ecfa6c5a"
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "Thimras"
+  },
+  {
+   "kimlik": "rpg_ses",
+   "sayfa": "https://opengameart.org/content/rpg-sound-pack",
+   "amac": "kılıç çekme/çarpışma, savurma, zırh sesleri",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "rpg_ses/rpg_sound_pack.zip",
+     "url": "https://opengameart.org/sites/default/files/rpg_sound_pack.zip",
+     "bayt": 12465564,
+     "sha256": "f80754a9c04854e30c9da89d0186540ad097309d98b41387b6e83029e2601421",
+     "acilan": [
+      "RPG Sound Pack/battle/magic1.wav",
+      "__MACOSX/RPG Sound Pack/battle/._magic1.wav",
+      "RPG Sound Pack/battle/spell.wav",
+      "__MACOSX/RPG Sound Pack/battle/._spell.wav",
+      "RPG Sound Pack/battle/swing.wav",
+      "__MACOSX/RPG Sound Pack/battle/._swing.wav",
+      "RPG Sound Pack/battle/swing2.wav",
+      "__MACOSX/RPG Sound Pack/battle/._swing2.wav",
+      "RPG Sound Pack/battle/swing3.wav",
+      "__MACOSX/RPG Sound Pack/battle/._swing3.wav",
+      "RPG Sound Pack/battle/sword-unsheathe.wav",
+      "__MACOSX/RPG Sound Pack/battle/._sword-unsheathe.wav",
+      "RPG Sound Pack/battle/sword-unsheathe2.wav",
+      "__MACOSX/RPG Sound Pack/battle/._sword-unsheathe2.wav",
+      "RPG Sound Pack/battle/sword-unsheathe3.wav",
+      "__MACOSX/RPG Sound Pack/battle/._sword-unsheathe3.wav",
+      "RPG Sound Pack/battle/sword-unsheathe4.wav",
+      "__MACOSX/RPG Sound Pack/battle/._sword-unsheathe4.wav",
+      "RPG Sound Pack/battle/sword-unsheathe5.wav",
+      "__MACOSX/RPG Sound Pack/battle/._sword-unsheathe5.wav",
+      "RPG Sound Pack/inventory/armor-light.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._armor-light.wav",
+      "RPG Sound Pack/inventory/beads.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._beads.wav",
+      "RPG Sound Pack/inventory/bottle.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._bottle.wav",
+      "RPG Sound Pack/inventory/bubble.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._bubble.wav",
+      "RPG Sound Pack/inventory/bubble2.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._bubble2.wav",
+      "RPG Sound Pack/inventory/bubble3.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._bubble3.wav",
+      "RPG Sound Pack/inventory/chainmail1.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._chainmail1.wav",
+      "RPG Sound Pack/inventory/chainmail2.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._chainmail2.wav",
+      "RPG Sound Pack/inventory/cloth-heavy.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._cloth-heavy.wav",
+      "RPG Sound Pack/inventory/cloth.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._cloth.wav",
+      "RPG Sound Pack/inventory/coin.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._coin.wav",
+      "RPG Sound Pack/inventory/coin2.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._coin2.wav",
+      "RPG Sound Pack/inventory/coin3.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._coin3.wav",
+      "RPG Sound Pack/inventory/metal-ringing.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._metal-ringing.wav",
+      "RPG Sound Pack/inventory/metal-small1.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._metal-small1.wav",
+      "RPG Sound Pack/inventory/metal-small2.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._metal-small2.wav",
+      "RPG Sound Pack/inventory/metal-small3.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._metal-small3.wav",
+      "RPG Sound Pack/inventory/wood-small.wav",
+      "__MACOSX/RPG Sound Pack/inventory/._wood-small.wav"
+     ]
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "artisticdude"
+  },
+  {
+   "kimlik": "kilic_starninjas",
+   "sayfa": "https://opengameart.org/content/20-sword-sound-effects-attacks-and-clashes",
+   "amac": "kılıç saldırı/çarpışma sesleri",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "kilic_starninjas/sword_-_starninjas_1.zip",
+     "url": "https://opengameart.org/sites/default/files/sword_-_starninjas_1.zip",
+     "bayt": 149512,
+     "sha256": "87a1fe1cfeee5f282fe06a7a9c25ab9ebf24b7674fe19171b7f2762dffb628c1",
+     "acilan": [
+      "sword - StarNinjas/sword.4.ogg",
+      "sword - StarNinjas/sword.5.ogg",
+      "sword - StarNinjas/sword.6.ogg",
+      "sword - StarNinjas/sword.1.ogg",
+      "sword - StarNinjas/sword.2.ogg",
+      "sword - StarNinjas/sword.3.ogg",
+      "sword - StarNinjas/sword.7.ogg",
+      "sword - StarNinjas/sword.8.ogg",
+      "sword - StarNinjas/sword.10.ogg",
+      "sword - StarNinjas/sword.9.ogg"
+     ]
+    },
+    {
+     "dosya": "kilic_starninjas/sword_clash_-_starninjas_0.zip",
+     "url": "https://opengameart.org/sites/default/files/sword_clash_-_starninjas_0.zip",
+     "bayt": 144575,
+     "sha256": "f363c80ea1627548d336370750651b0d2d092978148ecfb3642717c2efb54b6b",
+     "acilan": [
+      "sword_clash.10.ogg",
+      "sword_clash.1.ogg",
+      "sword_clash.2.ogg",
+      "sword_clash.3.ogg",
+      "sword_clash.4.ogg",
+      "sword_clash.5.ogg",
+      "sword_clash.6.ogg",
+      "sword_clash.7.ogg",
+      "sword_clash.8.ogg",
+      "sword_clash.9.ogg"
+     ]
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "StarNinjas"
+  },
+  {
+   "kimlik": "kus_sesi",
+   "sayfa": "https://opengameart.org/content/bird-chirping-sounds",
+   "amac": "sakin sahnelerde uzak kuş sesi",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "kus_sesi/birdchirping071414.wav",
+     "url": "https://opengameart.org/sites/default/files/birdchirping071414.wav",
+     "bayt": 528004,
+     "sha256": "bc6e28bd823b653b2abf3384d4147718603af6bcd98e26166345df71a61eeb08"
+    },
+    {
+     "dosya": "kus_sesi/birdchirping071414_0.mp3",
+     "url": "https://opengameart.org/sites/default/files/birdchirping071414_0.mp3",
+     "bayt": 120417,
+     "sha256": "40310829b1f5a295731a974f7da783be5a46e77b9859a930cce19eca13430cb6"
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "syncopika"
+  }
+ ]
+}
