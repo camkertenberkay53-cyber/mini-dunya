@@ -52,6 +52,8 @@ static func serp(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector2, ka
 					break
 			if not iyi:
 				continue
+			if V.su_k(p.x, p.z, ar) > 0.02:   # suya ve kumsala ağaç/kaya dikilmez
+				continue
 			p.y = V.zemin_y(p.x, p.z, ar) - float(kat.get("gomme_m", 0.15))
 			var t := Transform3D(Basis(Vector3.UP, r.randf() * TAU).scaled(Vector3.ONE * r.randf_range(float(ol[0]), float(ol[1]))), p)
 			yer.append(t)
@@ -65,6 +67,18 @@ static func serp(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector2, ka
 				mm.set_instance_transform(i, yer[i] * (pr[1] as Transform3D))
 			var mi := MultiMeshInstance3D.new()
 			mi.multimesh = mm
+			if kat.has("kaya_doku"):   # dokusuz kaya kütlesine üç yönlü (triplanar) gerçek kaya dokusu (Poly Haven CC0)
+				var km := StandardMaterial3D.new()
+				var img := Image.load_from_file(kat["kaya_doku"])
+				img.generate_mipmaps()
+				km.albedo_texture = ImageTexture.create_from_image(img)
+				km.uv1_triplanar = true
+				km.uv1_world_triplanar = true
+				km.uv1_scale = Vector3.ONE * float(kat.get("kaya_olcek", 0.18))
+				var kr: Array = kat.get("kaya_renk", [0.72, 0.70, 0.66])
+				km.albedo_color = Color(kr[0], kr[1], kr[2])
+				km.roughness = 0.95
+				mi.material_override = km
 			mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON if kat.get("golge", true) else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			kok.add_child(mi)
 		sahne.free()

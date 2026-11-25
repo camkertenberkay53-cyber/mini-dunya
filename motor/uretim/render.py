@@ -68,6 +68,12 @@ def is_hazirla(plan: dict, c: dict) -> dict:
     yatay = [abs(x) for x in xs] + [abs(cv["konum"][0]) + 4 for cv in c["ortam"].get("cevre", [])]
     ar["duz_yari"] = max(6.0, max(yatay) + 2.0)
     ileri = [kam["bas"]["hedef"][0] - kam["bas"]["konum"][0], kam["bas"]["hedef"][2] - kam["bas"]["konum"][2]]
+    if ar.get("su"):   # mekân paketi: su kameranın baktığı yönde, sahnenin arkasında kalır
+        su = dict(ar["su"])
+        n = math.hypot(*ileri) or 1.0
+        su["yon"] = [ileri[0] / n, ileri[1] / n]
+        su["merkez"] = [sum(xs) / len(xs), sum(zs) / len(zs)]
+        ar["su"] = su
     return {
         "surum": 1,
         "plan_konu": plan["konu"],
@@ -130,7 +136,13 @@ def _yerlesim(plan: dict, c: dict) -> dict:
     def uygun(ids):
         return [str(veri.ekipman_glb(p)) for p in ids if (pr := veri.parca(p)) and donem in pr.get("donem", [])
                 and veri.kalite()["ekipman"].get(p, {}).get("sinif") not in (None, "RED") and veri.ekipman_glb(p).exists()]
-    k["cadirlar"], k["ekler"] = uygun(k.pop("cadir_adaylari")), uygun(k.pop("ek_adaylari"))
+    if "cadir_adaylari" in k:
+        k["cadirlar"], k["ekler"] = uygun(k.pop("cadir_adaylari")), uygun(k.pop("ek_adaylari"))
+    else:   # mekân paketi yerleşimleri: rol → glb listesi
+        k["roller"] = {rol: uygun(ids) for rol, ids in k["roller"].items()}
+        k["cadirlar"] = [g for v in k["roller"].values() for g in v]
+    k.setdefault("alev_doku", "varlik/kenney_parcacik/flame_02.png")
+    k.setdefault("duman_doku", "varlik/kenney_parcacik/smoke_04.png")
     for d in ("alev_doku", "duman_doku"):
         k[d] = str(ayar.MOTOR / k[d])
     k["tur"] = ad
@@ -151,7 +163,9 @@ def _serpme(plan: dict, c: dict) -> dict:
         for pid in uygun:
             katlar.append({"glb": str(veri.ekipman_glb(pid)), "adet": max(1, round(kural["adet"] / len(uygun))),
                            "yaricap_m": kural["yaricap_m"], "en_az_aralik_m": kural["en_az_aralik_m"], "olcek": kural["olcek"],
-                           "golge": kural.get("golge", True)})
+                           "golge": kural.get("golge", True),
+                           **({"kaya_doku": str(ayar.MOTOR / kural["kaya_doku"]), "kaya_olcek": kural.get("kaya_olcek", 0.18)}
+                              if kural.get("kaya_doku") else {})})
     return {"acik": bool(katlar), "serit_payi_m": k["serit_payi_m"], "gorus_payi_m": k["gorus_payi_m"], "katmanlar": katlar}
 
 

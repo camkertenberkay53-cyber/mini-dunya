@@ -6,6 +6,7 @@ const V := preload("res://sahneler/vfx.gd")
 const D := preload("res://sahneler/donatici.gd")
 
 static var _atesler: Array = []   # [OmniLight3D, taban enerji, faz]
+static var _salinan: Array = []   # [Node3D, taban konum, taban yön, faz, derece] — su üstündeki gemi/sandal
 
 static func _yerlestir(kok: Node3D, glb: String, p: Vector3, yon: float, olcek: float) -> void:
 	var n := D.ekipman(glb)
@@ -46,6 +47,12 @@ static func _ates(kok: Node3D, p: Vector3, k: Dictionary, tohum: int, t: float) 
 
 ## Her karede: ateş ışığı titrer (iki sinüs; sabit kare hızında belirlenimci).
 static func guncelle(t: float) -> void:
+	for sl in _salinan:   # su üstündekiler dalgayla salınır (yalpa + baş-kıç vurma + hafif dikey)
+		var n: Node3D = sl[0]
+		var f: float = sl[3]
+		var d: float = deg_to_rad(float(sl[4]))
+		n.position = (sl[1] as Vector3) + Vector3(0, sin(t * 0.9 + f) * 0.12, 0)
+		n.rotation = (sl[2] as Vector3) + Vector3(sin(t * 0.7 + f * 1.3) * d * 0.6, 0, sin(t * 0.83 + f) * d)
 	for a in _atesler:
 		var l: OmniLight3D = a[0]
 		l.light_energy = float(a[1]) * (0.85 + 0.1 * sin(t * 11.0 + a[2]) + 0.05 * sin(t * 23.0 + a[2] * 1.7))
@@ -91,4 +98,87 @@ static func ordugah(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector3,
 			var a := p + yan * r.randf_range(3.0, 4.5) * (1.0 if r.randf() < 0.5 else -1.0) + ileri * r.randf_range(-2.0, 2.0)
 			a.y = V.zemin_y(a.x, a.z, ar)
 			_ates(kok, a, k, tohum + i * 13, t)
+	return n
+
+
+## Mekân paketi — dizi yerleşimleri (kale, kasaba, liman, nehir iskelesi). Parçalar is.json "roller" altında dönem
+## kataloğundan gelir; boş rol atlanır (uydurma yok). Yön: oyuncular kameraya bakıyor; yapılar onların arkasında.
+static func _yon_aci(v: Vector3) -> float:
+	return atan2(-v.z, v.x)   # model +X ekseni v'ye hizalanır (Y ekseni etrafında)
+
+static func _sec(r: RandomNumberGenerator, liste: Array) -> String:
+	return liste[r.randi() % liste.size()] if liste.size() > 0 else ""
+
+static func _koy(kok: Node3D, glb: String, p: Vector3, yon: float, ar: Dictionary, olcek: float = 1.0, zemine := true) -> Node3D:
+	if glb == "":
+		return null
+	var n := D.ekipman(glb)
+	kok.add_child(n)
+	if zemine:
+		p.y = V.zemin_y(p.x, p.z, ar)
+	n.position = p
+	n.rotation.y = yon
+	n.scale = Vector3.ONE * olcek
+	return n
+
+static func dizi(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector3, ileri: Vector3, kameralar: Array,
+		tohum: int, t: float) -> int:
+	var r := RandomNumberGenerator.new()
+	r.seed = tohum
+	var yan := ileri.cross(Vector3.UP).normalized()
+	var rol: Dictionary = k["roller"]
+	var n := 0
+	match str(k["tur"]):
+		"kale":
+			var d := float(k.get("mesafe_m", 34.0))
+			var on := merkez + ileri * d
+			var duz := _yon_aci(yan)
+			if _koy(kok, _sec(r, rol.get("kapi", [])), on, duz, ar): n += 1
+			for s in [-1.0, 1.0]:
+				if _koy(kok, _sec(r, rol.get("sur", [])), on + yan * float(s) * 21.5 + ileri * 1.5, duz + float(s) * 0.12, ar): n += 1
+				if _koy(kok, _sec(r, rol.get("kule", [])), on + yan * float(s) * 36.0 + ileri * 6.0, duz, ar): n += 1
+			if _koy(kok, _sec(r, rol.get("ic_kale", [])), on + ileri * 16.0, duz, ar, 1.3): n += 1
+		"kasaba":
+			var sy := float(k.get("sokak_yari_m", 7.5))
+			var ar_: Array = k.get("aralik_m", [9.0, 12.0])
+			for s in [-1.0, 1.0]:
+				var d := float(k.get("bas_m", 12.0)) + r.randf_range(0.0, 4.0)
+				while d < float(k.get("son_m", 70.0)):
+					var p: Vector3 = merkez + ileri * d + yan * float(s) * (sy + r.randf_range(0.0, 1.5))
+					var yuz: float = _yon_aci(ileri) + (PI * 0.5 if float(s) > 0 else -PI * 0.5)   # kapılar sokağa
+					if r.randf() < 0.18 and rol.get("tezgah", []).size() > 0:
+						_koy(kok, _sec(r, rol["tezgah"]), p - yan * float(s) * 3.0, yuz, ar)
+					elif _koy(kok, _sec(r, rol.get("ev", [])), p, yuz + r.randf_range(-0.08, 0.08), ar, r.randf_range(0.92, 1.08)):
+						n += 1
+					d += r.randf_range(float(ar_[0]), float(ar_[1]))
+			if _koy(kok, _sec(r, rol.get("son", [])), merkez + ileri * (float(k.get("son_m", 70.0)) + 8.0), _yon_aci(yan), ar, 1.3): n += 1
+		"liman", "nehir_iskelesi":
+			var su: Dictionary = ar.get("su", {})
+			var seviye := float(su.get("seviye_m", -0.4))
+			var kiyi := float(su.get("bas_m", 16.0))
+			var der := float(k.get("salinim_derece", 2.0))
+			if su.get("tur", "") == "nehir":
+				kiyi -= float(su.get("genislik_m", 14.0)) * 0.5
+			var isk := merkez + ileri * (kiyi + 3.0) + yan * r.randf_range(-6.0, 6.0)
+			isk.y = seviye + 0.35
+			if _koy(kok, _sec(r, rol.get("iskele", [])), isk, _yon_aci(yan), ar, 1.0, false): n += 1
+			var gm: Array = k.get("gemi_mesafe_m", [14.0, 60.0])
+			var hedefler: Array = []
+			for i in int(k.get("gemi_adet", 0)):
+				hedefler.append(["gemi", kiyi + float(su.get("kiyi_m", 8.0)) + r.randf_range(float(gm[0]), float(gm[1])), r.randf_range(-0.5, 0.5)])
+			for i in int(k.get("sandal_adet", 3)):
+				hedefler.append(["sandal", kiyi + r.randf_range(4.0, 12.0) + (float(su.get("genislik_m", 0.0)) * 0.3 if su.get("tur", "") == "nehir" else 0.0), r.randf_range(-0.35, 0.35)])
+			for h in hedefler:
+				var dd: float = h[1]
+				var p: Vector3 = merkez + ileri * dd + yan * float(h[2]) * dd
+				if preload("res://sahneler/serpme.gd")._gorus_uzakligi(p, kameralar) < 3.0 and h[0] == "sandal":
+					p += yan * 6.0
+				if V.su_k(p.x, p.z, ar) < 0.9:   # yalnız açık suya
+					continue
+				p.y = seviye - (0.25 if h[0] == "gemi" else 0.05)
+				var yon := _yon_aci(yan) + r.randf_range(-0.6, 0.6)
+				var g := _koy(kok, _sec(r, rol.get(h[0], [])), p, yon, ar, 1.0, false)
+				if g:
+					_salinan.append([g, g.position, g.rotation, r.randf() * TAU, der * (1.0 if h[0] == "gemi" else 1.6)])
+					n += 1
 	return n

@@ -165,6 +165,17 @@ render_mode diffuse_burley, specular_disabled;
 uniform vec3 cimen; uniform vec3 cimen2; uniform vec3 kuru; uniform vec3 toprak; uniform vec3 toprak2;
 uniform float tepe = 14.0; uniform float yol_acik = 1.0; uniform float yol_gen = 2.6; uniform float yol_x = 0.0;
 uniform float duz_yari = 6.0;
+// Mekân paketi: su oyuğu. su_tur 0 = yok (önceki davranış), 1 = deniz (su_yon yönünde su_bas'tan öte), 2 = nehir bandı.
+uniform int su_tur = 0; uniform vec2 su_merkez = vec2(0.0); uniform vec2 su_yon = vec2(0.0, 1.0);
+uniform float su_bas = 30.0; uniform float su_kiyi = 10.0; uniform float su_derin = 4.0; uniform float su_gen = 14.0;
+uniform vec3 kum = vec3(0.55, 0.49, 0.38);
+varying float su_k;
+float su_alcal(vec2 p){
+  if (su_tur == 0) return 0.0;
+  float d = dot(p - su_merkez, su_yon) - su_bas;
+  if (su_tur == 1) return smoothstep(0.0, su_kiyi, d);
+  return 1.0 - smoothstep(su_gen * 0.5, su_gen * 0.5 + su_kiyi, abs(d));
+}
 uniform sampler2D d_alb : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D d_nor : hint_normal, filter_linear_mipmap, repeat_enable;
 uniform float doku_acik = 0.0; uniform float doku_olcek = 0.5; uniform float doku_karisim = 0.8;
@@ -181,6 +192,8 @@ void vertex(){
   wp = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz;
   float uzak = smoothstep(duz_yari, duz_yari * 10.0, abs(wp.x - yol_x));
   VERTEX.y += fbm(wp.xz*0.02)*tepe*uzak + fbm(wp.xz*0.25)*0.35*uzak;
+  su_k = su_alcal(wp.xz);
+  VERTEX.y = mix(VERTEX.y, -su_derin, su_k);
   if (batma_bas > 0.0) { VERTEX.y -= 40.0 * smoothstep(batma_bas, batma_bas + 30.0, length(VERTEX.xz)); }
   wp.y = VERTEX.y;
 }
@@ -215,6 +228,7 @@ void fragment(){
   } else {
     ALBEDO = taban;
   }
+  ALBEDO = mix(ALBEDO, kum, smoothstep(0.02, 0.45, su_k) * (su_tur > 0 ? 1.0 : 0.0));   // kıyı kumu / ıslak toprak
   ROUGHNESS = 1.0;
 }
 """
@@ -237,6 +251,16 @@ static func arazi(kok: Node, a: Dictionary, merkez: Vector2) -> void:
 	mat.set_shader_parameter("yol_gen", a["yol"]["genislik"])
 	mat.set_shader_parameter("yol_x", a.get("yol_x", 0.0))
 	mat.set_shader_parameter("duz_yari", a.get("duz_yari", 6.0))
+	var su: Dictionary = a.get("su", {})
+	if su.get("tur", "") in ["deniz", "nehir"]:
+		mat.set_shader_parameter("su_tur", 1 if su["tur"] == "deniz" else 2)
+		mat.set_shader_parameter("su_merkez", Vector2(su["merkez"][0], su["merkez"][1]))
+		mat.set_shader_parameter("su_yon", Vector2(su["yon"][0], su["yon"][1]).normalized())
+		mat.set_shader_parameter("su_bas", float(su.get("bas_m", 30.0)))
+		mat.set_shader_parameter("su_kiyi", float(su.get("kiyi_m", 10.0)))
+		mat.set_shader_parameter("su_derin", float(su.get("derin_m", 4.0)))
+		mat.set_shader_parameter("su_gen", float(su.get("genislik_m", 14.0)))
+		mat.set_shader_parameter("kum", _v3(su.get("kum", [0.55, 0.49, 0.38])))
 	var g: Dictionary = a.get("gorsel", {})
 	mat.set_shader_parameter("iz_tekerlek", 1.0 if g.get("zemin_iz", "") == "tekerlek" else 0.0)
 	mat.set_shader_parameter("teker_derinlik", float(g.get("teker_derinlik", 0.35)))
@@ -547,7 +571,10 @@ static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Ar
 		if absf(x - yx) < yg:
 			x = yx + signf(x - yx + 0.001) * rng.randf_range(yg, yg + 1.4)
 		var b := Basis(Vector3.UP, rng.randf() * TAU).rotated(Vector3(1, 0, 0), rng.randf_range(-0.25, 0.25)).scaled(Vector3.ONE * rng.randf_range(0.5, 1.3))
-		mm.set_instance_transform(i, Transform3D(b, Vector3(x, 0.02, z)))
+		var oy := 0.02
+		if a.has("su") and preload("res://sahneler/vfx.gd").su_k(x, z, a) > 0.03:
+			oy = -60.0   # mekân paketi: su ve kumsal üstünde ot çıkmaz (dizi sırası değişmesin diye yalnız gömülür)
+		mm.set_instance_transform(i, Transform3D(b, Vector3(x, oy, z)))
 	var parca: float = float(g.get("ot_parca", 0.0))
 	if parca <= 0.0:
 		var mmi := MultiMeshInstance3D.new()
@@ -578,3 +605,82 @@ static func otlar(kok: Node, a: Dictionary, rng: RandomNumberGenerator, alan: Ar
 		if g.get("ot_golge", "") == "yok":
 			pmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		kok.add_child(pmi)
+
+
+## Mekân paketi — su yüzeyi (deniz/nehir). Kendi yazımımız: iki yönlü Gerstner benzeri dalgalar (köşe), analitik
+## normal + ince dalgacık gürültüsü, Fresnel ile gök yansıması, güneş parıltısı. Opak (Compatibility'de ucuz).
+const SU_SHADER := """
+shader_type spatial;
+render_mode diffuse_burley, specular_schlick_ggx, fog_disabled;
+uniform vec3 derin = vec3(0.04, 0.12, 0.16); uniform vec3 sig = vec3(0.10, 0.24, 0.26);
+uniform vec3 gok = vec3(0.6, 0.68, 0.76); uniform float genlik = 0.22; uniform float dalga_boy = 9.0;
+uniform float hiz = 1.0; uniform vec2 akis = vec2(0.0, 0.0); uniform float zaman = 0.0;
+varying vec3 wp;
+float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
+float n(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
+  return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }
+vec3 dalga(vec2 p, vec2 yon, float boy, float a, float t){
+  float k = 6.2831 / boy; float c = sqrt(9.8 / k) * hiz;
+  float f = k * (dot(normalize(yon), p) - c * t);
+  return vec3(normalize(yon).x * a * cos(f), a * sin(f), normalize(yon).y * a * cos(f));
+}
+void vertex(){
+  wp = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+  float t = zaman;
+  vec2 p = wp.xz - akis * t;
+  vec3 d = dalga(p, vec2(1.0, 0.6), dalga_boy, genlik, t) + dalga(p, vec2(-0.4, 1.0), dalga_boy * 0.57, genlik * 0.55, t)
+         + dalga(p, vec2(0.7, -0.3), dalga_boy * 0.31, genlik * 0.25, t);
+  VERTEX += d;
+  wp += d;
+}
+void fragment(){
+  float t = zaman;
+  vec2 p = wp.xz * 0.35 - akis * t * 0.35;
+  float e = 0.15;
+  float a = n(p + vec2(t*0.3, t*0.2)) + 0.5*n(p*2.3 - vec2(t*0.25, -t*0.4));
+  float bx = n(p + vec2(e, 0.0) + vec2(t*0.3, t*0.2)) + 0.5*n((p+vec2(e,0.0))*2.3 - vec2(t*0.25, -t*0.4));
+  float bz = n(p + vec2(0.0, e) + vec2(t*0.3, t*0.2)) + 0.5*n((p+vec2(0.0,e))*2.3 - vec2(t*0.25, -t*0.4));
+  vec3 nd = normalize(vec3((a - bx) * 0.9, 1.0, (a - bz) * 0.9));
+  NORMAL = normalize((VIEW_MATRIX * vec4(nd, 0.0)).xyz);
+  float fres = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), 4.0);
+  ALBEDO = mix(mix(derin, sig, 0.3), gok * 0.45, clamp(fres * 0.5, 0.0, 0.4));
+  ROUGHNESS = 0.22;
+  METALLIC = 0.0;
+  SPECULAR = 0.3;
+}
+"""
+
+static var _su_mat: ShaderMaterial
+
+static func su(kok: Node, a: Dictionary, isik_gok: Array) -> void:
+	var su_k: Dictionary = a.get("su", {})
+	if not su_k.get("tur", "") in ["deniz", "nehir"]:
+		return
+	var m := PlaneMesh.new()
+	m.size = Vector2(700, 700)
+	m.subdivide_width = 160
+	m.subdivide_depth = 160
+	var sh := Shader.new()
+	sh.code = SU_SHADER
+	var mat := ShaderMaterial.new()
+	mat.shader = sh
+	mat.set_shader_parameter("derin", _v3(su_k.get("derin_renk", [0.04, 0.12, 0.16])))
+	mat.set_shader_parameter("sig", _v3(su_k.get("sig_renk", [0.10, 0.24, 0.26])))
+	mat.set_shader_parameter("gok", _v3(isik_gok))
+	mat.set_shader_parameter("genlik", float(su_k.get("dalga_m", 0.22)))
+	mat.set_shader_parameter("dalga_boy", float(su_k.get("dalga_boy_m", 9.0)))
+	var ak: Array = su_k.get("akis", [0.0, 0.0])
+	mat.set_shader_parameter("akis", Vector2(ak[0], ak[1]))
+	var mi := MeshInstance3D.new()
+	mi.mesh = m
+	mi.material_override = mat
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var mz: Array = su_k["merkez"]
+	mi.position = Vector3(mz[0], float(su_k.get("seviye_m", -0.4)), mz[1])
+	kok.add_child(mi)
+	_su_mat = mat
+
+## Her kare: dalga zamanı (sabit kare hızında belirlenimci).
+static func su_guncelle(t: float) -> void:
+	if _su_mat:
+		_su_mat.set_shader_parameter("zaman", t)

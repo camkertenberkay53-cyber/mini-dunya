@@ -17,3 +17,26 @@ yerlesimler:
     isik_menzil_m: 7.0
     alev_doku: varlik/kenney_parcacik/flame_02.png
     duman_doku: varlik/kenney_parcacik/smoke_04.png
+  # --- Mekân paketi (godot/sahneler/yerlesim.gd 'dizi'): rol → aday parçalar; dönemde kayıtlı olmayan aday kullanılmaz.
+  kale:
+    aciklama: Kamera karşısında sur hattı (ortada kapı, iki yanda burçlu sur), arkada iç kale, uçlarda gözetleme kuleleri.
+    roller: {sur: [sur_burclu], kapi: [kale_kapisi], ic_kale: [burc_ev], kule: [gozetleme_kulesi]}
+    mesafe_m: 34.0
+  kasaba:
+    aciklama: Sahneden ileri uzanan sokak; iki yanda evler, pazar tezgâhları, sokağın sonunda burçlu yapı.
+    roller: {ev: [ev_kerpic_ahsap, ev_tas], tezgah: [pazar_tezgahi, yuk_arabasi], son: [burc_ev]}
+    sokak_yari_m: 7.5
+    bas_m: 12.0
+    son_m: 70.0
+    aralik_m: [9.0, 12.0]
+  liman:
+    aciklama: Kumsal açığında sandallar; açıkta demirli yelkenliler (dalgayla salınır).
+    roller: {gemi: [yelkenli_gemi], sandal: [sandal]}
+    gemi_adet: 4
+    gemi_mesafe_m: [14.0, 70.0]
+    salinim_derece: 2.5
+  nehir_iskelesi:
+    aciklama: Nehirde kayıklar.
+    roller: {sandal: [sandal]}
+    sandal_adet: 4
+    salinim_derece: 1.2

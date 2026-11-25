@@ -12,3 +12,18 @@ araziler:
   kuru_bozkir:
     - {parcalar: [kuru_agac], adet: 8, yaricap_m: [18, 120], en_az_aralik_m: 14, olcek: [0.7, 1.1]}
     - {parcalar: [kaya_1, kaya_2], adet: 22, yaricap_m: [9, 90], en_az_aralik_m: 5, olcek: [0.5, 1.5]}
+  dagli_vadi:
+    - {parcalar: [ucurum_1], adet: 10, yaricap_m: [22, 120], en_az_aralik_m: 14, olcek: [0.9, 2.2], kaya_doku: varlik/polyhaven/rocks_ground_02/diff.jpg, kaya_olcek: 0.12}
+    - {parcalar: [cam_1, cam_2], adet: 26, yaricap_m: [18, 140], en_az_aralik_m: 6, olcek: [0.9, 1.4]}
+    - {parcalar: [kaya_1, kaya_2], adet: 22, yaricap_m: [9, 90], en_az_aralik_m: 5, olcek: [0.6, 1.8]}
+  orman_kenari:
+    - {parcalar: [agac_yaprakli_1, agac_yaprakli_2], adet: 60, yaricap_m: [12, 120], en_az_aralik_m: 4.5, olcek: [0.85, 1.35]}
+    - {parcalar: [cam_1, cam_2], adet: 40, yaricap_m: [16, 140], en_az_aralik_m: 4.5, olcek: [0.9, 1.5]}
+    - {parcalar: [kaya_1, kaya_2], adet: 10, yaricap_m: [8, 60], en_az_aralik_m: 5, olcek: [0.5, 1.0]}
+  deniz_kiyisi:
+    - {parcalar: [kaya_1, kaya_2], adet: 14, yaricap_m: [8, 70], en_az_aralik_m: 5, olcek: [0.6, 1.6]}
+    - {parcalar: [agac_yaprakli_2, cam_1], adet: 10, yaricap_m: [18, 90], en_az_aralik_m: 9, olcek: [0.8, 1.2]}
+  nehir_vadisi:
+    - {parcalar: [agac_yaprakli_1, agac_yaprakli_2], adet: 30, yaricap_m: [12, 110], en_az_aralik_m: 6, olcek: [0.85, 1.3]}
+    - {parcalar: [cam_1, cam_2], adet: 20, yaricap_m: [25, 140], en_az_aralik_m: 6, olcek: [0.9, 1.4]}
+    - {parcalar: [kaya_1, kaya_2], adet: 12, yaricap_m: [8, 70], en_az_aralik_m: 5, olcek: [0.5, 1.2]}

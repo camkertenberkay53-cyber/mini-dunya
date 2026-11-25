@@ -82,6 +82,10 @@
         "type": "string"
        }
       },
+      "mekan": {
+       "type": "string",
+       "description": "Mekân kütüphanesi (kurallar/mekan.yaml): arazi, ışık, yerleşimi birlikte seçer."
+      },
       "kalabalik": {
        "type": "string",
        "description": "Arka plan kalabalığı (kurallar/kalabalik.yaml), ör. ordu."

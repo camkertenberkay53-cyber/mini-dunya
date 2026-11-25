@@ -129,6 +129,103 @@
    ],
    "guven": "makul",
    "kategori": "cevre"
+  },
+  "ev_kerpic_ahsap": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "ev_tas": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "pazar_tezgahi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "kale_kapisi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "burc_ev": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "yelkenli_gemi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "sandal": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "172 üçgen: yakın çekim için az",
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "ucurum_1": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "doku < 512 px"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
   }
  }
 }

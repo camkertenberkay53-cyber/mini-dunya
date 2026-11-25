@@ -36,6 +36,7 @@ func _ready() -> void:
 	O.arazi(self, is_["arazi"], Vector2(m[0], m[1]))
 	O.daglar(self, is_["arazi"], rng, Vector2(m[0], m[1]), deg_to_rad(float(is_["bakis_yonu_derece"])))
 	O.otlar(self, is_["arazi"], rng, is_["ot_alani"])
+	O.su(self, is_["arazi"], is_["isik"]["gok"]["ufuk"])   # mekân paketi: deniz/nehir yüzeyi (arazide su yoksa hiçbir şey)
 	var sp: Dictionary = is_.get("serpme", {})
 	if sp.get("acik", false):   # sinematik paket 2: prosedürel ağaç/kaya serpmesi (görüş çizgisi ve oyuncu şeridi boş)
 		var kk: Dictionary = c["kamera"]
@@ -48,7 +49,10 @@ func _ready() -> void:
 		il.y = 0
 		var kk2: Dictionary = c["kamera"]
 		var kam2 := [[_vec(kk2["bas"]["konum"]), _vec(kk2["bas"]["hedef"])], [_vec(kk2["son"]["konum"]), _vec(kk2["son"]["hedef"])]]
-		Y.ordugah(self, yl, is_["arazi"], Vector3(m[0], 0, m[1]), il.normalized(), kam2, int(is_.get("tohum", 1)) * 173 + str(c["id"]).hash() % 1000, t)
+		if str(yl.get("tur", "ordugah")) == "ordugah":
+			Y.ordugah(self, yl, is_["arazi"], Vector3(m[0], 0, m[1]), il.normalized(), kam2, int(is_.get("tohum", 1)) * 173 + str(c["id"]).hash() % 1000, t)
+		else:   # mekân paketi: kale, kasaba, liman, nehir iskelesi
+			Y.dizi(self, yl, is_["arazi"], Vector3(m[0], 0, m[1]), il.normalized(), kam2, int(is_.get("tohum", 1)) * 173 + str(c["id"]).hash() % 1000, t)
 	for cv in is_.get("cevre", []):
 		var n := D.glb_yukle(cv["glb"])
 		n.position = Vector3(cv["konum"][0], 0, cv["konum"][1])
@@ -184,6 +188,7 @@ func _process(delta: float) -> void:
 	if _sinema:
 		_sinema.set_shader_parameter("kare", roundf(t * 30.0))
 	Y.guncelle(t)
+	O.su_guncelle(t)
 	for tp in _toplar:
 		V.top_guncelle(tp, t)
 	t += delta

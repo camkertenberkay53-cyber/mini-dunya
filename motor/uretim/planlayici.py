@@ -320,7 +320,15 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     if not oyuncular:
         return c, [f"{taslak['id']}: {e}" for e in eksik] or [f"{taslak['id']}: niyette rol yok"], {}
     karakterler, dizilis, odak_i = dizilis_kur(oyuncular, n.get("eylem"), tohum, n.get("dizilis"), taslak["sure_sn"])
-    o = n.get("ortam") or {}
+    o = dict(n.get("ortam") or {})
+    if o.get("mekan"):   # mekân paketi: tek kelimelik mekân → arazi/ışık/yerleşim (niyette açıkça verilen önceliklidir)
+        mk = veri.kural("mekan")["mekanlar"].get(o["mekan"])
+        if mk is None:
+            eksik.append(f"{taslak['id']}: '{o['mekan']}' mekânı kütüphanede yok")
+        else:
+            for alan in ("arazi", "isik", "yerlesim", "kalabalik"):
+                if alan in mk and alan not in o:
+                    o[alan] = mk[alan]
     c["ortam"] = {"arazi": o.get("arazi", "ova_cimen"), "isik": o.get("isik", "aksam_ustu")}
     if o.get("yerlesim"):   # sinematik paket 2: prosedürel yerleşim; kuralı yoksa uydurulmaz, eksik raporlanır
         if o["yerlesim"] in veri.kural("yerlesim")["yerlesimler"]:

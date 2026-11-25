@@ -100,7 +100,20 @@ static func zemin_y(x: float, z: float, ar: Dictionary) -> float:
 	var duz := float(ar.get("duz_yari", 6.0))
 	var uzak := smoothstep(duz, duz * 10.0, absf(x - float(ar.get("yol_x", 0.0))))
 	var w := Vector2(x, z)
-	return _fbm(w * 0.02) * float(ar.get("tepe_yuksekligi", 14.0)) * uzak + _fbm(w * 0.25) * 0.35 * uzak
+	var y := _fbm(w * 0.02) * float(ar.get("tepe_yuksekligi", 14.0)) * uzak + _fbm(w * 0.25) * 0.35 * uzak
+	return lerpf(y, -float(ar.get("su", {}).get("derin_m", 4.0)), su_k(x, z, ar))
+
+## Su oyuğu katsayısı (ortam.gd ZEMIN_SHADER su_alcal kopyası): 0 kara, 1 su altı.
+static func su_k(x: float, z: float, ar: Dictionary) -> float:
+	var su: Dictionary = ar.get("su", {})
+	if not su.get("tur", "") in ["deniz", "nehir"]:
+		return 0.0
+	var yon := Vector2(su["yon"][0], su["yon"][1]).normalized()
+	var d := (Vector2(x, z) - Vector2(su["merkez"][0], su["merkez"][1])).dot(yon) - float(su.get("bas_m", 30.0))
+	if su["tur"] == "deniz":
+		return smoothstep(0.0, float(su.get("kiyi_m", 10.0)), d)
+	var g := float(su.get("genislik_m", 14.0)) * 0.5
+	return 1.0 - smoothstep(g, g + float(su.get("kiyi_m", 10.0)), absf(d))
 
 static func duman(sahne: Node3D, merkez: Vector3, ileri: Vector3, k: Dictionary, tohum: int, t: float, ar: Dictionary) -> void:
 	var r := RandomNumberGenerator.new()
