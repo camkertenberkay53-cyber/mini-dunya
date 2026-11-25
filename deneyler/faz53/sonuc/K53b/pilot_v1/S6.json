@@ -1,0 +1,13 @@
+{
+ "cekim": "S6",
+ "profil": "D17",
+ "cpu": "Intel(R) Xeon(R) 6975P-C",
+ "kare": 66,
+ "render_sn": 60.4,
+ "kare_basina_sn": 0.915,
+ "tepe_gb": 0.61,
+ "cpu_sn": 210.6,
+ "cikis": 0,
+ "godot_hata": [],
+ "durum": "TAMAM"
+}
