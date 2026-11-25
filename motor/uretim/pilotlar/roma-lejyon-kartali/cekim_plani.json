@@ -39,6 +39,7 @@
      "hiz_m_sn": 0.0
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "orta",
     "hareket": "yaklasma",
@@ -121,7 +122,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.0,
-     "hiz_m_sn": 0.817
+     "hiz_m_sn": 0.7418
     },
     {
      "takim": "rom_lejyoner_gladius",
@@ -133,7 +134,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.216,
-     "hiz_m_sn": 0.8217,
+     "hiz_m_sn": 0.7461,
      "olcek": 1.006
     },
     {
@@ -146,7 +147,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.083,
-     "hiz_m_sn": 0.7762,
+     "hiz_m_sn": 0.7048,
      "olcek": 0.95
     },
     {
@@ -159,7 +160,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.299,
-     "hiz_m_sn": 0.8337,
+     "hiz_m_sn": 0.757,
      "olcek": 1.02
     },
     {
@@ -172,7 +173,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.165,
-     "hiz_m_sn": 0.8016,
+     "hiz_m_sn": 0.7279,
      "olcek": 0.981
     },
     {
@@ -185,7 +186,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.032,
-     "hiz_m_sn": 0.8524,
+     "hiz_m_sn": 0.774,
      "olcek": 1.043
     },
     {
@@ -198,7 +199,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.248,
-     "hiz_m_sn": 0.7775,
+     "hiz_m_sn": 0.706,
      "olcek": 0.952
     },
     {
@@ -211,7 +212,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.114,
-     "hiz_m_sn": 0.8004,
+     "hiz_m_sn": 0.7268,
      "olcek": 0.98
     },
     {
@@ -224,7 +225,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.33,
-     "hiz_m_sn": 0.7808,
+     "hiz_m_sn": 0.709,
      "olcek": 0.956
     },
     {
@@ -237,10 +238,11 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.197,
-     "hiz_m_sn": 0.8372,
+     "hiz_m_sn": 0.7602,
      "olcek": 1.025
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "orta",
     "hareket": "yanal_kayma",
@@ -248,12 +250,12 @@
      "konum": [
       0.907,
       1.55,
-      9.038
+      8.854
      ],
      "hedef": [
       0.0,
       1.615,
-      4.002
+      3.817
      ],
      "fov": 36.0
     },
@@ -261,12 +263,12 @@
      "konum": [
       -0.907,
       1.55,
-      9.038
+      8.854
      ],
      "hedef": [
       0.0,
       1.615,
-      4.002
+      3.817
      ],
      "fov": 36.0
     },
@@ -488,6 +490,7 @@
      "olcek": 0.981
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "uzak",
     "hareket": "genis_suzulme",
@@ -573,7 +576,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.0,
-     "hiz_m_sn": 0.817
+     "hiz_m_sn": 0.7418
     },
     {
      "takim": "rom_lejyoner_gladius",
@@ -585,7 +588,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.216,
-     "hiz_m_sn": 0.8345,
+     "hiz_m_sn": 0.7577,
      "olcek": 1.021
     },
     {
@@ -598,10 +601,11 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.083,
-     "hiz_m_sn": 0.828,
+     "hiz_m_sn": 0.7518,
      "olcek": 1.014
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "uzak",
     "hareket": "takip",
@@ -622,12 +626,12 @@
      "konum": [
       10.296,
       1.6,
-      6.034
+      5.83
      ],
      "hedef": [
       0.0,
       1.615,
-      4.218
+      4.014
      ],
      "fov": 38.0
     },
@@ -698,7 +702,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.0,
-     "hiz_m_sn": 0.817
+     "hiz_m_sn": 0.7418
     },
     {
      "takim": "rom_lejyoner_gladius",
@@ -710,7 +714,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.216,
-     "hiz_m_sn": 0.8513,
+     "hiz_m_sn": 0.773,
      "olcek": 1.042
     },
     {
@@ -723,7 +727,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.083,
-     "hiz_m_sn": 0.8215,
+     "hiz_m_sn": 0.7459,
      "olcek": 1.006
     },
     {
@@ -736,7 +740,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.299,
-     "hiz_m_sn": 0.8389,
+     "hiz_m_sn": 0.7617,
      "olcek": 1.027
     },
     {
@@ -749,7 +753,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.165,
-     "hiz_m_sn": 0.8519,
+     "hiz_m_sn": 0.7735,
      "olcek": 1.043
     },
     {
@@ -762,7 +766,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.032,
-     "hiz_m_sn": 0.8435,
+     "hiz_m_sn": 0.7659,
      "olcek": 1.032
     },
     {
@@ -775,7 +779,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.248,
-     "hiz_m_sn": 0.7763,
+     "hiz_m_sn": 0.7049,
      "olcek": 0.95
     },
     {
@@ -788,7 +792,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.114,
-     "hiz_m_sn": 0.7772,
+     "hiz_m_sn": 0.7057,
      "olcek": 0.951
     },
     {
@@ -801,7 +805,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.33,
-     "hiz_m_sn": 0.8542,
+     "hiz_m_sn": 0.7756,
      "olcek": 1.046
     },
     {
@@ -814,7 +818,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.197,
-     "hiz_m_sn": 0.792,
+     "hiz_m_sn": 0.7191,
      "olcek": 0.969
     },
     {
@@ -827,7 +831,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.063,
-     "hiz_m_sn": 0.8302,
+     "hiz_m_sn": 0.7538,
      "olcek": 1.016
     },
     {
@@ -840,7 +844,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.279,
-     "hiz_m_sn": 0.7781,
+     "hiz_m_sn": 0.7065,
      "olcek": 0.952
     },
     {
@@ -853,10 +857,11 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Loop",
      "faz_sn": 0.146,
-     "hiz_m_sn": 0.8486,
+     "hiz_m_sn": 0.7705,
      "olcek": 1.039
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "uzak",
     "hareket": "sabit_suzulme",
@@ -864,12 +869,12 @@
      "konum": [
       4.544,
       1.8,
-      24.487
+      24.385
      ],
      "hedef": [
       0.0,
       2.215,
-      3.109
+      3.007
      ],
      "fov": 18.0
     },
@@ -877,12 +882,12 @@
      "konum": [
       4.726,
       2.2,
-      25.342
+      25.24
      ],
      "hedef": [
       0.0,
       2.215,
-      3.109
+      3.007
      ],
      "fov": 18.0
     },
@@ -970,6 +975,7 @@
      "olcek": 0.99
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "orta",
     "hareket": "yorunge",
@@ -1060,6 +1066,7 @@
      "hiz_m_sn": 0.0
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "orta",
     "hareket": "yaklasma",
@@ -1172,6 +1179,7 @@
      "olcek": 0.972
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "orta",
     "hareket": "sabit_suzulme",
@@ -1306,6 +1314,7 @@
      "olcek": 0.954
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "orta",
     "hareket": "yaklasma",
@@ -1396,7 +1405,7 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Formal_Loop",
      "faz_sn": 0.0,
-     "hiz_m_sn": 0.817
+     "hiz_m_sn": 0.7418
     },
     {
      "takim": "rom_centurio",
@@ -1408,10 +1417,11 @@
      "yon_derece": 0.0,
      "animasyon": "Walk_Formal_Loop",
      "faz_sn": 0.216,
-     "hiz_m_sn": 0.7937,
+     "hiz_m_sn": 0.7207,
      "olcek": 0.972
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "orta",
     "hareket": "itme",
@@ -1432,12 +1442,12 @@
      "konum": [
       0.813,
       1.45,
-      9.429
+      9.169
      ],
      "hedef": [
       0.0,
       1.815,
-      4.82
+      4.561
      ],
      "fov": 32.0
     },
@@ -1649,6 +1659,7 @@
      "olcek": 1.004
     }
    ],
+   "insan_boy_orani": 0.908,
    "kamera": {
     "plan": "uzak",
     "hareket": "yukselme",

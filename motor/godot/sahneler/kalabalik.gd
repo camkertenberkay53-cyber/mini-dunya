@@ -105,7 +105,7 @@ static func kur(sahne: Node3D, k: Dictionary, takimlar: Dictionary, ar: Dictiona
 			var p := bas + yan * ((sut - (genislik - 1) * 0.5) * float(k.get("yan_aralik_m", 1.25)) + r.randf_range(-0.18, 0.18)) \
 				+ ileri * (sira * float(k.get("sira_aralik_m", 1.6)) + r.randf_range(-0.2, 0.2))
 			p.y = V.zemin_y(p.x, p.z, ar)
-			var bz := Basis(Vector3.UP, yon + deg_to_rad(r.randf_range(-7.0, 7.0))).scaled(Vector3.ONE * r.randf_range(0.95, 1.05))
+			var bz := Basis(Vector3.UP, yon + deg_to_rad(r.randf_range(-7.0, 7.0))).scaled(Vector3.ONE * r.randf_range(0.95, 1.05) * float(k.get("boy_orani", 1.0)))   # dönemin insan boyu
 			konumlar[r.randi() % turler.size()].append(Transform3D(bz, p))
 	var n := 0
 	for t in turler.size():

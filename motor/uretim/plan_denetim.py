@@ -57,7 +57,7 @@ def cekim_denetle(c: dict, donem: str, en_boy: float, donemler: list[str] | None
         ok, n = secici.karakter_uygun_mu(ad, kd if kd in (donemler or [donem]) else donem, mesafe)
         h += [f"{c['id']}: {x}" + ("" if m["gorunur"] else " (kadraj dışı)") for x in n]
         ok, n = animasyon_izni.izinli(ad, k["animasyon"], {"binek": bool(k.get("binek")), "nesneler": []}, k.get("hiz_m_sn"),
-                                      k.get("olcek", 1.0), k.get("binek"))
+                                      k.get("olcek", 1.0) * kadraj.kisi_orani(c, k), k.get("binek"))   # dönem boyu dahil
         h += [f"{c['id']}: {x}" for x in n]
         for e in veri.takimlar()[ad]["takilanlar"]:
             g = (veri.parca(e["id"]) or {}).get("tarih", {}).get("guven")

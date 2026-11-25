@@ -206,12 +206,20 @@ def _yon(a_derece: float) -> np.ndarray:
     return np.array([math.sin(a), 0.0, math.cos(a)])
 
 
-def kamera_kur(tur: str, odak: dict, sure: float, oran: float, tepe: float | None = None) -> dict:
+def kamera_kur(tur: str, odak: dict, sure: float, oran: float, tepe: float | None = None, arka_plan_m: float | None = None) -> dict:
     x = veri.kural("kamera")["cekimler"][tur]
     fov = float(x.get("fov", veri.kural("kamera")["fov"]))
     fov_son = float(x.get("fov_son", fov))
     boy = veri.kural("mesafe")["karakter_boyu_m"]
     d = boy / (2 * oran * math.tan(math.radians(fov) / 2))
+    k = x.get("perspektif_k")
+    if k and arka_plan_m:   # perspektif dengesi: (d + B) / d <= k; ekran oranı korunarak lens daralır
+        d_en_az = float(arka_plan_m) / (float(k) - 1.0)
+        if d < d_en_az:
+            yeni = math.degrees(2 * math.atan(boy / (2 * oran * d_en_az)))
+            yeni = max(float(x.get("fov_en_az", 24.0)), yeni)
+            fov_son = fov = round(yeni, 1)
+            d = boy / (2 * oran * math.tan(math.radians(fov) / 2))
     s0, s1 = kadraj.karakter_konumu(odak, 0.0), kadraj.karakter_konumu(odak, sure)
     sm = (s0 + s1) / 2
     yon = _yon(odak.get("yon_derece", 0.0) + x["aci_derece"])
@@ -257,6 +265,21 @@ def kamera_kur(tur: str, odak: dict, sure: float, oran: float, tepe: float | Non
     return {"plan": None, "hareket": hr, "bas": bas, "son": son, "yumusatma": yum}
 
 
+def arka_plan_uzakligi(cekim: dict) -> float | None:
+    """Sahnenin belirgin arka plan yapısına uzaklığı (m): yerleşimin 'arka_plan_m' değeri ya da en yakın çevre varlığı."""
+    o = cekim.get("ortam", {})
+    if o.get("yerlesim"):
+        y = veri.kural("yerlesim")["yerlesimler"].get(o["yerlesim"], {})
+        if y.get("arka_plan_m"):
+            return float(y["arka_plan_m"])
+    ks = cekim.get("karakterler", [])
+    if o.get("cevre") and ks:
+        mx = sum(k["konum"][0] for k in ks) / len(ks)
+        mz = sum(k["konum"][1] for k in ks) / len(ks)
+        return min(math.dist((mx, mz), cv["konum"]) for cv in o["cevre"])
+    return None
+
+
 def kamera_ayarla(cekim: dict, odak_i: int, mesafe: str, en_boy: float, tur: str, tepe: float | None = None) -> dict:
     """Kadraj ölçümüyle doğrulama: odak karakterin ölçülen en büyük oranı hedef sınıfın içine düşene kadar
     uzaklığı ölçekler (en çok 6 deneme). Sınıf tutmazsa çekim olduğu gibi döner; plan denetimi reddeder."""
@@ -265,7 +288,7 @@ def kamera_ayarla(cekim: dict, odak_i: int, mesafe: str, en_boy: float, tur: str
     hedef = float(x.get(f"oran_{mesafe}", x.get("oran", veri.kural("kamera")["hedef_oran"][mesafe])))
     oran = hedef
     for _ in range(6):
-        cekim["kamera"] = kamera_kur(tur, cekim["karakterler"][odak_i], cekim["sure_sn"], oran, tepe)
+        cekim["kamera"] = kamera_kur(tur, cekim["karakterler"][odak_i], cekim["sure_sn"], oran, tepe, arka_plan_uzakligi(cekim))
         cekim["kamera"]["plan"] = mesafe
         olc = kadraj.olc(cekim, en_boy)
         sinif_en = max((x["ekran_orani"] for x in olc.values() if x["gorunur"]), default=0.0)
@@ -301,6 +324,27 @@ def cevre_yerlestir(istenen: list[str], cekim: dict, donem: str) -> tuple[list[d
         p = merkez + ileri * (24 + 7 * i) + yan * ((-1) ** i) * (6 + 3 * i)
         yer.append({"id": pid, "konum": [round(float(p[0]), 2), round(float(p[2]), 2)], "yon_derece": round(37.0 * i % 90, 1)})
     return yer, eksik
+
+
+def insan_boy_orani(donem: str) -> float:
+    """Dönemin ortalama insan boyu / gövde modeli boyu (kurallar/insan_olcek.yaml); kapalıysa 1."""
+    k = veri.kural("insan_olcek")
+    if not k.get("acik"):
+        return 1.0
+    return round(float(k["donemler"].get(donem, k["varsayilan_m"])) / float(k["model_boy_m"]), 3)
+
+
+def insan_olcegi(c: dict, donem: str) -> dict:
+    """Çekime dönem boyu oranını yazar; yaya karakterlerin yer değiştirme hızı aynı oranla ölçeklenir (adım boyu boyla
+    orantılı, ayak kaymaz). Karakterin 'olcek' alanı (boy çeşitliliği) değişmez. Atlılar ölçeklenmez."""
+    oran = insan_boy_orani(donem)
+    if oran == 1.0:
+        return c
+    c["insan_boy_orani"] = oran
+    for k in c.get("karakterler", []):
+        if not k.get("binek"):
+            k["hiz_m_sn"] = round(float(k.get("hiz_m_sn", 0.0)) * oran, 4)
+    return c
 
 
 def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum: int,
@@ -341,6 +385,7 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
         else:
             eksik.append(f"{taslak['id']}: '{o['kalabalik']}' kalabalık kuralı yok")
     c["karakterler"] = karakterler
+    insan_olcegi(c, donem)
     hareketli = karakterler[odak_i]["hiz_m_sn"] > 0
     mesafe = n.get("mesafe", "orta")
     odak_rol = veri.takimlar()[karakterler[odak_i]["takim"]].get("rol")

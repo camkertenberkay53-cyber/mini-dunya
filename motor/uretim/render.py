@@ -85,7 +85,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "tohum": plan.get("tohum", 1),
         "fps": plan["fps"],
         "cozunurluk": plan["cozunurluk"],
-        "cekim": _binekli(c),
+        "cekim": _insan_olcekli(_binekli(c)),
         "arazi": ar,
         "isik": isik,
         "takimlar": takimlar,
@@ -97,7 +97,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "serpme": _serpme(plan, c),
         "yerlesim": (yer := _yerlesim(plan, c)),
         "malzeme": _malzeme(yer, {}),
-        "kalabalik": _kalabalik(c),
+        "kalabalik": _kalabalik(c, c.get("donem") or plan.get("donem")),
         "sinema": _sinema(),
         "film": _film(c),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
@@ -108,7 +108,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
     }
 
 
-def _kalabalik(c: dict) -> dict:
+def _kalabalik(c: dict, donem: str | None = None) -> dict:
     """Arka plan ordusu: çekimdeki oyuncuların takımlarından (sancaksız, nesnesiz) en çok N tanesi."""
     ad = c["ortam"].get("kalabalik")
     if not ad:
@@ -129,6 +129,7 @@ def _kalabalik(c: dict) -> dict:
         if yakin > 14.0:
             k["mesafe_m"] = [max(8.0, yakin - 16.0), yakin]
     k["cesit"] = veri.kural("gorsel").get("karakter_cesit", {"acik": False})
+    k["boy_orani"] = float(c.get("insan_boy_orani", 1.0))   # arka plan ordusu da oyuncularla aynı dönem boyunda
     k["acik"] = bool(k["takimlar"])
     return k
 
@@ -298,6 +299,18 @@ def _vfx(c: dict, ar) -> dict:
     v["toz"]["renk"] = v["toz"].get("renk_arazi", {}).get(arazi_adi, v["toz"]["renk"])
     v["savas"] = any(k["animasyon"] in v.get("savas_animasyonlari", []) for k in c.get("karakterler", []))
     return v
+
+
+def _insan_olcekli(c: dict) -> dict:
+    """Godot'ya giden çekim kopyasında yaya karakterin kök ölçeği = boy çeşitliliği × dönem insan boyu oranı."""
+    oran = float(c.get("insan_boy_orani", 1.0))
+    if oran == 1.0:
+        return c
+    c = json.loads(json.dumps(c))
+    for k in c["karakterler"]:
+        if not k.get("binek"):
+            k["olcek"] = round(float(k.get("olcek", 1.0)) * oran, 4)
+    return c
 
 
 def _binekli(c: dict) -> dict:

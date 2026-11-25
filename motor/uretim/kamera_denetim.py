@@ -34,7 +34,7 @@ def denetle(c: dict, odak_i: int, en_boy: float) -> list[str]:
             kusur.add(f"kamera zemine çok yakın ({k[1]:.2f} m)")
         for i, ch in enumerate(ks):
             p = kadraj.karakter_konumu(ch, t * sure)
-            boy = boy0 * ch.get("olcek", 1.0)
+            boy = boy0 * ch.get("olcek", 1.0) * kadraj.kisi_orani(c, ch)
             if math.dist((k[0], k[2]), (p[0], p[2])) < d["govde_yaricap_m"] and k[1] < boy + 0.3:
                 kusur.add(f"kamera {ch['takim']}#{i} gövdesinin içinden geçiyor")
                 continue

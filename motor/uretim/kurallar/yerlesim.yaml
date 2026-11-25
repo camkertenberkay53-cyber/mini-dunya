@@ -7,6 +7,7 @@ yerlesimler:
     ek_adaylari: [yuk_arabasi]
     adet: 16
     mesafe_m: [16.0, 62.0]
+    arka_plan_m: 30.0
     yan_oran: 0.55
     aralik_m: 9.0
     oyuncu_payi_m: 10.0
@@ -22,6 +23,7 @@ yerlesimler:
     aciklama: Kamera karşısında sur hattı (ortada kapı, iki yanda burçlu sur), arkada iç kale, uçlarda gözetleme kuleleri.
     roller: {sur: [sur_burclu], kapi: [kale_kapisi], ic_kale: [burc_ev], kule: [gozetleme_kulesi]}
     mesafe_m: 34.0
+    arka_plan_m: 34.0     # sahne merkezinden belirgin arka plan yapısına uzaklık (kamera perspektif dengesi)
     hd:   # gerçekçi modüler sur: kapının iki yanına sur modülleri uç uca dizilir, uçlarda yuvarlak kule
       dose: true
       sur_yari_m: 34.0
@@ -32,6 +34,7 @@ yerlesimler:
     hd:
       roller: {ev: [ev_kerpic_ahsap, ev_tas], tezgah: [pazar_tezgahi, yuk_arabasi], son: [burc_ev], ayrinti: [fici_grubu_hd, sandik_hd]}
     sokak_yari_m: 7.5
+    arka_plan_m: 22.0
     bas_m: 12.0
     son_m: 70.0
     aralik_m: [9.0, 12.0]
@@ -40,6 +43,7 @@ yerlesimler:
     roller: {gemi: [yelkenli_gemi], sandal: [sandal]}
     gemi_adet: 4
     gemi_mesafe_m: [14.0, 70.0]
+    arka_plan_m: 40.0
     salinim_derece: 2.5
     hd:   # gerçek ölçekli (24-34 m) yelkenliler daha açıkta ve daha seyrek; kıyıdan suya uzanan ahşap iskele + fıçı/sandık
       roller: {gemi: [yelkenli_gemi], sandal: [sandal], iskele: [iskele_hd], ayrinti: [fici_grubu_hd, sandik_hd]}
@@ -47,8 +51,11 @@ yerlesimler:
       gemi_mesafe_m: [30.0, 90.0]
       iskele_yon: ileri
       salinim_derece: 1.2
+      gemi_yan_oran: 0.16     # perspektif dengesi tele lensle çeker: gemiler kadrajın içinde, arka arkaya kümelenir
+      sandal_yan_oran: 0.2
   nehir_iskelesi:
     aciklama: Nehirde kayıklar.
     roller: {sandal: [sandal]}
     sandal_adet: 4
+    arka_plan_m: 20.0
     salinim_derece: 1.2

@@ -86,9 +86,19 @@
     "binek": {
      "type": "object",
      "description": "Atlı karakter: binici yerinde oturur, binek (kurallar/binek.yaml) ölçülen yürüyüş hızıyla ilerler.",
-     "required": ["id", "animasyon"],
+     "required": [
+      "id",
+      "animasyon"
+     ],
      "additionalProperties": false,
-     "properties": {"id": {"type": "string"}, "animasyon": {"type": "string"}}
+     "properties": {
+      "id": {
+       "type": "string"
+      },
+      "animasyon": {
+       "type": "string"
+      }
+     }
     },
     "gecikme_sn": {
      "type": "number",
@@ -302,6 +312,12 @@
      "donem": {
       "type": "string",
       "description": "Çekimin dönemi (odak taraf); yoksa planın ana dönemi."
+     },
+     "insan_boy_orani": {
+      "type": "number",
+      "minimum": 0.85,
+      "maximum": 1.0,
+      "description": "Dönemin ortalama insan boyu / gövde modeli boyu (kurallar/insan_olcek.yaml). Yaya karakterlerin ölçeği, hızı ve kadraj ölçümü bununla çarpılır; atlılar hariç."
      }
     }
    }

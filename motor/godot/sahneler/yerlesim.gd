@@ -203,9 +203,11 @@ static func dizi(kok: Node3D, k: Dictionary, ar: Dictionary, merkez: Vector3, il
 			var gm: Array = k.get("gemi_mesafe_m", [14.0, 60.0])
 			var hedefler: Array = []
 			for i in int(k.get("gemi_adet", 0)):
-				hedefler.append(["gemi", kiyi + float(su.get("kiyi_m", 8.0)) + r.randf_range(float(gm[0]), float(gm[1])), r.randf_range(-0.5, 0.5)])
+				var gy := float(k.get("gemi_yan_oran", 0.5))   # yanal yayılım (tele kadrajda gemiler görüş içinde kalsın)
+				hedefler.append(["gemi", kiyi + float(su.get("kiyi_m", 8.0)) + r.randf_range(float(gm[0]), float(gm[1])), r.randf_range(-gy, gy)])
 			for i in int(k.get("sandal_adet", 3)):
-				hedefler.append(["sandal", kiyi + r.randf_range(4.0, 12.0) + (float(su.get("genislik_m", 0.0)) * 0.3 if su.get("tur", "") == "nehir" else 0.0), r.randf_range(-0.35, 0.35)])
+				var sy_ := float(k.get("sandal_yan_oran", 0.35))
+				hedefler.append(["sandal", kiyi + r.randf_range(4.0, 12.0) + (float(su.get("genislik_m", 0.0)) * 0.3 if su.get("tur", "") == "nehir" else 0.0), r.randf_range(-sy_, sy_)])
 			for h in hedefler:
 				var dd: float = h[1]
 				var p: Vector3 = merkez + ileri * dd + yan * float(h[2]) * dd

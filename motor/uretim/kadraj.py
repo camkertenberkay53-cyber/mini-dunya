@@ -59,6 +59,11 @@ def _binek_ek(c: dict) -> float:
     return float(veri.kural("binek")["binekler"][c["binek"]["id"]]["boy_ek_m"])
 
 
+def kisi_orani(cekim: dict, c: dict) -> float:
+    """Dönem insan boyu oranı (çekim 'insan_boy_orani'); atlılara uygulanmaz."""
+    return 1.0 if c.get("binek") else float(cekim.get("insan_boy_orani", 1.0))
+
+
 def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
     """Her karakter için: görünür mü, en büyük ekran oranı, o oranın sınıfı."""
     m = veri.kural("mesafe")
@@ -71,7 +76,8 @@ def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
             t = j / (n - 1)
             k, h, fov = kamera_ani(cekim["kamera"], t)
             ayak = karakter_konumu(c, t * cekim["sure_sn"])
-            bas = ayak + np.array([0, boy * c.get("olcek", 1.0) + _binek_ek(c), 0])
+            ob = boy * c.get("olcek", 1.0) * kisi_orani(cekim, c)
+            bas = ayak + np.array([0, ob + _binek_ek(c), 0])
             e1, e2 = ekran(k, h, fov, ayak, en_boy), ekran(k, h, fov, bas, en_boy)
             if e1 is None and e2 is None:
                 continue
@@ -83,7 +89,7 @@ def olc(cekim: dict, en_boy: float, boy: float | None = None) -> dict:
             gorunur = True
             z = min(e[2] for e in (e1, e2) if e)
             th = (e1 or e2)[3]
-            oran = boy * c.get("olcek", 1.0) / (2 * z * th)
+            oran = ob / (2 * z * th)
             en_buyuk = max(en_buyuk, oran)
         sinif = None
         if gorunur:
