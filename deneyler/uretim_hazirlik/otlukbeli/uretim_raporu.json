@@ -1,0 +1,201 @@
+{
+ "durum": "TAMAM",
+ "video": "/tmp/motor_onbellek/kurgu/otlukbeli-1473/otlukbeli-1473.mp4",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+  "cekirdek": 2
+ },
+ "olculen": {
+  "toplam_duvar_sn": 1521.7,
+  "render_toplam_sn": 1375.3,
+  "render_asamasi_duvar_sn": 1416.9,
+  "kurgu_sn": 74.4,
+  "kare_plan": 960,
+  "kare_video": 960,
+  "fps": "30/1",
+  "tepe_bellek_gb": 1.21,
+  "video_mb": 49.57
+ },
+ "cekimler": [
+  {
+   "cekim": "S1",
+   "kare": 77,
+   "uretilen_kare": 77,
+   "render_sn": 105.4,
+   "kare_basina_sn": 1.37,
+   "tepe_bellek_gb": 0.81,
+   "karakter": 4,
+   "cevre": 0,
+   "onbellekten": false,
+   "duvar_sn": 108.6
+  },
+  {
+   "cekim": "S2",
+   "kare": 135,
+   "uretilen_kare": 135,
+   "render_sn": 165.1,
+   "kare_basina_sn": 1.22,
+   "tepe_bellek_gb": 1.12,
+   "karakter": 9,
+   "cevre": 2,
+   "onbellekten": false,
+   "duvar_sn": 170.1
+  },
+  {
+   "cekim": "S3a",
+   "kare": 84,
+   "uretilen_kare": 84,
+   "render_sn": 110.4,
+   "kare_basina_sn": 1.31,
+   "tepe_bellek_gb": 0.76,
+   "karakter": 3,
+   "cevre": 0,
+   "onbellekten": false,
+   "duvar_sn": 114.7
+  },
+  {
+   "cekim": "S3b",
+   "kare": 84,
+   "uretilen_kare": 84,
+   "render_sn": 162.6,
+   "kare_basina_sn": 1.94,
+   "tepe_bellek_gb": 1.21,
+   "karakter": 12,
+   "cevre": 0,
+   "onbellekten": false,
+   "duvar_sn": 166.3
+  },
+  {
+   "cekim": "S4",
+   "kare": 120,
+   "uretilen_kare": 120,
+   "render_sn": 151.1,
+   "kare_basina_sn": 1.26,
+   "tepe_bellek_gb": 0.99,
+   "karakter": 7,
+   "cevre": 0,
+   "onbellekten": false,
+   "duvar_sn": 155.4
+  },
+  {
+   "cekim": "S5",
+   "kare": 96,
+   "uretilen_kare": 96,
+   "render_sn": 106.9,
+   "kare_basina_sn": 1.11,
+   "tepe_bellek_gb": 0.77,
+   "karakter": 3,
+   "cevre": 0,
+   "onbellekten": false,
+   "duvar_sn": 109.9
+  },
+  {
+   "cekim": "S6",
+   "kare": 102,
+   "uretilen_kare": 102,
+   "render_sn": 170.7,
+   "kare_basina_sn": 1.67,
+   "tepe_bellek_gb": 0.81,
+   "karakter": 4,
+   "cevre": 0,
+   "onbellekten": false,
+   "duvar_sn": 174.8
+  },
+  {
+   "cekim": "S7",
+   "kare": 104,
+   "uretilen_kare": 104,
+   "render_sn": 135.5,
+   "kare_basina_sn": 1.3,
+   "tepe_bellek_gb": 0.78,
+   "karakter": 3,
+   "cevre": 0,
+   "onbellekten": false,
+   "duvar_sn": 141.0
+  },
+  {
+   "cekim": "S8a",
+   "kare": 79,
+   "uretilen_kare": 79,
+   "render_sn": 137.1,
+   "kare_basina_sn": 1.73,
+   "tepe_bellek_gb": 1.14,
+   "karakter": 10,
+   "cevre": 2,
+   "onbellekten": false,
+   "duvar_sn": 141.2
+  },
+  {
+   "cekim": "S8b",
+   "kare": 79,
+   "uretilen_kare": 79,
+   "render_sn": 130.5,
+   "kare_basina_sn": 1.65,
+   "tepe_bellek_gb": 1.21,
+   "karakter": 11,
+   "cevre": 2,
+   "onbellekten": false,
+   "duvar_sn": 134.9
+  }
+ ],
+ "ses": {
+  "wav": "/tmp/motor_onbellek/kurgu/otlukbeli-1473/karisim.wav",
+  "tepe": 0.95,
+  "sure_sn": 32.0
+ },
+ "kalite_kontrol": {
+  "kritik": [],
+  "uyari": [],
+  "sure": 32.0,
+  "cozunurluk": "1080x1920",
+  "fps": 30.0,
+  "ses_ortalama_db": -18.0,
+  "ses_tepe_db": -3.6,
+  "siyah_bolum": 0,
+  "donuk_bolum": 0,
+  "gecti": true
+ },
+ "dinleme": {
+  "S1": {
+   "beklenen": "İki Türk ordusu, tek kazanan.",
+   "duyulan": "2 Türk ordusu tek kazana.",
+   "benzerlik": 0.978
+  },
+  "S2": {
+   "beklenen": "Bir yanda Fatih Sultan Mehmed, öbür yanda Akkoyunlu hükümdarı Uzun Hasan.",
+   "duyulan": "Bir yanda Fatih Sultan Mehmet, Öbür yanda akoyunlu hükümleri uzun has",
+   "benzerlik": 0.908
+  },
+  "S3": {
+   "beklenen": "on bir Ağustos bin dört yüz yetmiş üç'te ordular Tercan yakınlarında, Otlukbeli'de karşılaştı.",
+   "duyulan": "11 hostos 1473'de ordular tercan yakınlarında opluk biri de karşılaştı.",
+   "benzerlik": 0.916
+  },
+  "S4": {
+   "beklenen": "Akkoyunlu ordusu ise ağırlıkla geleneksel süvariye dayanıyordu.",
+   "duyulan": "ve koyunlu ordusu ise ağırlıkla geleneksel su variye dayanıyordu",
+   "benzerlik": 0.946
+  },
+  "S5": {
+   "beklenen": "Uzun Hasan, Venedik'ten top ve tüfek istemişti.",
+   "duyulan": "Uzun Hasan, Venidikten Top ve Tüfik istemişti.",
+   "benzerlik": 0.947
+  },
+  "S6": {
+   "beklenen": "Ama savaşın kaderini Osmanlı top ve tüfekleri belirledi.",
+   "duyulan": "Ama savaşın kaderini Osmanlı Top ve Tüfeklere belirl",
+   "benzerlik": 0.946
+  },
+  "S7": {
+   "beklenen": "Akkoyunlu ordusu dağıldı; zafer Osmanlıların oldu.",
+   "duyulan": "ve koyunu ordusu da aldı, zafer Osmanlıların oldu.",
+   "benzerlik": 0.905
+  },
+  "S8": {
+   "beklenen": "Otlukbeli, Anadolu'nun birliği yolunda bir dönüm noktası sayılır.",
+   "duyulan": "Opluk Beli, Anadolu'nun birliği yolunda bir dönün nokt",
+   "benzerlik": 0.86
+  }
+ },
+ "seslendirme_motoru": "piper"
+}
