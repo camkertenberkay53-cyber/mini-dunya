@@ -39,3 +39,14 @@ profiller:
       doku_olcek: 0.35, doku_karisim: 0.8, doku_renk: 0.0, doku_normal: 0.8}
     arazi_ozel:
       kuru_bozkir: {zemin_alb: varlik/polyhaven/mud_cracked_dry_03/diff.jpg, zemin_nor: varlik/polyhaven/mud_cracked_dry_03/nor_gl.jpg}
+# Faz 5.6 (paket): kişi başına tohumlu görünüm çeşitliliği — klon görünümünü azaltır. acik: false → eski davranış (geri alma).
+karakter_cesit:
+  acik: true
+  kumas_ton: 0.22          # beyaz→rastgele renk tonu karışımı (0 = yok)
+  kumas_deger: [0.70, 1.15]
+  deri_deger: [0.85, 1.10]
+  metal_deger: [0.93, 1.05]
+  ten: [0.62, 1.05]
+  ten_sicak: 0.35
+  sac: [0.12, 1.0]
+  genislik: [0.95, 1.07]

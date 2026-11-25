@@ -52,7 +52,11 @@ def takimlar() -> dict[str, dict]:
 
 @lru_cache(None)
 def kalite() -> dict:
-    return json.loads((KARAKTER / "kalite.json").read_text())
+    k = json.loads((KARAKTER / "kalite.json").read_text())
+    ek = KARAKTER / "kalite_ek.json"   # dondurulmuş kalite.json'dan sonra eklenen ekipmanın sınıfları
+    if ek.exists():
+        k["ekipman"] = {**k["ekipman"], **json.loads(ek.read_text())["ekipman"]}
+    return k
 
 
 @lru_cache(None)
@@ -68,7 +72,8 @@ def animasyon_testi() -> dict:
 
 @lru_cache(None)
 def ekipman_katalogu() -> dict:
-    return _yaml(ayar.MOTOR / "varlik" / "ekipman.yaml")
+    from motor.varlik import ekipman as ekipman_mod
+    return ekipman_mod.katalog()   # ana (dondurulmuş) katalog + ekipman_ek.yaml
 
 
 def parca(pid: str) -> dict | None:

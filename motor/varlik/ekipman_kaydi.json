@@ -102,7 +102,7 @@
  },
  "sarik_migfer": {
   "id": "sarik_migfer",
-  "anahtar": "0cf0b2f414c0b2bd",
+  "anahtar": "bfb97728edd00b68",
   "kategori": "baslik",
   "yuva": "bas",
   "donem": [
@@ -119,7 +119,7 @@
    "sus": "sus_altin",
    "zincir": "zincir"
   },
-  "betik_ozeti": "afa81e128955897d",
+  "betik_ozeti": "92f7d686a731f9f4",
   "sha256": "937e1baa16af55a1eb3ebb136dfd26d1b2271a57a4f0476d4625b89d019e75b1",
   "olcum": {
    "ucgen": 1020,
@@ -1934,6 +1934,111 @@
     512
    ],
    "bayt": 46212
+  },
+  "lisans": "kendi-uretim",
+  "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
+  "not": "Dış varlık içermez; kaynak kod ve parametrelerden yeniden üretilebilir."
+ },
+ "top_arabasi": {
+  "id": "top_arabasi",
+  "anahtar": "45232b3ac4c31273",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "osmanli-15yy",
+   "bizans-15yy"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "15. yy tunç sahra topu ve iki tekerlekli kundak; biçim genel ve temsilî (Otlukbeli, İstanbul kuşatması dönemi)."
+  },
+  "uretici": "top_arabasi",
+  "parametreler": {
+   "namlu": "tunc",
+   "demir": "demir",
+   "ahsap": "sap"
+  },
+  "betik_ozeti": "52a9fa21ba30c785",
+  "sha256": "44181e9af1e02d40d94ae0d654e4056f702496d34f3110b5771e0d0d67f13aca",
+  "olcum": {
+   "ucgen": 928,
+   "kose": 624,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    2.117,
+    3.341,
+    1.137
+   ],
+   "min": [
+    -1.059,
+    -1.497,
+    0.0
+   ],
+   "max": [
+    1.059,
+    1.845,
+    1.137
+   ],
+   "malzeme": 3,
+   "doku": [
+    256,
+    512
+   ],
+   "bayt": 69496
+  },
+  "lisans": "kendi-uretim",
+  "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
+  "not": "Dış varlık içermez; kaynak kod ve parametrelerden yeniden üretilebilir."
+ },
+ "yuk_arabasi": {
+  "id": "yuk_arabasi",
+  "anahtar": "758bcd86bf89c86d",
+  "kategori": "cevre",
+  "yuva": "zemin",
+  "donem": [
+   "osmanli-15yy",
+   "bizans-15yy",
+   "akkoyunlu-15yy",
+   "roma-cumhuriyet"
+  ],
+  "tarih": {
+   "guven": "makul",
+   "not": "Dört tekerlekli ahşap yük arabası; çağlar boyunca benzer biçim (genel, temsilî)."
+  },
+  "uretici": "yuk_arabasi",
+  "parametreler": {
+   "ahsap": "sap",
+   "ortu": "cadir_bezi"
+  },
+  "betik_ozeti": "52a9fa21ba30c785",
+  "sha256": "dd632a563e122e9e874c5983704ae42a0fb0e1ca4602c8b1ccb7e8b5661acb67",
+  "olcum": {
+   "ucgen": 1344,
+   "kose": 940,
+   "yalniz_kose": 0,
+   "bozuk_yuz": 0,
+   "boyut_m": [
+    2.475,
+    4.63,
+    1.55
+   ],
+   "min": [
+    -1.238,
+    -3.1,
+    0.0
+   ],
+   "max": [
+    1.238,
+    1.53,
+    1.55
+   ],
+   "malzeme": 2,
+   "doku": [
+    256,
+    512
+   ],
+   "bayt": 80144
   },
   "lisans": "kendi-uretim",
   "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",

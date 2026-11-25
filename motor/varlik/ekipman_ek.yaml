@@ -1,0 +1,17 @@
+# Faz 3b kabulünden (a34d313) SONRA eklenen parçalar. ekipman.yaml dondurulmuş kabul dosyasıdır; yeni parça buraya
+# eklenir, katalog okunurken birleştirilir (ekipman.katalog / veri.ekipman_katalogu). Aynı şema; malzemeler ana dosyadan.
+parcalar:
+  top_arabasi:
+    kategori: cevre
+    yuva: zemin
+    uretici: top_arabasi
+    p: {namlu: tunc, demir: demir, ahsap: sap}
+    donem: [osmanli-15yy, bizans-15yy]
+    tarih: {guven: makul, not: "15. yy tunç sahra topu ve iki tekerlekli kundak; biçim genel ve temsilî (Otlukbeli, İstanbul kuşatması dönemi)."}
+  yuk_arabasi:
+    kategori: cevre
+    yuva: zemin
+    uretici: yuk_arabasi
+    p: {ahsap: sap, ortu: cadir_bezi}
+    donem: [osmanli-15yy, bizans-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Dört tekerlekli ahşap yük arabası; çağlar boyunca benzer biçim (genel, temsilî)."}

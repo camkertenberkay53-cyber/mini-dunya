@@ -1248,7 +1248,7 @@
     "isik": "aksam_ustu",
     "cevre": [
      {
-      "id": "osmanli_cadiri",
+      "id": "top_arabasi",
       "konum": [
        -4.71,
        -22.69
@@ -1262,6 +1262,22 @@
        -22.69
       ],
       "yon_derece": 37.0
+     },
+     {
+      "id": "yuk_arabasi",
+      "konum": [
+       -5.18,
+       -37.91
+      ],
+      "yon_derece": 74.0
+     },
+     {
+      "id": "osmanli_cadiri",
+      "konum": [
+       -32.61,
+       -32.84
+      ],
+      "yon_derece": 21.0
      }
     ]
    },
@@ -1474,7 +1490,7 @@
     "isik": "aksam_ustu",
     "cevre": [
      {
-      "id": "osmanli_cadiri",
+      "id": "top_arabasi",
       "konum": [
        -20.02,
        16.13
@@ -1488,6 +1504,22 @@
        31.13
       ],
       "yon_derece": 37.0
+     },
+     {
+      "id": "yuk_arabasi",
+      "konum": [
+       -33.62,
+       23.0
+      ],
+      "yon_derece": 74.0
+     },
+     {
+      "id": "osmanli_cadiri",
+      "konum": [
+       -17.44,
+       45.71
+      ],
+      "yon_derece": 21.0
      }
     ]
    },

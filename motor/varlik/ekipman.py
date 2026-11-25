@@ -24,13 +24,21 @@ BETIK = BURASI / "blender"
 CIKTI = ayar.ONBELLEK / "ekipman"
 KAYIT = BURASI / "ekipman_kaydi.json"
 KATALOG = BURASI / "ekipman.yaml"
+KATALOG_EK = BURASI / "ekipman_ek.yaml"   # dondurulmuş katalogdan sonra eklenen parçalar
 LISANS = {"lisans": "kendi-uretim", "yazar": "Mini Dünya motoru (Blender betikleri, bu repo)",
           "not": "Dış varlık içermez; kaynak kod ve parametrelerden yeniden üretilebilir."}
 URETIM_BETIKLERI = ("ekipman_uret.py", "ortak.py", "doku.py")
 
 
 def katalog() -> dict:
-    return yaml.safe_load(KATALOG.read_text(encoding="utf-8"))
+    k = yaml.safe_load(KATALOG.read_text(encoding="utf-8"))
+    if KATALOG_EK.exists():
+        ek = yaml.safe_load(KATALOG_EK.read_text(encoding="utf-8")) or {}
+        cakisan = set(ek.get("parcalar", {})) & set(k["parcalar"])
+        if cakisan:
+            raise ValueError(f"ekipman_ek.yaml ana katalogla çakışıyor: {sorted(cakisan)}")
+        k["parcalar"] = {**k["parcalar"], **ek.get("parcalar", {})}
+    return k
 
 
 def betik_ozeti(adlar=URETIM_BETIKLERI) -> str:

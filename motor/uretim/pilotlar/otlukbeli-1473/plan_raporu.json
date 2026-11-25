@@ -890,7 +890,17 @@
      "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
     },
     {
+     "kontrol": "S8a çevre 'top_arabasi'",
+     "gecti": true,
+     "ayrinti": ""
+    },
+    {
      "kontrol": "S8a çevre 'osmanli_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    },
+    {
+     "kontrol": "S8a çevre 'yuk_arabasi'",
      "gecti": true,
      "ayrinti": ""
     },
@@ -935,7 +945,17 @@
      "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
     },
     {
+     "kontrol": "S8b çevre 'top_arabasi'",
+     "gecti": true,
+     "ayrinti": ""
+    },
+    {
      "kontrol": "S8b çevre 'osmanli_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    },
+    {
+     "kontrol": "S8b çevre 'yuk_arabasi'",
      "gecti": true,
      "ayrinti": ""
     },
@@ -1599,13 +1619,21 @@
     }
    },
    "cevre": {
-    "0:osmanli_cadiri": {
+    "0:top_arabasi": {
      "mesafe": "uzak",
-     "ekran_orani": 0.165
+     "ekran_orani": 0.041
     },
     "1:osmanli_cadiri": {
      "mesafe": "uzak",
      "ekran_orani": 0.139
+    },
+    "2:yuk_arabasi": {
+     "mesafe": null,
+     "ekran_orani": 0.0
+    },
+    "3:osmanli_cadiri": {
+     "mesafe": null,
+     "ekran_orani": 0.0
     }
    },
    "kamera_kusur": [],
@@ -1681,19 +1709,27 @@
     }
    },
    "cevre": {
-    "0:osmanli_cadiri": {
+    "0:top_arabasi": {
      "mesafe": "uzak",
-     "ekran_orani": 0.167
+     "ekran_orani": 0.039
     },
     "1:osmanli_cadiri": {
      "mesafe": "uzak",
      "ekran_orani": 0.142
+    },
+    "2:yuk_arabasi": {
+     "mesafe": null,
+     "ekran_orani": 0.0
+    },
+    "3:osmanli_cadiri": {
+     "mesafe": null,
+     "ekran_orani": 0.0
     }
    },
    "kamera_kusur": [],
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.31,
+ "planlama_sn": 0.34,
  "gecti": true
 }

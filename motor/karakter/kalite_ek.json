@@ -1,0 +1,24 @@
+{
+ "ekipman": {
+  "top_arabasi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "yuk_arabasi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "cevre"
+  }
+ }
+}

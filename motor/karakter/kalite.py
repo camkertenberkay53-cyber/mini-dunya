@@ -132,7 +132,14 @@ def kullanilabilir_mi(sinif_kaydi: dict, mesafe: str) -> bool:
 
 if __name__ == "__main__":
     r = siniflandir()
+    # Dondurulmuş ana katalogdaki parçalar kalite.json'a, ekipman_ek.yaml parçaları kalite_ek.json'a yazılır.
+    ek_idler = set((yaml.safe_load(ekipman_mod.KATALOG_EK.read_text()) or {}).get("parcalar", {})) if ekipman_mod.KATALOG_EK.exists() else set()
+    ek = {"ekipman": {p: v for p, v in r["ekipman"].items() if p in ek_idler}}
+    r["ekipman"] = {p: v for p, v in r["ekipman"].items() if p not in ek_idler}
+    r["ekipman_dagilimi"] = {s: sum(1 for x in r["ekipman"].values() if x["sinif"] == s) for s in ("A", "B", "C", "RED")}
     (BURASI / "kalite.json").write_text(json.dumps(r, ensure_ascii=False, indent=1))
+    (BURASI / "kalite_ek.json").write_text(json.dumps(ek, ensure_ascii=False, indent=1))
+    print("ek ekipman:", {p: v["sinif"] for p, v in ek["ekipman"].items()})
     print("karakter:", r["karakter_dagilimi"], "ekipman:", r["ekipman_dagilimi"])
     print("ayrışmayan:", r["siluet"]["ayrismayan"])
     print("karışabilir:", r["siluet"]["karisabilir"])

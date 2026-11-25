@@ -80,6 +80,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "takimlar": takimlar,
         "dongu": {a: k["tur"] != "tek_sefer" for a, k in kurallar.items()},
         "cevre": [dict(cv, glb=str(veri.ekipman_glb(cv["id"]))) for cv in c["ortam"].get("cevre", [])],
+        "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
                                        if any(k["animasyon"].startswith(ad + "/") for k in c.get("karakterler", []))},
         "sahne_merkezi": [sum(xs) / len(xs), sum(zs) / len(zs)],

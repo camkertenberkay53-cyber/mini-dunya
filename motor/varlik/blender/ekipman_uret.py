@@ -570,10 +570,65 @@ def sur_kule(p):
     return o
 
 
+# ---------------------------------------------------------------- Faz 5.6: genel savaş/ordugâh çevre varlıkları
+def _teker(r, gen, mat, ad, konum, parmak=8):
+    """Tahta tekerlek (jant + göbek + parmaklar); dingil X ekseninde."""
+    jant = ortak.nesne(ad, ortak.torna([(r, gen / 2), (r, -gen / 2), (r * 0.86, -gen / 2), (r * 0.86, gen / 2)], 28, 0.5), mat)
+    gobek = ortak.nesne(ad + "_gobek", ortak.torna([(r * 0.16, gen * 0.9), (r * 0.16, -gen * 0.9)], 14, 0.5), mat)
+    o = [jant, gobek]
+    for i in range(parmak):
+        a = math.pi * i / parmak
+        k = ortak.nesne(f"{ad}_parmak{i}", ortak.kutu(r * 1.74, gen * 0.45, gen * 0.45, (0, 0, 0)), mat)
+        _don(k, Matrix.Rotation(a, 4, "Y"))
+        o.append(k)
+    for x in o:
+        _don(x, Matrix.Rotation(math.pi / 2, 4, "Y"))   # tekerlek düzlemi YZ, dingil X
+        _tasi(x, konum)
+    return o
+
+
+def top_arabasi(p):
+    """15.-16. yy sahra topu: tunç namlu, iki tekerlekli kundak (temsilî, genel)."""
+    namlu = ortak.nesne("namlu", ortak.torna([(0.09, 1.25), (0.11, 1.2), (0.12, 0.6), (0.15, -0.55), (0.17, -0.6), (0.13, -0.75), (0.05, -0.82)], 24, 0.6), M(p["namlu"]))
+    _don(namlu, Matrix.Rotation(math.radians(80), 4, "X"))   # namlu öne (-Y) ve hafif yukarı
+    _tasi(namlu, (0, -0.25, 0.82))
+    agiz = ortak.nesne("agiz", ortak.torna([(0.06, 0.02), (0.06, -0.3)], 16, 0.6), M(p["demir"]))
+    _don(agiz, Matrix.Rotation(math.radians(80), 4, "X"))
+    _tasi(agiz, (0, -1.43, 1.03))
+    kundak = ortak.nesne("kundak", ortak.kutu(0.34, 2.4, 0.18, (0, 0.55, 0.55)), M(p["ahsap"]))
+    _don(kundak, Matrix.Rotation(math.radians(-12), 4, "X"))
+    dingil = ortak.nesne("dingil", ortak.kutu(1.25, 0.12, 0.12, (0, -0.1, 0.55)), M(p["ahsap"]))
+    o = [namlu, agiz, kundak, dingil]
+    for sx in (-0.58, 0.58):
+        o += _teker(0.55, 0.09, M(p["ahsap"]), f"teker{'s' if sx < 0 else 'd'}", (sx, -0.1, 0.55))
+    return o
+
+
+def yuk_arabasi(p):
+    """Dört tekerlekli ahşap yük/ordu arabası (genel; ordugâh, ikmal, tabur)."""
+    kasa = ortak.nesne("kasa", ortak.kutu(1.4, 3.0, 0.1, (0, 0, 0.85)), M(p["ahsap"]))
+    _duz_uv(kasa, 1.0, ("x", "y"))
+    o = [kasa]
+    for sx in (-0.7, 0.7):
+        o.append(ortak.nesne(f"yan{sx}", ortak.kutu(0.06, 3.0, 0.45, (sx, 0, 1.12)), M(p["ahsap"])))
+    for sy in (-1.5, 1.5):
+        o.append(ortak.nesne(f"on{sy}", ortak.kutu(1.4, 0.06, 0.45, (0, sy, 1.12)), M(p["ahsap"])))
+    for sy in (-1.05, 1.05):
+        o.append(ortak.nesne(f"dingil{sy}", ortak.kutu(1.75, 0.1, 0.1, (0, sy, 0.48)), M(p["ahsap"])))
+        for sx in (-0.82, 0.82):
+            o += _teker(0.48, 0.08, M(p["ahsap"]), f"teker{sx}{sy}", (sx, sy, 0.48))
+    oku = ortak.nesne("oku", ortak.kutu(0.08, 1.6, 0.08, (0, -2.3, 0.55)), M(p["ahsap"]))
+    o.append(oku)
+    yuk = ortak.nesne("yuk", ortak.torna([(0.62, 1.55), (0.66, 1.2), (0.6, 0.9)], 20, 0.6), M(p["ortu"]))
+    _don(yuk, Matrix.Diagonal((1.0, 2.0, 1.0, 1.0)))
+    o.append(yuk)
+    return o
+
+
 URETICILER = {f.__name__: f for f in [yeniceri_borku, osmanli_sarik, sarik_migfer, turkmen_tacli_sarik, kece_kulah, turkmen_kalpak, konik_migfer, sapel_migfer, montefortino,
                                       hasir_kalkan, celik_kalkan, pavez, badem_kalkan, scutum, osmanli_kilic, duz_kilic, gladius, pilum, mizrak,
                                       gurz, kargi, turk_yayi, arbalet, hancer, kese, sadak, sancak, tug, vexillum, aquila, osmanli_cadiri, topak_ev,
-                                      roma_cadiri, sur_kule]}
+                                      roma_cadiri, sur_kule, top_arabasi, yuk_arabasi]}
 
 
 def olc(o) -> dict:

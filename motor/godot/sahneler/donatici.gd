@@ -116,6 +116,55 @@ static func ek_kutuphane_ekle(kok: Node, ap: AnimationPlayer, ad: String, yol: S
 		lib.add_animation(a, an)
 	ap.add_animation_library(ad, lib)
 
+## Faz 5.6: karakter çeşitliliği (klon görünümünü azaltır). Malzeme ROLÜNE göre kopya malzemede küçük ve tohumlu
+## değişim: kumaş tonu/parlaklığı, deri/metal parlaklığı, ten tonu, saç/sakal rengi; gövde genişliği. Karakter dosyaları
+## değişmez (yalnız bu sahnedeki kopyalar). k: is.json "karakter_cesit" (kurallar/gorsel.yaml).
+static func _aralik(r: RandomNumberGenerator, a: Array) -> float:
+	return r.randf_range(float(a[0]), float(a[1]))
+
+static func cesitle(kok: Node3D, tohum: int, k: Dictionary) -> void:
+	var r := RandomNumberGenerator.new()
+	r.seed = tohum
+	var kumas_ton := Color.from_hsv(r.randf(), 1.0, 1.0)
+	var kumas := Color.WHITE.lerp(kumas_ton, r.randf() * float(k.get("kumas_ton", 0.12))) * _aralik(r, k.get("kumas_deger", [0.85, 1.1]))
+	var deri := Color.WHITE * _aralik(r, k.get("deri_deger", [0.85, 1.1]))
+	var metal := Color.WHITE * _aralik(r, k.get("metal_deger", [0.93, 1.05]))
+	var ten := Color.WHITE.lerp(Color(1.0, 0.82, 0.66), r.randf() * float(k.get("ten_sicak", 0.22))) * _aralik(r, k.get("ten", [0.8, 1.04]))
+	var sac := Color.WHITE * _aralik(r, k.get("sac", [0.35, 1.0]))
+	var metal_adlar: Array = k.get("metal_adlari", ["zincir", "celik", "levha", "demir", "tunc", "lamel", "pul"])
+	var deri_adlar: Array = k.get("deri_adlari", ["cizme", "deri", "kemer", "sandalet"])
+	for m in kok.find_children("*", "MeshInstance3D", true, false):
+		var mi: MeshInstance3D = m
+		if mi.mesh == null or str(mi.name).begins_with("EK_"):
+			continue
+		for i in mi.mesh.get_surface_count():
+			var mat := mi.get_active_material(i)
+			if not (mat is BaseMaterial3D):
+				continue
+			var ad := str(mat.resource_name).to_lower()
+			var carp := Color.WHITE
+			if ad.begins_with("mi_eyes"):
+				continue
+			elif ad.begins_with("mi_hair"):
+				carp = sac
+			elif ad.begins_with("mi_superhero") or ad.begins_with("mi_skin"):
+				carp = ten
+			elif str(mi.name).begins_with("giysi_"):
+				carp = kumas
+				for x in metal_adlar:
+					if ad.contains(x):
+						carp = metal
+				for x in deri_adlar:
+					if ad.contains(x):
+						carp = deri
+			else:
+				continue
+			var yeni: BaseMaterial3D = mat.duplicate()
+			yeni.albedo_color = Color(yeni.albedo_color.r * carp.r, yeni.albedo_color.g * carp.g, yeni.albedo_color.b * carp.b, yeni.albedo_color.a)
+			mi.set_surface_override_material(i, yeni)
+	var gen := _aralik(r, k.get("genislik", [0.95, 1.07]))
+	kok.scale = Vector3(kok.scale.x * gen, kok.scale.y, kok.scale.z * gen)
+
 static func animasyon_oynatici(n: Node) -> AnimationPlayer:
 	if n is AnimationPlayer:
 		return n
