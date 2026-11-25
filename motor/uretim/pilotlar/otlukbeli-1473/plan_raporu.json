@@ -119,14 +119,12 @@
     "hareket": "itme",
     "yukseklik": "goz",
     "aci_kovasi": "onden",
-    "dizilis": "sira",
+    "dizilis": "kol",
     "odak": "osm_bey",
     "arazi": "ova_cimen",
     "aciklama": "Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma)",
     "odak_indeks": 0,
-    "budanan_gorunmeyen": [
-     "osm_yeniceri_mizrak"
-    ],
+    "budanan_gorunmeyen": [],
     "lens_fov": [
      40,
      32
@@ -308,15 +306,14 @@
     "hareket": "yorunge",
     "yukseklik": "goz",
     "aci_kovasi": "capraz",
-    "dizilis": "sira",
+    "dizilis": "kol",
     "odak": "osm_yeniceri_kilic",
     "arazi": "ova_cimen",
     "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
-     "osm_okcu_sarikli",
-     "osm_yeniceri_okcu",
-     "osm_yeniceri_okcu_kilic"
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic"
     ],
     "lens_fov": [
      38,
@@ -463,12 +460,12 @@
     {
      "kontrol": "S1 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "3 görünür"
+     "ayrinti": "4 görünür"
     },
     {
-     "kontrol": "S1 eylem 'bekleme'",
+     "kontrol": "S1 eylem 'komuta_bekleme'",
      "gecti": true,
-     "ayrinti": "odak animasyonu Idle_Loop"
+     "ayrinti": "odak animasyonu Idle_Loop (yedek eylem 'bekleme')"
     },
     {
      "kontrol": "S1 mesafe 'orta'",
@@ -764,17 +761,17 @@
     {
      "kontrol": "S6 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "1 görünür"
+     "ayrinti": "4 görünür"
     },
     {
-     "kontrol": "S6 'okcu' görünüyor",
+     "kontrol": "S6 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "3 görünür"
+     "ayrinti": "4 görünür"
     },
     {
-     "kontrol": "S6 eylem 'bekleme'",
+     "kontrol": "S6 eylem 'savas'",
      "gecti": true,
-     "ayrinti": "odak animasyonu Idle_Loop"
+     "ayrinti": "odak animasyonu ual2/Sword_Regular_Combo"
     },
     {
      "kontrol": "S6 mesafe 'orta'",
@@ -1213,21 +1210,27 @@
      "mesafe": "orta"
     },
     "1": {
-     "takim": "osm_yeniceri_kilic",
+     "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.363,
+     "ekran_orani": 0.475,
      "mesafe": "orta"
     },
     "2": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.489,
+     "ekran_orani": 0.468,
      "mesafe": "orta"
     },
     "3": {
-     "takim": "osm_yeniceri_kilic",
+     "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.514,
+     "ekran_orani": 0.389,
+     "mesafe": "orta"
+    },
+    "4": {
+     "takim": "osm_yeniceri_mizrak",
+     "gorunur": true,
+     "ekran_orani": 0.391,
      "mesafe": "orta"
     }
    },
@@ -1487,21 +1490,21 @@
      "mesafe": "orta"
     },
     "1": {
-     "takim": "osm_okcu_sarikli",
+     "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.331,
+     "ekran_orani": 0.387,
      "mesafe": "orta"
     },
     "2": {
-     "takim": "osm_yeniceri_okcu",
+     "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.376,
+     "ekran_orani": 0.43,
      "mesafe": "orta"
     },
     "3": {
-     "takim": "osm_yeniceri_okcu_kilic",
+     "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.459,
+     "ekran_orani": 0.347,
      "mesafe": "orta"
     }
    },
@@ -1691,6 +1694,6 @@
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.33,
+ "planlama_sn": 0.31,
  "gecti": true
 }

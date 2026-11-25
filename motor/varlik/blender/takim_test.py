@@ -198,11 +198,23 @@ def karakter_olc(k):
     ilk = {}
     sahne = bpy.context.scene
     gomulen_kare = {e["t"]["id"]: 0 for e in ekler}
+    # Ek animasyon kütüphaneleri (Faz 5.5): {"ual2": "<glb>"}; "ual2/Ad" adlı animasyon o glb'deki "Ad" eylemidir.
+    # Aynı evrensel iskelet (kemik adları aynı) olduğundan eylem doğrudan bu armatüre atanır. Verilmezse davranış aynıdır.
+    ek_eylem = {}
+    for kut, yol in (IS.get("ek_glb") or {}).items():
+        once_act = set(bpy.data.actions)
+        for o in al_glb(yol):
+            bpy.data.objects.remove(o, do_unlink=True)
+        for a in set(bpy.data.actions) - once_act:
+            a.use_fake_user = True
+            ek_eylem[f"{kut}/{a.name}"] = a
     for anim in ANIM:
-        act = bpy.data.actions.get(anim)
+        act = bpy.data.actions.get(anim) or ek_eylem.get(anim)
         if act is None:
             continue
         ad_.action = act
+        if hasattr(ad_, "action_slot") and getattr(act, "slots", None):
+            ad_.action_slot = act.slots[0]
         b, s = act.frame_range
         for i in range(KARE):
             f = b + (s - b) * i / max(1, KARE - 1) * 0.999

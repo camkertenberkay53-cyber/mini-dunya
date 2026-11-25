@@ -54,7 +54,11 @@ def denetle(senaryo: dict, plan: dict, denetim: dict) -> tuple[list[str], list[d
             if n.get("eylem"):
                 oi = c.get("meta", {}).get("odak_indeks", 0)
                 anim = c["karakterler"][oi]["animasyon"] if c.get("karakterler") else None
-                ekle(f"{c['id']} eylem '{n['eylem']}'", anim in secici.eylem_animasyonlari(n["eylem"]), f"odak animasyonu {anim}")
+                # eylem ya da (odak karakter istenen eylemi yapamıyorsa) kurallardaki yedek eylemi (Faz 5.5)
+                kabul = {n["eylem"]} | set(veri.kural("animasyon").get("eylem_yedekleri", {}).get(n["eylem"], []))
+                tutan = next((e for e in [n["eylem"], *sorted(kabul - {n["eylem"]})] if anim in secici.eylem_animasyonlari(e)), None)
+                ekle(f"{c['id']} eylem '{n['eylem']}'", tutan is not None,
+                     f"odak animasyonu {anim}" + (f" (yedek eylem '{tutan}')" if tutan and tutan != n["eylem"] else ""))
             if n.get("mesafe"):
                 olculen = olc.get("kamera_plani_olculen")
                 ekle(f"{c['id']} mesafe '{n['mesafe']}'", olculen == n["mesafe"], f"ölçülen {olculen}")

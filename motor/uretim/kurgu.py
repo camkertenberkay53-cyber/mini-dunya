@@ -44,6 +44,68 @@ def _wav(yol: str) -> np.ndarray:
     return x
 
 
+def _kayit(yol: str) -> np.ndarray | None:
+    """motor/ köküne göre ses dosyası → mono, SR örnekleme (yoksa None)."""
+    p = ayar.REPO / "motor" / yol
+    if not p.exists():
+        return None
+    x, sr = sf.read(str(p), dtype="float32", always_2d=True)
+    x = x.mean(axis=1)
+    if sr != SR:
+        from math import gcd
+        from scipy.signal import resample_poly
+        g = gcd(SR, sr)
+        x = resample_poly(x, SR // g, sr // g).astype(np.float32)
+    return x / (np.abs(x).max() + 1e-6)
+
+
+def _doldur(x: np.ndarray, n: int) -> np.ndarray:
+    if len(x) >= n:
+        return x[:n]
+    cf = min(SR, len(x) // 4)
+    y = x.copy()
+    while len(y) < n:
+        r = np.linspace(0, 1, cf, dtype=np.float32)
+        y = np.concatenate([y[:-cf], y[-cf:] * (1 - r) + x[:cf] * r, x[cf:]])
+    return y[:n]
+
+
+def _eylem_sesleri(alt: np.ndarray, plan: dict, ks: dict, amac: dict) -> None:
+    """Çekimdeki karakterlerin animasyon eylemlerine göre kayıt sesleri; tohumlu (aynı plan → aynı ses)."""
+    import glob
+    an = veri.kural("animasyon")["animasyonlar"]
+    rng = np.random.default_rng(int(plan.get("tohum", 1)))
+    cz = {z["cumle"]: z for z in plan["ses"]["cizelge"]}
+    t0 = 0.0
+    for c in plan["cekimler"]:
+        bas, son = t0, t0 + c["sure_sn"]
+        t0 = son
+        eylemler = {e for k in c.get("karakterler", []) for e in an.get(k["animasyon"], {}).get("eylemler", [])}
+        for kural in ks.get("eylem_sesleri", []):
+            if not eylemler & set(kural["eylemler"]):
+                continue
+            dosyalar = sorted(glob.glob(str(ayar.REPO / "motor" / kural["desen"])))
+            if not dosyalar:
+                continue
+            t = bas + rng.uniform(0.1, kural["aralik_sn"])
+            while t < son - 0.2:
+                x = _kayit(str(Path(dosyalar[int(rng.integers(len(dosyalar)))]).relative_to(ayar.REPO / "motor")))
+                b = int(t * SR)
+                parca = x[: max(0, min(len(x), int((son - t) * SR), len(alt) - b))]
+                alt[b:b + len(parca)] += parca * kural["duzey"] * float(rng.uniform(0.7, 1.0))
+                t += kural["aralik_sn"] * float(rng.uniform(0.7, 1.4))
+        kus = ks.get("kus")
+        if kus and amac.get(c["cumleler"][0]) in kus.get("amaclar", []):
+            x = _kayit(kus["dosya"])
+            if x is not None:
+                t = bas + 0.3
+                while t < son - 0.5:
+                    b = int(t * SR)
+                    parca = x[: max(0, min(len(x), len(alt) - b))]
+                    alt[b:b + len(parca)] += parca * kus["duzey"]
+                    t += kus["aralik_sn"] * float(rng.uniform(0.8, 1.3))
+
+
 def _ses_karisimi(plan: dict, senaryo: dict, sureler: dict, cikti: Path) -> dict:
     from kaos.sinema import motor as sinema
     k = veri.kural("kurgu")
@@ -62,8 +124,15 @@ def _ses_karisimi(plan: dict, senaryo: dict, sureler: dict, cikti: Path) -> dict
     def sentez(tip, sure, tohum):
         y = sinema._sentez(tip, sure, tohum)
         return resample_poly(y, 2, 1).astype(np.float32) if sinema.SR * 2 == SR else y
-    alt += sentez("ruzgar", toplam, 7)[:n] * k["ruzgar_duzeyi"]
+    ks = k.get("kayit_sesleri") or {}
+    amb = _kayit(ks["ambiyans"]["dosya"]) if ks.get("acik") and ks.get("ambiyans") else None
+    if amb is not None:   # CC0 saha kaydı rüzgâr ambiyansı (döngü: uçlar 1 sn çapraz geçişle eklenir)
+        alt += _doldur(amb, n) * ks["ambiyans"]["duzey"]
+    else:
+        alt += sentez("ruzgar", toplam, 7)[:n] * k["ruzgar_duzeyi"]
     amac = {c["id"]: c.get("amac") for c in senaryo["cumleler"]}
+    if ks.get("acik"):
+        _eylem_sesleri(alt, plan, ks, amac)
     for z in cz:
         if amac.get(z["cumle"]) in k["davul_amaclari"]:
             b, s = int(z["goruntu_bas_sn"] * SR), z["goruntu_son_sn"] - z["goruntu_bas_sn"]

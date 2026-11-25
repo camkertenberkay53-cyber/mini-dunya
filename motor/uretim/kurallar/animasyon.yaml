@@ -23,7 +23,40 @@ animasyonlar:
   Interact:         {tur: tek_sefer, eylemler: [isaret, jest]}
   Death01:          {tur: tek_sefer, eylemler: [olum], son_poz: yerde}
   Hit_Chest:        {tur: tek_sefer, eylemler: [darbe_alma]}
+  # --- Faz 5.5: Quaternius Universal Animation Library 2 (CC0, aynı evrensel iskelet). "ual2/" öneki kütüphaneyi gösterir;
+  # Godot çalışma anında kütüphaneyi karaktere ekler (derlenmiş karakter dosyaları değişmez). Teknik izin yine
+  # animasyon_testi.json'dan (aynı ölçüm, aynı eşikler) gelir.
+  ual2/Sword_Regular_Combo: {tur: yerinde, eylemler: [kilic_saldirisi, savas, carpisma], gerekli: {yuva_turu: {sag_el: [kilic]}}}
+  ual2/Sword_Block:         {tur: yerinde, eylemler: [savunma, kilicla_savunma], gerekli: {yuva_turu: {sag_el: [kilic]}}}
+  ual2/Idle_Shield_Loop:    {tur: yerinde, eylemler: [kalkanla_bekleme, savunma_hatti], gerekli: {yuva_turu: {sol_kol: [kalkan]}}}
+  ual2/Shield_OneShot:      {tur: tek_sefer, eylemler: [kalkan_darbesi, savunma], gerekli: {yuva_turu: {sol_kol: [kalkan]}}}
+  ual2/Hit_Knockback:       {tur: tek_sefer, eylemler: [darbe_alma, geri_savrulma]}
+  ual2/OverhandThrow:       {tur: tek_sefer, eylemler: [firlatma, mizrak_atma]}
+  ual2/Idle_FoldArms_Loop:  {tur: yerinde, eylemler: [bekleme, komuta_bekleme, gozlem]}
+  ual2/Yes:                 {tur: tek_sefer, eylemler: [onaylama, emir_alma]}
+  ual2/Farm_Harvest:        {tur: yerinde, eylemler: [hasat, toplama]}
+  ual2/LayToIdle:           {tur: tek_sefer, eylemler: [yerden_kalkma]}
 # son_poz: yerde -> animasyon karakteri yerde bırakır; planlayıcı kameranın bakış noktasını alçaltır (yerdekiler kadrajda kalsın).
 # Yerinde animasyonda karakter sahnede kımıldamaz; yer değiştirende ölçülen hızla ilerler (ayak kayması olmaz).
 # Ölçülen hız ile plandaki hız arasında izin verilen fark (oran):
 hiz_toleransi: 0.05
+# Ek animasyon kütüphaneleri (Faz 5.5): ad -> motor/ köküne göre glb yolu (lisans: motor/varlik/oga/lisans.json)
+kutuphaneler:
+  ual2: "varlik/oga/ual2/Universal Animation Library 2 [Standard]/Unreal-Godot/UAL2_Standard.glb"
+# Eylem yedeği (Faz 5.5): bir rolün hiçbir uygun karakteri istenen eylemi yapamıyorsa (teknik/anlamsal izin) planlayıcı
+# rolü düşürmek yerine sıradaki yedek eylemi dener. Yedek de yoksa rol eksik raporlanır (uydurma yok).
+eylem_yedekleri:
+  komuta_bekleme: [bekleme]
+  gozlem: [bekleme]
+  savas: [kilic_saldirisi, kilicla_bekleme, bekleme]
+  carpisma: [kilic_saldirisi, kilicla_bekleme, bekleme]
+  kilicla_savunma: [kilicla_bekleme, bekleme]
+  savunma: [kilicla_bekleme, bekleme]
+  savunma_hatti: [kilicla_bekleme, bekleme]
+  kalkanla_bekleme: [bekleme]
+  firlatma: [bekleme]
+  mizrak_atma: [bekleme]
+  hasat: [bekleme]
+  toplama: [bekleme]
+  onaylama: [bekleme]
+  emir_alma: [bekleme]

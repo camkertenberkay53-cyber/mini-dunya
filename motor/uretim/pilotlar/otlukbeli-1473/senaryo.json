@@ -33,8 +33,8 @@
      "arazi": "ova_cimen",
      "isik": "aksam_ustu"
     },
-    "eylem": "bekleme",
-    "aciklama": "Osmanlı beyi önde, arkasında yeniçeriler"
+    "eylem": "komuta_bekleme",
+    "aciklama": "Osmanlı beyi kolları bağlı, önde; arkasında yeniçeriler"
    }
   },
   {
@@ -178,9 +178,9 @@
       "odak": true
      },
      {
-      "rol": "okcu",
+      "rol": "piyade",
       "donem": "osmanli-15yy",
-      "adet": 6
+      "adet": 5
      }
     ],
     "mesafe": "orta",
@@ -188,8 +188,8 @@
      "arazi": "ova_cimen",
      "isik": "aksam_ustu"
     },
-    "eylem": "bekleme",
-    "aciklama": "Hazır bekleyen yeniçeri hattı; toplar gösterilmez (varlık yok)"
+    "eylem": "savas",
+    "aciklama": "Çarpışan yeniçeri hattı (kılıç); toplar gösterilmez (varlık yok)"
    }
   },
   {

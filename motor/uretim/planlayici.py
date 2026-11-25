@@ -35,8 +35,11 @@ def oyuncu_sec(niyet: dict, donem: str) -> tuple[list[dict], list[str]]:
     secilen, eksik, kullanilan = [], [], set()
     for r in niyet.get("roller", []):
         rd = r.get("donem") or donem   # çok taraflı konular: rol kendi dönemini (tarafını) taşıyabilir
-        s = secici.sec(r["rol"], rd, mesafe, eylem, r.get("nesne"), {"binek": False, "nesneler": []})
-        uygun = [(a, an) for a, an in s["uygun"] if r.get("nesne") or not _sancakli(a)]
+        for e in [eylem] + list(veri.kural("animasyon").get("eylem_yedekleri", {}).get(eylem, [])):
+            s = secici.sec(r["rol"], rd, mesafe, e, r.get("nesne"), {"binek": False, "nesneler": []})
+            uygun = [(a, an) for a, an in s["uygun"] if r.get("nesne") or not _sancakli(a)]
+            if uygun:
+                break
         if not uygun:
             eksik.append(s["eksik"] or f"{rd}: '{r['rol']}' rolü için sancaksız uygun karakter yok")
             continue

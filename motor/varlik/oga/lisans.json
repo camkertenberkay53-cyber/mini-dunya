@@ -67,7 +67,14 @@
    "lisanslar_sayfada": [
     "CC0"
    ],
-   "yazar": "Thimras"
+   "yazar": "Thimras",
+   "turetilen": [
+    {
+     "dosya": "park_ambiyans/park_ambience_wind_150s.ogg",
+     "kaynak": "park_ambiyans/park_ambience_wind.wav",
+     "islem": "ilk 150 sn, Vorbis q5 (depo boyutu için; CC0 türev serbest)"
+    }
+   ]
   },
   {
    "kimlik": "rpg_ses",
@@ -143,7 +150,8 @@
    "lisanslar_sayfada": [
     "CC0"
    ],
-   "yazar": "artisticdude"
+   "yazar": "artisticdude",
+   "not": "__MACOSX meta dosyaları silindi"
   },
   {
    "kimlik": "kilic_starninjas",

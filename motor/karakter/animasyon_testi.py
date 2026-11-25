@@ -25,7 +25,7 @@ EK_ANIMASYONLAR = ["Death01", "Fixing_Kneeling", "Hit_Chest", "Idle_Torch_Loop",
 IS_KLASORU = montaj.ayar.ONBELLEK / "animasyon_testi"
 
 
-def isler_hazirla(takimlar: list[dict], animasyonlar: list[str], hizli: bool) -> list[Path]:
+def isler_hazirla(takimlar: list[dict], animasyonlar: list[str], hizli: bool, ek_glb: dict | None = None) -> list[Path]:
     IS_KLASORU.mkdir(parents=True, exist_ok=True)
     gorulen, kl = set(), []
     for t in takimlar:
@@ -41,8 +41,8 @@ def isler_hazirla(takimlar: list[dict], animasyonlar: list[str], hizli: bool) ->
                 parca = grup[j::2]
                 if not parca:
                     continue
-                yol = IS_KLASORU / f"is_{a}_{int(giysi)}_{j}.json"
-                yol.write_text(json.dumps({"karakterler": parca, "animasyonlar": [a], "kare": 3 if hizli else 5,
+                yol = IS_KLASORU / f"is_{a.replace('/', '_')}_{int(giysi)}_{j}.json"
+                yol.write_text(json.dumps({"karakterler": parca, "animasyonlar": [a], "kare": 3 if hizli else 5, "ek_glb": ek_glb or {},
                                            "giysi_testi": giysi, "cikti": str(yol.with_suffix(".sonuc.json"))},
                                           ensure_ascii=False))
                 yollar.append(yol)
@@ -61,10 +61,10 @@ def animasyon_karari(r: dict, anim: str) -> list[str]:
     return h
 
 
-def test_et(animasyonlar: list[str] = EK_ANIMASYONLAR, hizli: bool = False) -> dict:
+def test_et(animasyonlar: list[str] = EK_ANIMASYONLAR, hizli: bool = False, ek_glb: dict | None = None) -> dict:
     takimlar = [json.loads(p.read_text()) for p in sorted(montaj.TAKIM.glob("*.json"))]
     gid = {t["ad"]: t["govde_id"] for t in takimlar}
-    yollar = isler_hazirla(takimlar, animasyonlar, hizli)
+    yollar = isler_hazirla(takimlar, animasyonlar, hizli, ek_glb)
     t0 = time.time()
     with ThreadPoolExecutor(2) as ex:
         ham = list(ex.map(lambda y: (json.loads(y.read_text())["animasyonlar"][0], montaj.calistir(y)), yollar))
@@ -82,9 +82,30 @@ def test_et(animasyonlar: list[str] = EK_ANIMASYONLAR, hizli: bool = False) -> d
             "sure_sn": sure, "takimlar": cikti}
 
 
+def kutuphane_testi(hizli: bool = False) -> dict:
+    """Faz 5.5: kurallar/animasyon.yaml'daki ek kütüphane animasyonlarını (ör. 'ual2/...') aynı ölçüm ve eşiklerle
+    test eder ve sonucu animasyon_testi.json'a EKLER (mevcut kayıtlar değişmez)."""
+    from motor import ayar
+    from motor.uretim import veri
+    k = veri.kural("animasyon")
+    ek_glb = {ad: str(ayar.REPO / "motor" / yol) for ad, yol in k.get("kutuphaneler", {}).items()}
+    animler = [a for a in k["animasyonlar"] if "/" in a]
+    c = test_et(animler, hizli, ek_glb)
+    eski = json.loads(SONUC.read_text())
+    eski["animasyonlar"] = list(dict.fromkeys(eski["animasyonlar"] + animler))
+    for ad, x in c["takimlar"].items():
+        eski["takimlar"].setdefault(ad, {}).update(x)
+    eski.setdefault("kutuphane_testleri", {})[",".join(sorted(ek_glb))] = {"animasyonlar": animler, "sure_sn": c["sure_sn"], "kare": c["kare"]}
+    SONUC.write_text(json.dumps(eski, ensure_ascii=False, indent=1))
+    return c
+
+
 if __name__ == "__main__":
-    c = test_et(hizli="--hizli" in sys.argv)
-    SONUC.write_text(json.dumps(c, ensure_ascii=False, indent=1))
+    if "--kutuphane" in sys.argv:
+        c = kutuphane_testi(hizli="--hizli" in sys.argv)
+    else:
+        c = test_et(hizli="--hizli" in sys.argv)
+        SONUC.write_text(json.dumps(c, ensure_ascii=False, indent=1))
     print(f"ANİMASYON TESTİ: {len(c['takimlar'])} karakter, {len(c['animasyonlar'])} animasyon, {c['sure_sn']} sn")
     for a in c["animasyonlar"]:
         g = sum(1 for x in c["takimlar"].values() if x.get(a, {}).get("gecti"))

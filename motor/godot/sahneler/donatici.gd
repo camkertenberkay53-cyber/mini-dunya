@@ -80,6 +80,42 @@ static func guncelle(kok: Node3D) -> void:
 		if en.get_meta("dik", false):
 			en.global_basis = kok.global_basis * Basis(Vector3.UP, PI)
 
+## Faz 5.5: ek animasyon kütüphanesi (aynı evrensel iskelet). Kütüphane glb'si bir kez okunur; iz yolları bu karakterin
+## iskelet yoluna çevrilir ve AnimationPlayer'a "<ad>" kütüphanesi olarak eklenir ("ad/Animasyon" ile oynatılır).
+static var _ek_kutuphane := {}
+
+static func ek_kutuphane_ekle(kok: Node, ap: AnimationPlayer, ad: String, yol: String) -> void:
+	if ap.has_animation_library(ad):
+		return
+	if not _ek_kutuphane.has(yol):
+		var n := glb_yukle(yol)
+		var kap: AnimationPlayer = animasyon_oynatici(n)
+		var ham := {}
+		if kap:
+			for a in kap.get_animation_list():
+				ham[a] = kap.get_animation(a).duplicate(true)
+		n.free()
+		_ek_kutuphane[yol] = ham
+	var sk := iskelet(kok)
+	var kok_ap: Node = ap.get_node(ap.root_node)
+	var sk_yol := str(kok_ap.get_path_to(sk))
+	var lib := AnimationLibrary.new()
+	var ham: Dictionary = _ek_kutuphane[yol]
+	for a in ham:
+		var an: Animation = ham[a].duplicate(true)
+		for i in an.get_track_count():
+			var p := an.track_get_path(i)
+			if p.get_subname_count() > 0:
+				an.track_set_path(i, NodePath(sk_yol + ":" + p.get_concatenated_subnames()))
+				# kök hareketi yerinde tutulur (planlayıcı yerinde animasyonu sabit konumda varsayar): root x/z ilk karede
+				if p.get_concatenated_subnames() == "root" and an.track_get_type(i) == Animation.TYPE_POSITION_3D and an.track_get_key_count(i) > 0:
+					var ilk: Vector3 = an.track_get_key_value(i, 0)
+					for kk in an.track_get_key_count(i):
+						var v: Vector3 = an.track_get_key_value(i, kk)
+						an.track_set_key_value(i, kk, Vector3(ilk.x, v.y, ilk.z))
+		lib.add_animation(a, an)
+	ap.add_animation_library(ad, lib)
+
 static func animasyon_oynatici(n: Node) -> AnimationPlayer:
 	if n is AnimationPlayer:
 		return n

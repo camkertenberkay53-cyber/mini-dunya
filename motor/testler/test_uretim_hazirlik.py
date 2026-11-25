@@ -30,3 +30,55 @@ def test_konunun_donemleri_disindaki_karakter_reddedilir():
     p = copy.deepcopy(plan)
     p["cekimler"][0]["donem"] = "bizans-15yy"
     assert any("konunun dönemleri" in h for h in plan_denetim.denetle(p)["hatalar"])
+
+
+# ---------------------------------------------------------------- Faz 5.5 ücretsiz varlık paketi (CC0)
+
+def _oga_lisans():
+    return json.loads((Path(__file__).resolve().parents[1] / "varlik/oga/lisans.json").read_text())
+
+
+def test_ek_animasyon_kutuphanesi_lisansli_ve_her_animasyon_olculmus():
+    from motor.uretim import veri
+    k = veri.kural("animasyon")
+    lis = {v["kimlik"]: v for v in _oga_lisans()["varliklar"]}
+    for ad, yol in k["kutuphaneler"].items():
+        assert (Path(__file__).resolve().parents[1] / yol).exists(), yol
+        assert lis[ad]["durum"] == "TAMAM" and lis[ad]["lisanslar_sayfada"] == ["CC0"]
+    test = veri.animasyon_testi()
+    ek = [a for a in k["animasyonlar"] if "/" in a]
+    assert len(ek) >= 8
+    for a in ek:
+        assert a in test["animasyonlar"], a
+        assert all(a in x for x in test["takimlar"].values()), a          # 52 karakterin hepsinde ölçüldü
+        assert any(x[a]["gecti"] for x in test["takimlar"].values()), a   # en az bir karakterde geçer
+
+
+def test_olculmemis_ya_da_kalan_ek_animasyon_reddedilir():
+    from motor.uretim import animasyon_izni, veri
+    test = veri.animasyon_testi()
+    kalan = next((t, a) for t, x in test["takimlar"].items() for a, r in x.items() if "/" in a and not r["gecti"])
+    ok, n = animasyon_izni.teknik_durum(*kalan)
+    assert not ok and n
+
+
+def test_kayit_sesleri_cc0_ve_karisima_girer(tmp_path):
+    import glob
+    import numpy as np
+    from motor.uretim import kurgu, veri
+    ks = veri.kural("kurgu")["kayit_sesleri"]
+    kok = Path(__file__).resolve().parents[1]
+    lis = {v["kimlik"] for v in _oga_lisans()["varliklar"] if v["lisanslar_sayfada"] == ["CC0"]}
+    yollar = [ks["ambiyans"]["dosya"], ks["kus"]["dosya"]] + [g for e in ks["eylem_sesleri"] for g in
+                                                              glob.glob(str(kok / e["desen"]))]
+    for y in yollar:
+        p = Path(y) if Path(y).is_absolute() else kok / y
+        assert p.exists(), y
+        assert p.relative_to(kok / "varlik/oga").parts[0] in lis, y
+    plan = json.loads((PILOTLAR / "otlukbeli-1473/cekim_plani.json").read_text())
+    alt = np.zeros(int(plan["ses"]["toplam_sn"] * kurgu.SR), np.float32)
+    kurgu._eylem_sesleri(alt, plan, ks, {})
+    assert np.abs(alt).max() > 0.01            # savaş çekiminde kılıç sesi var
+    alt2 = np.zeros_like(alt)
+    kurgu._eylem_sesleri(alt2, plan, ks, {})
+    assert np.array_equal(alt, alt2)           # belirlenimci

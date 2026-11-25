@@ -45,6 +45,11 @@ func _ready() -> void:
 		kok.position = bas
 		var ap := D.animasyon_oynatici(kok)
 		var anim: String = k["animasyon"]
+		if anim.contains("/") and ap:   # Faz 5.5: ek kütüphane animasyonu ("ual2/...")
+			var kut := anim.get_slice("/", 0)
+			var kutler: Dictionary = is_.get("ek_animasyon_kutuphaneleri", {})
+			if kutler.has(kut):
+				D.ek_kutuphane_ekle(kok, ap, kut, kutler[kut])
 		if ap == null or not ap.has_animation(anim):
 			push_error("animasyon yok: " + anim)
 			get_tree().quit(3)
