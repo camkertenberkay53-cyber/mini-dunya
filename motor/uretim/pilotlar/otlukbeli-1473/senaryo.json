@@ -1,0 +1,260 @@
+{
+ "surum": 1,
+ "konu": "otlukbeli-1473",
+ "format": "shorts",
+ "baslik": "Otlukbeli: Topların Günü",
+ "ana_fikir": "Otlukbeli'de Uzun Hasan'ın süvarisi, Osmanlı top ve tüfeğine yenildi; Anadolu'nun birliği yolunda dönüm noktası.",
+ "kanca": "S1",
+ "final": "S8",
+ "cumleler": [
+  {
+   "id": "S1",
+   "metin": "İki Türk ordusu, tek kazanan.",
+   "kartlar": [
+    "C2"
+   ],
+   "amac": "kanca",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "komutan",
+      "donem": "osmanli-15yy",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "donem": "osmanli-15yy",
+      "adet": 4
+     }
+    ],
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "aksam_ustu"
+    },
+    "eylem": "bekleme",
+    "aciklama": "Osmanlı beyi önde, arkasında yeniçeriler"
+   }
+  },
+  {
+   "id": "S2",
+   "metin": "Bir yanda Fatih Sultan Mehmed, öbür yanda Akkoyunlu hükümdarı Uzun Hasan.",
+   "kartlar": [
+    "C2"
+   ],
+   "amac": "baglam",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "komutan",
+      "donem": "akkoyunlu-15yy",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "donem": "akkoyunlu-15yy",
+      "adet": 8
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "kuru_bozkir",
+     "isik": "oglen_acik",
+     "cevre": [
+      "topak_ev",
+      "topak_ev"
+     ]
+    },
+    "eylem": "bekleme",
+    "aciklama": "Akkoyunlu ordugâhı: bey ve hat halinde askerler (temsilî)"
+   }
+  },
+  {
+   "id": "S3",
+   "metin": "11 Ağustos 1473'te ordular Tercan yakınlarında, Otlukbeli'de karşılaştı.",
+   "kartlar": [
+    "C1"
+   ],
+   "amac": "olay",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "donem": "osmanli-15yy",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "donem": "osmanli-15yy",
+      "adet": 11
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "oglen_acik"
+    },
+    "eylem": "yuruyus",
+    "aciklama": "İlerleyen Osmanlı kolu",
+    "metin_katmani": "11 Ağustos 1473 · Otlukbeli (Tercan)"
+   }
+  },
+  {
+   "id": "S4",
+   "metin": "Akkoyunlu ordusu ise ağırlıkla geleneksel süvariye dayanıyordu.",
+   "kartlar": [
+    "C4"
+   ],
+   "amac": "gerilim",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "suvari",
+      "donem": "akkoyunlu-15yy",
+      "odak": true
+     },
+     {
+      "rol": "suvari",
+      "donem": "akkoyunlu-15yy",
+      "adet": 6
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "kuru_bozkir",
+     "isik": "oglen_acik"
+    },
+    "eylem": "yuruyus",
+    "aciklama": "Akkoyunlu süvarileri (atsız; binek varlığı yok)"
+   }
+  },
+  {
+   "id": "S5",
+   "metin": "Uzun Hasan, Venedik'ten top ve tüfek istemişti.",
+   "kartlar": [
+    "C3"
+   ],
+   "amac": "gerilim",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "komutan",
+      "donem": "akkoyunlu-15yy",
+      "odak": true
+     },
+     {
+      "rol": "okcu",
+      "donem": "akkoyunlu-15yy",
+      "adet": 3
+     }
+    ],
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "kuru_bozkir",
+     "isik": "aksam_ustu"
+    },
+    "eylem": "bekleme",
+    "aciklama": "Akkoyunlu beyi ve okçuları; Venedik topları gösterilmez (varlık yok)"
+   }
+  },
+  {
+   "id": "S6",
+   "metin": "Ama savaşın kaderini Osmanlı top ve tüfekleri belirledi.",
+   "kartlar": [
+    "C4"
+   ],
+   "amac": "gerilim",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "donem": "osmanli-15yy",
+      "odak": true
+     },
+     {
+      "rol": "okcu",
+      "donem": "osmanli-15yy",
+      "adet": 6
+     }
+    ],
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "aksam_ustu"
+    },
+    "eylem": "bekleme",
+    "aciklama": "Hazır bekleyen yeniçeri hattı; toplar gösterilmez (varlık yok)"
+   }
+  },
+  {
+   "id": "S7",
+   "metin": "Akkoyunlu ordusu dağıldı; zafer Osmanlıların oldu.",
+   "kartlar": [
+    "C5"
+   ],
+   "amac": "donum",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "piyade",
+      "donem": "akkoyunlu-15yy",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "donem": "akkoyunlu-15yy",
+      "adet": 3
+     }
+    ],
+    "mesafe": "orta",
+    "ortam": {
+     "arazi": "kuru_bozkir",
+     "isik": "aksam_ustu"
+    },
+    "eylem": "olum",
+    "aciklama": "Düşen Akkoyunlu askerleri"
+   }
+  },
+  {
+   "id": "S8",
+   "metin": "Otlukbeli, Anadolu'nun birliği yolunda bir dönüm noktası sayılır.",
+   "kartlar": [
+    "C6"
+   ],
+   "amac": "final",
+   "niyet": {
+    "tur": "3d",
+    "roller": [
+     {
+      "rol": "komutan",
+      "donem": "osmanli-15yy",
+      "odak": true
+     },
+     {
+      "rol": "piyade",
+      "donem": "osmanli-15yy",
+      "adet": 10
+     }
+    ],
+    "mesafe": "uzak",
+    "ortam": {
+     "arazi": "ova_cimen",
+     "isik": "aksam_ustu",
+     "cevre": [
+      "osmanli_cadiri",
+      "osmanli_cadiri"
+     ]
+    },
+    "eylem": "bekleme",
+    "aciklama": "Kapanış: hat halinde Osmanlı ordusu ve bey"
+   }
+  }
+ ]
+}

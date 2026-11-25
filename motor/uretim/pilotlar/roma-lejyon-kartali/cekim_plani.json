@@ -2,6 +2,9 @@
  "surum": 1,
  "konu": "roma-lejyon-kartali",
  "donem": "roma-cumhuriyet",
+ "donemler": [
+  "roma-cumhuriyet"
+ ],
  "fps": 30,
  "cozunurluk": [
   1080,

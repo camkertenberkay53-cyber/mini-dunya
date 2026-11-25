@@ -24,7 +24,7 @@ def _cevre_mesafesi(cekim: dict, cevre: dict, en_boy: float) -> tuple[str | None
     return r["mesafe"], r["ekran_orani"]
 
 
-def cekim_denetle(c: dict, donem: str, en_boy: float) -> dict:
+def cekim_denetle(c: dict, donem: str, en_boy: float, donemler: list[str] | None = None) -> dict:
     h, u, olcum = [], [], {}
     if c["tur"] != "3d":
         if not c.get("metin"):
@@ -53,7 +53,8 @@ def cekim_denetle(c: dict, donem: str, en_boy: float) -> dict:
         mesafe = m["mesafe"] or "uzak"
         if m["gorunur"] and (olculen_en_yakin is None or MESAFE_SIRA[mesafe] > MESAFE_SIRA[olculen_en_yakin]):
             olculen_en_yakin = mesafe
-        ok, n = secici.karakter_uygun_mu(ad, donem, mesafe)
+        kd = veri.kit_donemi(veri.takimlar()[ad]["kit"])
+        ok, n = secici.karakter_uygun_mu(ad, kd if kd in (donemler or [donem]) else donem, mesafe)
         h += [f"{c['id']}: {x}" + ("" if m["gorunur"] else " (kadraj dışı)") for x in n]
         ok, n = animasyon_izni.izinli(ad, k["animasyon"], {"binek": False, "nesneler": []}, k.get("hiz_m_sn"), k.get("olcek", 1.0))
         h += [f"{c['id']}: {x}" for x in n]
@@ -80,7 +81,7 @@ def cekim_denetle(c: dict, donem: str, en_boy: float) -> dict:
                         break
         mes, oran = _cevre_mesafesi(c, cv, en_boy)
         olcum.setdefault("cevre", {})[f"{i}:{cv['id']}"] = {"mesafe": mes, "ekran_orani": oran}
-        ok, n = ortam_secici.cevre_uygun_mu(cv["id"], donem, mes or "uzak", cv.get("temsili", False))
+        ok, n = ortam_secici.cevre_uygun_mu(cv["id"], c.get("donem", donem), mes or "uzak", cv.get("temsili", False))
         h += [f"{c['id']}: {x}" for x in n]
     plan = c["kamera"]["plan"]
     if olculen_en_yakin and plan != olculen_en_yakin:
@@ -113,14 +114,19 @@ def denetle(plan: dict) -> dict:
     if h:
         return {"gecti": False, "hatalar": h, "uyarilar": [], "cekimler": {}, "eksikler": plan.get("eksikler", [])}
     gecerli = {x["etiket"] for x in veri.kitler().values()}
-    if plan["donem"] not in gecerli:
-        h.append(f"plan: '{plan['donem']}' dönemi için kit yok")
+    donemler = plan.get("donemler", [plan["donem"]])
+    for d in sorted(set(donemler) | {plan["donem"]}):
+        if d not in gecerli:
+            h.append(f"plan: '{d}' dönemi için kit yok")
+    for c in plan["cekimler"]:
+        if c.get("donem") and c["donem"] not in donemler:
+            h.append(f"{c['id']}: '{c['donem']}' dönemi konunun dönemleri arasında değil")
     en_boy = plan["cozunurluk"][0] / plan["cozunurluk"][1]
     u, cekimler = [], {}
     h += sozlesme._tekrar([c["id"] for c in plan["cekimler"]], "çekimler")
     gorulen = {}
     for c in plan["cekimler"]:
-        r = cekim_denetle(c, plan["donem"], en_boy)
+        r = cekim_denetle(c, plan["donem"], en_boy, donemler)
         cekimler[c["id"]] = r
         h += r["hatalar"]
         u += r["uyarilar"]

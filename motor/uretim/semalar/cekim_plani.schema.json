@@ -283,6 +283,10 @@
      "meta": {
       "type": "object",
       "description": "Planlayıcının kaydettiği bilgiler (çekim türü, diziliş, odak); render'ı etkilemez."
+     },
+     "donem": {
+      "type": "string",
+      "description": "Çekimin dönemi (odak taraf); yoksa planın ana dönemi."
      }
     }
    }
@@ -323,6 +327,14 @@
   "ses": {
    "type": "object",
    "description": "Seslendirme ölçümü ve zaman çizelgesi (planlayıcı doldurur)."
+  },
+  "donemler": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "minItems": 1,
+   "description": "Konunun bütün dönemleri (çok taraflı konular). donem: ana dönem."
   }
  }
 }

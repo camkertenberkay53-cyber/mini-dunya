@@ -34,10 +34,11 @@ def oyuncu_sec(niyet: dict, donem: str) -> tuple[list[dict], list[str]]:
     mesafe = niyet.get("mesafe", "orta")
     secilen, eksik, kullanilan = [], [], set()
     for r in niyet.get("roller", []):
-        s = secici.sec(r["rol"], donem, mesafe, eylem, r.get("nesne"), {"binek": False, "nesneler": []})
+        rd = r.get("donem") or donem   # çok taraflı konular: rol kendi dönemini (tarafını) taşıyabilir
+        s = secici.sec(r["rol"], rd, mesafe, eylem, r.get("nesne"), {"binek": False, "nesneler": []})
         uygun = [(a, an) for a, an in s["uygun"] if r.get("nesne") or not _sancakli(a)]
         if not uygun:
-            eksik.append(s["eksik"] or f"{donem}: '{r['rol']}' rolü için sancaksız uygun karakter yok")
+            eksik.append(s["eksik"] or f"{rd}: '{r['rol']}' rolü için sancaksız uygun karakter yok")
             continue
         adet = r.get("adet", 1)
         # aynı karakterin yan yana tekrarını azaltmak için uygun listede sırayla dolaş; odak/nesne istenen ilk uygunu alır
@@ -301,6 +302,9 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     if n["tur"] != "3d":
         c["metin"] = n.get("metin") or n.get("aciklama", "")
         return c, [f"{taslak['id']}: '{n['tur']}' görseli üretecek 2D kart/harita motoru yok"], {}
+    odak_rol = next((r for r in n.get("roller", []) if r.get("odak")), (n.get("roller") or [{}])[0])
+    if odak_rol.get("donem") and odak_rol["donem"] != donem:
+        c["donem"] = odak_rol["donem"]   # çekimin dönemi (çevre varlıkları) odak tarafın dönemi
     oyuncular, eksik = oyuncu_sec(n, donem)
     if not oyuncular:
         return c, [f"{taslak['id']}: {e}" for e in eksik] or [f"{taslak['id']}: niyette rol yok"], {}
@@ -347,7 +351,7 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
         odak_ad = id(c["karakterler"][odak_i])
         c["karakterler"] = [k for i, k in enumerate(c["karakterler"]) if olc[i]["gorunur"] or i == odak_i]
         odak_i = next(i for i, k in enumerate(c["karakterler"]) if id(k) == odak_ad)
-    cevre, ce = cevre_yerlestir(o.get("cevre", []), c, donem)
+    cevre, ce = cevre_yerlestir(o.get("cevre", []), c, c.get("donem", donem))
     c["ortam"]["cevre"] = cevre
     x = veri.kural("kamera")["cekimler"][tur]
     kayit = {"tur": tur, "hareket": x["hareket"], "yukseklik": _yukseklik_sinifi(x["yukseklik_m"]),
