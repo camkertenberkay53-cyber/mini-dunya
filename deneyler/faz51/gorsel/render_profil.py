@@ -23,7 +23,7 @@ from olc_cekim import calistir  # noqa: E402
 def main() -> int:
     cid, profil, kare_no, cikti = sys.argv[1], sys.argv[2], int(sys.argv[3]), Path(sys.argv[4])
     cikti.mkdir(parents=True, exist_ok=True)
-    is_ = json.loads((REPO / "deneyler/faz51/altyapi/isler" / f"{cid}.json").read_text())
+    is_ = json.loads((Path(os.environ.get("ISLER_KLASORU", str(REPO / "deneyler/faz51/altyapi/isler"))) / f"{cid}.json").read_text())
     if profil == "V0":
         proje = REPO / "motor" / "godot"
     else:

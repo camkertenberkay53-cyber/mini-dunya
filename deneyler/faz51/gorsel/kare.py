@@ -33,7 +33,7 @@ def main() -> int:
     cid, profil, kare, cikti = sys.argv[1], sys.argv[2], int(sys.argv[3]), Path(sys.argv[4])
     profiller = json.loads(Path(sys.argv[5]).read_text()) if len(sys.argv) > 5 else {}
     proje = REPO / "motor" / "godot" if profil == "uretim" else deney_projesi(Path(sys.argv[6] if len(sys.argv) > 6 else "/tmp/gv2"))
-    is_ = json.loads((REPO / "deneyler/faz51/altyapi/isler" / f"{cid}.json").read_text())
+    is_ = json.loads((Path(os.environ.get("ISLER_KLASORU", str(REPO / "deneyler/faz51/altyapi/isler"))) / f"{cid}.json").read_text())
     if profil != "uretim":
         p = profiller[profil]
         if p.get("isik_preset"):   # deney: aynı çekimi başka ışık preset'iyle dene (yalnız ışık alanları değişir)
