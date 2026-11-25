@@ -2,8 +2,11 @@
 # isik → is.json isik.gorsel, arazi → is.json arazi.gorsel (sahneler/ortam.gd okur).
 # faz52: yönetimin kabul ettiği D1–D5, D9–D15b, D16s, D17 zinciri (deney profili D17, Faz 5.2 raporu); V2 renk
 #        profili dahil. Ölçüm ve karşılaştırmalar: deneyler/faz51/gorsel/sonuc52.
+# faz54: faz52 + prosedürel bulutlu gök (varlık yok; güneş yönü sahne ışığından) + Poly Haven CC0 zemin ayrıntı
+#        dokusu (yalnız parlaklık ayrıntısı + normal; renk arazi hazır ayarından). Dosya yolları motor/ köküne göredir.
+#        arazi_ozel: arazi hazır ayarına göre ek/farklı anahtarlar (konudan bağımsız, coğrafyaya bağlı).
 # yok:   geri dönüş — Faz 5.2 öncesi üretim görüntüsü (piksel eşitliği test edilir).
-aktif: faz52
+aktif: faz54
 profiller:
   faz52:
     isik:
@@ -29,3 +32,10 @@ profiller:
   yok:
     isik: {}
     arazi: {}
+  faz54:
+    taban: faz52
+    isik: {gok_bulut: true, bulut_miktar: 0.42, bulut_olcek: 1.4, bulut_yogunluk: 0.85}
+    arazi: {zemin_alb: varlik/polyhaven/rocks_ground_02/diff.jpg, zemin_nor: varlik/polyhaven/rocks_ground_02/nor_gl.jpg,
+      doku_olcek: 0.35, doku_karisim: 0.8, doku_renk: 0.0, doku_normal: 0.8}
+    arazi_ozel:
+      kuru_bozkir: {zemin_alb: varlik/polyhaven/mud_cracked_dry_03/diff.jpg, zemin_nor: varlik/polyhaven/mud_cracked_dry_03/nor_gl.jpg}

@@ -25,13 +25,30 @@ BETIKLER = [ayar.GODOT_PROJE / "sahneler" / x for x in ("cekim.gd", "ortam.gd", 
 KOK = ayar.ONBELLEK / "uretim"
 
 
+def gorsel_profili(g: dict, arazi: str, ad: str | None = None) -> dict:
+    """Aktif görsel profil: 'taban' zinciri birleştirilir, arazi_ozel uygulanır, 'varlik/...' yolları motor/ köküne
+    göre mutlak yapılır (Godot dosyayı is.json'daki yoldan okur)."""
+    p = g["profiller"][ad or g["aktif"]]
+    sonuc = {"isik": {}, "arazi": {}}
+    if p.get("taban"):
+        t = gorsel_profili(g, arazi, p["taban"])
+        sonuc = {"isik": dict(t["isik"]), "arazi": dict(t["arazi"])}
+    sonuc["isik"].update(p.get("isik", {}))
+    sonuc["arazi"].update(p.get("arazi", {}))
+    sonuc["arazi"].update(p.get("arazi_ozel", {}).get(arazi, {}))
+    for alan in sonuc.values():
+        for k, v in alan.items():
+            if isinstance(v, str) and v.startswith("varlik/"):
+                alan[k] = str(ayar.REPO / "motor" / v)
+    return sonuc
+
+
 def is_hazirla(plan: dict, c: dict) -> dict:
     ar = dict(veri.kural("arazi")["araziler"][c["ortam"]["arazi"]])
     isik = veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
     kurallar = veri.kural("animasyon")["animasyonlar"]
     # Faz 5.2 görsel profili (kurallar/gorsel.yaml); hazır ayarların kendisi değişmez, kopyalarına eklenir
-    gp = veri.kural("gorsel")
-    gp = gp["profiller"][gp["aktif"]]
+    gp = gorsel_profili(veri.kural("gorsel"), c["ortam"]["arazi"])
     isik = dict(isik, gorsel=dict(gp.get("isik", {})))
     ar["gorsel"] = dict(gp.get("arazi", {}))
     takimlar = {k["takim"]: veri.takimlar()[k["takim"]] for k in c.get("karakterler", [])}

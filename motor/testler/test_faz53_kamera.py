@@ -162,8 +162,18 @@ def test_gorsel_profil_islere_eklenir_ve_geri_donus_var():
     plan = json.loads((PILOT / "cekim_plani.json").read_text())
     c = next(x for x in plan["cekimler"] if x["tur"] == "3d")
     is_ = render.is_hazirla(plan, c)
-    p = g["profiller"][g["aktif"]]
+    p = render.gorsel_profili(g, c["ortam"]["arazi"])
     assert is_["isik"]["gorsel"] == p["isik"] and is_["arazi"]["gorsel"] == p["arazi"]
+    # aktif profil Faz 5.2 kabul zincirini eksiksiz içerir (faz52 anahtarları ve değerleri korunur)
+    f52 = g["profiller"]["faz52"]
+    for alan in ("isik", "arazi"):
+        assert all(p[alan].get(k) == v for k, v in f52[alan].items())
+    # dosya yolları var olan, lisans kaydı bulunan varlıklara çözülür
+    lisans = json.loads((Path(__file__).resolve().parents[1] / "varlik/polyhaven/lisans.json").read_text())
+    kayitli = {v["kimlik"] for v in lisans["varliklar"] if v["lisans"]["ad"] == "CC0 1.0"}
+    for v in list(p["arazi"].values()) + list(p["isik"].values()):
+        if isinstance(v, str) and "/varlik/" in v:
+            assert Path(v).exists() and Path(v).parent.name in kayitli, v
     # hazır ayarların kendisi değişmez (profil kopyaya eklenir)
     assert "gorsel" not in veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
     assert "gorsel" not in veri.kural("arazi")["araziler"][c["ortam"]["arazi"]]

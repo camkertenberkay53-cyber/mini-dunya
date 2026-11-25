@@ -1720,7 +1720,7 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.262,
+     "ekran_orani": 0.263,
      "mesafe": "uzak"
     },
     "1": {
@@ -1992,6 +1992,6 @@
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.31,
+ "planlama_sn": 0.39,
  "gecti": true
 }

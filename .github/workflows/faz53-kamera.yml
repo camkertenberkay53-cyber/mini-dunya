@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        grup: [test, pilot_v1, pilot_v2, pilot_ikili, gorsel_ikili]
+        grup: [test, pilot_v1, pilot_v2, pilot_ikili, gorsel_ikili, gorsel54]
     steps:
       - uses: actions/checkout@v4
       - name: Kurulum
@@ -43,9 +43,12 @@ jobs:
             pilot_v1) CIFTLER="P:$PWD/deneyler/faz51/altyapi/isler" ;;
             pilot_v2) CIFTLER="P:$PWD/deneyler/faz53/pilot_v2/isler" ;;
             gorsel_ikili) CIFTLER="eski:$PWD/deneyler/faz52_entegrasyon/isler_yok yeni:$PWD/deneyler/faz52_entegrasyon/isler_faz52" ;;   # Faz 5.2 entegrasyonu: aynı makinede
+            gorsel54) CIFTLER="eski:$PWD/deneyler/uretim_hazirlik/isler_faz52 yeni:$PWD/deneyler/uretim_hazirlik/isler_faz54" ;;   # bulutlu gök + CC0 zemin dokusu
             pilot_ikili) CIFTLER="eski:$PWD/deneyler/faz51/altyapi/isler yeni:$PWD/deneyler/faz53/pilot_uretim/isler" ;;   # aynı makinede eski/yeni
           esac
           PROFIL=$(python3 -c "import json;print(json.load(open('deneyler/faz53/kosu53.json'))['profil'])")
+          # işlerdeki yerel depo yolları (varlık dosyaları) bu makinedeki depoya çevrilir
+          grep -rl "/home/claude/mini-dunya" deneyler/uretim_hazirlik deneyler/faz52_entegrasyon 2>/dev/null | xargs -r sed -i "s#/home/claude/mini-dunya#$PWD#g"
           cd deneyler/faz51/gorsel
           for cift in $CIFTLER; do ET=${cift%%:*}; export ISLER_KLASORU=${cift#*:}
           for f in $(ls $ISLER_KLASORU/*.json | sort); do c0=$(basename $f .json); c=$c0; if [ "$ET" = eski ] || [ "$ET" = yeni ]; then c=${ET}_$c0; fi

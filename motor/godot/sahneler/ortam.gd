@@ -22,6 +22,39 @@ static func _resim(yol: String, mip: bool) -> ImageTexture:
 		img.generate_mipmaps()
 	return ImageTexture.create_from_image(img)
 
+const BULUT_GOK_SHADER := """
+shader_type sky;
+uniform vec3 tepe; uniform vec3 ufuk; uniform float egri = 0.12;
+uniform float miktar = 0.42; uniform float olcek = 1.4; uniform float yogunluk = 0.85; uniform vec2 kayma = vec2(0.0);
+float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
+float n(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
+  return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }
+float fbm(vec2 p){ float s=0.0, a=0.5; for(int i=0;i<5;i++){ s+=a*n(p); p=p*2.02+vec2(1.7,9.2); a*=0.5; } return s; }
+void sky(){
+  vec3 d = EYEDIR;
+  float va = acos(clamp(d.y, -1.0, 1.0));
+  float c = 1.0 - va / (PI * 0.5);
+  vec3 renk;
+  vec3 gunes_yon = LIGHT0_ENABLED ? LIGHT0_DIRECTION : vec3(0.0, 1.0, 0.0);
+  vec3 gunes_renk = LIGHT0_ENABLED ? LIGHT0_COLOR * LIGHT0_ENERGY : vec3(1.0);
+  if (d.y >= 0.0) {
+    renk = mix(ufuk, tepe, clamp(1.0 - pow(1.0 - c, 1.0 / egri), 0.0, 1.0));
+    float ga = acos(clamp(dot(gunes_yon, d), -1.0, 1.0));
+    renk = mix(renk, gunes_renk, (1.0 - smoothstep(0.004, 0.44, ga)) * 0.35);   // güneş çevresi parlama (25° içi)
+    vec2 uv = d.xz / max(d.y, 0.06) * olcek + kayma;
+    float b = fbm(uv);
+    float kapsama = smoothstep(1.0 - miktar, 1.0 - miktar + 0.28, b) * smoothstep(0.015, 0.16, d.y) * yogunluk;
+    float isik = 0.72 + 0.4 * (0.5 + 0.5 * dot(d, gunes_yon));          // güneşe bakan bulut kenarı daha parlak
+    float golge = 0.86 + 0.14 * smoothstep(0.35, 0.9, fbm(uv * 1.9 + 3.1));
+    vec3 bulut = mix(ufuk, vec3(1.0), 0.7) * mix(vec3(1.0), gunes_renk, 0.25) * isik * golge;
+    renk = mix(renk, bulut, kapsama);
+  } else {
+    renk = mix(ufuk * 0.82, vec3(0.3, 0.27, 0.22), clamp(-d.y * 4.0, 0.0, 1.0));
+  }
+  COLOR = renk;
+}
+"""
+
 # Faz 5.2 D14: isik() sahne atmosferini hesaplar, daglar() uzak pusu bundan türetir (aynı ortam).
 static var _sis_etkin := Color(0.5, 0.52, 0.54)
 static var _gunes_renk := Color(1, 1, 1)
@@ -37,6 +70,21 @@ static func isik(kok: Node, i: Dictionary) -> void:
 		ps.energy_multiplier = float(g.get("hdri_enerji", 1.0))
 		sky.sky_material = ps
 		env.sky_rotation = Vector3(0, deg_to_rad(float(g.get("hdri_donus", 0.0))), 0)
+	elif g.get("gok_bulut", false):
+		# Faz 5.4: prosedürel gök + bulut (varlık yok). Renk geçişi ProceduralSkyMaterial ile aynı formül; güneş yönü
+		# ve rengi sahnenin DirectionalLight'ından (LIGHT0) gelir, gölgelerle her zaman uyumlu. Bulutlar statik.
+		var bs := Shader.new()
+		bs.code = BULUT_GOK_SHADER
+		var bm := ShaderMaterial.new()
+		bm.shader = bs
+		bm.set_shader_parameter("tepe", _v3(g.get("gok_tepe", i["gok"]["tepe"])))
+		bm.set_shader_parameter("ufuk", _v3(g.get("gok_ufuk", i["gok"]["ufuk"])))
+		bm.set_shader_parameter("egri", float(g.get("gok_egri", 0.12)))
+		bm.set_shader_parameter("miktar", float(g.get("bulut_miktar", 0.42)))
+		bm.set_shader_parameter("olcek", float(g.get("bulut_olcek", 1.4)))
+		bm.set_shader_parameter("yogunluk", float(g.get("bulut_yogunluk", 0.85)))
+		bm.set_shader_parameter("kayma", Vector2(float(g.get("bulut_tohum", 0.0)) * 7.31, float(g.get("bulut_tohum", 0.0)) * 3.17))
+		sky.sky_material = bm
 	else:
 		var sm := ProceduralSkyMaterial.new()
 		sm.sky_top_color = _renk(g.get("gok_tepe", i["gok"]["tepe"]))
@@ -100,6 +148,7 @@ uniform float duz_yari = 6.0;
 uniform sampler2D d_alb : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D d_nor : hint_normal, filter_linear_mipmap, repeat_enable;
 uniform float doku_acik = 0.0; uniform float doku_olcek = 0.5; uniform float doku_karisim = 0.8;
+uniform float doku_renk = 1.0; uniform float doku_ort = 0.4; uniform float doku_normal = 1.0;   // Faz 5.4: 0 = yalnız ayrıntı (renk hazır ayardan)
 uniform float batma_bas = 0.0;
 uniform float iz_tekerlek = 0.0; uniform float teker_derinlik = 0.35; uniform float teker_genislik = 0.18;  // Faz 5.2 D15: yönlü çizgi gürültüsü yerine iki tekerlek izi + mesafeyle sönen ince doku
 uniform float tani_iz_yok = 0.0; uniform float tani_ince_yok = 0.0;   // Faz 5.2 D15 teşhis anahtarları   // Faz 5.2 D13: >0 ise ana zemin bu yarıçaptan sonra uzak arazinin altına batar
@@ -137,9 +186,12 @@ void fragment(){
     vec3 d2 = texture(d_alb, uv * 0.23 + vec2(0.37, 0.11)).rgb;   // ikinci ölçek: döşeme tekrarını kırar
     vec3 dk = mix(d1, d2, 0.35);
     float l = max(dot(dk, vec3(0.299, 0.587, 0.114)), 0.02);
-    ALBEDO = mix(taban, taban * (dk / l) * 0.5 + dk * 0.5, doku_karisim);
+    vec3 ayrinti = taban * clamp(l / doku_ort, 0.45, 1.7);                     // dokunun yalnız parlaklık ayrıntısı
+    vec3 renkli = taban * (dk / l) * 0.5 + dk * 0.5;
+    float uzak_k = 1.0 - smoothstep(25.0, 90.0, length(VERTEX));              // uzakta döşeme tekrarı görünmesin
+    ALBEDO = mix(taban, mix(ayrinti, renkli, doku_renk), doku_karisim * uzak_k);
     NORMAL_MAP = texture(d_nor, uv).rgb;
-    NORMAL_MAP_DEPTH = 1.0;
+    NORMAL_MAP_DEPTH = doku_normal * uzak_k;
   } else {
     ALBEDO = taban;
   }
@@ -174,7 +226,16 @@ static func arazi(kok: Node, a: Dictionary, merkez: Vector2) -> void:
 	if g.get("dag_gecis", false):
 		mat.set_shader_parameter("batma_bas", float(g.get("gecis_bas", 200.0)) + 5.0)
 	if g.has("zemin_alb"):
-		mat.set_shader_parameter("d_alb", _resim(g["zemin_alb"], true))
+		var dalb := _resim(g["zemin_alb"], true)
+		mat.set_shader_parameter("d_alb", dalb)
+		if dalb:   # dokunun ortalama parlaklığı (ayrıntı modu bununla normalize edilir)
+			var ki: Image = dalb.get_image().duplicate()
+			ki.clear_mipmaps()
+			ki.resize(1, 1, Image.INTERPOLATE_BILINEAR)
+			var o: Color = ki.get_pixel(0, 0)
+			mat.set_shader_parameter("doku_ort", maxf(0.05, 0.299 * o.r + 0.587 * o.g + 0.114 * o.b))
+		mat.set_shader_parameter("doku_renk", float(g.get("doku_renk", 1.0)))
+		mat.set_shader_parameter("doku_normal", float(g.get("doku_normal", 1.0)))
 		mat.set_shader_parameter("d_nor", _resim(g["zemin_nor"], true))
 		mat.set_shader_parameter("doku_acik", 1.0)
 		mat.set_shader_parameter("doku_olcek", float(g.get("doku_olcek", 0.5)))

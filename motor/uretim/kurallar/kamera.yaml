@@ -21,7 +21,7 @@ cekimler:
   sabit_uzak:       {aciklama: Sabit uzak kadraj (sonuç, kayıp), aci_derece: 60, yukseklik_m: 1.3, hedef_y_m: 0.6, hareket: sabit, fov: 34, mesafeler: [uzak]}
   # --- Faz 5.3 yeni türler ---
   kurulus_genis:    {aciklama: Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing), aci_derece: -40, yukseklik_m: 4.0, hedef_y_m: 3.2, hareket: genis_suzulme, fov: 55, oran: 0.12, mesafeler: [uzak]}
-  tele_kalabalik:   {aciklama: Ordunun büyüklüğü; önden uzun lens, sıraları üst üste sıkıştırır, aci_derece: 12, yukseklik_m: 2.2, hedef_y_m: 1.1, hareket: sabit_suzulme, fov: 18, oran: 0.26, mesafeler: [uzak]}
+  tele_kalabalik:   {aciklama: Ordunun büyüklüğü; önden uzun lens, sıraları üst üste sıkıştırır (ufuk ve gök kadrajda), aci_derece: 12, yukseklik_m: 1.8, hedef_y_m: 1.9, hareket: sabit_suzulme, fov: 18, oran: 0.26, mesafeler: [uzak]}
   itme_dramatik:    {aciklama: Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma), aci_derece: 10, yukseklik_m: 1.45, hedef_y_m: 1.5, hareket: itme, fov: 40, fov_son: 32, mesafeler: [orta]}
   orta_konusma:     {aciklama: Komutanın konuşması / dinleyen; medium plan, göz hizası, hafif çapraz, aci_derece: 25, yukseklik_m: 1.6, hedef_y_m: 1.4, hareket: sabit_suzulme, fov: 32, oran: 0.85, mesafeler: [orta]}
 yukseklik_siniflari: {alcak: 1.0, yuksek: 2.2}   # < alcak: alçak açı; > yuksek: yüksek açı; arası göz hizası
