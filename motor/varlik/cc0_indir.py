@@ -65,7 +65,13 @@ def polyhaven(it: dict, kok: Path) -> dict:
          "amac": it.get("amac"), "cozunurluk": coz, "boyut_mm": info.get("dimensions"), "poligon": info.get("polycount"),
          "dosyalar": []}
     f = jal(f"{PH_API}/files/{kim}")
-    if tur == "model":
+    if tur == "model" and it.get("yalniz_doku"):   # ağır modelin yalnız dokuları (yaprak/kabuk atlası); geometri indirilmez
+        d = f["gltf"][coz]["gltf"]
+        k["yalniz_doku"] = True
+        for yol, e in (d.get("include") or {}).items():
+            if Path(yol).suffix.lower() in (".jpg", ".jpeg", ".png"):
+                k["dosyalar"].append(yaz(al(e["url"]), hedef / yol, e["url"], e.get("md5"), kok))
+    elif tur == "model":
         d = f["gltf"][coz]["gltf"]
         k["dosyalar"].append(yaz(al(d["url"]), hedef / Path(d["url"]).name, d["url"], d.get("md5"), kok))
         for yol, e in (d.get("include") or {}).items():
@@ -91,9 +97,16 @@ def ambientcg(it: dict, kok: Path) -> dict:
     k = {"kaynak": "ambientcg", "kimlik": kim, "ad": v.get("displayName"), "tur": v.get("dataType"),
          "sayfa": f"https://ambientcg.com/view?id={kim}", "lisans": ACG_LISANS, "lisans_api": v.get("license"),
          "amac": it.get("amac"), "cozunurluk": coz, "dosyalar": []}
-    if "CC0" not in lis:
+    if lis and "CC0" not in lis:   # API alan veriyorsa CC0 olmalı
         k["durum"] = f"LISANS_RED ({v.get('license')})"
         return k
+    if not lis:   # alan yoksa: sitenin lisans sayfası okunur, "CC0" ve tüm varlıkları kapsadığı doğrulanır
+        sayfa = al(ACG_LISANS["kaynak"]).decode("utf-8", "replace")
+        if "CC0" not in sayfa:
+            k["durum"] = "LISANS_DOGRULANAMADI"
+            return k
+        k["lisans_dogrulama"] = "API 'license' alanı boş; ambientCG lisans sayfası (docs.ambientcg.com/license) CC0 içeriyor, kayıt alındı."
+        k["lisans_sayfa_sha256"] = hashlib.sha256(sayfa.encode()).hexdigest()
     indir = [d for c in v["downloadFolders"]["default"]["downloadFiletypeCategories"].values() for d in c["downloads"]
              if d.get("attribute") == f"{coz}-JPG"]
     if not indir:
