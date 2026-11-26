@@ -143,3 +143,26 @@ belgesel_kalite:
   karakter_yuzey: true
   agac: true
   fiziksel_lens: true
+# Karakter kalite paketi — TEK ANAHTAR karakter_kalite.acik.
+#  beden: vücut/yüz çeşitliliği (godot/sahneler/beden.gd) — kemik ölçeği animasyondan sonra; giysi gövdeyle birlikte.
+#    taban: herkese uygulanan "süper kahraman → dönemin insanı" düzeltmesi (kalınlık çarpanları).
+#    kisi: kişiye özgü aralıklar (belirlenimci tohum).
+# acik: false → önceki karakterler.
+karakter_kalite:
+  acik: true
+  beden:
+    taban: {gogus: 0.94, bel: 0.96, kol: 0.9, bacak: 0.97, boyun: 0.92}   # "süper kahraman" → sıradan insan (herkese)
+    kisi:
+      yapi: [0.92, 1.06]
+      gobek: [-0.6, 1.0]
+      gobek_guc: 0.14
+      kol: [0.92, 1.06]
+      bacak: [0.94, 1.06]
+      boyun: [0.92, 1.08]
+      bas: [0.95, 1.04]
+      bas_en: [0.96, 1.04]
+      durus_derece: [-2.0, 6.0]
+  #  ten: plastik görünen deriye mat, gözenekli, hafif lekeli yüzey (yuzey.gd gölgelendiricisi; belgesel yuzey.yaml'a dokunmaz)
+  ten:
+    acik: true
+    kural: {desen: "^(mi_superhero|mi_skin)", doku: polyhaven/white_rough_plaster, tekrar: 9.0, detay_guc: 0.12, normal_guc: 0.35, pur_carp: 0.35, pur_taban: 0.5, asinma: 0.14, kenar_koyu: 0.18}

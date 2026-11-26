@@ -15,6 +15,7 @@ const Y := preload("res://sahneler/yerlesim.gd")
 const Mz := preload("res://sahneler/malzeme.gd")
 const F := preload("res://sahneler/film.gd")
 const Yz := preload("res://sahneler/yuzey.gd")
+const Bd := preload("res://sahneler/beden.gd")
 var _film: ShaderMaterial = null
 const K := preload("res://sahneler/kalabalik.gd")
 var _sinema: ShaderMaterial
@@ -83,6 +84,7 @@ func _ready() -> void:
 		if kc.get("acik", false):   # Faz 5.6: kişi başına tohumlu görünüm çeşitliliği
 			D.cesitle(kok, int(is_.get("tohum", 1)) * 7919 + _sira * 104729, kc)
 		Yz.uygula(kok)
+		Bd.kur(kok, int(is_.get("tohum", 1)) * 7919 + _sira * 104729 + 17, is_.get("beden", {}))   # vücut/yüz çeşitliliği
 		var bas := Vector3(k["konum"][0], 0, k["konum"][1])
 		kok.position = bas
 		var ap := D.animasyon_oynatici(kok)

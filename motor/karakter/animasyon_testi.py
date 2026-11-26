@@ -82,14 +82,14 @@ def test_et(animasyonlar: list[str] = EK_ANIMASYONLAR, hizli: bool = False, ek_g
             "sure_sn": sure, "takimlar": cikti}
 
 
-def kutuphane_testi(hizli: bool = False) -> dict:
+def kutuphane_testi(hizli: bool = False, sadece: list[str] | None = None) -> dict:
     """Faz 5.5: kurallar/animasyon.yaml'daki ek kütüphane animasyonlarını (ör. 'ual2/...') aynı ölçüm ve eşiklerle
     test eder ve sonucu animasyon_testi.json'a EKLER (mevcut kayıtlar değişmez)."""
     from motor import ayar
     from motor.uretim import veri
     k = veri.kural("animasyon")
     ek_glb = {ad: str(ayar.REPO / "motor" / yol) for ad, yol in k.get("kutuphaneler", {}).items()}
-    animler = [a for a in k["animasyonlar"] if "/" in a]
+    animler = [a for a in k["animasyonlar"] if "/" in a and (not sadece or a in sadece)]   # sadece: yalnız yeni eklenenler
     c = test_et(animler, hizli, ek_glb)
     eski = json.loads(SONUC.read_text())
     eski["animasyonlar"] = list(dict.fromkeys(eski["animasyonlar"] + animler))
@@ -102,7 +102,7 @@ def kutuphane_testi(hizli: bool = False) -> dict:
 
 if __name__ == "__main__":
     if "--kutuphane" in sys.argv:
-        c = kutuphane_testi(hizli="--hizli" in sys.argv)
+        c = kutuphane_testi(hizli="--hizli" in sys.argv, sadece=[a for a in sys.argv[1:] if "/" in a] or None)
     else:
         c = test_et(hizli="--hizli" in sys.argv)
         SONUC.write_text(json.dumps(c, ensure_ascii=False, indent=1))

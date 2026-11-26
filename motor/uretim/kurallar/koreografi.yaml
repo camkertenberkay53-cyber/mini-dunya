@@ -1,0 +1,16 @@
+# Çarpışma koreografisi (motor/uretim/koreografi.py; konudan bağımsız). Kılıç dövüşü eylemli çekimde düello çiftleri:
+# karşı taraftan (konu 'donemler') teknik izni olan rakipler, karşılıklı duruş, çeşitli vuruş/savunma, dağıtılmış zamanlama.
+# Karşı taraf/izinli rakip yoksa rakip uydurulmaz; yalnız çeşitleme uygulanır. acik: false → önceki diziliş.
+acik: true
+eylemler: [savas, carpisma, kilic_saldirisi]
+saldiri: [ual2/Sword_Regular_A, ual2/Sword_Regular_B, ual2/Sword_Regular_C, ual2/Sword_Regular_Combo, Sword_Attack]
+savunma: [ual2/Sword_Block, ual2/Sword_Block, ual2/Sword_Regular_A, ual2/Sword_Regular_B, Sword_Attack]   # çoğu savunur, kimi karşılık verir
+bekleme: [Sword_Idle, ual2/Idle_Shield_Loop, Idle_Loop]
+rakip_rolleri: [piyade, okcu, komutan]
+rakip_eylemleri: [kilicla_savunma, kilic_saldirisi, kilicla_bekleme]
+en_cok_cift: 4
+cift_mesafe_m: [1.55, 1.9]       # kılıç boyu + kol: karşılıklı vuruş mesafesi
+yan_aralik_m: [2.1, 2.9]         # çiftler arası
+arka_derinlik_m: 2.4
+arka_aralik_m: 1.4
+yon_sapmasi_derece: 10

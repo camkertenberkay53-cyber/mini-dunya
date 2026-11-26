@@ -943,23 +943,36 @@
       -1.5,
       2.68
      ],
-     "yon_derece": -24.9,
+     "yon_derece": -93.2,
      "animasyon": "Death01",
      "faz_sn": 0.0,
      "hiz_m_sn": 0.0
     },
     {
+     "takim": "rom_lejyoner_gladius",
+     "rol": "piyade",
+     "konum": [
+      1.02,
+      -2.31
+     ],
+     "yon_derece": 118.9,
+     "animasyon": "Death01",
+     "faz_sn": 0.09,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.951
+    },
+    {
      "takim": "rom_lejyoner_pilum",
      "rol": "piyade",
      "konum": [
-      -1.92,
-      -0.9
+      2.15,
+      -2.98
      ],
-     "yon_derece": -21.6,
+     "yon_derece": 12.4,
      "animasyon": "Death01",
-     "faz_sn": 0.25,
+     "faz_sn": 0.34,
      "hiz_m_sn": 0.0,
-     "olcek": 0.986
+     "olcek": 0.971
     },
     {
      "takim": "rom_lejyoner_gladius",
@@ -968,11 +981,24 @@
       -0.5,
       -0.28
      ],
-     "yon_derece": -2.5,
+     "yon_derece": -9.6,
      "animasyon": "Death01",
      "faz_sn": 0.19,
      "hiz_m_sn": 0.0,
      "olcek": 0.99
+    },
+    {
+     "takim": "rom_lejyoner_pilum",
+     "rol": "piyade",
+     "konum": [
+      2.57,
+      -1.45
+     ],
+     "yon_derece": -93.6,
+     "animasyon": "Death01",
+     "faz_sn": 0.04,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.986
     }
    ],
    "insan_boy_orani": 0.908,
@@ -981,9 +1007,9 @@
     "hareket": "yorunge",
     "bas": {
      "konum": [
-      -1.078,
+      -5.742,
       1.4,
-      7.414
+      4.823
      ],
      "hedef": [
       -1.5,
@@ -994,9 +1020,9 @@
     },
     "son": {
      "konum": [
-      1.561,
+      -3.746,
       1.4,
-      6.315
+      6.868
      ],
      "hedef": [
       -1.5,
@@ -1018,8 +1044,6 @@
     "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
-     "rom_lejyoner_gladius",
-     "rom_lejyoner_pilum",
      "rom_lejyoner_pilum"
     ],
     "lens_fov": [

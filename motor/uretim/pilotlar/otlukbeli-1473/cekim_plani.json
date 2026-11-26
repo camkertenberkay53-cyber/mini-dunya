@@ -968,16 +968,16 @@
      {
       "id": "top_arabasi",
       "konum": [
-       -6.8,
-       -21.79
+       -5.09,
+       -24.21
       ],
       "yon_derece": 0.0
      },
      {
       "id": "top_arabasi",
       "konum": [
-       -23.29,
-       -20.35
+       -21.64,
+       -23.9
       ],
       "yon_derece": 37.0
      }
@@ -988,24 +988,24 @@
      "takim": "osm_yeniceri_kilic",
      "rol": "piyade",
      "konum": [
-      0.0,
-      2.0
+      0.08,
+      -0.02
      ],
-     "yon_derece": 0.0,
-     "animasyon": "ual2/Sword_Regular_Combo",
-     "faz_sn": 0.0,
+     "yon_derece": -3.9,
+     "animasyon": "ual2/Sword_Regular_A",
+     "faz_sn": 0.114,
      "hiz_m_sn": 0.0
     },
     {
      "takim": "osm_yeniceri_kilic",
      "rol": "piyade",
      "konum": [
-      -0.98,
-      -0.0
+      2.45,
+      0.04
      ],
-     "yon_derece": -4.5,
-     "animasyon": "ual2/Sword_Regular_Combo",
-     "faz_sn": 0.216,
+     "yon_derece": 7.5,
+     "animasyon": "ual2/Sword_Regular_B",
+     "faz_sn": 0.518,
      "hiz_m_sn": 0.0,
      "olcek": 0.961
     },
@@ -1013,12 +1013,12 @@
      "takim": "osm_yeniceri_kilic",
      "rol": "piyade",
      "konum": [
-      -0.07,
-      0.08
+      -2.75,
+      -0.01
      ],
-     "yon_derece": -1.2,
+     "yon_derece": -6.8,
      "animasyon": "ual2/Sword_Regular_Combo",
-     "faz_sn": 0.083,
+     "faz_sn": 1.421,
      "hiz_m_sn": 0.0,
      "olcek": 0.995
     },
@@ -1026,14 +1026,53 @@
      "takim": "osm_yeniceri_kilic",
      "rol": "piyade",
      "konum": [
-      -1.09,
-      -1.41
+      -0.72,
+      -2.82
      ],
-     "yon_derece": 2.9,
-     "animasyon": "ual2/Sword_Regular_Combo",
-     "faz_sn": 0.165,
+     "yon_derece": 6.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 1.292,
      "hiz_m_sn": 0.0,
      "olcek": 1.04
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      0.78,
+      -2.11
+     ],
+     "yon_derece": 9.2,
+     "animasyon": "ual2/Idle_Shield_Loop",
+     "faz_sn": 2.111,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.982
+    },
+    {
+     "takim": "akk_okcu_kilic",
+     "rol": "karsi_okcu",
+     "konum": [
+      0.06,
+      1.72
+     ],
+     "yon_derece": 178.4,
+     "animasyon": "ual2/Sword_Block",
+     "faz_sn": 0.991,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.033
+    },
+    {
+     "takim": "akk_okcu_kilic",
+     "rol": "karsi_okcu",
+     "konum": [
+      2.49,
+      1.65
+     ],
+     "yon_derece": 189.3,
+     "animasyon": "ual2/Sword_Block",
+     "faz_sn": 0.357,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.975
     }
    ],
    "insan_boy_orani": 0.918,
@@ -1042,27 +1081,27 @@
     "hareket": "yorunge",
     "bas": {
      "konum": [
-      2.376,
+      3.595,
       1.4,
-      6.116
+      7.155
      ],
      "hedef": [
-      0.0,
+      0.08,
       1.3,
-      2.0
+      -0.02
      ],
      "fov": 38.0
     },
     "son": {
      "konum": [
-      4.307,
+      7.075,
       1.4,
-      4.008
+      3.841
      ],
      "hedef": [
-      0.0,
+      0.08,
       1.3,
-      2.0
+      -0.02
      ],
      "fov": 38.0
     },
@@ -1080,22 +1119,34 @@
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
      "osm_yeniceri_kilic",
-     "osm_yeniceri_kilic"
+     "akk_okcu_kilic",
+     "akk_okcu_kilic"
     ],
     "lens_fov": [
      38,
      38
     ],
     "secim_gerekcesi": [
-     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+     "kalabalık (10 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'gerilim': ['alcak_yaklasma', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
     ],
     "tercih_sirasi": [
      "alcak_yaklasma",
+     "tele_kalabalik",
+     "yuksek_genis",
      "capraz_yorunge",
      "alcak_geri_takip",
      "yan_profil"
     ],
-    "reddedilen_adaylar": []
+    "reddedilen_adaylar": [],
+    "koreografi": {
+     "tur": "duello",
+     "cift": 4,
+     "karsi_donem": "akkoyunlu-15yy",
+     "rakip_takimlari": [
+      "akk_okcu_kilic"
+     ]
+    }
    }
   },
   {
@@ -1120,36 +1171,23 @@
       1.99,
       -0.83
      ],
-     "yon_derece": 16.2,
+     "yon_derece": 60.8,
      "animasyon": "Death01",
      "faz_sn": 0.0,
      "hiz_m_sn": 0.0
     },
     {
-     "takim": "akk_zirhli_mizrak",
-     "rol": "piyade",
-     "konum": [
-      -0.2,
-      0.43
-     ],
-     "yon_derece": 19.7,
-     "animasyon": "Death01",
-     "faz_sn": 0.09,
-     "hiz_m_sn": 0.0,
-     "olcek": 0.964
-    },
-    {
      "takim": "akk_zirhli_kilic",
      "rol": "piyade",
      "konum": [
-      -2.62,
-      0.88
+      2.16,
+      0.85
      ],
-     "yon_derece": 18.9,
+     "yon_derece": 14.5,
      "animasyon": "Death01",
-     "faz_sn": 0.34,
+     "faz_sn": 0.25,
      "hiz_m_sn": 0.0,
-     "olcek": 0.973
+     "olcek": 1.036
     }
    ],
    "insan_boy_orani": 0.918,
@@ -1158,9 +1196,9 @@
     "hareket": "sabit_suzulme",
     "bas": {
      "konum": [
-      7.684,
+      4.493,
       1.5,
-      -3.038
+      -6.4
      ],
      "hedef": [
       1.99,
@@ -1171,9 +1209,9 @@
     },
     "son": {
      "konum": [
-      7.911,
+      4.594,
       1.9,
-      -3.127
+      -6.623
      ],
      "hedef": [
       1.99,
@@ -1195,6 +1233,7 @@
     "aciklama": "Yandan sabit profil",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
+     "akk_zirhli_mizrak",
      "akk_zirhli_kilic"
     ],
     "lens_fov": [

@@ -93,6 +93,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "cevre": [dict(cv, glb=str(veri.ekipman_glb(cv["id"]))) for cv in c["ortam"].get("cevre", [])],
         "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
         "yuzey": _yuzey(),
+        "beden": _beden(),
         "vfx": _vfx(c, ar),
         "serpme": _serpme(plan, c),
         "yerlesim": (yer := _yerlesim(plan, c)),
@@ -171,13 +172,23 @@ def _belgesel(alt: str) -> bool:
     return bool(b.get("acik")) and bool(b.get(alt, True))
 
 
+def _beden() -> dict:
+    """Vücut/yüz çeşitliliği (godot/sahneler/beden.gd): gorsel.yaml karakter_kalite.acik ve .beden iken."""
+    k = veri.kural("gorsel").get("karakter_kalite", {})
+    if not (k.get("acik") and k.get("beden", {}).get("acik", True)):
+        return {"acik": False}
+    return {"acik": True, **{a: b for a, b in k.get("beden", {}).items() if a != "acik"}}
+
+
 def _yuzey() -> dict:
     """Gerçekçi karakter yüzeyi kuralları (kurallar/yuzey.yaml); gorsel.yaml gercekci_karakter.acik iken. Yollar mutlak."""
     if not _belgesel("karakter_yuzey"):
         return {"acik": False}
     kok = ayar.MOTOR / "varlik" / "cc0"
     kur = []
-    for r in veri.kural("yuzey")["kurallar"]:
+    kk = veri.kural("gorsel").get("karakter_kalite", {})
+    ten = [kk["ten"]["kural"]] if kk.get("acik") and kk.get("ten", {}).get("acik") else []   # karakter kalite: ten
+    for r in ten + list(veri.kural("yuzey")["kurallar"]):
         d = kok / r["doku"]
         arm = r.get("pur_arm", True)
         kur.append({**{k: v for k, v in r.items() if k != "doku"}, "diff": str(d / "diff.jpg"), "nor": str(d / "nor_gl.jpg"),

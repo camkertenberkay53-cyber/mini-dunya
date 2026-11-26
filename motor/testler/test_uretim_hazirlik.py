@@ -18,8 +18,19 @@ def test_cok_tarafli_konu_planlanir_ve_denetimden_gecer():
     kitler = {k["takim"].split("_")[0] for c in plan["cekimler"] for k in c.get("karakterler", [])}
     assert {"osm", "akk"} <= kitler
     # her çekimin karakterleri tek tarafa aittir (taraflar karışmaz) ve çevre varlığı çekimin döneminden gelir
+    # İstisna yalnız kayıtlı düello koreografisi: rakipler 'karsi_' rolüyle, TEK karşı taraftan, çift sayısı kadar.
     for c in plan["cekimler"]:
-        assert len({k["takim"].split("_")[0] for k in c.get("karakterler", [])}) == 1, c["id"]
+        ks = c.get("karakterler", [])
+        kendi = [k for k in ks if not str(k.get("rol", "")).startswith("karsi_")]
+        karsi = [k for k in ks if str(k.get("rol", "")).startswith("karsi_")]
+        assert len({k["takim"].split("_")[0] for k in kendi}) == 1, c["id"]
+        if karsi:
+            kor = c.get("meta", {}).get("koreografi", {})
+            assert kor.get("tur") == "duello", c["id"]
+            taraf = {k["takim"].split("_")[0] for k in karsi}
+            assert len(taraf) == 1 and taraf != {kendi[0]["takim"].split("_")[0]}, c["id"]
+            assert kor["karsi_donem"] in plan["donemler"] and kor["karsi_donem"] != c.get("donem", plan["donemler"][0]), c["id"]
+            assert len(karsi) <= kor["cift"], c["id"]                 # kadrajda görünmeyen budanmış olabilir
 
 
 def test_konunun_donemleri_disindaki_karakter_reddedilir():

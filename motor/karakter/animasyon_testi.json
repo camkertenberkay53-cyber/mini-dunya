@@ -27,7 +27,10 @@
   "ual2/Idle_FoldArms_Loop",
   "ual2/Yes",
   "ual2/Farm_Harvest",
-  "ual2/LayToIdle"
+  "ual2/LayToIdle",
+  "ual2/Sword_Regular_A",
+  "ual2/Sword_Regular_B",
+  "ual2/Sword_Regular_C"
  ],
  "kare": 5,
  "sure_sn": 205.0,
@@ -178,6 +181,34 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_arbaletci": {
@@ -314,6 +345,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_okcu_milis": {
@@ -432,6 +487,24 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "osm_okcu_sarikli": {
@@ -544,6 +617,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -670,6 +761,24 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "rom_sivil": {
@@ -782,6 +891,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -900,6 +1027,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -1041,6 +1186,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "osm_bey": {
@@ -1157,6 +1326,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -1299,6 +1486,33 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%11.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "rom_aquilifer": {
@@ -1436,6 +1650,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "rom_yardimci_okcu": {
@@ -1548,6 +1786,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -1700,6 +1956,34 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "akk_okcu_zirhli": {
@@ -1848,6 +2132,34 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "akk_sivil_kalpakli": {
@@ -1962,6 +2274,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -2114,6 +2444,34 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "akk_zirhli_gurz": {
@@ -2259,6 +2617,34 @@
     "hatalar": [
      "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
      "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
     ],
     "uyarilar": [],
     "ornek_kare": 5
@@ -2410,6 +2796,34 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_okcu_pavezli": {
@@ -2540,6 +2954,30 @@
    "ual2/LayToIdle": {
     "gecti": true,
     "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
     "uyarilar": [],
     "ornek_kare": 5
    }
@@ -2675,6 +3113,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_sivil": {
@@ -2787,6 +3249,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -2924,6 +3404,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_suvari_sancak": {
@@ -3055,6 +3559,30 @@
    "ual2/LayToIdle": {
     "gecti": true,
     "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
     "uyarilar": [],
     "ornek_kare": 5
    }
@@ -3194,6 +3722,33 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%11.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "osm_sivil": {
@@ -3306,6 +3861,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -3428,6 +4001,24 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "osm_yeniceri_okcu_kilic": {
@@ -3544,6 +4135,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -3687,6 +4296,30 @@
    "ual2/LayToIdle": {
     "gecti": true,
     "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
     "uyarilar": [],
     "ornek_kare": 5
    }
@@ -3833,6 +4466,31 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %60'inde gövdeye gömülüyor",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "rom_sivil_avci": {
@@ -3945,6 +4603,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -4086,6 +4762,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "rom_yardimci_okcu_migferli": {
@@ -4198,6 +4898,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -4324,6 +5042,24 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "akk_sivil": {
@@ -4438,6 +5174,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -4590,6 +5344,34 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "akk_suvari_yay": {
@@ -4735,6 +5517,34 @@
     "hatalar": [
      "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
      "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
     ],
     "uyarilar": [],
     "ornek_kare": 5
@@ -4890,6 +5700,34 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_komutan_sancak": {
@@ -5018,6 +5856,30 @@
    "ual2/LayToIdle": {
     "gecti": true,
     "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
     "uyarilar": [],
     "ornek_kare": 5
    }
@@ -5157,6 +6019,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_piyade_sancak": {
@@ -5287,6 +6173,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "biz_sivil_pavezli": {
@@ -5401,6 +6311,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -5542,6 +6470,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "osm_bey_tug": {
@@ -5654,6 +6606,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -5799,6 +6769,33 @@
     ],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%11.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "osm_sivil_kulahli": {
@@ -5911,6 +6908,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -6031,6 +7046,24 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "osm_yeniceri_sancak": {
@@ -6143,6 +7176,24 @@
     "ornek_kare": 5
    },
    "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
     "gecti": true,
     "hatalar": [],
     "uyarilar": [],
@@ -6291,6 +7342,31 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %60'inde gövdeye gömülüyor",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "rom_lejyoner_pilum": {
@@ -6429,6 +7505,31 @@
    "ual2/LayToIdle": {
     "gecti": true,
     "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %60'inde gövdeye gömülüyor",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
     "uyarilar": [],
     "ornek_kare": 5
    }
@@ -6572,6 +7673,30 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   },
   "rom_suvari_vexillum": {
@@ -6707,6 +7832,30 @@
    "ual2/LayToIdle": {
     "gecti": true,
     "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
     "uyarilar": [],
     "ornek_kare": 5
    }
@@ -6850,24 +7999,41 @@
     "hatalar": [],
     "uyarilar": [],
     "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
    }
   }
  },
  "kutuphane_testleri": {
   "ual2": {
    "animasyonlar": [
-    "ual2/Sword_Regular_Combo",
-    "ual2/Sword_Block",
-    "ual2/Idle_Shield_Loop",
-    "ual2/Shield_OneShot",
-    "ual2/Hit_Knockback",
-    "ual2/OverhandThrow",
-    "ual2/Idle_FoldArms_Loop",
-    "ual2/Yes",
-    "ual2/Farm_Harvest",
-    "ual2/LayToIdle"
+    "ual2/Sword_Regular_A",
+    "ual2/Sword_Regular_B",
+    "ual2/Sword_Regular_C"
    ],
-   "sure_sn": 549.2,
+   "sure_sn": 284.5,
    "kare": 5
   }
  }

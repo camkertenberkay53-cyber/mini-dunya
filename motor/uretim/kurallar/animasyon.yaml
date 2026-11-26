@@ -28,6 +28,10 @@ animasyonlar:
   # animasyon_testi.json'dan (aynı ölçüm, aynı eşikler) gelir.
   ual2/Sword_Regular_Combo: {tur: yerinde, eylemler: [kilic_saldirisi, savas, carpisma], gerekli: {yuva_turu: {sag_el: [kilic]}}}
   ual2/Sword_Block:         {tur: yerinde, eylemler: [savunma, kilicla_savunma], gerekli: {yuva_turu: {sag_el: [kilic]}}}
+  # Faz 6 savaş koreografisi: tekil kılıç vuruşları (aynı kütüphane, aynı ölçüm ve eşikler; düello çiftlerinde çeşitlilik)
+  ual2/Sword_Regular_A:     {tur: yerinde, eylemler: [kilic_saldirisi, savas, carpisma], gerekli: {yuva_turu: {sag_el: [kilic]}}}
+  ual2/Sword_Regular_B:     {tur: yerinde, eylemler: [kilic_saldirisi, savas, carpisma], gerekli: {yuva_turu: {sag_el: [kilic]}}}
+  ual2/Sword_Regular_C:     {tur: yerinde, eylemler: [kilic_saldirisi, savas, carpisma], gerekli: {yuva_turu: {sag_el: [kilic]}}}
   ual2/Idle_Shield_Loop:    {tur: yerinde, eylemler: [kalkanla_bekleme, savunma_hatti], gerekli: {yuva_turu: {sol_kol: [kalkan]}}}
   ual2/Shield_OneShot:      {tur: tek_sefer, eylemler: [kalkan_darbesi, savunma], gerekli: {yuva_turu: {sol_kol: [kalkan]}}}
   ual2/Hit_Knockback:       {tur: tek_sefer, eylemler: [darbe_alma, geri_savrulma]}

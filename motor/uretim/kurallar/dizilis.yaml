@@ -25,4 +25,7 @@ cesitlilik:                    # tek tip ordu hissini azaltan küçük, belirlen
   olcek: [0.95, 1.05]          # boy
   konum_sapmasi_m: 0.14        # dizilişte yerinden kayma
   yon_sapmasi_derece: 6        # yalnızca yerinde duranlarda
-tek_sefer_bitis_payi_sn: 0.3   # tek seferlik animasyon (düşme) çekim bitmeden en az bu kadar önce tamamlanmalı
+tek_sefer_bitis_payi_sn: 0.3
+eylem_yon_yayilimi:            # dağınık dizilişte yön sapması (derece, ±); varsayılan 40
+  olum: 150                    # düşenler farklı yönlere devrilir
+  darbe_alma: 120   # tek seferlik animasyon (düşme) çekim bitmeden en az bu kadar önce tamamlanmalı

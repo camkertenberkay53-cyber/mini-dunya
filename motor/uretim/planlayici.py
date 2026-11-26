@@ -90,7 +90,8 @@ def dizilis_kur(oyuncular: list[dict], eylem: str | None, tohum: int, dizilis: s
                 if all(math.dist(p, q) >= d["en_az_aralik"] for q in noktalar):
                     break
             noktalar.append(p)
-            yer.append((o, (float(p[0]), float(p[1])), float(rng.uniform(-40, 40))))
+            yy = float(k.get("eylem_yon_yayilimi", {}).get(eylem, 40))   # düşenler farklı yönlere (aynı yöne yığılmasın)
+            yer.append((o, (float(p[0]), float(p[1])), float(rng.uniform(-yy, yy))))
     yayilim = k["faz_yayilimi_sn"]
     cs = k["cesitlilik"]
     odak_i = next((i for i, (o, _, _) in enumerate(yer) if o["odak"]), 0)
@@ -348,7 +349,7 @@ def insan_olcegi(c: dict, donem: str) -> dict:
 
 
 def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum: int,
-              ayrilmis: set | None = None) -> tuple[dict, list[str], dict]:
+              ayrilmis: set | None = None, karsi_donemler: list[str] | None = None) -> tuple[dict, list[str], dict]:
     """taslak: sahne_bolucu.cekimlere_bol çıktısı. Dönüş: (plan çekimi, eksikler, çeşitlilik kaydı)."""
     n = taslak["niyet"]
     c = {"id": taslak["id"], "cumleler": [taslak["cumle"]], "sure_sn": taslak["sure_sn"], "tur": n["tur"], "amac": taslak.get("amac")}
@@ -385,6 +386,10 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
         else:
             eksik.append(f"{taslak['id']}: '{o['kalabalik']}' kalabalık kuralı yok")
     c["karakterler"] = karakterler
+    from motor.uretim import koreografi   # çarpışma: düello çiftleri, çeşitli vuruş/savunma, dağıtılmış zamanlama
+    odak_i, kor = koreografi.uygula(c, odak_i, n.get("eylem"), odak_rol.get("donem") or donem, karsi_donemler,
+                               n.get("mesafe", "orta"), tohum)
+    karakterler = c["karakterler"]
     insan_olcegi(c, donem)
     hareketli = karakterler[odak_i]["hiz_m_sn"] > 0
     mesafe = n.get("mesafe", "orta")
@@ -434,5 +439,7 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     c["meta"] = dict(kayit, aciklama=x["aciklama"], odak_indeks=odak_i, budanan_gorunmeyen=budanan,
                      lens_fov=[x.get("fov", veri.kural("kamera")["fov"]), x.get("fov_son", x.get("fov", veri.kural("kamera")["fov"]))],
                      secim_gerekcesi=gerekce, tercih_sirasi=tercih, reddedilen_adaylar=reddedilen)
+    if kor:
+        c["meta"]["koreografi"] = kor
     c["kamera"]["hareket"] = x["hareket"]
     return c, [f"{taslak['id']}: {e}" for e in eksik + ce], kayit
