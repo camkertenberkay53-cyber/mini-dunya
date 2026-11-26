@@ -1,0 +1,69 @@
+# Faz-53A: gerçek tarihî görsel kanıtı. Commons'tan otomatik arar ve indirir (motor/varlik/commons_toplayici.py),
+# testleri ve kanıt üreticisini gerçek görsellerle çalıştırır, panoları ve ölçümleri ARTIFACT olarak yükler.
+# Kaynak görseller depoya commit EDİLMEZ (bu iş akışı hiçbir şey push etmez).
+name: Faz53a gerçek görsel kanıtı
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [faz51-altyapi]
+    paths:
+      - "motor/varlik/commons_toplayici.py"
+      - "motor/varlik/tarihi_gorsel.py"
+      - "motor/uretim/gorsel25d.py"
+      - "motor/testler/gorsel25d_kanit.py"
+      - "deneyler/faz53a/gercek/sorgular.json"
+      - "deneyler/faz53a/a2_mikro/olc_kanit.py"
+      - ".github/workflows/faz53a_gercek_kanit.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  kanit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Kurulum
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libsndfile1 > /dev/null
+          pip install --quiet numpy opencv-python-headless pillow pyyaml scipy soundfile psutil jsonschema pytest
+          python3 -c "import cv2, numpy; print('opencv', cv2.__version__, 'numpy', numpy.__version__)"
+      - name: 1) Commons'tan otomatik toplama
+        run: |
+          mkdir -p cikti
+          python3 -m motor.varlik.commons_toplayici deneyler/faz53a/gercek/sorgular.json 2>&1 | tee cikti/toplama.log
+          ls -la assets/tarihi_gorsel/
+          git status --porcelain --untracked-files=all assets/ | tee cikti/git_durumu.txt
+          if git status --porcelain --untracked-files=all assets/ | grep -vE '\.json$' | grep -q .; then echo "HATA: görsel ikilisi git'e görünüyor"; exit 1; fi
+      - name: 2a) Faz-53A testleri (gerçek görsel testi dahil; zorunlu)
+        run: |
+          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py \
+            --junitxml=cikti/pytest_faz53a.xml 2>&1 | tee cikti/pytest_faz53a.log
+          test "${PIPESTATUS[0]}" -eq 0
+      - name: 2b) Tam test takımı (bilgi; Godot/Blender/karakter önbelleği bu makinede yok)
+        continue-on-error: true
+        run: |
+          python3 -m pytest -q -rs motor/testler --junitxml=cikti/pytest_tam.xml 2>&1 | tail -40 | tee cikti/pytest_tam.log
+      - name: 3) Kanıt üretimi
+        run: |
+          python3 deneyler/faz53a/a2_mikro/olc_kanit.py gercek hepsi deneyler/faz53a/gercek 2>&1 | tee cikti/kanit.log
+          cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
+          mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
+          find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60
+      - name: Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faz53a-gercek-kanit
+          retention-days: 30
+          path: |
+            deneyler/faz53a/gercek/**/*.jpg
+            deneyler/faz53a/gercek/**/ozet.json
+            cikti/
+            !cikti/onbellek_kanit/**/is/**

@@ -23,6 +23,9 @@ from motor import ayar
 KAYIT = ayar.MOTOR / "varlik" / "tarihi_gorsel_kaydi.json"
 INDIRME_KOK = ayar.ONBELLEK / "tarihi_gorsel"
 IZINLI_LISANSLAR = ("CC0-1.0", "PD-Old", "PD-Art")
+# Kullanıcı kararı (2026-11-26, otomatik Commons toplama): atıf isteyen CC-BY / CC-BY-SA lisansları da kabul edilir,
+# ANCAK yalnızca 'atif' alanı (yazar, lisans, kaynak) doluysa — yayında açıklamaya yazılmak üzere. Atıfsız CC-BY reddedilir.
+ATIFLI_LISANS_ONEKLERI = ("CC-BY",)
 ZORUNLU_ALANLAR = ("gorsel_id", "kaynak_url", "kaynak_kurum", "eser_adi", "tarih", "bolge", "donem", "kultur",
                    "taraf_faction", "gorsel_turu", "uygun_sahne_turleri", "cozunurluk", "ozne_bilgisi",
                    "derinlik_uygunlugu", "lisans_turu", "kamu_mali_gerekcesi", "lisans_dogrulandi", "sha256")
@@ -65,8 +68,12 @@ def dosya_yolu(g: dict) -> Path | None:
 def denetle(g: dict, dosya_kontrol: bool = True) -> list[str]:
     """Bir kaydın üretime girmesini engelleyen nedenler (boş liste = geçer)."""
     h = [f"eksik alan {a}" for a in ZORUNLU_ALANLAR if a not in g or g[a] in (None, "", [])]
-    if g.get("lisans_turu") not in IZINLI_LISANSLAR:
-        h.append(f"izin verilmeyen lisans {g.get('lisans_turu')!r} (izinli: {', '.join(IZINLI_LISANSLAR)})")
+    lis = str(g.get("lisans_turu") or "")
+    atif = g.get("atif") or {}
+    atifli = lis.upper().startswith(ATIFLI_LISANS_ONEKLERI) and all(atif.get(a) for a in ("yazar", "lisans", "kaynak"))
+    if lis not in IZINLI_LISANSLAR and not atifli:
+        h.append(f"izin verilmeyen lisans {g.get('lisans_turu')!r} (izinli: {', '.join(IZINLI_LISANSLAR)}; "
+                 f"CC-BY* yalnızca 'atif' alanıyla)")
     onay = g.get("onay") or {}
     if g.get("lisans_dogrulandi") is not True or not onay.get("onaylayan") or not onay.get("tarih"):
         h.append("lisans insan tarafından doğrulanmamış (lisans_dogrulandi + onay.onaylayan + onay.tarih)")
@@ -107,6 +114,7 @@ def kayit_denetle(yol: Path | None = None) -> list[str]:
         if i in gorulen:
             h.append(f"{i}: tekrar eden kimlik")
         gorulen.add(i)
-        if g.get("lisans_turu") not in IZINLI_LISANSLAR and g.get("durum") != "red":
+        lis = str(g.get("lisans_turu") or "")
+        if lis not in IZINLI_LISANSLAR and not lis.upper().startswith(ATIFLI_LISANS_ONEKLERI) and g.get("durum") != "red":
             h.append(f"{i}: izinli olmayan lisans ama 'red' işaretli değil")
     return h
