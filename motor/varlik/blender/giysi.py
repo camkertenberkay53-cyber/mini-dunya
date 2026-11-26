@@ -66,6 +66,21 @@ def _silindirik_uv(bm, eksen: str, olcek: float):
             lp[uv].uv = (u, v)
 
 
+YUMUSATMA_SINIRI = 0.08   # m; yumuşatma bir köşeyi bundan fazla taşıdıysa ıraksamıştır
+
+
+def _taubin(koseler, tur: int, lam: float = 0.5, mu: float = -0.53):
+    for _ in range(tur):
+        for f in (lam, mu):
+            yeni = []
+            for v in koseler:
+                ks = [e.other_vert(v).co for e in v.link_edges]
+                if ks:
+                    yeni.append((v, v.co + (sum(ks, Vector()) / len(ks) - v.co) * f))
+            for v, c in yeni:
+                v.co = c
+
+
 def kabuk(govde, arm, secim: set[int], ofset: float, mat, ad: str, uv_ekseni="z", uv_olcek=2.5, yumusatma=10):
     """Gövdenin seçili köşelerinden dışarı itilmiş, aynı ağırlıklı giysi kabuğu.
     Kas hatları kumaşa geçmesin diye kabuk önce yumuşatılır (sınır köşeleri sabit), sonra gövdeye en az
@@ -93,9 +108,16 @@ def kabuk(govde, arm, secim: set[int], ofset: float, mat, ad: str, uv_ekseni="z"
     ic = [v for v in bm.verts if not v.is_boundary]
     kenar = [v for v in bm.verts if v.is_boundary]
     # Hacmi koruyan Laplace yumuşatması: kas hatlarını siler ama kol ağzı/omuzda kabuğu gövdenin içine katlamaz
+    ilk = [v.co.copy() for v in bm.verts]
     for _ in range(yumusatma):
         bmesh.ops.smooth_laplacian_vert(bm, verts=ic, lambda_factor=0.4, lambda_border=0.0,
                                         use_x=True, use_y=True, use_z=True, preserve_volume=True)
+    # Hacim koruması bazı topolojilerde (gerçekçi MPFB gövdesi: dörtgen kökenli, ince üçgenler) ıraksar ve kabuğu
+    # metrelerce şişirir. Iraksama görülürse yerine büzülmeyen Taubin (λ/μ) yumuşatması kullanılır. UBC'de değişiklik yok.
+    if yumusatma and max((v.co - c).length for v, c in zip(bm.verts, ilk)) > YUMUSATMA_SINIRI:
+        for v, c in zip(bm.verts, ilk):
+            v.co = c
+        _taubin(ic, yumusatma)
     # yaka/kol ağzı/etek ucu: seçim üçgenleri izlediği için dişli çıkar; kenar halkası kendi içinde düzleştirilir
     for _ in range(8):
         yeni = {}
@@ -551,12 +573,19 @@ def yuvalari_kur(govde_kaynak, arm) -> dict:
     """Ölçülen gövdeye göre yuvaları kurar. govde_kaynak: kırpılmamış gövde (ölçüm için)."""
     mw = govde_kaynak.matrix_world
     bas = _baskin(govde_kaynak)
-    P = [(mw @ v.co, g) for v, g in zip(govde_kaynak.data.vertices, bas)]
     A = arm.matrix_world
     B = arm.data.bones
+    # Yuvalar +Y'ye bakan gövde için tanımlıdır. Gövde -Y'ye bakıyorsa (ör. glTF'ten gelen gerçekçi MPFB gövdesi)
+    # ölçüm 180° çevrilmiş çerçevede yapılır, yuvalar dünyaya geri çevrilir. Yön: baş köşelerinin baş kemiğine göre yeri.
+    _bk = A @ B["Head"].head_local
+    _yuz = [mw @ v.co for v, g in zip(govde_kaynak.data.vertices, bas) if g == "Head"]
+    _on = sum(p.y for p in _yuz) / max(len(_yuz), 1) - _bk.y
+    R = Matrix.Rotation(math.pi, 4, "Z") if _on < -0.02 else Matrix.Identity(4)
+    Ri = R.inverted()
+    P = [(Ri @ (mw @ v.co), g) for v, g in zip(govde_kaynak.data.vertices, bas)]
 
     def k(ad, uc="head"):
-        return A @ (B[ad].head_local if uc == "head" else B[ad].tail_local)
+        return Ri @ (A @ (B[ad].head_local if uc == "head" else B[ad].tail_local))
 
     basP = [p for p, g in P if g == "Head"]
     bas_tepe = max(p.z for p in basP)
@@ -584,6 +613,7 @@ def yuvalari_kur(govde_kaynak, arm) -> dict:
         e.parent = arm
         e.parent_type = "BONE"
         e.parent_bone = kemik
+        m = R @ m
         e.matrix_world = m @ Matrix.Diagonal((s, s, s, 1))
         profil[ad] = {"kemik": kemik, "konum": [round(x, 4) for x in m.translation], "olcek": round(s, 3)}
     profil["_govde"] = {"bas_tepe": round(bas_tepe, 3), "bas_genislik": round(bas_gen, 3), "olcek": round(olcek, 3)}

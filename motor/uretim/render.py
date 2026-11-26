@@ -94,6 +94,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
         "yuzey": _yuzey(),
         "beden": _beden(),
+        "insan": {"acik": _insan_acik()},
         "vfx": _vfx(c, ar),
         "serpme": _serpme(plan, c),
         "yerlesim": (yer := _yerlesim(plan, c)),
@@ -170,6 +171,11 @@ def _belgesel(alt: str) -> bool:
     """Belgesel kalite paketi: ana anahtar ve alt özellik birlikte açık mı."""
     b = veri.kural("gorsel").get("belgesel_kalite", {})
     return bool(b.get("acik")) and bool(b.get(alt, True))
+
+
+def _insan_acik() -> bool:
+    """Gerçekçi insanlar (kurallar/insan.yaml acik): takımın 'kisiler' gövdeleri kullanılır."""
+    return bool(veri.kural("insan").get("acik"))
 
 
 def _beden() -> dict:
@@ -342,6 +348,8 @@ def _karma(is_: dict) -> str:
     for b in BETIKLER:
         h.update(b.read_bytes())
     dosyalar = {t["glb"] for t in is_["takimlar"].values()} | {e["glb"] for t in is_["takimlar"].values() for e in t["takilanlar"]}
+    if is_.get("insan", {}).get("acik"):
+        dosyalar |= {g for t in is_["takimlar"].values() for g in t.get("kisiler", [])}
     dosyalar |= {cv["glb"] for cv in is_["cevre"]}
     dosyalar |= {kt["glb"] for kt in is_.get("serpme", {}).get("katmanlar", [])}
     dosyalar |= set(is_.get("yerlesim", {}).get("cadirlar", [])) | set(is_.get("yerlesim", {}).get("ekler", []))

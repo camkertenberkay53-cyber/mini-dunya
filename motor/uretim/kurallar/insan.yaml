@@ -1,0 +1,48 @@
+# Gerçekçi insan üretimi (motor/karakter/insan.py → varlik/blender/insan_uret.py; MPFB2 araç + MakeHuman CC0).
+# TEK ANAHTAR: acik. false → bütün karakterler eski UBC gövdesiyle (Faz 3b) derlenir/çizilir.
+# Her gövde birleşimi (aynı giysi + saç/sakal tanımı) için 'kisi_sayisi' kadar FARKLI insan üretilir; sahnede aynı
+# takımdan birden çok asker farklı kişiler olarak görünür (yaş, beden, yüz, ten, saç/sakal). Bütün değerler tohumdan.
+acik: true
+kisi_sayisi: 4
+# MakeHuman yaş makrosu: 0.5 = 25 yaş, 1.0 = 90 yaş (25 yaş üstü doğrusal)
+yas_yil: [19, 52]
+# Gövde boyu giysi/yuva hattının referansına eşitlenir (UBC baş tepesi); sahnede boy çeşitliliği planlayıcıdan gelir.
+referans_boy_m: 1.81
+beden:                     # makro aralıkları (0..1); kas düşük-orta: dönemin askeri, vücut geliştirmeci değil
+  muscle: [0.42, 0.62]
+  weight: [0.40, 0.70]
+  height: [0.35, 0.65]
+  proportions: [0.35, 0.65]
+yuz: {guc: 0.85, bolgeler: {nose: 3, chin: 2, eyebrows: 2, cheek: 2, mouth: 2, ears: 1, head: 2, neck: 1, eyes: 2, forehead: 1}}
+# kit → köken karışımı, ten (taban renk, doğrusal renk uzayı; glTF baseColorFactor), sakal olasılıkları (kitte 'sakal' yazan karakterler için),
+# saç/göz renkleri. Sakalsız karakterlerde (kit 'sakal' yok) yalnız bıyık ya da kirli sakal olasılığı.
+kitler:
+  osmanli_15yy:
+    koken: {caucasian: [0.55, 0.85], asian: [0.08, 0.3], african: [0.0, 0.06]}
+    ten: [[0.50, 0.33, 0.23], [0.36, 0.22, 0.14]]
+    sakal: {kirli: 0.15, kisa: 0.35, dolgun: 0.4, biyik: 0.1}
+    sakalsiz: {biyik: 0.6, kirli: 0.4}
+    sac: [[0.05, 0.04, 0.035], [0.12, 0.08, 0.05], [0.2, 0.13, 0.08]]
+    goz: [[0.22, 0.12, 0.05], [0.14, 0.08, 0.04], [0.3, 0.25, 0.12]]
+  akkoyunlu_15yy:
+    koken: {caucasian: [0.4, 0.7], asian: [0.25, 0.5], african: [0.0, 0.05]}
+    ten: [[0.48, 0.31, 0.21], [0.34, 0.21, 0.13]]
+    sakal: {kirli: 0.1, kisa: 0.3, dolgun: 0.45, biyik: 0.15}
+    sakalsiz: {biyik: 0.7, kirli: 0.3}
+    sac: [[0.04, 0.035, 0.03], [0.09, 0.06, 0.04]]
+    goz: [[0.16, 0.09, 0.04], [0.22, 0.12, 0.05]]
+  bizans_15yy:
+    koken: {caucasian: [0.75, 0.95], asian: [0.0, 0.1], african: [0.0, 0.08]}
+    ten: [[0.55, 0.37, 0.27], [0.40, 0.25, 0.16]]
+    sakal: {kirli: 0.15, kisa: 0.45, dolgun: 0.35, biyik: 0.05}
+    sakalsiz: {kirli: 0.7, biyik: 0.3}
+    sac: [[0.05, 0.04, 0.035], [0.14, 0.09, 0.055], [0.25, 0.17, 0.1]]
+    goz: [[0.22, 0.12, 0.05], [0.3, 0.25, 0.12], [0.2, 0.28, 0.32]]
+  roma_cumhuriyet:
+    koken: {caucasian: [0.8, 0.97], asian: [0.0, 0.05], african: [0.0, 0.08]}
+    ten: [[0.55, 0.37, 0.27], [0.42, 0.26, 0.17]]
+    sakal: {kirli: 0.5, kisa: 0.5}
+    sakalsiz: {yok: 0.55, kirli: 0.45}     # Cumhuriyet Romasında asker çoğunlukla tıraşlı
+    sac: [[0.05, 0.04, 0.035], [0.14, 0.09, 0.055], [0.25, 0.17, 0.1]]
+    goz: [[0.22, 0.12, 0.05], [0.3, 0.25, 0.12], [0.2, 0.28, 0.32]]
+yasli_gri: 42              # bu yaştan sonra saç/sakal grileşmeye başlar

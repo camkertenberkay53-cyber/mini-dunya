@@ -25,12 +25,14 @@ uniform float pur_carp = 1.0;
 uniform float pur_taban = 0.0;
 uniform float asinma = 0.0;          // düşük frekanslı kir/solma lekeleri (kullanılmış giysi)
 uniform float kenar_koyu = 0.0;      // kumaşın kenara bakan yüzlerinde hafif koyulaşma (hacim, kat izlenimi)
+uniform float kose_renk = 0.0;       // 1: köşe rengi (gerçekçi insan teninin girinti/kızarıklık çarpanı) korunur
 float hs(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float gn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
   return mix(mix(hs(i), hs(i + vec2(1, 0)), f.x), mix(hs(i + vec2(0, 1)), hs(i + vec2(1, 1)), f.x), f.y); }
 void fragment(){
   vec3 b = renk.rgb;
   if (taban_var > 0.5) { b *= texture(taban, UV).rgb; }
+  if (kose_renk > 0.5) { b *= COLOR.rgb; }
   vec2 du = UV * tekrar;
   vec3 d = texture(d_alb, du).rgb;
   float l = dot(d, vec3(0.299, 0.587, 0.114)) / max(d_ort, 0.02);
@@ -89,6 +91,8 @@ static func _malzeme(eski: BaseMaterial3D, x: Dictionary) -> ShaderMaterial:
 	if eski.albedo_texture:
 		m.set_shader_parameter("taban", eski.albedo_texture)
 		m.set_shader_parameter("taban_var", 1.0)
+	if eski.vertex_color_use_as_albedo:
+		m.set_shader_parameter("kose_renk", 1.0)
 	var alb := _doku(x["diff"])
 	m.set_shader_parameter("d_alb", alb)
 	m.set_shader_parameter("d_ort", float(alb.get_meta("ort")))

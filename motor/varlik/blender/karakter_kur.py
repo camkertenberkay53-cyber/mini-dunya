@@ -25,8 +25,16 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 
 def al(yol):
     once = set(bpy.data.objects)
-    if yol.lower().endswith((".glb", ".gltf")):
-        bpy.ops.import_scene.gltf(filepath=yol)
+    if yol.lower().endswith(".blend"):   # gerçekçi insan gövdesi (insan_uret.py): bütün nesneler eklenir
+        with bpy.data.libraries.load(yol, link=False) as (kaynak, hedef):
+            hedef.objects = list(kaynak.objects)
+        for o in hedef.objects:
+            if o is not None and o.name not in bpy.context.scene.collection.objects:
+                bpy.context.scene.collection.objects.link(o)
+        bpy.context.view_layer.update()   # dosyadan gelen ebeveyn/çocuk dünya matrisleri değerlendirilsin
+    elif yol.lower().endswith((".glb", ".gltf")):
+        # glTF köşeleri UV dikişlerinde böler; gerçekçi (MPFB) gövdede giysi türetimi kesintisiz yüzey ister
+        bpy.ops.import_scene.gltf(filepath=yol, merge_vertices=bool(t.get("dikis_birlestir")))
     else:
         bpy.ops.wm.usd_import(filepath=yol, import_skeletons=True)
     return [o for o in bpy.data.objects if o not in once]

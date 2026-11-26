@@ -1,0 +1,15 @@
+{
+ "paket": "Gerçekçi insan sistemi v2 (MPFB2 araç + MakeHuman CC0 taban ağ/hedefler + kendi kıl/göz/ten üretimimiz)",
+ "geri_alma": "motor/uretim/kurallar/insan.yaml acik: false (UBC gövdeleri ayrıca derleniyor, değişmedi — test_ubc_govdeleri_degismedi)",
+ "uretilen": {"govde_birlesimi": 12, "kisi_basina": 4, "toplam_kisi": 48, "takim_kisi_birlesimi": 208},
+ "montaj_testi": {"gecen": 115, "toplam": 208, "esik": "montaj.ESIK (aynı, gevşetilmedi)", "kisisiz_kalan_takim": 10,
+   "baslica_kalma": ["Roma/Bizans/Akkoyunlu zırh-omuzluk-lamel katmanlarında alt katman taşması", "pavez (sırt kalkanı)", "osmanli_sarik başlık taşması"]},
+ "performans_S6_tam_render": {"once": {"render_sn": 298.4, "tepe_bellek_gb": 1.26}, "sonra": {"render_sn": 330.7, "tepe_bellek_gb": 1.23}},
+ "dosya": {"kisi_glb_mb": 2.9, "ubc_glb_mb": 2.13, "onbellek_mb": 182, "derleme": "48 kişi ~12 dk (CPU)"},
+ "degerlendirilen": {
+   "MPFB2/MakeHuman": "SEÇİLDİ — CPU, ücretsiz; taban ağ/hedefler CC0; kod GPL-3 yalnız araç (depoya girmez)",
+   "MakeHuman system assets (ten dokusu, göz, kaş, saç)": "ALINAMADI — sunucu çok yavaş: tam zip ve HTTP Range ile kısmi indirme Actions'ta 40/60 dk sınırını aştı; yerine kendi prosedürel kıl/göz/ten üretimimiz",
+   "CharMorph": "ELENDİ — Vitruvian CC0 ama Antonia/Reom CC-BY, MB-Lab tabanı AGPL (çıktıya bulaşır)",
+   "Meta 3D Gen / görüntüden 3B üreticiler": "ELENDİ — açık ağırlık yok ya da GPU gerekir, ticari lisans belirsiz"
+ }
+}

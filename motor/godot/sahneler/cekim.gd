@@ -26,6 +26,7 @@ var kamera: Camera3D
 var oyuncular: Array = []     # [{kok, bas, ileri, hiz}]
 var kam: Dictionary
 var _sira := 0
+var _kisi_sayac := {}   # takım → bu çekimde kaçıncı örnek (gerçekçi kişi seçimi)
 var _toplar: Array = []
 
 func _ready() -> void:
@@ -74,6 +75,13 @@ func _ready() -> void:
 	Yz.kur(is_.get("yuzey", {}))   # gerçekçi karakter yüzeyi (kapalıysa etkisiz)
 	for k in c.get("karakterler", []):
 		var takim: Dictionary = is_["takimlar"][k["takim"]]
+		var ks: Array = takim.get("kisiler", [])
+		var gercekci: bool = is_.get("insan", {}).get("acik", false) and ks.size() > 0
+		if gercekci:   # gerçekçi insanlar: aynı takımın her örneği başka bir kişi (tohumlu başlangıç + sıra)
+			var say: int = _kisi_sayac.get(k["takim"], 0)
+			_kisi_sayac[k["takim"]] = say + 1
+			takim = takim.duplicate()
+			takim["glb"] = ks[(absi(str(k["takim"]).hash() + int(is_.get("tohum", 1)) * 31) + say) % ks.size()]
 		var kok := D.kur(takim)
 		add_child(kok)
 		_sira += 1
@@ -84,7 +92,8 @@ func _ready() -> void:
 		if kc.get("acik", false):   # Faz 5.6: kişi başına tohumlu görünüm çeşitliliği
 			D.cesitle(kok, int(is_.get("tohum", 1)) * 7919 + _sira * 104729, kc)
 		Yz.uygula(kok)
-		Bd.kur(kok, int(is_.get("tohum", 1)) * 7919 + _sira * 104729 + 17, is_.get("beden", {}))   # vücut/yüz çeşitliliği
+		if not gercekci:   # gerçekçi kişilerin bedeni zaten farklı; kemik ölçeği yalnız UBC gövdesine
+			Bd.kur(kok, int(is_.get("tohum", 1)) * 7919 + _sira * 104729 + 17, is_.get("beden", {}))   # vücut/yüz çeşitliliği
 		var bas := Vector3(k["konum"][0], 0, k["konum"][1])
 		kok.position = bas
 		var ap := D.animasyon_oynatici(kok)

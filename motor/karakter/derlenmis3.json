@@ -1,7 +1,7 @@
 {
  "govdeler": {
   "erkek_e4a5611e4f": {
-   "anahtar": "e454de0c98938998",
+   "anahtar": "7f0df5d998b04db5",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -122,10 +122,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e4a5611e4f_k0.glb",
+     "anahtar": "eff947d77d5fcb33",
+     "kisi": {
+      "tohum": 63604,
+      "yas_yil": 24.3,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.4858,
+       "muscle": 0.4994,
+       "weight": 0.4283,
+       "height": 0.4736,
+       "proportions": 0.5409,
+       "caucasian": 0.5944,
+       "asian": 0.3943,
+       "african": 0.0113
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4555,
+        0.2925,
+        0.196
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.04,
+        0.035,
+        0.03
+       ],
+       "uzunluk_carpan": 0.913
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.04,
+        0.035,
+        0.03
+       ],
+       "uzunluk_m": 0.0077
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.112
+      },
+      "sac_renk": [
+       0.04,
+       0.035,
+       0.03
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "c9252570bbb1dc0a755e6ed25b164bc9d5513eb959687905954230912ffcce16",
+     "bayt": 3160176,
+     "olcum": {
+      "boy_m": 1.84,
+      "genislik_m": 1.85,
+      "ucgen": 30366,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.156
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0916,
+        1.8169
+       ],
+       "olcek": 1.02
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7971,
+        -0.0029,
+        1.4406
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7971,
+        -0.0029,
+        1.4406
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.576,
+        -0.0071,
+        1.5376
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0707,
+        1.3264
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1772,
+        0.0,
+        1.0101
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1772,
+        0.0,
+        1.0101
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.186,
+       "olcek": 1.02
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e4a5611e4f_k1.glb",
+     "anahtar": "2e16d24ea6f9eb1b",
+     "kisi": {
+      "tohum": 92789,
+      "yas_yil": 34.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5747,
+       "muscle": 0.5104,
+       "weight": 0.5751,
+       "height": 0.4336,
+       "proportions": 0.4675,
+       "caucasian": 0.457,
+       "asian": 0.5097,
+       "african": 0.0332
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.431,
+        0.275,
+        0.182
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_carpan": 1.063
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_m": 0.0045
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.014
+      },
+      "sac_renk": [
+       0.09,
+       0.06,
+       0.04
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "c35d429e9bc566e693744c02b29012b356b4af0eca7226224a18e084c8052526",
+     "bayt": 3171140,
+     "olcum": {
+      "boy_m": 1.835,
+      "genislik_m": 1.849,
+      "ucgen": 30834,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.147
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0944,
+        1.8164
+       ],
+       "olcek": 0.996
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7946,
+        -0.0007,
+        1.4508
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7946,
+        -0.0007,
+        1.4508
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5762,
+        -0.0049,
+        1.5478
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0708,
+        1.2952
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1853,
+        0.0,
+        0.9863
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1853,
+        0.0,
+        0.9863
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.181,
+       "olcek": 0.996
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e4a5611e4f_k2.glb",
+     "anahtar": "874c09f1064e0970",
+     "kisi": {
+      "tohum": 10085,
+      "yas_yil": 39.4,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.611,
+       "muscle": 0.4727,
+       "weight": 0.6596,
+       "height": 0.4757,
+       "proportions": 0.6452,
+       "caucasian": 0.5966,
+       "asian": 0.4024,
+       "african": 0.001
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4368,
+        0.2792,
+        0.1853
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_carpan": 1.079
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_m": 0.0063
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.359
+      },
+      "sac_renk": [
+       0.09,
+       0.06,
+       0.04
+      ],
+      "goz_renk": [
+       0.16,
+       0.09,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "b90d7116897a3d3818177e5efc5813b439bc82d0f28ca433bfc741255757fec9",
+     "bayt": 3142968,
+     "olcum": {
+      "boy_m": 1.832,
+      "genislik_m": 1.811,
+      "ucgen": 30444,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.158
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1047,
+        1.8113
+       ],
+       "olcek": 1.047
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7872,
+        -0.0034,
+        1.4309
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7872,
+        -0.0034,
+        1.4309
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5682,
+        -0.0075,
+        1.5279
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.071,
+        1.3613
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1848,
+        0.0,
+        1.0367
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1848,
+        0.0,
+        1.0367
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.811,
+       "bas_genislik": 0.191,
+       "olcek": 1.047
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e4a5611e4f_k3.glb",
+     "anahtar": "4c97cd408aadb553",
+     "kisi": {
+      "tohum": 6768,
+      "yas_yil": 44.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6513,
+       "muscle": 0.5137,
+       "weight": 0.6412,
+       "height": 0.5351,
+       "proportions": 0.6099,
+       "caucasian": 0.6482,
+       "asian": 0.2954,
+       "african": 0.0563
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.3792,
+        0.238,
+        0.1524
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.1077,
+        0.1,
+        0.0924
+       ],
+       "uzunluk_carpan": 0.914
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.1077,
+        0.1,
+        0.0924
+       ],
+       "uzunluk_m": 0.0082
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 0.965
+      },
+      "sac_renk": [
+       0.1077,
+       0.1,
+       0.0924
+      ],
+      "goz_renk": [
+       0.16,
+       0.09,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "f2f3684624ac37d04736fdd7f91e4212c31b2f80a5fb4d6bebc7902a7c341226",
+     "bayt": 3155976,
+     "olcum": {
+      "boy_m": 1.839,
+      "genislik_m": 1.809,
+      "ucgen": 30594,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.153
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.094,
+        1.8171
+       ],
+       "olcek": 0.992
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7828,
+        -0.0004,
+        1.4468
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7828,
+        -0.0004,
+        1.4468
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5685,
+        -0.0044,
+        1.5438
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0698,
+        1.2892
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1855,
+        0.0,
+        0.9818
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1855,
+        0.0,
+        0.9818
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.18,
+       "olcek": 0.992
+      }
+     }
+    }
+   ]
   },
   "erkek_e2259e91b9": {
-   "anahtar": "dfbf218e5becb188",
+   "anahtar": "83d6fb4ea69325ba",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -246,7 +944,705 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e2259e91b9_k0.glb",
+     "anahtar": "4aee923576070af5",
+     "kisi": {
+      "tohum": 92207,
+      "yas_yil": 22.0,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.4371,
+       "muscle": 0.5982,
+       "weight": 0.6609,
+       "height": 0.4392,
+       "proportions": 0.635,
+       "caucasian": 0.5622,
+       "asian": 0.4294,
+       "african": 0.0084
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4358,
+        0.2784,
+        0.1847
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.04,
+        0.035,
+        0.03
+       ],
+       "uzunluk_carpan": 1.179
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.04,
+        0.035,
+        0.03
+       ],
+       "uzunluk_m": 0.0058
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.3
+      },
+      "sac_renk": [
+       0.04,
+       0.035,
+       0.03
+      ],
+      "goz_renk": [
+       0.16,
+       0.09,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "aaa4e74c07afde7ac0a15fa0e12acaecf6aa3c9564e194e32fc891dda60b2f6a",
+     "bayt": 2969868,
+     "olcum": {
+      "boy_m": 1.84,
+      "genislik_m": 1.869,
+      "ucgen": 29316,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.149
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1021,
+        1.8176
+       ],
+       "olcek": 1.075
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8096,
+        0.0016,
+        1.4505
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8096,
+        0.0016,
+        1.4505
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5842,
+        -0.0026,
+        1.5475
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0704,
+        1.398
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1846,
+        0.0,
+        1.0646
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1846,
+        0.0,
+        1.0646
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.818,
+       "bas_genislik": 0.196,
+       "olcek": 1.075
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e2259e91b9_k1.glb",
+     "anahtar": "b6e5caa5b06fe18b",
+     "kisi": {
+      "tohum": 19094,
+      "yas_yil": 27.4,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5184,
+       "muscle": 0.6041,
+       "weight": 0.5734,
+       "height": 0.5512,
+       "proportions": 0.3538,
+       "caucasian": 0.6981,
+       "asian": 0.2772,
+       "african": 0.0247
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.3758,
+        0.2356,
+        0.1505
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_carpan": 1.097
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_m": 0.0085
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 0.919
+      },
+      "sac_renk": [
+       0.09,
+       0.06,
+       0.04
+      ],
+      "goz_renk": [
+       0.16,
+       0.09,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "0ac3eb77bc9f78e36f4c612fc32954c2b0b4eadd7765a7cae9f55cd16e66ed7a",
+     "bayt": 2932848,
+     "olcum": {
+      "boy_m": 1.84,
+      "genislik_m": 1.843,
+      "ucgen": 29234,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.145
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0978,
+        1.816
+       ],
+       "olcek": 0.865
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.784,
+        0.0026,
+        1.4607
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.784,
+        0.0026,
+        1.4607
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5741,
+        -0.0016,
+        1.5577
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0702,
+        1.1249
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1856,
+        0.0,
+        0.8567
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1856,
+        0.0,
+        0.8567
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.157,
+       "olcek": 0.865
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e2259e91b9_k2.glb",
+     "anahtar": "0ffe4e03524d819c",
+     "kisi": {
+      "tohum": 6968,
+      "yas_yil": 35.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5825,
+       "muscle": 0.5115,
+       "weight": 0.5486,
+       "height": 0.4816,
+       "proportions": 0.3594,
+       "caucasian": 0.5269,
+       "asian": 0.435,
+       "african": 0.0381
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4436,
+        0.284,
+        0.1892
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_carpan": 0.886
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.09,
+        0.06,
+        0.04
+       ],
+       "uzunluk_m": 0.0058
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.231
+      },
+      "sac_renk": [
+       0.09,
+       0.06,
+       0.04
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "d71d581471cd6766c6cfd0d5dcc51a9ba182e5f630dd758b4a674a9da608e8c0",
+     "bayt": 2968640,
+     "olcum": {
+      "boy_m": 1.836,
+      "genislik_m": 1.839,
+      "ucgen": 29304,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.14
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0991,
+        1.8154
+       ],
+       "olcek": 1.06
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7993,
+        0.0028,
+        1.465
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7993,
+        0.0028,
+        1.465
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5735,
+        -0.0014,
+        1.562
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0707,
+        1.3783
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1886,
+        0.0,
+        1.0496
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1886,
+        0.0,
+        1.0496
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.193,
+       "olcek": 1.06
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e2259e91b9_k3.glb",
+     "anahtar": "3497351e47815ae3",
+     "kisi": {
+      "tohum": 93674,
+      "yas_yil": 47.6,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6737,
+       "muscle": 0.4995,
+       "weight": 0.7346,
+       "height": 0.5835,
+       "proportions": 0.6138,
+       "caucasian": 0.5915,
+       "asian": 0.3787,
+       "african": 0.0298
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4573,
+        0.2938,
+        0.197
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.1584,
+        0.1305,
+        0.1105
+       ],
+       "uzunluk_carpan": 1.0
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.1584,
+        0.1305,
+        0.1105
+       ],
+       "uzunluk_m": 0.0061
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.334
+      },
+      "sac_renk": [
+       0.1584,
+       0.1305,
+       0.1105
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "157778a41a3041f91ccbac8a36d3936da0f7263638ba030d74b259f3cf44cb17",
+     "bayt": 2976560,
+     "olcum": {
+      "boy_m": 1.834,
+      "genislik_m": 1.785,
+      "ucgen": 29296,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.156
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0988,
+        1.8136
+       ],
+       "olcek": 0.975
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7736,
+        -0.0005,
+        1.4376
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7736,
+        -0.0005,
+        1.4376
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.563,
+        -0.0045,
+        1.5346
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0709,
+        1.2671
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1853,
+        0.0,
+        0.9649
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1853,
+        0.0,
+        0.9649
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.814,
+       "bas_genislik": 0.177,
+       "olcek": 0.975
+      }
+     }
+    }
+   ]
   },
   "erkek_4e93b61e59": {
    "anahtar": "dfabbf69a1af7e3c",
@@ -495,7 +1891,7 @@
    }
   },
   "erkek_951dd3a170": {
-   "anahtar": "2e4955b7d552b789",
+   "anahtar": "902626f8a573e16c",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -615,10 +2011,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_951dd3a170_k0.glb",
+     "anahtar": "e9d30dace4129e05",
+     "kisi": {
+      "tohum": 38444,
+      "yas_yil": 20.5,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.4052,
+       "muscle": 0.4515,
+       "weight": 0.5283,
+       "height": 0.4651,
+       "proportions": 0.6381,
+       "caucasian": 0.8551,
+       "asian": 0.0714,
+       "african": 0.0735
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4677,
+        0.3041,
+        0.2096
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 1.062
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0073
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.317
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "74fad849b8ec8d0afbeef82362edc39152b525c6ac56bd1b53edf150dd95b22f",
+     "bayt": 2929468,
+     "olcum": {
+      "boy_m": 1.832,
+      "genislik_m": 1.809,
+      "ucgen": 29000,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.164
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1198,
+        1.8076
+       ],
+       "olcek": 1.033
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7841,
+        0.0058,
+        1.4176
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7841,
+        0.0058,
+        1.4176
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5657,
+        0.0017,
+        1.5146
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0619,
+        1.3431
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1784,
+        0.0,
+        1.0229
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1784,
+        0.0,
+        1.0229
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.808,
+       "bas_genislik": 0.188,
+       "olcek": 1.033
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_951dd3a170_k1.glb",
+     "anahtar": "ed6f159195b25ca3",
+     "kisi": {
+      "tohum": 43181,
+      "yas_yil": 30.6,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.543,
+       "muscle": 0.4825,
+       "weight": 0.5126,
+       "height": 0.3699,
+       "proportions": 0.3682,
+       "caucasian": 0.8989,
+       "asian": 0.0714,
+       "african": 0.0298
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4802,
+        0.3142,
+        0.2188
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 0.823
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0085
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.188
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.2,
+       0.28,
+       0.32
+      ],
+      "varliklar": {}
+     },
+     "sha256": "6c8699ad20c0365d5943af1f95ccc2166f615774fa0114c986784a5ad504df43",
+     "bayt": 2912652,
+     "olcum": {
+      "boy_m": 1.838,
+      "genislik_m": 1.854,
+      "ucgen": 28988,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.146
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1136,
+        1.8139
+       ],
+       "olcek": 1.029
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7986,
+        0.0083,
+        1.4538
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7986,
+        0.0083,
+        1.4538
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5764,
+        0.0041,
+        1.5508
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0645,
+        1.3378
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1887,
+        0.0,
+        1.0188
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1887,
+        0.0,
+        1.0188
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.814,
+       "bas_genislik": 0.187,
+       "olcek": 1.029
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_951dd3a170_k2.glb",
+     "anahtar": "b58a73a3a4484306",
+     "kisi": {
+      "tohum": 20188,
+      "yas_yil": 39.4,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6107,
+       "muscle": 0.5454,
+       "weight": 0.436,
+       "height": 0.5691,
+       "proportions": 0.3787,
+       "caucasian": 0.9077,
+       "asian": 0.0616,
+       "african": 0.0307
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.5334,
+        0.3567,
+        0.2578
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 1.154
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.0053
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.394
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.2,
+       0.28,
+       0.32
+      ],
+      "varliklar": {}
+     },
+     "sha256": "2fe27e1636ebf305f639d9766554efb78a061c78f7c2bcc98539911f8d0ce11b",
+     "bayt": 2978932,
+     "olcum": {
+      "boy_m": 1.834,
+      "genislik_m": 1.839,
+      "ucgen": 29272,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.128
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1,
+        1.8146
+       ],
+       "olcek": 1.057
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8002,
+        0.0072,
+        1.4866
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8002,
+        0.0072,
+        1.4866
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5757,
+        0.003,
+        1.5836
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0663,
+        1.3745
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1868,
+        0.0,
+        1.0467
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1868,
+        0.0,
+        1.0467
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.192,
+       "olcek": 1.057
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_951dd3a170_k3.glb",
+     "anahtar": "8d19a44a7e9e7777",
+     "kisi": {
+      "tohum": 53867,
+      "yas_yil": 45.1,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6543,
+       "muscle": 0.6149,
+       "weight": 0.6165,
+       "height": 0.4808,
+       "proportions": 0.6222,
+       "caucasian": 0.9839,
+       "asian": 0.0155,
+       "african": 0.0006
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4693,
+        0.3054,
+        0.2108
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.2728,
+        0.2008,
+        0.1375
+       ],
+       "uzunluk_carpan": 0.915
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.2728,
+        0.2008,
+        0.1375
+       ],
+       "uzunluk_m": 0.004
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 0.965
+      },
+      "sac_renk": [
+       0.2728,
+       0.2008,
+       0.1375
+      ],
+      "goz_renk": [
+       0.2,
+       0.28,
+       0.32
+      ],
+      "varliklar": {}
+     },
+     "sha256": "4f55c5c34da0f261c86ab832b6e843ff88363b73f74d7c79503d85f874d9c7f5",
+     "bayt": 2906532,
+     "olcum": {
+      "boy_m": 1.831,
+      "genislik_m": 1.824,
+      "ucgen": 29254,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.138
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0975,
+        1.8137
+       ],
+       "olcek": 1.003
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7889,
+        0.0023,
+        1.4652
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7889,
+        0.0023,
+        1.4652
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5729,
+        -0.0018,
+        1.5622
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0688,
+        1.3045
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1886,
+        0.0,
+        0.9934
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1886,
+        0.0,
+        0.9934
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.814,
+       "bas_genislik": 0.183,
+       "olcek": 1.003
+      }
+     }
+    }
+   ]
   },
   "erkek_2dcdc63536": {
-   "anahtar": "0576359bbf6b1529",
+   "anahtar": "c1797df6aa344965",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -739,10 +2833,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_2dcdc63536_k0.glb",
+     "anahtar": "4033746c0c41e41a",
+     "kisi": {
+      "tohum": 81324,
+      "yas_yil": 25.6,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5048,
+       "muscle": 0.6045,
+       "weight": 0.5337,
+       "height": 0.5313,
+       "proportions": 0.4431,
+       "caucasian": 0.6475,
+       "asian": 0.3029,
+       "african": 0.0495
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4617,
+        0.2999,
+        0.2054
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_carpan": 0.871
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_m": 0.0045
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.192
+      },
+      "sac_renk": [
+       0.2,
+       0.13,
+       0.08
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "9be9092c1be1ffaa7008110d99783925db98dd5ad645f6e296e9cd1b911e3876",
+     "bayt": 2975240,
+     "olcum": {
+      "boy_m": 1.837,
+      "genislik_m": 1.823,
+      "ucgen": 29474,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.16
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0866,
+        1.817
+       ],
+       "olcek": 0.99
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7851,
+        -0.0006,
+        1.4306
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7851,
+        -0.0006,
+        1.4306
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.567,
+        -0.0048,
+        1.5276
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0696,
+        1.2872
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1786,
+        0.0,
+        0.9803
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1786,
+        0.0,
+        0.9803
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.18,
+       "olcek": 0.99
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_2dcdc63536_k1.glb",
+     "anahtar": "95e1488f0a33ef79",
+     "kisi": {
+      "tohum": 14410,
+      "yas_yil": 28.5,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5267,
+       "muscle": 0.537,
+       "weight": 0.6952,
+       "height": 0.4891,
+       "proportions": 0.3746,
+       "caucasian": 0.7236,
+       "asian": 0.2502,
+       "african": 0.0262
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4177,
+        0.2654,
+        0.1771
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_carpan": 1.003
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_m": 0.006
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.385
+      },
+      "sac_renk": [
+       0.2,
+       0.13,
+       0.08
+      ],
+      "goz_renk": [
+       0.14,
+       0.08,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "b0afd8fe838a9671d4ce49451b3bb720416c8160487f79ca0463ed49de6c510b",
+     "bayt": 2955092,
+     "olcum": {
+      "boy_m": 1.833,
+      "genislik_m": 1.806,
+      "ucgen": 29530,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.16
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1038,
+        1.8119
+       ],
+       "olcek": 1.014
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7813,
+        0.0024,
+        1.4277
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7813,
+        0.0024,
+        1.4277
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5618,
+        -0.0017,
+        1.5247
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.07,
+        1.318
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1861,
+        0.0,
+        1.0037
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1861,
+        0.0,
+        1.0037
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.812,
+       "bas_genislik": 0.185,
+       "olcek": 1.014
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_2dcdc63536_k2.glb",
+     "anahtar": "2095467e61c544f6",
+     "kisi": {
+      "tohum": 83472,
+      "yas_yil": 41.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6286,
+       "muscle": 0.539,
+       "weight": 0.5525,
+       "height": 0.476,
+       "proportions": 0.4382,
+       "caucasian": 0.8249,
+       "asian": 0.1177,
+       "african": 0.0575
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.408,
+        0.2577,
+        0.1709
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 1.18
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0068
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.015
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.14,
+       0.08,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "bc49b77b28721e117ac7e7ecc7a278695d7b43d10968a5b7ed58db9e5fdc06d0",
+     "bayt": 2834716,
+     "olcum": {
+      "boy_m": 1.836,
+      "genislik_m": 1.808,
+      "ucgen": 29570,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.148
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1011,
+        1.8153
+       ],
+       "olcek": 0.999
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7817,
+        0.0055,
+        1.4525
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7817,
+        0.0055,
+        1.4525
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5652,
+        0.0014,
+        1.5495
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0668,
+        1.2984
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1858,
+        0.0,
+        0.9888
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1858,
+        0.0,
+        0.9888
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.182,
+       "olcek": 0.999
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_2dcdc63536_k3.glb",
+     "anahtar": "e7c4767d86d924fe",
+     "kisi": {
+      "tohum": 94138,
+      "yas_yil": 44.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6515,
+       "muscle": 0.4482,
+       "weight": 0.6407,
+       "height": 0.5999,
+       "proportions": 0.5698,
+       "caucasian": 0.7738,
+       "asian": 0.1779,
+       "african": 0.0483
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4902,
+        0.3223,
+        0.2237
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.1631,
+        0.1259,
+        0.0974
+       ],
+       "uzunluk_carpan": 1.0
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.1631,
+        0.1259,
+        0.0974
+       ],
+       "uzunluk_m": 0.0077
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.155
+      },
+      "sac_renk": [
+       0.1631,
+       0.1259,
+       0.0974
+      ],
+      "goz_renk": [
+       0.14,
+       0.08,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "5156c5cc93bc27705a2b5d95399f20b229e0bc6d0302668cae25e5bd7a315a7a",
+     "bayt": 2975096,
+     "olcum": {
+      "boy_m": 1.836,
+      "genislik_m": 1.808,
+      "ucgen": 29562,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.145
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0964,
+        1.8146
+       ],
+       "olcek": 1.018
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7851,
+        0.0036,
+        1.4582
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7851,
+        0.0036,
+        1.4582
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5686,
+        -0.0005,
+        1.5552
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0683,
+        1.3238
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1845,
+        0.0,
+        1.0081
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1845,
+        0.0,
+        1.0081
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.185,
+       "olcek": 1.018
+      }
+     }
+    }
+   ]
   },
   "erkek_9fc220619b": {
-   "anahtar": "3aedddf0656f5223",
+   "anahtar": "0f7a3c8843a4fc0d",
    "govde": "erkek",
    "sac": [
     "sakal"
@@ -861,10 +3653,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9fc220619b_k0.glb",
+     "anahtar": "bf0e230adc050ed7",
+     "kisi": {
+      "tohum": 91726,
+      "yas_yil": 20.6,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.4089,
+       "muscle": 0.4687,
+       "weight": 0.666,
+       "height": 0.6198,
+       "proportions": 0.4101,
+       "caucasian": 0.7052,
+       "asian": 0.2636,
+       "african": 0.0312
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4878,
+        0.3204,
+        0.2222
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_carpan": 0.886
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_m": 0.0054
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.066
+      },
+      "sac_renk": [
+       0.2,
+       0.13,
+       0.08
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "2b4bbfc1929afd9091e69a3b1a3135b682bdfc60af4ba84de2bf999de4762ec4",
+     "bayt": 2665900,
+     "olcum": {
+      "boy_m": 1.832,
+      "genislik_m": 1.798,
+      "ucgen": 28736,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.155
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0849,
+        1.8159
+       ],
+       "olcek": 1.005
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7797,
+        0.0104,
+        1.4374
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7797,
+        0.0104,
+        1.4374
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5629,
+        0.0063,
+        1.5344
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.064,
+        1.306
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1818,
+        0.0,
+        0.9946
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1818,
+        0.0,
+        0.9946
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.183,
+       "olcek": 1.005
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9fc220619b_k1.glb",
+     "anahtar": "ce715f479fa81214",
+     "kisi": {
+      "tohum": 30243,
+      "yas_yil": 34.4,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5727,
+       "muscle": 0.5874,
+       "weight": 0.6125,
+       "height": 0.5365,
+       "proportions": 0.5312,
+       "caucasian": 0.8042,
+       "asian": 0.1346,
+       "african": 0.0612
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.3619,
+        0.2215,
+        0.1412
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_carpan": 0.821
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_m": 0.004
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 0.978
+      },
+      "sac_renk": [
+       0.12,
+       0.08,
+       0.05
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "74a693fdf519b070f194ddff879b8601316d2b301054f7219cf02c0fe5f6f623",
+     "bayt": 2662068,
+     "olcum": {
+      "boy_m": 1.83,
+      "genislik_m": 1.865,
+      "ucgen": 28876,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.128
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1004,
+        1.8156
+       ],
+       "olcek": 1.055
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8076,
+        0.0013,
+        1.4811
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8076,
+        0.0013,
+        1.4811
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5823,
+        -0.0029,
+        1.5781
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0701,
+        1.3713
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1865,
+        0.0,
+        1.0443
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1865,
+        0.0,
+        1.0443
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.192,
+       "olcek": 1.055
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9fc220619b_k2.glb",
+     "anahtar": "8e907060965a35c7",
+     "kisi": {
+      "tohum": 34804,
+      "yas_yil": 41.0,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6228,
+       "muscle": 0.5152,
+       "weight": 0.4895,
+       "height": 0.4697,
+       "proportions": 0.4017,
+       "caucasian": 0.7896,
+       "asian": 0.1533,
+       "african": 0.0571
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4134,
+        0.2619,
+        0.1743
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_carpan": 0.957
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_m": 0.0055
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.018
+      },
+      "sac_renk": [
+       0.2,
+       0.13,
+       0.08
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "6bfd33505aa8dc4b57da71a12a1d5709294e45af00e98f472ce925c26cda1dab",
+     "bayt": 2665664,
+     "olcum": {
+      "boy_m": 1.832,
+      "genislik_m": 1.82,
+      "ucgen": 28924,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.14
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0926,
+        1.8186
+       ],
+       "olcek": 0.999
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7865,
+        0.0065,
+        1.4617
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7865,
+        0.0065,
+        1.4617
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5685,
+        0.0024,
+        1.5587
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0667,
+        1.2991
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1864,
+        0.0,
+        0.9893
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1864,
+        0.0,
+        0.9893
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.819,
+       "bas_genislik": 0.182,
+       "olcek": 0.999
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9fc220619b_k3.glb",
+     "anahtar": "e47c7e6a2cb478f3",
+     "kisi": {
+      "tohum": 57870,
+      "yas_yil": 51.4,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.7029,
+       "muscle": 0.5525,
+       "weight": 0.6401,
+       "height": 0.3526,
+       "proportions": 0.4845,
+       "caucasian": 0.7909,
+       "asian": 0.2018,
+       "african": 0.0073
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.369,
+        0.2271,
+        0.1458
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.2206,
+        0.206,
+        0.1941
+       ],
+       "uzunluk_carpan": 1.03
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.2206,
+        0.206,
+        0.1941
+       ],
+       "uzunluk_m": 0.0051
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.029
+      },
+      "sac_renk": [
+       0.2206,
+       0.206,
+       0.1941
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "3fee846c8b05543b213df9ccc1ef0b5895af02761acde966b74bccbffef2be9b",
+     "bayt": 2664008,
+     "olcum": {
+      "boy_m": 1.827,
+      "genislik_m": 1.812,
+      "ucgen": 28826,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.143
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1035,
+        1.8145
+       ],
+       "olcek": 1.023
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7821,
+        0.0086,
+        1.4504
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7821,
+        0.0086,
+        1.4504
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5678,
+        0.0047,
+        1.5474
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.067,
+        1.3293
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1947,
+        0.0,
+        1.0123
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1947,
+        0.0,
+        1.0123
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.814,
+       "bas_genislik": 0.186,
+       "olcek": 1.023
+      }
+     }
+    }
+   ]
   },
   "erkek_e69ad88ef3": {
-   "anahtar": "a9e23f63c7c3de01",
+   "anahtar": "2235d76093256b02",
    "govde": "erkek",
    "sac": [
     "sakal"
@@ -983,7 +4473,705 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e69ad88ef3_k0.glb",
+     "anahtar": "59ebb29b4bc9ca00",
+     "kisi": {
+      "tohum": 52414,
+      "yas_yil": 25.1,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5009,
+       "muscle": 0.448,
+       "weight": 0.5586,
+       "height": 0.607,
+       "proportions": 0.6346,
+       "caucasian": 0.7236,
+       "asian": 0.2292,
+       "african": 0.0472
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4272,
+        0.2728,
+        0.1832
+       ]
+      },
+      "sakal": {
+       "tur": "biyik",
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_carpan": 0.993
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_m": 0.0087
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.357
+      },
+      "sac_renk": [
+       0.2,
+       0.13,
+       0.08
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "53b6f8612f0a23994b34f6c9f39a95ffac81074bbb9d39606b1042a0455a7fce",
+     "bayt": 2632388,
+     "olcum": {
+      "boy_m": 1.826,
+      "genislik_m": 1.862,
+      "ucgen": 27864,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.139
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0914,
+        1.8108
+       ],
+       "olcek": 0.979
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8016,
+        -0.0044,
+        1.46
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8016,
+        -0.0044,
+        1.46
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5835,
+        -0.0086,
+        1.557
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.071,
+        1.2731
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.178,
+        0.0,
+        0.9695
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.178,
+        0.0,
+        0.9695
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.811,
+       "bas_genislik": 0.178,
+       "olcek": 0.979
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e69ad88ef3_k1.glb",
+     "anahtar": "e0e7b025bc3405f9",
+     "kisi": {
+      "tohum": 66192,
+      "yas_yil": 31.3,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5483,
+       "muscle": 0.4443,
+       "weight": 0.5328,
+       "height": 0.4395,
+       "proportions": 0.4299,
+       "caucasian": 0.6411,
+       "asian": 0.3355,
+       "african": 0.0234
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4673,
+        0.3043,
+        0.209
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_carpan": 0.92
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.2,
+        0.13,
+        0.08
+       ],
+       "uzunluk_m": 0.0064
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.277
+      },
+      "sac_renk": [
+       0.2,
+       0.13,
+       0.08
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "0f96dad1321fb4ac1cb4432de1c43252ae3a3202a112bffabcbcaf1edc396ea9",
+     "bayt": 2649012,
+     "olcum": {
+      "boy_m": 1.831,
+      "genislik_m": 1.87,
+      "ucgen": 28920,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.134
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0977,
+        1.8167
+       ],
+       "olcek": 1.037
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8065,
+        0.0015,
+        1.4713
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8065,
+        0.0015,
+        1.4713
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5821,
+        -0.0028,
+        1.5683
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0701,
+        1.3478
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1875,
+        0.0,
+        1.0264
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1875,
+        0.0,
+        1.0264
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.189,
+       "olcek": 1.037
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e69ad88ef3_k2.glb",
+     "anahtar": "1799376a9d733cec",
+     "kisi": {
+      "tohum": 70388,
+      "yas_yil": 41.8,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6292,
+       "muscle": 0.58,
+       "weight": 0.4843,
+       "height": 0.355,
+       "proportions": 0.52,
+       "caucasian": 0.7597,
+       "asian": 0.2371,
+       "african": 0.0033
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4891,
+        0.3214,
+        0.223
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_carpan": 1.088
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_m": 0.0046
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.108
+      },
+      "sac_renk": [
+       0.12,
+       0.08,
+       0.05
+      ],
+      "goz_renk": [
+       0.14,
+       0.08,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "4228c24a58375852b4a3f91d906d53ac3974e57327a35b9b0846ae4564b701e4",
+     "bayt": 2629344,
+     "olcum": {
+      "boy_m": 1.842,
+      "genislik_m": 1.813,
+      "ucgen": 28710,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.163
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0986,
+        1.8282
+       ],
+       "olcek": 1.015
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7805,
+        0.0048,
+        1.4271
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7805,
+        0.0048,
+        1.4271
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5661,
+        0.0008,
+        1.5241
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0645,
+        1.3191
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.185,
+        0.0,
+        1.0046
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.185,
+        0.0,
+        1.0046
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.828,
+       "bas_genislik": 0.185,
+       "olcek": 1.015
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_e69ad88ef3_k3.glb",
+     "anahtar": "02c2af5131f7054b",
+     "kisi": {
+      "tohum": 29156,
+      "yas_yil": 50.6,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6969,
+       "muscle": 0.4595,
+       "weight": 0.5825,
+       "height": 0.4361,
+       "proportions": 0.3518,
+       "caucasian": 0.8598,
+       "asian": 0.0983,
+       "african": 0.0419
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.411,
+        0.2601,
+        0.1728
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.231,
+        0.1984,
+        0.1721
+       ],
+       "uzunluk_carpan": 1.192
+      },
+      "sac_kabuk": {
+       "acik": false,
+       "renk": [
+        0.231,
+        0.1984,
+        0.1721
+       ],
+       "uzunluk_m": 0.0085
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.294
+      },
+      "sac_renk": [
+       0.231,
+       0.1984,
+       0.1721
+      ],
+      "goz_renk": [
+       0.14,
+       0.08,
+       0.04
+      ],
+      "varliklar": {}
+     },
+     "sha256": "6c0bfc3b5909b6d3b3a635bea0f54b412b9fd199737f98e696234af785b07b68",
+     "bayt": 2561964,
+     "olcum": {
+      "boy_m": 1.827,
+      "genislik_m": 1.796,
+      "ucgen": 28892,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.136
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0905,
+        1.8141
+       ],
+       "olcek": 1.007
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7793,
+        0.0117,
+        1.4639
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7793,
+        0.0117,
+        1.4639
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.563,
+        0.0076,
+        1.5609
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0663,
+        1.3088
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1953,
+        0.0,
+        0.9967
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1953,
+        0.0,
+        0.9967
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.814,
+       "bas_genislik": 0.183,
+       "olcek": 1.007
+      }
+     }
+    }
+   ]
   },
   "erkek_4f54ac2b9f": {
    "anahtar": "12c8bf3f90e3f1c0",
@@ -1110,7 +5298,7 @@
    }
   },
   "erkek_c418aa6d94": {
-   "anahtar": "393095c78618703f",
+   "anahtar": "fe62257663c495e3",
    "govde": "erkek",
    "sac": [
     "kisa"
@@ -1229,10 +5417,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_c418aa6d94_k0.glb",
+     "anahtar": "5407609f800f3e98",
+     "kisi": {
+      "tohum": 55901,
+      "yas_yil": 24.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.493,
+       "muscle": 0.5479,
+       "weight": 0.4274,
+       "height": 0.3687,
+       "proportions": 0.3806,
+       "caucasian": 0.9802,
+       "asian": 0.0162,
+       "african": 0.0036
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4599,
+        0.2938,
+        0.2007
+       ]
+      },
+      "sakal": {
+       "tur": "yok",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 1.006
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.007
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 0.967
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "119ab60083d2d64a100111b2fb4dd3827924b529ab4d0d0c7236e53d98b8300a",
+     "bayt": 2845784,
+     "olcum": {
+      "boy_m": 1.832,
+      "genislik_m": 1.87,
+      "ucgen": 29870,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.145
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1106,
+        1.8153
+       ],
+       "olcek": 1.108
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8102,
+        0.0076,
+        1.4565
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8102,
+        0.0076,
+        1.4565
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5803,
+        0.0034,
+        1.5535
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0631,
+        1.4404
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1871,
+        0.0,
+        1.0969
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1871,
+        0.0,
+        1.0969
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.202,
+       "olcek": 1.108
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_c418aa6d94_k1.glb",
+     "anahtar": "8a5cb631df47bbe9",
+     "kisi": {
+      "tohum": 76774,
+      "yas_yil": 32.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5595,
+       "muscle": 0.4717,
+       "weight": 0.6871,
+       "height": 0.4716,
+       "proportions": 0.5879,
+       "caucasian": 0.9528,
+       "asian": 0.0061,
+       "african": 0.0411
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4895,
+        0.3188,
+        0.2235
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 0.913
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.0045
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.125
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "936a4fc9f1da1ac9fd3e3679d06f99c928e68862b28f233ab30ab7ee140e0d7b",
+     "bayt": 3055924,
+     "olcum": {
+      "boy_m": 1.838,
+      "genislik_m": 1.86,
+      "ucgen": 30966,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.142
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1038,
+        1.8248
+       ],
+       "olcek": 1.007
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8012,
+        0.0021,
+        1.4682
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8012,
+        0.0021,
+        1.4682
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5811,
+        -0.0021,
+        1.5652
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.068,
+        1.3087
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1884,
+        0.0,
+        0.9966
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1884,
+        0.0,
+        0.9966
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.825,
+       "bas_genislik": 0.183,
+       "olcek": 1.007
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_c418aa6d94_k2.glb",
+     "anahtar": "14183cc3275017bd",
+     "kisi": {
+      "tohum": 53512,
+      "yas_yil": 35.8,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5832,
+       "muscle": 0.5638,
+       "weight": 0.5061,
+       "height": 0.4624,
+       "proportions": 0.6131,
+       "caucasian": 0.9543,
+       "asian": 0.0274,
+       "african": 0.0183
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4804,
+        0.3111,
+        0.2164
+       ]
+      },
+      "sakal": {
+       "tur": "yok",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 1.204
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0064
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.332
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "5ecc24d6381471b9246fea14127be699253b8243f0961e97e1bb1a27cd6011f9",
+     "bayt": 2875532,
+     "olcum": {
+      "boy_m": 1.832,
+      "genislik_m": 1.849,
+      "ucgen": 29788,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.143
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0968,
+        1.8169
+       ],
+       "olcek": 0.994
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.796,
+        0.0006,
+        1.4619
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.796,
+        0.0006,
+        1.4619
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5785,
+        -0.0036,
+        1.5589
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0669,
+        1.292
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1826,
+        0.0,
+        0.9839
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1826,
+        0.0,
+        0.9839
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.181,
+       "olcek": 0.994
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_c418aa6d94_k3.glb",
+     "anahtar": "ca92eb8246087d70",
+     "kisi": {
+      "tohum": 88517,
+      "yas_yil": 47.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6744,
+       "muscle": 0.4387,
+       "weight": 0.6718,
+       "height": 0.4558,
+       "proportions": 0.4985,
+       "caucasian": 0.9332,
+       "asian": 0.0123,
+       "african": 0.0545
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.5031,
+        0.3303,
+        0.2339
+       ]
+      },
+      "sakal": {
+       "tur": "yok",
+       "renk": [
+        0.2958,
+        0.2319,
+        0.1754
+       ],
+       "uzunluk_carpan": 1.091
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.2958,
+        0.2319,
+        0.1754
+       ],
+       "uzunluk_m": 0.0076
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 0.905
+      },
+      "sac_renk": [
+       0.2958,
+       0.2319,
+       0.1754
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "b4317c1692fba2233fa865cd07859d7d911c44a2d1f921165edf329eb9cad2e0",
+     "bayt": 2837996,
+     "olcum": {
+      "boy_m": 1.831,
+      "genislik_m": 1.78,
+      "ucgen": 29852,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 15,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.157
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1022,
+        1.8161
+       ],
+       "olcek": 0.981
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7689,
+        0.0098,
+        1.4376
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7689,
+        0.0098,
+        1.4376
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5575,
+        0.0058,
+        1.5346
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0661,
+        1.2759
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1902,
+        0.0,
+        0.9716
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1902,
+        0.0,
+        0.9716
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.179,
+       "olcek": 0.981
+      }
+     }
+    }
+   ]
   },
   "erkek_8cbba32f56": {
-   "anahtar": "1375c49d24102ee3",
+   "anahtar": "1c048a0c97f5be40",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -1352,10 +6238,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_8cbba32f56_k0.glb",
+     "anahtar": "1bd2114b8dba054b",
+     "kisi": {
+      "tohum": 51415,
+      "yas_yil": 23.3,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.4645,
+       "muscle": 0.5866,
+       "weight": 0.417,
+       "height": 0.4082,
+       "proportions": 0.6325,
+       "caucasian": 0.9111,
+       "asian": 0.0316,
+       "african": 0.0573
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.5312,
+        0.3541,
+        0.2555
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_carpan": 1.081
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_m": 0.0089
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.335
+      },
+      "sac_renk": [
+       0.25,
+       0.17,
+       0.1
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "5124f17461052e63c29f5730d7831969c3a00defaa255e8befb7fcfd3718cf75",
+     "bayt": 2865024,
+     "olcum": {
+      "boy_m": 1.836,
+      "genislik_m": 1.905,
+      "ucgen": 29626,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 13,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.14
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1036,
+        1.8169
+       ],
+       "olcek": 1.061
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8211,
+        0.0011,
+        1.4755
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8211,
+        0.0011,
+        1.4755
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5943,
+        -0.0031,
+        1.5725
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0649,
+        1.3797
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1839,
+        0.0,
+        1.0507
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1839,
+        0.0,
+        1.0507
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.193,
+       "olcek": 1.061
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_8cbba32f56_k1.glb",
+     "anahtar": "f23806ab269424bf",
+     "kisi": {
+      "tohum": 95206,
+      "yas_yil": 29.5,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5346,
+       "muscle": 0.6174,
+       "weight": 0.6138,
+       "height": 0.5954,
+       "proportions": 0.6186,
+       "caucasian": 0.992,
+       "asian": 0.0027,
+       "african": 0.0053
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4801,
+        0.3109,
+        0.2163
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 1.116
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0049
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.285
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "ac550fb25513b4cf34222bf1385857e1e6e96eb82db16d404d059e81505b75c0",
+     "bayt": 2860404,
+     "olcum": {
+      "boy_m": 1.829,
+      "genislik_m": 1.828,
+      "ucgen": 29634,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 13,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.151
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0928,
+        1.8147
+       ],
+       "olcek": 0.933
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.784,
+        -0.0007,
+        1.4471
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.784,
+        -0.0007,
+        1.4471
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5728,
+        -0.0048,
+        1.5441
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.07,
+        1.2135
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.179,
+        0.0,
+        0.9242
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.179,
+        0.0,
+        0.9242
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.17,
+       "olcek": 0.933
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_8cbba32f56_k2.glb",
+     "anahtar": "e05adb5a5d1b081c",
+     "kisi": {
+      "tohum": 91826,
+      "yas_yil": 41.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6284,
+       "muscle": 0.4236,
+       "weight": 0.6229,
+       "height": 0.4957,
+       "proportions": 0.3866,
+       "caucasian": 0.9745,
+       "asian": 0.0181,
+       "african": 0.0073
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4442,
+        0.2804,
+        0.1886
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_carpan": 0.912
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_m": 0.0085
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.129
+      },
+      "sac_renk": [
+       0.25,
+       0.17,
+       0.1
+      ],
+      "goz_renk": [
+       0.2,
+       0.28,
+       0.32
+      ],
+      "varliklar": {}
+     },
+     "sha256": "9510a43e926306c623ff53d76b1f0af89b0b9e77bff0859b4b1bb34911909d41",
+     "bayt": 2937180,
+     "olcum": {
+      "boy_m": 1.833,
+      "genislik_m": 1.816,
+      "ucgen": 29630,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 13,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.14
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.103,
+        1.8161
+       ],
+       "olcek": 0.985
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7842,
+        0.0098,
+        1.4689
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7842,
+        0.0098,
+        1.4689
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5677,
+        0.0057,
+        1.5659
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0667,
+        1.2808
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.194,
+        0.0,
+        0.9754
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.194,
+        0.0,
+        0.9754
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.179,
+       "olcek": 0.985
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_8cbba32f56_k3.glb",
+     "anahtar": "0e915907105177b8",
+     "kisi": {
+      "tohum": 97306,
+      "yas_yil": 50.9,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6993,
+       "muscle": 0.5098,
+       "weight": 0.6124,
+       "height": 0.5278,
+       "proportions": 0.405,
+       "caucasian": 0.9242,
+       "asian": 0.0328,
+       "african": 0.043
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.502,
+        0.3294,
+        0.2331
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.3085,
+        0.2491,
+        0.1963
+       ],
+       "uzunluk_carpan": 0.912
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.3085,
+        0.2491,
+        0.1963
+       ],
+       "uzunluk_m": 0.008
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 0.989
+      },
+      "sac_renk": [
+       0.3085,
+       0.2491,
+       0.1963
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "6bfe39769c852980f105213a93f8dd6a3ba2af798fe201a39a04845beb06d69e",
+     "bayt": 2926484,
+     "olcum": {
+      "boy_m": 1.834,
+      "genislik_m": 1.766,
+      "ucgen": 29688,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 13,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.154
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0903,
+        1.8187
+       ],
+       "olcek": 0.966
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7649,
+        0.0099,
+        1.4457
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7649,
+        0.0099,
+        1.4457
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5544,
+        0.0059,
+        1.5427
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0662,
+        1.2552
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1891,
+        0.0,
+        0.9559
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1891,
+        0.0,
+        0.9559
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.819,
+       "bas_genislik": 0.176,
+       "olcek": 0.966
+      }
+     }
+    }
+   ]
   },
   "erkek_7b821306c9": {
-   "anahtar": "4a33609f66ea6042",
+   "anahtar": "f9ae1f669dea428e",
    "govde": "erkek",
    "sac": [
     "kisa"
@@ -1473,10 +7057,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7b821306c9_k0.glb",
+     "anahtar": "2a67f8bb9c87d75f",
+     "kisi": {
+      "tohum": 50740,
+      "yas_yil": 24.8,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.4955,
+       "muscle": 0.5729,
+       "weight": 0.4586,
+       "height": 0.4992,
+       "proportions": 0.4358,
+       "caucasian": 0.9518,
+       "asian": 0.0119,
+       "african": 0.0363
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.443,
+        0.2795,
+        0.1877
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 1.022
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.0078
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.145
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "7c915fea2b40a6a00b79478c8abba4aa59b2096ca50ebeddd3869f1ca886c507",
+     "bayt": 2848032,
+     "olcum": {
+      "boy_m": 1.831,
+      "genislik_m": 1.82,
+      "ucgen": 29604,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 13,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.159
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0958,
+        1.815
+       ],
+       "olcek": 1.019
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7863,
+        0.0029,
+        1.4342
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7863,
+        0.0029,
+        1.4342
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5658,
+        -0.0013,
+        1.5312
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0659,
+        1.3249
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1783,
+        0.0,
+        1.009
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1783,
+        0.0,
+        1.009
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.185,
+       "olcek": 1.019
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7b821306c9_k1.glb",
+     "anahtar": "8c5b7ae863e7308c",
+     "kisi": {
+      "tohum": 26686,
+      "yas_yil": 34.4,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5725,
+       "muscle": 0.5034,
+       "weight": 0.4826,
+       "height": 0.6109,
+       "proportions": 0.371,
+       "caucasian": 0.995,
+       "asian": 0.0027,
+       "african": 0.0023
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4745,
+        0.3061,
+        0.2119
+       ]
+      },
+      "sakal": {
+       "tur": "yok",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 1.244
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.0048
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.342
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "8086d6e2522cee0b3c650fc8051fd5623898eb1f58198d3f9f987cf44b030850",
+     "bayt": 2669864,
+     "olcum": {
+      "boy_m": 1.823,
+      "genislik_m": 1.773,
+      "ucgen": 28584,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 12,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.158
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.104,
+        1.809
+       ],
+       "olcek": 0.933
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7645,
+        0.0069,
+        1.4306
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7645,
+        0.0069,
+        1.4306
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5553,
+        0.0028,
+        1.5276
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0652,
+        1.2135
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1776,
+        0.0,
+        0.9241
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1776,
+        0.0,
+        0.9241
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.809,
+       "bas_genislik": 0.17,
+       "olcek": 0.933
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7b821306c9_k2.glb",
+     "anahtar": "6a15ae53a4038776",
+     "kisi": {
+      "tohum": 9816,
+      "yas_yil": 38.8,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6061,
+       "muscle": 0.5416,
+       "weight": 0.5519,
+       "height": 0.5755,
+       "proportions": 0.6168,
+       "caucasian": 0.8873,
+       "asian": 0.0447,
+       "african": 0.068
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.5356,
+        0.3578,
+        0.2589
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 1.14
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0086
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.225
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "d839219d03bf0f56c76bb8eaf7c84df2830543837589497834fab3a5612ed548",
+     "bayt": 2855808,
+     "olcum": {
+      "boy_m": 1.831,
+      "genislik_m": 1.827,
+      "ucgen": 29602,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 13,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.146
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1003,
+        1.8141
+       ],
+       "olcek": 0.978
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7886,
+        0.001,
+        1.4584
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7886,
+        0.001,
+        1.4584
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5738,
+        -0.0031,
+        1.5554
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0674,
+        1.271
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1809,
+        0.0,
+        0.9679
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1809,
+        0.0,
+        0.9679
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.814,
+       "bas_genislik": 0.178,
+       "olcek": 0.978
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7b821306c9_k3.glb",
+     "anahtar": "8ce72a2a311ab0f1",
+     "kisi": {
+      "tohum": 6067,
+      "yas_yil": 48.2,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6783,
+       "muscle": 0.589,
+       "weight": 0.4656,
+       "height": 0.6176,
+       "proportions": 0.4818,
+       "caucasian": 0.8991,
+       "asian": 0.0377,
+       "african": 0.0632
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.43,
+        0.2685,
+        0.1777
+       ]
+      },
+      "sakal": {
+       "tur": "yok",
+       "renk": [
+        0.245,
+        0.2063,
+        0.1769
+       ],
+       "uzunluk_carpan": 1.237
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.245,
+        0.2063,
+        0.1769
+       ],
+       "uzunluk_m": 0.007
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.387
+      },
+      "sac_renk": [
+       0.245,
+       0.2063,
+       0.1769
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "5cdcc7b5c0c1633fb1bd04aa5a9c598761f4018f561e26b5bc1baad7b046402e",
+     "bayt": 2670240,
+     "olcum": {
+      "boy_m": 1.83,
+      "genislik_m": 1.808,
+      "ucgen": 28566,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 12,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.137
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0974,
+        1.8152
+       ],
+       "olcek": 1.066
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7896,
+        0.0062,
+        1.4745
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7896,
+        0.0062,
+        1.4745
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5688,
+        0.0022,
+        1.5715
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0659,
+        1.3864
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1822,
+        0.0,
+        1.0558
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1822,
+        0.0,
+        1.0558
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.194,
+       "olcek": 1.066
+      }
+     }
+    }
+   ]
   },
   "erkek_9392f93500": {
-   "anahtar": "b312a63b04175ddf",
+   "anahtar": "83c5a720bff6f90a",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -1597,7 +7879,705 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9392f93500_k0.glb",
+     "anahtar": "65eba75417ea0b20",
+     "kisi": {
+      "tohum": 70241,
+      "yas_yil": 23.2,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.4616,
+       "muscle": 0.5,
+       "weight": 0.5683,
+       "height": 0.4541,
+       "proportions": 0.5947,
+       "caucasian": 0.9222,
+       "asian": 0.073,
+       "african": 0.0048
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.5252,
+        0.3501,
+        0.2518
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 1.16
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.0055
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.017
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.2,
+       0.28,
+       0.32
+      ],
+      "varliklar": {}
+     },
+     "sha256": "16cdcd7d0ed5d95f1967a3cb8e9799850dd3b04c270262aa81f8c0129ce82ec9",
+     "bayt": 2883796,
+     "olcum": {
+      "boy_m": 1.837,
+      "genislik_m": 1.862,
+      "ucgen": 30102,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.145
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.103,
+        1.8151
+       ],
+       "olcek": 1.033
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.8032,
+        0.0009,
+        1.4561
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.8032,
+        0.0009,
+        1.4561
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5811,
+        -0.0033,
+        1.5531
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0666,
+        1.3431
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1817,
+        0.0,
+        1.0228
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1817,
+        0.0,
+        1.0228
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.188,
+       "olcek": 1.033
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9392f93500_k1.glb",
+     "anahtar": "31af2ecfdba82a91",
+     "kisi": {
+      "tohum": 92630,
+      "yas_yil": 31.8,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5525,
+       "muscle": 0.4712,
+       "weight": 0.5264,
+       "height": 0.627,
+       "proportions": 0.6384,
+       "caucasian": 0.9468,
+       "asian": 0.0114,
+       "african": 0.0417
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.5402,
+        0.3622,
+        0.2628
+       ]
+      },
+      "sakal": {
+       "tur": "kisa",
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_carpan": 1.096
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_m": 0.0069
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.163
+      },
+      "sac_renk": [
+       0.25,
+       0.17,
+       0.1
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "739add7a718276edc660d51cb6d6147d5e8541793b231af4210ce6bac611203b",
+     "bayt": 2998048,
+     "olcum": {
+      "boy_m": 1.837,
+      "genislik_m": 1.847,
+      "ucgen": 30300,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.144
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0964,
+        1.8152
+       ],
+       "olcek": 0.971
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.796,
+        -0.0008,
+        1.4673
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.796,
+        -0.0008,
+        1.4673
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5804,
+        -0.005,
+        1.5643
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.068,
+        1.2624
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1772,
+        0.0,
+        0.9613
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1772,
+        0.0,
+        0.9613
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.177,
+       "olcek": 0.971
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9392f93500_k2.glb",
+     "anahtar": "440b26d8203c8bbb",
+     "kisi": {
+      "tohum": 1536,
+      "yas_yil": 37.7,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5981,
+       "muscle": 0.589,
+       "weight": 0.5182,
+       "height": 0.4803,
+       "proportions": 0.4199,
+       "caucasian": 0.9116,
+       "asian": 0.0383,
+       "african": 0.0501
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4625,
+        0.3,
+        0.2059
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 1.028
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.0056
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.311
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "14b983ebefaf772e28fba88b5b35563eb23a9360af2d7fa55ab1d0de05ce2442",
+     "bayt": 3046244,
+     "olcum": {
+      "boy_m": 1.835,
+      "genislik_m": 1.846,
+      "ucgen": 30270,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.132
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1028,
+        1.8155
+       ],
+       "olcek": 1.012
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7971,
+        0.0061,
+        1.479
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7971,
+        0.0061,
+        1.479
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5761,
+        0.0019,
+        1.576
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0669,
+        1.3153
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.188,
+        0.0,
+        1.0017
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.188,
+        0.0,
+        1.0017
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.184,
+       "olcek": 1.012
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_9392f93500_k3.glb",
+     "anahtar": "eef26b07a9f5ecdc",
+     "kisi": {
+      "tohum": 42234,
+      "yas_yil": 49.1,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6853,
+       "muscle": 0.5221,
+       "weight": 0.7073,
+       "height": 0.4983,
+       "proportions": 0.4118,
+       "caucasian": 0.8738,
+       "asian": 0.052,
+       "african": 0.0742
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.523,
+        0.3484,
+        0.2502
+       ]
+      },
+      "sakal": {
+       "tur": "biyik",
+       "renk": [
+        0.2191,
+        0.1775,
+        0.1468
+       ],
+       "uzunluk_carpan": 1.086
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.2191,
+        0.1775,
+        0.1468
+       ],
+       "uzunluk_m": 0.0052
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.106
+      },
+      "sac_renk": [
+       0.2191,
+       0.1775,
+       0.1468
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "878f3f2b4b3474e9bb27628cf32982f41400b3082a9349f12a2937c66d6acc62",
+     "bayt": 2967920,
+     "olcum": {
+      "boy_m": 1.835,
+      "genislik_m": 1.796,
+      "ucgen": 29318,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.142
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1018,
+        1.8166
+       ],
+       "olcek": 0.99
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7778,
+        0.0092,
+        1.4628
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7778,
+        0.0092,
+        1.4628
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5628,
+        0.0051,
+        1.5598
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0677,
+        1.2864
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1942,
+        0.0,
+        0.9796
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1942,
+        0.0,
+        0.9796
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.18,
+       "olcek": 0.99
+      }
+     }
+    }
+   ]
   },
   "erkek_35c38e9239": {
    "anahtar": "cbc77a66adcc4989",
@@ -1723,7 +8703,7 @@
    }
   },
   "erkek_7959a03940": {
-   "anahtar": "068f77cca8aa4e39",
+   "anahtar": "6213b224a24acfcf",
    "govde": "erkek",
    "sac": [
     "kisa",
@@ -1844,10 +8824,708 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7959a03940_k0.glb",
+     "anahtar": "8b3865d5239481b3",
+     "kisi": {
+      "tohum": 58098,
+      "yas_yil": 19.4,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.3837,
+       "muscle": 0.527,
+       "weight": 0.5869,
+       "height": 0.626,
+       "proportions": 0.4828,
+       "caucasian": 0.8328,
+       "asian": 0.1418,
+       "african": 0.0254
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.433,
+        0.2774,
+        0.1869
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_carpan": 0.875
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_m": 0.0057
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.232
+      },
+      "sac_renk": [
+       0.12,
+       0.08,
+       0.05
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "cf7d09a6956336a6c06f4ad66893fe95ccc2682f8d9c34b675beb89efda5810e",
+     "bayt": 3151620,
+     "olcum": {
+      "boy_m": 1.837,
+      "genislik_m": 1.823,
+      "ucgen": 30482,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.144
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.106,
+        1.8133
+       ],
+       "olcek": 1.094
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7964,
+        0.0099,
+        1.459
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7964,
+        0.0099,
+        1.459
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5716,
+        0.0058,
+        1.556
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0621,
+        1.4223
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1782,
+        0.0,
+        1.0831
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1782,
+        0.0,
+        1.0831
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.813,
+       "bas_genislik": 0.199,
+       "olcek": 1.094
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7959a03940_k1.glb",
+     "anahtar": "eb053e42fac5ab12",
+     "kisi": {
+      "tohum": 18875,
+      "yas_yil": 30.2,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5402,
+       "muscle": 0.4391,
+       "weight": 0.4346,
+       "height": 0.4766,
+       "proportions": 0.4168,
+       "caucasian": 0.7442,
+       "asian": 0.1965,
+       "african": 0.0593
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4545,
+        0.2942,
+        0.2007
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_carpan": 1.152
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.12,
+        0.08,
+        0.05
+       ],
+       "uzunluk_m": 0.0064
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.012
+      },
+      "sac_renk": [
+       0.12,
+       0.08,
+       0.05
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "0be0553f97d69a6febe5ef343e948d9a9f4691ae461176d2b18a986fd7ca48d5",
+     "bayt": 3003048,
+     "olcum": {
+      "boy_m": 1.837,
+      "genislik_m": 1.847,
+      "ucgen": 30410,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.144
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1005,
+        1.8162
+       ],
+       "olcek": 0.99
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7948,
+        0.0026,
+        1.4597
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7948,
+        0.0026,
+        1.4597
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5749,
+        -0.0016,
+        1.5567
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0679,
+        1.2869
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1847,
+        0.0,
+        0.9801
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1847,
+        0.0,
+        0.9801
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.18,
+       "olcek": 0.99
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7959a03940_k2.glb",
+     "anahtar": "5bb09da7a9cd6d49",
+     "kisi": {
+      "tohum": 96002,
+      "yas_yil": 37.2,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.5937,
+       "muscle": 0.4968,
+       "weight": 0.5944,
+       "height": 0.6363,
+       "proportions": 0.4667,
+       "caucasian": 0.6625,
+       "asian": 0.3091,
+       "african": 0.0283
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.3648,
+        0.2238,
+        0.1431
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 1.011
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0079
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.321
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "7afc834f634618cbfb9b9212d1441a836735c224548e2b1dd77fa77c9cc6c38b",
+     "bayt": 3160484,
+     "olcum": {
+      "boy_m": 1.838,
+      "genislik_m": 1.84,
+      "ucgen": 30468,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.135
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0936,
+        1.8154
+       ],
+       "olcek": 0.987
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7944,
+        0.0017,
+        1.4777
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7944,
+        0.0017,
+        1.4777
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5773,
+        -0.0025,
+        1.5747
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.07,
+        1.2831
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1814,
+        0.0,
+        0.9772
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1814,
+        0.0,
+        0.9772
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.18,
+       "olcek": 0.987
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_7959a03940_k3.glb",
+     "anahtar": "1f6f3591be515dbb",
+     "kisi": {
+      "tohum": 87891,
+      "yas_yil": 44.2,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6475,
+       "muscle": 0.507,
+       "weight": 0.5162,
+       "height": 0.6359,
+       "proportions": 0.3716,
+       "caucasian": 0.7019,
+       "asian": 0.2499,
+       "african": 0.0483
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4487,
+        0.2897,
+        0.197
+       ]
+      },
+      "sakal": {
+       "tur": "dolgun",
+       "renk": [
+        0.0988,
+        0.0875,
+        0.0805
+       ],
+       "uzunluk_carpan": 1.216
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.0988,
+        0.0875,
+        0.0805
+       ],
+       "uzunluk_m": 0.0043
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.367
+      },
+      "sac_renk": [
+       0.0988,
+       0.0875,
+       0.0805
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "c8f389a53ac21a94ae1861d59d771a170b2fb2c6425f1e8ed1f6bb7fdf4082bf",
+     "bayt": 3152248,
+     "olcum": {
+      "boy_m": 1.833,
+      "genislik_m": 1.826,
+      "ucgen": 30358,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 16,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.128
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0962,
+        1.8146
+       ],
+       "olcek": 0.988
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7912,
+        0.0067,
+        1.4873
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7912,
+        0.0067,
+        1.4873
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.574,
+        0.0025,
+        1.5843
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0682,
+        1.2841
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.185,
+        0.0,
+        0.9779
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.185,
+        0.0,
+        0.9779
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.815,
+       "bas_genislik": 0.18,
+       "olcek": 0.988
+      }
+     }
+    }
+   ]
   },
   "erkek_cff0ab1ce3": {
-   "anahtar": "b93e87bf4cc5c6f0",
+   "anahtar": "7603de007d651e28",
    "govde": "erkek",
    "sac": [
     "kisa"
@@ -1966,7 +9644,705 @@
      "bas_genislik": 0.181,
      "olcek": 0.996
     }
-   }
+   },
+   "kisiler": [
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_cff0ab1ce3_k0.glb",
+     "anahtar": "81eca14013cec02d",
+     "kisi": {
+      "tohum": 94773,
+      "yas_yil": 19.0,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.3754,
+       "muscle": 0.4917,
+       "weight": 0.5932,
+       "height": 0.4853,
+       "proportions": 0.5209,
+       "caucasian": 0.9308,
+       "asian": 0.0182,
+       "african": 0.051
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.5217,
+        0.3474,
+        0.2493
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_carpan": 0.815
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.14,
+        0.09,
+        0.055
+       ],
+       "uzunluk_m": 0.0087
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.159
+      },
+      "sac_renk": [
+       0.14,
+       0.09,
+       0.055
+      ],
+      "goz_renk": [
+       0.3,
+       0.25,
+       0.12
+      ],
+      "varliklar": {}
+     },
+     "sha256": "a2fb995b1f9fb0b97b590ccb0b994b047ae83d318b34fdf519a565ae08a6cd11",
+     "bayt": 2893996,
+     "olcum": {
+      "boy_m": 1.842,
+      "genislik_m": 1.828,
+      "ucgen": 30210,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.15
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.115,
+        1.8159
+       ],
+       "olcek": 1.074
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7948,
+        0.0103,
+        1.4512
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7948,
+        0.0103,
+        1.4512
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5709,
+        0.0062,
+        1.5482
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0606,
+        1.3961
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1823,
+        0.0,
+        1.0632
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1823,
+        0.0,
+        1.0632
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.195,
+       "olcek": 1.074
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_cff0ab1ce3_k1.glb",
+     "anahtar": "5fc93899634d73cf",
+     "kisi": {
+      "tohum": 72282,
+      "yas_yil": 33.6,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.566,
+       "muscle": 0.472,
+       "weight": 0.4463,
+       "height": 0.507,
+       "proportions": 0.4461,
+       "caucasian": 0.9364,
+       "asian": 0.0422,
+       "african": 0.0214
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4344,
+        0.2775,
+        0.1852
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_carpan": 1.243
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.25,
+        0.17,
+        0.1
+       ],
+       "uzunluk_m": 0.0085
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.298
+      },
+      "sac_renk": [
+       0.25,
+       0.17,
+       0.1
+      ],
+      "goz_renk": [
+       0.22,
+       0.12,
+       0.05
+      ],
+      "varliklar": {}
+     },
+     "sha256": "a46c4d18f862dd76df3bba6cf51ecbd6bc7d9e5955567841010666dd7714a976",
+     "bayt": 2911108,
+     "olcum": {
+      "boy_m": 1.839,
+      "genislik_m": 1.837,
+      "ucgen": 30120,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.143
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.0994,
+        1.8156
+       ],
+       "olcek": 1.0
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7917,
+        0.0043,
+        1.4627
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7917,
+        0.0043,
+        1.4627
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5725,
+        0.0001,
+        1.5597
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0668,
+        1.3002
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1834,
+        0.0,
+        0.9901
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1834,
+        0.0,
+        0.9901
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.816,
+       "bas_genislik": 0.182,
+       "olcek": 1.0
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_cff0ab1ce3_k2.glb",
+     "anahtar": "c7eaadf031529a1d",
+     "kisi": {
+      "tohum": 35504,
+      "yas_yil": 41.0,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6227,
+       "muscle": 0.4309,
+       "weight": 0.601,
+       "height": 0.4254,
+       "proportions": 0.3941,
+       "caucasian": 0.883,
+       "asian": 0.1115,
+       "african": 0.0054
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.4001,
+        0.2501,
+        0.1601
+       ]
+      },
+      "sakal": {
+       "tur": "kirli",
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_carpan": 1.243
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.05,
+        0.04,
+        0.035
+       ],
+       "uzunluk_m": 0.0046
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.02
+      },
+      "sac_renk": [
+       0.05,
+       0.04,
+       0.035
+      ],
+      "goz_renk": [
+       0.2,
+       0.28,
+       0.32
+      ],
+      "varliklar": {}
+     },
+     "sha256": "e3e9f86cceb147c5d7e6dc21b3fc263c9c7e6d0b5224d603ef26e9752237731b",
+     "bayt": 2891696,
+     "olcum": {
+      "boy_m": 1.837,
+      "genislik_m": 1.834,
+      "ucgen": 30200,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.138
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.1005,
+        1.8181
+       ],
+       "olcek": 1.027
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7928,
+        0.0093,
+        1.468
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7928,
+        0.0093,
+        1.468
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5727,
+        0.0052,
+        1.565
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0664,
+        1.3349
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1946,
+        0.0,
+        1.0166
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1946,
+        0.0,
+        1.0166
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.818,
+       "bas_genislik": 0.187,
+       "olcek": 1.027
+      }
+     }
+    },
+    {
+     "glb": "/tmp/motor_onbellek/insan/erkek_cff0ab1ce3_k3.glb",
+     "anahtar": "d1e53aca097bbb47",
+     "kisi": {
+      "tohum": 15703,
+      "yas_yil": 45.1,
+      "makro": {
+       "gender": 1.0,
+       "age": 0.6546,
+       "muscle": 0.4377,
+       "weight": 0.6492,
+       "height": 0.5133,
+       "proportions": 0.4997,
+       "caucasian": 0.8968,
+       "asian": 0.0578,
+       "african": 0.0454
+      },
+      "boy_m": 1.81,
+      "yuz": {
+       "guc": 0.85,
+       "bolgeler": {
+        "nose": 3,
+        "chin": 2,
+        "eyebrows": 2,
+        "cheek": 2,
+        "mouth": 2,
+        "ears": 1,
+        "head": 2,
+        "neck": 1,
+        "eyes": 2,
+        "forehead": 1
+       }
+      },
+      "ten": {
+       "renk": [
+        0.482,
+        0.3156,
+        0.2201
+       ]
+      },
+      "sakal": {
+       "tur": "biyik",
+       "renk": [
+        0.121,
+        0.1091,
+        0.1012
+       ],
+       "uzunluk_carpan": 0.806
+      },
+      "sac_kabuk": {
+       "acik": true,
+       "renk": [
+        0.121,
+        0.1091,
+        0.1012
+       ],
+       "uzunluk_m": 0.0074
+      },
+      "kas": {
+       "acik": true,
+       "yogunluk": 1.332
+      },
+      "sac_renk": [
+       0.121,
+       0.1091,
+       0.1012
+      ],
+      "goz_renk": [
+       0.2,
+       0.28,
+       0.32
+      ],
+      "varliklar": {}
+     },
+     "sha256": "4be8659d72cd13e2019feb3dd71419a8f2c316e1bb81348613ed787629ccce43",
+     "bayt": 2982252,
+     "olcum": {
+      "boy_m": 1.838,
+      "genislik_m": 1.814,
+      "ucgen": 29348,
+      "kemik_sayisi": 65,
+      "evrensel_iskelet_eslesen": 65,
+      "evrensel_iskelet_toplam": 65,
+      "animasyonlar": [
+       "Death01",
+       "Driving_Loop",
+       "Fixing_Kneeling",
+       "Hit_Chest",
+       "Idle_Loop",
+       "Idle_Torch_Loop",
+       "Interact",
+       "Jog_Fwd_Loop",
+       "Push_Loop",
+       "Sprint_Loop",
+       "Sword_Attack",
+       "Sword_Idle",
+       "Walk_Formal_Loop",
+       "Walk_Loop"
+      ],
+      "doku_sayisi": 19,
+      "en_buyuk_doku": 512,
+      "bas_orani": 0.142
+     },
+     "yuvalar": {
+      "bas": {
+       "kemik": "Head",
+       "konum": [
+        0.0,
+        0.091,
+        1.817
+       ],
+       "olcek": 0.972
+      },
+      "sag_el": {
+       "kemik": "hand_r",
+       "konum": [
+        0.7816,
+        0.0076,
+        1.4635
+       ],
+       "olcek": 1.0
+      },
+      "sol_el": {
+       "kemik": "hand_l",
+       "konum": [
+        -0.7816,
+        0.0076,
+        1.4635
+       ],
+       "olcek": 1.0
+      },
+      "sol_kol": {
+       "kemik": "lowerarm_l",
+       "konum": [
+        -0.5679,
+        0.0035,
+        1.5605
+       ],
+       "olcek": 1.0
+      },
+      "sirt": {
+       "kemik": "spine_03",
+       "konum": [
+        0.0,
+        -0.0677,
+        1.2637
+       ],
+       "olcek": 1.0
+      },
+      "bel_sol": {
+       "kemik": "pelvis",
+       "konum": [
+        -0.1907,
+        0.0,
+        0.9624
+       ],
+       "olcek": 1.0
+      },
+      "bel_sag": {
+       "kemik": "pelvis",
+       "konum": [
+        0.1907,
+        0.0,
+        0.9624
+       ],
+       "olcek": 1.0
+      },
+      "_govde": {
+       "bas_tepe": 1.817,
+       "bas_genislik": 0.177,
+       "olcek": 0.972
+      }
+     }
+    }
+   ]
   }
  },
  "takimlar": {

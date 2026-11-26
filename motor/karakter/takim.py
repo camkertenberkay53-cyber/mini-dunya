@@ -21,6 +21,7 @@ import yaml
 from motor import ayar
 from motor.varlik import katalog
 from motor.varlik import ekipman as ekipman_mod
+from motor.karakter import insan
 
 KITLER = Path(__file__).resolve().parent.parent / "kit" / "faz3"
 BETIK = Path(__file__).resolve().parent.parent / "varlik" / "blender"
@@ -121,7 +122,7 @@ def derle(zorla: bool = False) -> dict:
     kitler = kitleri_yukle()
     ozet = json.loads(OZET.read_text()) if OZET.exists() else {"govdeler": {}, "takimlar": {}}
     reddedilen = {}
-    gerekli = {}
+    gerekli, gid_kit = {}, {}
     for kad, kit in kitler.items():
         for rol, k in karakterler(kit):
             h = kural_denetle(kit, k, kat)
@@ -129,6 +130,7 @@ def derle(zorla: bool = False) -> dict:
                 reddedilen[k["ad"]] = h
                 continue
             gerekli.setdefault(govde_kimligi(k), k)
+            gid_kit.setdefault(govde_kimligi(k), kad)
     betik = _betik_ozeti()
     for gid, k in gerekli.items():
         parcalar, malz = [], {}
@@ -139,14 +141,21 @@ def derle(zorla: bool = False) -> dict:
         kullanilan = [katalog.bul(kayit, GOVDELER[k["govde"]]), katalog.bul(kayit, UAL)] + [katalog.bul(kayit, SAC[s]) for s in sorted(set(k.get("sac", [])) | {"kas"})]
         anahtar = hashlib.sha256(json.dumps([parcalar, malz, [v["sha256"] for v in kullanilan], betik, ANIMASYONLAR], sort_keys=True).encode()).hexdigest()[:16]
         glb = GOVDE_CIKTI / f"{gid}.glb"
-        if not zorla and ozet["govdeler"].get(gid, {}).get("anahtar") == anahtar and glb.exists():
-            continue
         tarif = {
             "kiyafet": str(katalog.dosya_yolu(kullanilan[0])), "govde": None,
             "ekler": [str(katalog.dosya_yolu(v)) for v in kullanilan[2:]],
             "animasyon_fbx": str(katalog.dosya_yolu(kullanilan[1])), "animasyonlar": ANIMASYONLAR,
             "giysiler": parcalar, "malzemeler": malz, "doku_siniri": 1024, "cikti": str(glb),
         }
+        if insan.acik():   # gerçekçi insanlar: aynı giysi tarifiyle N farklı kişi (UBC gövdesi geri dönüş için kalır)
+            kisiler = insan.derle(gid, gid_kit[gid], sorted(set(k.get("sac", []))), tarif, tarif["kiyafet"], anahtar,
+                                  ozet["govdeler"].get(gid))
+            if gid in ozet["govdeler"]:
+                ozet["govdeler"][gid]["kisiler"] = kisiler
+        else:
+            kisiler = None
+        if not zorla and ozet["govdeler"].get(gid, {}).get("anahtar") == anahtar and glb.exists():
+            continue
         tj = GOVDE_CIKTI / f"{gid}.tarif.json"
         tj.write_text(json.dumps(tarif, ensure_ascii=False, indent=1))
         p = subprocess.run([sys.executable, str(BETIK / "karakter_kur.py"), str(tj)], capture_output=True, text=True, timeout=1800)
@@ -165,8 +174,11 @@ def derle(zorla: bool = False) -> dict:
             "kaynaklar": [v["id"] for v in kullanilan], "lisanslar": sorted({v["lisans"] for v in kullanilan} | {"kendi-uretim"}),
             "olcum": json.loads(olc.read_text()), "yuvalar": json.loads(glb.with_suffix(".yuva.json").read_text()),
         }
+        if kisiler is not None:
+            ozet["govdeler"][gid]["kisiler"] = kisiler
         print("GÖVDE DERLENDİ", gid, "+".join(k.get("giysiler", [])), f"{glb.stat().st_size / 1e6:.1f} MB")
     ozet["takimlar"] = {}
+    red = insan.reddedilenler()
     for kad, kit in kitler.items():
         for rol, k in karakterler(kit):
             if k["ad"] in reddedilen:
@@ -175,6 +187,8 @@ def derle(zorla: bool = False) -> dict:
             takim = {
                 "ad": k["ad"], "kit": kad, "rol": rol, "govde_id": gid, "glb": str(GOVDE_CIKTI / f"{gid}.glb"),
                 "binek": k.get("binek"),
+                "kisiler": [x["glb"] for i, x in enumerate(ozet["govdeler"].get(gid, {}).get("kisiler", []))
+                            if f"{k['ad']}#k{i}" not in red] if insan.acik() else [],   # montaj testinden geçenler
                 "takilanlar": [{"yuva": y, "id": pid, "glb": str(ekipman_mod.CIKTI / f"{pid}.glb"),
                                 "kategori": kat["parcalar"][pid]["kategori"]} for y, pid in (k.get("takilanlar") or {}).items()],
             }
