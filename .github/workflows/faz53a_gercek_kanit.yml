@@ -57,6 +57,25 @@ jobs:
           cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
           mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
           find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60
+      - name: 4) Özet ve önizleme (iş akışı kaydına; artifact'a erişemeyen ortamlar için)
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import base64, io, json, pathlib
+          from PIL import Image
+          for oz in sorted(pathlib.Path("deneyler/faz53a/gercek").glob("*/ozet.json")):
+              print("=== OZET", oz.parent.name)
+              print(oz.read_text())
+              for j in sorted(oz.parent.glob("*.jpg")):
+                  im = Image.open(j).convert("RGB")
+                  if im.width > 1400:
+                      im = im.resize((1400, round(im.height * 1400 / im.width)))
+                  b = io.BytesIO()
+                  im.save(b, "JPEG", quality=72)
+                  print(f"=== ONIZLEME {oz.parent.name}/{j.name} {len(b.getvalue())}")
+                  print(base64.b64encode(b.getvalue()).decode())
+                  print("=== ONIZLEME_SON")
+          PY
       - name: Artifact
         if: always()
         uses: actions/upload-artifact@v4
