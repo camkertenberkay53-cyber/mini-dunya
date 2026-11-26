@@ -184,3 +184,9 @@ karakter_kalite:
   ten:
     acik: true
     kural: {desen: "^(mi_superhero|mi_skin)", doku: polyhaven/white_rough_plaster, tekrar: 9.0, detay_guc: 0.12, normal_guc: 0.35, pur_carp: 0.35, pur_taban: 0.5, asinma: 0.14, kenar_koyu: 0.18}
+# Faz 5.2 adım 2 — TEK ANAHTAR isik_onayarlari.acik. Açıkken: (1) plan 'atmosfer.isik_eslesme' (konu verisinden) çekimin
+# ışığını dönemin atmosfer ön ayarına eşler; (2) ön ayarın 'sinema' alanı etkin sinematik profilin gök/sis/pozlama
+# değerlerinin üstüne yazılır; (3) 'pus' alanı film geçişinin hava perspektifini ön ayara göre ayarlar.
+# Kapalıyken plan ve render önceki gibi (bütün ışıklarda aynı sinematik gök/sis).
+isik_onayarlari:
+  acik: true

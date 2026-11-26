@@ -123,6 +123,19 @@
      }
     }
    }
+  },
+  "atmosfer": {
+   "type": "object",
+   "description": "Faz 5.2 atmosfer: senaryonun genel ışık adlarını dönemin ön ayarlarına eşler (kurallar/arazi.yaml isiklar).",
+   "properties": {
+    "isik_eslesme": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     }
+    }
+   },
+   "additionalProperties": false
   }
  }
 }

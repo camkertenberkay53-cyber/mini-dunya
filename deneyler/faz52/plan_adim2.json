@@ -1,0 +1,1794 @@
+{
+ "surum": 1,
+ "konu": "otlukbeli-1473",
+ "donem": "osmanli-15yy",
+ "donemler": [
+  "osmanli-15yy",
+  "akkoyunlu-15yy"
+ ],
+ "fps": 30,
+ "cozunurluk": [
+  1080,
+  1920
+ ],
+ "tohum": 7,
+ "cekimler": [
+  {
+   "id": "S1",
+   "cumleler": [
+    "S1"
+   ],
+   "sure_sn": 2.561,
+   "tur": "3d",
+   "amac": "kanca",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "aksam_ustu",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "osm_bey",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      2.0
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.03,
+      0.03
+     ],
+     "yon_derece": 0.9,
+     "animasyon": "ual2/Idle_FoldArms_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.027
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      0.06,
+      -0.1
+     ],
+     "yon_derece": 2.6,
+     "animasyon": "ual2/Idle_FoldArms_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.002
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      1.0,
+      0.04
+     ],
+     "yon_derece": -5.9,
+     "animasyon": "ual2/Idle_FoldArms_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.001
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.15,
+      -1.38
+     ],
+     "yon_derece": -3.5,
+     "animasyon": "ual2/Idle_FoldArms_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.02
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "orta",
+    "hareket": "itme",
+    "bas": {
+     "konum": [
+      1.132,
+      1.45,
+      8.42
+     ],
+     "hedef": [
+      0.0,
+      1.5,
+      2.0
+     ],
+     "fov": 40.0
+    },
+    "son": {
+     "konum": [
+      0.813,
+      1.45,
+      6.608
+     ],
+     "hedef": [
+      0.0,
+      1.5,
+      2.0
+     ],
+     "fov": 32.0
+    },
+    "yumusatma": "giris"
+   },
+   "meta": {
+    "tur": "itme_dramatik",
+    "hareket": "itme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "osm_bey",
+    "arazi": "ova_cimen",
+    "aciklama": "Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     40,
+     32
+    ],
+    "secim_gerekcesi": [
+     "amaç 'kanca': ['itme_dramatik', 'alcak_yaklasma', 'capraz_yorunge']"
+    ],
+    "tercih_sirasi": [
+     "itme_dramatik",
+     "alcak_yaklasma",
+     "capraz_yorunge"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S2",
+   "cumleler": [
+    "S2"
+   ],
+   "sure_sn": 4.498,
+   "tur": "3d",
+   "amac": "baglam",
+   "donem": "akkoyunlu-15yy",
+   "ortam": {
+    "arazi": "kuru_bozkir",
+    "isik": "oglen_acik",
+    "kalabalik": "ordu",
+    "cevre": [
+     {
+      "id": "topak_ev",
+      "konum": [
+       18.48,
+       -14.85
+      ],
+      "yon_derece": 0.0
+     },
+     {
+      "id": "topak_ev",
+      "konum": [
+       10.03,
+       -29.08
+      ],
+      "yon_derece": 37.0
+     }
+    ]
+   },
+   "karakterler": [
+    {
+     "takim": "akk_bey_gurz",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "akk_zirhli_gurz",
+     "rol": "piyade",
+     "konum": [
+      -3.61,
+      0.12
+     ],
+     "yon_derece": 4.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.006
+    },
+    {
+     "takim": "akk_zirhli_kilic",
+     "rol": "piyade",
+     "konum": [
+      -2.34,
+      -0.07
+     ],
+     "yon_derece": -2.5,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.95
+    },
+    {
+     "takim": "akk_zirhli_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.29,
+      0.07
+     ],
+     "yon_derece": -2.9,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.02
+    },
+    {
+     "takim": "akk_zirhli_gurz",
+     "rol": "piyade",
+     "konum": [
+      -0.04,
+      0.05
+     ],
+     "yon_derece": 5.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.981
+    },
+    {
+     "takim": "akk_zirhli_kilic",
+     "rol": "piyade",
+     "konum": [
+      1.25,
+      0.01
+     ],
+     "yon_derece": 5.8,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.032,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.043
+    },
+    {
+     "takim": "akk_zirhli_mizrak",
+     "rol": "piyade",
+     "konum": [
+      2.28,
+      0.1
+     ],
+     "yon_derece": -3.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.952
+    },
+    {
+     "takim": "akk_zirhli_gurz",
+     "rol": "piyade",
+     "konum": [
+      3.7,
+      0.09
+     ],
+     "yon_derece": -5.5,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.98
+    },
+    {
+     "takim": "akk_zirhli_kilic",
+     "rol": "piyade",
+     "konum": [
+      -0.07,
+      -1.67
+     ],
+     "yon_derece": 3.5,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.956
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "uzak",
+    "hareket": "genis_suzulme",
+    "bas": {
+     "konum": [
+      -8.157,
+      4.0,
+      13.563
+     ],
+     "hedef": [
+      0.0,
+      3.2,
+      1.6
+     ],
+     "fov": 55.0
+    },
+    "son": {
+     "konum": [
+      -10.365,
+      5.0,
+      11.711
+     ],
+     "hedef": [
+      0.0,
+      3.2,
+      1.6
+     ],
+     "fov": 55.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "kurulus_genis",
+    "hareket": "genis_suzulme",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "capraz",
+    "dizilis": "sira",
+    "odak": "akk_bey_gurz",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     55,
+     55
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "kalabalık (9 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "kurulus_genis",
+     "tele_kalabalik",
+     "drone_gecis",
+     "yuksek_genis",
+     "goz_pan",
+     "yan_takip"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S3a",
+   "cumleler": [
+    "S3"
+   ],
+   "sure_sn": 2.805,
+   "tur": "3d",
+   "amac": "olay",
+   "metin_katmani": "11 Ağustos 1473 · Otlukbeli (Tercan)",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "oglen_acik",
+    "kalabalik": "ordu",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      0.0,
+      2.0
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.75
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.01,
+      -0.09
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.7596,
+     "olcek": 1.013
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -0.05,
+      -0.02
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.782,
+     "olcek": 1.043
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "uzak",
+    "hareket": "takip",
+    "bas": {
+     "konum": [
+      10.296,
+      1.6,
+      3.816
+     ],
+     "hedef": [
+      0.0,
+      1.3,
+      2.0
+     ],
+     "fov": 38.0
+    },
+    "son": {
+     "konum": [
+      10.296,
+      1.6,
+      5.919
+     ],
+     "hedef": [
+      0.0,
+      1.3,
+      4.104
+     ],
+     "fov": 38.0
+    },
+    "yumusatma": "dogrusal"
+   },
+   "meta": {
+    "tur": "yan_takip",
+    "hareket": "takip",
+    "yukseklik": "goz",
+    "aci_kovasi": "yan",
+    "dizilis": "kol",
+    "odak": "osm_yeniceri_kilic",
+    "arazi": "ova_cimen",
+    "aciklama": "Göz hizasında yandan paralel takip",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak",
+     "osm_yeniceri_mizrak"
+    ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yan_takip",
+     "tele_kalabalik",
+     "drone_gecis",
+     "yuksek_genis",
+     "capraz_yorunge",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S3b",
+   "cumleler": [
+    "S3"
+   ],
+   "sure_sn": 2.805,
+   "tur": "3d",
+   "amac": "olay",
+   "metin_katmani": "11 Ağustos 1473 · Otlukbeli (Tercan)",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "oglen_acik",
+    "kalabalik": "ordu",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      0.0,
+      2.0
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.75
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.06,
+      -0.05
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.7661,
+     "olcek": 1.021
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -0.07,
+      0.01
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.7601,
+     "olcek": 1.014
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      1.17,
+      0.14
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.7641,
+     "olcek": 1.019
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.16,
+      -1.51
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.7754,
+     "olcek": 1.034
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -0.05,
+      -1.37
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.032,
+     "hiz_m_sn": 0.7283,
+     "olcek": 0.971
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      1.16,
+      -1.52
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.723,
+     "olcek": 0.964
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.23,
+      -3.03
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.7742,
+     "olcek": 1.032
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -0.01,
+      -2.96
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.7557,
+     "olcek": 1.008
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      1.12,
+      -2.97
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.7517,
+     "olcek": 1.002
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.23,
+      -4.44
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.063,
+     "hiz_m_sn": 0.7219,
+     "olcek": 0.963
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      0.1,
+      -4.55
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Walk_Loop",
+     "faz_sn": 0.279,
+     "hiz_m_sn": 0.7499,
+     "olcek": 1.0
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "uzak",
+    "hareket": "sabit_suzulme",
+    "bas": {
+     "konum": [
+      4.544,
+      1.8,
+      24.43
+     ],
+     "hedef": [
+      0.0,
+      1.9,
+      3.052
+     ],
+     "fov": 18.0
+    },
+    "son": {
+     "konum": [
+      4.726,
+      2.2,
+      25.285
+     ],
+     "hedef": [
+      0.0,
+      1.9,
+      3.052
+     ],
+     "fov": 18.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "tele_kalabalik",
+    "hareket": "sabit_suzulme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "osm_yeniceri_kilic",
+    "arazi": "ova_cimen",
+    "aciklama": "Ordunun büyüklüğü; önden uzun lens",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     18,
+     18
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yan_takip",
+     "tele_kalabalik",
+     "drone_gecis",
+     "yuksek_genis",
+     "capraz_yorunge",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S4",
+   "cumleler": [
+    "S4"
+   ],
+   "sure_sn": 4.009,
+   "tur": "3d",
+   "amac": "gerilim",
+   "donem": "akkoyunlu-15yy",
+   "ortam": {
+    "arazi": "kuru_bozkir",
+    "isik": "oglen_acik",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "akk_suvari",
+     "rol": "suvari",
+     "konum": [
+      0.0,
+      3.5
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Driving_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 4.057,
+     "binek": {
+      "id": "at",
+      "animasyon": "Run"
+     }
+    },
+    {
+     "takim": "akk_suvari_gurz",
+     "rol": "suvari",
+     "konum": [
+      -2.41,
+      0.08
+     ],
+     "yon_derece": -2.7,
+     "animasyon": "Driving_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 4.057,
+     "binek": {
+      "id": "at",
+      "animasyon": "Run"
+     },
+     "olcek": 1.042
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "uzak",
+    "hareket": "takip",
+    "bas": {
+     "konum": [
+      10.296,
+      1.6,
+      5.316
+     ],
+     "hedef": [
+      0.0,
+      1.3,
+      3.5
+     ],
+     "fov": 38.0
+    },
+    "son": {
+     "konum": [
+      10.296,
+      1.6,
+      21.58
+     ],
+     "hedef": [
+      0.0,
+      1.3,
+      19.765
+     ],
+     "fov": 38.0
+    },
+    "yumusatma": "dogrusal"
+   },
+   "meta": {
+    "tur": "yan_takip",
+    "hareket": "takip",
+    "yukseklik": "goz",
+    "aci_kovasi": "yan",
+    "dizilis": "suvari_kol",
+    "odak": "akk_suvari",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Göz hizasında yandan paralel takip",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "akk_suvari_yay",
+     "akk_suvari_gurz",
+     "akk_suvari_yay",
+     "akk_suvari_gurz",
+     "akk_suvari_yay"
+    ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "eylem 'suvari_hucum': ['yan_takip', 'alcak_geri_takip', 'capraz_yorunge'] önce",
+     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+    ],
+    "tercih_sirasi": [
+     "yan_takip",
+     "alcak_geri_takip",
+     "capraz_yorunge",
+     "alcak_yaklasma",
+     "yan_profil"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S5",
+   "cumleler": [
+    "S5"
+   ],
+   "sure_sn": 3.212,
+   "tur": "3d",
+   "amac": "gerilim",
+   "donem": "akkoyunlu-15yy",
+   "ortam": {
+    "arazi": "kuru_bozkir",
+    "isik": "aksam_ustu",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "akk_bey_gurz",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "akk_okcu",
+     "rol": "okcu",
+     "konum": [
+      -1.18,
+      -0.01
+     ],
+     "yon_derece": -4.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.986
+    },
+    {
+     "takim": "akk_okcu_kilic",
+     "rol": "okcu",
+     "konum": [
+      -0.03,
+      0.04
+     ],
+     "yon_derece": 3.5,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.951
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "orta",
+    "hareket": "yaklasma",
+    "bas": {
+     "konum": [
+      1.593,
+      0.6,
+      7.545
+     ],
+     "hedef": [
+      0.0,
+      1.6,
+      1.6
+     ],
+     "fov": 34.0
+    },
+    "son": {
+     "konum": [
+      1.274,
+      0.6,
+      6.356
+     ],
+     "hedef": [
+      0.0,
+      1.6,
+      1.6
+     ],
+     "fov": 34.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "alcak_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "alcak",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "akk_bey_gurz",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "akk_okcu_zirhli"
+    ],
+    "lens_fov": [
+     34,
+     34
+    ],
+    "secim_gerekcesi": [
+     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+    ],
+    "tercih_sirasi": [
+     "alcak_yaklasma",
+     "capraz_yorunge",
+     "alcak_geri_takip",
+     "yan_profil"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S6",
+   "cumleler": [
+    "S6"
+   ],
+   "sure_sn": 3.409,
+   "tur": "3d",
+   "amac": "gerilim",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "aksam_ustu",
+    "cevre": [
+     {
+      "id": "top_arabasi",
+      "konum": [
+       -7.18,
+       -23.67
+      ],
+      "yon_derece": 0.0
+     },
+     {
+      "id": "top_arabasi",
+      "konum": [
+       -23.64,
+       -21.92
+      ],
+      "yon_derece": 37.0
+     }
+    ]
+   },
+   "karakterler": [
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      0.08,
+      -0.02
+     ],
+     "yon_derece": -3.9,
+     "animasyon": "ual2/Sword_Regular_A",
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      -0.72,
+      -2.82
+     ],
+     "yon_derece": 6.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 1.292,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.04
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "orta",
+    "hareket": "el",
+    "bas": {
+     "konum": [
+      2.502,
+      1.5,
+      3.995
+     ],
+     "hedef": [
+      0.08,
+      1.35,
+      -0.02
+     ],
+     "fov": 42.0
+    },
+    "son": {
+     "konum": [
+      1.894,
+      1.42,
+      3.565
+     ],
+     "hedef": [
+      0.08,
+      1.35,
+      -0.02
+     ],
+     "fov": 42.0
+    },
+    "yumusatma": "giris_cikis",
+    "sarsinti": {
+     "derece": 0.8
+    }
+   },
+   "meta": {
+    "tur": "el_kamerasi",
+    "hareket": "el",
+    "yukseklik": "goz",
+    "aci_kovasi": "capraz",
+    "dizilis": "kol",
+    "odak": "osm_yeniceri_kilic",
+    "arazi": "ova_cimen",
+    "aciklama": "Savaşın içinden el kamerası; omuz hizası",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "akk_okcu_kilic",
+     "akk_okcu_kilic",
+     "akk_okcu_kilic",
+     "akk_okcu_kilic"
+    ],
+    "lens_fov": [
+     42,
+     42
+    ],
+    "secim_gerekcesi": [
+     "eylem 'savas': ['el_kamerasi', 'capraz_yorunge'] önce",
+     "kalabalık (10 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'gerilim': ['alcak_yaklasma', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+    ],
+    "tercih_sirasi": [
+     "el_kamerasi",
+     "capraz_yorunge",
+     "alcak_yaklasma",
+     "tele_kalabalik",
+     "drone_gecis",
+     "yuksek_genis",
+     "alcak_geri_takip",
+     "yan_profil"
+    ],
+    "reddedilen_adaylar": [],
+    "koreografi": {
+     "tur": "duello",
+     "cift": 4,
+     "karsi_donem": "akkoyunlu-15yy",
+     "ciftler": [
+      [
+       0.07,
+       0.85
+      ],
+      [
+       2.47,
+       0.84
+      ],
+      [
+       -2.6,
+       0.77
+      ],
+      [
+       4.78,
+       0.95
+      ]
+     ],
+     "rakip_takimlari": [
+      "akk_okcu_kilic"
+     ]
+    }
+   }
+  },
+  {
+   "id": "S7",
+   "cumleler": [
+    "S7"
+   ],
+   "sure_sn": 3.47,
+   "tur": "3d",
+   "amac": "donum",
+   "donem": "akkoyunlu-15yy",
+   "ortam": {
+    "arazi": "kuru_bozkir",
+    "isik": "aksam_ustu",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "akk_zirhli_gurz",
+     "rol": "piyade",
+     "konum": [
+      1.99,
+      -0.83
+     ],
+     "yon_derece": 60.8,
+     "animasyon": "Death01",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "akk_zirhli_kilic",
+     "rol": "piyade",
+     "konum": [
+      2.16,
+      0.85
+     ],
+     "yon_derece": 14.5,
+     "animasyon": "Death01",
+     "faz_sn": 0.25,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.036
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "orta",
+    "hareket": "sabit_suzulme",
+    "bas": {
+     "konum": [
+      4.493,
+      1.5,
+      -6.4
+     ],
+     "hedef": [
+      1.99,
+      0.5,
+      -0.83
+     ],
+     "fov": 30.0
+    },
+    "son": {
+     "konum": [
+      4.594,
+      1.9,
+      -6.623
+     ],
+     "hedef": [
+      1.99,
+      0.5,
+      -0.83
+     ],
+     "fov": 30.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "yan_profil",
+    "hareket": "sabit_suzulme",
+    "yukseklik": "goz",
+    "aci_kovasi": "yan",
+    "dizilis": "dagin",
+    "odak": "akk_zirhli_gurz",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Yandan sabit profil",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "akk_zirhli_mizrak",
+     "akk_zirhli_kilic"
+    ],
+    "lens_fov": [
+     30,
+     30
+    ],
+    "secim_gerekcesi": [
+     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'el_kamerasi', 'itme_dramatik']",
+     "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+    ],
+    "tercih_sirasi": [
+     "sabit_uzak",
+     "yan_profil",
+     "yuksek_genis",
+     "ust_aci_yaklasma"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S8a",
+   "cumleler": [
+    "S8"
+   ],
+   "sure_sn": 2.617,
+   "tur": "3d",
+   "amac": "final",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "aksam_ustu",
+    "yerlesim": "ordugah",
+    "cevre": [
+     {
+      "id": "top_arabasi",
+      "konum": [
+       -4.71,
+       -22.69
+      ],
+      "yon_derece": 0.0
+     },
+     {
+      "id": "osmanli_cadiri",
+      "konum": [
+       -21.26,
+       -22.69
+      ],
+      "yon_derece": 37.0
+     },
+     {
+      "id": "yuk_arabasi",
+      "konum": [
+       -5.18,
+       -37.91
+      ],
+      "yon_derece": 74.0
+     },
+     {
+      "id": "osmanli_cadiri",
+      "konum": [
+       -32.61,
+       -32.84
+      ],
+      "yon_derece": 21.0
+     }
+    ]
+   },
+   "karakterler": [
+    {
+     "takim": "osm_bey",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      -3.67,
+      0.09
+     ],
+     "yon_derece": 3.3,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.047
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -2.3,
+      0.13
+     ],
+     "yon_derece": -2.3,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.983
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      -1.09,
+      -0.01
+     ],
+     "yon_derece": -2.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.978
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      0.05,
+      0.14
+     ],
+     "yon_derece": 0.9,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.954
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      1.3,
+      -0.1
+     ],
+     "yon_derece": 5.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.032,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.987
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      2.39,
+      0.07
+     ],
+     "yon_derece": 0.3,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.001
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.23,
+      -1.57
+     ],
+     "yon_derece": 3.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.021
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      -0.1,
+      -1.65
+     ],
+     "yon_derece": -1.7,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.027
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      1.17,
+      -1.46
+     ],
+     "yon_derece": -5.3,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.063,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.011
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "uzak",
+    "hareket": "yukselme",
+    "bas": {
+     "konum": [
+      5.246,
+      1.0,
+      12.85
+     ],
+     "hedef": [
+      0.0,
+      1.4,
+      1.6
+     ],
+     "fov": 42.0
+    },
+    "son": {
+     "konum": [
+      6.12,
+      5.5,
+      14.724
+     ],
+     "hedef": [
+      0.0,
+      1.4,
+      1.6
+     ],
+     "fov": 42.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "yukselme",
+    "hareket": "yukselme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "osm_bey",
+    "arazi": "ova_cimen",
+    "aciklama": "Yerden yükselen vinç hareketi (kapanış",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "osm_yeniceri_kilic"
+    ],
+    "lens_fov": [
+     42,
+     42
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "kalabalık (11 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "yukselme",
+     "tele_kalabalik",
+     "drone_gecis",
+     "yuksek_genis",
+     "sabit_uzak",
+     "kurulus_genis",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": []
+   }
+  },
+  {
+   "id": "S8b",
+   "cumleler": [
+    "S8"
+   ],
+   "sure_sn": 2.617,
+   "tur": "3d",
+   "amac": "final",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "aksam_ustu",
+    "yerlesim": "ordugah",
+    "cevre": [
+     {
+      "id": "top_arabasi",
+      "konum": [
+       -9.31,
+       19.87
+      ],
+      "yon_derece": 0.0
+     },
+     {
+      "id": "osmanli_cadiri",
+      "konum": [
+       4.24,
+       29.37
+      ],
+      "yon_derece": 37.0
+     },
+     {
+      "id": "yuk_arabasi",
+      "konum": [
+       -17.65,
+       32.62
+      ],
+      "yon_derece": 74.0
+     },
+     {
+      "id": "osmanli_cadiri",
+      "konum": [
+       7.72,
+       44.2
+      ],
+      "yon_derece": 21.0
+     }
+    ]
+   },
+   "karakterler": [
+    {
+     "takim": "osm_bey",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      -3.48,
+      0.05
+     ],
+     "yon_derece": -5.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.972
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -2.5,
+      -0.03
+     ],
+     "yon_derece": -3.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.987
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      -1.21,
+      -0.05
+     ],
+     "yon_derece": -3.4,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.013
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      0.09,
+      -0.1
+     ],
+     "yon_derece": 2.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.988
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      1.15,
+      -0.12
+     ],
+     "yon_derece": -3.3,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.032,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.012
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      2.54,
+      -0.08
+     ],
+     "yon_derece": 5.5,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.95
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      3.6,
+      -0.05
+     ],
+     "yon_derece": 2.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.956
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -1.12,
+      -1.48
+     ],
+     "yon_derece": -3.1,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.001
+    },
+    {
+     "takim": "osm_yeniceri_kilic",
+     "rol": "piyade",
+     "konum": [
+      0.07,
+      -1.55
+     ],
+     "yon_derece": -0.8,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.197,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.998
+    },
+    {
+     "takim": "osm_yeniceri_mizrak",
+     "rol": "piyade",
+     "konum": [
+      1.3,
+      -1.56
+     ],
+     "yon_derece": -0.7,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.063,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.961
+    }
+   ],
+   "insan_boy_orani": 0.918,
+   "kamera": {
+    "plan": "uzak",
+    "hareket": "drone",
+    "bas": {
+     "konum": [
+      3.809,
+      16.0,
+      -19.999
+     ],
+     "hedef": [
+      0.762,
+      0.0,
+      -2.72
+     ],
+     "fov": 50.0
+    },
+    "son": {
+     "konum": [
+      1.371,
+      13.6,
+      -6.176
+     ],
+     "hedef": [
+      -0.762,
+      0.0,
+      5.92
+     ],
+     "fov": 50.0
+    },
+    "yumusatma": "dogrusal"
+   },
+   "meta": {
+    "tur": "drone_gecis",
+    "hareket": "drone",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "arka",
+    "dizilis": "sira",
+    "odak": "osm_bey",
+    "arazi": "ova_cimen",
+    "aciklama": "Ordunun üzerinden drone geçişi; yüksekten öne doğru süzülen kuşbakışına yakın plan",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     50,
+     50
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "kalabalık (11 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "yukselme",
+     "tele_kalabalik",
+     "drone_gecis",
+     "yuksek_genis",
+     "sabit_uzak",
+     "kurulus_genis",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": []
+   }
+  }
+ ],
+ "eksikler": [],
+ "ses": {
+  "motor": "piper",
+  "cizelge": [
+   {
+    "cumle": "S1",
+    "ses_bas_sn": 0.15,
+    "ses_sure_sn": 1.911,
+    "goruntu_bas_sn": 0.0,
+    "goruntu_son_sn": 2.561
+   },
+   {
+    "cumle": "S2",
+    "ses_bas_sn": 2.561,
+    "ses_sure_sn": 4.148,
+    "goruntu_bas_sn": 2.561,
+    "goruntu_son_sn": 7.059
+   },
+   {
+    "cumle": "S3",
+    "ses_bas_sn": 7.059,
+    "ses_sure_sn": 5.261,
+    "goruntu_bas_sn": 7.059,
+    "goruntu_son_sn": 12.67
+   },
+   {
+    "cumle": "S4",
+    "ses_bas_sn": 12.67,
+    "ses_sure_sn": 3.659,
+    "goruntu_bas_sn": 12.67,
+    "goruntu_son_sn": 16.679
+   },
+   {
+    "cumle": "S5",
+    "ses_bas_sn": 16.679,
+    "ses_sure_sn": 2.862,
+    "goruntu_bas_sn": 16.679,
+    "goruntu_son_sn": 19.891
+   },
+   {
+    "cumle": "S6",
+    "ses_bas_sn": 19.891,
+    "ses_sure_sn": 3.059,
+    "goruntu_bas_sn": 19.891,
+    "goruntu_son_sn": 23.3
+   },
+   {
+    "cumle": "S7",
+    "ses_bas_sn": 23.3,
+    "ses_sure_sn": 2.87,
+    "goruntu_bas_sn": 23.3,
+    "goruntu_son_sn": 26.77
+   },
+   {
+    "cumle": "S8",
+    "ses_bas_sn": 26.77,
+    "ses_sure_sn": 3.433,
+    "goruntu_bas_sn": 26.77,
+    "goruntu_son_sn": 32.003
+   }
+  ],
+  "toplam_sn": 32.0
+ },
+ "atmosfer": {
+  "isik_eslesme": {
+   "aksam_ustu": "kurak_altin",
+   "oglen_acik": "kurak_altin_ogle"
+  }
+ }
+}

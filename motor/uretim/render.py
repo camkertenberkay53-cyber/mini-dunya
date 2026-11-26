@@ -44,13 +44,28 @@ def gorsel_profili(g: dict, arazi: str, ad: str | None = None) -> dict:
     return sonuc
 
 
+def isik_adi(plan: dict, c: dict) -> str:
+    """Çekimin ışık ön ayarı: Faz 5.2 atmosfer eşlemesi (konu verisi → plan.atmosfer) açıksa dönem ön ayarı."""
+    ad = c["ortam"]["isik"]
+    if veri.kural("gorsel").get("isik_onayarlari", {}).get("acik"):
+        ad = (plan.get("atmosfer") or {}).get("isik_eslesme", {}).get(ad, ad)
+    return ad
+
+
+def _isik(plan: dict, c: dict) -> dict:
+    return veri.kural("arazi")["isiklar"][isik_adi(plan, c)]
+
+
 def is_hazirla(plan: dict, c: dict) -> dict:
     ar = dict(veri.kural("arazi")["araziler"][c["ortam"]["arazi"]])
-    isik = veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
+    isik = _isik(plan, c)
     kurallar = veri.kural("animasyon")["animasyonlar"]
     # Faz 5.2 görsel profili (kurallar/gorsel.yaml); hazır ayarların kendisi değişmez, kopyalarına eklenir
     gp = gorsel_profili(veri.kural("gorsel"), c["ortam"]["arazi"])
-    isik = dict(isik, gorsel=dict(gp.get("isik", {})))
+    gi = dict(gp.get("isik", {}))
+    if veri.kural("gorsel").get("isik_onayarlari", {}).get("acik"):
+        gi.update(isik.get("sinema", {}))   # ön ayara özel gök/sis/pozlama (profilin üstüne)
+    isik = dict(isik, gorsel=gi)
     ar["gorsel"] = dict(gp.get("arazi", {}))
     mk = veri.kural("gorsel").get("mekan_kalite", {})
     if mk.get("acik"):   # mekân kalite paketi: arazi doku eklemeleri (yamaç kayası vb.); kapalıyken eski görünüm
@@ -101,7 +116,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "malzeme": _malzeme(yer, {}),
         "kalabalik": _kalabalik(c, c.get("donem") or plan.get("donem")),
         "sinema": _sinema(),
-        "film": _film(c),
+        "film": _film(c, plan),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
                                        if any(k["animasyon"].startswith(ad + "/") for k in c.get("karakterler", []))},
         "sahne_merkezi": [sum(xs) / len(xs), sum(zs) / len(zs)],
@@ -213,7 +228,7 @@ def _sinema() -> dict:
     return s
 
 
-def _film(c: dict) -> dict:
+def _film(c: dict, plan: dict | None = None) -> dict:
     """Sinematik render geçişi (godot/sahneler/film.gd): gorsel.yaml 'film'; ışık hazır ayarına özel ek ayarlar 'isik_ozel'."""
     sr = veri.kural("gorsel").get("sinematik_render", {})
     if not sr.get("acik"):
@@ -223,8 +238,11 @@ def _film(c: dict) -> dict:
     if not _belgesel("fiziksel_lens"):
         f.update(klasik)
     f.update(f.pop("isik_ozel", {}).get(c["ortam"]["isik"], {}))
-    isik = veri.kural("arazi")["isiklar"][c["ortam"]["isik"]]
-    gp = gorsel_profili(veri.kural("gorsel"), c["ortam"]["arazi"])["isik"]
+    isik = _isik(plan or {}, c)
+    gp = dict(gorsel_profili(veri.kural("gorsel"), c["ortam"]["arazi"])["isik"])
+    if veri.kural("gorsel").get("isik_onayarlari", {}).get("acik"):   # ön ayarın hava perspektifi ve gök rengi
+        f.update(isik.get("pus", {}))
+        gp.update(isik.get("sinema", {}))
     if "pus_renk" not in f:   # hava rengi: sahne sis rengi ile gök tepe rengi karışımı (uzak plan maviye/soğuğa kayar)
         k = float(f.get("pus_gok_karisim", 0.4))
         sis, tepe = isik["sis"]["renk"], gp.get("gok_tepe", isik["gok"]["tepe"])

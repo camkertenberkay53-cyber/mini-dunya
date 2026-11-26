@@ -119,6 +119,9 @@ def denetle(plan: dict) -> dict:
     for d in sorted(set(donemler) | {plan["donem"]}):
         if d not in gecerli:
             h.append(f"plan: '{d}' dönemi için kit yok")
+    for kaynak, hedef in (plan.get("atmosfer") or {}).get("isik_eslesme", {}).items():   # Faz 5.2 atmosfer
+        if not ortam_secici.isik_var_mi(hedef):
+            h.append(f"plan: atmosfer eşlemesi '{kaynak}' → '{hedef}' ışık ön ayarı yok")
     for c in plan["cekimler"]:
         if c.get("donem") and c["donem"] not in donemler:
             h.append(f"{c['id']}: '{c['donem']}' dönemi konunun dönemleri arasında değil")

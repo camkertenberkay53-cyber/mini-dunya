@@ -58,6 +58,7 @@ def planla(klasor: Path, tohum: int = 7) -> dict:
         eksikler += [{"tur": _eksik_turu(e), "ne": e.split(": ", 1)[-1], "nerede": t["id"]} for e in eks]
     plan = {"surum": 1, "konu": konu["kimlik"], "donem": donem, "donemler": list(konu["donemler"]), "fps": 30, "cozunurluk": [1080, 1920], "tohum": tohum,
             "cekimler": cekimler, "eksikler": eksikler,
+            **({"atmosfer": konu["atmosfer"]} if konu.get("atmosfer") else {}),
             "ses": {"motor": next(iter(sureler.values()))["motor"], "cizelge": cizelge, "toplam_sn": toplam}}
     den = plan_denetim.denetle(plan)
     rapor["hatalar"]["plan_denetimi"] = den["hatalar"]

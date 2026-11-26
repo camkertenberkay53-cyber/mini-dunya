@@ -404,6 +404,18 @@
    },
    "minItems": 1,
    "description": "Konunun bütün dönemleri (çok taraflı konular). donem: ana dönem."
+  },
+  "atmosfer": {
+   "type": "object",
+   "properties": {
+    "isik_eslesme": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     }
+    }
+   },
+   "additionalProperties": false
   }
  }
 }

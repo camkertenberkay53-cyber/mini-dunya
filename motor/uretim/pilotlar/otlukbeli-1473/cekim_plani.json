@@ -1723,6 +1723,12 @@
   }
  ],
  "eksikler": [],
+ "atmosfer": {
+  "isik_eslesme": {
+   "aksam_ustu": "kurak_altin",
+   "oglen_acik": "kurak_altin_ogle"
+  }
+ },
  "ses": {
   "motor": "piper",
   "cizelge": [

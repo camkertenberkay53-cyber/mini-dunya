@@ -97,3 +97,30 @@ isiklar:
     dolgu: {aci: [-30, -60, 0], renk: [0.6, 0.64, 0.7], guc: 0.55}
     gok: {tepe: [0.46, 0.5, 0.55], ufuk: [0.68, 0.7, 0.72]}
     sis: {renk: [0.66, 0.68, 0.7], yogunluk: 0.009}
+  # --- Faz 5.2 atmosfer ön ayarları (gorsel.yaml isik_onayarlari.acik iken kullanılır; konu.atmosfer eşler) ---
+  # sinema: etkin sinematik profilin üstüne yalnız bu ön ayar için yazılan değerler (gök, sis, pozlama)
+  # pus: film geçişinin hava perspektifi (uzaklıkla artan pus) için ön ayara özel değerler
+  kurak_altin:
+    aciklama: Kurak bozkırda alçak altın güneş (≈15°); sıcak, tozlu hava; uzak tepeler pusta kaybolur.
+    gunes: {aci: [-15, 118, 0], renk: [1.0, 0.76, 0.52], guc: 1.7}
+    dolgu: {aci: [-30, -60, 0], renk: [0.62, 0.64, 0.74], guc: 0.3}
+    gok: {tepe: [0.40, 0.46, 0.56], ufuk: [0.92, 0.78, 0.60]}
+    sis: {renk: [0.88, 0.76, 0.60], yogunluk: 0.007, yukseklik_yogunlugu: 0.03}
+    sinema: {gok_tepe: [0.22, 0.35, 0.56], gok_ufuk: [0.93, 0.76, 0.56], sis_carpan: 0.75, yer_sisi_carpan: 0.6, sis_renk_carpan: 0.85, sis_gok: 0.1, pozlama: 1.26, bulut_miktar: 0.42}
+    pus: {pus_yogunluk: 0.0045, pus_bas: 30.0, pus_max: 0.42, pus_gok_karisim: 0.25}
+  kurak_altin_ogle:
+    aciklama: Kurak bozkırda öğleden sonra (≈35°); sert, sıcak ışık; tozlu, hafif sarımsı pus.
+    gunes: {aci: [-35, 135, 0], renk: [1.0, 0.86, 0.68], guc: 1.4}
+    dolgu: {aci: [-30, -60, 0], renk: [0.62, 0.68, 0.8], guc: 0.35}
+    gok: {tepe: [0.36, 0.48, 0.66], ufuk: [0.88, 0.80, 0.68]}
+    sis: {renk: [0.86, 0.78, 0.66], yogunluk: 0.006, yukseklik_yogunlugu: 0.02}
+    sinema: {gok_tepe: [0.22, 0.38, 0.62], gok_ufuk: [0.90, 0.80, 0.64], sis_carpan: 0.6, yer_sisi_carpan: 0.45, sis_renk_carpan: 0.8, sis_gok: 0.15}
+    pus: {pus_yogunluk: 0.0035, pus_bas: 35.0, pus_max: 0.36, pus_gok_karisim: 0.3}
+  soguk_safak:
+    aciklama: Soğuk şafak; alçak, solgun güneş (≈9°), mavi-gri yoğun pus, yumuşak gölgeler.
+    gunes: {aci: [-9, 60, 0], renk: [0.86, 0.88, 1.0], guc: 1.0}
+    dolgu: {aci: [-30, -120, 0], renk: [0.55, 0.62, 0.78], guc: 0.5}
+    gok: {tepe: [0.36, 0.44, 0.58], ufuk: [0.78, 0.80, 0.86]}
+    sis: {renk: [0.72, 0.78, 0.86], yogunluk: 0.011, yukseklik_yogunlugu: 0.06}
+    sinema: {gok_tepe: [0.30, 0.38, 0.52], gok_ufuk: [0.76, 0.80, 0.88], sis_carpan: 0.95, yer_sisi_carpan: 0.9, sis_renk_carpan: 0.75, pozlama: 1.18, bulut_miktar: 0.55}
+    pus: {pus_yogunluk: 0.006, pus_bas: 20.0, pus_max: 0.5, pus_gok_karisim: 0.55}
