@@ -84,7 +84,8 @@ def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
         tm = time.time()
         try:
             g = GeminiLLMProvider(zaman_asimi=90.0, en_cok_tekrar=1, sure_butcesi=SURE_BUTCESI[m], ilerleme=log)
-            p = plan_uret(konu, m, g, arastirma=havuz, parcali=(m == "uzun"), ilerleme=log)
+            # paralel=2: ücretsiz katman dakika başı istek sınırına (429) takılmamak için
+            p = plan_uret(konu, m, g, arastirma=havuz, parcali=(m == "uzun"), ilerleme=log, paralel=2)
             ozet = {"durum": p["durum"], "model": g.kullanilan_model, "gemini_cagri": g.cagri_sayisi,
                     "sure_sn": round(time.time() - tm, 1),
                     "katmanlar": {k: [{"deneme": d["deneme"], "tur": d["tur"], "hata_sayisi": len(d["hatalar"]),

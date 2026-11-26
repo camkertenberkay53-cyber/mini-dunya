@@ -37,8 +37,8 @@ _AKADEMIK = ("doi.org", "jstor.org", "dergipark.org.tr", "academia.edu", "resear
 _ARSIV = ("archive.org", "devletarsivleri.gov.tr", "gallica.bnf.fr", "loc.gov", "europeana.eu", "wdl.org",
           "digitale-sammlungen.de", "e-codices.ch")
 _OLCU = {   # sayının hemen çevresinde aranan anahtarlar (ilk 5 harf, ASCII katlanmış)
-    "ordu": ["asker", "kisil", "ordu", "kuvve", "sueva", "atli", "piyad", "troop", "army", "soldi", "force", "caval",
-             "infan", "streng"],
+    "ordu": ["asker", "kisil", "ordu", "kuvve", "sueva", "atli", "piyad", "yenic", "troop", "army", "soldi", "force",
+             "caval", "infan", "streng", "janis", "men", "peopl", "warri", "horse"],
     "kayip": ["kayip", "kayb", "olu", "oldu", "olum", "sehit", "casua", "kille", "losse", "dead", "death", "slain"],
 }
 
@@ -347,7 +347,8 @@ def sayisal_koruma(kayitlar: list[dict]) -> None:
                             "kural": "ortalama alınmaz; değerler ayrı aktarılır"}
             k["celiski_notu"] = CELISKI_IFADESI
             continue
-        sayisal = bool(olcu & {"ordu", "kayip"})
+        # ordu/kayıp ya da sınıflanamamış büyük rakam (≥100): tek bağımsız kaynakla kesin anlatılamaz
+        sayisal = bool(olcu & {"ordu", "kayip"}) or any(s["olcu_turu"] == "diger" and s["deger"] >= 100 for s in k["sayilar"])
         tarih_tek = bool(k["yil"]) and k["tarih_teyit_kume_sayisi"] < 2
         if (sayisal and k["bagimsiz_kaynak_sayisi"] < 2) or tarih_tek:
             k["durum"] = "tartismali"

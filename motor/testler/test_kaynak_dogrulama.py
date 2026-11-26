@@ -672,3 +672,18 @@ def test_uzun_parcali_uretim_bolum_bolum_ve_kapidan_gecer():
     m2 = MockLLMProvider()
     sp.plan_uret("Örnek Kale", "shorts", m2, parcali=True)
     assert [c["adim"] for c in m2.cagrilar].count("sahne_plani") == 1
+
+
+def test_siniflanamayan_buyuk_rakam_da_tek_kaynakla_kesinlesmez():
+    kay = [{"id": "a1", "iddia": "60,000 people harassed the forces.", "yil": None,
+            "sayilar": kk._sayilar("On the wings, 60,000 people began to harass the forces."),
+            "kaynaklar": [{"kume": 0, "teyit_turu": "icerik"}], "bagimsiz_kaynak_sayisi": 1, "tarih_teyit_kume_sayisi": 1},
+           {"id": "a2", "iddia": "x", "yil": None, "sayilar": kk._sayilar("Sultan mobilized the 25,000 janissaries at once."),
+            "kaynaklar": [{"kume": 0, "teyit_turu": "icerik"}], "bagimsiz_kaynak_sayisi": 1, "tarih_teyit_kume_sayisi": 1}]
+    assert kay[0]["sayilar"][0]["olcu_turu"] == "ordu" and kay[1]["sayilar"][0]["olcu_turu"] == "ordu"
+    kk.sayisal_koruma(kay)
+    assert all(k["tek_kaynak_uyarisi"] and k["durum"] != "dogrulanmis" for k in kay)
+    k3 = [{"id": "a3", "iddia": "x", "yil": None, "sayilar": [{"deger": 340, "olcu_turu": "diger"}],
+           "kaynaklar": [{"kume": 0, "teyit_turu": "icerik"}], "bagimsiz_kaynak_sayisi": 1, "tarih_teyit_kume_sayisi": 1}]
+    kk.sayisal_koruma(k3)
+    assert k3[0]["tek_kaynak_uyarisi"]

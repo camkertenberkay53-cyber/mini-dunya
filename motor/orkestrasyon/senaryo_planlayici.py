@@ -627,7 +627,7 @@ def _paralel(fn, ogeler, en_cok_is: int = 5) -> list:
         return list(ex.map(fn, ogeler))   # bir parçadaki LLMHatasi burada yükselir → adım durur (fallback yok)
 
 
-def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme):
+def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme, paralel=5):
     sira = kurallar()[mod]["bolum_sirasi"]
 
     def tek(bolum):
@@ -640,7 +640,7 @@ def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme):
 
     def uret(deneme):
         birimler = []
-        for bolum, ham in _paralel(tek, sira):
+        for bolum, ham in _paralel(tek, sira, paralel):
             v, _ = _cozumle(ham)
             if not isinstance(v, dict) or not isinstance(v.get("birimler"), list):
                 ilerleme("onay_kapisi", f"anlati/{bolum}: JSON çözümlenemedi")
@@ -650,7 +650,7 @@ def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme):
     return uret
 
 
-def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme):
+def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme, paralel=5):
     sira = kurallar()[mod]["bolum_sirasi"]
 
     def tek(bolum):
@@ -664,7 +664,7 @@ def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme):
 
     def uret(deneme):
         sahneler, baslik = [], None
-        for bolum, ham in _paralel(tek, sira):
+        for bolum, ham in _paralel(tek, sira, paralel):
             v, _ = _cozumle(ham)
             if not isinstance(v, dict) or not isinstance(v.get("sahneler"), list):
                 ilerleme("onay_kapisi", f"sahne_plani/{bolum}: JSON çözümlenemedi")
@@ -680,7 +680,8 @@ def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme):
 
 
 def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | None = None,
-              uretime_gonder=None, arastirma: dict | None = None, parcali: bool = False, ilerleme=None) -> dict:
+              uretime_gonder=None, arastirma: dict | None = None, parcali: bool = False, ilerleme=None,
+              paralel: int = 5) -> dict:
     """parcali=True (yalnızca uzun mod): anlatı ve sahne planı bölüm bölüm PARALEL üretilir, birleştirilir ve
     birleşik plan aynı Validation Gate'ten geçer; onarım birleşik planda hedefli yapılır. ilerleme(asama, mesaj)."""
     ilerleme = ilerleme or (lambda *a: None)
@@ -724,7 +725,7 @@ def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | 
     ilerleme("onay_kapisi", f"araştırma havuzu kapıdan geçti: {len(havuz['kayitlar'])} kayıt")
     n = _adim(saglayici, "anlati", _istem_anlati(konu, mod, havuz), {"konu": konu, "mod": mod, "havuz": havuz},
               lambda v: anlati_dogrula(v, havuz, mod), en_cok,
-              ilk_uretim=_parcali_anlati(saglayici, konu, mod, havuz, ilerleme) if parcali else None, ilerleme=ilerleme)
+              ilk_uretim=_parcali_anlati(saglayici, konu, mod, havuz, ilerleme, paralel) if parcali else None, ilerleme=ilerleme)
     rapor["katmanlar"]["3_anlati"] = {"denemeler": n["denemeler"]}
     if n["veri"] is None:
         return dur("3_anlati", n)
@@ -737,7 +738,7 @@ def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | 
         return e
     p = _adim(saglayici, "sahne_plani", _istem_plan(konu, mod, havuz, n["veri"]),
               {"konu": konu, "mod": mod, "havuz": havuz, "anlati": n["veri"]}, kapi, en_cok,
-              ilk_uretim=_parcali_plan(saglayici, konu, mod, havuz, n["veri"], ilerleme) if parcali else None, ilerleme=ilerleme)
+              ilk_uretim=_parcali_plan(saglayici, konu, mod, havuz, n["veri"], ilerleme, paralel) if parcali else None, ilerleme=ilerleme)
     rapor["katmanlar"]["4_5_sahne_plani_ve_kapi"] = {"denemeler": p["denemeler"]}
     if p["veri"] is None:
         return dur("4_5_sahne_plani_ve_kapi", p)
