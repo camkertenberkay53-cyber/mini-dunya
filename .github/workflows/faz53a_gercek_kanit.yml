@@ -63,17 +63,19 @@ jobs:
           python3 - <<'PY'
           import base64, io, json, pathlib
           from PIL import Image
-          for oz in sorted(pathlib.Path("deneyler/faz53a/gercek").glob("*/ozet.json")):
+          ozetler = sorted(pathlib.Path("deneyler/faz53a/gercek").glob("*/ozet.json"))
+          for oz in ozetler:                      # önce bütün özetler (kısa satırlar)
               print("=== OZET", oz.parent.name)
-              print(oz.read_text())
+              print(json.dumps(json.loads(oz.read_text()), ensure_ascii=False))
+          for oz in ozetler:                      # sonra önizlemeler: 900 px, base64 76 karakterlik satırlar
               for j in sorted(oz.parent.glob("*.jpg")):
                   im = Image.open(j).convert("RGB")
-                  if im.width > 1400:
-                      im = im.resize((1400, round(im.height * 1400 / im.width)))
+                  if im.width > 900:
+                      im = im.resize((900, round(im.height * 900 / im.width)))
                   b = io.BytesIO()
-                  im.save(b, "JPEG", quality=72)
+                  im.save(b, "JPEG", quality=70)
                   print(f"=== ONIZLEME {oz.parent.name}/{j.name} {len(b.getvalue())}")
-                  print(base64.b64encode(b.getvalue()).decode())
+                  print(base64.encodebytes(b.getvalue()).decode(), end="")
                   print("=== ONIZLEME_SON")
           PY
       - name: Artifact
