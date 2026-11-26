@@ -27,12 +27,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - name: Kurulum
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libsndfile1 > /dev/null
-          pip install --quiet numpy opencv-python-headless pillow pyyaml scipy soundfile psutil jsonschema pytest
+          # sürümler yerel taban ortamıyla aynı (kaos/sinema regresyon tabanı bu ortamda kaydedildi)
+          pip install --quiet numpy==2.5.3 opencv-python-headless==5.0.0.93 pillow==12.3.0 pyyaml scipy soundfile psutil jsonschema pytest
           python3 -c "import cv2, numpy; print('opencv', cv2.__version__, 'numpy', numpy.__version__)"
       - name: 1) Commons'tan otomatik toplama
         run: |

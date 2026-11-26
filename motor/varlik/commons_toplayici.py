@@ -88,10 +88,13 @@ def _meta(ii: dict, ad: str) -> str:
     return re.sub(r"<[^>]+>", "", html.unescape(str((ii.get("extmetadata") or {}).get(ad, {}).get("value", "")))).strip()
 
 
-def ara(sorgu: str | None = None, kategori: str | None = None, adet: int = 30) -> list[dict]:
-    """Commons dosya adayları: [{baslik, url, aciklama_url, gen, yuk, mime, sha1, meta}]."""
+def ara(sorgu: str | None = None, kategori: str | None = None, adet: int = 30, dosya: str | None = None) -> list[dict]:
+    """Commons dosya adayları: [{baslik, url, aciklama_url, gen, yuk, mime, sha1, meta}]. 'dosya' verilirse yalnız o
+    dosya başlığı sorgulanır (tekrarlanabilir seçim; yine aynı süzgeçten geçer)."""
     p = {"action": "query", "prop": "imageinfo", "iiprop": "url|size|mime|sha1|extmetadata", "iiextmetadatafilter": META}
-    if kategori:
+    if dosya:
+        p["titles"] = dosya if dosya.startswith("File:") else f"File:{dosya}"
+    elif kategori:
         p.update({"generator": "categorymembers", "gcmtitle": kategori if kategori.startswith("Category:") else f"Category:{kategori}",
                   "gcmtype": "file", "gcmlimit": adet})
     else:
@@ -188,7 +191,10 @@ def topla(s: dict, hedef: Path = HEDEF) -> dict:
     hedef.mkdir(parents=True, exist_ok=True)
     gid = s["gorsel_id"]
     adaylar, sorgu_kullanilan = [], None
-    for q in [s.get("sorgu")] + list(s.get("yedek_sorgular", [])):
+    if s.get("dosya"):   # belirli dosya başlığı (kaynak belirtilmiş seçim); süzgeçten geçemezse aramaya düşer
+        adaylar, sorgu_kullanilan = ara(dosya=s["dosya"]), s["dosya"]
+    for q in ([] if any(not elenme_nedeni(a, s.get("en_az_px", EN_AZ_PX)) for a in adaylar) else
+              [s.get("sorgu")] + list(s.get("yedek_sorgular", []))):
         if q:
             adaylar = ara(sorgu=q)
             sorgu_kullanilan = q
@@ -196,7 +202,7 @@ def topla(s: dict, hedef: Path = HEDEF) -> dict:
                 break
     if s.get("kategori") and not any(not elenme_nedeni(a) for a in adaylar):
         adaylar, sorgu_kullanilan = ara(kategori=s["kategori"]), s["kategori"]
-    secilen, elenen = sec(adaylar, sorgu_kullanilan or "", s.get("tercih"), s.get("en_az_px", EN_AZ_PX))
+    secilen, elenen = sec(adaylar, sorgu_kullanilan or "", s.get("tercih") or s.get("dosya"), s.get("en_az_px", EN_AZ_PX))
     if secilen is None:
         raise ToplayiciHatasi(f"{gid}: uygun aday yok ({len(adaylar)} aday; elenenler: {elenen[:8]})")
     uz = MIME[secilen["mime"]]

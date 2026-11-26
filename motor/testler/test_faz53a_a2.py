@@ -65,13 +65,26 @@ def _olc(alfa, gt, bosluk):
 # ------------------------------------------------------------------ kaos/sinema regresyonu
 
 def test_sahne_render_varsayilan_yol_kare_kare_ayni(tmp_path):
+    """İsteğe bağlı alanlar verilmezse sahne_render, A2 öncesi koduyla (commit cabc8a5) piksel piksel aynı.
+    1) Her ortamda: dondurulmuş A2 öncesi motor.py ile mevcut motor.py AYNI makinede çalıştırılır, ham kare SHA-256'ları
+       birebir eşleşmeli (OpenCV/NumPy sürümü ve CPU farkından bağımsız; atlanmaz).
+    2) Ortam taban kaydıyla aynıysa (python/opencv/numpy) mevcut çıktı kayıtlı tabanla da birebir eşleşmeli."""
     from motor.testler import sinema_regresyon as r
     taban = json.loads(r.TABAN.read_text())
     assert (taban["W"], taban["H"], taban["sure"]) == (r.W, r.H, r.SURE)
-    o = r.ozetle(tmp_path)
-    assert set(o) == set(taban["sahneler"]) and len(o) == 10
-    for sid, ozet in taban["sahneler"].items():
-        assert o[sid] == ozet, f"{sid}: {sum(a != b for a, b in zip(o[sid], ozet))} kare farklı"
+    assert r.eslik_ozeti() == taban["eslik"], "derinlik/efekt/kamera A2 öncesinden farklı: dondurulmuş karşılaştırma geçersiz"
+    (tmp_path / "simdi").mkdir()
+    (tmp_path / "once").mkdir()
+    o = r.ozetle(tmp_path / "simdi")
+    d = r.ozetle(tmp_path / "once", r.dondurulmus_motor())
+    assert set(o) == set(d) == set(taban["sahneler"]) and len(o) == 10
+    for sid in o:
+        assert o[sid] == d[sid], f"{sid}: {sum(a != b for a, b in zip(o[sid], d[sid]))} kare A2 öncesi kodla farklı"
+    if r.ortam() == taban["ortam"]:
+        for sid, ozet in taban["sahneler"].items():
+            assert o[sid] == ozet, f"{sid}: {sum(a != b for a, b in zip(o[sid], ozet))} kare kayıtlı tabandan farklı"
+    else:
+        print(f"ortam tabandan farklı ({r.ortam()} != {taban['ortam']}): kayıtlı taban yerine dondurulmuş kodla aynı ortamda karşılaştırıldı")
 
 
 def test_sahne_anahtari_isteğe_bagli_alanlar_verilmezse_ayni():

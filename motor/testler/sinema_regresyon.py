@@ -4,7 +4,7 @@ Kodlayıcıya (ffmpeg) giden HAM BGR kareler SHA-256 ile özetlenir; böylece ka
 düzeyindedir (fark 0 = özet aynı). Sahneler: main dalındaki 45 sn Otlukbeli senaryosu + kapsamı genişleten bir ek sahne
 (gren, giriş flaşı, darbe, dof, parlama, yağmur, kar, ışık hüzmesi, vinyet). Süre ve çözünürlük testin hızı için küçültülür;
 kod yolları aynıdır.
-python3 -m motor.testler.sinema_regresyon yaz   -> taban dosyasını (yalnızca kaos/sinema değişmeden önce) üretir
+python3 -m motor.testler.sinema_regresyon yaz   -> taban dosyasını DONDURULMUŞ A2 öncesi motor.py ile üretir
 """
 import hashlib
 import json
@@ -50,8 +50,37 @@ class _SahteKodlayici:
         return 0
 
 
-def ozetle(tmp: Path) -> dict:
-    from kaos.sinema import motor
+DONDURULMUS = Path(__file__).with_name("sinema_motor_a2_oncesi.py")
+ESLIK = ("derinlik.py", "efekt.py", "kamera.py", "__init__.py")   # dondurulmuş motorun kullandığı kardeş modüller
+
+
+def ortam() -> dict:
+    import platform
+
+    import cv2
+    import numpy
+    return {"python": platform.python_version(), "opencv": cv2.__version__, "numpy": numpy.__version__}
+
+
+def eslik_ozeti() -> dict:
+    return {a: hashlib.sha256((ayar.REPO / "kaos" / "sinema" / a).read_bytes()).hexdigest() for a in ESLIK}
+
+
+def dondurulmus_motor():
+    """A2 öncesi motor.py, kaos.sinema paketi içinde (göreli içe aktarmalar çalışsın diye) ayrı adla yüklenir."""
+    import importlib.util
+    import kaos.sinema  # noqa: F401
+    spec = importlib.util.spec_from_file_location("kaos.sinema._motor_a2_oncesi", DONDURULMUS)
+    m = importlib.util.module_from_spec(spec)
+    m.__package__ = "kaos.sinema"
+    sys.modules[spec.name] = m
+    spec.loader.exec_module(m)
+    return m
+
+
+def ozetle(tmp: Path, motor=None) -> dict:
+    if motor is None:
+        from kaos.sinema import motor
     sonuc = {}
     gercek = motor.subprocess.Popen
     son = {}
@@ -61,7 +90,11 @@ def ozetle(tmp: Path) -> dict:
         return son["k"]
     motor.subprocess.Popen = sahte
     try:
+        import cv2
         for s in sahneler():
+            # GrabCut OpenCV'nin genel RNG'sini kullanır (kaos/sinema'da tohum yok; A2 öncesinde de böyle): aynı süreçte
+            # sahne sırası sonucu değiştirmesin diye her sahneden önce varsayılan duruma (0 -> 0xffffffff) döndürülür.
+            cv2.setRNGSeed(0)
             motor.sahne_render(dict(s), str(tmp / f"{s['id']}.mp4"), W, H, FPS, log=lambda *_: None)
             sonuc[s["id"]] = son["k"].ozetler
     finally:
@@ -72,7 +105,8 @@ def ozetle(tmp: Path) -> dict:
 if __name__ == "__main__" and sys.argv[1:] == ["yaz"]:
     import tempfile
     with tempfile.TemporaryDirectory() as d:
-        o = ozetle(Path(d))
+        o = ozetle(Path(d), dondurulmus_motor())   # taban daima A2 öncesi (dondurulmuş) kodla üretilir
     TABAN.write_text(json.dumps({"aciklama": "kaos/sinema sahne_render ham kare SHA-256 tabanı (A2 öncesi, commit cabc8a5)",
-                                 "W": W, "H": H, "fps": FPS, "sure": SURE, "sahneler": o}, indent=1))
+                                 "W": W, "H": H, "fps": FPS, "sure": SURE, "ortam": ortam(), "eslik": eslik_ozeti(),
+                                 "sahneler": o}, indent=1))
     print({k: len(v) for k, v in o.items()})

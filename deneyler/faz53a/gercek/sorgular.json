@@ -1,12 +1,38 @@
 [
- {"gorsel_id": "fatih_portre_bellini_1480", "sorgu": "Gentile Bellini Sultan Mehmed II", "yedek_sorgular": ["Gentile Bellini Mehmed"],
+ {
+  "gorsel_id": "fatih_portre_bellini_1480",
+  "sorgu": "Gentile Bellini Sultan Mehmed II",
+  "yedek_sorgular": [
+   "Gentile Bellini Mehmed"
+  ],
   "tercih": "Gentile Bellini 003",
-  "eser_adi": "Sultan II. Mehmed Portresi", "tarih": "1480", "donem": "osmanli-15yy", "gorsel_turu": "tablo",
-  "bolge": "İstanbul", "kultur": "Osmanlı (Venedikli ressam)", "taraf_faction": "Osmanlı",
-  "tur": "insan_portre", "derinlik_uygunlugu": "dusuk"},
- {"gorsel_id": "matrakci_istanbul_1537", "sorgu": "Matrakci Nasuh Istanbul", "yedek_sorgular": ["Matrakci Nasuh"],
+  "eser_adi": "Sultan II. Mehmed Portresi",
+  "tarih": "1480",
+  "donem": "osmanli-15yy",
+  "gorsel_turu": "tablo",
+  "bolge": "İstanbul",
+  "kultur": "Osmanlı (Venedikli ressam)",
+  "taraf_faction": "Osmanlı",
+  "tur": "insan_portre",
+  "derinlik_uygunlugu": "dusuk",
+  "dosya": "File:Gentile Bellini 003.jpg"
+ },
+ {
+  "gorsel_id": "matrakci_istanbul_1537",
+  "sorgu": "Matrakci Nasuh Istanbul",
+  "yedek_sorgular": [
+   "Matrakci Nasuh"
+  ],
   "tercih": "Matrakçı Nasuh - İstanbul",
-  "eser_adi": "Beyân-ı Menâzil: İstanbul Minyatürü", "tarih": "1537", "donem": "osmanli-16yy", "gorsel_turu": "minyatur",
-  "bolge": "İstanbul", "kultur": "Osmanlı", "taraf_faction": "Osmanlı",
-  "tur": "mimari", "derinlik_uygunlugu": "dusuk"}
+  "eser_adi": "Beyân-ı Menâzil: İstanbul Minyatürü",
+  "tarih": "1537",
+  "donem": "osmanli-16yy",
+  "gorsel_turu": "minyatur",
+  "bolge": "İstanbul",
+  "kultur": "Osmanlı",
+  "taraf_faction": "Osmanlı",
+  "tur": "mimari",
+  "derinlik_uygunlugu": "dusuk",
+  "dosya": "File:Matrakçı Nasuh - İstanbul.jpg"
+ }
 ]

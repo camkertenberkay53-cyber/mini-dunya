@@ -4,6 +4,17 @@
  "H": 960,
  "fps": 30,
  "sure": 1.0,
+ "ortam": {
+  "python": "3.13.18",
+  "opencv": "5.0.0",
+  "numpy": "2.5.3"
+ },
+ "eslik": {
+  "derinlik.py": "63ce33ab2413415fe159b5de5f54b650ff5854ae850931f1f33696d96bd799d0",
+  "efekt.py": "f2976a86e4650d991b10b36e3c938f88fdc02d78b556e3af70f3908442f937a9",
+  "kamera.py": "af1e259c9469dbb81d1e984a84dd20e8006450cd888e29dd26cfcbfbac31c955",
+  "__init__.py": "f5b202c8262e9f529dc855b55cf7371109ecafed7033193db3dbe74364e7047c"
+ },
  "sahneler": {
   "hook_top": [
    "f06b93610bc952c1dfc39dab6409558d93232478aede7fb41412111daa9616ab",

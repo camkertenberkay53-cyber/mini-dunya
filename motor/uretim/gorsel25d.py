@@ -157,6 +157,7 @@ def maske(img: np.ndarray, kutu: list[float], a: dict | None = None) -> tuple[np
     m = np.zeros((kh, kw), np.uint8)
     bg, fg = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
     t1, t2 = int(a.get("grabcut_tur", 5)), int(a.get("kararlilik_tur", 8))
+    cv2.setRNGSeed(int(a.get("tohum", 0)))   # GrabCut OpenCV'nin genel RNG'sini kullanır: sonuç süreç geçmişine bağlı olmasın
     cv2.grabCut(kc, m, r, bg, fg, t1, cv2.GC_INIT_WITH_RECT)
     yk = a.get("yakin_parca")
     on5, parca = _parcalar((m == cv2.GC_FGD) | (m == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)), kc, yk)

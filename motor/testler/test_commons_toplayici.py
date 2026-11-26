@@ -159,3 +159,16 @@ def test_sorgu_dosyasi_ve_is_akisi():
     for parca in ("workflow_dispatch", "commons_toplayici", "olc_kanit.py gercek hepsi", "upload-artifact", "pytest"):
         assert parca in y
     assert "git push" not in y and "git commit" not in y          # kaynak görseller depoya girmez
+
+
+def test_dosya_basligi_once_sonra_arama(sahte_ag, tmp_path):
+    sayfalar, dosyalar, istekler = sahte_ag
+    _ekle(sayfalar, dosyalar, "File:Gentile Bellini 003.jpg", 3132, 4226)
+    k = ct.topla({"gorsel_id": "t_b", "dosya": "File:Gentile Bellini 003.jpg", "sorgu": "Gentile Bellini"}, tmp_path)
+    assert istekler[0]["titles"] == "File:Gentile Bellini 003.jpg" and len(istekler) == 1
+    assert k["toplama"]["baslik"] == "File:Gentile Bellini 003.jpg"
+    sayfalar.clear()
+    _ekle(sayfalar, dosyalar, "File:Kucuk.jpg", 400, 400)
+    with pytest.raises(ct.ToplayiciHatasi):
+        ct.topla({"gorsel_id": "t_c", "dosya": "File:Kucuk.jpg", "sorgu": "Kucuk", "yedek_sorgular": []}, tmp_path)
+    assert [("titles" in i, i.get("gsrsearch")) for i in istekler[1:]] == [(True, None), (False, "Kucuk")]
