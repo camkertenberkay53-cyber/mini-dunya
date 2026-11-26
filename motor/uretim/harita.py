@@ -278,12 +278,12 @@ def kare(h: Harita, evre: dict, onceki: dict | None, u: float, baslik: str | Non
 
 
 def render(veri: dict, evre_id: str, sure_sn: float, cikti: Path, fps: int = 30, boyut=(1080, 1920),
-           baslik: str | None = None) -> dict:
+           baslik: str | None = None, vf: str = "") -> dict:
     h = Harita(veri, boyut)
     evre, onceki = evre_bul(veri, evre_id)
     n = round(sure_sn * fps)
     p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{boyut[0]}x{boyut[1]}",
-                          "-r", str(fps), "-i", "-", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p",
+                          "-r", str(fps), "-i", "-", *(["-vf", vf] if vf else []), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p",
                           "-an", str(cikti)], stdin=subprocess.PIPE)
     for i in range(n):
         im = kare(h, evre, onceki, i / max(1, n - 1), baslik)

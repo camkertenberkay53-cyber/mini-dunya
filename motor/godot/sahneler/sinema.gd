@@ -15,12 +15,29 @@ uniform vec3 isik_ton = vec3(1.05, 1.0, 0.94);
 uniform float ton_guc = 1.0;
 uniform float gren = 0.025;
 uniform float kare = 0.0;
+// Faz 5.2 adım 3: sahne türü renk profili (varsayılanlar nötr → kapalıyken çıktı aynı)
+uniform float kontrast = 1.0;        // orta gri (0,45) etrafında
+uniform float golge_derinlik = 0.0;  // koyu tonları derinleştirir (0..0,3)
+uniform float vurgu_sikistir = 0.0;  // parlak tonları yumuşakça bastırır (gök/zırh patlamasın)
+uniform float doygunluk = 1.0;
+uniform float ten_koru = 0.0;        // ten rengi maskesinde derecelendirme bu oranda geri alınır (cilt bozulmasın)
 float hs(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233)) + kare * 0.618) * 43758.5453); }
 void fragment(){
   vec3 c = texture(ekran, SCREEN_UV).rgb;
   float l = dot(c, vec3(0.299, 0.587, 0.114));
   vec3 ton = mix(golge_ton, isik_ton, smoothstep(0.15, 0.85, l));
   c = mix(c, c * ton, ton_guc);
+  vec3 c0 = c;
+  vec3 gd = clamp((c - 0.45) * kontrast + 0.45, 0.0, 4.0);
+  gd *= 1.0 - golge_derinlik * (1.0 - smoothstep(0.0, 0.32, l));
+  gd = gd * (1.0 + vurgu_sikistir) / (1.0 + vurgu_sikistir * gd);
+  float lg = dot(gd, vec3(0.299, 0.587, 0.114));
+  gd = mix(vec3(lg), gd, doygunluk);
+  float mx = max(c0.r, max(c0.g, c0.b));
+  float sat = (mx - min(c0.r, min(c0.g, c0.b))) / max(mx, 1e-3);
+  float ten = step(c0.b, c0.g) * step(c0.g, c0.r) * smoothstep(0.12, 0.25, sat) * (1.0 - smoothstep(0.55, 0.75, sat))
+            * smoothstep(0.12, 0.25, l) * (1.0 - smoothstep(0.8, 0.95, l));   // turuncu-kahve ton aralığı
+  c = mix(gd, c0, ten * ten_koru);
   vec2 d = SCREEN_UV - 0.5;
   d.x *= SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;   // en-boy düzeltmesi (dikey kadrajda yuvarlak vinyet)
   float r = length(d) / length(vec2(0.5 * SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x, 0.5));
@@ -48,6 +65,12 @@ static func kur(kok: Node, k: Dictionary) -> ShaderMaterial:
 	m.set_shader_parameter("isik_ton", Vector3(i[0], i[1], i[2]))
 	m.set_shader_parameter("ton_guc", float(k.get("ton_guc", 1.0)))
 	m.set_shader_parameter("gren", float(k.get("gren", 0.025)))
+	var rp: Dictionary = k.get("renk_profili", {})   # Faz 5.2: sahne türü profili (yoksa nötr)
+	for ad in ["kontrast", "golge_derinlik", "vurgu_sikistir", "doygunluk", "ten_koru"]:
+		if rp.has(ad):
+			m.set_shader_parameter(ad, float(rp[ad]))
+	if rp.has("gren"):
+		m.set_shader_parameter("gren", float(rp["gren"]))
 	r.material = m
 	cl.add_child(r)
 	kok.add_child(cl)

@@ -73,3 +73,50 @@ def test_atmosfer_konudan_plana_ve_denetime():
     assert plan_denetim.denetle(p)["gecti"]
     p["atmosfer"]["isik_eslesme"]["aksam_ustu"] = "olmayan_isik"
     assert any("atmosfer eşlemesi" in h for h in plan_denetim.denetle(p)["hatalar"])   # uydurma ön ayar reddedilir
+
+
+# ---------------------------------------------------------------- adım 3: sahne türü renk profili
+def _derecele(c, rp):
+    """sinema.gd derecelendirmesinin birebir Python karşılığı (ton adımı hariç)."""
+    import numpy as np
+    c = np.array(c, float)
+    l = c @ [0.299, 0.587, 0.114]
+    gd = np.clip((c - 0.45) * rp["kontrast"] + 0.45, 0, 4)
+    sm = lambda a, b, x: np.clip((x - a) / (b - a), 0, 1) ** 2 * (3 - 2 * np.clip((x - a) / (b - a), 0, 1))
+    gd = gd * (1 - rp["golge_derinlik"] * (1 - sm(0.0, 0.32, l)))
+    gd = gd * (1 + rp["vurgu_sikistir"]) / (1 + rp["vurgu_sikistir"] * gd)
+    lg = gd @ [0.299, 0.587, 0.114]
+    gd = lg + (gd - lg) * rp["doygunluk"]
+    mx, mn = c.max(), c.min()
+    sat = (mx - mn) / max(mx, 1e-3)
+    ten = float(c[2] <= c[1] <= c[0]) * sm(0.12, 0.25, sat) * (1 - sm(0.55, 0.75, sat)) * sm(0.12, 0.25, l) * (1 - sm(0.8, 0.95, l))
+    return gd * (1 - ten * rp["ten_koru"]) + c * ten * rp["ten_koru"]
+
+
+def test_renk_profilleri_secimi_ve_harita_notr(monkeypatch):
+    from motor.uretim import render, veri
+    p = _plan2()
+    ad = {c["id"]: render.renk_profili_3d(c).get("ad") for c in p["cekimler"]}
+    assert ad["S6"] == "savas_3d" and ad["S7"] == "agir_3d" and ad["S1"] == "belgesel_3d"
+    assert render.renk_profili_ffmpeg("harita") == ""                  # taktik harita nötr
+    assert render.renk_profili_ffmpeg("gorsel25d").startswith("eq=")
+    g = dict(veri.kural("gorsel"), renk_profilleri={"acik": False})
+    gercek = veri.kural
+    monkeypatch.setattr(veri, "kural", lambda a: g if a == "gorsel" else gercek(a))
+    assert render.renk_profili_3d(p["cekimler"][0]) == {} and render.renk_profili_ffmpeg("gorsel25d") == ""
+
+
+def test_shader_varsayilanlari_notr_ve_ten_korunur():
+    from motor.uretim import veri
+    s = (ayar.MOTOR / "godot/sahneler/sinema.gd").read_text()
+    for u in ("uniform float kontrast = 1.0", "uniform float golge_derinlik = 0.0", "uniform float vurgu_sikistir = 0.0",
+              "uniform float doygunluk = 1.0", "uniform float ten_koru = 0.0"):
+        assert u in s                                                  # profil yoksa çıktı değişmez
+    rp = veri.kural("gorsel")["renk_profilleri"]["savas_3d"]
+    import numpy as np
+    ten = [0.62, 0.42, 0.30]                                           # orta ten (doğrusal)
+    zirh = [0.42, 0.45, 0.50]                                          # gri-mavi zırh
+    d_ten = np.abs(_derecele(ten, rp) - ten).max()
+    d_zirh = np.abs(_derecele(zirh, rp) - zirh).max()
+    assert d_ten < d_zirh * 0.6                                        # derecelendirme tende belirgin daha az
+    assert all(0 < x <= 1.2 for x in _derecele([0.95, 0.95, 0.95], rp))   # vurgu patlamaz

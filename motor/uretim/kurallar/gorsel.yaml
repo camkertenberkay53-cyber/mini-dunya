@@ -190,3 +190,15 @@ karakter_kalite:
 # Kapalıyken plan ve render önceki gibi (bütün ışıklarda aynı sinematik gök/sis).
 isik_onayarlari:
   acik: true
+# Faz 5.2 adım 3 — TEK ANAHTAR renk_profilleri.acik. Sahne türüne göre derecelendirme:
+#  3D profilleri Godot son işlem katmanında (sinema.gd; ek geçiş yok), harita/2.5D profilleri FFmpeg kodlamasında.
+#  secim: 3D çekimde savaş (çarpışma animasyonu ya da duman) → savas_3d, ölüm/sonuç → agir_3d, diğerleri → belgesel_3d.
+#  ten_koru: turuncu-kahve ton maskesinde derecelendirme geri alınır (cilt tonları korunur). gren: profil başına.
+renk_profilleri:
+  acik: true
+  belgesel_3d: {kontrast: 1.14, golge_derinlik: 0.14, vurgu_sikistir: 0.35, doygunluk: 1.0, ten_koru: 0.6}
+  savas_3d:    {kontrast: 1.22, golge_derinlik: 0.22, vurgu_sikistir: 0.4, doygunluk: 0.86, ten_koru: 0.6, gren: 0.03}
+  agir_3d:     {kontrast: 1.16, golge_derinlik: 0.22, vurgu_sikistir: 0.4, doygunluk: 0.72, ten_koru: 0.5}
+  harita:      {ffmpeg: ""}            # taktik harita nötr kalır (okunaklılık); filtre yok
+  gorsel25d:   {ffmpeg: "eq=contrast=1.05:saturation=0.92:gamma=0.98,vignette=PI/5"}   # tarihî görsel: hafif kontrast, vinyet
+  agir_eylemler: [olum, darbe_alma, geri_savrulma]

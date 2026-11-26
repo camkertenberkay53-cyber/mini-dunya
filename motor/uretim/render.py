@@ -115,7 +115,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "yerlesim": (yer := _yerlesim(plan, c)),
         "malzeme": _malzeme(yer, {}),
         "kalabalik": _kalabalik(c, c.get("donem") or plan.get("donem")),
-        "sinema": _sinema(),
+        "sinema": dict(_sinema(), renk_profili=renk_profili_3d(c)),
         "film": _film(c, plan),
         "ek_animasyon_kutuphaneleri": {ad: str(ayar.REPO / "motor" / yol) for ad, yol in veri.kural("animasyon").get("kutuphaneler", {}).items()
                                        if any(k["animasyon"].startswith(ad + "/") for k in c.get("karakterler", []))},
@@ -216,6 +216,29 @@ def _yuzey() -> dict:
         kur.append({**{k: v for k, v in r.items() if k != "doku"}, "diff": str(d / "diff.jpg"), "nor": str(d / "nor_gl.jpg"),
                     "pur": str(d / ("arm.jpg" if arm else "rough.jpg")), "pur_arm": arm})
     return {"acik": True, "kurallar": kur}
+
+
+def renk_profili_3d(c: dict) -> dict:
+    """Faz 5.2: 3D çekimin renk profili (savaş / ağır / belgesel); kapalıysa boş (nötr)."""
+    rp = veri.kural("gorsel").get("renk_profilleri", {})
+    if not rp.get("acik") or c.get("tur") != "3d":
+        return {}
+    savas = set(veri.kural("gorsel").get("vfx", {}).get("savas_animasyonlari", []))
+    kurallar = veri.kural("animasyon")["animasyonlar"]
+    eylemler = {e for k in c.get("karakterler", []) for e in kurallar.get(k.get("animasyon"), {}).get("eylemler", [])}
+    if eylemler & set(rp.get("agir_eylemler", [])):
+        ad = "agir_3d"
+    elif any(k.get("animasyon") in savas for k in c.get("karakterler", [])):
+        ad = "savas_3d"
+    else:
+        ad = "belgesel_3d"
+    return dict(rp[ad], ad=ad)
+
+
+def renk_profili_ffmpeg(tur: str) -> str:
+    """Harita / 2.5D klipleri için FFmpeg filtre zinciri ('' = filtre yok)."""
+    rp = veri.kural("gorsel").get("renk_profilleri", {})
+    return rp.get(tur, {}).get("ffmpeg", "") if rp.get("acik") else ""
 
 
 def _sinema() -> dict:
@@ -398,7 +421,7 @@ def _harita_render(plan: dict, c: dict, onbellek: bool) -> dict:
     klasor.mkdir(parents=True)
     t0 = time.time()
     r = harita.render(c["harita"]["veri"], c["harita"]["evre"], c["sure_sn"], mp4, plan["fps"], tuple(plan["cozunurluk"]),
-                      c.get("metin_katmani"))
+                      c.get("metin_katmani"), renk_profili_ffmpeg("harita"))
     sn = time.time() - t0
     sonuc = {"durum": "TAMAM", "konu": plan["konu"], "cekim": c["id"], "karma": karma, "video": str(mp4),
              "tarih": time.strftime("%Y-%m-%d %H:%M"),
