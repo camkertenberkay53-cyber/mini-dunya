@@ -291,7 +291,8 @@ def icerik_dogrula(metin: str, iddia: dict, esik_icerik: float = 0.5) -> dict:
     sayilar = {re.sub(r"[.,]", "", x) for x in re.findall(r"(?<![\w.,])\d{1,3}(?:[.,]\d{3})+|(?<![\w.,])\d{2,}(?![\w])",
                                                          iddia.get("metin", ""))
                if not _YIL.fullmatch(re.sub(r"[.,]", "", x)) and int(re.sub(r"[.,]", "", x)) >= 50}
-    olay = [_katla(t)[:5] for t in iddia.get("olay_terimleri", []) if t]
+    # olay terimi: yalnızca iddianın KENDİSİNDE geçen olay terimleri kaynakta aranır
+    olay = [o for o in (_katla(t)[:5] for t in iddia.get("olay_terimleri", []) if t) if o in _katla(iddia.get("metin", ""))]
     var = [_katla(v)[:5] for v in (iddia.get("varliklar") or varliklar(iddia.get("metin", "")))]
     icerik = list(dict.fromkeys(_kokler(iddia.get("metin", ""))))
     en = None
@@ -371,6 +372,11 @@ class KaynakDogrulayici:
                     continue
                 return ("unverified", 429, "", "rate_limit_asildi")
             if y.durum == 200:
+                tur = (y.basliklar.get("content-type") or "").lower()
+                if "pdf" in tur or y.govde[:5] == b"%PDF-":
+                    return ("unverified", 200, "", "pdf_metin_cikarimi_desteklenmiyor (içerik yanlış sayılmaz)")
+                if tur and not any(t in tur for t in ("html", "text/plain", "xml")):
+                    return ("unverified", 200, "", f"desteklenmeyen_icerik_turu: {tur.split(';')[0]}")
                 return ("ok", 200, html_metin(y.govde, y.basliklar), "")
             if y.durum == 403:
                 return ("unverified", 403, "", "erisim_engelli (kaynak ölü/uydurma sayılmaz)")

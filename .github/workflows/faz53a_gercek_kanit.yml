@@ -79,6 +79,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
+          set +e   # bilgi adımı: uzun koşunun sonucu Shorts koşusunu engellemesin; çıkış kodları açıkça yazılır
           mkdir -p cikti/dry_run
           echo "GEMINI_API_KEY tanımlı mı: $([ -n "$GEMINI_API_KEY" ] && echo evet || echo hayir)"
           python3 -m motor.orkestrasyon.canli_dry_run "Otlukbeli Savaşı" --mod uzun --cikti cikti/dry_run 2>&1 | tee cikti/dry_run/uzun.log

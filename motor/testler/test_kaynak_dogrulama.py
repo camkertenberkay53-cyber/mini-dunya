@@ -216,7 +216,9 @@ def test_ip_izinli_tablosu():
 TR_METIN = ("Örnekova Muharebesi 1501 yılında Demir Han ile Taş Bey arasında Örnekova düzlüğünde yapıldı. "
             "Demir Han'ın ordusu yaklaşık 40.000 askerden oluşuyordu. "
             "Muharebede Taş Bey 3.000 kayıp verdi ve geri çekildi. "
-            "Muharebenin ardından 1502 yılında Demir Han ile Taş Bey arasında barış antlaşması imzalandı.")
+            "Muharebenin ardından 1502 yılında Demir Han ile Taş Bey arasında barış antlaşması imzalandı. "
+            "Muharebe bölgedeki güç dengesini uzun süre değiştirdi ve iki taraf arasındaki sınır hattı yeniden çizildi; "
+            "kervan yolları yeni yönetimin denetimine geçti ve çevredeki şehirler bu düzene uyum sağladı.")
 EN_METIN = ("The Battle of Ornekova was fought in 1501 between Demir Han and Tas Bey on the Ornekova plain. "
             "Demir Han's army numbered some 40,000 soldiers.")
 AKADEMIK_HTML = ("<html><body><p>Örnekova Muharebesi 1501 yılında Demir Han ile Taş Bey arasında yapıldı; Demir Han "
@@ -571,3 +573,37 @@ def test_ayni_baglam_farkli_rakam_dogrulama_degil():
     r = _dog(ag).dogrula("https://ornek.org/rakam", {"metin": "Örnekova Muharebesi 1501 yılında Demir Han ordusu 40.000 askerdi.",
                                                      "olay_terimleri": ["Örnekova"]})
     assert r["verification_status"] == "content_mismatch" and r["number_match"] is False and r["year_match"] is True
+
+
+def test_arsiv_goruntusu_ozgun_yayinciya_gore_siniflanir():
+    u = "https://web.archive.org/web/20191025053132/https://islamansiklopedisi.org.tr/x"
+    assert kk.ozgun_url(u) == "https://islamansiklopedisi.org.tr/x"
+    assert kk.kaynak_turu(u) == "akademik" and kk.yayinci(u) == "islamansiklopedisi.org.tr"
+    assert kk.kaynak_turu("https://archive.org/details/kitap") == "birincil_arsiv"
+
+
+def test_pdf_ve_desteklenmeyen_tur_icerik_yanlis_sayilmaz():
+    ag = _ag(pdf=(200, {"Content-Type": "application/pdf"}, b"%PDF-1.7 ..."), resim=(200, {"Content-Type": "image/png"}, b"\x89PNG"))
+    d = _dog(ag)
+    for yol in ("pdf", "resim"):
+        r = d.dogrula(f"https://ornek.org/{yol}", IDDIA)
+        assert r["verification_status"] == "unverified" and r["http_status"] == 200, r
+
+
+def test_olay_terimi_yalnizca_iddiada_geciyorsa_aranir():
+    html = "<p>Demir Han 1501 yılında Taş Bey'i yendi ve ordusunu doğuya yöneltti.</p>".encode()
+    ag = _ag(p=(200, {"Content-Type": "text/html"}, html))
+    r = _dog(ag).dogrula("https://ornek.org/p", {"metin": "Demir Han 1501 yılında Taş Bey'i yendi.", "olay_terimleri": ["Örnekova"]})
+    assert r["verification_status"] == "verified" and r["event_match"] is None
+    r2 = _dog(ag).dogrula("https://ornek.org/p", {"metin": "Örnekova'da Demir Han 1501 yılında Taş Bey'i yendi.",
+                                                  "olay_terimleri": ["Örnekova"]})
+    assert r2["verification_status"] == "content_mismatch" and r2["event_match"] is False
+
+
+def test_kisa_kalip_metin_kopya_sayilmaz_ve_yilsiz_iddia_tarih_degil():
+    assert kk.benzerlik("Ana sayfa Giriş Yap Ara", "Ana sayfa Giriş Yap Ara") == 0.0
+    ag = _wp_ag()
+    h = kk.havuz_olustur("Örnekova Muharebesi", kk.WikipediaKesif(ag.istemci()).kesfet("Örnekova Muharebesi"),
+                         kd.KaynakDogrulayici(ag.istemci()))
+    assert all(k["yil"] is not None for k in h["kayitlar"] if k["tur"] == "tarih")
+    assert sp.arastirma_dogrula(h, sentetik=False) == []

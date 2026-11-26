@@ -43,7 +43,17 @@ _OLCU = {   # sayının hemen çevresinde aranan anahtarlar (ilk 5 harf, ASCII k
 }
 
 
+def ozgun_url(url: str) -> str:
+    """web.archive.org/web/<zaman>/<özgün> → özgün URL (anlık görüntü yayıncıyı/türü değiştirmez)."""
+    m = re.match(r"https?://web\.archive\.org/web/\d+[a-z_]*/(.+)$", url, re.I)
+    if m:
+        o = m.group(1)
+        return o if re.match(r"https?://", o, re.I) else "http://" + o
+    return url
+
+
 def kaynak_turu(url: str) -> str:
+    url = ozgun_url(url)
     h = (urllib.parse.urlsplit(url).hostname or "").lower()
     if any(h == d or h.endswith("." + d) or d in h for d in _ARSIV):
         return "birincil_arsiv"
@@ -55,7 +65,7 @@ def kaynak_turu(url: str) -> str:
 
 
 def yayinci(url: str) -> str:
-    h = (urllib.parse.urlsplit(url).hostname or "").lower()
+    h = (urllib.parse.urlsplit(ozgun_url(url)).hostname or "").lower()
     if h.endswith("wikipedia.org") or h.endswith("wikimedia.org") or h.endswith("wikidata.org"):
         return "Wikimedia"   # TR ve EN Wikipedia aynı yayıncı: birbirinden bağımsız sayılmaz
     parca = h.split(".")
@@ -158,7 +168,7 @@ def _zincirler(metin: str, n: int = 5) -> set:
 def benzerlik(a: str, b: str) -> float:
     """Kopya ölçüsü: 5'li kelime zinciri kapsama oranı (küçük metnin büyük metinde ne kadar geçtiği)."""
     za, zb = _zincirler(a), _zincirler(b)
-    if not za or not zb:
+    if min(len(za), len(zb)) < 40:   # kısa/kalıp metin (boş sayfa, menü) kopya kanıtı sayılmaz
         return 0.0
     return len(za & zb) / min(len(za), len(zb))
 
@@ -250,7 +260,20 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
     kume = bagimsizlik_kumeleri(kaynaklar)
     ana = [k for k in kaynaklar if not k.get("aday") and k.get("metin")]
     adaylar = [k for k in kaynaklar if k.get("aday")]
-    iddialar = [i for k in kaynaklar if k.get("metin") for i in iddialari_cikar(k)]
+    terim = [_katla(t)[:5] for t in olay_terimleri]
+    iddialar, gor = [], set()
+    for k in kaynaklar:
+        if not k.get("metin"):
+            continue
+        for i in iddialari_cikar(k):
+            # aday dış sayfalardan yalnızca konuyla ilgili (konu terimi geçen) cümleler iddia olur
+            if k.get("aday") and not any(t in _katla(i["metin"]) for t in terim):
+                continue
+            n = " ".join(re.findall(r"[a-z0-9]+", _katla(i["metin"])))
+            if n in gor:
+                continue
+            gor.add(n)
+            iddialar.append(i)
     rapor_kaynak = {}
     kayitlar = []
     for n, idd in enumerate(iddialar, 1):
@@ -277,7 +300,8 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
         kayitlar.append({"id": f"ark_{n:03d}", "iddia": idd["metin"], "yil": idd["yillar"][0] if idd["yillar"] else None,
                          "sayilar": idd["sayilar"], "kaynaklar": destek, "kaynak_kesfi": idd["kaynak_id"],
                          "bagimsiz_kaynak_sayisi": len(icerik_kume), "tarih_teyit_kume_sayisi": len(tum_kume),
-                         "tur": "sayi" if any(s["olcu_turu"] in ("ordu", "kayip") for s in idd["sayilar"]) else "tarih",
+                         "tur": ("sayi" if any(s["olcu_turu"] in ("ordu", "kayip") for s in idd["sayilar"])
+                                 else "tarih" if idd["yillar"] else "olay"),
                          "olay_id": f"olay_{idd['yillar'][0]}" if idd["yillar"] else "olay_genel"})
     sayisal_koruma(kayitlar)
     return {"konu": konu, "kayitlar": kayitlar, "kaynak_raporu": rapor_kaynak,
