@@ -477,6 +477,7 @@ def _gorsel25d_render(plan: dict, c: dict, onbellek: bool) -> dict:
         yol, kayit = tarihi_gorsel.dogrulanmis_dosya(g["gorsel_id"])
     except tarihi_gorsel.LisansHatasi as e:
         return {"durum": "REDDEDİLDİ", "neden": "lisans kapısı", "hatalar": [str(e)], "cekim": c["id"]}
+    from motor.uretim import gorsel25d
     ayarlar = veri.kural("gorsel").get("gorsel25d", {})
     zincir = renk_profili_ffmpeg("gorsel25d")
     kod = ayarlar.get("kodlama", {"preset": "veryfast", "crf": 18})
@@ -484,6 +485,9 @@ def _gorsel25d_render(plan: dict, c: dict, onbellek: bool) -> dict:
                                    kayit["sha256"]], sort_keys=True, ensure_ascii=False).encode())
     for b in sorted(SINEMA.glob("*.py")):
         h.update(b.read_bytes())
+    if gorsel25d.kalite_acik():   # A2: kalite katmanı kodu + ayarları + görsel metadata'sı anahtara girer
+        h.update(gorsel25d.anahtar_parcasi().encode())
+        h.update(json.dumps(kayit, sort_keys=True, ensure_ascii=False).encode())
     karma = h.hexdigest()[:16]
     klasor = KOK / plan["konu"] / f"{c['id']}_{karma}"
     mp4, olcum_yolu = klasor / "cekim.mp4", klasor / "olcum.json"
@@ -499,6 +503,12 @@ def _gorsel25d_render(plan: dict, c: dict, onbellek: bool) -> dict:
     s = {"id": c["id"], "gorsel": str(kaynak), "sure_render": float(c["sure_sn"]), "kamera": g.get("hareket", "zoom_in"),
          "vinyet": float(ayarlar.get("sinema_vinyet", 0.0))}
     s.update({k: g[k] for k in G25_ALANLAR if k in g})
+    kalite = None
+    if gorsel25d.kalite_acik():
+        ek, kalite = gorsel25d.hazirla(kaynak, kayit, g, w, hgt, klasor, int(karma[:8], 16))
+        for k in ("ozne", "kirp"):   # kalite katmanı kırpmayı ve özneyi kendisi uyguladı
+            s.pop(k, None)
+        s.update(ek)
     t1 = time.time()
     ham = klasor / "ham.mp4"
     sinema.sahne_render(s, str(ham), w, hgt, fps, log=lambda *_: None)
@@ -524,7 +534,10 @@ def _gorsel25d_render(plan: dict, c: dict, onbellek: bool) -> dict:
                          "kare_basina_sn_acilis_dahil": round((t3 - t0) / max(1, kare), 3),
                          "render_tepe_bellek_gb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6, 2),
                          "karakter": 0, "cevre_varligi": 0, "tur": "gorsel25d", "parallax": float(s.get("parallax", 1.0)),
-                         "ozne": bool(s.get("ozne"))}}
+                         "ozne": bool(s.get("ozne") or s.get("ozne_maskesi"))}}
+    if kalite is not None:
+        sonuc["kalite"] = kalite
+        sonuc["olculen"]["seviye"] = kalite["seviye"]
     if sonuc["olculen"]["uretilen_kare"] != kare or (akis["width"], akis["height"]) != (w, hgt):
         sonuc["durum"] = "HATA"
         sonuc["neden"] = "kare sayısı ya da çözünürlük tutmadı"

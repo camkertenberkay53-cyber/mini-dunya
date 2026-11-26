@@ -32,9 +32,16 @@ class LisansHatasi(Exception):
     pass
 
 
+YAN_DOSYA_KOK = ayar.REPO / "assets" / "tarihi_gorsel"   # <gorsel_id>.json yan dosyaları (görsel dosyası depoya girmez)
+
+
 def kayit(yol: Path | None = None) -> dict:
+    """Kayıt dosyası + (varsayılan kayıtta) assets/tarihi_gorsel/*.json yan dosyaları."""
     p = Path(yol or KAYIT)
-    return json.loads(p.read_text()) if p.exists() else {"gorseller": []}
+    k = json.loads(p.read_text()) if p.exists() else {"gorseller": []}
+    if yol is None and YAN_DOSYA_KOK.is_dir():
+        k = dict(k, gorseller=list(k["gorseller"]) + [json.loads(j.read_text()) for j in sorted(YAN_DOSYA_KOK.glob("*.json"))])
+    return k
 
 
 def _sha(p: Path) -> str:
@@ -47,7 +54,8 @@ def _sha(p: Path) -> str:
 
 def dosya_yolu(g: dict) -> Path | None:
     if g.get("yerel_yol"):
-        return Path(g["yerel_yol"])
+        p = Path(g["yerel_yol"])
+        return p if p.is_absolute() else ayar.REPO / p   # depoya göreli (assets/tarihi_gorsel/...) desteklenir
     if g.get("indirme_url"):
         ek = Path(g["indirme_url"].split("?")[0]).suffix.lower() or ".jpg"
         return INDIRME_KOK / f"{g['gorsel_id']}{ek}"
