@@ -234,6 +234,8 @@ gorsel25d:
       # doluluk ≥ 0,85 VE güvenilirlik düşük (kenar_orani < 3,0 ya da kararlilik < 0,95) → kenburns
       kenburns: {doluluk: 0.85, kenar_orani: 3.0, kararlilik: 0.95}
     kenburns_turleri: [minyatur, harita]   # figür–zemin ayrımı olmayan görsel türleri: maske hesaplanmaz
+    # Faz-53B: kayıttaki onerilen_seviye=kenburns (ozne_tespit: düşük güven / çok figür) uyulur; elle kutu varsa uyulmaz.
+    tespit_onerisine_uy: true
     kayma_px: {tam: 20, sinirli: 15}
     zoom_tolerans: 1.1         # kaynak pikselin en çok %10 büyütülmesine izin verilir; aşılırsa zoom kısılır
     nefes_portre_genlik: 0.4   # nefes yalnızca ozne_bilgisi.tur == insan_portre (özgün genliğin oranı)

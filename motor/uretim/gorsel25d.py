@@ -449,8 +449,13 @@ def hazirla(kaynak: Path, kayit: dict, g: dict, W: int, H: int, klasor: Path, to
              "zemin_derinlik": derin, "nefes": portre}
     t1 = time.time()
     tur_kb = str(kayit.get("gorsel_turu", "")) in set(ka.get("kenburns_turleri", []))
+    # Faz-53B: otomatik özne tespiti kenburns önerdiyse (düşük güven / çok figür) ve kutu elle verilmediyse uyulur
+    tespit_kb = (ka.get("tespit_onerisine_uy", True) and kayit.get("onerilen_seviye") == "kenburns"
+                 and ob.get("kutu_kaynagi", "otomatik") != "elle" and not g.get("ozne"))
     if tur_kb:   # minyatür / harita: figür–zemin ayrımı yok, maske hesaplanmaz
         sev, puan, alfa = "kenburns", {"neden": f"gorsel_turu={kayit.get('gorsel_turu')}"}, None
+    elif tespit_kb:
+        sev, puan, alfa = "kenburns", {"neden": f"ozne_tespit={kayit.get('tespit_durumu')}"}, None
     elif not kutu:
         sev, puan, alfa = "kenburns", {"neden": "özne kutusu yok"}, None
     else:

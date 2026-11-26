@@ -10,6 +10,9 @@ on:
     paths:
       - "motor/varlik/commons_toplayici.py"
       - "motor/varlik/tarihi_gorsel.py"
+      - "motor/varlik/ozne_tespit.py"
+      - "motor/testler/test_ozne_tespit.py"
+      - "deneyler/faz53b/ozne_pano.py"
       - "motor/uretim/gorsel25d.py"
       - "motor/testler/gorsel25d_kanit.py"
       - "deneyler/faz53a/gercek/sorgular.json"
@@ -46,7 +49,7 @@ jobs:
           if git status --porcelain --untracked-files=all assets/ | grep -vE '\.json$' | grep -q .; then echo "HATA: görsel ikilisi git'e görünüyor"; exit 1; fi
       - name: 2a) Faz-53A testleri (gerçek görsel testi dahil; zorunlu)
         run: |
-          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py \
+          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py motor/testler/test_ozne_tespit.py \
             --junitxml=cikti/pytest_faz53a.xml 2>&1 | tee cikti/pytest_faz53a.log
           test "${PIPESTATUS[0]}" -eq 0
       - name: 2b) Tam test takımı (bilgi; Godot/Blender/karakter önbelleği bu makinede yok)
@@ -57,6 +60,7 @@ jobs:
         run: |
           python3 deneyler/faz53a/a2_mikro/olc_kanit.py gercek hepsi deneyler/faz53a/gercek 2>&1 | tee cikti/kanit.log
           python3 deneyler/faz53a/a2_mikro/olc_kanit.py tuval_karsilastir fatih_portre_bellini_1480 deneyler/faz53a/gercek/tuval_karsilastirma 2>&1 | tee cikti/tuval_karsilastirma.log
+          python3 deneyler/faz53b/ozne_pano.py deneyler/faz53a/gercek 2>&1 | tee cikti/ozne_tespit.log
           cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
           mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
           find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60
@@ -70,6 +74,11 @@ jobs:
           for oz in ozetler:                      # önce bütün özetler (kısa satırlar)
               print("=== OZET", oz.parent.name)
               print(json.dumps(json.loads(oz.read_text()), ensure_ascii=False))
+          for t in sorted(pathlib.Path("deneyler/faz53a/gercek").glob("*/ozne_tespit.json")):   # Faz-53B özetleri
+              r = json.loads(t.read_text())
+              print("=== OZNE_TESPIT", t.parent.name, json.dumps({a: r.get(a) for a in ("gorsel_turu", "guven_skoru",
+                    "tespit_yontemi", "tespit_durumu", "fallback_uygulandi", "onerilen_seviye", "neden")} | {
+                    "kutu": r["ozne_bilgisi"]["kutu"], "yuzler": r["olcumler"].get("yuzler")}, ensure_ascii=False))
           for oz in ozetler:                      # sonra önizlemeler: 900 px, base64 76 karakterlik satırlar
               for j in sorted(oz.parent.glob("*.jpg")):
                   im = Image.open(j).convert("RGB")

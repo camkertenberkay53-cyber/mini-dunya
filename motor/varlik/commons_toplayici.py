@@ -32,6 +32,7 @@ import cv2
 import numpy as np
 
 from motor import ayar
+from motor.varlik import ozne_tespit
 
 API = "https://commons.wikimedia.org/w/api.php"
 KULLANICI_AJANI = "mini-dunya-belgesel/1.0 (https://github.com/camkertenberkay53-cyber/mini-dunya; tarihi gorsel toplayici)"
@@ -41,6 +42,8 @@ RED_IFADELER = ("all rights reserved", "fair use", "non-free", "nonfree")
 META = "LicenseShortName|UsageTerms|License|Artist|DateTimeOriginal|ObjectName|ImageDescription|Credit|AttributionRequired|Copyrighted|Restrictions"
 HEDEF = ayar.REPO / "assets" / "tarihi_gorsel"
 SAHNE_TURLERI = {"insan_portre": ["komutan_tanitimi", "baglam"], "mimari": ["sehir", "kusatma", "baglam"]}
+# ozne_tespit görsel türü → ozne_bilgisi.tur (sorgu "tur" vermediyse)
+TESPIT_OZNE_TURU = {"portre": "insan_portre", "mimari": "mimari", "cok_figurlu": "cok_figurlu"}
 
 
 class ToplayiciHatasi(Exception):
@@ -156,7 +159,8 @@ def sec(adaylar: list[dict], sorgu: str, tercih: str | None = None, en_az: int =
 # ------------------------------------------------------------------ özne kutusu
 
 def ozne_kutusu(yol: Path, tur: str | None = None) -> list[float]:
-    """Kenar enerjisinin %10–90'ını içeren bölge (5 % pay), güvenli merkez kadrajla birleşik. 0..1 [x0,y0,x1,y1]."""
+    """Kenar enerjisinin %10–90'ını içeren bölge (5 % pay), güvenli merkez kadrajla birleşik. 0..1 [x0,y0,x1,y1].
+    Faz-53B'den beri topla() bunun yerine ozne_tespit.tespit() kullanır; geriye dönük uyumluluk için korunur."""
     img = cv2.imread(str(yol), cv2.IMREAD_GRAYSCALE)
     if img is None:
         raise ToplayiciHatasi(f"görsel okunamadı: {yol}")
@@ -217,17 +221,31 @@ def topla(s: dict, hedef: Path = HEDEF) -> dict:
         raise ToplayiciHatasi(f"{gid}: indirilen dosya görsel olarak okunamadı")
     meta = secilen["meta"]
     lisans, atif_gerekli = lisans_kategorisi(meta)
-    tur = s.get("tur", "mimari")
+    # Faz-53B: tür + özne kutusu + güven, gerçek ölçümle (istisna fırlatmaz; başarısızlıkta tam kadraj fallback'i)
+    tsp = ozne_tespit.tespit(dosya)
+    tur = s.get("tur") or TESPIT_OZNE_TURU.get(tsp["gorsel_turu"], "genel")
+    ozne = {"kutu": s.get("kutu") or tsp["ozne_bilgisi"]["kutu"], "tur": tur,
+            "kutu_kaynagi": "elle" if s.get("kutu") else "otomatik",
+            "figur_sayisi": tsp["ozne_bilgisi"].get("figur_sayisi"), "ana_karakter": tsp["ozne_bilgisi"].get("ana_karakter")}
+    if s.get("kutu"):
+        ozne["otomatik_kutu"] = tsp["ozne_bilgisi"]["kutu"]
     k = {
         "gorsel_id": gid,
         "kaynak_url": secilen["aciklama_url"], "indirme_kaynagi": secilen["url"], "kaynak_kurum": "Wikimedia Commons",
         "eser_adi": s.get("eser_adi") or meta.get("ObjectName") or secilen["baslik"].replace("File:", ""),
         "tarih": s.get("tarih") or meta.get("DateTimeOriginal") or "bilinmiyor",
         "bolge": s.get("bolge", "bilinmiyor"), "donem": s.get("donem", "bilinmiyor"), "kultur": s.get("kultur", "bilinmiyor"),
-        "taraf_faction": s.get("taraf_faction", "bilinmiyor"), "gorsel_turu": s.get("gorsel_turu", "bilinmiyor"),
+        "taraf_faction": s.get("taraf_faction", "bilinmiyor"),
+        # sorgu türü verdiyse (elle) o korunur; yoksa ölçülen tür. Ölçülen tür her durumda ozne_tespit'te durur.
+        "gorsel_turu": s.get("gorsel_turu") or tsp["gorsel_turu"],
+        "gorsel_turu_kaynagi": "sorgu" if s.get("gorsel_turu") else "ozne_tespit",
         "uygun_sahne_turleri": s.get("uygun_sahne_turleri") or SAHNE_TURLERI.get(tur, ["baglam"]),
         "cozunurluk": [int(im.shape[1]), int(im.shape[0])],
-        "ozne_bilgisi": {"kutu": s.get("kutu") or ozne_kutusu(dosya, tur), "tur": tur, "kutu_kaynagi": "elle" if s.get("kutu") else "otomatik"},
+        "ozne_bilgisi": ozne,
+        "guven_skoru": tsp["guven_skoru"], "tespit_yontemi": tsp["tespit_yontemi"], "tespit_durumu": tsp["tespit_durumu"],
+        "fallback_uygulandi": tsp["fallback_uygulandi"], "onerilen_seviye": tsp["onerilen_seviye"],
+        "ozne_tespit": {a: tsp[a] for a in ("surum", "gorsel_turu", "tur_guveni", "neden", "olcumler", "uyarilar") if a in tsp}
+                       | ({"olasi_kutu": tsp["olasi_kutu"]} if "olasi_kutu" in tsp else {}),
         "derinlik_uygunlugu": s.get("derinlik_uygunlugu", "orta"),
         "lisans_turu": lisans,
         "lisans_kisa_adi": meta.get("LicenseShortName") or "",   # Commons'taki değer AYNEN (yayın açıklaması/atıf için)
@@ -261,7 +279,8 @@ def main(argv: list[str]) -> int:
         try:
             k = topla(s, hedef)
             print(f"TOPLANDI {k['gorsel_id']}: {k['toplama']['baslik']} {k['cozunurluk']} lisans={k['lisans_turu']} "
-                  f"kutu={k['ozne_bilgisi']['kutu']}")
+                  f"tur={k['ozne_tespit']['gorsel_turu']} kutu={k['ozne_bilgisi']['kutu']} guven={k['guven_skoru']} "
+                  f"durum={k['tespit_durumu']} oneri={k['onerilen_seviye']}")
         except ToplayiciHatasi as e:
             hata += 1
             print(f"HATA {e}")

@@ -96,6 +96,13 @@ def test_topla_indirir_dogrular_ve_kapidan_gecer(sahte_ag, tmp_path, monkeypatch
     assert tg.insan_onayli(k) is False
     kutu = k["ozne_bilgisi"]["kutu"]
     assert 0 <= kutu[0] < kutu[2] <= 1 and 0 <= kutu[1] < kutu[3] <= 1 and k["ozne_bilgisi"]["tur"] == "insan_portre"
+    # Faz-53B: ozne_tespit zorunlu alanları metadata'da (gerçek ölçüm; elle tür verildiyse korunur, ölçülen ayrıca durur)
+    for a in ("gorsel_turu", "guven_skoru", "tespit_yontemi", "tespit_durumu", "fallback_uygulandi", "onerilen_seviye"):
+        assert a in k, a
+    assert k["ozne_bilgisi"]["kutu_kaynagi"] == "otomatik" and k["gorsel_turu_kaynagi"] == "ozne_tespit"
+    assert k["gorsel_turu"] == k["ozne_tespit"]["gorsel_turu"] and 0.0 <= k["guven_skoru"] <= 1.0
+    assert k["tespit_durumu"] in ("kesin_yuz", "geometrik_tahmin", "belirsiz_fallback")
+    assert k["onerilen_seviye"] in ("tam", "sinirli", "kenburns") and isinstance(k["fallback_uygulandi"], bool)
     j = json.loads((tmp_path / "t_portre.json").read_text())
     assert j == k
     monkeypatch.setattr(tg, "YAN_DOSYA_KOK", tmp_path)
@@ -186,3 +193,24 @@ def test_otomatik_kayit_insan_onayi_gibi_gosterilmez_ve_kapi_kurali():
     assert tam({"kaynak_edinimi": "otomatik_toplayici", "insan_onayi": True, "tarih": "x"})  # otomatik kayıt 'insan' diyemez
     assert tam({"onaylayan": "kullanici", "tarih": "2026-11-26"}) == []
     assert tg.insan_onayli({"onay": {"onaylayan": "kullanici", "tarih": "x"}}) is True
+
+
+def test_topla_elle_tur_ve_kutu_korunur_otomatik_ayrica_kaydedilir(sahte_ag, tmp_path):
+    sayfalar, dosyalar, _ = sahte_ag
+    _ekle(sayfalar, dosyalar, "File:Harita.jpg", 2400, 2000)
+    k = ct.topla({"gorsel_id": "t_harita", "sorgu": "Harita", "gorsel_turu": "harita", "tur": "mimari",
+                  "kutu": [0.1, 0.1, 0.9, 0.9]}, tmp_path)
+    assert k["gorsel_turu"] == "harita" and k["gorsel_turu_kaynagi"] == "sorgu"
+    assert k["ozne_bilgisi"]["kutu"] == [0.1, 0.1, 0.9, 0.9] and k["ozne_bilgisi"]["kutu_kaynagi"] == "elle"
+    assert "otomatik_kutu" in k["ozne_bilgisi"] and "gorsel_turu" in k["ozne_tespit"]
+
+
+def test_tespit_hatasi_toplamayi_durdurmaz(sahte_ag, tmp_path, monkeypatch):
+    from motor.varlik import ozne_tespit as ot
+    sayfalar, dosyalar, _ = sahte_ag
+    _ekle(sayfalar, dosyalar, "File:Bir.jpg", 2400, 2000)
+    monkeypatch.setattr(ot, "_kenar_olculeri", lambda *_: (_ for _ in ()).throw(ValueError("bozuk")))
+    k = ct.topla({"gorsel_id": "t_bir", "sorgu": "Bir"}, tmp_path)
+    assert k["fallback_uygulandi"] is True and k["ozne_bilgisi"]["kutu"] == [0.0, 0.0, 1.0, 1.0]
+    assert k["onerilen_seviye"] == "kenburns" and k["tespit_yontemi"] == "tam_kadraj_fallback"
+    assert any("bozuk" in u for u in k["ozne_tespit"]["uyarilar"])
