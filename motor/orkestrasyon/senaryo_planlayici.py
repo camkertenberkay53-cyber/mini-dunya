@@ -37,11 +37,13 @@ from pathlib import Path
 
 import yaml
 
-from motor.orkestrasyon.llm import LLMProvider, MockLLMProvider, _al, _parcala, _yollari_ac, yol_ayarla
+from motor.orkestrasyon.llm import LLMHatasi, LLMProvider, MockLLMProvider, _al, _parcala, _yollari_ac, yol_ayarla
 
 KURALLAR = Path(__file__).with_name("kurallar.yaml")
 ONARIM_TALIMATI = "Repair only the invalid fields. Preserve the chronology, narrative structure, and already valid scenes."
-SURUM = "senaryo-planlayici-1"
+SURUM = "senaryo-planlayici-2"
+CELISKI_IFADESI = "kaynaklar farklı rakamlar aktarmaktadır"
+_URL = re.compile(r"https?://[^\s\"'<>)\]]+", re.I)
 
 
 @lru_cache(None)
@@ -119,6 +121,17 @@ def arastirma_dogrula(v: dict, sentetik: bool) -> list[dict]:
             for j, c in enumerate(kay):
                 if not isinstance(c, dict) or not (c.get("url") or c.get("eser")):
                     E.append(_h("kronoloji_dayanak", f"{y}.kaynaklar[{j}]", "kaynak_belirsiz", "kaynak url ya da eser taşımalı"))
+                elif k.get("durum") == "dogrulanmis" and isinstance(c.get("dogrulama"), dict) and \
+                        c["dogrulama"].get("verification_status") in ("unreachable", "unverified"):
+                    E.append(_h("kronoloji_dayanak", f"{y}.kaynaklar[{j}]", "dogrulanmamis_kaynak",
+                                "erişilemeyen/doğrulanamayan kaynak 'doğrulanmış' kaydı destekleyemez"))
+        if k.get("tek_kaynak_uyarisi") and k.get("durum") == "dogrulanmis":
+            E.append(_h("kronoloji_dayanak", f"{y}.durum", "tek_kaynak_kesin", "tek_kaynak_uyarisi taşıyan kayıt doğrulanmış olamaz"))
+        if k.get("celiski"):
+            dg = k["celiski"].get("degerler") if isinstance(k["celiski"], dict) else None
+            if k.get("durum") != "tartismali" or not isinstance(dg, list) or len({x.get("deger") for x in dg if isinstance(x, dict)}) < 2:
+                E.append(_h("kronoloji_dayanak", f"{y}.celiski", "celiski_tekillestirilmis",
+                            "çelişkili rakamlar ayrı ayrı tutulmalı (ortalama/tek değer yok) ve kayıt tartışmalı olmalı"))
     return E
 
 
@@ -179,12 +192,15 @@ def _dayanak_kontrol(birim: dict, yol: str, havuz: dict, metin_alani: str) -> li
     if uydurma:
         E.append(_h("kronoloji_dayanak", f"{yol}.{metin_alani}", "dayanaksiz_sayi",
                     f"anlatımdaki sayılar dayanakta yok (uydurma olamaz): {uydurma}"))
+    if any(kay[i].get("celiski") for i in ids) and "farklı rakam" not in _norm(metin):
+        E.append(_h("kronoloji_dayanak", f"{yol}.{metin_alani}", "celiski_ifadesi_yok",
+                    f"çelişkili rakamlara dayanan anlatım '{CELISKI_IFADESI}' yaklaşımını kullanmalı (ortalama/tek rakam yok)"))
     gerekli = _kesinlik_durumu(havuz, ids)
     if gerekli != "kesin":
         if birim.get("kesinlik") == "kesin":
             E.append(_h("kronoloji_dayanak", f"{yol}.kesinlik", "tartismali_kesin_sunulmus",
                         f"{gerekli} kayda dayanan anlatım 'kesin' olamaz"))
-        if not any(t in _norm(metin) for t in temkin_ifadeleri()):
+        if not any(t in _norm(metin) for t in temkin_ifadeleri()) and "farklı rakam" not in _norm(metin):
             E.append(_h("kronoloji_dayanak", f"{yol}.{metin_alani}", "temkin_yok",
                         f"{gerekli} kayda dayanan anlatım temkin ifadesi taşımalı ({', '.join(temkin_ifadeleri()[:4])}…)"))
     return E
@@ -371,6 +387,31 @@ def plan_dogrula(v: dict, havuz: dict, mod: str) -> tuple[list[dict], list[str],
                 E.append(_h("gorsel_sorgu", f"{y}.arama_sorgulari", "sorgu_yok",
                             "gorsel25d sahnesinde commons_toplayici uyumlu arama_sorgulari (boş olmayan metinler) zorunlu"))
 
+    # ---- uydurma kaynak kilidi: plandaki her URL ve kaynak kimliği havuzda doğrulanmış olmalı
+    gecerli_url = {c.get("url") for k in havuz["kayitlar"] for c in (k.get("kaynaklar") or [])
+                   if isinstance(c, dict) and c.get("url") and (c.get("dogrulama") or {}).get("verification_status", "verified")
+                   in ("verified", "content_mismatch")}
+    gecerli_kid = {c.get("id") for k in havuz["kayitlar"] for c in (k.get("kaynaklar") or []) if isinstance(c, dict)}
+
+    def _metinler(o):
+        if isinstance(o, str):
+            yield o
+        elif isinstance(o, dict):
+            for x in o.values():
+                yield from _metinler(x)
+        elif isinstance(o, list):
+            for x in o:
+                yield from _metinler(x)
+    for yol_, o in [("baslik", v.get("baslik"))] + [(f"sahneler[{i}]", s) for i, s in enumerate(sahneler)]:
+        for m in (u for t in _metinler(o) for u in _URL.findall(t)):
+            if m.rstrip(".,;") not in gecerli_url:
+                E.append(_h("kronoloji_dayanak", yol_, "dogrulanmamis_url", f"havuzda doğrulanmamış URL (LLM uydurması olabilir): {m[:80]}"))
+    for i, s in enumerate(sahneler):
+        if "kaynak_ids" in s:
+            uyd = [x for x in (s["kaynak_ids"] or []) if x not in gecerli_kid]
+            if uyd or not isinstance(s["kaynak_ids"], list):
+                E.append(_h("kronoloji_dayanak", f"sahneler[{i}].kaynak_ids", "uydurma_kaynak_id", f"havuzda olmayan kaynak kimliği: {uyd}"))
+
     # ---- dinamik dağılım (uyarı; kota değil)
     ozet = {"toplam_sn": round(toplam, 1), "sahne_sayisi": len(sahneler)}
     if toplam > 0:
@@ -397,9 +438,24 @@ Yalnızca JSON: {{"konu": str, "kayitlar": [{{"id","olay_id","tur":{kurallar()['
 
 def _istem_anlati(konu: str, mod: str, havuz: dict) -> str:
     R = kurallar()[mod]
-    kart = "\n".join(f"- {k['id']} [{k['durum']}] ({k.get('yil')}): {k['iddia']}" for k in havuz["kayitlar"])
+    def _st(k):
+        parca = [k["durum"]]
+        if k.get("tek_kaynak_uyarisi"):
+            parca.append("tek_kaynak_uyarisi")
+        if k.get("celiski"):
+            parca.append("CELISKI: " + ", ".join(str(x.get("deger")) for x in k["celiski"].get("degerler", [])))
+        dg = [f"{c.get('id')}={(c.get('dogrulama') or {}).get('verification_status', '-')}" for c in k.get("kaynaklar", [])
+              if isinstance(c, dict)]
+        if dg:
+            parca.append("kaynaklar: " + " ".join(dg))
+        return "; ".join(parca)
+    kart = "\n".join(f"- {k['id']} [{_st(k)}] ({k.get('yil')}): {k['iddia']}" for k in havuz["kayitlar"])
     return f"""Konu: "{konu}". Mod: {mod}. Dramatik anlatı yapısı: {' → '.join(R['bolum_sirasi'])}.
 Her anlatı birimi yalnızca aşağıdaki kayıtlara dayanır (dayanak_ids). Kayıtta olmayan sayı/tarih/kişi yazma.
+Kendi hafızanı kaynak olarak KULLANMA; havuzda olmayan kaynak, kaynak kimliği ya da URL UYDURMA.
+Doğrulama statüleri: verified / content_mismatch / unverified / unreachable. Doğrulanmamış ya da tek_kaynak_uyarisi
+taşıyan kaydı kesin anlatma. CELISKI işaretli rakamlarda kesin hüküm verme, ortalama alma; "{CELISKI_IFADESI}" de ve
+değerleri ayrı ayrı aktar.
 Tartışmalı ya da belirsiz kayda dayanan birim temkinli yazılır ({', '.join(temkin_ifadeleri()[:5])}) ve kesinlik 'kesin' olmaz.
 {'Shorts: uzun videodan kesit DEĞİL; tek ana olay, 0–3 sn hook, 3–40 sn hızlı akış, 40–60 sn şaşırtıcı kapanış.' if mod == 'shorts' else 'Uzun belgesel: 15–20 dk.'}
 Kayıtlar:
@@ -417,8 +473,47 @@ harita → cografi_amac zorunlu; sahne3d → uc_boyut_gerekcesi zorunlu; gorsel2
 Her sahne: ton {K['ton']}, gecis_efekti {K['gecis_efekti']}, ambiyans {K['ambiyans']}, hareketli (bool), kesinlik, dayanak_ids.
 {'Shorts: ilk sahne hook=true ve ilk 3 sn hareketli (gorsel25d/sahne3d); tek ana fikir (ana_fikir, ana_olay_id); kapanış 35–45. sn arasında başlar.' if mod == 'shorts' else 'Bölüm sırası: ' + ' → '.join(R['bolum_sirasi'])}
 Anlatı birimleri:
-{json.dumps(anlati['birimler'], ensure_ascii=False)[:20000]}
+{json.dumps(anlati['birimler'], ensure_ascii=False)[:150000]}
 Yalnızca JSON: {{"mod":"{mod}","baslik","uretim":"ayri",{'"ana_fikir","ana_olay_id",' if mod == 'shorts' else ''}"sahneler":[{{"id","bolum","anlatim","dayanak_ids","kesinlik","sure_sn","ritim","gorsel_tur","hareketli","katki","ton","gecis_efekti","ambiyans","hook",...}}]}}"""
+
+
+def _onarim_baglami(hatalar: list[dict], mevcut: dict, sinir: int = 30000) -> str:
+    """Gerçek LLM'in düzeltebilmesi için hatalı alanların içinde bulunduğu nesnelerin GÜNCEL hali (yalnızca onlar)."""
+    parcalar, gor = [], set()
+    for h in hatalar:
+        yol = h.get("yol") or ""
+        if not yol:
+            continue
+        if "[*]" in yol:   # genel hata (toplam süre vb.): ilgili alanın bütün sahnelerdeki değeri
+            on, arka = yol.split("[*]", 1)
+            if yol in gor:
+                continue
+            gor.add(yol)
+            try:
+                liste = _al(mevcut, on)
+                alan = arka.lstrip(".")
+                ozet = [{"i": i, "id": x.get("id"), alan or "deger": (x.get(alan) if alan else None)}
+                        for i, x in enumerate(liste) if isinstance(x, dict)]
+                parcalar.append(f"{yol} (güncel): {json.dumps(ozet, ensure_ascii=False)}")
+            except (KeyError, IndexError, TypeError):
+                pass
+            continue
+        p = _parcala(yol)
+        ust = p[:2] if len(p) >= 2 and isinstance(p[1], int) else p[:1]
+        anahtar = json.dumps(ust)
+        if anahtar in gor:
+            continue
+        gor.add(anahtar)
+        try:
+            nesne = mevcut
+            for x in ust:
+                nesne = nesne[x]
+            ad = ust[0] + (f"[{ust[1]}]" if len(ust) > 1 else "")
+            parcalar.append(f"{ad} (güncel): {json.dumps(nesne, ensure_ascii=False)}")
+        except (KeyError, IndexError, TypeError):
+            pass
+    metin = "\n".join(parcalar)
+    return metin[:sinir]
 
 
 def _istem_onarim(adim: str, hatalar: list[dict], mevcut: dict) -> str:
@@ -426,6 +521,8 @@ def _istem_onarim(adim: str, hatalar: list[dict], mevcut: dict) -> str:
     return f"""{ONARIM_TALIMATI}
 Adım: {adim}. Yalnızca şu yollardaki geçersiz alanları düzelt; başka hiçbir alanı değiştirme:
 {satir}
+Hatalı alanları içeren nesnelerin güncel hali (yalnızca bağlam için; listelenmeyen alanları değiştirme):
+{_onarim_baglami(hatalar, mevcut)}
 Yanıt yalnızca JSON yaması: {{"duzeltmeler": [{{"yol": "<yukarıdaki yollardan biri ya da altı>", "deger": <yeni değer>}}]}}"""
 
 
@@ -456,6 +553,16 @@ def _cozumle(ham: str):
 def _adim(saglayici: LLMProvider, adim: str, istem: str, baglam: dict, dogrula, en_cok: int) -> dict:
     """Bir LLM adımını en çok `en_cok` denemeyle doğrulanmış veriye çevirir. Dönüş: {veri|None, denemeler, hatalar}."""
     denemeler, veri, hatalar = [], None, []
+    try:
+        return _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler)
+    except LLMHatasi as e:   # gerçek sağlayıcı başarısız: DUR (mock'a sessiz geçiş YOK)
+        h = [_h("saglayici", "", "saglayici_hatasi", str(e)[:400])]
+        denemeler.append({"deneme": len(denemeler) + 1, "tur": "saglayici_hatasi", "hatalar": h})
+        return {"veri": None, "denemeler": denemeler, "hatalar": h}
+
+
+def _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler) -> dict:
+    veri, hatalar = None, []
     for d in range(1, en_cok + 1):
         if veri is None:   # ilk deneme ya da JSON çözülemedi → tam üretim istemi
             ham = saglayici.tamamla(istem if d == 1 else istem + "\n\nÖnceki yanıt geçerli JSON değildi. Yalnızca JSON döndür.",
@@ -502,7 +609,7 @@ def _adim(saglayici: LLMProvider, adim: str, istem: str, baglam: dict, dogrula, 
 
 
 def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | None = None,
-              uretime_gonder=None) -> dict:
+              uretime_gonder=None, arastirma: dict | None = None) -> dict:
     """Katman 1–6. Dönüş: rapor. `uretime_gonder(plan)` YALNIZCA plan bütün kapılardan geçerse çağrılır."""
     if mod not in ("uzun", "shorts"):
         raise ValueError("mod 'uzun' ya da 'shorts'")
@@ -518,9 +625,18 @@ def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | 
                                    f"render başlatılmadı (fail-safe)", "sure_sn": round(time.time() - t0, 2)})
         return rapor
 
-    # 1 araştırma
-    a = _adim(saglayici, "arastirma", _istem_arastirma(konu, mod), {"konu": konu, "mod": mod},
-              lambda v: arastirma_dogrula(v, sent), en_cok)
+    # 1 araştırma. Gerçek sağlayıcıda LLM hafızası araştırma kabul EDİLMEZ: havuz dış kaynak keşfi + canlı
+    #   doğrulamadan (kaynak_kesif.havuz_olustur) gelmeli. Mock testlerinde LLM adımı sentetik havuz üretir.
+    if arastirma is not None:
+        e = arastirma_dogrula(arastirma, sent)
+        a = {"veri": None if e else arastirma, "denemeler": [{"deneme": 1, "tur": "dis_kaynak_havuzu", "hatalar": e[:80]}], "hatalar": e}
+    elif not sent:
+        e = [_h("kronoloji_dayanak", "arastirma", "llm_hafizasi_arastirma_degil",
+                "gerçek üretimde araştırma havuzu dış kaynak keşfi ve doğrulamasından gelmeli (LLM hafızası kabul edilmez)")]
+        a = {"veri": None, "denemeler": [], "hatalar": e}
+    else:
+        a = _adim(saglayici, "arastirma", _istem_arastirma(konu, mod), {"konu": konu, "mod": mod},
+                  lambda v: arastirma_dogrula(v, sent), en_cok)
     rapor["katmanlar"]["1_arastirma"] = {"denemeler": a["denemeler"]}
     if a["veri"] is None:
         return dur("1_arastirma", a)
