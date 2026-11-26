@@ -195,6 +195,23 @@ def test_guven_skoru_olcumden_gelir_sabit_degil_ve_deterministik():
     assert dusuk < yuksek   # güven yüz skoruyla birlikte değişir
 
 
+def test_numpy_tipli_dedektor_ciktisi_jsona_yazilabilir():
+    """Gerçek dedektörler numpy float32 döndürür (CI'da toplayıcıyı düşüren hata): sonuç yine JSON'a yazılmalı."""
+    img, y = portre()
+    np_yuz = [{"kutu": [np.float32(v) for v in y[0]["kutu"]], "skor": np.float32(0.93)}]
+    r = ot.tespit(img, yuz_bulucu=_sahte(np_yuz))
+    _gecerli(r)
+    assert r["tespit_durumu"] == "kesin_yuz"
+
+    def tip_tara(o):
+        if isinstance(o, dict):
+            return all(tip_tara(v) for v in o.values())
+        if isinstance(o, list):
+            return all(tip_tara(v) for v in o)
+        return o is None or type(o) in (bool, int, float, str)
+    assert tip_tara(r)
+
+
 def test_hata_sureci_durdurmaz(tmp_path):
     r = ot.tespit(tmp_path / "yok.jpg")
     _gecerli(r)

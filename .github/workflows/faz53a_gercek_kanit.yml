@@ -28,6 +28,9 @@ jobs:
   kanit:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash   # açık "bash" → -eo pipefail: tee'ye bağlanan komutun hatası adımı düşürür
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -44,6 +47,7 @@ jobs:
         run: |
           mkdir -p cikti
           python3 -m motor.varlik.commons_toplayici deneyler/faz53a/gercek/sorgular.json 2>&1 | tee cikti/toplama.log
+          test "${PIPESTATUS[0]}" -eq 0 || { echo "HATA: toplayıcı başarısız (gerçek görsel testleri atlanacaktı)"; exit 1; }
           ls -la assets/tarihi_gorsel/
           git status --porcelain --untracked-files=all assets/ | tee cikti/git_durumu.txt
           if git status --porcelain --untracked-files=all assets/ | grep -vE '\.json$' | grep -q .; then echo "HATA: görsel ikilisi git'e görünüyor"; exit 1; fi
@@ -52,6 +56,7 @@ jobs:
           python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py motor/testler/test_ozne_tespit.py \
             --junitxml=cikti/pytest_faz53a.xml 2>&1 | tee cikti/pytest_faz53a.log
           test "${PIPESTATUS[0]}" -eq 0
+          if grep -q "SKIPPED.*gerçek tarihî görsel" cikti/pytest_faz53a.log; then echo "HATA: gerçek görsel testleri atlandı"; exit 1; fi
       - name: 2b) Tam test takımı (bilgi; Godot/Blender/karakter önbelleği bu makinede yok)
         continue-on-error: true
         run: |
@@ -61,6 +66,7 @@ jobs:
           python3 deneyler/faz53a/a2_mikro/olc_kanit.py gercek hepsi deneyler/faz53a/gercek 2>&1 | tee cikti/kanit.log
           python3 deneyler/faz53a/a2_mikro/olc_kanit.py tuval_karsilastir fatih_portre_bellini_1480 deneyler/faz53a/gercek/tuval_karsilastirma 2>&1 | tee cikti/tuval_karsilastirma.log
           python3 deneyler/faz53b/ozne_pano.py deneyler/faz53a/gercek 2>&1 | tee cikti/ozne_tespit.log
+          test "${PIPESTATUS[0]}" -eq 0
           cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
           mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
           find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60

@@ -120,8 +120,8 @@ def yunet_bulucu(img: np.ndarray, uzun_kenar: int, esik: float) -> list[dict]:
     _, f = d.detect(g)
     if f is None:
         return []
-    return [{"kutu": [max(0.0, r[0] / gw), max(0.0, r[1] / gh), min(1.0, (r[0] + r[2]) / gw), min(1.0, (r[1] + r[3]) / gh)],
-             "skor": float(r[14])} for r in f]
+    return [{"kutu": [max(0.0, float(r[0]) / gw), max(0.0, float(r[1]) / gh), min(1.0, float(r[0] + r[2]) / gw),
+                      min(1.0, float(r[1] + r[3]) / gh)], "skor": float(r[14])} for r in f]
 
 
 # ------------------------------------------------------------------ ölçüler
@@ -176,6 +176,23 @@ def _yogunlasma(e: np.ndarray, kutu) -> float:
     return pay / max(1e-6, _alan(kutu))
 
 
+def _saf(o):
+    """numpy sayı/dizi tiplerini JSON'a yazılabilir Python tiplerine çevirir (metadata'ya yazılacak)."""
+    if isinstance(o, dict):
+        return {k: _saf(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [_saf(v) for v in o]
+    if isinstance(o, np.ndarray):
+        return _saf(o.tolist())
+    if isinstance(o, np.bool_):
+        return bool(o)
+    if isinstance(o, np.integer):
+        return int(o)
+    if isinstance(o, np.floating):
+        return float(o)
+    return o
+
+
 def _sinirla(x: float) -> float:
     return float(min(1.0, max(0.0, x)))
 
@@ -193,7 +210,12 @@ def _fallback(neden: str, olcumler: dict | None = None, uyarilar: list | None = 
 
 def tespit(kaynak: str | Path | np.ndarray, ayarlar: dict | None = None,
            yuz_bulucu: Callable[[np.ndarray, int, float], list[dict]] | None = None) -> dict:
-    """Görsel → tür + özne kutusu + gerçek ölçüme dayalı güven + önerilen 2.5D seviyesi. İstisna fırlatmaz."""
+    """Görsel → tür + özne kutusu + gerçek ölçüme dayalı güven + önerilen 2.5D seviyesi. İstisna fırlatmaz.
+    Dönüş yalnızca JSON'a yazılabilir Python tipleri içerir."""
+    return _saf(_tespit(kaynak, ayarlar, yuz_bulucu))
+
+
+def _tespit(kaynak, ayarlar, yuz_bulucu) -> dict:
     a = dict(AYAR, **(ayarlar or {}))
     uyarilar: list[str] = []
     try:
