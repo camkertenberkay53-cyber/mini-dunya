@@ -75,17 +75,15 @@ jobs:
           find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60
       - name: 5) Canlı dry-run (bilgi; ağ + GEMINI_API_KEY varsa) — Kaynak Keşfi → Canlı Doğrulama → Gemini → Kapı
         continue-on-error: true
-        timeout-minutes: 30
+        timeout-minutes: 6   # API yavaşlasa bile iş akışı asılı kalmaz (Gemini bütçeleri: uzun 150 sn, Shorts 75 sn)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          set +e   # bilgi adımı: uzun koşunun sonucu Shorts koşusunu engellemesin; çıkış kodları açıkça yazılır
+          set +e   # bilgi adımı; çıkış kodu açıkça yazılır
           mkdir -p cikti/dry_run
           echo "GEMINI_API_KEY tanımlı mı: $([ -n "$GEMINI_API_KEY" ] && echo evet || echo hayir)"
-          python3 -m motor.orkestrasyon.canli_dry_run "Otlukbeli Savaşı" --mod uzun --cikti cikti/dry_run 2>&1 | tee cikti/dry_run/uzun.log
-          echo "uzun çıkış kodu: ${PIPESTATUS[0]}"
-          python3 -m motor.orkestrasyon.canli_dry_run "Otlukbeli Savaşı" --mod shorts --cikti cikti/dry_run 2>&1 | tee cikti/dry_run/shorts.log
-          echo "shorts çıkış kodu: ${PIPESTATUS[0]}"
+          python3 -u -m motor.orkestrasyon.canli_dry_run "Otlukbeli Savaşı" --mod uzun,shorts --cikti cikti/dry_run 2>&1 | tee cikti/dry_run/dry_run.log
+          echo "dry-run çıkış kodu: ${PIPESTATUS[0]}"
       - name: 4) Özet ve önizleme (iş akışı kaydına; artifact'a erişemeyen ortamlar için)
         if: always()
         run: |

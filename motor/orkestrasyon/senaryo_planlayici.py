@@ -550,26 +550,32 @@ def _cozumle(ham: str):
         return None, str(e)
 
 
-def _adim(saglayici: LLMProvider, adim: str, istem: str, baglam: dict, dogrula, en_cok: int) -> dict:
-    """Bir LLM adımını en çok `en_cok` denemeyle doğrulanmış veriye çevirir. Dönüş: {veri|None, denemeler, hatalar}."""
-    denemeler, veri, hatalar = [], None, []
+def _adim(saglayici: LLMProvider, adim: str, istem: str, baglam: dict, dogrula, en_cok: int,
+          ilk_uretim=None, ilerleme=None) -> dict:
+    """Bir LLM adımını en çok `en_cok` denemeyle doğrulanmış veriye çevirir. Dönüş: {veri|None, denemeler, hatalar}.
+    ilk_uretim(deneme) → ham metin: tam üretim için özel yol (ör. bölüm bölüm paralel üretim); onarım her zaman hedefli."""
+    denemeler = []
     try:
-        return _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler)
+        return _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler, ilk_uretim, ilerleme or (lambda *a: None))
     except LLMHatasi as e:   # gerçek sağlayıcı başarısız: DUR (mock'a sessiz geçiş YOK)
         h = [_h("saglayici", "", "saglayici_hatasi", str(e)[:400])]
         denemeler.append({"deneme": len(denemeler) + 1, "tur": "saglayici_hatasi", "hatalar": h})
         return {"veri": None, "denemeler": denemeler, "hatalar": h}
 
 
-def _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler) -> dict:
+def _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler, ilk_uretim, ilerleme) -> dict:
     veri, hatalar = None, []
     for d in range(1, en_cok + 1):
         if veri is None:   # ilk deneme ya da JSON çözülemedi → tam üretim istemi
-            ham = saglayici.tamamla(istem if d == 1 else istem + "\n\nÖnceki yanıt geçerli JSON değildi. Yalnızca JSON döndür.",
-                                    adim, dict(baglam, deneme=d))
+            if ilk_uretim is not None:
+                ham = ilk_uretim(d)
+            else:
+                ham = saglayici.tamamla(istem if d == 1 else istem + "\n\nÖnceki yanıt geçerli JSON değildi. Yalnızca JSON döndür.",
+                                        adim, dict(baglam, deneme=d))
             yeni, perr = _cozumle(ham)
             if yeni is None:
                 hatalar = [_h("json", "", "json_parse", f"JSON çözümlenemedi: {perr}")]
+                ilerleme("onay_kapisi", f"{adim} deneme {d}/{en_cok}: JSON çözümlenemedi")
                 denemeler.append({"deneme": d, "tur": "tam_uretim", "hatalar": hatalar})
                 continue
             veri = yeni
@@ -603,13 +609,82 @@ def _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler) -> dict
                 continue
         hatalar = dogrula(veri)
         denemeler.append({"deneme": d, "tur": tur, "hatalar": hatalar[:80], "hata_sayisi": len(hatalar)})
+        kodlar = {}
+        for h in hatalar:
+            kodlar[h["kod"]] = kodlar.get(h["kod"], 0) + 1
+        ilerleme("onay_kapisi", f"{adim} deneme {d}/{en_cok} ({tur}): {'GEÇTİ' if not hatalar else f'{len(hatalar)} hata {kodlar}'}")
         if not hatalar:
             return {"veri": veri, "denemeler": denemeler, "hatalar": []}
     return {"veri": None, "denemeler": denemeler, "hatalar": hatalar}
 
 
+PARCA_SURE_SN = {"hook": 45, "baglam": 200, "catisma": 320, "donum_noktasi": 280, "sonuc": 205}   # ≈ 17,5 dk
+
+
+def _paralel(fn, ogeler, en_cok_is: int = 5) -> list:
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=max(1, min(en_cok_is, len(ogeler)))) as ex:
+        return list(ex.map(fn, ogeler))   # bir parçadaki LLMHatasi burada yükselir → adım durur (fallback yok)
+
+
+def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme):
+    sira = kurallar()[mod]["bolum_sirasi"]
+
+    def tek(bolum):
+        sn = PARCA_SURE_SN[bolum]
+        ist = _istem_anlati(konu, mod, havuz) + (
+            f"\nBU İSTEKTE YALNIZCA '{bolum}' bölümünü yaz (her birimde bolum='{bolum}'). Hedef: yaklaşık {sn} sn anlatım, "
+            f"yaklaşık {max(3, round(sn / 8.5))} birim. Diğer bölümleri yazma.")
+        ilerleme("gemini_cagri", f"anlati/{bolum} başlıyor")
+        return bolum, saglayici.tamamla(ist, "anlati", {"konu": konu, "mod": mod, "havuz": havuz, "bolum": bolum})
+
+    def uret(deneme):
+        birimler = []
+        for bolum, ham in _paralel(tek, sira):
+            v, _ = _cozumle(ham)
+            if not isinstance(v, dict) or not isinstance(v.get("birimler"), list):
+                ilerleme("onay_kapisi", f"anlati/{bolum}: JSON çözümlenemedi")
+                return f"PARCA_JSON_HATASI anlati/{bolum}"
+            birimler += [dict(b, bolum=bolum) if isinstance(b, dict) else b for b in v["birimler"]]
+        return json.dumps({"mod": mod, "birimler": birimler}, ensure_ascii=False)
+    return uret
+
+
+def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme):
+    sira = kurallar()[mod]["bolum_sirasi"]
+
+    def tek(bolum):
+        alt = {"mod": mod, "birimler": [b for b in anlati["birimler"] if b.get("bolum") == bolum]}
+        ist = _istem_plan(konu, mod, havuz, alt) + (
+            f"\nBU İSTEKTE YALNIZCA '{bolum}' bölümünün sahnelerini üret (bütün plan değil). Bu bölümün toplamı yaklaşık "
+            f"{PARCA_SURE_SN[bolum]} sn olsun. Bölüm geçişinde aynı görsel türünün 3. kez üst üste gelmemesi için ilk ve son "
+            f"sahnelerde tür çeşitliliğine dikkat et.")
+        ilerleme("gemini_cagri", f"sahne_plani/{bolum} başlıyor ({len(alt['birimler'])} birim)")
+        return bolum, saglayici.tamamla(ist, "sahne_plani", {"konu": konu, "mod": mod, "havuz": havuz, "anlati": alt, "bolum": bolum})
+
+    def uret(deneme):
+        sahneler, baslik = [], None
+        for bolum, ham in _paralel(tek, sira):
+            v, _ = _cozumle(ham)
+            if not isinstance(v, dict) or not isinstance(v.get("sahneler"), list):
+                ilerleme("onay_kapisi", f"sahne_plani/{bolum}: JSON çözümlenemedi")
+                return f"PARCA_JSON_HATASI sahne_plani/{bolum}"
+            baslik = baslik or v.get("baslik")
+            sahneler += [dict(x, bolum=bolum) if isinstance(x, dict) else x for x in v["sahneler"]]
+        for i, x in enumerate(sahneler):   # parçalardaki kimlikler çakışabilir: birleşik planda yeniden numaralanır
+            if isinstance(x, dict):
+                x["id"] = f"s{i + 1:03d}"
+                x["hook"] = bool(x.get("hook")) if i == 0 else False   # hook yalnızca ilk sahnede
+        return json.dumps({"mod": mod, "baslik": baslik or konu, "uretim": "ayri", "sahneler": sahneler}, ensure_ascii=False)
+    return uret
+
+
 def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | None = None,
-              uretime_gonder=None, arastirma: dict | None = None) -> dict:
+              uretime_gonder=None, arastirma: dict | None = None, parcali: bool = False, ilerleme=None) -> dict:
+    """parcali=True (yalnızca uzun mod): anlatı ve sahne planı bölüm bölüm PARALEL üretilir, birleştirilir ve
+    birleşik plan aynı Validation Gate'ten geçer; onarım birleşik planda hedefli yapılır. ilerleme(asama, mesaj)."""
+    ilerleme = ilerleme or (lambda *a: None)
+    parcali = parcali and mod == "uzun"
     """Katman 1–6. Dönüş: rapor. `uretime_gonder(plan)` YALNIZCA plan bütün kapılardan geçerse çağrılır."""
     if mod not in ("uzun", "shorts"):
         raise ValueError("mod 'uzun' ya da 'shorts'")
@@ -646,8 +721,10 @@ def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | 
                                             for k in ("dogrulanmis", "tartismali", "belirsiz")} | {
         "kronoloji": havuz["kronoloji"], "celiskiler": havuz["celiskiler"]}
     # 3 dramatik anlatı
+    ilerleme("onay_kapisi", f"araştırma havuzu kapıdan geçti: {len(havuz['kayitlar'])} kayıt")
     n = _adim(saglayici, "anlati", _istem_anlati(konu, mod, havuz), {"konu": konu, "mod": mod, "havuz": havuz},
-              lambda v: anlati_dogrula(v, havuz, mod), en_cok)
+              lambda v: anlati_dogrula(v, havuz, mod), en_cok,
+              ilk_uretim=_parcali_anlati(saglayici, konu, mod, havuz, ilerleme) if parcali else None, ilerleme=ilerleme)
     rapor["katmanlar"]["3_anlati"] = {"denemeler": n["denemeler"]}
     if n["veri"] is None:
         return dur("3_anlati", n)
@@ -659,7 +736,8 @@ def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | 
         e, uyarilar, ozet = plan_dogrula(v, havuz, mod)
         return e
     p = _adim(saglayici, "sahne_plani", _istem_plan(konu, mod, havuz, n["veri"]),
-              {"konu": konu, "mod": mod, "havuz": havuz, "anlati": n["veri"]}, kapi, en_cok)
+              {"konu": konu, "mod": mod, "havuz": havuz, "anlati": n["veri"]}, kapi, en_cok,
+              ilk_uretim=_parcali_plan(saglayici, konu, mod, havuz, n["veri"], ilerleme) if parcali else None, ilerleme=ilerleme)
     rapor["katmanlar"]["4_5_sahne_plani_ve_kapi"] = {"denemeler": p["denemeler"]}
     if p["veri"] is None:
         return dur("4_5_sahne_plani_ve_kapi", p)

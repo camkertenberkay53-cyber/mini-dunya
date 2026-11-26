@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import statistics
 import urllib.parse
 
@@ -548,15 +549,19 @@ def test_gercek_havuz_kapisi_tek_kaynak_ve_celiski_tekillestirme_reddi():
     assert {"tek_kaynak_kesin", "celiski_tekillestirilmis", "dogrulanmamis_kaynak"} <= kodlar
 
 
-def test_canli_dry_run_anahtarsiz_gemini_atlar_mocka_gecmez(monkeypatch):
+def test_canli_dry_run_anahtarsiz_gemini_atlar_mocka_gecmez(monkeypatch, capsys):
     from motor.orkestrasyon import canli_dry_run as cdr
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
     ag = _wp_ag()
-    monkeypatch.setattr(cdr, "WikipediaKesif", lambda: kk.WikipediaKesif(ag.istemci()))
-    monkeypatch.setattr(cdr, "KaynakDogrulayici", lambda: kd.KaynakDogrulayici(ag.istemci()))
-    r = cdr.calistir("Örnekova Muharebesi", "shorts")
+    monkeypatch.setattr(cdr, "_kesif", lambda: kk.WikipediaKesif(ag.istemci()))
+    monkeypatch.setattr(cdr, "_dogrulayici", lambda: kd.KaynakDogrulayici(ag.istemci()))
+    r = cdr.calistir("Örnekova Muharebesi", ["uzun", "shorts"])
     assert r["durum"] == "gemini_atlandi" and "mock'a geçilmedi" in r["asamalar"]["3_gemini"]["neden"]
-    assert r["asamalar"]["2_dogrulama"]["kayit_sayisi"] >= 3 and "plan" not in r
+    assert r["asamalar"]["2_dogrulama"]["kayit_sayisi"] >= 3 and r["planlar"] == {}
+    cikti = capsys.readouterr().out
+    for asama in ("kaynak_kesif:", "kaynak_dogrulama:", "gemini_cagri:"):   # zaman damgalı ilerleme satırları
+        assert asama in cikti, asama
+    assert re.search(r"\[\d\d:\d\d:\d\d \+\s*\d+\.\ds\] kaynak_kesif:", cikti)
 
 
 def test_ortamda_anahtar_yoksa_dosyalarda_anahtar_izi_yok():
@@ -607,3 +612,63 @@ def test_kisa_kalip_metin_kopya_sayilmaz_ve_yilsiz_iddia_tarih_degil():
                          kd.KaynakDogrulayici(ag.istemci()))
     assert all(k["yil"] is not None for k in h["kayitlar"] if k["tur"] == "tarih")
     assert sp.arastirma_dogrula(h, sentetik=False) == []
+
+
+# ------------------------------------------------------------------ süre korumaları ve parçalı üretim
+
+def test_gemini_istek_zaman_asimi_90_ve_dusunme_butcesi(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    goru = []
+
+    def t(url, govde, bas, zaman):
+        goru.append((zaman, json.loads(govde)["generationConfig"]))
+        return 200, json.dumps({"candidates": [{"content": {"parts": [{"text": "{}"}]}}]})
+    g = gm.GeminiLLMProvider(tasiyici=t)
+    g.tamamla("x", "anlati", {})
+    assert goru[0][0] == 90.0 and goru[0][1]["thinkingConfig"] == {"thinkingBudget": 1024}
+
+
+def test_dusunme_yapilandirmasi_desteklenmezse_onsuz_tekrar(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    goru = []
+
+    def t(url, govde, bas, zaman):
+        cfg = json.loads(govde)["generationConfig"]
+        goru.append("thinkingConfig" in cfg)
+        if "thinkingConfig" in cfg:
+            return 400, '{"error": {"message": "thinking is not supported for this model"}}'
+        return 200, json.dumps({"candidates": [{"content": {"parts": [{"text": "{}"}]}}]})
+    g = gm.GeminiLLMProvider(tasiyici=t)
+    assert g.tamamla("x", "anlati", {}) == "{}" and goru == [True, False]
+    g.tamamla("y", "anlati", {})
+    assert goru[-1] is False   # model hatırlanır
+
+
+def test_gemini_sure_butcesi_asilinca_acik_hata_asili_kalmaz(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    saat = [0.0]
+
+    def yavas(url, govde, bas, zaman):
+        assert zaman <= 90.0
+        saat[0] += zaman   # her istek zaman aşımına kadar sürer
+        raise TimeoutError("timed out")
+    g = gm.GeminiLLMProvider(tasiyici=yavas, sure_butcesi=150.0, saat=lambda: saat[0], uyku=lambda s: None)
+    with pytest.raises(gm.GercekUretimHatasi, match="süre bütçesi"):
+        g.tamamla("x", "anlati", {})
+    assert saat[0] <= 150.0 + 5.0 and g.cagri_sayisi <= 3
+
+
+def test_uzun_parcali_uretim_bolum_bolum_ve_kapidan_gecer():
+    m = MockLLMProvider()
+    log = []
+    r = sp.plan_uret("Örnek Kale", "uzun", m, parcali=True, ilerleme=lambda a, b: log.append((a, b)))
+    assert r["durum"] == "uretime_hazir" and 900 <= r["ozet"]["toplam_sn"] <= 1200
+    adim = [c["adim"] for c in m.cagrilar]
+    assert adim.count("anlati") == 5 and adim.count("sahne_plani") == 5
+    ids = [s["id"] for s in r["plan"]["sahneler"]]
+    assert len(ids) == len(set(ids)) and sum(s["hook"] for s in r["plan"]["sahneler"]) == 1
+    assert any(a == "onay_kapisi" and "GEÇTİ" in b for a, b in log)
+    # Shorts parçalı üretilmez (tek istek)
+    m2 = MockLLMProvider()
+    sp.plan_uret("Örnek Kale", "shorts", m2, parcali=True)
+    assert [c["adim"] for c in m2.cagrilar].count("sahne_plani") == 1

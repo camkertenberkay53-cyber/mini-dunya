@@ -246,8 +246,13 @@ def iddialari_cikar(kaynak: dict, en_cok: int = 60) -> list[dict]:
     return out
 
 
-def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayici, olay_terimleri: list[str] | None = None) -> dict:
+def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayici, olay_terimleri: list[str] | None = None,
+                  ilerleme=None) -> dict:
     """Kaynaklar + iddialar → planlayıcının araştırma biçiminde havuz (statüler işaretli). LLM kullanılmaz."""
+    ilerleme = ilerleme or (lambda *a: None)
+    ilerleme("kaynak_dogrulama", f"{len(kaynaklar)} kaynak sayfası paralel getiriliyor (SSRF korumalı)")
+    sayim = dogrulayici.onden_getir([k["url"] for k in kaynaklar])
+    ilerleme("kaynak_dogrulama", f"sayfalar getirildi: {sayim}")
     olay_terimleri = olay_terimleri or [w for w in re.findall(r"\w+", konu) if len(w) >= 4]
     # aday dış kaynaklar canlı (SSRF korumalı) getirilir; metni olanlar hem bağımsızlık (kopya tespiti) hem de
     # kendi iddiaları (farklı rakamlar → çelişki) için kullanılır
@@ -304,6 +309,8 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
                                  else "tarih" if idd["yillar"] else "olay"),
                          "olay_id": f"olay_{idd['yillar'][0]}" if idd["yillar"] else "olay_genel"})
     sayisal_koruma(kayitlar)
+    ilerleme("kaynak_dogrulama", f"{len(kayitlar)} iddia denetlendi; durumlar: "
+             f"{ {d: sum(k['durum'] == d for k in kayitlar) for d in ('dogrulanmis', 'tartismali', 'belirsiz')} }")
     return {"konu": konu, "kayitlar": kayitlar, "kaynak_raporu": rapor_kaynak,
             "kume_sayisi": len(set(kume.values())), "dogrulama_yontemi": "structured_and_contextual"}
 

@@ -39,7 +39,11 @@ class GeminiLLMProvider(LLMProvider):
     ad = "gemini"
     sentetik = False
 
-    def __init__(self, modeller=MODELLER, tasiyici=None, zaman_asimi: float = 240.0, uyku=time.sleep, en_cok_tekrar: int = 2):
+    def __init__(self, modeller=MODELLER, tasiyici=None, zaman_asimi: float = 90.0, uyku=time.sleep, en_cok_tekrar: int = 2,
+                 dusunme_butcesi: int | None = 1024, sure_butcesi: float | None = None, ilerleme=None, saat=time.monotonic):
+        """zaman_asimi: istek başına en çok bekleme (sn). dusunme_butcesi: thinking token sınırı (None → gönderilmez;
+        model desteklemiyorsa 400 sonrası o model için kendiliğinden kapatılır). sure_butcesi: bu sağlayıcının bütün
+        çağrıları için toplam duvar saati sınırı (aşılırsa GercekUretimHatasi; asılı kalma yok)."""
         anahtar = os.environ.get("GEMINI_API_KEY")
         if not anahtar or not anahtar.strip():
             raise GercekUretimHatasi("GEMINI_API_KEY tanımlı değil: gerçek üretim yapılamaz (mock'a geçilmez)")
@@ -49,6 +53,11 @@ class GeminiLLMProvider(LLMProvider):
         self.zaman_asimi, self.uyku, self.en_cok_tekrar = zaman_asimi, uyku, en_cok_tekrar
         self.kullanilan_model: str | None = None
         self.cagri_sayisi = 0
+        self.dusunme_butcesi, self.sure_butcesi, self.ilerleme, self.saat = dusunme_butcesi, sure_butcesi, ilerleme, saat
+        self._baslangic = saat()
+        self._dusunmesiz: set[str] = set()
+        import threading
+        self._kilit = threading.Lock()
 
     def __repr__(self) -> str:   # anahtar hiçbir temsilde görünmez
         return f"GeminiLLMProvider(modeller={self.modeller!r})"
@@ -56,22 +65,49 @@ class GeminiLLMProvider(LLMProvider):
     def _maskele(self, metin: str) -> str:
         return (metin or "").replace(self.__anahtar, "***")
 
+    def _log(self, mesaj: str) -> None:
+        if self.ilerleme:
+            self.ilerleme("gemini_cagri", mesaj)
+
+    def _kalan(self) -> float | None:
+        return None if self.sure_butcesi is None else self.sure_butcesi - (self.saat() - self._baslangic)
+
+    def _govde(self, istem: str, model: str) -> bytes:
+        cfg = {"temperature": 0.2, "responseMimeType": "application/json"}
+        if self.dusunme_butcesi is not None and model not in self._dusunmesiz:
+            cfg["thinkingConfig"] = {"thinkingBudget": int(self.dusunme_butcesi)}
+        return json.dumps({"contents": [{"role": "user", "parts": [{"text": istem}]}], "generationConfig": cfg}).encode()
+
     def tamamla(self, istem: str, adim: str, baglam: dict) -> str:
-        govde = json.dumps({"contents": [{"role": "user", "parts": [{"text": istem}]}],
-                            "generationConfig": {"temperature": 0.2, "responseMimeType": "application/json"}}).encode()
         basliklar = {"Content-Type": "application/json", "x-goog-api-key": self.__anahtar}
         sorunlar = []
+        etiket = adim + (f"/{baglam['bolum']}" if baglam.get("bolum") else "")
         for model in ([self.kullanilan_model] if self.kullanilan_model else []) + [m for m in self.modeller if m != self.kullanilan_model]:
-            for tekrar in range(self.en_cok_tekrar + 1):
-                self.cagri_sayisi += 1
+            tekrar = 0
+            while tekrar <= self.en_cok_tekrar:
+                kalan = self._kalan()
+                if kalan is not None and kalan <= 1:
+                    raise GercekUretimHatasi(self._maskele(f"Gemini süre bütçesi ({self.sure_butcesi:.0f} sn) doldu; "
+                                                           f"üretim durduruldu (mock'a geçilmez): " + " | ".join(sorunlar)))
+                zaman = self.zaman_asimi if kalan is None else max(5.0, min(self.zaman_asimi, kalan))
+                with self._kilit:
+                    self.cagri_sayisi += 1
+                t0 = self.saat()
+                self._log(f"→ {etiket} model={model} deneme={tekrar + 1} zaman_asimi={zaman:.0f}s istem={len(istem)} kr")
                 try:
-                    kod, metin = self.tasiyici(API.format(model=model), govde, basliklar, self.zaman_asimi)
-                except Exception as e:   # ağ hatası: mesaj maskelenir
+                    kod, metin = self.tasiyici(API.format(model=model), self._govde(istem, model), basliklar, zaman)
+                except Exception as e:   # ağ hatası / zaman aşımı: mesaj maskelenir
                     sorunlar.append(f"{model}: ag_hatasi {type(e).__name__}: {self._maskele(str(e))[:160]}")
+                    self._log(f"✗ {etiket} model={model} {type(e).__name__} ({self.saat() - t0:.1f}s)")
                     if tekrar < self.en_cok_tekrar:
                         self.uyku(2 ** tekrar)
+                        tekrar += 1
                         continue
                     break
+                self._log(f"← {etiket} model={model} HTTP {kod} ({self.saat() - t0:.1f}s, {len(metin)} kr)")
+                if kod == 400 and "thinking" in metin.lower() and model not in self._dusunmesiz:
+                    self._dusunmesiz.add(model)   # bu model thinking yapılandırmasını desteklemiyor: onsuz tekrar
+                    continue
                 if kod == 200:
                     try:
                         d = json.loads(metin)
@@ -80,10 +116,12 @@ class GeminiLLMProvider(LLMProvider):
                     except (KeyError, IndexError, json.JSONDecodeError, TypeError):
                         sorunlar.append(f"{model}: yanit_bicimi")
                         break
-                    self.kullanilan_model = model
+                    with self._kilit:
+                        self.kullanilan_model = model
                     return yanit
                 if kod in (429, 500, 502, 503, 504) and tekrar < self.en_cok_tekrar:
                     self.uyku(min(30, 5 * (tekrar + 1)))
+                    tekrar += 1
                     continue
                 sorunlar.append(f"{model}: HTTP {kod} {self._maskele(metin)[:160]}")
                 break

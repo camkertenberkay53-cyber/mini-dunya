@@ -387,6 +387,17 @@ class KaynakDogrulayici:
             return ("unverified", y.durum, "", f"beklenmeyen_http_{y.durum}")
         return ("unverified", 429, "", "rate_limit_asildi")
 
+    def onden_getir(self, urller: list[str], paralel: int = 8) -> dict:
+        """Sayfaları paralel getirip önbelleğe alır (her biri SSRF korumalı). Dönüş: durum sınıfı sayımı."""
+        from concurrent.futures import ThreadPoolExecutor
+        eksik = [u for u in dict.fromkeys(urller) if u not in self._onbellek]
+        with ThreadPoolExecutor(max_workers=max(1, min(paralel, len(eksik) or 1))) as ex:
+            list(ex.map(self.sayfa, eksik))
+        sayim: dict = {}
+        for u in urller:
+            sayim[self._onbellek[u][0]] = sayim.get(self._onbellek[u][0], 0) + 1
+        return sayim
+
     def dogrula(self, url: str, iddia: dict) -> dict:
         sinif, kod, metin, neden = self.sayfa(url)
         if sinif != "ok":

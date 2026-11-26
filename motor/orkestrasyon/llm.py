@@ -144,6 +144,8 @@ class MockLLMProvider(LLMProvider):
         else:
             plan = [("hook", "mock_olay_4", 4), ("baglam", "mock_olay_1", 12), ("baglam", "mock_olay_2", 13),
                     ("catisma", "mock_olay_3", 40), ("donum_noktasi", "mock_olay_4", 30), ("sonuc", "mock_olay_5", 19)]
+        if b.get("bolum"):   # parçalı üretim: yalnızca istenen bölüm
+            plan = [x for x in plan if x[0] == b["bolum"]]
         birimler, n = [], 0
         for bolum, oid, adet in plan:
             ids = olay_kayit[oid]
@@ -151,8 +153,9 @@ class MockLLMProvider(LLMProvider):
                 kid = ids[j % len(ids)]
                 k = havuz[kid]
                 temkin = k["durum"] != "dogrulanmis"
+                etiket = f"{b.get('bolum', '')[:2].upper()}{_kod(n)}" if b.get("bolum") else _kod(n)
                 metin = (f"{'Bazı kaynaklara göre ' if temkin else ''}{k['iddia']} "
-                         f"Bu sahne {_ACILAR[n % len(_ACILAR)]} yönünü öne çıkarır [{_kod(n)}].")
+                         f"Bu sahne {_ACILAR[n % len(_ACILAR)]} yönünü öne çıkarır [{etiket}].")
                 birimler.append({"id": f"b{n + 1:03d}", "bolum": bolum, "metin": metin, "dayanak_ids": [kid],
                                  "kesinlik": "tartismali" if temkin else "kesin"})
                 n += 1
@@ -187,7 +190,7 @@ class MockLLMProvider(LLMProvider):
                      "atmosfer" if s >= 10 else "normal")
             sh = {"id": f"s{i + 1:03d}", "bolum": bi["bolum"], "anlatim": bi["metin"], "dayanak_ids": list(bi["dayanak_ids"]),
                   "kesinlik": bi["kesinlik"], "sure_sn": s, "ritim": ritim, "gorsel_tur": t,
-                  "hareketli": t != "harita", "katki": f"{_ACILAR[i % len(_ACILAR)]} bilgisi [{_kod(i)}]",
+                  "hareketli": t != "harita", "katki": f"{_ACILAR[i % len(_ACILAR)]} bilgisi [{bi['metin'][-8:]}{_kod(i)}]",
                   "ton": ["ciddi", "gerilimli", "epos"][i % 3], "gecis_efekti": "boom" if (i == 0 or (i > 0 and bi["bolum"] != birimler[i - 1]["bolum"])) else "yok",
                   "ambiyans": olay_amb[k["olay_id"]], "hook": i == 0}
             if t == "harita":
