@@ -374,6 +374,19 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
             return c, [], {}
         c["metin"] = n.get("metin") or n.get("aciklama", "")
         return c, [f"{taslak['id']}: 2D harita çizilemedi — evre '{evre}' konu verisinde yok"], {}
+    if n["tur"] == "gorsel25d" and veri.kural("gorsel").get("gorsel25d", {}).get("acik"):
+        # Faz-53A A1: tarihî görselden 2.5D çekim. Görsel uydurulmaz; lisans kapısından geçmeyen görsel eksik kaydı olur.
+        from motor.varlik import tarihi_gorsel
+        c["metin"] = n.get("metin") or n.get("aciklama", "")
+        g = dict(n.get("gorsel25d") or {})
+        if not g.get("gorsel_id"):
+            return c, [f"{taslak['id']}: 2.5D niyetinde görsel kimliği yok"], {}
+        try:
+            tarihi_gorsel.dogrulanmis_dosya(g["gorsel_id"])
+        except tarihi_gorsel.LisansHatasi as e:
+            return c, [f"{taslak['id']}: 2.5D görsel kullanılamaz — {e}"], {}
+        c["gorsel25d"] = g
+        return c, [], {}
     if n["tur"] != "3d":
         c["metin"] = n.get("metin") or n.get("aciklama", "")
         return c, [f"{taslak['id']}: '{n['tur']}' görseli üretecek 2D kart motoru yok"], {}

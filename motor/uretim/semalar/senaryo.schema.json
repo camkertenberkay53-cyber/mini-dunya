@@ -25,7 +25,8 @@
      "enum": [
       "3d",
       "harita",
-      "bilgi_karti"
+      "bilgi_karti",
+      "gorsel25d"
      ]
     },
     "roller": {
@@ -123,6 +124,86 @@
     "evre": {
      "type": "string",
      "description": "Harita niyeti: konu.harita.evreler içindeki evre kimliği."
+    },
+    "gorsel25d": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "gorsel_id"
+     ],
+     "description": "Faz-53A: tarihî görselden 2.5D çekim (kaos/sinema). gorsel_id motor/varlik/tarihi_gorsel_kaydi.json'da lisansı insan onaylı olmalı.",
+     "properties": {
+      "gorsel_id": {
+       "type": "string"
+      },
+      "hareket": {
+       "oneOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "object"
+        }
+       ],
+       "description": "kaos/sinema/kamera.HAREKETLER adı ya da {bas, son, ease}"
+      },
+      "guc": {
+       "type": "number"
+      },
+      "odak": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       },
+       "minItems": 2,
+       "maxItems": 2
+      },
+      "ozne": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       },
+       "minItems": 4,
+       "maxItems": 4
+      },
+      "parallax": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1.5
+      },
+      "ufuk": {
+       "type": "number"
+      },
+      "efektler": {
+       "type": "array",
+       "items": {
+        "type": "object"
+       }
+      },
+      "ton": {
+       "type": "string"
+      },
+      "ton_guc": {
+       "type": "number"
+      },
+      "gren": {
+       "type": "number"
+      },
+      "sarsinti": {
+       "type": "number"
+      },
+      "yorunge": {
+       "type": "number"
+      },
+      "kirp": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       },
+       "minItems": 4,
+       "maxItems": 4
+      }
+     }
     }
    }
   }

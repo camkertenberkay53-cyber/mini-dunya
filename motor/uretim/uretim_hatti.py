@@ -12,7 +12,7 @@ import time
 from pathlib import Path
 
 from motor.uretim import (anlati, arastirma, cesitlilik, plan_denetim, planlayici, sahne_bolucu, seslendirme,
-                          sozlesme, uyum)
+                          sozlesme, uyum, veri)
 
 
 def _eksik_turu(metin: str) -> str:
@@ -21,6 +21,15 @@ def _eksik_turu(metin: str) -> str:
         if anahtar in metin:
             return tur
     return "diger"
+
+
+def format_profili(konu: dict) -> tuple[str, dict]:
+    """Faz-53A: konu 'format' alanından çıktı profili (kurallar/format.yaml). Bilinmeyen/eksik → varsayılan (shorts)."""
+    k = veri.kural("format")
+    ad = konu.get("format") or k["varsayilan"]
+    if ad not in k["profiller"]:
+        ad = k["varsayilan"]
+    return ad, k["profiller"][ad]
 
 
 def planla(klasor: Path, tohum: int = 7) -> dict:
@@ -46,17 +55,20 @@ def planla(klasor: Path, tohum: int = 7) -> dict:
     rapor["hatalar"]["sure"] = [] if a <= toplam <= b else [f"toplam süre {toplam} sn; hedef {a}-{b} sn"]
     taslaklar = sahne_bolucu.cekimlere_bol(sen, cizelge)
     donem = konu["donemler"][0]
+    fmt, prf = format_profili(konu)
+    w, hgt = prf["cozunurluk"]
     cekimler, eksikler, gecmis = [], [], []
     for i, t in enumerate(taslaklar):
         # yalnızca SONRAKİ cümlelerin tercih ettiği kamera türleri saklı tutulur
         tercihler = {x["niyet"].get("kamera") for x in taslaklar[i + 1:]} - {None, t["niyet"].get("kamera")}
-        c, eks, kayit = planlayici.cekim_kur(t, donem, 1080 / 1920, gecmis, tohum + i, tercihler, list(konu["donemler"]),
+        c, eks, kayit = planlayici.cekim_kur(t, donem, w / hgt, gecmis, tohum + i, tercihler, list(konu["donemler"]),
                                              konu.get("harita"))
         cekimler.append(c)
         if kayit:
             gecmis.append(kayit)
         eksikler += [{"tur": _eksik_turu(e), "ne": e.split(": ", 1)[-1], "nerede": t["id"]} for e in eks]
-    plan = {"surum": 1, "konu": konu["kimlik"], "donem": donem, "donemler": list(konu["donemler"]), "fps": 30, "cozunurluk": [1080, 1920], "tohum": tohum,
+    plan = {"surum": 1, "konu": konu["kimlik"], "donem": donem, "donemler": list(konu["donemler"]), "fps": prf["fps"], "cozunurluk": [w, hgt], "tohum": tohum,
+            **({"format": fmt} if fmt != "shorts" else {}),   # shorts planı Faz 5.x ile bayt bayt aynı kalır
             "cekimler": cekimler, "eksikler": eksikler,
             **({"atmosfer": konu["atmosfer"]} if konu.get("atmosfer") else {}),
             "ses": {"motor": next(iter(sureler.values()))["motor"], "cizelge": cizelge, "toplam_sn": toplam}}

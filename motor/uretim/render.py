@@ -434,6 +434,104 @@ def _harita_render(plan: dict, c: dict, onbellek: bool) -> dict:
     return sonuc
 
 
+SINEMA = ayar.REPO / "kaos" / "sinema"
+G25_ALANLAR = ("odak", "ozne", "parallax", "ufuk", "efektler", "ton", "ton_guc", "gren", "sarsinti", "kirp", "guc", "yorunge")
+
+
+def _g25_acik() -> bool:
+    return bool(veri.kural("gorsel").get("gorsel25d", {}).get("acik", False))
+
+
+def _g25_kaynak(yol: Path, klasor: Path) -> tuple[Path, dict]:
+    """kaos/sinema 3 kanallı 8 bit bekler: saydam (4 kanal) görsel nötr griye karıştırılır, 16 bit 8 bite iner.
+    Özgün dosyaya dokunulmaz; dönüşüm gerekirse klasör içine kopya yazılır."""
+    import cv2
+    import numpy as np
+    img = cv2.imread(str(yol), cv2.IMREAD_UNCHANGED)
+    if img is None:
+        raise ValueError(f"görsel okunamadı: {yol}")
+    bilgi = {"kaynak_boyut": [int(img.shape[1]), int(img.shape[0])], "kanal": 1 if img.ndim == 2 else int(img.shape[2]),
+             "bit": 16 if img.dtype == np.uint16 else 8, "donusum": []}
+    if img.dtype == np.uint16:
+        img = (img / 257).astype(np.uint8)
+        bilgi["donusum"].append("16->8 bit")
+    if img.ndim == 3 and img.shape[2] == 4:
+        a = img[..., 3:4].astype(np.float32) / 255
+        img = (img[..., :3].astype(np.float32) * a + 128.0 * (1 - a)).astype(np.uint8)
+        bilgi["donusum"].append("RGBA->BGR (nötr gri zemin)")
+    if not bilgi["donusum"]:
+        return yol, bilgi
+    yeni = klasor / "kaynak_3kanal.png"
+    cv2.imwrite(str(yeni), img)
+    return yeni, bilgi
+
+
+def _gorsel25d_render(plan: dict, c: dict, onbellek: bool) -> dict:
+    """Faz-53A A1: tarihî görselden 2.5D çekim (kaos/sinema/motor.sahne_render; o modül değiştirilmez).
+    Lisans kapısı (tarihi_gorsel.dogrulanmis_dosya) geçmeyen görsel render edilmez. Önbellek anahtarı görselin SHA-256
+    içeriğinden (mtime değil). Sonuç sözlüğü 3D/harita ile aynı biçimde; kurgu ayrım yapmaz."""
+    import resource
+    from motor.varlik import tarihi_gorsel
+    g = c["gorsel25d"]
+    try:
+        yol, kayit = tarihi_gorsel.dogrulanmis_dosya(g["gorsel_id"])
+    except tarihi_gorsel.LisansHatasi as e:
+        return {"durum": "REDDEDİLDİ", "neden": "lisans kapısı", "hatalar": [str(e)], "cekim": c["id"]}
+    ayarlar = veri.kural("gorsel").get("gorsel25d", {})
+    zincir = renk_profili_ffmpeg("gorsel25d")
+    kod = ayarlar.get("kodlama", {"preset": "veryfast", "crf": 18})
+    h = hashlib.sha256(json.dumps([c, plan["fps"], plan["cozunurluk"], zincir, kod, ayarlar.get("sinema_vinyet", 0.0),
+                                   kayit["sha256"]], sort_keys=True, ensure_ascii=False).encode())
+    for b in sorted(SINEMA.glob("*.py")):
+        h.update(b.read_bytes())
+    karma = h.hexdigest()[:16]
+    klasor = KOK / plan["konu"] / f"{c['id']}_{karma}"
+    mp4, olcum_yolu = klasor / "cekim.mp4", klasor / "olcum.json"
+    if onbellek and mp4.exists() and olcum_yolu.exists():
+        return dict(json.loads(olcum_yolu.read_text()), onbellekten=True)
+    shutil.rmtree(klasor, ignore_errors=True)
+    klasor.mkdir(parents=True)
+    from kaos.sinema import motor as sinema
+    w, hgt = plan["cozunurluk"]
+    fps = plan["fps"]
+    t0 = time.time()
+    kaynak, bilgi = _g25_kaynak(yol, klasor)
+    s = {"id": c["id"], "gorsel": str(kaynak), "sure_render": float(c["sure_sn"]), "kamera": g.get("hareket", "zoom_in"),
+         "vinyet": float(ayarlar.get("sinema_vinyet", 0.0))}
+    s.update({k: g[k] for k in G25_ALANLAR if k in g})
+    t1 = time.time()
+    ham = klasor / "ham.mp4"
+    sinema.sahne_render(s, str(ham), w, hgt, fps, log=lambda *_: None)
+    t2 = time.time()
+    komut = ["ffmpeg", "-loglevel", "error", "-y", "-i", str(ham)] + (["-vf", zincir] if zincir else []) + \
+            ["-c:v", "libx264", "-preset", str(kod["preset"]), "-crf", str(kod["crf"]), "-pix_fmt", "yuv420p",
+             "-r", str(fps), "-an", str(mp4)]
+    subprocess.run(komut, check=True)
+    t3 = time.time()
+    ham.unlink()
+    pr = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries",
+                         "stream=width,height,nb_read_frames", "-of", "json", str(mp4)], capture_output=True, text=True)
+    akis = json.loads(pr.stdout)["streams"][0]
+    kare = round(c["sure_sn"] * fps)
+    sonuc = {"durum": "TAMAM", "konu": plan["konu"], "cekim": c["id"], "karma": karma, "video": str(mp4),
+             "tarih": time.strftime("%Y-%m-%d %H:%M"),
+             "makine": {"cpu": open("/proc/cpuinfo").read().split("model name")[1].split("\n")[0].strip(": \t"),
+                        "cekirdek": __import__("os").cpu_count()},
+             "gorsel": {"gorsel_id": g["gorsel_id"], "lisans_turu": kayit["lisans_turu"], "sha256": kayit["sha256"], **bilgi},
+             "olculen": {"render_sn": round(t3 - t0, 1), "hazirlik_sn": round(t1 - t0, 2), "sinema_sn": round(t2 - t1, 1),
+                         "renk_kodlama_sn": round(t3 - t2, 1), "kare": kare, "uretilen_kare": int(akis.get("nb_read_frames", 0)),
+                         "cozunurluk": f"{akis['width']}x{akis['height']}",
+                         "kare_basina_sn_acilis_dahil": round((t3 - t0) / max(1, kare), 3),
+                         "render_tepe_bellek_gb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6, 2),
+                         "karakter": 0, "cevre_varligi": 0, "tur": "gorsel25d", "parallax": float(s.get("parallax", 1.0)),
+                         "ozne": bool(s.get("ozne"))}}
+    if sonuc["olculen"]["uretilen_kare"] != kare or (akis["width"], akis["height"]) != (w, hgt):
+        sonuc["durum"] = "HATA"
+        sonuc["neden"] = "kare sayısı ya da çözünürlük tutmadı"
+    olcum_yolu.write_text(json.dumps(sonuc, ensure_ascii=False, indent=1))
+    return sonuc
+
+
 def render(plan_yolu: str, cekim_id: str, cikti: Path | None = None, onbellek: bool = True) -> dict:
     plan = json.loads(Path(plan_yolu).read_text())
     t0 = time.time()
@@ -444,6 +542,8 @@ def render(plan_yolu: str, cekim_id: str, cikti: Path | None = None, onbellek: b
     c = next(x for x in plan["cekimler"] if x["id"] == cekim_id)
     if c["tur"] == "harita" and c.get("harita"):
         return _harita_render(plan, c, onbellek)
+    if c["tur"] == "gorsel25d" and c.get("gorsel25d") and _g25_acik():   # Faz-53A A1 (anahtar kapalı → eskisi gibi ATLANDI)
+        return _gorsel25d_render(plan, c, onbellek)
     if c["tur"] != "3d":
         return {"durum": "ATLANDI", "neden": f"{c['tur']} çekimi 3D render'a girmez"}
     is_ = is_hazirla(plan, c)

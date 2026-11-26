@@ -1,0 +1,8 @@
+# Faz-53A — çıktı profilleri. konu.json 'format' alanı seçer (yoksa 'shorts').
+# shorts: Faz 5.x davranışı AYNEN (1080x1920, altyazı videoya yakılır). Bu profilin değerleri değiştirilmemeli.
+# uzun: 15–20 dk belgesel, 16:9. Altyazı ayrı .srt (son birleştirme -c:v copy) — kurgu tarafı A3'te bağlanacak.
+# 3D (Godot) şu an yalnızca shorts çözünürlüğünde çalışır; uzun profilde 3D çekim render.py'de açık bir hata döner.
+profiller:
+  shorts: {cozunurluk: [1080, 1920], fps: 30, altyazi: yak}
+  uzun:   {cozunurluk: [1920, 1080], fps: 30, altyazi: srt}
+varsayilan: shorts

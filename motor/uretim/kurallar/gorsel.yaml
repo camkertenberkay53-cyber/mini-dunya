@@ -202,3 +202,11 @@ renk_profilleri:
   harita:      {ffmpeg: ""}            # taktik harita nötr kalır (okunaklılık); filtre yok
   gorsel25d:   {ffmpeg: "eq=contrast=1.05:saturation=0.92:gamma=0.98,vignette=PI/5"}   # tarihî görsel: hafif kontrast, vinyet
   agir_eylemler: [olum, darbe_alma, geri_savrulma]
+# Faz-53A A1 — TEK ANAHTAR gorsel25d.acik. Açıkken senaryo niyeti 'gorsel25d' olan cümleler, lisansı İNSAN tarafından
+# doğrulanmış tarihî görselden (motor/varlik/tarihi_gorsel_kaydi.json) kaos/sinema motoruyla 2.5D çekime dönüşür
+# (render.py: _gorsel25d_render; kaos/sinema değişmez). Kapalı → bu çekimler eskisi gibi 'ATLANDI' / eksik kaydı.
+# vinyet: kaos/sinema'nın kendi vinyeti kapalı (renk_profilleri.gorsel25d zinciri vinyeti zaten veriyor; çift vinyet olmasın).
+gorsel25d:
+  acik: true
+  sinema_vinyet: 0.0
+  kodlama: {preset: veryfast, crf: 18}     # 3D ve harita çekimleriyle aynı: kurgu concat -c copy güvenli
