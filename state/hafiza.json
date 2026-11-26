@@ -647,6 +647,9 @@
   ],
   "2026-11-25": [
    "fikir"
+  ],
+  "2026-11-26": [
+   "fikir"
   ]
  },
  "en_bolumler": [
@@ -770,79 +773,9 @@
  "oynatma_en": {
   "Mini World · Season 1": "PLIvGBQws7jrw"
  },
- "_gun": 7,
+ "_gun": 8,
  "fikir_havuzu": {
   "tr": {
-   "2026-11-24": {
-    "sabah": {
-     "slot": "sabah",
-     "ad": "Kaşık Mancınığıyla İntikal",
-     "ana_karakter": "tuna",
-     "mekan": "buzdolabi",
-     "nesne": "kaşık",
-     "tehlike": "kapının kapanması",
-     "mekanizma": "zamanla yarış",
-     "ilk_saniye": "Tuna'nın dev bir çay kaşığının üzerine zıplayıp kendini buzdolabının orta rafına fırlatması.",
-     "problem": "Tuna en üst rafa hızlıca tırmanmak isterken kapının kapanma sesiyle sarsılırlar.",
-     "surpriz": "Mancınık olarak kullandığı kaşık dona yapışır ve fırlatma yönü değişir.",
-     "cozum": "Benek son anda Tuna'yı kıyafetinden yakalayıp kayarak peynir paketinin üstüne düşürür.",
-     "final": "Kapı tamamen kapanır, tek ışık kaynağı donmuş rafların hafif parıltısı kalır.",
-     "final_turu": "sasirtici",
-     "yenilik_puani": 7,
-     "izlenme_potansiyeli": 8
-    },
-    "oglen": {
-     "slot": "oglen",
-     "ad": "Yumurta Kayalıkları Tırmanışı",
-     "ana_karakter": "bulut",
-     "mekan": "buzdolabi",
-     "nesne": "yumurta kabuğu",
-     "tehlike": "yiyeceklerin düşmesi",
-     "mekanizma": "yeni icat",
-     "ilk_saniye": "Bulut'un yarım yumurta kabuğundan yaptığı kaskla dev yumurta kartonuna bakması.",
-     "problem": "Üst raftaki bir zeytin kavanozunun sarsılmasıyla dev bir yumurta yerinden oynar.",
-     "surpriz": "Yumurta yuvarlanmak yerine kartonun arasında sıkışıp geçici bir köprü oluşturur.",
-     "cozum": "Bulut yumurta kabuğu parçalarını merdiven adımları olarak kullanıp ekibi yukarı tırmandırır.",
-     "final": "Yumurta kartonunun en tepe noktasına güvenle ulaşırlar.",
-     "final_turu": "tatmin",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    },
-    "aksam": {
-     "slot": "aksam",
-     "ad": "Buz Kutbu Sığınağı",
-     "ana_karakter": "nil",
-     "mekan": "buzdolabi",
-     "nesne": "peçete",
-     "tehlike": "beklenmedik sıcaklık",
-     "mekanizma": "hayatta kalma",
-     "ilk_saniye": "Nil'in termometre çizgisini kontrol edip eksi dereceleri göstermesiyle irkilmesi.",
-     "problem": "Sıcaklık aniden aşırı düşer ve donma riski baş gösterir.",
-     "surpriz": "Bir peçete katının içi hava kabarcıkları sayesinde izole bir alan sunmaktadır.",
-     "cozum": "Nil peçeteyi katlayarak ekibin içine sığınacağı küçük bir kar kulübesi (iglo) inşa eder.",
-     "final": "Geceyi geçirmek için korunaklı ilk sığınak hazırlanmış olur.",
-     "final_turu": "tatmin",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    },
-    "gece": {
-     "slot": "gece",
-     "ad": "Buz Kaydırağı Çılgınlığı",
-     "ana_karakter": "pire",
-     "mekan": "buzdolabi",
-     "nesne": "şişe kapağı",
-     "tehlike": "kaygan yüzey",
-     "mekanizma": "yarış",
-     "ilk_saniye": "Pire'nin ters çevrilmiş bir şişe kapağının içine oturup 'Buz pateni zamanı!' diye bağırması.",
-     "problem": "Pire kontrolü kaybedip donmuş raf boyunca baş aşağı kaymaya başlar.",
-     "surpriz": "Kapak bir buz sarkıtına çarpıp Pire'yi havaya fırlatır.",
-     "cozum": "Pire yumuşak bir margarin paketinin üzerine çakılarak yaralanmadan kurtulur.",
-     "final": "Pire'nin yüzü tamamen margarin kaplanır, gülüşürler.",
-     "final_turu": "komik",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    }
-   },
    "2026-11-25": {
     "sabah": {
      "slot": "sabah",
@@ -981,6 +914,76 @@
      "final_turu": "komik",
      "yenilik_puani": 9,
      "izlenme_potansiyeli": 9
+    }
+   },
+   "2026-11-27": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Peçete Planörünün İlk Uçuşu",
+     "ana_karakter": "bulut",
+     "mekan": "tezgah",
+     "nesne": "peçete",
+     "tehlike": "beklenmedik sıcaklık",
+     "mekanizma": "yeni icat",
+     "ilk_saniye": "Dev bir fırın kapağından çıkan turuncu sıcak hava dalgasının kamerayı kaplaması.",
+     "problem": "Bulut'un peçeteden yaptığı planör fırından yükselen hava akımında aşırı ısınıp kontrolden çıkar.",
+     "surpriz": "Sıcak havanın peçeteyi yakmak yerine rüzgâr balonu gibi daha yukarı fırlatması.",
+     "cozum": "Tuna peçeteye bağlı ipliği tutarak yükselişi dengeler ve rotayı Fırın Vadisi'nin üstüne kırar.",
+     "final": "Haritacılar yüksekten Fırın Vadisi'nin haritasını çizmeyi başarır.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 8,
+     "izlenme_potansiyeli": 8
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "Fırın Eldiveni Dağı Tırmanışı",
+     "ana_karakter": "tuna",
+     "mekan": "tezgah",
+     "nesne": "lastik bant",
+     "tehlike": "büyük bir nesnenin yuvarlanması",
+     "mekanizma": "hayatta kalma",
+     "ilk_saniye": "Kırmızı dev bir fırın eldiveninin dağ gibi tezgâha gürültüyle çökmesi.",
+     "problem": "Yolu tıkayan dev fırın eldiveninin üzerinden geçmeden Fırın Vadisi'nde ilerlenemez.",
+     "surpriz": "Eldivenin kumaş dokusunun mükemmel tırmanma tutamakları sunması.",
+     "cozum": "Tuna lastik bantları tırmanma halatı olarak kullanıp ekibi eldiven dağının zirvesine çıkarır.",
+     "final": "Zirveden vadinin büyüleyici öğle manzarası görünür.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 8,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Yapışkan Not Paraşütü",
+     "ana_karakter": "nil",
+     "mekan": "baharat",
+     "nesne": "yapışkan not",
+     "tehlike": "kaygan yüzey",
+     "mekanizma": "keşif",
+     "ilk_saniye": "Sarı renkli yapışkan notun koli tepesinden süzülerek kameraya yaklaşması.",
+     "problem": "Planörlerden biri sarsıntıda yırtılır ve Nil yüksek koli tepesinde uçuşsuz kalır.",
+     "surpriz": "Koliye yapıştırılmış sarı not kağıdının yapışkan kısmının kontrol edilebilir bir paraşüt oluşturması.",
+     "cozum": "Nil not kağıdını dörde katlayıp paraşüt yapar ve yapışkan ucuyla inişi yumuşatır.",
+     "final": "Nil tam hedeflenen koli düzlüğüne yumuşak bir iniş yapar.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 8,
+     "izlenme_potansiyeli": 8
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Diş Macunu Kapağı Labirenti",
+     "ana_karakter": "pire",
+     "mekan": "lonca",
+     "nesne": "diş macunu kapağı",
+     "tehlike": "kaygan yüzey",
+     "mekanizma": "hata",
+     "ilk_saniye": "Diş macunu kapağının lonca koridorunda kontrolden çıkıp tekerlek gibi dönmesi.",
+     "problem": "Pire gece vakti diş macunu kapağıyla oynarken loncanın ana girişini tıkar.",
+     "surpriz": "Kapağın içindeki nane kokusunun loncadaki karıncaları uzak tutması.",
+     "cozum": "Bulut kapağı giriş kapısına sabitler; hem kapı güçlenir hem doğal koruma sağlanır.",
+     "final": "Pire'nin sakarlığı loncaya harika bir güvenlik kapısı kazandırır.",
+     "final_turu": "komik",
+     "yenilik_puani": 8,
+     "izlenme_potansiyeli": 8
     }
    }
   },
