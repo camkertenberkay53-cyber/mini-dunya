@@ -41,7 +41,7 @@ import numpy as np
 
 from motor import ayar
 
-SURUM = "ozne-tespit-1"
+SURUM = "ozne-tespit-2"
 
 MODEL = {
     "ad": "face_detection_yunet_2023mar.onnx",
@@ -55,7 +55,8 @@ AYAR = {
     "analiz_px": 640,              # tür ve kenar ölçüleri bu uzun kenarda hesaplanır
     "yuz_olcekler": [640, 960],    # yüz iki ölçekte aranır; ikisinde de bulunan yüz "kararlı" sayılır
     "yuz_skor_esigi": 0.6,         # YuNet ham skoru
-    "yuz_kesin_skor": 0.85,        # kesin_yuz için en düşük skor (kararlılık da şart)
+    "yuz_kesin_skor": 0.80,        # kesin_yuz için en düşük YuNet skoru (tarihî portreler: boya dokusu skoru düşürür)
+    "yuz_kesin_iou": 0.80,         # ... ve iki ölçek arasında yüz kutusu örtüşmesi (IoU) en az bu
     "yuz_en_kucuk_alan": 0.004,    # portre sayılmak için yüz alanı / görsel alanı
     "yuz_iou_kararlilik": 0.4,
     "yogun_kenar": 0.11,           # kenar piksel oranı ≥ bu ...
@@ -290,7 +291,8 @@ def _tespit(kaynak, ayarlar, yuz_bulucu) -> dict:
             yz = _yogunlasma(e, kutu)
             guven = 0.5 * skor + 0.25 * _sinirla(kararlilik) + 0.25 * _sinirla(yz - 1.0)
             yontem = "yuz_algilama"
-            if tur == "portre" and skor >= a["yuz_kesin_skor"] and all(y["kararli"] for y in kaynak_yuz):
+            if (tur == "portre" and skor >= a["yuz_kesin_skor"] and all(y["kararli"] for y in kaynak_yuz)
+                    and min(y["iou"] for y in kaynak_yuz) >= a["yuz_kesin_iou"]):
                 durum = "kesin_yuz"
             else:
                 durum = "geometrik_tahmin"

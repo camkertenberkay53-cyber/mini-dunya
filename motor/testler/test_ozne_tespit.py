@@ -245,6 +245,130 @@ def test_motor_uretim_konu_kelimesi_yok():
     assert not re.search(r"roma|lejyon|aquil|kartal|carrhae|harran|crassus|augustus|osmanl|akkoyunlu|bizans|otlukbeli", metin)
 
 
+# ------------------------------------------------------------------ Faz-53B: kesin_yuz eşiği 0,80 ve yanlış pozitif matrisi
+# Eşik 0,85 → 0,80 (skor) ve iki ölçek arası IoU ≥ 0,80. Gerçek YuNet ile yüzsüz görsellerde yanlış yüz OLMAMALI.
+# Senaryo 1–2 ve gerçek minyatür (5b) gerçek tarihî görsellerle aşağıdaki CI testlerinde; burada sentetik karşılıkları.
+
+def yagli_boya(H=1400,W=1800,s=4):
+    r=np.random.default_rng(s); img=np.zeros((H,W,3),np.float32)
+    for y in range(H): img[y]=(200-y*0.08,170-y*0.05,120+y*0.02)
+    for i in range(6): cv2.ellipse(img,(int(r.integers(0,W)),H),(int(r.integers(300,700)),int(r.integers(200,500))),0,180,360,(40+i*10,90+i*8,60),-1)
+    for i in range(25): c=(int(r.integers(20,60)),int(r.integers(60,120)),int(r.integers(20,60))); cv2.circle(img,(int(r.integers(0,W)),int(r.integers(H//2,H))),int(r.integers(30,90)),c,-1)
+    # natürmort: meyve kasesi (yuvarlak biçimler)
+    cv2.ellipse(img,(900,1150),(300,90),0,0,180,(60,80,140),-1)
+    for x,c in [(780,(40,60,200)),(900,(40,160,220)),(1020,(50,140,60)),(840,(30,50,170)),(960,(60,180,200))]: cv2.circle(img,(x,1080),70,c,-1); cv2.circle(img,(x-20,1060),14,(230,230,240),-1)
+    for i in range(4000):
+        x,y=int(r.integers(0,W)),int(r.integers(0,H)); d=r.normal(0,1,2); c=img[min(y,H-1),min(x,W-1)]+r.normal(0,18,3)
+        cv2.line(img,(x,y),(int(x+d[0]*25),int(y+d[1]*25)),tuple(float(v) for v in c),5)
+    return cv2.GaussianBlur(img,(0,0),1.2).clip(0,255).astype(np.uint8)
+def cephe(H=1500,W=2000):
+    img=np.full((H,W,3),(170,190,205),np.uint8)
+    cv2.rectangle(img,(200,300),(1800,1450),(150,160,175),-1)
+    for x in range(260,1760,180):
+        for y in range(380,1300,230):
+            cv2.rectangle(img,(x,y),(x+50,y+80),(30,30,35),-1); cv2.rectangle(img,(x+80,y),(x+130,y+80),(30,30,35),-1)  # göz gibi pencere çiftleri
+            cv2.rectangle(img,(x+40,y+130),(x+90,y+170),(60,60,70),-1)
+    return img
+def minyatur_figurlu(H=2000,W=1400,s=5):
+    r=np.random.default_rng(s); img=np.full((H,W,3),(140,185,205),np.uint8)
+    for i in range(1200):
+        x,y=int(r.integers(0,W)),int(r.integers(0,H)); c=tuple(int(v) for v in r.integers(0,255,3))
+        cv2.rectangle(img,(x,y),(x+int(r.integers(10,50)),y+int(r.integers(10,50))),c,-1)
+    for i in range(60):   # küçük figürler: yuvarlak baş + gövde
+        x,y=int(r.integers(40,W-40)),int(r.integers(40,H-80))
+        cv2.circle(img,(x,y),14,(150,190,230),-1); cv2.circle(img,(x-5,y-3),2,(20,20,20),-1); cv2.circle(img,(x+5,y-3),2,(20,20,20),-1)
+        cv2.rectangle(img,(x-12,y+14),(x+12,y+60),tuple(int(v) for v in r.integers(0,255,3)),-1)
+    return img
+def dusuk_kalite(H=1400,W=1400):
+    r=np.random.default_rng(6); k=cv2.resize(r.integers(0,255,(12,12,3)).astype(np.uint8),(W,H),interpolation=cv2.INTER_CUBIC)
+    k=cv2.GaussianBlur(k,(0,0),25); ok,b=cv2.imencode('.jpg',k,[cv2.IMWRITE_JPEG_QUALITY,5]); return cv2.imdecode(b,1)
+def stres(i):
+    r=np.random.default_rng(100+i); H,W=1200,1600
+    if i%4==0: return (r.integers(0,255,(H,W,3))).astype(np.uint8)
+    if i%4==1:
+        img=np.zeros((H,W,3),np.uint8); s=int(r.integers(40,160))
+        for y in range(0,H,s):
+            for x in range(0,W,s):
+                if (x//s+y//s)%2: img[y:y+s,x:x+s]=255
+        return img
+    if i%4==2: return cv2.GaussianBlur(r.integers(0,255,(H,W,3)).astype(np.uint8),(0,0),float(r.uniform(3,15)))
+    img=np.full((H,W,3),200,np.uint8)
+    for _ in range(80): cv2.circle(img,(int(r.integers(0,W)),int(r.integers(0,H))),int(r.integers(10,120)),tuple(int(v) for v in r.integers(0,255,3)),int(r.choice([-1,3])))
+    return img
+
+
+def _yuzsuz_kume():
+    k = {"3_yagli_boya_natürmort": yagli_boya(), "4_mimari": mimari()[0], "4_cephe_pencere_ciftleri": cephe(),
+         "5_minyatur_figurlu": minyatur_figurlu(), "5_minyatur_yogun": minyatur()[0],
+         "7_dusuk_kalite_jpeg": dusuk_kalite(), "7_belirsiz": belirsiz()[0]}
+    k.update({f"stres_{i}": stres(i) for i in range(12)})
+    return k
+
+
+def test_esik_degerleri_080():
+    assert ot.AYAR["yuz_kesin_skor"] == 0.80 and ot.AYAR["yuz_kesin_iou"] == 0.80
+
+
+def test_matris_1_net_portre_kesin_yuz_080():
+    img, y = portre()
+    for skor in (0.80, 0.849, 0.95):
+        r = ot.tespit(img, yuz_bulucu=_sahte([dict(y[0], skor=skor)]))
+        _gecerli(r)
+        assert r["tespit_durumu"] == "kesin_yuz", skor
+    r = ot.tespit(img, yuz_bulucu=_sahte([dict(y[0], skor=0.79)]))
+    assert r["tespit_durumu"] == "geometrik_tahmin" and r["onerilen_seviye"] != "tam"
+
+
+def test_matris_2_kismen_kapali_profil_kontrollu_tespit():
+    """İki ölçekte kutu kayıyor (IoU 0,5–0,8): yüz kullanılır ama 'kesin' denmez; kutu yüzü kapsar."""
+    img, y = portre()
+    yk = y[0]["kutu"]
+    calls = {"n": 0}
+
+    def kayan(img_, uzun, esik):
+        calls["n"] += 1
+        if calls["n"] % 2 == 1:
+            return [{"kutu": list(yk), "skor": 0.86}]
+        w = yk[2] - yk[0]
+        return [{"kutu": [yk[0] + 0.25 * w, yk[1], yk[2] + 0.25 * w, yk[3]], "skor": 0.82}]   # IoU ≈ 0,6
+    r = ot.tespit(img, yuz_bulucu=kayan)
+    _gecerli(r)
+    assert r["gorsel_turu"] == "portre" and r["tespit_durumu"] == "geometrik_tahmin" and r["onerilen_seviye"] != "tam"
+    assert 0.4 <= r["olcumler"]["yuzler"][0]["iou"] < 0.8
+    k = r["ozne_bilgisi"]["kutu"]
+    assert k[0] <= yk[0] and k[1] <= yk[1] and k[2] >= yk[2] and k[3] >= yk[3]
+
+
+def test_matris_3_4_5_7_gercek_yunet_yuzsuz_gorsellerde_yanlis_yuz_yok():
+    """Gerçek dedektör, 19 yüzsüz görsel (natürmort, cephe, minyatür, düşük kalite, stres desenleri):
+    tespit eşiğinde (0,6) hiç yüz yok; ham 0,3 eşiğinde bile hiç aday yok → 0,85→0,80 yanlış pozitif eklemez."""
+    for ad, img in _yuzsuz_kume().items():
+        r = ot.tespit(img)
+        _gecerli(r)
+        assert r["olcumler"]["yuz_algilama"] == "calisti", ad
+        assert r["olcumler"]["yuz_sayisi"] == 0, (ad, r["olcumler"]["yuzler"])
+        assert r["gorsel_turu"] not in ("portre", "cok_figurlu") and r["tespit_durumu"] != "kesin_yuz", ad
+        assert r["tespit_yontemi"] != "yuz_algilama", ad
+        assert ot.yunet_bulucu(img, 640, 0.3) == [], ad
+
+
+def test_matris_6_cok_figurlu_belirsizlik_korunur():
+    img, y = minyatur(yuzlu=True)
+    for skor in (0.8, 0.95):   # yüzler 'kesin' bile olsa ana karakter seçilmez
+        r = ot.tespit(img, yuz_bulucu=_sahte([dict(f, skor=skor) for f in y]))
+        _gecerli(r)
+        assert r["gorsel_turu"] == "cok_figurlu" and r["tespit_durumu"] == "geometrik_tahmin"
+        assert r["ozne_bilgisi"]["ana_karakter"] == "belirlenemez" and r["onerilen_seviye"] == "kenburns"
+
+
+def test_matris_7_dusuk_kalite_tam_kadraj_kenburns():
+    for img in (dusuk_kalite(), belirsiz()[0]):
+        r = ot.tespit(img)
+        _gecerli(r)
+        assert r["fallback_uygulandi"] and r["ozne_bilgisi"]["kutu"] == [0.0, 0.0, 1.0, 1.0]
+        assert r["onerilen_seviye"] == "kenburns" and r["tespit_durumu"] == "belirsiz_fallback"
+
+
 # ------------------------------------------------------------------ gerçek tarihî görseller (CI'da toplanır)
 
 def _gercek():
@@ -294,3 +418,38 @@ def test_gorsel25d_kenburns_onerisine_uyar_elle_kutuda_uymaz(tmp_path):
     ek, rap = g25.hazirla(p, _kayit(tmp_path, p, ozne_bilgisi=oto, onerilen_seviye="sinirli"),
                           {"hareket": "push_in"}, 1920, 1080, tmp_path / "c", 1)
     assert rap["seviye"] == "tam"                               # yalnızca kenburns önerisi bağlayıcı; ölçüm karar verir
+
+
+@pytest.mark.skipif(not _G, reason="gerçek tarihî görsel diskte yok (CI'da commons_toplayici ile toplanır)")
+def test_matris_gercek_portre_1_net_2_kismen_kapali_5_minyatur():
+    from motor.varlik import tarihi_gorsel as tg
+    for k in _G:
+        img = cv2.imread(str(tg.dosya_yolu(k)))
+        r = ot.tespit(img)
+        _gecerli(r)
+        if (k.get("ozne_bilgisi") or {}).get("tur") == "insan_portre":
+            # 1) net tarihî portre → kesin_yuz (eşik 0,80; iki ölçek IoU ≥ 0,80)
+            assert r["tespit_durumu"] == "kesin_yuz", r["olcumler"]["yuzler"]
+            yk = r["olcumler"]["yuzler"][0]["kutu"]
+            # 2) yüzün alt yarısı (ağız/sakal) boyayla kapatılmış: kontrollü tespit — ya yüz bulunur ve kutu yüzü
+            #    kapsar, ya da güvenli fallback; hiçbir durumda yüzden uzak dar bir kutu yok
+            h, w = img.shape[:2]
+            kapali = img.copy()
+            x0, y0, x1, y1 = int(yk[0] * w), int((yk[1] + yk[3]) / 2 * h), int(yk[2] * w), int(yk[3] * h)
+            kapali[y0:y1, x0:x1] = (25, 25, 30)
+            r2 = ot.tespit(kapali)
+            _gecerli(r2)
+            print("KISMEN_KAPALI", k["gorsel_id"], r2["tespit_durumu"], r2["guven_skoru"], r2["olcumler"].get("yuzler"))
+            if not r2["fallback_uygulandi"]:
+                kk = r2["ozne_bilgisi"]["kutu"]
+                cx, cy = (yk[0] + yk[2]) / 2, (yk[1] + yk[3]) / 2
+                assert kk[0] <= cx <= kk[2] and kk[1] <= cy <= kk[3]
+            if r2["tespit_durumu"] == "kesin_yuz":   # kesin denmişse aynı yüz olmalı
+                assert _iou_t(r2["olcumler"]["yuzler"][0]["kutu"], yk) >= 0.5
+        if k.get("gorsel_turu") in ("minyatur", "harita"):
+            # 5) gerçek minyatür: yanlış yüz yok
+            assert r["olcumler"]["yuz_sayisi"] == 0 and r["tespit_durumu"] != "kesin_yuz"
+
+
+def _iou_t(a, b):
+    return ot._iou(a, b)
