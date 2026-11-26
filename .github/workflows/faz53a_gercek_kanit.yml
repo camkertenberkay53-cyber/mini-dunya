@@ -13,6 +13,8 @@ on:
       - "motor/varlik/ozne_tespit.py"
       - "motor/testler/test_ozne_tespit.py"
       - "deneyler/faz53b/ozne_pano.py"
+      - "motor/orkestrasyon/**"
+      - "motor/testler/test_senaryo_planlayici.py"
       - "motor/uretim/gorsel25d.py"
       - "motor/testler/gorsel25d_kanit.py"
       - "deneyler/faz53a/gercek/sorgular.json"
@@ -53,7 +55,7 @@ jobs:
           if git status --porcelain --untracked-files=all assets/ | grep -vE '\.json$' | grep -q .; then echo "HATA: görsel ikilisi git'e görünüyor"; exit 1; fi
       - name: 2a) Faz-53A testleri (gerçek görsel testi dahil; zorunlu)
         run: |
-          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py motor/testler/test_ozne_tespit.py \
+          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py motor/testler/test_ozne_tespit.py motor/testler/test_senaryo_planlayici.py \
             --junitxml=cikti/pytest_faz53a.xml 2>&1 | tee cikti/pytest_faz53a.log
           test "${PIPESTATUS[0]}" -eq 0
           if grep -q "SKIPPED.*gerçek tarihî görsel" cikti/pytest_faz53a.log; then echo "HATA: gerçek görsel testleri atlandı"; exit 1; fi

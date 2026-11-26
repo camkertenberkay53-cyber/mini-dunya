@@ -35,7 +35,7 @@ konu başlığı
 
 | Aşama | Modül | Bugünkü durum |
 |---|---|---|
-| Araştırma | `motor/uretim/arastirma.py` | Kart denetimi ve iddia→kaynak izi var. Kartları **üretmez**; otonom araştırma ajanı yok. |
+| Araştırma | `motor/uretim/arastirma.py`, `motor/orkestrasyon/senaryo_planlayici.py` | Shorts kart denetimi var. Orkestrasyon: araştırma → bilgi havuzu (doğrulanmış/tartışmalı/belirsiz, kronoloji, çelişki) → anlatı → sahne planı → Validation Gate (en çok 3 deneme, hedefli onarım, fail-safe). **Yalnızca `MockLLMProvider` ile çalışır**; gerçek (ücretsiz) LLM sağlayıcısı bağlı değil. |
 | Senaryo | `motor/uretim/senaryo_uretici.py` | Shorts için var (ücretsiz Gemini, `GEMINI_API_KEY` gerekir, yoksa açıkça durur). Uzun format yok. |
 | Seslendirme ölçümü | `motor/uretim/seslendirme.py` | Var (Piper yerel; yayın sırası Gemini→Edge→Piper). |
 | Sahne bölücü / plan | `sahne_bolucu.py`, `planlayici.py`, `uretim_hatti.py` | Shorts için var; uzun format ritim planlayıcısı yok. |
@@ -113,5 +113,6 @@ konu başlığı
 | Faz | Kapsam | Durum |
 |---|---|---|
 | 53A A1–A2 | Format profilleri, 2.5D motoru, lisans kapısı, Commons toplayıcı, gerçek görsel kalibrasyonu | Kapandı (`d2435b3`) |
-| 53B | `ozne_tespit.py`: güven skorlu tür ve özne kutusu tespiti, toplayıcı entegrasyonu | Başladı |
-| Sonraki | Ritim planlayıcısı, uzun format senaryo ve kurgu, ses tasarımı, zero-fail fallback, otonom araştırma, yükleme entegrasyonu | Planlanmadı |
+| 53B | `ozne_tespit.py`: güven skorlu tür ve özne kutusu tespiti, toplayıcı entegrasyonu; kesin_yuz eşiği 0,80 + yanlış pozitif matrisi | Kodlandı, CI'da doğrulandı |
+| 54 | `motor/orkestrasyon`: LLMProvider arayüzü, MockLLMProvider, 6 katmanlı senaryo/sahne planlayıcısı, Validation Gate | Kodlandı (mock); gerçek sağlayıcı bekliyor |
+| Sonraki | Gerçek ücretsiz LLM sağlayıcısı + gerçek kaynak doğrulama, planın üretim hattına bağlanması, uzun format kurgu, ses tasarımı, zero-fail fallback, yükleme entegrasyonu | Planlanmadı |
