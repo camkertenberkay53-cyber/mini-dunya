@@ -1,0 +1,28 @@
+# OpenGameArt CC0 varlıklarını (lisans sayfadan doğrulanarak) üretim varlık klasörüne indirir.
+# Yalnızca faz51-altyapi dalında, motor/varlik/oga3/istek.json değişince çalışır.
+name: Varlik OGA3
+
+on:
+  push:
+    branches: [faz51-altyapi]
+    paths: ["motor/varlik/oga3/istek.json"]
+
+permissions:
+  contents: write
+
+jobs:
+  indir:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m motor.varlik.oga_indir motor/varlik/oga3/istek.json
+      - name: Boyut ve dala yaz
+        run: |
+          du -sh motor/varlik/oga3/*
+          git config user.name "varlik-oga"
+          git config user.email "actions@users.noreply.github.com"
+          git add motor/varlik/oga3
+          git commit -m "OpenGameArt CC0 varlıkları (lisans kaydıyla) [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push && exit 0; sleep 5; done
+          exit 1

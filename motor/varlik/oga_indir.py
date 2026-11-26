@@ -48,7 +48,8 @@ def main(istek_yolu: str) -> int:
             hedef.mkdir(parents=True, exist_ok=True)
             for u in linkler:
                 ad = urllib.parse.unquote(u.rsplit("/", 1)[1])
-                if not desen.search(ad) or re.search(r"\.(png|jpg|gif|jpeg)$", ad, re.I):
+                # önizleme görselleri atlanır; doku paketlerinde (goruntu: true) görsel dosyanın kendisi varlıktır
+                if not desen.search(ad) or (not it.get("goruntu") and re.search(r"\.(png|jpg|gif|jpeg)$", ad, re.I)):
                     continue
                 veri = al(u)
                 d = hedef / ad
