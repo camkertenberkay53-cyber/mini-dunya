@@ -26,6 +26,60 @@ def al(url: str) -> bytes:
     return urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=600).read()
 
 
+class UzakDosya(io.RawIOBase):
+    """HTTP Range ile okunan, aranabilir uzak dosya: zip'in yalnız merkez dizini ve istenen üyeleri indirilir
+    (paketin tamamı çok büyük; bütün zip'i indirmek Actions süre sınırını aşıyordu)."""
+
+    def __init__(self, url: str, parca: int = 1 << 20):
+        self.url, self.parca, self.konum, self.onbellek, self.indirilen = url, parca, 0, {}, 0
+        r = urllib.request.urlopen(urllib.request.Request(url, method="HEAD", headers=UA), timeout=120)
+        self.boy = int(r.headers["Content-Length"])
+        if r.headers.get("Accept-Ranges", "").lower() != "bytes":
+            raise IOError("sunucu Range desteklemiyor")
+
+    def seekable(self):
+        return True
+
+    def readable(self):
+        return True
+
+    def tell(self):
+        return self.konum
+
+    def seek(self, ofs, nereden=0):
+        self.konum = {0: ofs, 1: self.konum + ofs, 2: self.boy + ofs}[nereden]
+        return self.konum
+
+    def _blok(self, i):
+        if i not in self.onbellek:
+            a, b = i * self.parca, min(self.boy, (i + 1) * self.parca) - 1
+            h = dict(UA, Range=f"bytes={a}-{b}")
+            self.onbellek[i] = urllib.request.urlopen(urllib.request.Request(self.url, headers=h), timeout=300).read()
+            self.indirilen += len(self.onbellek[i])
+            if len(self.onbellek) > 64:
+                self.onbellek.pop(next(iter(self.onbellek)))
+        return self.onbellek[i]
+
+    def read(self, n=-1):
+        if n is None or n < 0:
+            n = self.boy - self.konum
+        n = max(0, min(n, self.boy - self.konum))
+        out = bytearray()
+        while len(out) < n:
+            i = self.konum // self.parca
+            b = self._blok(i)
+            ofs = self.konum - i * self.parca
+            al_ = b[ofs: ofs + (n - len(out))]
+            out += al_
+            self.konum += len(al_)
+        return bytes(out)
+
+    def readinto(self, b):
+        d = self.read(len(b))
+        b[: len(d)] = d
+        return len(d)
+
+
 def main(istek_yolu: str) -> int:
     istek = json.loads(Path(istek_yolu).read_text())
     kok = Path(istek_yolu).parent
@@ -65,16 +119,20 @@ def main(istek_yolu: str) -> int:
                 k["durum"] = f"LISANS_RED ({k['bolum_lisansi']})"
                 kayit["paketler"].append(k)
                 continue
-            veri = al(url)
-            k["bayt"] = len(veri)
-            k["sha256"] = hashlib.sha256(veri).hexdigest()
-            z = zipfile.ZipFile(io.BytesIO(veri))
+            uzak = UzakDosya(url)
+            k["bayt"] = uzak.boy
+            z = zipfile.ZipFile(io.BufferedReader(uzak, buffer_size=1 << 20))
             (kok / f"icerik_{p['ad']}.txt").write_text("\n".join(f"{i.file_size}\t{i.filename}" for i in z.infolist()))
             desen = re.compile(p.get("zip_deseni", r"$^"), re.I)
             acilan = [n for n in z.namelist() if desen.search(n) and not n.endswith("/")]
+            ozet = {}
             for n in acilan:
                 z.extract(n, kok / p["ad"])
+                ozet[n] = hashlib.sha256((kok / p["ad"] / n).read_bytes()).hexdigest()
+                print("  açıldı", n, flush=True)
             k["acilan"] = acilan
+            k["acilan_sha256"] = ozet
+            k["indirilen_bayt"] = uzak.indirilen
             k["durum"] = "TAMAM"
         except Exception as e:  # noqa: BLE001
             k["hata"] = repr(e)[:300]

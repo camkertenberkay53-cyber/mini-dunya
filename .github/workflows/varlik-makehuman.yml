@@ -13,7 +13,7 @@ permissions:
 jobs:
   indir:
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - run: python3 -m motor.varlik.makehuman_indir motor/varlik/makehuman/istek.json
