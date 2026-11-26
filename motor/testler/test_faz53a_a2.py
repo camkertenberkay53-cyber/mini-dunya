@@ -269,7 +269,7 @@ def test_yakin_parca_kutu_ici_ve_zincir():
     assert lab[75, 255] not in sec and lab[105, 325] not in sec
 
 
-def test_tuval_hedef_yuksekligin_1_1_kati(tmp_path):
+def test_tuval_hedef_yuksekligin_olcek_kati(tmp_path):
     H, W = 4200, 3100
     img = np.full((H, W, 3), (190, 200, 205), np.uint8)
     cv2.ellipse(img, (1550, 2600), (900, 1500), 0, 0, 360, (50, 55, 60), -1)
@@ -277,10 +277,10 @@ def test_tuval_hedef_yuksekligin_1_1_kati(tmp_path):
     cv2.imwrite(str(p), img)
     k = _kayit(tmp_path, p, ozne_bilgisi={"kutu": [0.15, 0.08, 0.85, 1.0], "tur": "insan_portre"}, derinlik_uygunlugu="dusuk")
     ek, rap = g25.hazirla(p, k, {"hareket": "push_in"}, 1920, 1080, tmp_path, 1)
-    assert rap["tuval"] and rap["tuval_boyut"][1] == round(1080 * 1.1)
+    assert rap["tuval"] and rap["tuval_boyut"][1] == round(1080 * 1.25)
     assert abs(rap["tuval_boyut"][0] / rap["tuval_boyut"][1] - 16 / 9) < 0.01
     t = cv2.imread(ek["gorsel"])
-    assert t.shape[0] == round(1080 * 1.1)
+    assert t.shape[0] == round(1080 * 1.25)
     a = dict(g25.ayarlar())
     a["kalite"] = dict(a["kalite"], tuval_hareket=dict(a["kalite"]["tuval_hareket"], olcek_kat=0))
     import motor.uretim.gorsel25d as mod

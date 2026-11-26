@@ -241,7 +241,8 @@ gorsel25d:
     # A2 mikro düzeltme: YALNIZCA tuval modunda (dikey görsel → 16:9) zoom ≤ 1,06 ve push-in ağırlıkla hafif tilt;
     # yatay görseller, Shorts ve diğer 2.5D sahnelerin hareketi değişmez. acik:false → A2 davranışı.
     # olcek_kat: tuval, hedef çıktı yüksekliğinin bu katında kurulur (zoom ≤ 1,06 olduğundan kaynak yüksekliğin tamamı
-    # gereksiz). 0 → A2 mikro davranışı (kaynak çözünürlükte tuval).
-    tuval_hareket: {acik: true, zoom_tavani: 1.06, pay: 0.8, olcek_kat: 1.1}
+    # gereksiz). 0 → A2 mikro davranışı (kaynak çözünürlükte tuval). 1.25: CI kalite karşılaştırmasında (½ çöz. SSIM/keskinlik)
+    # 1.1'e göre yüz/sarık detayını daha iyi korur; eskiye göre bellek −%79, hazırlık −%40.
+    tuval_hareket: {acik: true, zoom_tavani: 1.06, pay: 0.8, olcek_kat: 1.25}
   # Dolguya düşük opaklıklı, yerel standart sapmaya uyarlı ince gürültü/tarama dokusu (yama kopyalama YOK).
   doku_doldurma: {acik: true, opaklik: 0.5, pencere_px: 61, tarama_x: 1.2, tarama_y: 0.5}
