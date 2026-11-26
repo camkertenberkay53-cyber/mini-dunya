@@ -496,6 +496,9 @@ def govdeyi_kirp(govde, silinecek: set[int]):
     bm.free()
 
 
+ZIRH_AGIRLIK_YUZEY = False   # karakter_kur, tarif "zirh_maskesi" açıkken True yapar (tek anahtar, geri alınabilir)
+
+
 def giydir(govde, arm, giysiler: list[dict], malzeme_al) -> list:
     """giysiler: [{tur: kabuk|etek, ...}] -> eklenen nesneler. Kabukların altındaki gövde silinir."""
     eklenen, gizli = [], set()
@@ -530,7 +533,12 @@ def giydir(govde, arm, giysiler: list[dict], malzeme_al) -> list:
     ic_ice_yerlestir(govde, eklenen, [g["ad"] for g in giysiler])
     for o, g in zip(eklenen, giysiler):
         if g["tur"] == "kabuk":
-            pass  # gövdeden kopyalanan özgün ağırlık: aynı kaynak köşe her katmanda aynı ağırlık
+            # gövdeden kopyalanan özgün ağırlık: aynı kaynak köşe her katmanda aynı ağırlık.
+            # Faz 5.2 (ZIRH_AGIRLIK_YUZEY): dış zırh kabukları (omuzluk, levha; KATMAN >= 5) 30 adım yumuşatmayla kaynak köşesinden
+            # uzaklaştığı için, iç katmanlar yerleştikten sonra altındaki gövde YÜZEYİNİN ağırlığını alır; alttaki
+            # tunikle aynı biçimde deforme olur. Anahtar kapalıyken eski davranış.
+            if ZIRH_AGIRLIK_YUZEY and KATMAN.get(g["ad"], 3) >= 5:
+                agirlik_aktar(govde, o)
         else:  # etek: 0,95 m üstü tamamen gövde, 0,80 m altı tamamen bacak izleyen ağırlık
             agirlik_aktar(govde, o, karisim=lambda z: max(0.0, min(1.0, (z - 0.80) / 0.15)))
     gizli_yuzleri_sil(govde, eklenen, [g["ad"] for g in giysiler])
@@ -626,3 +634,133 @@ def yuvalari_kur(govde_kaynak, arm) -> dict:
     if bas_derinlik != olcek:
         profil["_govde"]["bas_derinlik_olcek"] = round(bas_derinlik * 1.03, 3)
     return profil
+
+
+# ------------------------------------------------------------------ Faz 5.2: yıkıcı olmayan zırh maskesi
+MASKE_EKI = "__maske"
+
+
+
+def kenar_alti_cek(govde, nesneler: list, adlar: list[str], pay: float = 0.06, kenar: float = 0.06,
+                   cekme: float = 0.02, min_bosluk: float = 0.004) -> int:
+    """Zırhın (KATMAN >= 4) kol ağzı / yaka / alt kenarı altında kalan iç katman köşelerini gövdeye doğru en çok
+    'cekme' kadar içeri çeker (gövdeye min_bosluk'tan fazla yaklaşmadan). Animasyonda zırh kenarının altından tunik
+    taşmasın diye; köşe silinmez, yalnız oluşturulan giysi kabuğu (gövde ağı değil) değişir. Çekilen köşe sayısı."""
+    from mathutils.bvhtree import BVHTree
+    from mathutils.kdtree import KDTree
+    tb = bmesh.new()
+    tb.from_mesh(govde.data)
+    tb.transform(govde.matrix_world)
+    tagac = BVHTree.FromBMesh(tb)
+    sayi = 0
+    for o, ad_o in zip(nesneler, adlar):
+        if KATMAN.get(ad_o, 3) < 4:
+            continue
+        ob = bmesh.new()
+        ob.from_mesh(o.data)
+        ob.transform(o.matrix_world)
+        agac = BVHTree.FromBMesh(ob)
+        kn = [v.co.copy() for v in ob.verts if v.is_boundary]
+        ob.free()
+        if not kn:
+            continue
+        kd = KDTree(len(kn))
+        for j, c in enumerate(kn):
+            kd.insert(c, j)
+        kd.balance()
+        for m, ad_m in zip(nesneler, adlar):
+            if m is o or KATMAN.get(ad_m, 3) >= KATMAN.get(ad_o, 3) or ad_m in ("kusak", "kemer"):
+                continue
+            mw, mi = m.matrix_world, m.matrix_world.inverted()
+            for v in m.data.vertices:
+                w = mw @ v.co
+                p, _n, _f, _d = agac.find_nearest(w, pay)
+                if p is None:
+                    continue
+                d = kd.find(w)[2]
+                if d > kenar:
+                    continue
+                q = tagac.find_nearest(w)[0]
+                if q is None:
+                    continue
+                bosluk = (w - q).length
+                miktar = min(cekme * (1.0 - d / kenar), bosluk - min_bosluk)
+                if miktar <= 0.0005:
+                    continue
+                v.co = mi @ (w + (q - w).normalized() * miktar)
+                sayi += 1
+    tb.free()
+    return sayi
+
+def zirh_maskesi(govde, nesneler: list, adlar: list[str], pay: float = 0.05, kenar_payi: float = 0.035,
+                tasma_payi: float = 0.025) -> dict:
+    """Zırh (KATMAN >= 4) altında TAMAMEN örtülen iç katman yüzlerini işaretler: yüzler silinmez, yalnız aynı
+    malzemenin '__maske' kopyasına alınır. Godot (donatici.maske_uygula) anahtar açıkken bu yüzeyleri çizmez; anahtar
+    kapalıyken ağ özgün hâliyle görünür. Dış katmanın kenarına kenar_payi'ndan yakın yüzler maskelenmez (yaka, kol ağzı,
+    etek ucu açıkta kalır, taşma testi oralarda yine ölçer). Dönüş: {iç: {dış: yüz sayısı}}."""
+    from mathutils.bvhtree import BVHTree
+    from mathutils.kdtree import KDTree
+
+    def _bm(o):
+        b = bmesh.new()
+        b.from_mesh(o.data)
+        b.transform(o.matrix_world)
+        b.normal_update()
+        b.faces.ensure_lookup_table()
+        return b
+
+    tb = _bm(govde)
+    tagac = BVHTree.FromBMesh(tb)
+    sonuc = {}
+    for i, (o, ad_o) in enumerate(zip(nesneler, adlar)):
+        if KATMAN.get(ad_o, 3) < 4:
+            continue
+        ob = _bm(o)
+        agac = BVHTree.FromBMesh(ob)
+        kenar = [v.co.copy() for v in ob.verts if v.is_boundary]
+        kd = KDTree(max(1, len(kenar)))
+        for j, c in enumerate(kenar):
+            kd.insert(c, j)
+        kd.balance()
+        for m, ad_m in zip(nesneler, adlar):
+            if m is o or KATMAN.get(ad_m, 3) >= KATMAN.get(ad_o, 3) or ad_m in ("kusak", "kemer"):
+                continue
+            mb = _bm(m)
+            ortu = []
+            for f in mb.faces:
+                tamam = True
+                for v in f.verts:
+                    p, n, fi, d = agac.find_nearest(v.co, pay)
+                    if p is None or (kenar and kd.find(p)[2] < kenar_payi):
+                        tamam = False
+                        break
+                    q = tagac.find_nearest(p)[0]
+                    if q is None:
+                        tamam = False
+                        break
+                    disari = (p - q).normalized()            # gövdeden dış katmana doğru yön
+                    if (v.co - p).dot(disari) > tasma_payi:   # iç katman dış yüzeyin belirgin ötesinde: maskeleme
+                        tamam = False
+                        break
+                if tamam:
+                    ortu.append(f.index)
+            mb.free()
+            if not ortu:
+                continue
+            mevcut = {ms.material.name: k for k, ms in enumerate(m.material_slots) if ms.material}
+            for fi in ortu:
+                poly = m.data.polygons[fi]
+                mat = m.material_slots[poly.material_index].material
+                if mat is None or mat.name.endswith(MASKE_EKI):
+                    continue
+                ad = mat.name + MASKE_EKI
+                if ad not in mevcut:
+                    kopya = bpy.data.materials.get(ad) or mat.copy()
+                    kopya.name = ad
+                    m.data.materials.append(kopya)
+                    mevcut[ad] = len(m.material_slots) - 1
+                poly.material_index = mevcut[ad]
+            sonuc.setdefault(ad_m, {})[ad_o] = len(ortu)
+        ob.free()
+    tb.free()
+    return sonuc

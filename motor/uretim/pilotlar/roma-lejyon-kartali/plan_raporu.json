@@ -160,12 +160,13 @@
      36
     ],
     "secim_gerekcesi": [
-     "kalabalık (10 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+     "kalabalık (10 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'goz_pan', 'yan_takip']"
     ],
     "tercih_sirasi": [
      "kurulus_genis",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "goz_pan",
      "yan_takip"
@@ -190,12 +191,13 @@
      55
     ],
     "secim_gerekcesi": [
-     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'goz_pan', 'yan_takip']"
     ],
     "tercih_sirasi": [
      "kurulus_genis",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "goz_pan",
      "yan_takip"
@@ -231,12 +233,13 @@
      38
     ],
     "secim_gerekcesi": [
-     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (13 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -261,12 +264,13 @@
      18
     ],
     "secim_gerekcesi": [
-     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (13 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -286,8 +290,6 @@
     "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
-     "rom_lejyoner_gladius",
-     "rom_lejyoner_pilum",
      "rom_lejyoner_pilum"
     ],
     "lens_fov": [
@@ -295,7 +297,7 @@
      38
     ],
     "secim_gerekcesi": [
-     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'itme_dramatik']",
+     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'el_kamerasi', 'itme_dramatik']",
      "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
     ],
     "tercih_sirasi": [
@@ -457,12 +459,13 @@
     ],
     "secim_gerekcesi": [
      "senaryo niyeti: yukselme",
-     "kalabalık (14 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+     "kalabalık (14 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yukselme",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "sabit_uzak",
      "kurulus_genis",
@@ -777,7 +780,7 @@
     {
      "kontrol": "S5 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "3 görünür"
+     "ayrinti": "5 görünür"
     },
     {
      "kontrol": "S5 eylem 'olum'",
@@ -1530,7 +1533,7 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.64,
+     "ekran_orani": 0.581,
      "mesafe": "orta"
     }
    },
@@ -1542,61 +1545,61 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.886,
+     "ekran_orani": 0.76,
      "mesafe": "orta"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.441,
+     "ekran_orani": 0.398,
      "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.49,
+     "ekran_orani": 0.432,
      "mesafe": "orta"
     },
     "3": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.504,
+     "ekran_orani": 0.483,
      "mesafe": "orta"
     },
     "4": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.342,
+     "ekran_orani": 0.309,
      "mesafe": "orta"
     },
     "5": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.451,
+     "ekran_orani": 0.398,
      "mesafe": "orta"
     },
     "6": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.386,
+     "ekran_orani": 0.342,
      "mesafe": "orta"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.325,
+     "ekran_orani": 0.307,
      "mesafe": "orta"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.32,
-     "mesafe": "orta"
+     "ekran_orani": 0.285,
+     "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.349,
+     "ekran_orani": 0.31,
      "mesafe": "orta"
     }
    },
@@ -1608,73 +1611,73 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.119,
+     "ekran_orani": 0.108,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.131,
+     "ekran_orani": 0.118,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.128,
+     "ekran_orani": 0.116,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.12,
+     "ekran_orani": 0.109,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.112,
+     "ekran_orani": 0.102,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.101,
+     "ekran_orani": 0.092,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.099,
+     "ekran_orani": 0.09,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.099,
+     "ekran_orani": 0.09,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.108,
+     "ekran_orani": 0.098,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.104,
+     "ekran_orani": 0.094,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.097,
+     "ekran_orani": 0.088,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.094,
+     "ekran_orani": 0.085,
      "mesafe": "uzak"
     }
    },
@@ -1696,19 +1699,19 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.25,
+     "ekran_orani": 0.227,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.225,
+     "ekran_orani": 0.205,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.244,
+     "ekran_orani": 0.222,
      "mesafe": "uzak"
     }
    },
@@ -1720,79 +1723,79 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.263,
+     "ekran_orani": 0.237,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.25,
+     "ekran_orani": 0.226,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.242,
+     "ekran_orani": 0.219,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.251,
+     "ekran_orani": 0.227,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.236,
+     "ekran_orani": 0.213,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.234,
+     "ekran_orani": 0.212,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.216,
+     "ekran_orani": 0.195,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.201,
+     "ekran_orani": 0.182,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.225,
+     "ekran_orani": 0.204,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.209,
+     "ekran_orani": 0.189,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.205,
+     "ekran_orani": 0.185,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.193,
+     "ekran_orani": 0.174,
      "mesafe": "uzak"
     },
     "12": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.212,
+     "ekran_orani": 0.192,
      "mesafe": "uzak"
     }
    },
@@ -1804,20 +1807,32 @@
     "0": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.598,
+     "ekran_orani": 0.539,
      "mesafe": "orta"
     },
     "1": {
-     "takim": "rom_lejyoner_pilum",
-     "gorunur": true,
-     "ekran_orani": 0.336,
-     "mesafe": "orta"
-    },
-    "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.361,
+     "ekran_orani": 0.235,
+     "mesafe": "uzak"
+    },
+    "2": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.212,
+     "mesafe": "uzak"
+    },
+    "3": {
+     "takim": "rom_lejyoner_gladius",
+     "gorunur": true,
+     "ekran_orani": 0.329,
      "mesafe": "orta"
+    },
+    "4": {
+     "takim": "rom_lejyoner_pilum",
+     "gorunur": true,
+     "ekran_orani": 0.233,
+     "mesafe": "uzak"
     }
    },
    "kamera_kusur": [],
@@ -1828,7 +1843,7 @@
     "0": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.626,
+     "ekran_orani": 0.568,
      "mesafe": "orta"
     }
    },
@@ -1840,19 +1855,19 @@
     "0": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.854,
+     "ekran_orani": 0.773,
      "mesafe": "orta"
     },
     "1": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.538,
+     "ekran_orani": 0.488,
      "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.594,
+     "ekran_orani": 0.539,
      "mesafe": "orta"
     }
    },
@@ -1864,25 +1879,25 @@
     "0": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.568,
+     "ekran_orani": 0.507,
      "mesafe": "orta"
     },
     "1": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.376,
+     "ekran_orani": 0.338,
      "mesafe": "orta"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.404,
+     "ekran_orani": 0.362,
      "mesafe": "orta"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.44,
+     "ekran_orani": 0.394,
      "mesafe": "orta"
     }
    },
@@ -1894,13 +1909,13 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.689,
+     "ekran_orani": 0.626,
      "mesafe": "orta"
     },
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.454,
+     "ekran_orani": 0.413,
      "mesafe": "orta"
     }
    },
@@ -1912,73 +1927,73 @@
     "0": {
      "takim": "rom_aquilifer",
      "gorunur": true,
-     "ekran_orani": 0.19,
+     "ekran_orani": 0.173,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "rom_centurio",
      "gorunur": true,
-     "ekran_orani": 0.154,
+     "ekran_orani": 0.14,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.164,
+     "ekran_orani": 0.149,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.162,
+     "ekran_orani": 0.147,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.176,
+     "ekran_orani": 0.159,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.171,
+     "ekran_orani": 0.155,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.174,
+     "ekran_orani": 0.158,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.14,
+     "ekran_orani": 0.128,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.149,
+     "ekran_orani": 0.136,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.153,
+     "ekran_orani": 0.139,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "rom_lejyoner_pilum",
      "gorunur": true,
-     "ekran_orani": 0.152,
+     "ekran_orani": 0.138,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "rom_lejyoner_gladius",
      "gorunur": true,
-     "ekran_orani": 0.163,
+     "ekran_orani": 0.148,
      "mesafe": "uzak"
     }
    },
@@ -1992,6 +2007,6 @@
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.35,
+ "planlama_sn": 0.44,
  "gecti": true
 }

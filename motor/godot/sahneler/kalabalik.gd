@@ -29,6 +29,8 @@ static func _sadelestir(m: Mesh, oran: float) -> Mesh:
 
 static func _pisir(sahne: Node3D, takim: Dictionary, anim: String, an: float, cesit: Dictionary, tohum: int, cesit_oran: float = 1.0) -> Array:
 	var kok := D.kur(takim)
+	if cesit.get("_maske", false):
+		D.maske_uygula(kok)
 	var kap := Node3D.new()
 	kap.add_child(kok)
 	sahne.add_child(kap)   # AnimationPlayer ve iskelet pozu ağaçta güncellenir
@@ -91,6 +93,7 @@ static func kur(sahne: Node3D, k: Dictionary, takimlar: Dictionary, ar: Dictiona
 		if gercekci and ks.size() > 0:   # gerçekçi insanlar: her pişirilmiş tür başka bir kişi (yüz, beden, sakal)
 			tk = tk.duplicate()
 			tk["glb"] = ks[(i / adlar.size()) % ks.size()]
+			tk = D.insan_paylari(tk)
 		turler.append(_pisir(sahne, tk, k.get("animasyon", "Idle_Loop"), r.randf_range(0.0, 3.0),
 			k.get("cesit", {}), tohum + i * 7, float(k.get("sadelestir_oran", 1.0))))
 	var yan := ileri.cross(Vector3.UP).normalized()

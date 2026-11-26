@@ -56,6 +56,17 @@ def karakterler(kit: dict):
             yield rol, k
 
 
+def _takilan(yuva: str, pid: str, kat: dict) -> dict:
+    """Takım json'undaki ekipman kaydı. Faz 5.2: 'insan_yuva_payi' (m, kurallar/insan.yaml) yalnız gerçekçi kişide
+    uygulanır (cekim.gd/kalabalik.gd ve insan montaj testi 'yuva_payi'ye çevirir); UBC gövdesi (Faz 3b) değişmez."""
+    p = kat["parcalar"][pid]
+    t = {"yuva": yuva, "id": pid, "glb": str(ekipman_mod.CIKTI / f"{pid}.glb"), "kategori": p["kategori"]}
+    pay = insan.yuva_payi(pid)
+    if pay:
+        t["insan_yuva_payi"] = pay
+    return t
+
+
 def kural_denetle(kit: dict, k: dict, katalog_: dict) -> list[str]:
     """Bir karakter tanımının dönem, yuva ve çakışma kurallarına uyup uymadığı. Boş liste = uygun."""
     h = []
@@ -189,8 +200,7 @@ def derle(zorla: bool = False) -> dict:
                 "binek": k.get("binek"),
                 "kisiler": [x["glb"] for i, x in enumerate(ozet["govdeler"].get(gid, {}).get("kisiler", []))
                             if f"{k['ad']}#k{i}" not in red] if insan.acik() else [],   # montaj testinden geçenler
-                "takilanlar": [{"yuva": y, "id": pid, "glb": str(ekipman_mod.CIKTI / f"{pid}.glb"),
-                                "kategori": kat["parcalar"][pid]["kategori"]} for y, pid in (k.get("takilanlar") or {}).items()],
+                "takilanlar": [_takilan(y, pid, kat) for y, pid in (k.get("takilanlar") or {}).items()],
             }
             (TAKIM_CIKTI / f"{k['ad']}.json").write_text(json.dumps(takim, ensure_ascii=False, indent=1))
             ozet["takimlar"][k["ad"]] = {"kit": kad, "rol": rol, "govde_id": gid, "takilanlar": k.get("takilanlar") or {},

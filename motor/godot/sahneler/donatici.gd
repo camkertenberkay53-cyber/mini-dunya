@@ -40,6 +40,34 @@ static func yuvalar(kok: Node) -> Dictionary:
 			s[String(x.name).substr(5)] = x
 	return s
 
+## Faz 5.2 zırh maskesi: '__maske' malzemeli yüzeyler (zırh altında tamamen örtülen iç katman) bu örnekte çizilmez.
+## Dosya değişmez (yıkıcı değil); yalnız yüklenen kopyanın ağından yüzey çıkarılır.
+## Faz 5.2: gerçekçi kişiye özgü yuva payları ("insan_yuva_payi" -> "yuva_payi"); UBC gövdesinde çağrılmaz.
+static func insan_paylari(takim: Dictionary) -> Dictionary:
+	var t := takim.duplicate()
+	var liste := []
+	for x in takim.get("takilanlar", []):
+		var y: Dictionary = x.duplicate()
+		if y.has("insan_yuva_payi"):
+			y["yuva_payi"] = y["insan_yuva_payi"]
+		liste.append(y)
+	t["takilanlar"] = liste
+	return t
+
+static func maske_uygula(kok: Node) -> int:
+	var n := 0
+	for m in kok.find_children("*", "MeshInstance3D", true, false):
+		var mi: MeshInstance3D = m
+		if not (mi.mesh is ArrayMesh):
+			continue
+		var am: ArrayMesh = mi.mesh
+		for i in range(am.get_surface_count() - 1, -1, -1):
+			var mat := am.surface_get_material(i)
+			if mat and str(mat.resource_name).ends_with("__maske"):
+				am.surface_remove(i)
+				n += 1
+	return n
+
 static func kur(takim: Dictionary) -> Node3D:
 	var kok := glb_yukle(takim["glb"])
 	kok.name = takim.get("ad", "karakter")
@@ -60,6 +88,8 @@ static func kur(takim: Dictionary) -> Node3D:
 			e.set_meta("kopuk", true)
 		else:
 			y[ad].add_child(e)
+		if t.has("yuva_payi"):   # Faz 5.2: yuvadan gövdenin dışına (Blender yerel -Y = glTF/Godot yerel +Z)
+			e.position += Vector3(0.0, 0.0, float(t["yuva_payi"]))
 		if t.has("ince_ayar"):
 			var k: Array = t["ince_ayar"]
 			e.position += Vector3(k[0], k[1], k[2])

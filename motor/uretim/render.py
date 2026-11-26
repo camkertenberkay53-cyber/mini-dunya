@@ -109,7 +109,7 @@ def is_hazirla(plan: dict, c: dict) -> dict:
         "karakter_cesit": veri.kural("gorsel").get("karakter_cesit", {"acik": False}),
         "yuzey": _yuzey(),
         "beden": _beden(),
-        "insan": {"acik": _insan_acik()},
+        "insan": {"acik": _insan_acik(), "zirh_maskesi": _insan_acik() and bool(veri.kural("insan").get("zirh_maskesi", {}).get("acik"))},
         "vfx": _vfx(c, ar),
         "serpme": _serpme(plan, c),
         "yerlesim": (yer := _yerlesim(plan, c)),
@@ -148,6 +148,7 @@ def _kalabalik(c: dict, donem: str | None = None) -> dict:
     k["cesit"] = veri.kural("gorsel").get("karakter_cesit", {"acik": False})
     k["boy_orani"] = float(c.get("insan_boy_orani", 1.0))   # arka plan ordusu da oyuncularla aynı dönem boyunda
     k["gercekci"] = _insan_acik()   # gerçekçi insanlar: pişirilen her tür başka bir kişi (kurallar/insan.yaml)
+    k["cesit"] = dict(k["cesit"], _maske=k["gercekci"] and bool(veri.kural("insan").get("zirh_maskesi", {}).get("acik")))
     k["acik"] = bool(k["takimlar"])
     return k
 

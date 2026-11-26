@@ -101,6 +101,22 @@ def _en_yakin_eksen(p, parcalar):
     return enp
 
 
+# Örtü ilişkisi yarıçapı (üretim değeri 0,03 m). Yalnız tanı için TEST_ORTU_YARICAP ile büyütülebilir; eşik değildir.
+ORTU_YARICAP = float(os.environ.get("TEST_ORTU_YARICAP", "0.03"))
+
+
+def _maskeli_koseler(o) -> set:
+    """Yalnız '__maske' malzemeli yüzlere ait köşeler (Godot'da zırh maskesi açıkken çizilmez)."""
+    maskeli = {i for i, ms in enumerate(o.material_slots) if ms.material and ms.material.name.split(".")[0].endswith("__maske")}
+    if not maskeli:
+        return set()
+    acik = set()
+    kapali = set()
+    for p in o.data.polygons:
+        (kapali if p.material_index in maskeli else acik).update(p.vertices)
+    return kapali - acik
+
+
 def katman_belirle(arm, ten, giysiler):
     """Dinlenme duruşunda: (1) her giysinin normal yönü (iskelete göre dışa = +1), (2) hangi katmanların o giysinin
     içinde kaldığı. Animasyonda yalnızca bu iç katmanların dışarı taşması ölçülür."""
@@ -130,8 +146,11 @@ def katman_belirle(arm, ten, giysiler):
                 continue
             ortulu = disarda = 0
             altta = []
+            gizli = _maskeli_koseler(m) if IS.get("maske") else set()   # Faz 5.2: çizilmeyen (maskeli) yüzler
             for v in bms[m.name].verts:
-                p, n, fi, d = agac.find_nearest(v.co, 0.03)
+                if v.index in gizli:
+                    continue
+                p, n, fi, d = agac.find_nearest(v.co, ORTU_YARICAP)
                 if p is None or fi in sinir or not dik_izdusum(v.co, p, n):
                     continue
                 ortulu += 1
@@ -146,6 +165,8 @@ def katman_belirle(arm, ten, giysiler):
         b.free()
     arm.data.pose_position = "POSE"
     bpy.context.view_layer.update()
+    if os.environ.get("TEST_AYRINTI"):
+        print("KATMAN_ICI", {g: {m: len(k) for m, k in d.items()} for g, d in ortu.items()})
     return {"yon": yon, "ic": ic, "ortu": ortu}
 
 
@@ -174,6 +195,8 @@ def karakter_olc(k):
             kok.parent = y
             kok.matrix_parent_inverse = Matrix.Identity(4)
             kok.matrix_basis = Matrix.Identity(4)
+        if t.get("yuva_payi"):   # Faz 5.2: yuvadan gövdenin dışına (yerel -Y); Godot donatıcısı aynısını yapar
+            kok.matrix_basis = Matrix.Translation(Vector((0.0, -float(t["yuva_payi"]), 0.0))) @ kok.matrix_basis
         if t.get("ince_ayar"):
             kok.matrix_basis = Matrix.Translation(Vector(t["ince_ayar"])) @ kok.matrix_basis
         ekler.append({"t": t, "kok": kok, "yuva": y, "kemik": y.parent_bone,
@@ -316,7 +339,7 @@ def karakter_olc(k):
                         mbm.verts.ensure_lookup_table()
                         for vi in katman_ici["ortu"][g.name].get(m.name, ()):
                             v = mbm.verts[vi]
-                            p, n, fi, d = agac.find_nearest(v.co, 0.03)
+                            p, n, fi, d = agac.find_nearest(v.co, ORTU_YARICAP)
                             if p is None or fi in sinir or not dik_izdusum(v.co, p, n):
                                 continue
                             ortulu += 1

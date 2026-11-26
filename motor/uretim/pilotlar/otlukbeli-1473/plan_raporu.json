@@ -14,8 +14,7 @@
  "uyarilar": [
   "S2: akk_zirhli_mizrak 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
   "S2: akk_zirhli_mizrak 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
-  "S4: akk_suvari 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
-  "S7: akk_zirhli_mizrak 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz"
+  "S4: akk_suvari 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz"
  ],
  "seslendirme": {
   "S1": {
@@ -85,10 +84,11 @@
     "itme": 1,
     "genis_suzulme": 1,
     "takip": 2,
-    "sabit_suzulme": 3,
+    "sabit_suzulme": 2,
     "yaklasma": 1,
-    "yorunge": 1,
-    "yukselme": 1
+    "el": 1,
+    "yukselme": 1,
+    "drone": 1
    },
    "yukseklik": {
     "goz": 7,
@@ -99,7 +99,7 @@
     "onden": 4,
     "capraz": 2,
     "yan": 3,
-    "capraz_arka": 1
+    "arka": 1
    },
    "tur": {
     "itme_dramatik": 1,
@@ -107,10 +107,10 @@
     "yan_takip": 2,
     "tele_kalabalik": 1,
     "alcak_yaklasma": 1,
-    "capraz_yorunge": 1,
+    "el_kamerasi": 1,
     "yan_profil": 1,
     "yukselme": 1,
-    "yuksek_genis": 1
+    "drone_gecis": 1
    }
   },
   "sira": [
@@ -158,13 +158,14 @@
     ],
     "secim_gerekcesi": [
      "rol 'komutan' (yerinde): ['orta_konusma']",
-     "kalabalık (9 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+     "kalabalık (9 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'goz_pan', 'yan_takip']"
     ],
     "tercih_sirasi": [
      "orta_konusma",
      "kurulus_genis",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "goz_pan",
      "yan_takip"
@@ -199,12 +200,13 @@
      38
     ],
     "secim_gerekcesi": [
-     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -229,12 +231,13 @@
      18
     ],
     "secim_gerekcesi": [
-     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -310,33 +313,71 @@
     "plan": "orta"
    },
    {
-    "tur": "capraz_yorunge",
-    "hareket": "yorunge",
+    "tur": "el_kamerasi",
+    "hareket": "el",
     "yukseklik": "goz",
     "aci_kovasi": "capraz",
     "dizilis": "kol",
     "odak": "osm_yeniceri_kilic",
     "arazi": "ova_cimen",
-    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "aciklama": "Savaşın içinden el kamerası; omuz hizası",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
      "osm_yeniceri_kilic",
-     "osm_yeniceri_kilic"
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "akk_okcu_kilic",
+     "akk_okcu_kilic",
+     "akk_okcu_kilic",
+     "akk_okcu_kilic"
     ],
     "lens_fov": [
-     38,
-     38
+     42,
+     42
     ],
     "secim_gerekcesi": [
-     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+     "eylem 'savas': ['el_kamerasi', 'capraz_yorunge'] önce",
+     "kalabalık (10 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'gerilim': ['alcak_yaklasma', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
     ],
     "tercih_sirasi": [
-     "alcak_yaklasma",
+     "el_kamerasi",
      "capraz_yorunge",
+     "alcak_yaklasma",
+     "tele_kalabalik",
+     "drone_gecis",
+     "yuksek_genis",
      "alcak_geri_takip",
      "yan_profil"
     ],
     "reddedilen_adaylar": [],
+    "koreografi": {
+     "tur": "duello",
+     "cift": 4,
+     "karsi_donem": "akkoyunlu-15yy",
+     "ciftler": [
+      [
+       0.07,
+       0.85
+      ],
+      [
+       2.47,
+       0.84
+      ],
+      [
+       -2.6,
+       0.77
+      ],
+      [
+       4.78,
+       0.95
+      ]
+     ],
+     "rakip_takimlari": [
+      "akk_okcu_kilic"
+     ]
+    },
     "id": "S6",
     "plan": "orta"
    },
@@ -351,6 +392,7 @@
     "aciklama": "Yandan sabit profil",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
+     "akk_zirhli_mizrak",
      "akk_zirhli_kilic"
     ],
     "lens_fov": [
@@ -358,7 +400,7 @@
      30
     ],
     "secim_gerekcesi": [
-     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'itme_dramatik']",
+     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'el_kamerasi', 'itme_dramatik']",
      "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
     ],
     "tercih_sirasi": [
@@ -390,13 +432,14 @@
     ],
     "secim_gerekcesi": [
      "rol 'komutan' (yerinde): ['orta_konusma']",
-     "kalabalık (11 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+     "kalabalık (11 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "orta_konusma",
      "yukselme",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "sabit_uzak",
      "kurulus_genis",
@@ -407,29 +450,30 @@
     "plan": "uzak"
    },
    {
-    "tur": "yuksek_genis",
-    "hareket": "sabit_suzulme",
+    "tur": "drone_gecis",
+    "hareket": "drone",
     "yukseklik": "yuksek",
-    "aci_kovasi": "capraz_arka",
+    "aci_kovasi": "arka",
     "dizilis": "sira",
     "odak": "osm_bey",
     "arazi": "ova_cimen",
-    "aciklama": "Yüksekten genel görünüm (kuş bakışına yakın)",
+    "aciklama": "Ordunun üzerinden drone geçişi; yüksekten öne doğru süzülen kuşbakışına yakın plan",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
     "lens_fov": [
-     46,
-     46
+     50,
+     50
     ],
     "secim_gerekcesi": [
      "rol 'komutan' (yerinde): ['orta_konusma']",
-     "kalabalık (11 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+     "kalabalık (11 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "orta_konusma",
      "yukselme",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "sabit_uzak",
      "kurulus_genis",
@@ -769,17 +813,17 @@
     {
      "kontrol": "S6 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "4 görünür"
+     "ayrinti": "2 görünür"
     },
     {
      "kontrol": "S6 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "4 görünür"
+     "ayrinti": "2 görünür"
     },
     {
      "kontrol": "S6 eylem 'savas'",
      "gecti": true,
-     "ayrinti": "odak animasyonu ual2/Sword_Regular_Combo"
+     "ayrinti": "odak animasyonu ual2/Sword_Regular_A"
     },
     {
      "kontrol": "S6 mesafe 'orta'",
@@ -829,12 +873,12 @@
     {
      "kontrol": "S7 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "3 görünür"
+     "ayrinti": "2 görünür"
     },
     {
      "kontrol": "S7 'piyade' görünüyor",
      "gecti": true,
-     "ayrinti": "3 görünür"
+     "ayrinti": "2 görünür"
     },
     {
      "kontrol": "S7 eylem 'olum'",
@@ -1244,31 +1288,31 @@
     "0": {
      "takim": "osm_bey",
      "gorunur": true,
-     "ekran_orani": 0.673,
+     "ekran_orani": 0.618,
      "mesafe": "orta"
     },
     "1": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.475,
+     "ekran_orani": 0.436,
      "mesafe": "orta"
     },
     "2": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.468,
+     "ekran_orani": 0.43,
      "mesafe": "orta"
     },
     "3": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.389,
+     "ekran_orani": 0.357,
      "mesafe": "orta"
     },
     "4": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.391,
+     "ekran_orani": 0.359,
      "mesafe": "orta"
     }
    },
@@ -1280,55 +1324,55 @@
     "0": {
      "takim": "akk_bey_gurz",
      "gorunur": true,
-     "ekran_orani": 0.119,
+     "ekran_orani": 0.109,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "akk_zirhli_gurz",
      "gorunur": true,
-     "ekran_orani": 0.132,
+     "ekran_orani": 0.121,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "akk_zirhli_kilic",
      "gorunur": true,
-     "ekran_orani": 0.115,
+     "ekran_orani": 0.106,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "akk_zirhli_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.118,
+     "ekran_orani": 0.109,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "akk_zirhli_gurz",
      "gorunur": true,
-     "ekran_orani": 0.108,
+     "ekran_orani": 0.099,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "akk_zirhli_kilic",
      "gorunur": true,
-     "ekran_orani": 0.109,
+     "ekran_orani": 0.1,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "akk_zirhli_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.096,
+     "ekran_orani": 0.088,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "akk_zirhli_gurz",
      "gorunur": true,
-     "ekran_orani": 0.095,
+     "ekran_orani": 0.087,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "akk_zirhli_kilic",
      "gorunur": true,
-     "ekran_orani": 0.097,
+     "ekran_orani": 0.089,
      "mesafe": "uzak"
     }
    },
@@ -1350,19 +1394,19 @@
     "0": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.25,
+     "ekran_orani": 0.23,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.224,
+     "ekran_orani": 0.206,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.252,
+     "ekran_orani": 0.231,
      "mesafe": "uzak"
     }
    },
@@ -1374,73 +1418,73 @@
     "0": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.263,
+     "ekran_orani": 0.24,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.244,
+     "ekran_orani": 0.223,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.245,
+     "ekran_orani": 0.224,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.25,
+     "ekran_orani": 0.229,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.233,
+     "ekran_orani": 0.213,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.221,
+     "ekran_orani": 0.202,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.22,
+     "ekran_orani": 0.201,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.22,
+     "ekran_orani": 0.201,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.217,
+     "ekran_orani": 0.198,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.217,
+     "ekran_orani": 0.199,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.194,
+     "ekran_orani": 0.177,
      "mesafe": "uzak"
     },
     "11": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.203,
+     "ekran_orani": 0.186,
      "mesafe": "uzak"
     }
    },
@@ -1470,19 +1514,19 @@
     "0": {
      "takim": "akk_bey_gurz",
      "gorunur": true,
-     "ekran_orani": 0.626,
+     "ekran_orani": 0.574,
      "mesafe": "orta"
     },
     "1": {
      "takim": "akk_okcu",
      "gorunur": true,
-     "ekran_orani": 0.445,
+     "ekran_orani": 0.408,
      "mesafe": "orta"
     },
     "2": {
      "takim": "akk_okcu_kilic",
      "gorunur": true,
-     "ekran_orani": 0.452,
+     "ekran_orani": 0.415,
      "mesafe": "orta"
     }
    },
@@ -1494,36 +1538,24 @@
     "0": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.578,
+     "ekran_orani": 0.536,
      "mesafe": "orta"
     },
     "1": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.387,
-     "mesafe": "orta"
-    },
-    "2": {
-     "takim": "osm_yeniceri_kilic",
-     "gorunur": true,
-     "ekran_orani": 0.43,
-     "mesafe": "orta"
-    },
-    "3": {
-     "takim": "osm_yeniceri_kilic",
-     "gorunur": true,
-     "ekran_orani": 0.347,
+     "ekran_orani": 0.326,
      "mesafe": "orta"
     }
    },
    "cevre": {
     "0:top_arabasi": {
-     "mesafe": null,
-     "ekran_orani": 0.0
+     "mesafe": "uzak",
+     "ekran_orani": 0.052
     },
     "1:top_arabasi": {
-     "mesafe": "uzak",
-     "ekran_orani": 0.045
+     "mesafe": null,
+     "ekran_orani": 0.0
     }
    },
    "kamera_kusur": [],
@@ -1534,19 +1566,13 @@
     "0": {
      "takim": "akk_zirhli_gurz",
      "gorunur": true,
-     "ekran_orani": 0.562,
+     "ekran_orani": 0.514,
      "mesafe": "orta"
     },
     "1": {
-     "takim": "akk_zirhli_mizrak",
-     "gorunur": true,
-     "ekran_orani": 0.383,
-     "mesafe": "orta"
-    },
-    "2": {
      "takim": "akk_zirhli_kilic",
      "gorunur": true,
-     "ekran_orani": 0.302,
+     "ekran_orani": 0.43,
      "mesafe": "orta"
     }
    },
@@ -1558,61 +1584,61 @@
     "0": {
      "takim": "osm_bey",
      "gorunur": true,
-     "ekran_orani": 0.189,
+     "ekran_orani": 0.174,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.161,
+     "ekran_orani": 0.147,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.157,
+     "ekran_orani": 0.144,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.16,
+     "ekran_orani": 0.147,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.164,
+     "ekran_orani": 0.15,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.173,
+     "ekran_orani": 0.159,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.184,
+     "ekran_orani": 0.169,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.152,
+     "ekran_orani": 0.139,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.157,
+     "ekran_orani": 0.144,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.162,
+     "ekran_orani": 0.149,
      "mesafe": "uzak"
     }
    },
@@ -1642,78 +1668,78 @@
     "0": {
      "takim": "osm_bey",
      "gorunur": true,
-     "ekran_orani": 0.148,
+     "ekran_orani": 0.125,
      "mesafe": "uzak"
     },
     "1": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.135,
+     "ekran_orani": 0.127,
      "mesafe": "uzak"
     },
     "2": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.143,
+     "ekran_orani": 0.131,
      "mesafe": "uzak"
     },
     "3": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.154,
+     "ekran_orani": 0.136,
      "mesafe": "uzak"
     },
     "4": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.158,
+     "ekran_orani": 0.134,
      "mesafe": "uzak"
     },
     "5": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.17,
+     "ekran_orani": 0.139,
      "mesafe": "uzak"
     },
     "6": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.168,
+     "ekran_orani": 0.131,
      "mesafe": "uzak"
     },
     "7": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.177,
+     "ekran_orani": 0.133,
      "mesafe": "uzak"
     },
     "8": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.163,
+     "ekran_orani": 0.145,
      "mesafe": "uzak"
     },
     "9": {
      "takim": "osm_yeniceri_kilic",
      "gorunur": true,
-     "ekran_orani": 0.172,
+     "ekran_orani": 0.146,
      "mesafe": "uzak"
     },
     "10": {
      "takim": "osm_yeniceri_mizrak",
      "gorunur": true,
-     "ekran_orani": 0.174,
+     "ekran_orani": 0.142,
      "mesafe": "uzak"
     }
    },
    "cevre": {
     "0:top_arabasi": {
      "mesafe": "uzak",
-     "ekran_orani": 0.039
+     "ekran_orani": 0.044
     },
     "1:osmanli_cadiri": {
      "mesafe": "uzak",
-     "ekran_orani": 0.142
+     "ekran_orani": 0.157
     },
     "2:yuk_arabasi": {
      "mesafe": null,
@@ -1728,6 +1754,6 @@
    "kamera_plani_olculen": "uzak"
   }
  },
- "planlama_sn": 0.32,
+ "planlama_sn": 0.62,
  "gecti": true
 }

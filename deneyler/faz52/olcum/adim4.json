@@ -1,0 +1,53 @@
+{
+ "ad": "adim4",
+ "tarih": "2026-11-26 15:28",
+ "plan": "deneyler/faz52/plan_adim2.json",
+ "git": "d14e6e4",
+ "anahtarlar": {
+  "sinematik_render": true,
+  "mekan_kalite": true,
+  "belgesel_kalite": true,
+  "karakter_kalite": true,
+  "vfx": true,
+  "sinema": true,
+  "isik_onayarlari": true,
+  "renk_profilleri": true,
+  "portre_dof": null,
+  "insan": true,
+  "kalabalik_salinim": null
+ },
+ "cekimler": {
+  "S1": {
+   "render_sn": 189.6,
+   "kare": 77,
+   "kare_basina_sn": 2.46,
+   "tepe_bellek_gb": 1.15,
+   "kodlama_sn": 3.0,
+   "karakter": 5,
+   "video": "/tmp/motor_onbellek/uretim/otlukbeli-1473/S1_4ddf9fbd1b35e8cf/cekim.mp4"
+  },
+  "S2": {
+   "render_sn": 484.6,
+   "kare": 135,
+   "kare_basina_sn": 3.59,
+   "tepe_bellek_gb": 1.87,
+   "kodlama_sn": 5.0,
+   "karakter": 9,
+   "video": "/tmp/motor_onbellek/uretim/otlukbeli-1473/S2_24dea3dc4c0ce621/cekim.mp4"
+  },
+  "S6": {
+   "render_sn": 319.3,
+   "kare": 102,
+   "kare_basina_sn": 3.13,
+   "tepe_bellek_gb": 1.06,
+   "kodlama_sn": 4.5,
+   "karakter": 2,
+   "video": "/tmp/motor_onbellek/uretim/otlukbeli-1473/S6_1c8cd71c53e3410c/cekim.mp4"
+  }
+ },
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "cekirdek": 2
+ },
+ "toplam_render_sn": 993.5
+}

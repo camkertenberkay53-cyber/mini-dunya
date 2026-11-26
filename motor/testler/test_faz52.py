@@ -120,3 +120,66 @@ def test_shader_varsayilanlari_notr_ve_ten_korunur():
     d_zirh = np.abs(_derecele(zirh, rp) - zirh).max()
     assert d_ten < d_zirh * 0.6                                        # derecelendirme tende belirgin daha az
     assert all(0 < x <= 1.2 for x in _derecele([0.95, 0.95, 0.95], rp))   # vurgu patlamaz
+
+
+# ---------------------------------------------------------------- Adım 4: zırh maskesi + pavez payı
+def test_zirh_maskesi_yikici_degil_ve_anahtarli():
+    """Maske yüz silmez: yalnız '__maske' malzeme kopyasına alır; Godot anahtar açıkken o yüzeyi çizmez."""
+    g = (ayar.MOTOR / "varlik/blender/giysi.py").read_text()
+    bas = g.index("def zirh_maskesi(")
+    son = g.find("\ndef ", bas + 10)
+    govde = g[bas:son if son > 0 else len(g)]
+    assert "bmesh.ops.delete" not in govde and "MASKE_EKI" in govde
+    assert "ZIRH_AGIRLIK_YUZEY = False" in g          # varsayılan eski davranış
+    kur = (ayar.MOTOR / "varlik/blender/karakter_kur.py").read_text()
+    assert "giysi.ZIRH_AGIRLIK_YUZEY = False" in kur   # renderda gerileme görüldü: kapalı tutulur
+    d = (ayar.MOTOR / "godot/sahneler/donatici.gd").read_text()
+    assert "static func maske_uygula" in d and "__maske" in d
+    for gd in ("cekim.gd", "kalabalik.gd"):
+        assert "maske_uygula" in (ayar.MOTOR / "godot/sahneler" / gd).read_text()
+
+
+def test_zirh_maskesi_tek_anahtar_ve_onbellek_anahtari(monkeypatch):
+    from motor.karakter import insan
+    k = dict(insan.kural())
+    assert "zirh_maskesi" in k
+    monkeypatch.setattr(insan, "kural", lambda: dict(k, zirh_maskesi={"acik": False}))
+    assert insan.maske_acik() is False
+    monkeypatch.setattr(insan, "kural", lambda: dict(k, zirh_maskesi={"acik": True}))
+    assert insan.maske_acik() is True
+
+
+def test_montaj_testi_maskeyi_yalniz_cizilmeyen_koselerde_atlar():
+    """Taşma testi gevşetilmedi: eşik aynı, yalnız çizilmeyen köşeler sayılmaz; örtü yarıçapı üretimde 0,03 m."""
+    from motor.karakter import montaj
+    assert montaj.ESIK["giysi_tasma_orani"] == 0.03 and montaj.ESIK["kalkan_gomulme_kare_orani"] == 0.25
+    t = (ayar.MOTOR / "varlik/blender/takim_test.py").read_text()
+    assert 'os.environ.get("TEST_ORTU_YARICAP", "0.03")' in t
+    assert 'IS.get("maske")' in t and "return kapali - acik" in t
+
+
+def test_pavez_yuva_payi_yalniz_gercekci_kiside(monkeypatch):
+    from motor.karakter import insan, takim
+    from motor.varlik import ekipman
+    kat = ekipman.katalog()
+    assert "yuva_payi" not in kat["parcalar"]["pavez"]          # ekipman.yaml (Faz 3b) değişmedi
+    t = takim._takilan("sirt", "pavez", kat)
+    assert 0.0 < t["insan_yuva_payi"] <= 0.06 and "yuva_payi" not in t
+    assert "insan_yuva_payi" not in takim._takilan("sirt", "sadak", kat)
+    k = dict(insan.kural())
+    monkeypatch.setattr(insan, "kural", lambda: dict(k, zirh_maskesi=dict(k["zirh_maskesi"], acik=False)))
+    assert insan.yuva_payi("pavez") == 0.0                        # tek anahtar
+    d = (ayar.MOTOR / "godot/sahneler/donatici.gd").read_text()
+    assert 'Vector3(0.0, 0.0, float(t["yuva_payi"]))' in d and "static func insan_paylari" in d
+    for gd in ("cekim.gd", "kalabalik.gd"):
+        assert "D.insan_paylari(" in (ayar.MOTOR / "godot/sahneler" / gd).read_text()
+    tt = (ayar.MOTOR / "varlik/blender/takim_test.py").read_text()
+    assert 'Vector((0.0, -float(t["yuva_payi"]), 0.0))' in tt
+
+
+def test_kabuk_duzeltme_kopya_uzerinde_ve_eslesmeli():
+    from motor.karakter import insan
+    g = [{"ad": "zirh", "malzeme": "zincir", "zmax": 1.50, "ofset": 0.042}, {"ad": "zirh", "malzeme": "lamel", "zmax": 1.50}]
+    d = insan.kural()["zirh_maskesi"]["kabuk_duzeltme"]
+    y = insan.kabuk_duzelt(g, d)
+    assert y[0]["zmax"] == 1.56 and y[1]["zmax"] == 1.50 and g[0]["zmax"] == 1.50

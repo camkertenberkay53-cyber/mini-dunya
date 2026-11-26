@@ -31,6 +31,10 @@ def acik() -> bool:
     return bool(kural().get("acik"))
 
 
+def maske_acik() -> bool:
+    return bool(kural().get("zirh_maskesi", {}).get("acik"))
+
+
 def _yas_makro(yil: float) -> float:
     return 0.5 + (yil - 25) / 65 * 0.5 if yil >= 25 else (yil - 1) / 24 * 0.5
 
@@ -142,6 +146,24 @@ def kisi(kit_adi: str, gid: str, i: int, sac: list[str]) -> dict:
     return p
 
 
+def kabuk_duzelt(giysiler: list[dict], duzeltme: list[dict]) -> list[dict]:
+    """Faz 5.2: gerçekçi kişi tarifine kabuk düzeltmeleri (kopya üzerinde; ekipman.yaml değişmez)."""
+    cikti = []
+    for g in giysiler:
+        g = dict(g)
+        for d in duzeltme:
+            if all(g.get(a) == v for a, v in d["eslesme"].items()):
+                g.update(d["degisim"])
+        cikti.append(g)
+    return cikti
+
+
+def yuva_payi(ekipman_id: str) -> float:
+    """Faz 5.2: gerçekçi kişide ekipmanın yuvadan dışarı payı (m); anahtar kapalıysa 0."""
+    z = kural().get("zirh_maskesi", {})
+    return float(z.get("yuva_paylari", {}).get(ekipman_id, 0.0)) if z.get("acik") else 0.0
+
+
 def derle(gid: str, kit_adi: str, sac: list[str], tarif: dict, ubc_usda: str, anahtar: str, onceki: dict | None) -> list[dict]:
     """gid için N kişi: gövde üret → giydir → ölç. Dönüş: [{glb, kisi, sha256, ...}]. Önbellek anahtarı eşleşirse atlanır."""
     CIKTI.mkdir(parents=True, exist_ok=True)
@@ -150,7 +172,9 @@ def derle(gid: str, kit_adi: str, sac: list[str], tarif: dict, ubc_usda: str, an
     sonuc = []
     for i in range(int(k["kisi_sayisi"])):
         par = kisi(kit_adi, gid, i, sac)
-        ank = hashlib.sha256(json.dumps([anahtar, par, betik], sort_keys=True).encode()).hexdigest()[:16]
+        maske = bool(k.get("zirh_maskesi", {}).get("acik"))
+        duzeltme = k.get("zirh_maskesi", {}).get("kabuk_duzeltme", []) if maske else []
+        ank = hashlib.sha256(json.dumps([anahtar, par, betik, maske, duzeltme], sort_keys=True).encode()).hexdigest()[:16]
         glb = CIKTI / f"{gid}_k{i}.glb"
         eski = next((x for x in (onceki or {}).get("kisiler", []) if x.get("glb") == str(glb)), None)
         if eski and eski.get("anahtar") == ank and glb.exists():
@@ -164,7 +188,8 @@ def derle(gid: str, kit_adi: str, sac: list[str], tarif: dict, ubc_usda: str, an
         if p.returncode != 0 or not govde.exists():
             print(p.stdout[-1500:], p.stderr[-2500:])
             raise SystemExit(f"İNSAN ÜRETİM HATASI: {gid} k{i}")
-        t = dict(tarif, kiyafet=str(govde), ekler=[], cikti=str(glb))
+        t = dict(tarif, kiyafet=str(govde), ekler=[], cikti=str(glb), zirh_maskesi=maske,
+                 giysiler=kabuk_duzelt(tarif["giysiler"], duzeltme))
         tj = CIKTI / f"{gid}_k{i}.tarif.json"
         tj.write_text(json.dumps(t, ensure_ascii=False, indent=1))
         p = subprocess.run([sys.executable, str(BETIK / "karakter_kur.py"), str(tj)], capture_output=True, text=True, timeout=1800)
@@ -197,7 +222,8 @@ def montaj_testi(hizli: bool = False) -> dict:
     for p in sorted(montaj.TAKIM.glob("*.json")):   # süzülmemiş: derlenen BÜTÜN kişiler test edilir
         t = json.loads(p.read_text())
         for i, k in enumerate(ozet.get(t["govde_id"], {}).get("kisiler", [])):
-            ek.append(dict(t, ad=f"{t['ad']}#k{i}", glb=k["glb"], govde_id=f"{t['govde_id']}_k{i}"))
+            tk = [dict(x, yuva_payi=x["insan_yuva_payi"]) if x.get("insan_yuva_payi") else x for x in t["takilanlar"]]
+            ek.append(dict(t, ad=f"{t['ad']}#k{i}", glb=k["glb"], govde_id=f"{t['govde_id']}_k{i}", takilanlar=tk))
     c = montaj.test_et(adlar=["__yalniz_kisiler__"], hizli=hizli, ek=ek)
     SONUC.write_text(json.dumps({"esikler": montaj.ESIK, "hizli": hizli, "kisiler": c}, ensure_ascii=False, indent=1))
     return c

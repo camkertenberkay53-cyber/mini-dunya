@@ -53,7 +53,8 @@ def isler_hazirla(takimlar: list[dict], hizli: bool) -> list[Path]:
                 continue
             anim = ANIMASYONLAR + (ANIMASYON_SUVARI if any(b for k, b in paket if k in kl) else [])
             yol = IS_KLASORU / f"is_{j}_{int(giysi)}.json"
-            yol.write_text(json.dumps({"karakterler": kl, "animasyonlar": anim, "kare": 3 if hizli else 5,
+            from motor.karakter import insan
+            yol.write_text(json.dumps({"karakterler": kl, "animasyonlar": anim, "kare": 3 if hizli else 5, "maske": insan.maske_acik(),
                                        "giysi_testi": giysi, "cikti": str(yol.with_suffix(".sonuc.json"))}, ensure_ascii=False))
             yollar.append(yol)
     return yollar

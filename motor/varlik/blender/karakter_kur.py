@@ -51,8 +51,14 @@ if t.get("giysiler") is not None:
     govde_m = max((o for o in A if o.type == "MESH"), key=lambda o: len(o.data.vertices))
     profil = giysi.yuvalari_kur(govde_m, arm)
     MZ = t.get("malzemeler", {})
-    giysi.giydir(govde_m, arm, t["giysiler"],
-                 lambda ad: ortak.malzeme(ad, MZ[ad]["tur"], MZ[ad]["renk"], MZ[ad].get("tohum", 1), MZ[ad].get("metalik", 0.0)))
+    # Faz 5.2 deneyi: omuzluğa yüzey ağırlığı testte taşmayı azalttı ama renderda omuzluğu kanat gibi açtı -> kapalı.
+    giysi.ZIRH_AGIRLIK_YUZEY = False
+    eklenen = giysi.giydir(govde_m, arm, t["giysiler"],
+                           lambda ad: ortak.malzeme(ad, MZ[ad]["tur"], MZ[ad]["renk"], MZ[ad].get("tohum", 1), MZ[ad].get("metalik", 0.0)))
+    if t.get("zirh_maskesi"):   # Faz 5.2: zırh altında örtülen iç katman yüzleri işaretlenir (silinmez)
+        print("KENAR_ALTI", giysi.kenar_alti_cek(govde_m, eklenen, [g["ad"] for g in t["giysiler"]]))
+        maske = giysi.zirh_maskesi(govde_m, eklenen, [g["ad"] for g in t["giysiler"]])
+        json.dump(maske, open(t["cikti"].replace(".glb", ".maske.json"), "w"), indent=1)
     json.dump(profil, open(t["cikti"].replace(".glb", ".yuva.json"), "w"), indent=1)
     t["govde"] = None
 

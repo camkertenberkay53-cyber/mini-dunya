@@ -4,6 +4,17 @@
 # takımdan birden çok asker farklı kişiler olarak görünür (yaş, beden, yüz, ten, saç/sakal). Bütün değerler tohumdan.
 acik: true
 kisi_sayisi: 4
+# Faz 5.2 adım 4 — yıkıcı olmayan zırh maskesi: zırh altında TAMAMEN örtülen iç katman yüzleri işaretlenir (silinmez);
+# Godot anahtar açıkken onları çizmez. Kapalı → aynı dosyalar maskesiz çizilir. Montaj testi aynı anahtarla ölçer.
+zirh_maskesi:
+  acik: true
+  # Yalnız gerçekçi kişilerin giysi tarifinde uygulanan kabuk düzeltmeleri (ekipman.yaml / Faz 3b UBC değişmez).
+  # 'eslesme' parçanın alt kümesi; 'degisim' üzerine yazılır. Zincir zırh omuz üstünü de örter: omuzluk böylece
+  # zırhtan türetilir (giysi.turet) ve onunla birlikte deforme olur. Anahtar kapalıyken uygulanmaz.
+  kabuk_duzeltme:
+    - {eslesme: {ad: zirh, malzeme: zincir, zmax: 1.50, ofset: 0.042}, degisim: {zmax: 1.56}}
+  # Gerçekçi kişide sırt yuvasından gövdenin dışına pay (m): 1,1 m pavez yürürken kalçaya gömülmesin.
+  yuva_paylari: {pavez: 0.045}
 # MakeHuman yaş makrosu: 0.5 = 25 yaş, 1.0 = 90 yaş (25 yaş üstü doğrusal)
 yas_yil: [19, 52]
 # Gövde boyu giysi/yuva hattının referansına eşitlenir (UBC baş tepesi); sahnede boy çeşitliliği planlayıcıdan gelir.

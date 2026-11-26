@@ -85,7 +85,10 @@ func _ready() -> void:
 			_kisi_sayac[k["takim"]] = say + 1
 			takim = takim.duplicate()
 			takim["glb"] = ks[(absi(str(k["takim"]).hash() + int(is_.get("tohum", 1)) * 31) + say) % ks.size()]
+			takim = D.insan_paylari(takim)
 		var kok := D.kur(takim)
+		if gercekci and is_.get("insan", {}).get("zirh_maskesi", false):
+			D.maske_uygula(kok)
 		add_child(kok)
 		_sira += 1
 		var yon := deg_to_rad(float(k.get("yon_derece", 0.0)))

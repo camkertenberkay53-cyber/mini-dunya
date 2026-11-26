@@ -103,6 +103,8 @@ func _perspektif(konum: Vector3, hedef: Vector3, fov: float) -> void:
 func _tekli(cikti: String, yol: String) -> void:
 	var t := _takim(yol)
 	var kok := D.kur(t)
+	if t.get("zirh_maskesi", false):   # Faz 5.2: üretimdeki gibi zırh maskesi
+		D.maske_uygula(kok)
 	add_child(kok)
 	_poz(kok)
 	var ad: String = t["ad"]
@@ -137,6 +139,8 @@ func _dizi(cikti: String, yollar: Array) -> void:
 	for i in n:
 		var t := _takim(yollar[i])
 		var kok := D.kur(t)
+		if t.get("zirh_maskesi", false):
+			D.maske_uygula(kok)
 		add_child(kok)
 		kok.position = Vector3(-(i - (n - 1) / 2.0) * 1.5, 0, 0)   # -Z kamerasından soldan sağa sıra
 		_poz(kok)
