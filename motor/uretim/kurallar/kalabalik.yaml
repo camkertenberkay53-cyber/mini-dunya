@@ -11,6 +11,7 @@ kalabaliklar:
     mesafe_m: [26.0, 70.0]
     yan_oran: 0.35
     poz_cesidi: 1
+    kisi_carpani: 4          # gerçekçi insanlar açıkken her takımdan 4 farklı kişi pişirilir (kopya ordu görünmesin)
     en_cok_takim: 3
     animasyon: Idle_Loop
     golge: false

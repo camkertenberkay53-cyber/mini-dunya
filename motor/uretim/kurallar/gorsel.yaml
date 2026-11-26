@@ -87,7 +87,25 @@ vfx:
     isik_guc: 6.0
     alev_doku: varlik/kenney_parcacik/flame_02.png
     duman_doku: varlik/kenney_parcacik/smoke_04.png
-  savas_animasyonlari: [Sword_Attack, Sword_Idle, Death01, Hit_Chest, ual2/Sword_Regular_Combo, ual2/Sword_Block, ual2/Hit_Knockback, ual2/Shield_OneShot]
+  # Olaya bağlı efektler (senaryo niyeti ortam.efekt ile istenir; kıvılcım düello koreografisinde kendiliğinden):
+  ok:                          # ok yağmuru: sahnenin ardından yaylım; parabol uçuş, iniş alanına saplanma
+    adet: 90
+    yaylim_sn: [0.2, 1.9]      # iki yaylım
+    ucus_sn: 1.6
+    alan_m: 14.0
+    menzil_m: 70.0
+    tepe_m: 22.0
+  yangin:                      # yanan çadır/ev/ateş: alev + kara duman + titreşen ışık
+    alev_doku: varlik/kenney_parcacik/flame_02.png
+    duman_doku: varlik/kenney_parcacik/smoke_07.png
+    yaricap_m: 1.2
+    isik_guc: 3.0
+    isik_menzil_m: 10.0
+  kivilcim:                    # düello çiftlerinde kılıç teması
+    doku: varlik/kenney_parcacik/spark_05.png
+    aralik_sn: [0.9, 1.6]
+  efektler: [ok_yagmuru, yangin]   # senaryonun isteyebileceği efektler (başkası uydurulmaz, eksik raporlanır)
+  savas_animasyonlari: [Sword_Attack, Sword_Idle, Death01, Hit_Chest, ual2/Sword_Regular_Combo, ual2/Sword_Regular_A, ual2/Sword_Regular_B, ual2/Sword_Regular_C, ual2/Sword_Block, ual2/Hit_Knockback, ual2/Shield_OneShot]
 # Sinematik paket: son işlem katmanı (godot/sahneler/sinema.gd; kendi yazımımız). acik: false → katman yok (geri alma).
 sinema:
   acik: true

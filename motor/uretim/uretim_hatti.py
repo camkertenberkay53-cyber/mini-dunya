@@ -50,7 +50,8 @@ def planla(klasor: Path, tohum: int = 7) -> dict:
     for i, t in enumerate(taslaklar):
         # yalnızca SONRAKİ cümlelerin tercih ettiği kamera türleri saklı tutulur
         tercihler = {x["niyet"].get("kamera") for x in taslaklar[i + 1:]} - {None, t["niyet"].get("kamera")}
-        c, eks, kayit = planlayici.cekim_kur(t, donem, 1080 / 1920, gecmis, tohum + i, tercihler, list(konu["donemler"]))
+        c, eks, kayit = planlayici.cekim_kur(t, donem, 1080 / 1920, gecmis, tohum + i, tercihler, list(konu["donemler"]),
+                                             konu.get("harita"))
         cekimler.append(c)
         if kayit:
             gecmis.append(kayit)

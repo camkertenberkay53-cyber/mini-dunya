@@ -235,6 +235,16 @@
        "yerlesim": {
         "type": "string",
         "description": "Prosedürel yerleşim (kurallar/yerlesim.yaml), ör. ordugah."
+       },
+       "efekt": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "ok_yagmuru",
+          "yangin"
+         ]
+        },
+        "description": "Olaya bağlı efektler (kurallar/gorsel.yaml vfx)."
        }
       }
      },
@@ -280,6 +290,18 @@
        },
        "takip": {
         "type": "string"
+       },
+       "sarsinti": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "derece": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2.5
+         }
+        },
+        "description": "El kamerası sarsıntısı (tepe genlik, derece)."
        }
       }
      },
@@ -318,6 +340,22 @@
       "minimum": 0.85,
       "maximum": 1.0,
       "description": "Dönemin ortalama insan boyu / gövde modeli boyu (kurallar/insan_olcek.yaml). Yaya karakterlerin ölçeği, hızı ve kadraj ölçümü bununla çarpılır; atlılar hariç."
+     },
+     "harita": {
+      "type": "object",
+      "required": [
+       "evre",
+       "veri"
+      ],
+      "properties": {
+       "evre": {
+        "type": "string"
+       },
+       "veri": {
+        "type": "object"
+       }
+      },
+      "description": "Taktik harita çekimi (harita.py)."
      }
     }
    }

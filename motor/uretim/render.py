@@ -132,6 +132,7 @@ def _kalabalik(c: dict, donem: str | None = None) -> dict:
             k["mesafe_m"] = [max(8.0, yakin - 16.0), yakin]
     k["cesit"] = veri.kural("gorsel").get("karakter_cesit", {"acik": False})
     k["boy_orani"] = float(c.get("insan_boy_orani", 1.0))   # arka plan ordusu da oyuncularla aynı dönem boyunda
+    k["gercekci"] = _insan_acik()   # gerçekçi insanlar: pişirilen her tür başka bir kişi (kurallar/insan.yaml)
     k["acik"] = bool(k["takimlar"])
     return k
 
@@ -313,6 +314,11 @@ def _vfx(c: dict, ar) -> dict:
     if "top" in v:
         for d in ("alev_doku", "duman_doku"):
             v["top"][d] = str(ayar.MOTOR / v["top"][d])
+    if "yangin" in v:
+        for d in ("alev_doku", "duman_doku"):
+            v["yangin"][d] = str(ayar.MOTOR / v["yangin"][d])
+    if "kivilcim" in v:
+        v["kivilcim"]["doku"] = str(ayar.MOTOR / v["kivilcim"]["doku"])
     v["toz"]["renk"] = v["toz"].get("renk_arazi", {}).get(arazi_adi, v["toz"]["renk"])
     v["savas"] = any(k["animasyon"] in v.get("savas_animasyonlari", []) for k in c.get("karakterler", []))
     return v
@@ -353,11 +359,37 @@ def _karma(is_: dict) -> str:
     dosyalar |= {cv["glb"] for cv in is_["cevre"]}
     dosyalar |= {kt["glb"] for kt in is_.get("serpme", {}).get("katmanlar", [])}
     dosyalar |= set(is_.get("yerlesim", {}).get("cadirlar", [])) | set(is_.get("yerlesim", {}).get("ekler", []))
-    dosyalar |= {is_["vfx"][a]["doku"] for a in ("toz", "duman") if is_.get("vfx", {}).get("acik")}
+    dosyalar |= {is_["vfx"][a]["doku"] for a in ("toz", "duman", "kivilcim") if is_.get("vfx", {}).get("acik") and a in is_["vfx"]}
     dosyalar |= {k["binek"]["glb"] for k in is_["cekim"].get("karakterler", []) if k.get("binek")}
     for d in sorted(dosyalar):
         h.update(Path(d).read_bytes())
     return h.hexdigest()[:16]
+
+
+def _harita_render(plan: dict, c: dict, onbellek: bool) -> dict:
+    """Taktik harita çekimi (CPU, PIL + ffmpeg); 3D çekimlerle aynı sonuç sözlüğü (kurgu ayrım yapmaz)."""
+    from motor.uretim import harita
+    h = hashlib.sha256(json.dumps([c, plan["fps"], plan["cozunurluk"]], sort_keys=True, ensure_ascii=False).encode())
+    h.update(Path(harita.__file__).read_bytes())
+    karma = h.hexdigest()[:16]
+    klasor = KOK / plan["konu"] / f"{c['id']}_{karma}"
+    mp4, olcum_yolu = klasor / "cekim.mp4", klasor / "olcum.json"
+    if onbellek and mp4.exists() and olcum_yolu.exists():
+        return dict(json.loads(olcum_yolu.read_text()), onbellekten=True)
+    shutil.rmtree(klasor, ignore_errors=True)
+    klasor.mkdir(parents=True)
+    t0 = time.time()
+    r = harita.render(c["harita"]["veri"], c["harita"]["evre"], c["sure_sn"], mp4, plan["fps"], tuple(plan["cozunurluk"]),
+                      c.get("metin_katmani"))
+    sn = time.time() - t0
+    sonuc = {"durum": "TAMAM", "konu": plan["konu"], "cekim": c["id"], "karma": karma, "video": str(mp4),
+             "tarih": time.strftime("%Y-%m-%d %H:%M"),
+             "olculen": {"render_sn": round(sn, 1), "kare": r["kare"], "uretilen_kare": r["kare"],
+                         "cozunurluk": f"{plan['cozunurluk'][0]}x{plan['cozunurluk'][1]}",
+                         "kare_basina_sn_acilis_dahil": round(sn / max(1, r["kare"]), 3), "render_tepe_bellek_gb": round(__import__("resource").getrusage(__import__("resource").RUSAGE_SELF).ru_maxrss / 1e6, 2),
+                         "karakter": 0, "cevre_varligi": 0, "tur": "harita", "evre": r["evre"]}}
+    olcum_yolu.write_text(json.dumps(sonuc, ensure_ascii=False, indent=1))
+    return sonuc
 
 
 def render(plan_yolu: str, cekim_id: str, cikti: Path | None = None, onbellek: bool = True) -> dict:
@@ -368,6 +400,8 @@ def render(plan_yolu: str, cekim_id: str, cikti: Path | None = None, onbellek: b
     if not denetim["gecti"]:
         return {"durum": "REDDEDİLDİ", "neden": "plan denetimi", "hatalar": denetim["hatalar"]}
     c = next(x for x in plan["cekimler"] if x["id"] == cekim_id)
+    if c["tur"] == "harita" and c.get("harita"):
+        return _harita_render(plan, c, onbellek)
     if c["tur"] != "3d":
         return {"durum": "ATLANDI", "neden": f"{c['tur']} çekimi 3D render'a girmez"}
     is_ = is_hazirla(plan, c)

@@ -349,13 +349,14 @@
     ],
     "secim_gerekcesi": [
      "rol 'komutan' (yerinde): ['orta_konusma']",
-     "kalabalık (9 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+     "kalabalık (9 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'goz_pan', 'yan_takip']"
     ],
     "tercih_sirasi": [
      "orta_konusma",
      "kurulus_genis",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "goz_pan",
      "yan_takip"
@@ -476,12 +477,13 @@
      38
     ],
     "secim_gerekcesi": [
-     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -709,12 +711,13 @@
      18
     ],
     "secim_gerekcesi": [
-     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -968,16 +971,16 @@
      {
       "id": "top_arabasi",
       "konum": [
-       -5.09,
-       -24.21
+       -7.18,
+       -23.67
       ],
       "yon_derece": 0.0
      },
      {
       "id": "top_arabasi",
       "konum": [
-       -21.64,
-       -23.9
+       -23.64,
+       -21.92
       ],
       "yon_derece": 37.0
      }
@@ -1000,32 +1003,6 @@
      "takim": "osm_yeniceri_kilic",
      "rol": "piyade",
      "konum": [
-      2.45,
-      0.04
-     ],
-     "yon_derece": 7.5,
-     "animasyon": "ual2/Sword_Regular_B",
-     "faz_sn": 0.518,
-     "hiz_m_sn": 0.0,
-     "olcek": 0.961
-    },
-    {
-     "takim": "osm_yeniceri_kilic",
-     "rol": "piyade",
-     "konum": [
-      -2.75,
-      -0.01
-     ],
-     "yon_derece": -6.8,
-     "animasyon": "ual2/Sword_Regular_Combo",
-     "faz_sn": 1.421,
-     "hiz_m_sn": 0.0,
-     "olcek": 0.995
-    },
-    {
-     "takim": "osm_yeniceri_kilic",
-     "rol": "piyade",
-     "konum": [
       -0.72,
       -2.82
      ],
@@ -1034,107 +1011,79 @@
      "faz_sn": 1.292,
      "hiz_m_sn": 0.0,
      "olcek": 1.04
-    },
-    {
-     "takim": "osm_yeniceri_kilic",
-     "rol": "piyade",
-     "konum": [
-      0.78,
-      -2.11
-     ],
-     "yon_derece": 9.2,
-     "animasyon": "ual2/Idle_Shield_Loop",
-     "faz_sn": 2.111,
-     "hiz_m_sn": 0.0,
-     "olcek": 0.982
-    },
-    {
-     "takim": "akk_okcu_kilic",
-     "rol": "karsi_okcu",
-     "konum": [
-      0.06,
-      1.72
-     ],
-     "yon_derece": 178.4,
-     "animasyon": "ual2/Sword_Block",
-     "faz_sn": 0.991,
-     "hiz_m_sn": 0.0,
-     "olcek": 1.033
-    },
-    {
-     "takim": "akk_okcu_kilic",
-     "rol": "karsi_okcu",
-     "konum": [
-      2.49,
-      1.65
-     ],
-     "yon_derece": 189.3,
-     "animasyon": "ual2/Sword_Block",
-     "faz_sn": 0.357,
-     "hiz_m_sn": 0.0,
-     "olcek": 0.975
     }
    ],
    "insan_boy_orani": 0.918,
    "kamera": {
     "plan": "orta",
-    "hareket": "yorunge",
+    "hareket": "el",
     "bas": {
      "konum": [
-      3.595,
-      1.4,
-      7.155
+      2.502,
+      1.5,
+      3.995
      ],
      "hedef": [
       0.08,
-      1.3,
+      1.35,
       -0.02
      ],
-     "fov": 38.0
+     "fov": 42.0
     },
     "son": {
      "konum": [
-      7.075,
-      1.4,
-      3.841
+      1.894,
+      1.42,
+      3.565
      ],
      "hedef": [
       0.08,
-      1.3,
+      1.35,
       -0.02
      ],
-     "fov": 38.0
+     "fov": 42.0
     },
-    "yumusatma": "giris_cikis"
+    "yumusatma": "giris_cikis",
+    "sarsinti": {
+     "derece": 0.8
+    }
    },
    "meta": {
-    "tur": "capraz_yorunge",
-    "hareket": "yorunge",
+    "tur": "el_kamerasi",
+    "hareket": "el",
     "yukseklik": "goz",
     "aci_kovasi": "capraz",
     "dizilis": "kol",
     "odak": "osm_yeniceri_kilic",
     "arazi": "ova_cimen",
-    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "aciklama": "Savaşın içinden el kamerası; omuz hizası",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [
      "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "osm_yeniceri_kilic",
+     "akk_okcu_kilic",
+     "akk_okcu_kilic",
      "akk_okcu_kilic",
      "akk_okcu_kilic"
     ],
     "lens_fov": [
-     38,
-     38
+     42,
+     42
     ],
     "secim_gerekcesi": [
-     "kalabalık (10 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'gerilim': ['alcak_yaklasma', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+     "eylem 'savas': ['el_kamerasi', 'capraz_yorunge'] önce",
+     "kalabalık (10 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'gerilim': ['alcak_yaklasma', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
     ],
     "tercih_sirasi": [
+     "el_kamerasi",
+     "capraz_yorunge",
      "alcak_yaklasma",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
-     "capraz_yorunge",
      "alcak_geri_takip",
      "yan_profil"
     ],
@@ -1143,6 +1092,24 @@
      "tur": "duello",
      "cift": 4,
      "karsi_donem": "akkoyunlu-15yy",
+     "ciftler": [
+      [
+       0.07,
+       0.85
+      ],
+      [
+       2.47,
+       0.84
+      ],
+      [
+       -2.6,
+       0.77
+      ],
+      [
+       4.78,
+       0.95
+      ]
+     ],
      "rakip_takimlari": [
       "akk_okcu_kilic"
      ]
@@ -1241,7 +1208,7 @@
      30
     ],
     "secim_gerekcesi": [
-     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'itme_dramatik']",
+     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'el_kamerasi', 'itme_dramatik']",
      "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
     ],
     "tercih_sirasi": [
@@ -1482,13 +1449,14 @@
     ],
     "secim_gerekcesi": [
      "rol 'komutan' (yerinde): ['orta_konusma']",
-     "kalabalık (11 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+     "kalabalık (11 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "orta_konusma",
      "yukselme",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "sabit_uzak",
      "kurulus_genis",
@@ -1513,32 +1481,32 @@
      {
       "id": "top_arabasi",
       "konum": [
-       -20.02,
-       16.13
+       -9.31,
+       19.87
       ],
       "yon_derece": 0.0
      },
      {
       "id": "osmanli_cadiri",
       "konum": [
-       -13.03,
-       31.13
+       4.24,
+       29.37
       ],
       "yon_derece": 37.0
      },
      {
       "id": "yuk_arabasi",
       "konum": [
-       -33.62,
-       23.0
+       -17.65,
+       32.62
       ],
       "yon_derece": 74.0
      },
      {
       "id": "osmanli_cadiri",
       "konum": [
-       -17.44,
-       45.71
+       7.72,
+       44.2
       ],
       "yon_derece": 21.0
      }
@@ -1691,59 +1659,60 @@
    "insan_boy_orani": 0.918,
    "kamera": {
     "plan": "uzak",
-    "hareket": "sabit_suzulme",
+    "hareket": "drone",
     "bas": {
      "konum": [
-      8.017,
-      9.0,
-      -7.954
+      3.809,
+      16.0,
+      -19.999
      ],
      "hedef": [
+      0.762,
       0.0,
-      0.5,
-      1.6
+      -2.72
      ],
-     "fov": 46.0
+     "fov": 50.0
     },
     "son": {
      "konum": [
-      8.338,
-      9.4,
-      -8.336
+      1.371,
+      13.6,
+      -6.176
      ],
      "hedef": [
+      -0.762,
       0.0,
-      0.5,
-      1.6
+      5.92
      ],
-     "fov": 46.0
+     "fov": 50.0
     },
-    "yumusatma": "giris_cikis"
+    "yumusatma": "dogrusal"
    },
    "meta": {
-    "tur": "yuksek_genis",
-    "hareket": "sabit_suzulme",
+    "tur": "drone_gecis",
+    "hareket": "drone",
     "yukseklik": "yuksek",
-    "aci_kovasi": "capraz_arka",
+    "aci_kovasi": "arka",
     "dizilis": "sira",
     "odak": "osm_bey",
     "arazi": "ova_cimen",
-    "aciklama": "Yüksekten genel görünüm (kuş bakışına yakın)",
+    "aciklama": "Ordunun üzerinden drone geçişi; yüksekten öne doğru süzülen kuşbakışına yakın plan",
     "odak_indeks": 0,
     "budanan_gorunmeyen": [],
     "lens_fov": [
-     46,
-     46
+     50,
+     50
     ],
     "secim_gerekcesi": [
      "rol 'komutan' (yerinde): ['orta_konusma']",
-     "kalabalık (11 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+     "kalabalık (11 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "orta_konusma",
      "yukselme",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "sabit_uzak",
      "kurulus_genis",

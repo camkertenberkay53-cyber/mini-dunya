@@ -93,6 +93,13 @@
       "yerlesim": {
        "type": "string",
        "description": "Prosedürel yerleşim (kurallar/yerlesim.yaml), ör. ordugah."
+      },
+      "efekt": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "description": "Olaya bağlı efektler (kurallar/gorsel.yaml vfx.efektler): ok_yagmuru, yangin."
       }
      }
     },
@@ -112,6 +119,10 @@
     "kamera": {
      "type": "string",
      "description": "Tercih edilen çekim türü (kurallar/kamera.yaml). Planlayıcı çeşitlilik kuralları izin verirse uygular."
+    },
+    "evre": {
+     "type": "string",
+     "description": "Harita niyeti: konu.harita.evreler içindeki evre kimliği."
     }
    }
   }

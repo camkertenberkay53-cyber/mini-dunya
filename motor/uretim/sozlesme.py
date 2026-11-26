@@ -86,7 +86,7 @@ def senaryo_denetle(s: dict, a: dict | None) -> list[str]:
         n = c["niyet"]
         if n["tur"] == "3d" and not n.get("roller") and not (n.get("ortam") or {}).get("cevre") and not n.get("aciklama"):
             h.append(f"{c['id']}: 3D görsel niyetinde ne gösterileceği yok")
-        if n["tur"] in ("harita", "bilgi_karti") and not n.get("metin") and not n.get("aciklama"):
+        if n["tur"] in ("harita", "bilgi_karti") and not n.get("metin") and not n.get("aciklama") and not n.get("evre"):
             h.append(f"{c['id']}: {n['tur']} niyetinin içeriği yok")
     return h
 

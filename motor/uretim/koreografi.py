@@ -114,5 +114,9 @@ def uygula(c: dict, odak_i: int, eylem: str | None, donem: str, karsi_donemler: 
         x.setdefault("olcek", round(float(r.uniform(*veri.kural("dizilis")["cesitlilik"]["olcek"])), 3))
     yeni[0].pop("olcek", None)
     c["karakterler"] = yeni
+    n_kendi = len(sira)
+    ciftler = [[round((yeni[j]["konum"][0] + yeni[n_kendi + j]["konum"][0]) / 2, 2),
+                round((yeni[j]["konum"][1] + yeni[n_kendi + j]["konum"][1]) / 2, 2)] for j in range(cift)]
     return 0, {"tur": "duello" if cift else "cesitleme", "cift": cift, "karsi_donem": karsi if cift else None,
+               "ciftler": ciftler,
                "rakip_takimlari": sorted({ad for ad, _ in rakipler[:cift]}) if cift else []}

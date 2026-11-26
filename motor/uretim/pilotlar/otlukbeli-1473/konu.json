@@ -16,5 +16,760 @@
  "notlar": [
   "Pilot hazırlık testi: konu değiştirildiğinde motorun evrensel yapısıyla uçtan uca üretim.",
   "Top ve tüfek varlığı yok: silahlar gösterilmez, anlatılır. Belirli kişiler (Fatih, Uzun Hasan) temsilî bey karakteriyle gösterilir."
- ]
+ ],
+ "harita": {
+  "kaynak": "TDV İslâm Ansiklopedisi, 'Otlukbeli Savaşı' maddesi (diziliş ve savaşın seyri); konumlar şematiktir",
+  "alan_km": [
+   10,
+   10
+  ],
+  "taraflar": {
+   "osmanli-15yy": {
+    "ad": "Osmanlı",
+    "renk": [
+     0.62,
+     0.13,
+     0.11
+    ]
+   },
+   "akkoyunlu-15yy": {
+    "ad": "Akkoyunlu",
+    "renk": [
+     0.16,
+     0.33,
+     0.46
+    ]
+   }
+  },
+  "arazi": {
+   "tepeler": [
+    {
+     "merkez": [
+      2.8,
+      6.6
+     ],
+     "yaricap_km": 2.4,
+     "yukseklik": 1.0,
+     "ad": "Otlukbeli tepeleri"
+    },
+    {
+     "merkez": [
+      5.2,
+      8.6
+     ],
+     "yaricap_km": 2.6,
+     "yukseklik": 1.1
+    },
+    {
+     "merkez": [
+      8.0,
+      8.0
+     ],
+     "yaricap_km": 2.2,
+     "yukseklik": 0.8
+    },
+    {
+     "merkez": [
+      3.2,
+      5.4
+     ],
+     "yaricap_km": 1.1,
+     "yukseklik": 0.55
+    }
+   ],
+   "dereler": [
+    {
+     "noktalar": [
+      [
+       6.2,
+       4.6
+      ],
+      [
+       7.2,
+       5.1
+      ],
+      [
+       8.3,
+       5.0
+      ],
+      [
+       9.7,
+       5.6
+      ]
+     ],
+     "genislik": 5,
+     "ad": "dere"
+    }
+   ],
+   "yerler": [
+    {
+     "ad": "Üçağızlı (Osmanlı ordugâhı)",
+     "konum": [
+      5.0,
+      0.9
+     ]
+    }
+   ]
+  },
+  "evreler": [
+   {
+    "id": "E1",
+    "baslik": "Otlukbeli · 11 Ağustos 1473",
+    "alt_baslik": "Akkoyunlular tepeleri tutuyor",
+    "birlikler": [
+     {
+      "id": "osm_merkez",
+      "taraf": "osmanli-15yy",
+      "ad": "Fatih — Merkez",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_yeniceri",
+      "taraf": "osmanli-15yy",
+      "ad": "Yeniçeriler",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_top",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       3.9,
+       3.6
+      ],
+      "yon_derece": 0,
+      "buyukluk": 0.75
+     },
+     {
+      "id": "osm_sag",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Bayezid",
+      "tur": "suvari",
+      "konum": [
+       7.6,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_sol",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Mustafa",
+      "tur": "suvari",
+      "konum": [
+       2.4,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "akk_merkez",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uzun Hasan",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       8.0
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_sag",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Zeynel Mirza",
+      "tur": "suvari",
+      "konum": [
+       2.4,
+       7.4
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_sol",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uğurlu Mehmed",
+      "tur": "suvari",
+      "konum": [
+       7.6,
+       7.4
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_ishak",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Gâvur İshak",
+      "tur": "suvari",
+      "konum": [
+       3.0,
+       5.6
+      ],
+      "yon_derece": 180,
+      "buyukluk": 0.8
+     }
+    ],
+    "oklar": [],
+    "odak_km": [
+     5,
+     5.5
+    ]
+   },
+   {
+    "id": "E2",
+    "baslik": "Davud Paşa tepeye yükleniyor",
+    "alt_baslik": "Gâvur İshak geri çekilir",
+    "birlikler": [
+     {
+      "id": "osm_merkez",
+      "taraf": "osmanli-15yy",
+      "ad": "Fatih — Merkez",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_yeniceri",
+      "taraf": "osmanli-15yy",
+      "ad": "Yeniçeriler",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_top",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       3.9,
+       3.6
+      ],
+      "yon_derece": 0,
+      "buyukluk": 0.75
+     },
+     {
+      "id": "osm_sag",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Bayezid",
+      "tur": "suvari",
+      "konum": [
+       7.6,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_sol",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Mustafa · Davud Pş.",
+      "tur": "suvari",
+      "konum": [
+       2.9,
+       4.6
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "akk_merkez",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uzun Hasan",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       8.0
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_sag",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Zeynel Mirza",
+      "tur": "suvari",
+      "konum": [
+       2.4,
+       7.4
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_sol",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uğurlu Mehmed",
+      "tur": "suvari",
+      "konum": [
+       7.6,
+       7.4
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_ishak",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Gâvur İshak",
+      "tur": "suvari",
+      "konum": [
+       3.3,
+       6.9
+      ],
+      "yon_derece": 180,
+      "buyukluk": 0.8
+     }
+    ],
+    "oklar": [
+     {
+      "taraf": "osmanli-15yy",
+      "yol": [
+       [
+        2.4,
+        3.4
+       ],
+       [
+        2.6,
+        4.3
+       ],
+       [
+        3.0,
+        5.2
+       ]
+      ],
+      "tur": "saldiri"
+     },
+     {
+      "taraf": "akkoyunlu-15yy",
+      "yol": [
+       [
+        3.0,
+        5.8
+       ],
+       [
+        3.2,
+        6.4
+       ],
+       [
+        3.3,
+        7.0
+       ]
+      ],
+      "tur": "geri_cekilme"
+     }
+    ],
+    "odak_km": [
+     3,
+     5
+    ]
+   },
+   {
+    "id": "E3",
+    "baslik": "Akkoyunlu sağ kanadı çöküyor",
+    "alt_baslik": "Zeynel Mirza düşer; Ş. Mustafa merkeze döner",
+    "birlikler": [
+     {
+      "id": "osm_merkez",
+      "taraf": "osmanli-15yy",
+      "ad": "Fatih — Merkez",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_yeniceri",
+      "taraf": "osmanli-15yy",
+      "ad": "Yeniçeriler",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_top",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       3.9,
+       3.6
+      ],
+      "yon_derece": 0,
+      "buyukluk": 0.75
+     },
+     {
+      "id": "osm_sag",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Bayezid",
+      "tur": "suvari",
+      "konum": [
+       7.6,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_sol",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Mustafa",
+      "tur": "suvari",
+      "konum": [
+       3.7,
+       5.6
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "akk_merkez",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uzun Hasan",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       8.0
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_sag",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Zeynel Mirza",
+      "tur": "suvari",
+      "konum": [
+       2.8,
+       6.6
+      ],
+      "yon_derece": 180,
+      "dagildi": true
+     },
+     {
+      "id": "akk_sol",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uğurlu Mehmed",
+      "tur": "suvari",
+      "konum": [
+       7.6,
+       7.4
+      ],
+      "yon_derece": 180
+     }
+    ],
+    "oklar": [
+     {
+      "taraf": "osmanli-15yy",
+      "yol": [
+       [
+        2.9,
+        4.9
+       ],
+       [
+        3.0,
+        5.8
+       ],
+       [
+        3.0,
+        6.5
+       ]
+      ],
+      "tur": "saldiri"
+     },
+     {
+      "taraf": "osmanli-15yy",
+      "yol": [
+       [
+        3.6,
+        6.4
+       ],
+       [
+        4.3,
+        7.2
+       ],
+       [
+        4.7,
+        7.8
+       ]
+      ],
+      "tur": "saldiri"
+     }
+    ],
+    "odak_km": [
+     3.2,
+     6.5
+    ]
+   },
+   {
+    "id": "E4",
+    "baslik": "Bayezid dere hattında",
+    "alt_baslik": "Uğurlu Mehmed derenin ardına çekilir",
+    "birlikler": [
+     {
+      "id": "osm_merkez",
+      "taraf": "osmanli-15yy",
+      "ad": "Fatih — Merkez",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_yeniceri",
+      "taraf": "osmanli-15yy",
+      "ad": "Yeniçeriler",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       3.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_top",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       3.9,
+       3.6
+      ],
+      "yon_derece": 0,
+      "buyukluk": 0.75
+     },
+     {
+      "id": "osm_sag",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Bayezid",
+      "tur": "suvari",
+      "konum": [
+       7.4,
+       4.4
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_sol",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Mustafa",
+      "tur": "suvari",
+      "konum": [
+       4.1,
+       7.0
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "akk_merkez",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uzun Hasan",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       8.0
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "akk_sol",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uğurlu Mehmed",
+      "tur": "suvari",
+      "konum": [
+       8.2,
+       6.4
+      ],
+      "yon_derece": 180
+     }
+    ],
+    "oklar": [
+     {
+      "taraf": "osmanli-15yy",
+      "yol": [
+       [
+        7.6,
+        3.4
+       ],
+       [
+        7.5,
+        4.0
+       ],
+       [
+        7.4,
+        4.7
+       ]
+      ],
+      "tur": "saldiri"
+     },
+     {
+      "taraf": "akkoyunlu-15yy",
+      "yol": [
+       [
+        7.6,
+        7.0
+       ],
+       [
+        8.0,
+        6.7
+       ],
+       [
+        8.3,
+        6.3
+       ]
+      ],
+      "tur": "geri_cekilme"
+     }
+    ],
+    "odak_km": [
+     7.6,
+     5.3
+    ]
+   },
+   {
+    "id": "E5",
+    "baslik": "Merkez dağılıyor",
+    "alt_baslik": "Top ve tüfek ateşi; Uzun Hasan savaş alanından çekilir",
+    "birlikler": [
+     {
+      "id": "osm_merkez",
+      "taraf": "osmanli-15yy",
+      "ad": "Fatih — Merkez",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_yeniceri",
+      "taraf": "osmanli-15yy",
+      "ad": "Yeniçeriler",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       5.6
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_top",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       3.8,
+       3.0
+      ],
+      "yon_derece": 0,
+      "buyukluk": 0.75
+     },
+     {
+      "id": "osm_sag",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Bayezid",
+      "tur": "suvari",
+      "konum": [
+       7.4,
+       4.6
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osm_sol",
+      "taraf": "osmanli-15yy",
+      "ad": "Ş. Mustafa",
+      "tur": "suvari",
+      "konum": [
+       4.3,
+       7.4
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "akk_merkez",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uzun Hasan",
+      "tur": "karargah",
+      "konum": [
+       5.8,
+       9.2
+      ],
+      "yon_derece": 180,
+      "dagildi": true
+     },
+     {
+      "id": "akk_sol",
+      "taraf": "akkoyunlu-15yy",
+      "ad": "Uğurlu Mehmed",
+      "tur": "suvari",
+      "konum": [
+       8.6,
+       7.6
+      ],
+      "yon_derece": 180,
+      "dagildi": true
+     }
+    ],
+    "oklar": [
+     {
+      "taraf": "osmanli-15yy",
+      "yol": [
+       [
+        5.0,
+        3.4
+       ],
+       [
+        5.0,
+        5.0
+       ],
+       [
+        5.0,
+        6.9
+       ]
+      ],
+      "tur": "saldiri"
+     },
+     {
+      "taraf": "akkoyunlu-15yy",
+      "yol": [
+       [
+        5.1,
+        8.2
+       ],
+       [
+        5.6,
+        9.0
+       ],
+       [
+        6.4,
+        9.8
+       ]
+      ],
+      "tur": "kacis"
+     }
+    ],
+    "odak_km": [
+     5,
+     6.8
+    ]
+   }
+  ]
+ }
 }

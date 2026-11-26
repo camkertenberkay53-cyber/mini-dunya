@@ -28,6 +28,9 @@ var kam: Dictionary
 var _sira := 0
 var _kisi_sayac := {}   # takım → bu çekimde kaçıncı örnek (gerçekçi kişi seçimi)
 var _toplar: Array = []
+var _oklar: Array = []      # ok yağmuru (vfx.ok_yagmuru)
+var _ates: Array = []       # yangın ışıkları (titreşim)
+var _kivilcim: Array = []   # düello kıvılcımları
 
 func _ready() -> void:
 	var a := OS.get_cmdline_user_args()
@@ -156,6 +159,33 @@ func _ready() -> void:
 		var ileri := kh - (_vec(kb["konum"]) + _vec(ks["konum"])) * 0.5
 		ileri.y = 0
 		V.duman(self, kh * Vector3(1, 0, 1), ileri.normalized(), vx2["duman"], int(is_.get("tohum", 1)) * 97, t, is_["arazi"])
+	var vx3: Dictionary = is_.get("vfx", {})
+	if vx3.get("acik", false):   # olaya bağlı efektler: ok yağmuru, yangın (senaryo niyeti) ve düello kıvılcımı
+		var kb4: Dictionary = c["kamera"]["bas"]
+		var kh4 := _vec(kb4["hedef"]) * Vector3(1, 0, 1)
+		var il4 := _vec(kb4["hedef"]) - _vec(kb4["konum"])
+		il4.y = 0
+		il4 = il4.normalized()
+		var ef: Array = c["ortam"].get("efekt", [])
+		var tohum4 := int(is_.get("tohum", 1)) * 131 + str(c["id"]).hash() % 997
+		if "ok_yagmuru" in ef and vx3.has("ok"):
+			_oklar.append(V.ok_yagmuru(self, kh4, -il4, vx3["ok"], tohum4, is_["arazi"]))
+		if "yangin" in ef and vx3.has("yangin"):
+			var nk: Array = []
+			for cv in c["ortam"].get("cevre", []):
+				nk.append(Vector3(cv["konum"][0], V.zemin_y(cv["konum"][0], cv["konum"][1], is_["arazi"]) + 0.8, cv["konum"][1]))
+			if nk.is_empty():
+				var yn := il4.cross(Vector3.UP).normalized()
+				for j in 3:
+					var q := kh4 + il4 * (18.0 + 6.0 * j) + yn * (j - 1) * 9.0
+					nk.append(Vector3(q.x, V.zemin_y(q.x, q.z, is_["arazi"]) + 0.5, q.z))
+			_ates = V.yangin(self, nk, vx3["yangin"], tohum4, t)
+		var cf: Array = c.get("meta", {}).get("koreografi", {}).get("ciftler", [])
+		if vx3.has("kivilcim") and cf.size() > 0:
+			var nk2: Array = []
+			for cp in cf:
+				nk2.append(Vector3(cp[0], V.zemin_y(cp[0], cp[1], is_["arazi"]) + 1.25 * float(c.get("insan_boy_orani", 1.0)), cp[1]))
+			_kivilcim = V.kivilcim(self, nk2, vx3["kivilcim"], tohum4 + 5)
 	var kl: Dictionary = is_.get("kalabalik", {})
 	if kl.get("acik", false):   # sinematik paket 2: arka plan ordusu (pişirilmiş poz + MultiMesh)
 		var kb3: Dictionary = c["kamera"]["bas"]
@@ -203,6 +233,12 @@ func _guncelle() -> void:
 	kamera.fov = lerpf(b["fov"], s["fov"], u)
 	kamera.position = _vec(b["konum"]).lerp(_vec(s["konum"]), u)
 	kamera.look_at(_vec(b["hedef"]).lerp(_vec(s["hedef"]), u), Vector3.UP)
+	var sr: Dictionary = kam.get("sarsinti", {})
+	if not sr.is_empty():   # el kamerası: deterministik, çok frekanslı (nefes + adım + titreme) açısal sarsıntı
+		var a := deg_to_rad(float(sr.get("derece", 0.8)))
+		kamera.rotate_object_local(Vector3.RIGHT, a * (0.6 * sin(t * 1.7 + 0.3) + 0.3 * sin(t * 4.1 + 1.1) + 0.1 * sin(t * 9.3)))
+		kamera.rotate_object_local(Vector3.UP, a * (0.6 * sin(t * 1.3 + 2.0) + 0.3 * sin(t * 3.7 + 0.5) + 0.1 * sin(t * 8.1 + 1.7)))
+		kamera.rotate_object_local(Vector3.FORWARD, a * 0.4 * (sin(t * 1.1 + 4.0) + 0.3 * sin(t * 5.3)))
 	if _film:
 		F.guncelle(_film, O._gunes_yon, kamera.position.distance_to(_vec(b["hedef"]).lerp(_vec(s["hedef"]), u)), kamera.fov)
 
@@ -214,4 +250,8 @@ func _process(delta: float) -> void:
 	O.su_guncelle(t)
 	for tp in _toplar:
 		V.top_guncelle(tp, t)
+	for od in _oklar:
+		V.ok_guncelle(od, t)
+	V.yangin_guncelle(_ates, t)
+	V.kivilcim_guncelle(_kivilcim, t)
 	t += delta

@@ -1,0 +1,24 @@
+{
+ "paket": "Savaş anlatımı: ten dokulu gerçekçi kişiler, kalabalıkta kişi çeşitliliği, taktik harita, el kamerası/drone, olaya bağlı efektler",
+ "tam_video": {"konu": "otlukbeli-1473 (+2 harita cümlesi, S4'te ok yağmuru)", "sure_sn": 39.6, "cekim": 12, "harita_cekimi": 2,
+   "render_toplam_sn": 2806.0, "toplam_duvar_sn": 3025.9, "tepe_bellek_gb": 1.88, "makine": "Xeon 2 çekirdek (sandbox)", "kalite_kontrol": "geçti (siyah/donuk bölüm 0)"},
+ "cekim_sureleri_sn": {"S1": 224.0, "S2_kalabalik": 471.4, "S3a": 343.3, "S3b_kalabalik": 437.3, "S4_ok_yagmuru": 207.2, "S5": 169.4, "S9_harita": 12.4,
+   "S6_el_kamerasi": 313.2, "S7": 213.7, "S10_harita": 11.4, "S8a": 218.2, "S8b_drone": 184.5},
+ "montaj_testi_kisiler": {"gecen": 133, "toplam": 208, "onceki_tur": "115/208", "kisisiz_takim": 8,
+   "kalan_hatalar": ["zırh/omuzluk/lamel katmanlarında alt katman taşması (Roma, Bizans, Akkoyunlu zırhlı)", "pavez (sırt kalkanı) gövdeye gömülme"]},
+ "lisans": {
+   "MakeHuman ten dokuları (light_skin_male_bronze/freckles)": "CC0 — OpenGameArt 'toigo-natural-male-skin' (MakeHuman topluluk tenlerinin yeniden yayımı), lisans sayfadan doğrulandı: motor/varlik/oga3/lisans.json",
+   "MakeHuman göz dokuları": "CC0 — OpenGameArt 'makehuman-system-assets-eyes'",
+   "MakeHuman göz ağı (high-poly)": "CC0 — github.com/makehumancommunity/makehuman (LICENSE.ASSETS.md; motor/varlik/makehuman/github)",
+   "MPFB2": "GPL-3 araç (depoya girmez, çıktıya kod girmez)",
+   "harita.py, vfx ekleri, el kamerası, kalabalık kişi çeşitliliği": "kendi kodumuz",
+   "DejaVu Serif (harita yazıları)": "Bitstream Vera/DejaVu serbest lisans; videoya yalnız işlenmiş görüntü olarak girer"},
+ "degerlendirilen_kaynaklar": {
+   "3d-gen (olatunde85)": "MIT kod + MakeHuman CC0; Node/tarayıcı tabanlı, GPU gerekmez. Asıl katkısı varlık kaynağı yolunu göstermesi oldu; motorumuzda MPFB hattı zaten aynı CC0 veriyi kullandığından ayrı entegre edilmedi (aynı işi yapan ikinci sistem).",
+   "CharMorph": "elendi — Antonia/Reom CC-BY, MB-Lab tabanı AGPL",
+   "CodeFormer": "elendi — NTU S-Lab Lisansı (ticari kullanım kısıtlı), CUDA'ya yönelik",
+   "GFPGAN": "kod Apache-2.0 ama ağırlık lisansı belirsiz (StyleGAN2/ArcFace türevleri); 3B render'a yüz 'düzeltme' sahte doku ve kare arası titreme üretir — elendi",
+   "ControlNet": "Apache-2.0 ama Stable Diffusion tabanı ve GPU (≥8 GB VRAM) gerektirir; CPU'da kare başına dakikalar — elendi",
+   "Assets2Godot": "bağlantı belirli bir proje göstermiyor (github.com ana sayfası); değerlendirilemedi"},
+ "yonetim_karari_gereken": "Komutan portresi (yakın plan) eklenmedi: plan denetimindeki 'yakın plan kullanılamaz (A sınıfı karakter yok)' yönetim kararı korunuyor."
+}

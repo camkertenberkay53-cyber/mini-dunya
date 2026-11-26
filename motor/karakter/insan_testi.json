@@ -193,7 +193,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "akkoyunlu_sancagi": {
       "yuva": "sag_el_dik",
@@ -332,8 +332,8 @@
       "tutus_cm": 16.18,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.012,
-      "bas_bosluk_cm": 0.08
+      "bas_tasma_orani": 0.0124,
+      "bas_bosluk_cm": 0.15
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -754,7 +754,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 1.08
+      "bas_bosluk_cm": 1.61
      },
      "arbalet": {
       "yuva": "sag_el",
@@ -916,7 +916,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.37
+      "bas_bosluk_cm": 1.51
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -1068,7 +1068,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.42
+      "bas_bosluk_cm": 1.94
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -1212,7 +1212,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.0
+      "bas_bosluk_cm": 0.32
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -1414,10 +1414,8 @@
    }
   },
   "osm_bey#k0": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%3.2)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -1431,8 +1429,8 @@
       "tutus_cm": 18.41,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0319,
-      "bas_bosluk_cm": 0.25
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 1.13
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -1559,7 +1557,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 0.52
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -1658,10 +1656,8 @@
    }
   },
   "osm_okcu_sarikli#k0": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%4.4)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -1675,8 +1671,8 @@
       "tutus_cm": 15.12,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0439,
-      "bas_bosluk_cm": 0.16
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.12
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -1769,10 +1765,8 @@
    }
   },
   "osm_okcu_sarikli#k2": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%3.6)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -1786,8 +1780,8 @@
       "tutus_cm": 19.06,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0359,
-      "bas_bosluk_cm": 0.23
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.13
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -2029,7 +2023,6 @@
   "osm_sipahi#k2": {
    "gecti": false,
    "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%4.6)",
     "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%4.6)"
    ],
    "uyarilar": [],
@@ -2057,8 +2050,8 @@
       "tutus_cm": 14.24,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0463,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.84
      },
      "gurz": {
       "yuva": "sag_el",
@@ -2193,7 +2186,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.26
+      "bas_bosluk_cm": 1.03
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -2323,7 +2316,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.63
+      "bas_bosluk_cm": 0.82
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -2621,7 +2614,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "aquila": {
       "yuva": "sag_el_dik",
@@ -3241,7 +3234,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "gurz": {
       "yuva": "sag_el",
@@ -3375,8 +3368,8 @@
       "tutus_cm": 16.18,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.012,
-      "bas_bosluk_cm": 0.08
+      "bas_tasma_orani": 0.0124,
+      "bas_bosluk_cm": 0.15
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -3759,7 +3752,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -3893,8 +3886,8 @@
       "tutus_cm": 16.18,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.012,
-      "bas_bosluk_cm": 0.08
+      "bas_tasma_orani": 0.0124,
+      "bas_bosluk_cm": 0.15
      },
      "hancer": {
       "yuva": "bel_sag",
@@ -4072,7 +4065,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.15
+      "bas_bosluk_cm": 0.79
      },
      "kese": {
       "yuva": "bel_sag",
@@ -4411,7 +4404,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "kargi": {
       "yuva": "sag_el_dik",
@@ -4707,7 +4700,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "gurz": {
       "yuva": "sag_el",
@@ -5003,7 +4996,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -5310,7 +5303,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "gurz": {
       "yuva": "sag_el",
@@ -5617,7 +5610,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -5902,7 +5895,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.81
+      "bas_bosluk_cm": 1.59
      },
      "kargi": {
       "yuva": "sag_el_dik",
@@ -6037,7 +6030,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.16
+      "bas_bosluk_cm": 1.24
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -6164,7 +6157,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.39
+      "bas_bosluk_cm": 1.92
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -6292,7 +6285,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.16
+      "bas_bosluk_cm": 1.24
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -6432,7 +6425,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.39
+      "bas_bosluk_cm": 1.92
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -6569,7 +6562,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.37
+      "bas_bosluk_cm": 1.51
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -6707,7 +6700,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.42
+      "bas_bosluk_cm": 1.94
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -6844,7 +6837,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.37
+      "bas_bosluk_cm": 1.51
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -6982,7 +6975,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.42
+      "bas_bosluk_cm": 1.94
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -7119,7 +7112,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.37
+      "bas_bosluk_cm": 1.51
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -7246,7 +7239,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.42
+      "bas_bosluk_cm": 1.94
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -7541,7 +7534,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.64
+      "bas_bosluk_cm": 1.28
      },
      "pavez": {
       "yuva": "sirt",
@@ -7754,7 +7747,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.16
+      "bas_bosluk_cm": 1.24
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -7892,7 +7885,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.39
+      "bas_bosluk_cm": 1.92
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -8029,7 +8022,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.16
+      "bas_bosluk_cm": 1.24
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -8167,7 +8160,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.39
+      "bas_bosluk_cm": 1.92
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -8304,7 +8297,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.16
+      "bas_bosluk_cm": 1.24
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -8442,7 +8435,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.39
+      "bas_bosluk_cm": 1.92
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -8552,10 +8545,8 @@
    }
   },
   "osm_bey_tug#k0": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%3.2)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -8569,8 +8560,8 @@
       "tutus_cm": 18.41,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0319,
-      "bas_bosluk_cm": 0.25
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 1.13
      },
      "tug": {
       "yuva": "sag_el_dik",
@@ -8675,7 +8666,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 0.52
      },
      "tug": {
       "yuva": "sag_el_dik",
@@ -8887,7 +8878,6 @@
   "osm_sipahi_mizrak#k2": {
    "gecti": false,
    "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%4.6)",
     "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%4.6)"
    ],
    "uyarilar": [],
@@ -8915,8 +8905,8 @@
       "tutus_cm": 14.24,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0463,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.84
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -9170,7 +9160,6 @@
   "osm_sipahi_yay#k2": {
    "gecti": false,
    "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%4.6)",
     "giysi_4_zirh: Walk_Loop sırasında alt katman dışarı taşıyor (%4.6)"
    ],
    "uyarilar": [],
@@ -9198,8 +9187,8 @@
       "tutus_cm": 14.24,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0463,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.84
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -9316,10 +9305,8 @@
    }
   },
   "osm_sivil#k0": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%4.4)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -9333,8 +9320,8 @@
       "tutus_cm": 15.12,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0439,
-      "bas_bosluk_cm": 0.16
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.12
      },
      "kese": {
       "yuva": "bel_sag",
@@ -9407,10 +9394,8 @@
    }
   },
   "osm_sivil#k2": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%3.6)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -9424,8 +9409,8 @@
       "tutus_cm": 19.06,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0359,
-      "bas_bosluk_cm": 0.23
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.13
      },
      "kese": {
       "yuva": "bel_sag",
@@ -9498,10 +9483,8 @@
    }
   },
   "osm_sivil_kulahli#k0": {
-   "gecti": false,
-   "hatalar": [
-    "kece_kulah: baş başlığın dışına taşıyor (%4.7)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -9515,8 +9498,8 @@
       "tutus_cm": 15.12,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0473,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.55
      },
      "kese": {
       "yuva": "bel_sag",
@@ -9589,10 +9572,8 @@
    }
   },
   "osm_sivil_kulahli#k2": {
-   "gecti": false,
-   "hatalar": [
-    "kece_kulah: baş başlığın dışına taşıyor (%4.5)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -9606,8 +9587,8 @@
       "tutus_cm": 19.06,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0455,
-      "bas_bosluk_cm": 0.17
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.16
      },
      "kese": {
       "yuva": "bel_sag",
@@ -9696,7 +9677,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.26
+      "bas_bosluk_cm": 1.03
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -9806,7 +9787,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.63
+      "bas_bosluk_cm": 0.82
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -9907,7 +9888,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.26
+      "bas_bosluk_cm": 1.03
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -10028,7 +10009,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.63
+      "bas_bosluk_cm": 0.82
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -10140,7 +10121,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.26
+      "bas_bosluk_cm": 1.03
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -10261,7 +10242,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.63
+      "bas_bosluk_cm": 0.82
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -10373,7 +10354,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.26
+      "bas_bosluk_cm": 1.03
      },
      "osmanli_sancagi": {
       "yuva": "sag_el_dik",
@@ -10483,7 +10464,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.63
+      "bas_bosluk_cm": 0.82
      },
      "osmanli_sancagi": {
       "yuva": "sag_el_dik",
@@ -10743,7 +10724,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "gladius": {
       "yuva": "sag_el",
@@ -11040,7 +11021,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "gladius": {
       "yuva": "sag_el",
@@ -11348,7 +11329,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "gladius": {
       "yuva": "sag_el",
@@ -11656,7 +11637,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "pilum": {
       "yuva": "sag_el_dik",
@@ -12104,7 +12085,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "gladius": {
       "yuva": "sag_el",
@@ -12368,7 +12349,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -12632,7 +12613,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.75
      },
      "vexillum": {
       "yuva": "sag_el_dik",
@@ -12748,7 +12729,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 1.0
+      "bas_bosluk_cm": 1.96
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -12836,7 +12817,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.0
+      "bas_bosluk_cm": 1.13
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -13224,7 +13205,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "akkoyunlu_sancagi": {
       "yuva": "sag_el_dik",
@@ -13376,7 +13357,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "akkoyunlu_sancagi": {
       "yuva": "sag_el_dik",
@@ -13515,8 +13496,8 @@
       "tutus_cm": 15.55,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0132,
+      "bas_bosluk_cm": 0.04
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -13620,10 +13601,8 @@
    }
   },
   "akk_okcu#k3": {
-   "gecti": false,
-   "hatalar": [
-    "turkmen_tacli_sarik: baş başlığın dışına taşıyor (%2.0)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {
     "Sword_Attack": [
@@ -13644,8 +13623,8 @@
       "tutus_cm": 15.34,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0202,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0035,
+      "bas_bosluk_cm": 0.11
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -13784,7 +13763,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.96
+      "bas_bosluk_cm": 1.68
      },
      "arbalet": {
       "yuva": "sag_el",
@@ -13950,7 +13929,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.75
      },
      "arbalet": {
       "yuva": "sag_el",
@@ -14270,7 +14249,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.61
+      "bas_bosluk_cm": 1.6
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -14413,8 +14392,8 @@
       "tutus_cm": 15.91,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.013,
-      "bas_bosluk_cm": 0.0
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.2
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -14522,7 +14501,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.1
+      "bas_bosluk_cm": 0.99
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -14630,7 +14609,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.03
+      "bas_bosluk_cm": 0.99
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -14739,7 +14718,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 0.55
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -14832,10 +14811,8 @@
    }
   },
   "osm_okcu_sarikli#k1": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%4.5)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -14849,8 +14826,8 @@
       "tutus_cm": 13.95,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0446,
-      "bas_bosluk_cm": 0.06
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.73
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -14943,10 +14920,8 @@
    }
   },
   "osm_okcu_sarikli#k3": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%8.8)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -14960,8 +14935,8 @@
       "tutus_cm": 15.53,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0875,
-      "bas_bosluk_cm": 0.06
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.69
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -15085,7 +15060,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.1
+      "bas_bosluk_cm": 0.79
      },
      "gurz": {
       "yuva": "sag_el",
@@ -15206,7 +15181,6 @@
   "osm_sipahi#k3": {
    "gecti": false,
    "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%3.2)",
     "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%4.2)",
     "giysi_5_zirh_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%3.1)"
    ],
@@ -15236,8 +15210,8 @@
       "tutus_cm": 12.88,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0324,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.48
      },
      "gurz": {
       "yuva": "sag_el",
@@ -15630,7 +15604,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "aquila": {
       "yuva": "sag_el_dik",
@@ -16266,7 +16240,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "gurz": {
       "yuva": "sag_el",
@@ -16413,7 +16387,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "gurz": {
       "yuva": "sag_el",
@@ -16547,8 +16521,8 @@
       "tutus_cm": 15.55,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0132,
+      "bas_bosluk_cm": 0.04
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -16643,10 +16617,8 @@
    }
   },
   "akk_okcu_kilic#k3": {
-   "gecti": false,
-   "hatalar": [
-    "turkmen_tacli_sarik: baş başlığın dışına taşıyor (%2.0)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {
     "Sword_Attack": [
@@ -16667,8 +16639,8 @@
       "tutus_cm": 15.34,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0202,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0035,
+      "bas_bosluk_cm": 0.11
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -16793,7 +16765,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -16940,7 +16912,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -17074,8 +17046,8 @@
       "tutus_cm": 15.55,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0132,
+      "bas_bosluk_cm": 0.04
      },
      "hancer": {
       "yuva": "bel_sag",
@@ -17148,10 +17120,8 @@
    }
   },
   "akk_sivil#k3": {
-   "gecti": false,
-   "hatalar": [
-    "turkmen_tacli_sarik: baş başlığın dışına taşıyor (%2.0)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {
     "Sword_Attack": [
@@ -17172,8 +17142,8 @@
       "tutus_cm": 15.34,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0202,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0035,
+      "bas_bosluk_cm": 0.11
      },
      "hancer": {
       "yuva": "bel_sag",
@@ -17248,10 +17218,8 @@
    }
   },
   "akk_sivil_kalpakli#k1": {
-   "gecti": false,
-   "hatalar": [
-    "turkmen_kalpak: baş başlığın dışına taşıyor (%6.7)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -17265,8 +17233,8 @@
       "tutus_cm": 15.55,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0674,
-      "bas_bosluk_cm": 0.0
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 1.23
      },
      "kese": {
       "yuva": "bel_sag",
@@ -17339,10 +17307,8 @@
    }
   },
   "akk_sivil_kalpakli#k3": {
-   "gecti": false,
-   "hatalar": [
-    "turkmen_kalpak: baş başlığın dışına taşıyor (%3.2)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {
     "Sword_Attack": [
@@ -17363,8 +17329,8 @@
       "tutus_cm": 15.34,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0316,
-      "bas_bosluk_cm": 0.0
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.09
      },
      "kese": {
       "yuva": "bel_sag",
@@ -17467,7 +17433,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "kargi": {
       "yuva": "sag_el_dik",
@@ -17614,7 +17580,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "kargi": {
       "yuva": "sag_el_dik",
@@ -17761,7 +17727,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "gurz": {
       "yuva": "sag_el",
@@ -17908,7 +17874,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "gurz": {
       "yuva": "sag_el",
@@ -18055,7 +18021,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -18202,7 +18168,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -18349,7 +18315,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "gurz": {
       "yuva": "sag_el",
@@ -18507,7 +18473,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "gurz": {
       "yuva": "sag_el",
@@ -18665,7 +18631,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -18812,7 +18778,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "osmanli_kilic": {
       "yuva": "sag_el",
@@ -18959,7 +18925,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.4
+      "bas_bosluk_cm": 0.98
      },
      "kargi": {
       "yuva": "sag_el_dik",
@@ -19095,7 +19061,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.33
      },
      "kargi": {
       "yuva": "sag_el_dik",
@@ -19360,7 +19326,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 0.73
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -19630,7 +19596,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 0.73
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -19908,7 +19874,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.61
+      "bas_bosluk_cm": 1.6
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -20186,7 +20152,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.61
+      "bas_bosluk_cm": 1.6
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -20453,7 +20419,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.61
+      "bas_bosluk_cm": 1.6
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -20748,7 +20714,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.34
+      "bas_bosluk_cm": 1.28
      },
      "pavez": {
       "yuva": "sirt",
@@ -20850,7 +20816,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.7
+      "bas_bosluk_cm": 1.47
      },
      "pavez": {
       "yuva": "sirt",
@@ -21102,7 +21068,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 0.73
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -21380,7 +21346,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 0.73
      },
      "duz_kilic": {
       "yuva": "sag_el",
@@ -21658,7 +21624,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 0.73
      },
      "bizans_sancagi": {
       "yuva": "sag_el_dik",
@@ -21784,7 +21750,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.03
+      "bas_bosluk_cm": 0.99
      },
      "tug": {
       "yuva": "sag_el_dik",
@@ -21873,7 +21839,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 0.55
      },
      "tug": {
       "yuva": "sag_el_dik",
@@ -21977,7 +21943,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.1
+      "bas_bosluk_cm": 0.79
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -22085,7 +22051,6 @@
   "osm_sipahi_mizrak#k3": {
    "gecti": false,
    "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%3.2)",
     "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%4.2)",
     "giysi_5_zirh_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%3.1)"
    ],
@@ -22115,8 +22080,8 @@
       "tutus_cm": 12.88,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0324,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.48
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -22253,7 +22218,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.1
+      "bas_bosluk_cm": 0.79
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -22372,7 +22337,6 @@
   "osm_sipahi_yay#k3": {
    "gecti": false,
    "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%3.2)",
     "giysi_4_zirh: Idle_Loop sırasında alt katman dışarı taşıyor (%4.2)",
     "giysi_5_zirh_etek: Walk_Loop sırasında alt katman dışarı taşıyor (%3.1)"
    ],
@@ -22402,8 +22366,8 @@
       "tutus_cm": 12.88,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0324,
-      "bas_bosluk_cm": 0.01
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.48
      },
      "kompozit_yay": {
       "yuva": "sol_el",
@@ -22520,10 +22484,8 @@
    }
   },
   "osm_sivil#k1": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%4.5)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -22537,8 +22499,8 @@
       "tutus_cm": 13.95,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0446,
-      "bas_bosluk_cm": 0.06
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.73
      },
      "kese": {
       "yuva": "bel_sag",
@@ -22611,10 +22573,8 @@
    }
   },
   "osm_sivil#k3": {
-   "gecti": false,
-   "hatalar": [
-    "osmanli_sarik: baş başlığın dışına taşıyor (%8.8)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -22628,8 +22588,8 @@
       "tutus_cm": 15.53,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.0875,
-      "bas_bosluk_cm": 0.06
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 0.69
      },
      "kese": {
       "yuva": "bel_sag",
@@ -22718,7 +22678,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.01
+      "bas_bosluk_cm": 1.19
      },
      "kese": {
       "yuva": "bel_sag",
@@ -22791,10 +22751,8 @@
    }
   },
   "osm_sivil_kulahli#k3": {
-   "gecti": false,
-   "hatalar": [
-    "kece_kulah: baş başlığın dışına taşıyor (%11.0)"
-   ],
+   "gecti": true,
+   "hatalar": [],
    "uyarilar": [],
    "yasak_animasyon": {},
    "olcum": {
@@ -22808,8 +22766,8 @@
       "tutus_cm": 15.53,
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
-      "bas_tasma_orani": 0.1097,
-      "bas_bosluk_cm": 0.0
+      "bas_tasma_orani": 0.0,
+      "bas_bosluk_cm": 1.17
      },
      "kese": {
       "yuva": "bel_sag",
@@ -23760,7 +23718,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "gladius": {
       "yuva": "sag_el",
@@ -24053,7 +24011,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "gladius": {
       "yuva": "sag_el",
@@ -24368,7 +24326,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "gladius": {
       "yuva": "sag_el",
@@ -24683,7 +24641,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "pilum": {
       "yuva": "sag_el_dik",
@@ -25160,7 +25118,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "gladius": {
       "yuva": "sag_el",
@@ -25431,7 +25389,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "mizrak": {
       "yuva": "sag_el_dik",
@@ -25702,7 +25660,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.04
+      "bas_bosluk_cm": 1.7
      },
      "vexillum": {
       "yuva": "sag_el_dik",
@@ -25955,7 +25913,7 @@
       "gomulme_koseleri": 0,
       "gomulme_kare_orani": 0.0,
       "bas_tasma_orani": 0.0,
-      "bas_bosluk_cm": 0.79
+      "bas_bosluk_cm": 1.43
      },
      "kompozit_yay": {
       "yuva": "sol_el",

@@ -83,8 +83,15 @@ static func kur(sahne: Node3D, k: Dictionary, takimlar: Dictionary, ar: Dictiona
 	r.seed = tohum
 	var adlar: Array = k["takimlar"]
 	var turler: Array = []
-	for i in adlar.size() * int(k.get("poz_cesidi", 2)):   # her takımdan birkaç farklı poz anı (eşzamanlı robot görünmesin)
-		turler.append(_pisir(sahne, takimlar[adlar[i % adlar.size()]], k.get("animasyon", "Idle_Loop"), r.randf_range(0.0, 3.0),
+	var gercekci: bool = k.get("gercekci", false)
+	var cesit_say := int(k.get("poz_cesidi", 2)) * (int(k.get("kisi_carpani", 2)) if gercekci else 1)
+	for i in adlar.size() * cesit_say:   # her takımdan birkaç farklı poz anı (eşzamanlı robot görünmesin)
+		var tk: Dictionary = takimlar[adlar[i % adlar.size()]]
+		var ks: Array = tk.get("kisiler", [])
+		if gercekci and ks.size() > 0:   # gerçekçi insanlar: her pişirilmiş tür başka bir kişi (yüz, beden, sakal)
+			tk = tk.duplicate()
+			tk["glb"] = ks[(i / adlar.size()) % ks.size()]
+		turler.append(_pisir(sahne, tk, k.get("animasyon", "Idle_Loop"), r.randf_range(0.0, 3.0),
 			k.get("cesit", {}), tohum + i * 7, float(k.get("sadelestir_oran", 1.0))))
 	var yan := ileri.cross(Vector3.UP).normalized()
 	var konumlar: Array = []

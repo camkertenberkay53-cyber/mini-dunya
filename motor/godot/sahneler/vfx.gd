@@ -199,3 +199,152 @@ static func top_guncelle(d: Dictionary, t: float) -> void:
 		(d["duman"] as CPUParticles3D).restart()
 	var gecen := t - float(d["son"]) if float(d["son"]) >= 0.0 else 99.0
 	(d["isik"] as OmniLight3D).light_energy = float(d["guc"]) * maxf(0.0, 1.0 - gecen / 0.15)
+
+
+## --- Olaya bağlı savaş efektleri (kendi yazımımız) ---
+## Ok yağmuru: arkadan atılan yaylım oklar parabolle uçar, iniş alanına saplanır. Oklar tek MultiMesh (ince gövde +
+## koyu temren); her kare konum/yön analitik hesaplanır (kare hızından bağımsız, belirlenimci). Atış anları tohumlu.
+static func _ok_agi() -> Mesh:
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var govde := BoxMesh.new()
+	govde.size = Vector3(0.012, 0.012, 0.78)
+	st.append_from(govde, 0, Transform3D())
+	var ucu := BoxMesh.new()
+	ucu.size = Vector3(0.022, 0.022, 0.07)
+	st.append_from(ucu, 0, Transform3D(Basis(), Vector3(0, 0, 0.42)))
+	var tuy := BoxMesh.new()
+	tuy.size = Vector3(0.05, 0.003, 0.12)
+	st.append_from(tuy, 0, Transform3D(Basis(), Vector3(0, 0, -0.33)))
+	var m := st.commit()
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.22, 0.17, 0.12)
+	mat.roughness = 0.8
+	m.surface_set_material(0, mat)
+	return m
+
+static func ok_yagmuru(sahne: Node3D, merkez: Vector3, ileri: Vector3, k: Dictionary, tohum: int, ar: Dictionary) -> Dictionary:
+	var r := RandomNumberGenerator.new()
+	r.seed = tohum
+	var yan := ileri.cross(Vector3.UP).normalized()
+	var n := int(k.get("adet", 90))
+	var mm := MultiMesh.new()
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	mm.mesh = _ok_agi()
+	mm.instance_count = n
+	var mi := MultiMeshInstance3D.new()
+	mi.multimesh = mm
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	sahne.add_child(mi)
+	var oklar: Array = []
+	var yaylim: Array = k.get("yaylim_sn", [0.2, 1.9])
+	var ucus := float(k.get("ucus_sn", 1.6))
+	var alan := float(k.get("alan_m", 14.0))
+	for i in n:
+		var t0 := float(yaylim[i % yaylim.size()]) + r.randf_range(0.0, 0.35)
+		var bitis := merkez + ileri * r.randf_range(-alan * 0.4, alan * 0.6) + yan * r.randf_range(-alan, alan)
+		bitis.y = zemin_y(bitis.x, bitis.z, ar) + 0.05
+		var bas := bitis + ileri * float(k.get("menzil_m", 70.0)) + yan * r.randf_range(-6.0, 6.0)   # sahnenin ardından gelir
+		bas.y = bitis.y + 2.0
+		var tepe := float(k.get("tepe_m", 22.0)) * r.randf_range(0.85, 1.15)
+		oklar.append([t0, bas, bitis, tepe, ucus * r.randf_range(0.92, 1.08)])
+	return {"mm": mm, "oklar": oklar}
+
+static func ok_guncelle(d: Dictionary, t: float) -> void:
+	var mm: MultiMesh = d["mm"]
+	for i in d["oklar"].size():
+		var o: Array = d["oklar"][i]
+		var u := (t - float(o[0])) / float(o[4])
+		if u < 0.0:
+			mm.set_instance_transform(i, Transform3D(Basis().scaled(Vector3.ZERO), Vector3.ZERO))   # henüz atılmadı
+			continue
+		var uu := clampf(u, 0.0, 1.0)
+		var p0: Vector3 = o[1]
+		var p1: Vector3 = o[2]
+		var p := p0.lerp(p1, uu) + Vector3.UP * float(o[3]) * 4.0 * uu * (1.0 - uu)
+		var ileri := (p1 - p0) + Vector3.UP * float(o[3]) * 4.0 * (1.0 - 2.0 * uu)   # türev: hız yönü
+		if u >= 1.0:   # saplanmış ok: son yönde, ucu toprağa gömülü
+			ileri = (p1 - p0) + Vector3.UP * float(o[3]) * -4.0
+			p = p1 + ileri.normalized() * 0.18
+		var z := ileri.normalized()
+		var x := Vector3.UP.cross(z).normalized()
+		if x.length() < 0.01:
+			x = Vector3.RIGHT
+		mm.set_instance_transform(i, Transform3D(Basis(x, z.cross(x), z), p))
+
+## Yangın: alev (toplamalı), duman sütunu ve titreşen sıcak ışık. Konum: sahnedeki çevre varlıkları (çadır/ev)
+## varsa onların üstü, yoksa sahnenin ardında tohumlu noktalar.
+static func yangin(sahne: Node3D, noktalar: Array, k: Dictionary, tohum: int, t: float) -> Array:
+	var isiklar: Array = []
+	for i in noktalar.size():
+		var p: Vector3 = noktalar[i]
+		var alev := CPUParticles3D.new()
+		_ortak(alev, {"doku": k["alev_doku"], "adet": 26, "omur": 0.9, "boyut": [0.9, 2.2], "opaklik": 0.95, "renk": [1.0, 0.62, 0.25]}, tohum + i * 13, t)
+		(alev.mesh.material as StandardMaterial3D).blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+		alev.position = p
+		alev.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+		alev.emission_sphere_radius = float(k.get("yaricap_m", 1.2))
+		alev.direction = Vector3.UP
+		alev.spread = 12.0
+		alev.initial_velocity_min = 1.2
+		alev.initial_velocity_max = 2.6
+		alev.gravity = Vector3(0, 0.6, 0)
+		sahne.add_child(alev)
+		var duman := CPUParticles3D.new()
+		_ortak(duman, {"doku": k["duman_doku"], "adet": 18, "omur": 6.0, "boyut": [3.0, 8.0], "opaklik": 0.7, "renk": [0.16, 0.15, 0.14]}, tohum + i * 17, t)
+		duman.position = p + Vector3.UP * 2.0
+		duman.direction = Vector3(0.15, 1, 0)
+		duman.spread = 10.0
+		duman.initial_velocity_min = 1.5
+		duman.initial_velocity_max = 2.8
+		duman.gravity = Vector3(0.35, 0.2, 0)
+		sahne.add_child(duman)
+		var isik := OmniLight3D.new()
+		isik.light_color = Color(1.0, 0.55, 0.25)
+		isik.omni_range = float(k.get("isik_menzil_m", 10.0))
+		isik.position = p + Vector3.UP * 1.0
+		sahne.add_child(isik)
+		isiklar.append([isik, float(k.get("isik_guc", 3.0)), float(i) * 1.7])
+	return isiklar
+
+static func yangin_guncelle(isiklar: Array, t: float) -> void:
+	for x in isiklar:
+		var f := 0.75 + 0.15 * sin(t * 11.0 + float(x[2])) + 0.1 * sin(t * 23.0 + float(x[2]) * 2.0)
+		(x[0] as OmniLight3D).light_energy = float(x[1]) * f
+
+## Kılıç kıvılcımı: düello çiftlerinin arasında, el hizasında, vuruş ritminde kısa toplamalı patlama.
+static func kivilcim(sahne: Node3D, noktalar: Array, k: Dictionary, tohum: int) -> Array:
+	var r := RandomNumberGenerator.new()
+	r.seed = tohum
+	var liste: Array = []
+	for i in noktalar.size():
+		var p := CPUParticles3D.new()
+		_ortak(p, {"doku": k["doku"], "adet": 14, "omur": 0.22, "boyut": [0.03, 0.08], "opaklik": 1.0, "renk": [1.0, 0.85, 0.5]}, tohum + i * 7, 0.0)
+		(p.mesh.material as StandardMaterial3D).blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+		p.one_shot = true
+		p.explosiveness = 1.0
+		p.preprocess = 0.0
+		p.emitting = false
+		p.position = noktalar[i]
+		p.spread = 180.0
+		p.initial_velocity_min = 2.0
+		p.initial_velocity_max = 5.0
+		p.gravity = Vector3(0, -9.8, 0)
+		sahne.add_child(p)
+		var anlar: Array = []
+		var s := r.randf_range(0.2, 0.9)
+		while s < 60.0:
+			anlar.append(s)
+			s += r.randf_range(float(k.get("aralik_sn", [0.9, 1.6])[0]), float(k.get("aralik_sn", [0.9, 1.6])[1]))
+		liste.append({"p": p, "anlar": anlar, "son": -1.0})
+	return liste
+
+static func kivilcim_guncelle(liste: Array, t: float) -> void:
+	for d in liste:
+		var son := -1.0
+		for a in d["anlar"]:
+			if a <= t:
+				son = a
+		if son >= 0.0 and son != float(d["son"]):
+			d["son"] = son
+			(d["p"] as CPUParticles3D).restart()

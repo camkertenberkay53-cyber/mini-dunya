@@ -19,30 +19,34 @@ yuz: {guc: 0.85, bolgeler: {nose: 3, chin: 2, eyebrows: 2, cheek: 2, mouth: 2, e
 kitler:
   osmanli_15yy:
     koken: {caucasian: [0.55, 0.85], asian: [0.08, 0.3], african: [0.0, 0.06]}
-    ten: [[0.50, 0.33, 0.23], [0.36, 0.22, 0.14]]
+    ten: [[0.44, 0.27, 0.16], [0.30, 0.17, 0.10]]
     sakal: {kirli: 0.15, kisa: 0.35, dolgun: 0.4, biyik: 0.1}
     sakalsiz: {biyik: 0.6, kirli: 0.4}
     sac: [[0.05, 0.04, 0.035], [0.12, 0.08, 0.05], [0.2, 0.13, 0.08]]
     goz: [[0.22, 0.12, 0.05], [0.14, 0.08, 0.04], [0.3, 0.25, 0.12]]
+    goz_dokulari: [koyu_kahve, koyu_kahve, koyu_kahve, brownlight, green]
   akkoyunlu_15yy:
     koken: {caucasian: [0.4, 0.7], asian: [0.25, 0.5], african: [0.0, 0.05]}
-    ten: [[0.48, 0.31, 0.21], [0.34, 0.21, 0.13]]
+    ten: [[0.42, 0.26, 0.15], [0.29, 0.165, 0.095]]
     sakal: {kirli: 0.1, kisa: 0.3, dolgun: 0.45, biyik: 0.15}
     sakalsiz: {biyik: 0.7, kirli: 0.3}
     sac: [[0.04, 0.035, 0.03], [0.09, 0.06, 0.04]]
     goz: [[0.16, 0.09, 0.04], [0.22, 0.12, 0.05]]
+    goz_dokulari: [koyu_kahve, koyu_kahve, koyu_kahve, brownlight]
   bizans_15yy:
     koken: {caucasian: [0.75, 0.95], asian: [0.0, 0.1], african: [0.0, 0.08]}
-    ten: [[0.55, 0.37, 0.27], [0.40, 0.25, 0.16]]
+    ten: [[0.50, 0.32, 0.21], [0.36, 0.215, 0.13]]
     sakal: {kirli: 0.15, kisa: 0.45, dolgun: 0.35, biyik: 0.05}
     sakalsiz: {kirli: 0.7, biyik: 0.3}
     sac: [[0.05, 0.04, 0.035], [0.14, 0.09, 0.055], [0.25, 0.17, 0.1]]
     goz: [[0.22, 0.12, 0.05], [0.3, 0.25, 0.12], [0.2, 0.28, 0.32]]
+    goz_dokulari: [koyu_kahve, koyu_kahve, brownlight, green, grey, bluegreen]
   roma_cumhuriyet:
     koken: {caucasian: [0.8, 0.97], asian: [0.0, 0.05], african: [0.0, 0.08]}
-    ten: [[0.55, 0.37, 0.27], [0.42, 0.26, 0.17]]
+    ten: [[0.50, 0.32, 0.21], [0.38, 0.23, 0.14]]
     sakal: {kirli: 0.5, kisa: 0.5}
     sakalsiz: {yok: 0.55, kirli: 0.45}     # Cumhuriyet Romasında asker çoğunlukla tıraşlı
     sac: [[0.05, 0.04, 0.035], [0.14, 0.09, 0.055], [0.25, 0.17, 0.1]]
     goz: [[0.22, 0.12, 0.05], [0.3, 0.25, 0.12], [0.2, 0.28, 0.32]]
+    goz_dokulari: [koyu_kahve, koyu_kahve, brownlight, green, grey]
 yasli_gri: 42              # bu yaştan sonra saç/sakal grileşmeye başlar

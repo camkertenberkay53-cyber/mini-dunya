@@ -290,12 +290,13 @@
      36
     ],
     "secim_gerekcesi": [
-     "kalabalık (10 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+     "kalabalık (10 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'goz_pan', 'yan_takip']"
     ],
     "tercih_sirasi": [
      "kurulus_genis",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "goz_pan",
      "yan_takip"
@@ -538,12 +539,13 @@
      55
     ],
     "secim_gerekcesi": [
-     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+     "kalabalık (12 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'goz_pan', 'yan_takip']"
     ],
     "tercih_sirasi": [
      "kurulus_genis",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "goz_pan",
      "yan_takip"
@@ -664,12 +666,13 @@
      38
     ],
     "secim_gerekcesi": [
-     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (13 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -909,12 +912,13 @@
      18
     ],
     "secim_gerekcesi": [
-     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+     "kalabalık (13 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yan_takip",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "capraz_yorunge",
      "arkadan_uzak"
@@ -1051,7 +1055,7 @@
      38
     ],
     "secim_gerekcesi": [
-     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'itme_dramatik']",
+     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'el_kamerasi', 'itme_dramatik']",
      "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
     ],
     "tercih_sirasi": [
@@ -1735,12 +1739,13 @@
     ],
     "secim_gerekcesi": [
      "senaryo niyeti: yukselme",
-     "kalabalık (14 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
-     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+     "kalabalık (14 karakter): ['tele_kalabalik', 'drone_gecis', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'drone_gecis', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
     ],
     "tercih_sirasi": [
      "yukselme",
      "tele_kalabalik",
+     "drone_gecis",
      "yuksek_genis",
      "sabit_uzak",
      "kurulus_genis",

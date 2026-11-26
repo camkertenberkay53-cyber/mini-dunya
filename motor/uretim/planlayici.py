@@ -257,13 +257,23 @@ def kamera_kur(tur: str, odak: dict, sure: float, oran: float, tepe: float | Non
         bas, son = an(sm, d, h, yon), an(sm, d, h + 1.0, yon)
         bas["konum"] = [round(float(v), 3) for v in np.array(bas["konum"]) - yan * d * 0.10]
         son["konum"] = [round(float(v), 3) for v in np.array(son["konum"]) + yan * d * 0.10]
+    elif hr == "el":   # el kamerası: kameraman çarpışmaya doğru yürür, hafif yana kayar (sarsıntı Godot'da)
+        bas, son = an(s0, d * 1.1, h, yon), an(s1, d * 0.94, h - 0.08, yon)
+        son["konum"] = [round(float(v), 3) for v in np.array(son["konum"]) + yan * d * 0.07]
+    elif hr == "drone":   # yüksekten, sahnenin üzerinden ileri süzülme; bakış noktası da ileri kayar
+        ileri_v = -yon
+        bas = an(sm - ileri_v * d * 0.25, d, h, yon)
+        son = an(sm + ileri_v * d * 0.25, d * 0.7, h * 0.85, yon)
     elif hr == "sabit_suzulme":
         bas = an(sm, d, h, yon)
         son = an(sm, d * 1.04, h + 0.4, yon)
     else:  # sabit
         bas = son = an(sm, d, h, yon)
-    yum = "dogrusal" if hr == "takip" else ("giris" if hr == "itme" else "giris_cikis")
-    return {"plan": None, "hareket": hr, "bas": bas, "son": son, "yumusatma": yum}
+    yum = "dogrusal" if hr in ("takip", "drone") else ("giris" if hr == "itme" else "giris_cikis")
+    sonuc = {"plan": None, "hareket": hr, "bas": bas, "son": son, "yumusatma": yum}
+    if x.get("sarsinti"):
+        sonuc["sarsinti"] = dict(x["sarsinti"])
+    return sonuc
 
 
 def arka_plan_uzakligi(cekim: dict) -> float | None:
@@ -349,15 +359,24 @@ def insan_olcegi(c: dict, donem: str) -> dict:
 
 
 def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum: int,
-              ayrilmis: set | None = None, karsi_donemler: list[str] | None = None) -> tuple[dict, list[str], dict]:
+              ayrilmis: set | None = None, karsi_donemler: list[str] | None = None,
+              harita: dict | None = None) -> tuple[dict, list[str], dict]:
     """taslak: sahne_bolucu.cekimlere_bol çıktısı. Dönüş: (plan çekimi, eksikler, çeşitlilik kaydı)."""
     n = taslak["niyet"]
     c = {"id": taslak["id"], "cumleler": [taslak["cumle"]], "sure_sn": taslak["sure_sn"], "tur": n["tur"], "amac": taslak.get("amac")}
     if n.get("metin_katmani"):
         c["metin_katmani"] = n["metin_katmani"]
+    if n["tur"] == "harita":   # taktik harita: konu verisindeki evre (harita.py); veri yoksa uydurulmaz
+        evre = n.get("evre")
+        if harita and evre and any(e["id"] == evre for e in harita.get("evreler", [])):
+            c["harita"] = {"evre": evre, "veri": harita}
+            c["metin"] = n.get("metin") or next(e.get("baslik", evre) for e in harita["evreler"] if e["id"] == evre)
+            return c, [], {}
+        c["metin"] = n.get("metin") or n.get("aciklama", "")
+        return c, [f"{taslak['id']}: 2D harita çizilemedi — evre '{evre}' konu verisinde yok"], {}
     if n["tur"] != "3d":
         c["metin"] = n.get("metin") or n.get("aciklama", "")
-        return c, [f"{taslak['id']}: '{n['tur']}' görseli üretecek 2D kart/harita motoru yok"], {}
+        return c, [f"{taslak['id']}: '{n['tur']}' görseli üretecek 2D kart motoru yok"], {}
     odak_rol = next((r for r in n.get("roller", []) if r.get("odak")), (n.get("roller") or [{}])[0])
     if odak_rol.get("donem") and odak_rol["donem"] != donem:
         c["donem"] = odak_rol["donem"]   # çekimin dönemi (çevre varlıkları) odak tarafın dönemi
@@ -380,6 +399,10 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
             c["ortam"]["yerlesim"] = o["yerlesim"]
         else:
             eksik.append(f"{taslak['id']}: '{o['yerlesim']}' yerleşim kuralı yok")
+    if o.get("efekt"):   # olaya bağlı efekt (ok yağmuru, yangın): kuralı olmayan uydurulmaz, eksik raporlanır
+        izinli = veri.kural("gorsel").get("vfx", {}).get("efektler", [])
+        c["ortam"]["efekt"] = [e for e in o["efekt"] if e in izinli]
+        eksik += [f"{taslak['id']}: '{e}' efekt kuralı yok" for e in o["efekt"] if e not in izinli]
     if o.get("kalabalik"):
         if o["kalabalik"] in veri.kural("kalabalik")["kalabaliklar"]:
             c["ortam"]["kalabalik"] = o["kalabalik"]

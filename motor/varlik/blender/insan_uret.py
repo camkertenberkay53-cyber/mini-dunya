@@ -532,6 +532,30 @@ def principled(ad, doku=None, renk=(1, 1, 1), alfa=False, puruz=0.55):
 
 
 ten = P.get("ten", {})
+
+
+def ten_boya(kaynak: str, hedef, boyut: int = 1024) -> str:
+    """CC0 MakeHuman ten dokusunu kişinin dönem tenine çevirir (doğrusal uzayda kanal oranı, yüz bölgesi referans).
+    Doku ayrıntısı (gözenek, damar, kızarıklık) korunur; yalnız ton değişir. Kendi türev dokumuz (CC0)."""
+    from PIL import Image
+    im = Image.open(kaynak).convert("RGB").resize((boyut, boyut), Image.LANCZOS)
+    a = np.asarray(im).astype(np.float32) / 255.0
+    lin = np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
+    y0, y1, x0, x1 = int(boyut * 0.35), int(boyut * 0.64), int(boyut * 0.645), int(boyut * 0.92)
+    ort = lin[y0:y1, x0:x1].reshape(-1, 3).mean(0)
+    gri = lin.mean(-1, keepdims=True)
+    lin = gri + (lin - gri) * 0.9   # fotoğraf dokusunun turuncu doygunluğu biraz alınır
+    ort = gri[y0:y1, x0:x1].mean() + (ort - gri[y0:y1, x0:x1].mean()) * 0.9
+    lin = np.clip(lin * (np.array(hedef, np.float32) / np.maximum(ort, 1e-3)), 0, 1)
+    s = np.where(lin <= 0.0031308, lin * 12.92, 1.055 * lin ** (1 / 2.4) - 0.055)
+    yol = os.path.join(DOKU, f"ten_{P.get('tohum', 1)}.png")
+    Image.fromarray((np.clip(s, 0, 1) * 255).astype(np.uint8)).save(yol)
+    return yol
+
+
+if ten.get("doku") and ten.get("hedef"):
+    ten["doku"] = ten_boya(ten["doku"], ten["hedef"])
+    ten["carpan"] = [1, 1, 1]
 h.data.materials.clear()
 tm = principled("mi_skin_mh", ten.get("doku"), tuple(ten.get("renk", [0.36, 0.21, 0.14])) if not ten.get("doku")
                 else tuple(ten.get("carpan", [1, 1, 1])), puruz=0.5)
@@ -556,10 +580,10 @@ for tur, o in ekler.items():
         o.data.materials.append(principled("mi_eyes_mh", iris_dokusu(f"iris_{P.get('tohum', 1)}", P.get("goz_renk", [0.25, 0.15, 0.07])), puruz=0.15))
         o.name = "gozler"
         continue
-    d = _mhmat_doku(o)
+    d = P.get("goz_doku") if tur == "gozler" and P.get("goz_doku") else _mhmat_doku(o)
     renk = tuple(P.get("sac_renk", [0.07, 0.055, 0.045])) if tur in ("kaslar", "sac") else (1, 1, 1)
     o.data.materials.clear()
-    o.data.materials.append(principled(ADLAR.get(tur, "mi_ek_" + tur), d, renk, alfa=tur != "gozler", puruz=0.25 if tur == "gozler" else 0.7))
+    o.data.materials.append(principled(ADLAR.get(tur, "mi_ek_" + tur), d, renk, alfa=tur != "gozler", puruz=0.12 if tur == "gozler" else 0.7))
     o.name = tur
 h.name = "govde"
 bpy.data.orphans_purge(do_recursive=True)

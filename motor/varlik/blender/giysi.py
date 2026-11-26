@@ -596,6 +596,11 @@ def yuvalari_kur(govde_kaynak, arm) -> dict:
     pelP = [p for p, g in P if g == "pelvis"]
     kalca_x = max(abs(p.x) for p in pelP)
     olcek = bas_gen / 0.182   # referans: erkek gövdenin baş genişliği
+    # Kafatası üstünün ön-arka boyu (başlığın oturduğu bölge). Referanstan (UBC: 0,1825 m) belirgin uzunsa
+    # (gerçekçi MPFB kafataları dar-uzun) başlık ön-arka ekseninde ayrıca büyür; yoksa eskisi gibi tek ölçek.
+    _ust = [p for p, g in P if g == "Head" and p.z > bas_tepe - 0.06]
+    _ust_der = max(p.y for p in _ust) - min(p.y for p in _ust)
+    bas_derinlik = _ust_der / 0.1825 if _ust_der / 0.1825 > olcek * 1.02 else olcek
     ileri = (0, 1, 0)
     yuvalar = {
         "bas": ("Head", _cerceve((0, bas_y, bas_tepe), (0, 0, 1), ileri), olcek),
@@ -614,7 +619,10 @@ def yuvalari_kur(govde_kaynak, arm) -> dict:
         e.parent_type = "BONE"
         e.parent_bone = kemik
         m = R @ m
-        e.matrix_world = m @ Matrix.Diagonal((s, s, s, 1))
+        sy = bas_derinlik * 1.03 if ad == "bas" and bas_derinlik != olcek else s   # başlık: ön-arka ekseni (+%3 pay)
+        e.matrix_world = m @ Matrix.Diagonal((s, sy, s, 1))
         profil[ad] = {"kemik": kemik, "konum": [round(x, 4) for x in m.translation], "olcek": round(s, 3)}
     profil["_govde"] = {"bas_tepe": round(bas_tepe, 3), "bas_genislik": round(bas_gen, 3), "olcek": round(olcek, 3)}
+    if bas_derinlik != olcek:
+        profil["_govde"]["bas_derinlik_olcek"] = round(bas_derinlik * 1.03, 3)
     return profil
