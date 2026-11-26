@@ -59,7 +59,13 @@ def ortam() -> dict:
 
     import cv2
     import numpy
-    return {"python": platform.python_version(), "opencv": cv2.__version__, "numpy": numpy.__version__}
+    try:   # NumPy'nin çalışma anında seçtiği SIMD yolları da sonucu etkileyebilir
+        from numpy._core._multiarray_umath import __cpu_features__ as nf
+        numpy_cpu = ",".join(sorted(k for k, v in nf.items() if v))
+    except Exception:  # noqa: BLE001
+        numpy_cpu = "?"
+    return {"python": platform.python_version(), "opencv": cv2.__version__, "numpy": numpy.__version__,
+            "opencv_cpu": cv2.getCPUFeaturesLine(), "numpy_cpu": numpy_cpu, "makine": platform.machine()}
 
 
 def eslik_ozeti() -> dict:
