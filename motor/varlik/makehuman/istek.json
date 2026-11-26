@@ -1,4 +1,4 @@
-{"aciklama": "MakeHuman CC0 asset paketleri (MPFB2 karakter üretimi için). İlk tur (3): yalnız içerik listesi + lisans doğrulama.",
+{"aciklama": "MakeHuman CC0 system assets (MPFB2 gerçekçi karakter üretimi). Tur 2: erkek ten dokuları, kaş, kirpik, göz, diş, kısa saçlar. Alt sayfa yalnız CC0 der ve zip adı _cc0 ise kabul.",
  "paketler": [
-  {"ad": "system_assets", "dosya_deseni": "makehuman_system_assets", "zip_deseni": "$^"}
+  {"ad": "system_assets", "dosya_deseni": "makehuman_system_assets", "zip_deseni": "^(?!.*female)(?!.*(_ao|_normal|_specular|_bump|_displacement)).*(skins/|eyebrows/|eyelashes/|eyes/|teeth/|hair/short0)"}
  ]}
