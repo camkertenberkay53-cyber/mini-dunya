@@ -1,0 +1,172 @@
+{
+ "benchmark": [
+  {
+   "yol": "A2",
+   "tekrar": 1,
+   "toplam_sn": 43.6,
+   "maske_sn": 1.15,
+   "dolgu_sn": 0.51,
+   "hazirlik_sn": 2.4,
+   "sinema_sn": 35.0,
+   "kare_dongusu_sn_kare": 0.1944,
+   "renk_kodlama_sn": 6.2,
+   "kare_basina_acilis_dahil": 0.242,
+   "tepe_bellek_gb": 0.42,
+   "seviye": "tam",
+   "kayma_px": 20.0,
+   "puan": {
+    "kararlilik": 1.0,
+    "kenar_orani": 11.59,
+    "doluluk": 0.748,
+    "parca": 1,
+    "olcek": [
+     652,
+     743
+    ],
+    "bolge": [
+     689,
+     136,
+     2263,
+     1930
+    ]
+   }
+  },
+  {
+   "yol": "mikro",
+   "tekrar": 1,
+   "toplam_sn": 41.8,
+   "maske_sn": 1.27,
+   "dolgu_sn": 0.58,
+   "hazirlik_sn": 2.54,
+   "sinema_sn": 33.4,
+   "kare_dongusu_sn_kare": 0.1856,
+   "renk_kodlama_sn": 5.8,
+   "kare_basina_acilis_dahil": 0.232,
+   "tepe_bellek_gb": 0.44,
+   "seviye": "tam",
+   "kayma_px": 20.0,
+   "puan": {
+    "kararlilik": 1.0,
+    "kenar_orani": 12.07,
+    "doluluk": 0.753,
+    "parca": 1,
+    "olcek": [
+     652,
+     743
+    ],
+    "bolge": [
+     689,
+     136,
+     2263,
+     1930
+    ]
+   }
+  },
+  {
+   "yol": "A2",
+   "tekrar": 2,
+   "toplam_sn": 40.0,
+   "maske_sn": 1.16,
+   "dolgu_sn": 0.46,
+   "hazirlik_sn": 2.29,
+   "sinema_sn": 32.0,
+   "kare_dongusu_sn_kare": 0.1778,
+   "renk_kodlama_sn": 5.7,
+   "kare_basina_acilis_dahil": 0.222,
+   "tepe_bellek_gb": 0.45,
+   "seviye": "tam",
+   "kayma_px": 20.0,
+   "puan": {
+    "kararlilik": 1.0,
+    "kenar_orani": 11.59,
+    "doluluk": 0.748,
+    "parca": 1,
+    "olcek": [
+     652,
+     743
+    ],
+    "bolge": [
+     689,
+     136,
+     2263,
+     1930
+    ]
+   }
+  },
+  {
+   "yol": "mikro",
+   "tekrar": 2,
+   "toplam_sn": 40.0,
+   "maske_sn": 1.28,
+   "dolgu_sn": 0.49,
+   "hazirlik_sn": 2.48,
+   "sinema_sn": 31.8,
+   "kare_dongusu_sn_kare": 0.1767,
+   "renk_kodlama_sn": 5.8,
+   "kare_basina_acilis_dahil": 0.222,
+   "tepe_bellek_gb": 0.45,
+   "seviye": "tam",
+   "kayma_px": 20.0,
+   "puan": {
+    "kararlilik": 1.0,
+    "kenar_orani": 12.07,
+    "doluluk": 0.753,
+    "parca": 1,
+    "olcek": [
+     652,
+     743
+    ],
+    "bolge": [
+     689,
+     136,
+     2263,
+     1930
+    ]
+   }
+  }
+ ],
+ "maske_puani_mikro": {
+  "kararlilik": 1.0,
+  "kenar_orani": 12.07,
+  "doluluk": 0.753,
+  "parca": 1,
+  "olcek": [
+   652,
+   743
+  ],
+  "bolge": [
+   689,
+   136,
+   2263,
+   1930
+  ]
+ },
+ "tuval": {
+  "A2": {
+   "bas": [
+    0.5,
+    0.52,
+    1.02
+   ],
+   "son": [
+    0.5,
+    0.45,
+    1.35
+   ],
+   "ease": "inout"
+  },
+  "mikro": {
+   "bas": [
+    0.5,
+    0.5153846153846154,
+    1.0
+   ],
+   "son": [
+    0.5,
+    0.462844702467344,
+    1.06
+   ],
+   "ease": "inout"
+  }
+ }
+}

@@ -143,6 +143,144 @@ def test_ozne_yoksa_guvenli_mod():
     assert g25.seviye({"kararlilik": 0.9, "kenar_orani": 1.6, "doluluk": 0.5, "parca": 1}) == "sinirli"
 
 
+# ------------------------------------------------------------------ A2 mikro düzeltme: yakınlık destekli küçük parçalar
+
+def _yuzen_disler(H=2000, W=3000):
+    """Kale üretecindeki, kulelere değmeyen (çentik üstündeki) burç dişleri."""
+    m = np.zeros((H, W), np.uint8)
+    for x in range(1100, 1980, 60):
+        if not any(x + 30 > tx and x < tx + 180 for tx in (1100, 1450, 1800)):
+            cv2.rectangle(m, (x, 580), (x + 30, 620), 255, -1)
+    return m
+
+
+def test_yakin_parca_secimi_kurallari():
+    """Birim: yakın+kontrastlı+gövde renkli parça eklenir; uzak, çok küçük ve zemin/açık renkli parça eklenmez."""
+    img = np.full((300, 400, 3), (210, 200, 190), np.uint8)
+    on = np.zeros((300, 400), np.uint8)
+    cv2.rectangle(img, (100, 100), (300, 280), (50, 55, 60), -1); cv2.rectangle(on, (100, 100), (300, 280), 1, -1)   # ana gövde
+    cv2.rectangle(img, (150, 80), (162, 92), (50, 55, 60), -1); cv2.rectangle(on, (150, 80), (162, 92), 1, -1)       # yakın diş
+    cv2.rectangle(img, (20, 10), (34, 24), (50, 55, 60), -1); cv2.rectangle(on, (20, 10), (34, 24), 1, -1)           # uzak leke
+    cv2.rectangle(img, (240, 92), (241, 93), (50, 55, 60), -1); cv2.rectangle(on, (240, 92), (241, 93), 1, -1)       # tuz (2x2)
+    cv2.rectangle(img, (310, 150), (322, 162), (245, 245, 245), -1); cv2.rectangle(on, (310, 150), (322, 162), 1, -1)  # yakın açık
+    n, lab, st, _ = cv2.connectedComponentsWithStats(on)
+    y = g25.ayarlar()["kalite"]["yakin_parca"]
+    ana = [int(np.argmax(st[1:, cv2.CC_STAT_AREA])) + 1]
+    sec = g25.yakin_parca_sec(lab, st, ana, img, y)
+    assert [lab[85, 155]] == sec                      # yalnızca yakın diş
+    m, parca = g25._parcalar(on, 0.02, img, y)
+    assert m[85, 155] == 1 and m[15, 25] == 0 and m[92, 240] == 0 and m[155, 315] == 0 and parca == 1
+    m0, _ = g25._parcalar(on, 0.02, img, dict(y, acik=False))   # anahtar kapalı → A2 davranışı
+    assert m0[85, 155] == 0
+
+
+def test_kale_kopuk_burc_disleri_korunur_iou_gerilemez(kale_yuklu):
+    yi, gt, bos, kutu, alfa, puan = kale_yuklu
+    ih, iw = yi.shape[:2]
+    yz = cv2.resize(_yuzen_disler(), (iw, ih), interpolation=cv2.INTER_AREA) > 127
+    iou, bosluk = _olc(alfa, gt, bos)
+    assert iou >= 0.99 and bosluk <= 0.10, (iou, bosluk)          # A2 referansı 0,992 / %0,2
+    assert (alfa > 0.5)[yz].mean() >= 0.95                         # A2'de %16,7
+    a = dict(g25.ayarlar()["kalite"])
+    a["yakin_parca"] = dict(a["yakin_parca"], acik=False)
+    alfa0, p0 = g25.maske(yi, kutu, a)
+    assert (alfa0 > 0.5)[yz].mean() < 0.5 and g25.seviye(p0, a) == g25.seviye(puan) == "tam"
+
+
+def test_kale_gurultu_parcalari_eklenmez():
+    img, gt, bos, kutu = kale()
+    uzak = [(1365, 710), (1715, 710)]                               # çentik ortası: gövdeden uzak koyu leke
+    for x, y in uzak:
+        cv2.circle(img, (x, y), 12, (55, 60, 70), -1)
+    cv2.circle(img, (1302, 760), 12, (240, 240, 245), -1)            # gövdeye yakın açık renkli leke
+    r = np.random.default_rng(1)
+    tuz = [(int(r.uniform(1290, 1440)), int(r.uniform(640, 790))) for _ in range(40)]
+    for x, y in tuz:
+        img[y:y + 3, x:x + 3] = (55, 60, 70)
+    yi = _yukle_gibi(img, 1920, 1080)
+    ih, iw = yi.shape[:2]
+    s = iw / 3000
+    alfa, puan = g25.maske(yi, kutu)
+    b = alfa > 0.5
+    assert not any(b[int(y * s), int(x * s)] for x, y in uzak)
+    assert not b[int(760 * s), int(1302 * s)]
+    assert sum(b[int((y + 1) * s), int((x + 1) * s)] for x, y in tuz) == 0
+    gt_y = cv2.resize(gt, (iw, ih), interpolation=cv2.INTER_AREA)
+    assert _olc(alfa, gt_y, cv2.resize(bos, (iw, ih), interpolation=cv2.INTER_AREA))[0] >= 0.99
+
+
+# ------------------------------------------------------------------ A2 mikro düzeltme: dikey görsel 16:9 tuval hareketi
+
+def _portre(tmp_path, H=2400, W=1500):
+    img = np.full((H, W, 3), (190, 200, 205), np.uint8)
+    cv2.ellipse(img, (750, 1500), (430, 880), 0, 0, 360, (50, 55, 60), -1)
+    cv2.circle(img, (750, 520), 230, (60, 80, 120), -1)                 # baş (görselin üst bölümü)
+    p = tmp_path / "portre.png"
+    cv2.imwrite(str(p), img)
+    return p
+
+
+def test_tuval_push_in_zoom_tavani_ve_tilt(tmp_path):
+    from kaos.sinema import kamera
+    p = _portre(tmp_path)
+    k = _kayit(tmp_path, p, ozne_bilgisi={"kutu": [0.15, 0.08, 0.85, 1.0], "tur": "insan_portre"}, derinlik_uygunlugu="dusuk")
+    ek, rap = g25.hazirla(p, k, {"hareket": "push_in", "guc": 1.4, "odak": [0.5, 0.2]}, 1920, 1080, tmp_path, 1)
+    assert rap["tuval"] and ek["guc"] == 1.0 and ek["odak"] is None and ek["kamera"]["ease"] == "inout"
+    u = np.linspace(0, 1, 91)
+    yol = np.array([kamera.konum(ek["kamera"], t, None, 1.0)[:3] for t in u])
+    cx, cy, z = yol.T
+    oz = ek["izleme_oranlari"]
+    assert z.max() <= 1.06 + 1e-9 and (1 + (z - 1) * oz["ozne_zoom"]).max() <= 1.06 + 1e-9 and (1 + (z - 1) * oz["arka_zoom"]).max() <= 1.06 + 1e-9
+    assert np.allclose(cx, 0.5) and np.all(np.diff(cy) <= 1e-12) and cy[0] - cy[-1] > 0.03   # baş yönünde tilt
+    hiz = np.abs(np.diff(cy))
+    assert hiz[0] < 0.1 * hiz.max() and hiz[-1] < 0.1 * hiz.max()                               # yumuşak başla / bitir
+    # _matris sınırı: merkez hiçbir karede görselin dışına itilmiyor (kırpma yerine gerçek tilt) ve üst/alt korunur
+    gor = 1.0 / (1.04 * z)
+    ust, alt = cy - gor / 2, cy + gor / 2
+    assert ust.min() >= -1e-9 and alt.max() <= 1 + 1e-9
+    assert gor.min() >= 0.90 and ust[-1] <= 0.02                                                 # bitişte baş kesilmez
+    m = cv2.imread(ek["ozne_maskesi"], cv2.IMREAD_UNCHANGED)
+    t_ = cv2.imread(ek["gorsel"])
+    x0 = (t_.shape[1] - int(round(t_.shape[0] * 1500 / 2400))) // 2
+    assert m[:, : x0 - 2].max() == 0 and m[:, -(x0 - 2):].max() == 0                            # yanlar maskede yok
+
+
+def test_tuval_disi_hareket_degismez(tmp_path):
+    img, *_ = kale(1500, 1000)
+    p = tmp_path / "yatay.png"
+    cv2.imwrite(str(p), img)
+    k = _kayit(tmp_path, p)
+    ek, rap = g25.hazirla(p, k, {"hareket": "push_in", "guc": 1.2, "odak": [0.5, 0.4]}, 1920, 1080, tmp_path, 1)
+    beklenen, _ = g25.hareket("push_in", (1500, 1000), 1920, 1080, 1.2)
+    assert not rap["tuval"] and ek["kamera"] == beklenen and "guc" not in ek and "odak" not in ek
+    # Shorts çıktısında dikey görsel tuvale girmez, tuval hareketi uygulanmaz
+    pp = _portre(tmp_path)
+    ek2, rap2 = g25.hazirla(pp, _kayit(tmp_path, pp), {"hareket": "push_in"}, 1080, 1920, tmp_path, 1)
+    assert not rap2["tuval"] and ek2["kamera"] == g25.hareket("push_in", (1500, 2400), 1080, 1920, 1.0)[0]
+
+
+def test_tuval_hareketi_render_kareleri(tmp_path, monkeypatch):
+    p = _portre(tmp_path)
+    k = _kayit(tmp_path, p, ozne_bilgisi={"kutu": [0.15, 0.08, 0.85, 1.0], "tur": "insan_portre"}, derinlik_uygunlugu="dusuk")
+    yol = tmp_path / "kayit.json"
+    yol.write_text(json.dumps({"gorseller": [k]}))
+    monkeypatch.setattr(tg, "KAYIT", yol)
+    monkeypatch.setattr(render, "KOK", tmp_path / "uretim")
+    c = {"id": "P", "cumleler": ["C1"], "sure_sn": 1.0, "tur": "gorsel25d", "metin": "x", "gorsel25d": {"gorsel_id": "t_g", "hareket": "push_in"}}
+    r = render.render(str(_plan(tmp_path, c, (480, 270))), "P")
+    assert r["durum"] == "TAMAM" and r["kalite"]["tuval"] and r["olculen"]["uretilen_kare"] == 30
+    kareler = []
+    for t in (0.0, 0.5, 0.95):
+        gk = tmp_path / f"k{t}.png"
+        import subprocess
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", str(t), "-i", r["video"], "-frames:v", "1", str(gk)], check=True)
+        kareler.append(cv2.imread(str(gk)))
+    for kr in kareler:   # başın üst kenarı başlangıç, orta ve bitişte kadrajın içinde (kesilmiyor)
+        orta = kr[:, 170:310].astype(int)
+        bas = np.abs(orta - np.array([60, 80, 120])).max(2) < 35
+        assert bas.sum() > 1500 and np.nonzero(bas)[0].min() > 5
+
+
 # ------------------------------------------------------------------ dolgu
 
 def test_dolgu_yalniz_delikte_degistirir_ve_deterministik(kale_yuklu, monkeypatch):
@@ -289,17 +427,36 @@ def test_gitignore_gorsel_ikilileri():
         assert f"assets/tarihi_gorsel/*.{uz}" in gi
 
 
-def _gercek_gorseller():
+def _gercek_durum():
+    from motor.testler.gorsel25d_kanit import gercek_gorseller
     try:
-        return [x for x in tg.kayit()["gorseller"] if not tg.denetle(x)]
-    except Exception:
-        return []
+        return gercek_gorseller()
+    except Exception as e:   # kayıt okunamıyorsa bu da raporlanır (sessiz geçiş yok)
+        return [], [f"kayıt okunamadı: {e}"]
 
 
-@pytest.mark.skipif(not _gercek_gorseller(), reason="lisansı doğrulanmış gerçek tarihî görsel diskte yok")
-def test_gercek_tarihi_gorsel_hazirlanir(tmp_path):
-    k = _gercek_gorseller()[0]
-    ek, rap = g25.hazirla(tg.dosya_yolu(k), k, {"hareket": "push_in"}, 1920, 1080, tmp_path, 1)
-    assert rap["seviye"] in ("tam", "sinirli", "kenburns")
-    if rap["seviye"] != "kenburns":
-        assert rap["kayma_px"] <= rap["kayma_siniri_px"] + 0.5
+_GERCEK, _GERCEK_NOT = _gercek_durum()
+
+
+def test_gercek_gorsel_dosyasi_varsa_kapidan_gecmeli():
+    """Dosyası diskte olan bir kayıt lisans/SHA kapısından geçmiyorsa test BAŞARISIZ olur (atlanmaz, gizlenmez)."""
+    kapi = [n for n in _GERCEK_NOT if n.startswith("KAPI ")]
+    assert not kapi, kapi
+
+
+@pytest.mark.skipif(not _GERCEK, reason="lisansı doğrulanmış gerçek tarihî görsel diskte yok: "
+                    + ("; ".join(_GERCEK_NOT) if _GERCEK_NOT else "assets/tarihi_gorsel/ içinde kayıt yok"))
+def test_gercek_tarihi_gorsel_kanit(tmp_path):
+    """Gerçek görsel eklendiğinde kendiliğinden devreye girer: lisans + SHA, maske, dolgu, seviye, hareket, render
+    süreleri ve kanıt panoları. Panolar ONBELLEK/faz53a_gercek_kanit/<gorsel_id>/ altına yazılır (depo kirlenmez)."""
+    from motor.testler.gorsel25d_kanit import kanit_uret
+    for k in _GERCEK:
+        hedef = ayar.ONBELLEK / "faz53a_gercek_kanit" / k["gorsel_id"]
+        o = kanit_uret(k["gorsel_id"], hedef, sure=2.0)
+        assert o["kalite"]["seviye"] in ("tam", "sinirli", "kenburns")
+        assert o["render"]["uretilen_kare"] == o["render"]["kare"]
+        if o["kalite"]["seviye"] != "kenburns":
+            assert o["kalite"]["kayma_px"] <= o["kalite"]["kayma_siniri_px"] + 0.5
+        for ad in ("1_maske_dolgu.jpg", "3_hareket.jpg", "4_seviyeler.jpg", "ozet.json"):
+            assert (hedef / ad).is_file(), ad
+        print(f"GERÇEK GÖRSEL KANITI: {hedef}")

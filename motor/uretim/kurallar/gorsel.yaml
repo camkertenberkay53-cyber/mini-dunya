@@ -221,6 +221,9 @@ gorsel25d:
     grabcut_tur: 5
     kararlilik_tur: 8          # 5 ve 8 tur maskelerinin örtüşmesi = kararlılık
     parca_esik: 0.02           # en büyük parçanın bu oranından büyük bütün parçalar tutulur
+    # A2 mikro düzeltme: eşiğin altındaki küçük parçalar (burç dişi, ince çıkıntı) yalnızca ana gövdeye YAKIN, çevresine
+    # göre KONTRASTLI ve rengi gövdeye benziyorsa eklenir (uzak/soluk/zemin renkli gürültü eklenmez). acik:false → A2.
+    yakin_parca: {acik: true, en_kucuk_oran: 0.0005, mesafe_kat: 3.0, mesafe_kutu_orani: 0.03, kontrast: 20}
     filtre: {r: 8, eps: 0.001} # yönlendirmeli filtre (NumPy + cv2.boxFilter)
     dolgu_pay_px: 4            # yumuşak kenarın ötesine dolgu payı (maske ölçeğinde)
     seviye:
@@ -230,5 +233,8 @@ gorsel25d:
     zoom_tolerans: 1.1         # kaynak pikselin en çok %10 büyütülmesine izin verilir; aşılırsa zoom kısılır
     nefes_portre_genlik: 0.4   # nefes yalnızca ozne_bilgisi.tur == insan_portre (özgün genliğin oranı)
     tuval_en_boy_esigi: 1.0    # en/boy bundan küçük görsel yatay çıktıda 16:9 tuvale konur (kırpılmaz)
+    # A2 mikro düzeltme: YALNIZCA tuval modunda (dikey görsel → 16:9) zoom ≤ 1,06 ve push-in ağırlıkla hafif tilt;
+    # yatay görseller, Shorts ve diğer 2.5D sahnelerin hareketi değişmez. acik:false → A2 davranışı.
+    tuval_hareket: {acik: true, zoom_tavani: 1.06, pay: 0.8}
   # Dolguya düşük opaklıklı, yerel standart sapmaya uyarlı ince gürültü/tarama dokusu (yama kopyalama YOK).
   doku_doldurma: {acik: true, opaklik: 0.5, pencere_px: 61, tarama_x: 1.2, tarama_y: 0.5}

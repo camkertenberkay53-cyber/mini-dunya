@@ -80,13 +80,56 @@ def tuval(img: np.ndarray, W: int, H: int, esik: float) -> tuple[np.ndarray, int
 
 # ------------------------------------------------------------------ maske
 
-def _parcalar(on: np.ndarray, esik: float) -> tuple[np.ndarray, int]:
+def _parcalar(on: np.ndarray, esik: float, goruntu: np.ndarray | None = None, yakin: dict | None = None) -> tuple[np.ndarray, int]:
+    """En büyüğün 'esik' oranından büyük parçalar tutulur. 'yakin' açıksa (A2 mikro düzeltme) eşiğin altındaki küçük
+    parçalar yakin_parca_sec kurallarıyla ayrıca değerlendirilir; dönen parça sayısı yalnız eşiği geçen ana parçalardır."""
     n, lab, st, _ = cv2.connectedComponentsWithStats(on.astype(np.uint8))
     if n <= 1:
         return np.zeros_like(on, np.float32), 0
     alan = st[1:, cv2.CC_STAT_AREA]
     tut = [i + 1 for i, a in enumerate(alan) if a >= esik * alan.max()]
+    if yakin and yakin.get("acik") and goruntu is not None:
+        ek = yakin_parca_sec(lab, st, tut, goruntu, yakin)
+        return np.isin(lab, tut + ek).astype(np.float32), len(tut)
     return np.isin(lab, tut).astype(np.float32), len(tut)
+
+
+def yakin_parca_sec(lab: np.ndarray, st: np.ndarray, ana: list[int], goruntu: np.ndarray, y: dict) -> list[int]:
+    """Eşiğin altındaki küçük parçalardan özneye eklenecekler. Bir parça ancak HEPSİ sağlanırsa eklenir:
+      - alan >= en_kucuk_oran × en büyük parça (tuz-biber gürültüsü dışarıda)
+      - ana parçalara uzaklık <= max(mesafe_kat × √alan, mesafe_kutu_orani × ana kutu köşegeni) (uzak parça dışarıda)
+      - çevresine göre kontrast >= kontrast (gri düzey; zemine karışan leke dışarıda)
+      - rengi ana gövdeye çevresinden daha yakın (yapısal bütünlük; gövdeyle aynı malzeme)
+    Maske dış sınırına dokunmaz: yalnızca bütün parçalar eklenir ya da eklenmez."""
+    if not ana:
+        return []
+    alan = st[1:, cv2.CC_STAT_AREA]
+    amax = alan.max()
+    ana_m = np.isin(lab, ana)
+    uzak = cv2.distanceTransform((~ana_m).astype(np.uint8), cv2.DIST_L2, 3)
+    ys, xs = np.nonzero(ana_m)
+    kosegen = float(np.hypot(xs.max() - xs.min(), ys.max() - ys.min()))
+    lab_ = cv2.cvtColor(goruntu, cv2.COLOR_BGR2LAB).astype(np.float32)
+    gri = lab_[..., 0]
+    ana_renk = lab_[ana_m].mean(0)
+    cekirdek = np.ones((5, 5), np.uint8)
+    secilen = []
+    for i in range(1, len(alan) + 1):
+        if i in ana or alan[i - 1] < float(y.get("en_kucuk_oran", 0.0005)) * amax:
+            continue
+        m = lab == i
+        if float(uzak[m].min()) > max(float(y.get("mesafe_kat", 3.0)) * math.sqrt(alan[i - 1]), float(y.get("mesafe_kutu_orani", 0.03)) * kosegen):
+            continue
+        halka = (cv2.dilate(m.astype(np.uint8), cekirdek, iterations=2) > 0) & ~m & ~ana_m
+        if not halka.any():
+            continue
+        if abs(float(gri[m].mean()) - float(gri[halka].mean())) < float(y.get("kontrast", 20)):
+            continue
+        renk = lab_[m].mean(0)
+        if np.linalg.norm(renk - ana_renk) >= np.linalg.norm(renk - lab_[halka].mean(0)):
+            continue
+        secilen.append(i)
+    return secilen
 
 
 def _bolge(kutu, iw, ih, pay):
@@ -115,11 +158,12 @@ def maske(img: np.ndarray, kutu: list[float], a: dict | None = None) -> tuple[np
     bg, fg = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
     t1, t2 = int(a.get("grabcut_tur", 5)), int(a.get("kararlilik_tur", 8))
     cv2.grabCut(kc, m, r, bg, fg, t1, cv2.GC_INIT_WITH_RECT)
-    on5, parca = _parcalar((m == cv2.GC_FGD) | (m == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)))
+    yk = a.get("yakin_parca")
+    on5, parca = _parcalar((m == cv2.GC_FGD) | (m == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)), kc, yk)
     m8 = m.copy()
     if t2 > t1:
         cv2.grabCut(kc, m8, r, bg.copy(), fg.copy(), t2 - t1, cv2.GC_EVAL)
-    on8, _ = _parcalar((m8 == cv2.GC_FGD) | (m8 == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)))
+    on8, _ = _parcalar((m8 == cv2.GC_FGD) | (m8 == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)), kc, yk)
     b5, b8 = on5 > 0.5, on8 > 0.5
     kararlilik = float((b5 & b8).sum() / max(1, (b5 | b8).sum()))
     up = cv2.resize(on5, (rw, rh), interpolation=cv2.INTER_LINEAR)
@@ -225,6 +269,32 @@ def hareket(ad_ya_da_dict, kaynak: tuple[int, int], W: int, H: int, guc: float, 
     return {"bas": bas, "son": son, "ease": "inout"}, {"zoom_tavani": round(tavan, 3), "zoom_kisma": round(oran, 3)}
 
 
+def tuval_hareketi(kam: dict, tavan: float = 1.06, pay: float = 0.8) -> dict:
+    """Yalnızca dikey görsel 16:9 tuvaldeyken (A2 mikro düzeltme): zoom en çok 'tavan'; push-in / zoom-in hareketi
+    ağırlıkla hafif dikey kaydırmaya (tilt, figürün başına doğru) dönüşür, pull/zoom-out tersi. Eğri ease in-out kalır.
+    cy, _matris'in görsel sınırına kırpmayacağı aralıkta tutulur (pay < 1)."""
+    bas, son = list(kam["bas"]), list(kam["son"])
+    zb, zs = bas[2], son[2]
+    zlo, zhi = min(zb, zs), max(zb, zs)
+    if zhi - zlo > 0.01:
+        bas[2] = 1.0 + (zb - zlo) / (zhi - zlo) * (tavan - 1.0)
+        son[2] = 1.0 + (zs - zlo) / (zhi - zlo) * (tavan - 1.0)
+    else:
+        bas[2], son[2] = min(zb, tavan), min(zs, tavan)
+
+    def marj(z):   # merkezin dikeyde gidebileceği yarı aralık (16:9 tuval, _matris'teki 1,04 kaplama payı)
+        return max(0.0, 0.5 - 1.0 / (2 * 1.04 * z)) * pay
+    if zhi - zlo > 0.01:
+        yon = 1.0 if zs > zb else -1.0   # yakınlaşırken yukarı (baş), uzaklaşırken aşağı
+        bas[0] = son[0] = 0.5
+        bas[1] = 0.5 + yon * marj(bas[2])
+        son[1] = 0.5 - yon * marj(son[2])
+    else:
+        for k in (bas, son):
+            k[1] = float(np.clip(k[1], 0.5 - marj(k[2]), 0.5 + marj(k[2])))
+    return {"bas": bas, "son": son, "ease": "inout"}
+
+
 def _sinir_noktalari(alfa: np.ndarray, n: int = 240) -> np.ndarray:
     b = (alfa > 0.5).astype(np.uint8)
     cs, _ = cv2.findContours(b, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
@@ -266,18 +336,18 @@ def kayma_olc(img_shape, noktalar, D, kam: dict, odak, guc: float, par: float, i
     return en
 
 
-def izleme_coz(img_shape, noktalar, D, kam, odak, guc, par, ng, W, H, sinir_px: float) -> tuple[dict, float, float]:
-    """Arka plan oranları özgün (0.75 / 0.8); özne oranları arka + k·(0.45, 0.35). k ∈ [0, 1] sınırı sağlayan en büyük.
-    Zemin bükmesi bütçeyi aşıyorsa par da küçültülür. Dönüş: (izleme, par, ölçülen kayma)."""
+def izleme_coz(img_shape, noktalar, D, kam, odak, guc, par, ng, W, H, sinir_px: float, k_ust: float = 1.0) -> tuple[dict, float, float]:
+    """Arka plan oranları özgün (0.75 / 0.8); özne oranları arka + k·(0.45, 0.35). k ∈ [0, k_ust] sınırı sağlayan en
+    büyük. Zemin bükmesi bütçeyi aşıyorsa par da küçültülür. Dönüş: (izleme, par, ölçülen kayma)."""
     def iz(k):
         return {"arka_konum": 0.75, "arka_zoom": 0.8, "ozne_konum": 0.75 + 0.45 * k, "ozne_zoom": 0.8 + 0.35 * k, "ozne_sarsinti": 1.0}
     taban = kayma_olc(img_shape, noktalar, D, kam, odak, guc, par, iz(0.0), ng, W, H)
     while taban > 0.6 * sinir_px and par > 0.05 and D is not None:
         par *= 0.6
         taban = kayma_olc(img_shape, noktalar, D, kam, odak, guc, par, iz(0.0), ng, W, H)
-    lo, hi = 0.0, 1.0
-    if kayma_olc(img_shape, noktalar, D, kam, odak, guc, par, iz(1.0), ng, W, H) <= sinir_px:
-        lo = 1.0
+    lo, hi = 0.0, k_ust
+    if kayma_olc(img_shape, noktalar, D, kam, odak, guc, par, iz(k_ust), ng, W, H) <= sinir_px:
+        lo = k_ust
     else:
         for _ in range(12):
             m = (lo + hi) / 2
@@ -327,10 +397,24 @@ def hazirla(kaynak: Path, kayit: dict, g: dict, W: int, H: int, klasor: Path, to
     derin = kayit.get("derinlik_uygunlugu", "orta") != "dusuk"
     guc = float(g.get("guc", 1.0))
     kam, hk = hareket(g.get("hareket", "zoom_in"), kaynak_boyut, W, H, guc, ka)
-    rapor = {"surum": SURUM, "tuval": x0 >= 0, "kaynak_px": list(kaynak_boyut), "hareket": kam, **hk,
-             "zemin_derinlik": derin, "nefes": portre}
+    odak = g.get("odak")
     ek = {"gorsel": str(gorsel), "kamera": kam, "zemin_derinlik_aktif": derin,
           "nefes_aktif": portre, "nefes_genlik": float(ka.get("nefes_portre_genlik", 0.4))}
+    k_ust = 1.0
+    tv = ka.get("tuval_hareket", {})
+    if x0 >= 0 and tv.get("acik", True):
+        # A2 mikro düzeltme: dikey görsel 16:9 tuvalde — zoom ≤ tavan, push-in ağırlıkla tilt; güç hareketin içine
+        # gömülür (sahne_render'a guc=1, odak yok) ki zoom tavanı aşılmasın. Özne katmanı kameradan fazla zoom yapmaz.
+        tavan = min(float(tv.get("zoom_tavani", 1.06)), max(1.0, hk["zoom_tavani"]))
+        gucl = {"bas": [0.5 + (v - 0.5) * guc if i < 2 else 1 + (v - 1) * guc for i, v in enumerate(kam["bas"])],
+                "son": [0.5 + (v - 0.5) * guc if i < 2 else 1 + (v - 1) * guc for i, v in enumerate(kam["son"])], "ease": "inout"}
+        kam = tuval_hareketi(gucl, tavan, float(tv.get("pay", 0.8)))
+        guc, odak = 1.0, None
+        ek.update({"kamera": kam, "guc": 1.0, "odak": None})
+        k_ust = (1.0 - 0.8) / 0.35   # özne zoom oranı ≤ 1 (kameranın zoomunu aşmaz)
+        hk = dict(hk, tuval_zoom_tavani=tavan)
+    rapor = {"surum": SURUM, "tuval": x0 >= 0, "kaynak_px": list(kaynak_boyut), "hareket": kam, **hk,
+             "zemin_derinlik": derin, "nefes": portre}
     t1 = time.time()
     if not kutu:
         sev, puan, alfa = "kenburns", {"neden": "özne kutusu yok"}, None
@@ -338,7 +422,7 @@ def hazirla(kaynak: Path, kayit: dict, g: dict, W: int, H: int, klasor: Path, to
         alfa, puan = maske(img, kutu, ka)
         sev = seviye(puan, ka)
     t2 = time.time()
-    rapor.update({"seviye": sev, "puan": puan, "maske_sn": round(t2 - t1, 2)})
+    rapor.update({"seviye": sev, "puan": puan, "maske_sn": round(t2 - t1, 2), "kutu": kutu})
     if sev == "kenburns":
         ek.update({"parallax": 0.0})
         rapor.update({"dolgu_sn": 0.0, "kayma_px": 0.0, "hazirlik_sn": round(time.time() - t0, 2)})
@@ -351,7 +435,7 @@ def hazirla(kaynak: Path, kayit: dict, g: dict, W: int, H: int, klasor: Path, to
     D = derinlik.harita(arka, None, float(g.get("ufuk", 0.38)))[0] if derin else None
     ng = float(ek["nefes_genlik"]) if portre else 0.0
     sinir_px = float(ka.get("kayma_px", {}).get(sev, 20 if sev == "tam" else 15))
-    izleme, par, olcu = izleme_coz(img.shape, _sinir_noktalari(alfa), D, kam, g.get("odak"), guc, 1.0, ng, W, H, sinir_px)
+    izleme, par, olcu = izleme_coz(img.shape, _sinir_noktalari(alfa), D, kam, odak, guc, 1.0, ng, W, H, sinir_px, k_ust)
     ek.update({"ozne_maskesi": str(mpath), "arka_plan_dolgu": str(apath), "izleme_oranlari": izleme, "parallax": round(par, 4)})
     rapor.update({"dolgu": db, "dolgu_sn": round(t3 - t2, 2), "kayma_px": round(olcu, 1), "kayma_siniri_px": sinir_px,
                   "izleme": izleme, "zemin_par": round(par, 4), "hazirlik_sn": round(time.time() - t0, 2)})
