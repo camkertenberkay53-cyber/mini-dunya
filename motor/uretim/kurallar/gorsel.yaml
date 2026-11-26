@@ -223,18 +223,25 @@ gorsel25d:
     parca_esik: 0.02           # en büyük parçanın bu oranından büyük bütün parçalar tutulur
     # A2 mikro düzeltme: eşiğin altındaki küçük parçalar (burç dişi, ince çıkıntı) yalnızca ana gövdeye YAKIN, çevresine
     # göre KONTRASTLI ve rengi gövdeye benziyorsa eklenir (uzak/soluk/zemin renkli gürültü eklenmez). acik:false → A2.
-    yakin_parca: {acik: true, en_kucuk_oran: 0.0005, mesafe_kat: 3.0, mesafe_kutu_orani: 0.03, kontrast: 20}
+    # Gerçek görsel kalibrasyonu: aday özne kutusunun İÇİNDE olmalı ve gövdeye ya da eklenmiş bir parçaya ≤ yakinlik_px
+    # (maske ölçeğinde) zincirle bağlanmalı; kutu dışı / bağlanmayan süsler (arka plan köşe süsü) eklenmez.
+    yakin_parca: {acik: true, en_kucuk_oran: 0.0005, yakinlik_px: 15, kontrast: 20}
     filtre: {r: 8, eps: 0.001} # yönlendirmeli filtre (NumPy + cv2.boxFilter)
     dolgu_pay_px: 4            # yumuşak kenarın ötesine dolgu payı (maske ölçeğinde)
     seviye:
       tam:     {kararlilik: 0.95, kenar_orani: 2.0, doluluk: [0.15, 0.90], parca: 6}
       sinirli: {kararlilik: 0.85, kenar_orani: 1.3, doluluk: [0.08, 0.95]}
+      # doluluk ≥ 0,85 VE güvenilirlik düşük (kenar_orani < 3,0 ya da kararlilik < 0,95) → kenburns
+      kenburns: {doluluk: 0.85, kenar_orani: 3.0, kararlilik: 0.95}
+    kenburns_turleri: [minyatur, harita]   # figür–zemin ayrımı olmayan görsel türleri: maske hesaplanmaz
     kayma_px: {tam: 20, sinirli: 15}
     zoom_tolerans: 1.1         # kaynak pikselin en çok %10 büyütülmesine izin verilir; aşılırsa zoom kısılır
     nefes_portre_genlik: 0.4   # nefes yalnızca ozne_bilgisi.tur == insan_portre (özgün genliğin oranı)
     tuval_en_boy_esigi: 1.0    # en/boy bundan küçük görsel yatay çıktıda 16:9 tuvale konur (kırpılmaz)
     # A2 mikro düzeltme: YALNIZCA tuval modunda (dikey görsel → 16:9) zoom ≤ 1,06 ve push-in ağırlıkla hafif tilt;
     # yatay görseller, Shorts ve diğer 2.5D sahnelerin hareketi değişmez. acik:false → A2 davranışı.
-    tuval_hareket: {acik: true, zoom_tavani: 1.06, pay: 0.8}
+    # olcek_kat: tuval, hedef çıktı yüksekliğinin bu katında kurulur (zoom ≤ 1,06 olduğundan kaynak yüksekliğin tamamı
+    # gereksiz). 0 → A2 mikro davranışı (kaynak çözünürlükte tuval).
+    tuval_hareket: {acik: true, zoom_tavani: 1.06, pay: 0.8, olcek_kat: 1.1}
   # Dolguya düşük opaklıklı, yerel standart sapmaya uyarlı ince gürültü/tarama dokusu (yama kopyalama YOK).
   doku_doldurma: {acik: true, opaklik: 0.5, pencere_px: 61, tarama_x: 1.2, tarama_y: 0.5}

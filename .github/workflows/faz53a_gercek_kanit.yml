@@ -14,6 +14,8 @@ on:
       - "motor/testler/gorsel25d_kanit.py"
       - "deneyler/faz53a/gercek/sorgular.json"
       - "deneyler/faz53a/a2_mikro/olc_kanit.py"
+      - "motor/testler/sinema_regresyon.py"
+      - "motor/uretim/kurallar/gorsel.yaml"
       - ".github/workflows/faz53a_gercek_kanit.yml"
 
 permissions:
@@ -54,6 +56,7 @@ jobs:
       - name: 3) Kanıt üretimi
         run: |
           python3 deneyler/faz53a/a2_mikro/olc_kanit.py gercek hepsi deneyler/faz53a/gercek 2>&1 | tee cikti/kanit.log
+          python3 deneyler/faz53a/a2_mikro/olc_kanit.py tuval_karsilastir fatih_portre_bellini_1480 deneyler/faz53a/gercek/tuval_karsilastirma 2>&1 | tee cikti/tuval_karsilastirma.log
           cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
           mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
           find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60

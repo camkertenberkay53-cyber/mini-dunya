@@ -64,7 +64,9 @@ def kanit_uret(gorsel_id: str, cikti: Path, W: int = 1920, H: int = 1080, sure: 
     img = cv2.imread(ek["gorsel"])
     ih, iw = img.shape[:2]
     kutu = rap.get("kutu")
-    ozet = {"gorsel_id": gorsel_id, "lisans_turu": kayit["lisans_turu"], "sha256": kayit["sha256"], "cozunurluk_cikti": [W, H],
+    ozet = {"gorsel_id": gorsel_id, "lisans_turu": kayit["lisans_turu"], "lisans_kisa_adi": kayit.get("lisans_kisa_adi"),
+            "atif": kayit.get("atif"), "onay": kayit.get("onay"), "insan_onayi": tg.insan_onayli(kayit),
+            "sha256": kayit["sha256"], "cozunurluk_cikti": [W, H],
             "kalite": rap, "hazirlik_sn": round(hazirlik, 2)}
     parcalar = [("1 kaynak", img)]
     if kutu:

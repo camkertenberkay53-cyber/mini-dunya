@@ -91,6 +91,9 @@ def test_topla_indirir_dogrular_ve_kapidan_gecer(sahte_ag, tmp_path, monkeypatch
     assert p.read_bytes() == b and k["sha256"] == hashlib.sha256(b).hexdigest()
     assert k["cozunurluk"] == [2100, 2800] and k["lisans_turu"] == "PD-Old" and k["lisans_dogrulandi"] is True
     assert k["lisans_commons"]["LicenseShortName"] == "Public domain" and "atif" not in k
+    assert k["lisans_kisa_adi"] == "Public domain"
+    assert k["onay"]["kaynak_edinimi"] == "otomatik_toplayici" and k["onay"]["insan_onayi"] is False and "onaylayan" not in k["onay"]
+    assert tg.insan_onayli(k) is False
     kutu = k["ozne_bilgisi"]["kutu"]
     assert 0 <= kutu[0] < kutu[2] <= 1 and 0 <= kutu[1] < kutu[3] <= 1 and k["ozne_bilgisi"]["tur"] == "insan_portre"
     j = json.loads((tmp_path / "t_portre.json").read_text())
@@ -105,6 +108,7 @@ def test_atifli_lisans_kapidan_atifla_gecer(sahte_ag, tmp_path, monkeypatch):
     sayfalar, dosyalar, _ = sahte_ag
     _ekle(sayfalar, dosyalar, "File:Kale gravur.jpg", 3000, 2000, lisans="CC BY-SA 4.0", kod="cc-by-sa-4.0", atif="true", artist="Foto Çeken")
     k = ct.topla({"gorsel_id": "t_kale", "sorgu": "Kale gravur", "tur": "mimari"}, tmp_path)
+    assert k["lisans_kisa_adi"] == "CC BY-SA 4.0"
     assert k["lisans_turu"] == "CC-BY-SA-4.0" and k["atif"] == {"yazar": "Foto Çeken", "lisans": "CC BY-SA 4.0",
                                                                 "kaynak": "https://commons.invalid/wiki/File:Kale gravur.jpg"}
     monkeypatch.setattr(tg, "YAN_DOSYA_KOK", tmp_path)
@@ -172,3 +176,13 @@ def test_dosya_basligi_once_sonra_arama(sahte_ag, tmp_path):
     with pytest.raises(ct.ToplayiciHatasi):
         ct.topla({"gorsel_id": "t_c", "dosya": "File:Kucuk.jpg", "sorgu": "Kucuk", "yedek_sorgular": []}, tmp_path)
     assert [("titles" in i, i.get("gsrsearch")) for i in istekler[1:]] == [(True, None), (False, "Kucuk")]
+
+
+def test_otomatik_kayit_insan_onayi_gibi_gosterilmez_ve_kapi_kurali():
+    g = {"lisans_turu": "PD-Old", "lisans_dogrulandi": True, "yerel_yol": "/yok.jpg"}
+    tam = lambda onay: [h for h in tg.denetle(dict(g, onay=onay), dosya_kontrol=False) if "doğrulanmamış" in h]  # noqa: E731
+    assert tam({"kaynak_edinimi": "otomatik_toplayici", "insan_onayi": False, "tarih": "2026-11-26"}) == []
+    assert tam({"kaynak_edinimi": "otomatik_toplayici", "tarih": "2026-11-26"})               # insan_onayi açıkça yazılmalı
+    assert tam({"kaynak_edinimi": "otomatik_toplayici", "insan_onayi": True, "tarih": "x"})  # otomatik kayıt 'insan' diyemez
+    assert tam({"onaylayan": "kullanici", "tarih": "2026-11-26"}) == []
+    assert tg.insan_onayli({"onay": {"onaylayan": "kullanici", "tarih": "x"}}) is True

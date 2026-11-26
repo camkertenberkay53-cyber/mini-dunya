@@ -16,11 +16,108 @@ from motor.uretim import render, veri  # noqa: E402
 from motor.varlik import tarihi_gorsel as tg  # noqa: E402
 
 if sys.argv[1] == "gercek":
+    import subprocess
     gecen, notlar = gercek_gorseller()
     print("\n".join(notlar) or "kayıt notu yok")
-    for k in gecen:
-        if sys.argv[2] in ("hepsi", k["gorsel_id"]):
-            print(json.dumps(kanit_uret(k["gorsel_id"], Path(sys.argv[3]) / k["gorsel_id"]), ensure_ascii=False, default=str)[:400])
+    if sys.argv[2] == "hepsi":   # her görsel AYRI süreçte: süre ve tepe bellek birbirine karışmasın
+        for k in gecen:
+            subprocess.run([sys.executable, __file__, "gercek", k["gorsel_id"], sys.argv[3]], check=True)
+    else:
+        print(json.dumps(kanit_uret(sys.argv[2], Path(sys.argv[3]) / sys.argv[2]), ensure_ascii=False, default=str)[:400])
+    sys.exit(0)
+
+if sys.argv[1] == "_tuval_tek":   # tek varyant, ayrı süreç: <gorsel_id> <olcek_kat> <cikti>
+    import resource
+    gid, kat, C = sys.argv[2], float(sys.argv[3]), Path(sys.argv[4])
+    C.mkdir(parents=True, exist_ok=True)
+    gercek_kural = veri.kural
+
+    def kural(ad):
+        x = gercek_kural(ad)
+        if ad == "gorsel":
+            k = dict(x["gorsel25d"]["kalite"])
+            k["tuval_hareket"] = dict(k["tuval_hareket"], olcek_kat=kat)
+            x = dict(x, gorsel25d=dict(x["gorsel25d"], kalite=k))
+        return x
+    veri.kural = kural
+    render.KOK = C / "uretim"
+    c = {"id": "T", "cumleler": ["C1"], "sure_sn": 3.0, "tur": "gorsel25d", "metin": "x", "gorsel25d": {"gorsel_id": gid, "hareket": "push_in"}}
+    plan = {"surum": 1, "konu": "faz53a-tuval", "donem": "osmanli-15yy", "donemler": ["osmanli-15yy"], "fps": 30, "cozunurluk": [1920, 1080],
+            "tohum": 1, "cekimler": [c], "eksikler": [], "ses": {"motor": "piper", "cizelge": [], "toplam_sn": 3.0}}
+    (C / "plan.json").write_text(json.dumps(plan))
+    r = render.render(str(C / "plan.json"), "T", onbellek=False)
+    for t in (0.03, 1.5, 2.9):
+        kare(r["video"], t, C / f"kare_{t:.2f}.png")
+    o = r["olculen"]
+    (C / "olcum.json").write_text(json.dumps({"olcek_kat": kat, "seviye": r["kalite"]["seviye"], "tuval_boyut": r["kalite"].get("tuval_boyut"),
+                                              "hazirlik_sn": o["hazirlik_sn"], "render_sn": o["render_sn"], "sinema_sn": o["sinema_sn"],
+                                              "renk_kodlama_sn": o["renk_kodlama_sn"], "kare_basina_sn_acilis_dahil": o["kare_basina_sn_acilis_dahil"],
+                                              "tepe_bellek_gb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6, 3),
+                                              "kayma_px": r["kalite"].get("kayma_px")}, ensure_ascii=False))
+    sys.exit(0)
+
+if sys.argv[1] == "tuval_karsilastir":   # <gorsel_id> <cikti>: eski (kaynak çözünürlük) / 1,1 / 1,25 aynı sahne
+    import subprocess
+    gid, C = sys.argv[2], Path(sys.argv[3])
+    C.mkdir(parents=True, exist_ok=True)
+    varyant = {"eski": 0.0, "1.1": 1.1, "1.25": 1.25}
+    olc = {}
+    for ad, kat in varyant.items():
+        subprocess.run([sys.executable, __file__, "_tuval_tek", gid, str(kat), str(C / ad)], check=True)
+        olc[ad] = json.loads((C / ad / "olcum.json").read_text())
+
+    def ssim(a, b):
+        a, b = [cv2.cvtColor(x, cv2.COLOR_BGR2GRAY).astype(np.float64) for x in (a, b)]
+        c1, c2 = (0.01 * 255) ** 2, (0.03 * 255) ** 2
+        mu_a, mu_b = cv2.GaussianBlur(a, (11, 11), 1.5), cv2.GaussianBlur(b, (11, 11), 1.5)
+        saa = cv2.GaussianBlur(a * a, (11, 11), 1.5) - mu_a ** 2
+        sbb = cv2.GaussianBlur(b * b, (11, 11), 1.5) - mu_b ** 2
+        sab = cv2.GaussianBlur(a * b, (11, 11), 1.5) - mu_a * mu_b
+        return float((((2 * mu_a * mu_b + c1) * (2 * sab + c2)) / ((mu_a ** 2 + mu_b ** 2 + c1) * (saa + sbb + c2))).mean())
+
+    def keskinlik(a):
+        return float(cv2.Laplacian(cv2.cvtColor(a, cv2.COLOR_BGR2GRAY), cv2.CV_64F).var())
+    # bölgeler (1920x1080 çıktı karesinde, dikey portrenin tuvalde ortalandığı düzen için)
+    bolge = {"sarik_bas": (0.38, 0.06, 0.62, 0.42), "yuz": (0.40, 0.22, 0.56, 0.55), "omuz": (0.30, 0.55, 0.70, 0.95),
+             "yan_dolgu": (0.02, 0.20, 0.22, 0.80)}
+    sonuc = {"olcum": olc, "karsilastirma": {}}
+    for ad in ("1.1", "1.25"):
+        kk = {}
+        for t in ("0.03", "1.50", "2.90"):
+            e, y = cv2.imread(str(C / "eski" / f"kare_{t}.png")), cv2.imread(str(C / ad / f"kare_{t}.png"))
+            H_, W_ = e.shape[:2]
+            kb = {"tam_kare": {"ssim": round(ssim(e, y), 4), "psnr": round(float(cv2.PSNR(e, y)), 2)}}
+            for b, (x0, y0, x1, y1) in bolge.items():
+                sl = (slice(int(y0 * H_), int(y1 * H_)), slice(int(x0 * W_), int(x1 * W_)))
+                ey, yy_ = e[sl], y[sl]
+                # ½ çözünürlük: eski yoldaki örtüşme (aliasing) desenini eler, gerçek detay kaybını gösterir
+                ey2 = cv2.resize(ey, (ey.shape[1] // 2, ey.shape[0] // 2), interpolation=cv2.INTER_AREA)
+                yy2 = cv2.resize(yy_, (yy_.shape[1] // 2, yy_.shape[0] // 2), interpolation=cv2.INTER_AREA)
+                kb[b] = {"ssim": round(ssim(ey, yy_), 4), "keskinlik_orani": round(keskinlik(yy_) / max(1e-6, keskinlik(ey)), 3),
+                         "ssim_yarim": round(ssim(ey2, yy2), 4), "keskinlik_orani_yarim": round(keskinlik(yy2) / max(1e-6, keskinlik(ey2)), 3)}
+            kk[t] = kb
+        sonuc["karsilastirma"][ad] = kk
+    # kalite kapısı (½ çözünürlükte): yüz/sarık/omuz SSIM >= 0,97 ve keskinlik oranı >= 0,90, her karede.
+    # Tam çözünürlük değerleri de ozet.json'da (eski yolun örtüşmesi orada fark olarak görünür; kapı değildir).
+    for ad in ("1.1", "1.25"):
+        kk = sonuc["karsilastirma"][ad]
+        en_kotu = {b: {"ssim_yarim": min(kk[t][b]["ssim_yarim"] for t in kk), "keskinlik_yarim": min(kk[t][b]["keskinlik_orani_yarim"] for t in kk),
+                       "ssim_tam": min(kk[t][b]["ssim"] for t in kk), "keskinlik_tam": min(kk[t][b]["keskinlik_orani"] for t in kk)} for b in bolge}
+        sonuc.setdefault("kapi", {})[ad] = {"en_kotu": en_kotu, "gecti": all(v["ssim_yarim"] >= 0.97 and v["keskinlik_yarim"] >= 0.90
+                                                                              for b, v in en_kotu.items() if b != "yan_dolgu")}
+    (C / "ozet.json").write_text(json.dumps(sonuc, ensure_ascii=False, indent=1))
+    # yan yana panolar: tam kare ve 2x yakın kırpımlar (t = 1,5 sn)
+    for t in ("0.03", "2.90"):
+        pano([(f"eski (kaynak çöz.) t={t}", cv2.imread(str(C / "eski" / f"kare_{t}.png"))),
+              (f"yeni 1,1x t={t}", cv2.imread(str(C / "1.1" / f"kare_{t}.png")))], f"{gid}: tuval eski / 1,1x (1920x1080)", C / f"tam_kare_{t}.jpg", h=420)
+    for b, (x0, y0, x1, y1) in bolge.items():
+        parcalar = []
+        for ad in ("eski", "1.1", "1.25"):
+            k_ = cv2.imread(str(C / ad / "kare_1.50.png"))
+            H_, W_ = k_.shape[:2]
+            parcalar.append((ad, k_[int(y0 * H_):int(y1 * H_), int(x0 * W_):int(x1 * W_)]))
+        pano(parcalar, f"{gid}: {b} yakın (t=1,5 sn, 1920x1080 kareden)", C / f"yakin_{b}.jpg", h=420)
+    print(json.dumps({"olcum": olc, "kapi": sonuc["kapi"]}, ensure_ascii=False))
     sys.exit(0)
 
 G, C = Path(sys.argv[1]), Path(sys.argv[2])

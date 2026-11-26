@@ -222,6 +222,77 @@ def test_kale_gurultu_parcalari_eklenmez():
     assert _olc(alfa, gt_y, cv2.resize(bos, (iw, ih), interpolation=cv2.INTER_AREA))[0] >= 0.99
 
 
+# ------------------------------------------------------------------ gerçek görsel kalibrasyonu
+
+def test_kenburns_kurali_doluluk_ve_guvenilirlik():
+    a = g25.ayarlar()["kalite"]
+    # Matrakçı ölçümü: doluluk 0,911, kenar 2,60 → kenburns (A2 mikroda 'sinirli' seçiliyordu)
+    assert g25.seviye({"kararlilik": 1.0, "kenar_orani": 2.60, "doluluk": 0.911, "parca": 1}, a) == "kenburns"
+    # tam kadraj portre: doluluk yüksek ama maske güvenilir → elenmez
+    assert g25.seviye({"kararlilik": 0.998, "kenar_orani": 4.59, "doluluk": 0.88, "parca": 1}, a) == "tam"
+    assert g25.seviye({"kararlilik": 0.998, "kenar_orani": 4.59, "doluluk": 0.93, "parca": 1}, a) == "sinirli"
+    assert g25.seviye({"kararlilik": 0.90, "kenar_orani": 5.0, "doluluk": 0.86, "parca": 1}, a) == "kenburns"
+    # Bellini ölçümü (doluluk 0,677) ve sentetik kale etkilenmez
+    assert g25.seviye({"kararlilik": 0.998, "kenar_orani": 4.59, "doluluk": 0.677, "parca": 1}, a) == "tam"
+
+
+def test_minyatur_ve_harita_turu_kenburns(tmp_path):
+    img, *_ = kale()
+    p = tmp_path / "m.png"
+    cv2.imwrite(str(p), img)
+    for tur in ("minyatur", "harita"):
+        ek, rap = g25.hazirla(p, _kayit(tmp_path, p, gorsel_turu=tur), {"hareket": "push_in"}, 1920, 1080, tmp_path, 1)
+        assert rap["seviye"] == "kenburns" and "gorsel_turu" in rap["puan"]["neden"] and "ozne_maskesi" not in ek
+    ek, rap = g25.hazirla(p, _kayit(tmp_path, p, gorsel_turu="gravur"), {"hareket": "push_in"}, 1920, 1080, tmp_path, 1)
+    assert rap["seviye"] == "tam" and "ozne_maskesi" in ek          # aynı görsel, başka tür: maske ve parallax
+
+
+def test_yakin_parca_kutu_ici_ve_zincir():
+    img = np.full((300, 400, 3), (210, 200, 190), np.uint8)
+    on = np.zeros((300, 400), np.uint8)
+
+    def blok(x0, y0, x1, y1):
+        cv2.rectangle(img, (x0, y0), (x1, y1), (50, 55, 60), -1)
+        cv2.rectangle(on, (x0, y0), (x1, y1), 1, -1)
+    blok(100, 120, 300, 280)          # gövde
+    blok(150, 98, 160, 108)           # gövdeye 11 px → eklenir
+    blok(172, 98, 182, 108)           # gövdeye 11 px → eklenir
+    blok(194, 80, 204, 90)            # gövdeye 29 px ama eklenmiş dişe 11 px → zincirle eklenir
+    blok(250, 70, 260, 80)            # her şeye > 15 px → eklenmez
+    blok(320, 100, 330, 110)          # kutu dışında (gövdeye yakın olsa da) → eklenmez
+    n, lab, st, _ = cv2.connectedComponentsWithStats(on)
+    y = g25.ayarlar()["kalite"]["yakin_parca"]
+    ana = [int(np.argmax(st[1:, cv2.CC_STAT_AREA])) + 1]
+    kutu = (90, 60, 225, 230)        # x, y, w, h (maske ölçeği)
+    sec = g25.yakin_parca_sec(lab, st, ana, img, y, kutu)
+    assert sorted(lab[[103, 103, 85], [155, 177, 199]].tolist()) == sec
+    assert lab[75, 255] not in sec and lab[105, 325] not in sec
+
+
+def test_tuval_hedef_yuksekligin_1_1_kati(tmp_path):
+    H, W = 4200, 3100
+    img = np.full((H, W, 3), (190, 200, 205), np.uint8)
+    cv2.ellipse(img, (1550, 2600), (900, 1500), 0, 0, 360, (50, 55, 60), -1)
+    p = tmp_path / "buyuk.png"
+    cv2.imwrite(str(p), img)
+    k = _kayit(tmp_path, p, ozne_bilgisi={"kutu": [0.15, 0.08, 0.85, 1.0], "tur": "insan_portre"}, derinlik_uygunlugu="dusuk")
+    ek, rap = g25.hazirla(p, k, {"hareket": "push_in"}, 1920, 1080, tmp_path, 1)
+    assert rap["tuval"] and rap["tuval_boyut"][1] == round(1080 * 1.1)
+    assert abs(rap["tuval_boyut"][0] / rap["tuval_boyut"][1] - 16 / 9) < 0.01
+    t = cv2.imread(ek["gorsel"])
+    assert t.shape[0] == round(1080 * 1.1)
+    a = dict(g25.ayarlar())
+    a["kalite"] = dict(a["kalite"], tuval_hareket=dict(a["kalite"]["tuval_hareket"], olcek_kat=0))
+    import motor.uretim.gorsel25d as mod
+    eski = mod.ayarlar
+    mod.ayarlar = lambda: a
+    try:
+        ek0, rap0 = g25.hazirla(p, k, {"hareket": "push_in"}, 1920, 1080, tmp_path / "eski", 1) if (tmp_path / "eski").mkdir() is None else None
+    finally:
+        mod.ayarlar = eski
+    assert rap0["tuval_boyut"][1] > 1500                               # olcek_kat 0 → A2 mikro (kaynak çözünürlük)
+
+
 # ------------------------------------------------------------------ A2 mikro düzeltme: dikey görsel 16:9 tuval hareketi
 
 def _portre(tmp_path, H=2400, W=1500):

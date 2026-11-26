@@ -26,7 +26,7 @@ import numpy as np
 
 from motor.uretim import veri
 
-SURUM = "g25-kalite-1"
+SURUM = "g25-kalite-2"
 
 
 def ayarlar() -> dict:
@@ -70,7 +70,9 @@ def tuval(img: np.ndarray, W: int, H: int, esik: float) -> tuple[np.ndarray, int
     gen = cv2.resize(img, (cw, int(round(ih * s))), interpolation=cv2.INTER_AREA)
     y0 = (gen.shape[0] - ih) // 2
     gen = gen[y0:y0 + ih]
-    gen = cv2.GaussianBlur(gen, (0, 0), cw / 40)
+    # σ = cw/40 bulanıklık; 1/4 ölçekte hesaplanıp büyütülür (büyük tuvalde saniyeler yerine milisaniyeler)
+    kucuk = cv2.resize(gen, (max(1, cw // 4), max(1, ih // 4)), interpolation=cv2.INTER_AREA)
+    gen = cv2.resize(cv2.GaussianBlur(kucuk, (0, 0), cw / 160), (cw, ih), interpolation=cv2.INTER_CUBIC)
     gri = cv2.cvtColor(gen, cv2.COLOR_BGR2GRAY)[..., None].astype(np.float32)
     gen = (0.55 * (0.6 * gen.astype(np.float32) + 0.4 * gri)).astype(np.uint8)   # koyulaştır + doygunluğu azalt
     x0 = (cw - iw) // 2
@@ -80,46 +82,49 @@ def tuval(img: np.ndarray, W: int, H: int, esik: float) -> tuple[np.ndarray, int
 
 # ------------------------------------------------------------------ maske
 
-def _parcalar(on: np.ndarray, esik: float, goruntu: np.ndarray | None = None, yakin: dict | None = None) -> tuple[np.ndarray, int]:
-    """En büyüğün 'esik' oranından büyük parçalar tutulur. 'yakin' açıksa (A2 mikro düzeltme) eşiğin altındaki küçük
-    parçalar yakin_parca_sec kurallarıyla ayrıca değerlendirilir; dönen parça sayısı yalnız eşiği geçen ana parçalardır."""
+def _parcalar(on: np.ndarray, esik: float, goruntu: np.ndarray | None = None, yakin: dict | None = None,
+              kutu_px: tuple | None = None) -> tuple[np.ndarray, int]:
+    """En büyüğün 'esik' oranından büyük parçalar tutulur. 'yakin' açıksa eşiğin altındaki küçük parçalar
+    yakin_parca_sec kurallarıyla ayrıca değerlendirilir; dönen parça sayısı yalnız eşiği geçen ana parçalardır."""
     n, lab, st, _ = cv2.connectedComponentsWithStats(on.astype(np.uint8))
     if n <= 1:
         return np.zeros_like(on, np.float32), 0
     alan = st[1:, cv2.CC_STAT_AREA]
     tut = [i + 1 for i, a in enumerate(alan) if a >= esik * alan.max()]
     if yakin and yakin.get("acik") and goruntu is not None:
-        ek = yakin_parca_sec(lab, st, tut, goruntu, yakin)
+        ek = yakin_parca_sec(lab, st, tut, goruntu, yakin, kutu_px)
         return np.isin(lab, tut + ek).astype(np.float32), len(tut)
     return np.isin(lab, tut).astype(np.float32), len(tut)
 
 
-def yakin_parca_sec(lab: np.ndarray, st: np.ndarray, ana: list[int], goruntu: np.ndarray, y: dict) -> list[int]:
-    """Eşiğin altındaki küçük parçalardan özneye eklenecekler. Bir parça ancak HEPSİ sağlanırsa eklenir:
+def yakin_parca_sec(lab: np.ndarray, st: np.ndarray, ana: list[int], goruntu: np.ndarray, y: dict,
+                    kutu_px: tuple | None = None) -> list[int]:
+    """Eşiğin altındaki küçük parçalardan özneye eklenecekler. Aday ancak HEPSİ sağlanırsa eklenir:
       - alan >= en_kucuk_oran × en büyük parça (tuz-biber gürültüsü dışarıda)
-      - ana parçalara uzaklık <= max(mesafe_kat × √alan, mesafe_kutu_orani × ana kutu köşegeni) (uzak parça dışarıda)
-      - çevresine göre kontrast >= kontrast (gri düzey; zemine karışan leke dışarıda)
-      - rengi ana gövdeye çevresinden daha yakın (yapısal bütünlük; gövdeyle aynı malzeme)
-    Maske dış sınırına dokunmaz: yalnızca bütün parçalar eklenir ya da eklenmez."""
+      - sınır kutusu bütünüyle özne kutusunun içinde (kutu_px = x, y, w, h; verilmişse)
+      - çevresine göre kontrast >= kontrast (gri düzey) ve rengi ana gövdeye çevresinden daha yakın
+      - ana gövdeye YA DA zaten eklenmiş bir parçaya uzaklığı <= yakinlik_px (maske ölçeğinde; zincirleme)
+    Kutu dışındaki ya da gövdeye zincirle bağlanmayan süsler (ör. arka plan köşe süsleri) eklenmez.
+    Maske dış sınırına dokunmaz: parçalar ya bütün eklenir ya hiç."""
     if not ana:
         return []
     alan = st[1:, cv2.CC_STAT_AREA]
     amax = alan.max()
     ana_m = np.isin(lab, ana)
-    uzak = cv2.distanceTransform((~ana_m).astype(np.uint8), cv2.DIST_L2, 3)
-    ys, xs = np.nonzero(ana_m)
-    kosegen = float(np.hypot(xs.max() - xs.min(), ys.max() - ys.min()))
     lab_ = cv2.cvtColor(goruntu, cv2.COLOR_BGR2LAB).astype(np.float32)
     gri = lab_[..., 0]
     ana_renk = lab_[ana_m].mean(0)
     cekirdek = np.ones((5, 5), np.uint8)
-    secilen = []
+    adaylar = []
     for i in range(1, len(alan) + 1):
         if i in ana or alan[i - 1] < float(y.get("en_kucuk_oran", 0.0005)) * amax:
             continue
+        if kutu_px is not None:
+            x, yy, w, h = st[i, 0], st[i, 1], st[i, 2], st[i, 3]
+            kx, ky, kw, kh = kutu_px
+            if x < kx or yy < ky or x + w > kx + kw or yy + h > ky + kh:
+                continue
         m = lab == i
-        if float(uzak[m].min()) > max(float(y.get("mesafe_kat", 3.0)) * math.sqrt(alan[i - 1]), float(y.get("mesafe_kutu_orani", 0.03)) * kosegen):
-            continue
         halka = (cv2.dilate(m.astype(np.uint8), cekirdek, iterations=2) > 0) & ~m & ~ana_m
         if not halka.any():
             continue
@@ -128,8 +133,19 @@ def yakin_parca_sec(lab: np.ndarray, st: np.ndarray, ana: list[int], goruntu: np
         renk = lab_[m].mean(0)
         if np.linalg.norm(renk - ana_renk) >= np.linalg.norm(renk - lab_[halka].mean(0)):
             continue
-        secilen.append(i)
-    return secilen
+        adaylar.append(i)
+    sinir = float(y.get("yakinlik_px", 15))
+    secilen, secili_m = [], ana_m.copy()
+    while adaylar:
+        uzak = cv2.distanceTransform((~secili_m).astype(np.uint8), cv2.DIST_L2, 3)
+        yeni = [i for i in adaylar if float(uzak[lab == i].min()) <= sinir]
+        if not yeni:
+            break
+        for i in yeni:
+            adaylar.remove(i)
+            secilen.append(i)
+            secili_m |= lab == i
+    return sorted(secilen)
 
 
 def _bolge(kutu, iw, ih, pay):
@@ -160,11 +176,11 @@ def maske(img: np.ndarray, kutu: list[float], a: dict | None = None) -> tuple[np
     cv2.setRNGSeed(int(a.get("tohum", 0)))   # GrabCut OpenCV'nin genel RNG'sini kullanır: sonuç süreç geçmişine bağlı olmasın
     cv2.grabCut(kc, m, r, bg, fg, t1, cv2.GC_INIT_WITH_RECT)
     yk = a.get("yakin_parca")
-    on5, parca = _parcalar((m == cv2.GC_FGD) | (m == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)), kc, yk)
+    on5, parca = _parcalar((m == cv2.GC_FGD) | (m == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)), kc, yk, r)
     m8 = m.copy()
     if t2 > t1:
         cv2.grabCut(kc, m8, r, bg.copy(), fg.copy(), t2 - t1, cv2.GC_EVAL)
-    on8, _ = _parcalar((m8 == cv2.GC_FGD) | (m8 == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)), kc, yk)
+    on8, _ = _parcalar((m8 == cv2.GC_FGD) | (m8 == cv2.GC_PR_FGD), float(a.get("parca_esik", 0.02)), kc, yk, r)
     b5, b8 = on5 > 0.5, on8 > 0.5
     kararlilik = float((b5 & b8).sum() / max(1, (b5 | b8).sum()))
     up = cv2.resize(on5, (rw, rh), interpolation=cv2.INTER_LINEAR)
@@ -188,6 +204,12 @@ def maske(img: np.ndarray, kutu: list[float], a: dict | None = None) -> tuple[np
 def seviye(p: dict, a: dict | None = None) -> str:
     s = (a or ayarlar().get("kalite", {})).get("seviye", {})
     t, z = s.get("tam", {}), s.get("sinirli", {})
+    kb = s.get("kenburns", {})
+    # Maske görselin çoğunu kaplıyor VE güvenilirliği düşükse figür–zemin ayrımı yoktur (minyatür, harita, sayfa
+    # düzeni): parallax anlamsız. Tam kadraj portreler (yüksek doluluk ama güvenilir maske) bu kurala takılmaz.
+    if kb and p["doluluk"] >= kb.get("doluluk", 0.85) and (p["kenar_orani"] < kb.get("kenar_orani", 3.0)
+                                                          or p["kararlilik"] < kb.get("kararlilik", 0.95)):
+        return "kenburns"
     if (p["kararlilik"] >= t.get("kararlilik", 0.95) and p["kenar_orani"] >= t.get("kenar_orani", 2.0)
             and t.get("doluluk", [0.15, 0.9])[0] <= p["doluluk"] <= t.get("doluluk", [0.15, 0.9])[1]
             and 1 <= p["parca"] <= t.get("parca", 6)):
@@ -384,6 +406,14 @@ def hazirla(kaynak: Path, kayit: dict, g: dict, W: int, H: int, klasor: Path, to
         img = img[int(y0 * ih):int(y1 * ih), int(x0 * iw):int(x1 * iw)].copy()
         kaynak_boyut = (int(kaynak_boyut[0] * (x1 - x0)), int(kaynak_boyut[1] * (y1 - y0)))
     ih0, iw0 = img.shape[:2]
+    tv = ka.get("tuval_hareket", {})
+    olcek_kat = float(tv.get("olcek_kat", 0) or 0)
+    tuval_olur = W / H >= 1.2 and iw0 / ih0 < float(ka.get("tuval_en_boy_esigi", 1.0)) and tv.get("acik", True)
+    if tuval_olur and olcek_kat > 0 and ih0 > round(H * olcek_kat):
+        # Tuval modunda zoom <= 1,06: kaynak yüksekliğin tamamı gereksiz; tuval hedef yüksekliğin olcek_kat katında kurulur
+        h_ = int(round(H * olcek_kat))
+        img = cv2.resize(img, (max(1, int(round(iw0 * h_ / ih0))), h_), interpolation=cv2.INTER_AREA)
+        ih0, iw0 = img.shape[:2]
     img, x0 = tuval(img, W, H, float(ka.get("tuval_en_boy_esigi", 1.0)))
     ih, iw = img.shape[:2]
     if x0 >= 0:   # tuvalde özgün görselin kapladığı kaynak piksel genişliği (zoom tavanı için)
@@ -415,9 +445,13 @@ def hazirla(kaynak: Path, kayit: dict, g: dict, W: int, H: int, klasor: Path, to
         k_ust = (1.0 - 0.8) / 0.35   # özne zoom oranı ≤ 1 (kameranın zoomunu aşmaz)
         hk = dict(hk, tuval_zoom_tavani=tavan)
     rapor = {"surum": SURUM, "tuval": x0 >= 0, "kaynak_px": list(kaynak_boyut), "hareket": kam, **hk,
+             "tuval_boyut": [int(img.shape[1]), int(img.shape[0])] if x0 >= 0 else None,
              "zemin_derinlik": derin, "nefes": portre}
     t1 = time.time()
-    if not kutu:
+    tur_kb = str(kayit.get("gorsel_turu", "")) in set(ka.get("kenburns_turleri", []))
+    if tur_kb:   # minyatür / harita: figür–zemin ayrımı yok, maske hesaplanmaz
+        sev, puan, alfa = "kenburns", {"neden": f"gorsel_turu={kayit.get('gorsel_turu')}"}, None
+    elif not kutu:
         sev, puan, alfa = "kenburns", {"neden": "özne kutusu yok"}, None
     else:
         alfa, puan = maske(img, kutu, ka)

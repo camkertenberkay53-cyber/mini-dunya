@@ -75,8 +75,13 @@ def denetle(g: dict, dosya_kontrol: bool = True) -> list[str]:
         h.append(f"izin verilmeyen lisans {g.get('lisans_turu')!r} (izinli: {', '.join(IZINLI_LISANSLAR)}; "
                  f"CC-BY* yalnızca 'atif' alanıyla)")
     onay = g.get("onay") or {}
-    if g.get("lisans_dogrulandi") is not True or not onay.get("onaylayan") or not onay.get("tarih"):
-        h.append("lisans insan tarafından doğrulanmamış (lisans_dogrulandi + onay.onaylayan + onay.tarih)")
+    insan = bool(onay.get("onaylayan")) and bool(onay.get("tarih"))
+    # Kullanıcı kararı (2026-11-26): otomatik toplayıcının kayıtları da kabul edilir, ancak insan onayı gibi
+    # gösterilmez — onay.kaynak_edinimi == "otomatik_toplayici" ve onay.insan_onayi == false açıkça yazılı olmalı.
+    otomatik = onay.get("kaynak_edinimi") == "otomatik_toplayici" and onay.get("insan_onayi") is False and bool(onay.get("tarih"))
+    if g.get("lisans_dogrulandi") is not True or not (insan or otomatik):
+        h.append("lisans insan tarafından doğrulanmamış (lisans_dogrulandi + onay.onaylayan + onay.tarih; "
+                 "ya da onay.kaynak_edinimi=otomatik_toplayici + insan_onayi=false + tarih)")
     if g.get("durum") == "red":
         h.append(f"reddedilmiş kayıt: {g.get('red_nedeni', 'neden yok')}")
     yol = dosya_yolu(g)
@@ -95,6 +100,11 @@ def bul(gorsel_id: str, yol: Path | None = None) -> dict:
         if g.get("gorsel_id") == gorsel_id:
             return g
     raise LisansHatasi(f"{gorsel_id}: tarihî görsel kaydında yok")
+
+
+def insan_onayli(g: dict) -> bool:
+    o = g.get("onay") or {}
+    return bool(o.get("onaylayan")) and bool(o.get("tarih")) and o.get("insan_onayi") is not False
 
 
 def dogrulanmis_dosya(gorsel_id: str, yol: Path | None = None) -> tuple[Path, dict]:

@@ -230,13 +230,13 @@ def topla(s: dict, hedef: Path = HEDEF) -> dict:
         "ozne_bilgisi": {"kutu": s.get("kutu") or ozne_kutusu(dosya, tur), "tur": tur, "kutu_kaynagi": "elle" if s.get("kutu") else "otomatik"},
         "derinlik_uygunlugu": s.get("derinlik_uygunlugu", "orta"),
         "lisans_turu": lisans,
+        "lisans_kisa_adi": meta.get("LicenseShortName") or "",   # Commons'taki değer AYNEN (yayın açıklaması/atıf için)
         "lisans_commons": {"LicenseShortName": meta.get("LicenseShortName"), "UsageTerms": meta.get("UsageTerms"),
                            "License": meta.get("License"), "AttributionRequired": meta.get("AttributionRequired"),
                            "Copyrighted": meta.get("Copyrighted"), "Credit": meta.get("Credit")},
         "kamu_mali_gerekcesi": f"Commons lisans bilgisi: {meta.get('LicenseShortName') or '-'} — {meta.get('UsageTerms') or '-'}",
-        "lisans_dogrulandi": True,
-        "onay": {"onaylayan": "kullanici (otomatik Commons toplama politikası)", "tarih": str(date.today()),
-                 "yontem": "commons_toplayici"},
+        "lisans_dogrulandi": True,   # Commons lisans bilgisinden (aşağıda insan onayı OLMADIĞI açıkça yazılıdır)
+        "onay": {"kaynak_edinimi": "otomatik_toplayici", "insan_onayi": False, "tarih": str(date.today())},
         "yerel_yol": str(dosya.relative_to(ayar.REPO)) if dosya.is_relative_to(ayar.REPO) else str(dosya),
         "sha256": _sha(dosya, "sha256"),
         "commons_sha1": secilen.get("sha1"),
