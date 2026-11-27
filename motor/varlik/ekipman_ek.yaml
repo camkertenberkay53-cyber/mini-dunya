@@ -1,0 +1,146 @@
+# Faz 3b kabulünden (a34d313) SONRA eklenen parçalar. ekipman.yaml dondurulmuş kabul dosyasıdır; yeni parça buraya
+# eklenir, katalog okunurken birleştirilir (ekipman.katalog / veri.ekipman_katalogu). Aynı şema; malzemeler ana dosyadan.
+parcalar:
+  top_arabasi:
+    kategori: cevre
+    yuva: zemin
+    uretici: top_arabasi
+    p: {namlu: tunc, demir: demir, ahsap: sap}
+    donem: [osmanli-15yy, bizans-15yy]
+    tarih: {guven: makul, not: "15. yy tunç sahra topu ve iki tekerlekli kundak; biçim genel ve temsilî (Otlukbeli, İstanbul kuşatması dönemi)."}
+  yuk_arabasi:
+    kategori: cevre
+    yuva: zemin
+    uretici: yuk_arabasi
+    p: {ahsap: sap, ortu: cadir_bezi}
+    donem: [osmanli-15yy, bizans-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Dört tekerlekli ahşap yük arabası; çağlar boyunca benzer biçim (genel, temsilî)."}
+  # --- Sinematik paket: dış CC0 modeller (Quaternius; kaynaklar.yaml 'quaternius-stage', commit sabit). Geometri değişmez. ---
+  sur_burclu:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateFantasyRTS/S_WallTowersSecondAge.usda, olcek: 11.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Mazgallı taş sur ve iki burç; genel ortaçağ biçimi, ölçekli temsil (belirli bir kale değil)."}
+  gozetleme_kulesi:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateFantasyRTS/S_WatchTowerSecondAgeLevel3.usda, olcek: 9.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Taş gözetleme kulesi; genel biçim, temsilî."}
+  harabe_kemer:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateModularRuins/S_WallArchRoundBroken.usda, olcek: 1.3}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Yıkık yuvarlak kemerli taş duvar (antik/ortaçağ kalıntısı); genel temsil."}
+  # --- Sinematik paket 2: doğa (Quaternius Stylized Nature MegaKit, CC0; quaternius-stage). Prosedürel serpme (dogal.yaml) kullanır. ---
+  agac_yaprakli_1:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_CommonTree_1.usda, olcek: 1.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Yaprak döken ağaç (genel; bölge türü belirtilmez)."}
+  agac_yaprakli_2:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_CommonTree_3.usda, olcek: 1.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Yaprak döken ağaç (genel)."}
+  cam_1:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_Pine_1.usda, olcek: 1.1, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Çam (Anadolu dağ ormanları için genel)."}
+  cam_2:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_Pine_3.usda, olcek: 1.1, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Çam (genel)."}
+  kuru_agac:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_DeadTree_1.usda, olcek: 0.8, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kuru ağaç (bozkır, savaş alanı)."}
+  kaya_1:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_RockMedium_1.usda, olcek: 1.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kaya (genel)."}
+  kaya_2:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/StylizedNatureMegaKit/S_RockMedium_2.usda, olcek: 1.0}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kaya (genel)."}
+  # --- Mekân paketi: yerleşim, kale, kıyı ve kaya (Quaternius MedievalVillage/RTS/Ships/PirateKit, CC0; quaternius-stage) ---
+  ev_kerpic_ahsap:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/MedievalVillage/S_House_1.usda, olcek: 2.4, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy]
+    tarih: {guven: makul, not: "İki katlı taş temel + ahşap çatkılı ev; genel ortaçağ biçimi (Avrupa tarzı), Anadolu şehirleri için temsilî."}
+  ev_tas:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/MedievalVillage/S_House_3.usda, olcek: 2.6, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy]
+    tarih: {guven: makul, not: "Taş ev; genel ortaçağ, temsilî."}
+  pazar_tezgahi:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/MedievalVillage/S_MarketStand_1.usda, olcek: 2.3, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy]
+    tarih: {guven: makul, not: "Pazar tezgâhı; genel."}
+  kale_kapisi:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateFantasyRTS/S_WallTowersDoorSecondAge.usda, olcek: 11.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Kapılı sur ve iki burç; genel ortaçağ, ölçekli temsil."}
+  burc_ev:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/UltimateFantasyRTS/S_TowerHouseSecondAge.usda, olcek: 7.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy]
+    tarih: {guven: makul, not: "Burçlu taş yapı (iç kale); genel, temsilî."}
+  yelkenli_gemi:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/Ships/S_SailShip.usda, olcek: 3.9, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy]
+    tarih: {guven: makul, not: "Üç direkli yelkenli (15-16. yy karaka/kalyon biçimine yakın); genel, temsilî."}
+  sandal:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/Ships/S_Boat.usda, olcek: 8.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kürekli sandal; çağlar boyu benzer."}
+  ucurum_1:
+    kategori: cevre
+    yuva: zemin
+    uretici: dis_usd
+    p: {kaynak: quaternius-stage/PirateKit/S_EnvironmentCliff1.usda, olcek: 3.0, doku_max: 512}
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Kaya kütlesi/uçurum; doğal."}

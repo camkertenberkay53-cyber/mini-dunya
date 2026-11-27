@@ -1,0 +1,166 @@
+[
+ {
+  "id": "S1",
+  "amac": "kanca",
+  "v1": "alcak_yaklasma",
+  "v2": "alcak_yaklasma",
+  "v2_lens": [
+   34,
+   34
+  ],
+  "gerekce": [
+   "senaryo niyeti: alcak_yaklasma",
+   "amaç 'kanca': ['itme_dramatik', 'alcak_yaklasma', 'capraz_yorunge']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S2",
+  "amac": "baglam",
+  "v1": "goz_pan",
+  "v2": "goz_pan",
+  "v2_lens": [
+   36,
+   36
+  ],
+  "gerekce": [
+   "kalabalık (10 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+   "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S3",
+  "amac": "baglam",
+  "v1": "yuksek_genis",
+  "v2": "kurulus_genis",
+  "v2_lens": [
+   55,
+   55
+  ],
+  "gerekce": [
+   "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+   "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S4a",
+  "amac": "olay",
+  "v1": "capraz_yorunge",
+  "v2": "yan_takip",
+  "v2_lens": [
+   38,
+   38
+  ],
+  "gerekce": [
+   "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+   "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S4b",
+  "amac": "olay",
+  "v1": "arkadan_uzak",
+  "v2": "tele_kalabalik",
+  "v2_lens": [
+   18,
+   18
+  ],
+  "gerekce": [
+   "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+   "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S5",
+  "amac": "gerilim",
+  "v1": "alcak_yaklasma",
+  "v2": "capraz_yorunge",
+  "v2_lens": [
+   38,
+   38
+  ],
+  "gerekce": [
+   "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'itme_dramatik']",
+   "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S6",
+  "amac": "gerilim",
+  "v1": "yan_profil",
+  "v2": "alcak_yaklasma",
+  "v2_lens": [
+   34,
+   34
+  ],
+  "gerekce": [
+   "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S7a",
+  "amac": "donum",
+  "v1": "ust_aci_yaklasma",
+  "v2": "orta_konusma",
+  "v2_lens": [
+   32,
+   32
+  ],
+  "gerekce": [
+   "rol 'komutan' (yerinde): ['orta_konusma']",
+   "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S7b",
+  "amac": "donum",
+  "v1": "goz_pan",
+  "v2": "ust_aci_yaklasma",
+  "v2_lens": [
+   38,
+   38
+  ],
+  "gerekce": [
+   "rol 'komutan' (yerinde): ['orta_konusma']",
+   "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S8",
+  "amac": "donum",
+  "v1": "alcak_geri_takip",
+  "v2": "itme_dramatik",
+  "v2_lens": [
+   40,
+   32
+  ],
+  "gerekce": [
+   "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+  ],
+  "reddedilen": []
+ },
+ {
+  "id": "S9",
+  "amac": "final",
+  "v1": "yukselme",
+  "v2": "yukselme",
+  "v2_lens": [
+   42,
+   42
+  ],
+  "gerekce": [
+   "senaryo niyeti: yukselme",
+   "kalabalık (14 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+   "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+  ],
+  "reddedilen": []
+ }
+]

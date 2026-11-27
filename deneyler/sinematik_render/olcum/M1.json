@@ -1,0 +1,28 @@
+{
+ "durum": "TAMAM",
+ "konu": "mekan-M1",
+ "cekim": "M1",
+ "karma": "4aeb344bd341801c",
+ "video": "/tmp/motor_onbellek/uretim/mekan-M1/M1_4aeb344bd341801c/cekim.mp4",
+ "tarih": "2026-11-25 22:52",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+  "cekirdek": 2
+ },
+ "olculen": {
+  "plan_denetim_sn": 0.12,
+  "render_sn": 261.6,
+  "kare": 120,
+  "uretilen_kare": 120,
+  "cozunurluk": "1080x1920",
+  "kare_basina_sn_acilis_dahil": 2.18,
+  "render_tepe_bellek_gb": 1.33,
+  "kodlama_sn": 3.5,
+  "ara_avi_mb": 36.2,
+  "mp4_mb": 15.77,
+  "karakter": 9,
+  "cevre_varligi": 0
+ },
+ "godot_hatalari": [],
+ "denetim_uyarilari": []
+}

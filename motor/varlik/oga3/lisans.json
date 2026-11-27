@@ -1,0 +1,107 @@
+{
+ "kaynak": "OpenGameArt.org",
+ "varliklar": [
+  {
+   "kimlik": "ten_erkek",
+   "sayfa": "https://opengameart.org/content/toigo-natural-male-skin",
+   "amac": "MakeHuman UV'li erkek ten dokusu (2048) — gerçekçi insan teni",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "ten_erkek/light_skin_male_bronze.png",
+     "url": "https://opengameart.org/sites/default/files/light_skin_male_bronze.png",
+     "bayt": 4339066,
+     "sha256": "5a53213f061bfa97ee0afd6b40650ffbc089a479c144e63f3c39acceca5853c0"
+    },
+    {
+     "dosya": "ten_erkek/light_skin_male_bronze_example.jpg",
+     "url": "https://opengameart.org/sites/default/files/light_skin_male_bronze_example.jpg",
+     "bayt": 58545,
+     "sha256": "1c35bddd8c1eb1c3866d30dace44381e818aab2b507b51eca2b72e917cf722df"
+    },
+    {
+     "dosya": "ten_erkek/light_skin_male_bronze_preview.jpg",
+     "url": "https://opengameart.org/sites/default/files/light_skin_male_bronze_preview.jpg",
+     "bayt": 576061,
+     "sha256": "38493abebc9ff5381c2a8206e51f609fd1688769e77e633c81ff9719b9d8398a"
+    },
+    {
+     "dosya": "ten_erkek/light_skin_male_freckles.png",
+     "url": "https://opengameart.org/sites/default/files/light_skin_male_freckles.png",
+     "bayt": 5175767,
+     "sha256": "32d33fab52bda1b6bc8cd134bb34f2980a77d2b51c9f048e8ea00c861b4da604"
+    },
+    {
+     "dosya": "ten_erkek/light_skin_male_freckles_example.jpg",
+     "url": "https://opengameart.org/sites/default/files/light_skin_male_freckles_example.jpg",
+     "bayt": 61625,
+     "sha256": "767c4838a7f88e87358cc96bc5001c5dfc68abfa168ca7927fc8af72d36d51aa"
+    },
+    {
+     "dosya": "ten_erkek/light_skin_male_freckles_preview.jpg",
+     "url": "https://opengameart.org/sites/default/files/light_skin_male_freckles_preview.jpg",
+     "bayt": 800960,
+     "sha256": "de556fe8c0ab7927870cca6d4b14f559fa2facba7dba9a821a61828f3b88fafd"
+    },
+    {
+     "dosya": "ten_erkek/light_skin_male_ginger.png",
+     "url": "https://opengameart.org/sites/default/files/light_skin_male_ginger.png",
+     "bayt": 6764307,
+     "sha256": "795eec22b27ba5a2527d99e60a31be61e06a45a39250c39b24b36438e963c4aa"
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "hardboileduser"
+  },
+  {
+   "kimlik": "goz",
+   "sayfa": "https://opengameart.org/content/makehuman-system-assets-eyes",
+   "amac": "MakeHuman göz dokuları (iris)",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "goz/bluegreen_eye.png",
+     "url": "https://opengameart.org/sites/default/files/bluegreen_eye.png",
+     "bayt": 697879,
+     "sha256": "653b3154e67f67e118c22acd19c472aa7543e0c229209f687c3f7f669f191fd9"
+    },
+    {
+     "dosya": "goz/bluegreen_eye_preview.jpg",
+     "url": "https://opengameart.org/sites/default/files/bluegreen_eye_preview.jpg",
+     "bayt": 95146,
+     "sha256": "1175474ef7d70c7736021bd151f3dde2791182672a024d2e36ee365ff9f9d756"
+    },
+    {
+     "dosya": "goz/brown_eye.png",
+     "url": "https://opengameart.org/sites/default/files/brown_eye.png",
+     "bayt": 610817,
+     "sha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b"
+    },
+    {
+     "dosya": "goz/brownlight_eye.png",
+     "url": "https://opengameart.org/sites/default/files/brownlight_eye.png",
+     "bayt": 680577,
+     "sha256": "3f43a4de70e446186dac1760cfa01dfe36d530ed7564208455395b0ebcdf788a"
+    },
+    {
+     "dosya": "goz/green_eye.png",
+     "url": "https://opengameart.org/sites/default/files/green_eye.png",
+     "bayt": 662241,
+     "sha256": "b9864ac4f4fa484b24e18f6aba030d70dbc8820cbbacfbe63a974c76772c2009"
+    },
+    {
+     "dosya": "goz/grey_eye.png",
+     "url": "https://opengameart.org/sites/default/files/grey_eye.png",
+     "bayt": 669883,
+     "sha256": "ecb05613126036a3d017880fabbd570501c5f14032c186462d8f6e2d719f6c4f"
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "hardboileduser"
+  }
+ ]
+}

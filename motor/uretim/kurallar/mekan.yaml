@@ -1,0 +1,10 @@
+# Mekân kütüphanesi: senaryo niyetinde ortam.mekan tek kelimeyle istenir; planlayıcı arazi, ışık, yerleşim ve kalabalığı
+# buradan doldurur (niyette açıkça verilen alan önceliklidir). Konudan bağımsız; parçalar dönem kataloğundan seçilir.
+mekanlar:
+  dagli_savas_alani: {arazi: dagli_vadi, isik: aksam_ustu, aciklama: "Dağlık vadide geniş savaş düzlüğü; kayalık sırtlar, çam."}
+  orman: {arazi: orman_kenari, isik: sabah_puslu, aciklama: "Orman kenarı açıklık; yoğun ağaçlık."}
+  kale: {arazi: ova_cimen, isik: gun_batimi, yerlesim: kale, aciklama: "Surlar, kapı, iç kale ve kuleler."}
+  kasaba: {arazi: ova_cimen, isik: oglen_acik, yerlesim: kasaba, aciklama: "Sokak, evler, pazar."}
+  liman: {arazi: deniz_kiyisi, isik: gun_batimi, yerlesim: liman, aciklama: "Kumsal, iskele, demirli gemiler, açık deniz."}
+  nehir_kiyisi: {arazi: nehir_vadisi, isik: sabah_puslu, yerlesim: nehir_iskelesi, aciklama: "Vadi nehri, iskele, kayıklar."}
+  kiyi_ordugahi: {arazi: deniz_kiyisi, isik: aksam_ustu, yerlesim: ordugah, aciklama: "Deniz kıyısında ordugâh."}

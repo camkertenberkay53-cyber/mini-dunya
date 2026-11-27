@@ -1,0 +1,471 @@
+# Motorun kendi ürettiği varlıklar: malzemeler, giysiler (gövdeden türetilir) ve sert ekipman (ayrı GLB, yuvaya takılır).
+# Lisans: kendi üretimimiz (Blender betikleri, bu repo). Dış varlık kullanılmadı.
+#
+# tarih.guven:
+#   kanitli  = müze nesnesi ya da birincil/akademik kaynakla bu döneme bağlanıyor
+#   makul    = dönem için akla yatkın, ama kaynak dolaylı ya da daha geç döneme ait
+#   belirsiz = biçim, renk ya da desen kanıtlanamıyor. Anlatımda kesin bilgi gibi sunulmaz; yakın çekimde öne çıkarılmaz.
+# donem: hangi kitlere girebileceği. Bir parça birden fazla döneme ait olabilir (modüler paylaşım).
+
+malzemeler:
+  kece_beyaz: {tur: kece, renk: [0.86, 0.84, 0.78], tohum: 1}
+  kece_kirmizi: {tur: kece, renk: [0.50, 0.09, 0.07], tohum: 2}
+  kece_kahve: {tur: kece, renk: [0.42, 0.32, 0.22], tohum: 3}
+  kece_gri: {tur: kece, renk: [0.74, 0.71, 0.64], tohum: 4}
+  kurk: {tur: kece, renk: [0.28, 0.20, 0.13], tohum: 5}
+  sarik_bezi: {tur: kumas, renk: [0.90, 0.88, 0.82], tohum: 6}
+  celik: {tur: metal, renk: [0.58, 0.59, 0.61], metalik: 0.9, tohum: 7}
+  demir: {tur: metal, renk: [0.33, 0.32, 0.31], metalik: 0.8, tohum: 8}
+  sus_altin: {tur: metal, renk: [0.78, 0.62, 0.32], metalik: 0.9, tohum: 9}
+  altin: {tur: metal, renk: [0.86, 0.66, 0.26], metalik: 1.0, tohum: 10}
+  tunc: {tur: bronz, renk: [0.72, 0.52, 0.28], metalik: 0.9, tohum: 11}
+  zincir: {tur: zincir, renk: [0.62, 0.62, 0.64], metalik: 0.9, tohum: 12}
+  lamel_celik: {tur: lamel, renk: [0.52, 0.51, 0.49], metalik: 0.75, tohum: 60}
+  hasir: {tur: hasir, renk: [0.70, 0.58, 0.36], ikinci_renk: [0.55, 0.12, 0.10], tohum: 13}
+  sap: {tur: ahsap, renk: [0.33, 0.21, 0.11], tohum: 14}
+  direk: {tur: ahsap, renk: [0.30, 0.19, 0.10], tohum: 15}
+  deri_kahve: {tur: deri, renk: [0.38, 0.24, 0.13], tohum: 16}
+  deri_koyu: {tur: deri, renk: [0.17, 0.11, 0.07], tohum: 17}
+  yay_govde: {tur: deri, renk: [0.24, 0.11, 0.06], tohum: 18}
+  kiris: {tur: kumas, renk: [0.80, 0.75, 0.60], tohum: 19}
+  ok_sapi: {tur: ahsap, renk: [0.58, 0.45, 0.27], tohum: 20}
+  tuy: {tur: kumas, renk: [0.88, 0.87, 0.84], tohum: 21}
+  pavez_yuz: {tur: boyali_ahsap, renk: [0.58, 0.12, 0.10], tohum: 22}
+  badem_yuz: {tur: boyali_ahsap, renk: [0.62, 0.50, 0.20], tohum: 23}
+  scutum_yuz: {tur: boyali_ahsap, renk: [0.50, 0.11, 0.08], tohum: 24}
+  sancak_kirmizi: {tur: kumas, renk: [0.62, 0.08, 0.06], tohum: 25}
+  sancak_beyaz: {tur: kumas, renk: [0.85, 0.83, 0.76], tohum: 26}
+  at_kili: {tur: kece, renk: [0.16, 0.13, 0.11], tohum: 27}
+  cadir_bezi: {tur: kumas, renk: [0.87, 0.84, 0.76], tohum: 28}
+  cadir_bant: {tur: kumas, renk: [0.55, 0.10, 0.08], tohum: 29}
+  ip: {tur: kumas, renk: [0.60, 0.50, 0.30], tohum: 30}
+  tas: {tur: tas, renk: [0.64, 0.60, 0.53], tohum: 31}
+  tugla: {tur: tas, renk: [0.55, 0.28, 0.18], tohum: 32}
+  roma_derisi: {tur: deri, renk: [0.46, 0.33, 0.20], tohum: 33}
+  # giysi kumaşları
+  dolama_lacivert: {tur: kumas, renk: [0.13, 0.17, 0.32], tohum: 40}
+  kaftan_bordo: {tur: kumas, renk: [0.36, 0.08, 0.08], tohum: 41}
+  kaftan_yesil: {tur: kumas, renk: [0.16, 0.26, 0.15], tohum: 42}
+  kaftan_kahve: {tur: kumas, renk: [0.40, 0.30, 0.18], tohum: 43}
+  salvar_bej: {tur: kumas, renk: [0.62, 0.55, 0.42], tohum: 44}
+  salvar_koyu: {tur: kumas, renk: [0.24, 0.21, 0.17], tohum: 45}
+  kusak_kirmizi: {tur: kumas, renk: [0.56, 0.10, 0.08], tohum: 46}
+  gomlek_keten: {tur: kumas, renk: [0.80, 0.76, 0.66], tohum: 47}
+  tunik_gri_mavi: {tur: kumas, renk: [0.30, 0.33, 0.40], tohum: 48}
+  tunik_hardal: {tur: kumas, renk: [0.55, 0.45, 0.20], tohum: 49}
+  roma_tunik_kirmizi: {tur: kumas, renk: [0.60, 0.17, 0.11], tohum: 50}
+  roma_tunik_beyaz: {tur: kumas, renk: [0.80, 0.76, 0.66], tohum: 51}
+  cizme_sari: {tur: deri, renk: [0.62, 0.45, 0.16], tohum: 52}
+  cizme_kahve: {tur: deri, renk: [0.25, 0.15, 0.08], tohum: 53}
+  kemer_deri: {tur: deri, renk: [0.30, 0.18, 0.09], tohum: 54}
+
+# ------------------------------------------------------------------ giysiler (gövdeden türetilir, gövdeyle aynı iskelete bağlı)
+# kategori: kiyafet | zirh | aksesuar. parcalar: giysi.py'deki kabuk/etek tanımları.
+giysiler:
+  yeniceri_dolamasi:
+    kategori: kiyafet
+    donem: [osmanli-15yy]
+    tarih: {guven: belirsiz, not: "Uzun, kuşaklı dış giysi yeniçeri tasvirlerinde yaygın; 15. yy kesimi ve rengi (lacivert) kanıtlanamıyor."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, kol_alt, boyun_alti], zmax: 1.555, ofset: 0.022, yumusatma: 30, malzeme: dolama_lacivert}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.40, acilma: 1.85, ofset: 0.065, malzeme: dolama_lacivert, onde_yarik: true}
+  osmanli_kaftani:
+    kategori: kiyafet
+    donem: [osmanli-15yy]
+    tarih: {guven: makul, not: "Ayak bileğine yakın kaftan Osmanlı üst tabakası için yaygın; renk ve desen temsilî."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, kol_alt, boyun_alti], zmax: 1.555, ofset: 0.024, yumusatma: 30, malzeme: kaftan_yesil}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.20, acilma: 1.95, ofset: 0.070, malzeme: kaftan_yesil, onde_yarik: true}
+  turkmen_kaftani:
+    kategori: kiyafet
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Baldır boyu, önden kapanan Türkmen dış giysisi (zırhın altından görünür); renk temsilî."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, kol_alt, boyun_alti], zmax: 1.555, ofset: 0.022, yumusatma: 30, malzeme: kaftan_bordo}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.34, acilma: 1.85, ofset: 0.062, malzeme: kaftan_bordo, onde_yarik: true}
+  turkmen_kaftani_kahve:
+    kategori: kiyafet
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Sivil/okçu için diz boyu sade kaftan (çizmeyle); renk temsilî."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, kol_alt, boyun_alti], zmax: 1.555, ofset: 0.022, yumusatma: 30, malzeme: kaftan_kahve}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.56, acilma: 1.40, ofset: 0.062, malzeme: kaftan_kahve, onde_yarik: true}
+  salvar:
+    kategori: kiyafet
+    donem: [osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Bol paçalı şalvar."}
+    parcalar:
+      - {ad: salvar, tur: kabuk, bolgeler: [uyluk, baldir, pelvis], zmin: 0.36, zmax: 1.0, ofset: 0.050, malzeme: salvar_bej}
+  salvar_koyu:
+    kategori: kiyafet
+    donem: [osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Bol paçalı şalvar, koyu."}
+    parcalar:
+      - {ad: salvar, tur: kabuk, bolgeler: [uyluk, baldir, pelvis], zmin: 0.36, zmax: 1.0, ofset: 0.050, malzeme: salvar_koyu}
+  cizme_uzun_sari:
+    kategori: kiyafet
+    donem: [osmanli-15yy]
+    tarih: {guven: belirsiz, not: "Diz altına çıkan deri çizme makul; sarı renk temsilî."}
+    parcalar:
+      - {ad: cizme, tur: kabuk, bolgeler: [baldir, ayak], zmax: 0.40, ofset: 0.016, malzeme: cizme_sari}
+  cizme_uzun_kahve:
+    kategori: kiyafet
+    donem: [osmanli-15yy, akkoyunlu-15yy, bizans-15yy]
+    tarih: {guven: makul, not: "Deri çizme."}
+    parcalar:
+      - {ad: cizme, tur: kabuk, bolgeler: [baldir, ayak], zmax: 0.40, ofset: 0.016, malzeme: cizme_kahve}
+  bizans_tunigi:
+    kategori: kiyafet
+    donem: [bizans-15yy]
+    tarih: {guven: belirsiz, not: "Diz boyu tunik + dar pantolon (hose). 1453 savunucularının giyimi için doğrudan kaynak az; renk temsilî."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, kol_alt, boyun_alti], zmax: 1.555, ofset: 0.021, yumusatma: 30, malzeme: tunik_gri_mavi}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.60, acilma: 1.18, ofset: 0.058, malzeme: tunik_gri_mavi}
+      - {ad: pantolon, tur: kabuk, bolgeler: [uyluk, baldir, pelvis], zmin: 0.30, zmax: 0.93, ofset: 0.010, malzeme: salvar_koyu}
+  bizans_tunigi_hardal:
+    kategori: kiyafet
+    donem: [bizans-15yy]
+    tarih: {guven: belirsiz, not: "Bilek boyu sivil tunik (geç Bizans tasvirlerinde uzun giysiler yaygın); kesim ve renk temsilî."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, kol_alt, boyun_alti], zmax: 1.555, ofset: 0.021, yumusatma: 30, malzeme: tunik_hardal}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.22, acilma: 1.35, ofset: 0.058, malzeme: tunik_hardal}
+      - {ad: pantolon, tur: kabuk, bolgeler: [uyluk, baldir, pelvis], zmin: 0.30, zmax: 0.93, ofset: 0.010, malzeme: salvar_koyu}
+  roma_tunigi:
+    kategori: kiyafet
+    donem: [roma-cumhuriyet]
+    tarih: {guven: belirsiz, not: "Kısa kollu, diz üstü tunik kanıtlı; askeri tuniğin kırmızı olup olmadığı tartışmalı. Bacaklar çıplak."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, boyun_alti], zmax: 1.555, xmax: 0.36, ofset: 0.021, yumusatma: 30, malzeme: roma_tunik_kirmizi}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.62, acilma: 1.15, ofset: 0.056, malzeme: roma_tunik_kirmizi}
+  roma_tunigi_beyaz:
+    kategori: kiyafet
+    donem: [roma-cumhuriyet]
+    tarih: {guven: makul, not: "Boyasız yün tunik, sivil."}
+    parcalar:
+      - {ad: govde, tur: kabuk, zmin: 0.92, bolgeler: [govde_ust, kol_ust, boyun_alti], zmax: 1.555, xmax: 0.36, ofset: 0.021, yumusatma: 30, malzeme: roma_tunik_beyaz}
+      - {ad: etek, tur: etek, ust_z: 1.03, alt_z: 0.60, acilma: 1.15, ofset: 0.056, malzeme: roma_tunik_beyaz}
+  caligae:
+    kategori: kiyafet
+    donem: [roma-cumhuriyet]
+    tarih: {guven: kanitli, not: "Çivili asker sandaleti (caligae).", kaynak: "https://www.celticwebmerchant.com/en/blogs/info/get-the-look-roman-legionary-republican-period/"}
+    parcalar:
+      - {ad: caligae, tur: kabuk, bolgeler: [ayak, baldir], zmax: 0.15, ofset: 0.010, malzeme: roma_derisi}
+  zincir_zirh_gomlek:
+    kategori: zirh
+    donem: [osmanli-15yy, bizans-15yy]
+    tarih: {guven: makul, not: "Zincir zırh gömlek 15. yy'da hem Osmanlı hem Bizans/İtalyan tarafında kullanıldı; biçim temsilî."}
+    parcalar:
+      - {ad: zirh, tur: kabuk, bolgeler: [govde_ust], zmin: 0.92, zmax: 1.50, xmax: 0.30, ofset: 0.044, yumusatma: 30, malzeme: zincir, gizle: false}
+      - {ad: zirh_etek, tur: etek, ust_z: 1.0, alt_z: 0.72, acilma: 1.12, ofset: 0.082, malzeme: zincir}
+  zincir_levha_zirh:
+    kategori: zirh
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: kanitli, not: "Akkoyunlu zırhı: Venedik elçisine göre (yak. 1478) 'küçük kareler halinde demir, ince zincirle birbirine tutturulmuş'. Zincir gömlek + göğüs levhaları.",
+            kaynak: "https://www.metmuseum.org/art/collection/search/22011"}
+    parcalar:
+      - {ad: zirh, tur: kabuk, bolgeler: [govde_ust], zmin: 0.92, zmax: 1.50, xmax: 0.30, ofset: 0.044, yumusatma: 30, malzeme: zincir, gizle: false}
+      - {ad: levha, tur: kabuk, bolgeler: [govde_ust], zmin: 1.05, zmax: 1.36, ymin: 0.02, xmax: 0.16, ofset: 0.060, yumusatma: 30, malzeme: celik, gizle: false}
+      - {ad: zirh_etek, tur: etek, ust_z: 1.0, alt_z: 0.70, acilma: 1.12, ofset: 0.082, malzeme: zincir}
+  lamel_zirh:
+    kategori: zirh
+    donem: [bizans-15yy]
+    tarih: {guven: belirsiz, not: "Lamel (klivanion) göğüslük ve kısa lamel etek. Orta Bizans dönemi için iyi belgeli; 1453 savunucularında ne ölçüde kullanıldığı belirsiz (dönemde zincir ve İtalyan plaka zırhı da var). Uzak/orta planda ayırt edici siluet için kullanılır, yakın çekimde kesin bilgi gibi sunulmaz."}
+    parcalar:
+      - {ad: lamel, tur: kabuk, bolgeler: [govde_ust], zmin: 0.92, zmax: 1.50, xmax: 0.30, ofset: 0.046, malzeme: lamel_celik, gizle: false, yumusatma: 30}
+      - {ad: lamel_etek, tur: etek, ust_z: 1.0, alt_z: 0.74, acilma: 1.16, ofset: 0.090, malzeme: lamel_celik}
+  lorica_hamata:
+    kategori: zirh
+    donem: [roma-cumhuriyet]
+    tarih: {guven: kanitli, not: "Lorica hamata (zincir zırh) geç Cumhuriyet lejyonerinin temel zırhı; omuz takviyesiyle (humeralia).",
+            kaynak: "https://www.historyhit.com/later-roman-armour/"}
+    parcalar:
+      - {ad: zirh, tur: kabuk, bolgeler: [govde_ust], zmin: 0.92, zmax: 1.50, xmax: 0.30, ofset: 0.042, yumusatma: 30, malzeme: zincir, gizle: false}
+      - {ad: omuzluk, tur: kabuk, bolgeler: [govde_ust], zmin: 1.40, zmax: 1.56, xmax: 0.32, ofset: 0.078, yumusatma: 30, malzeme: zincir, gizle: false}
+      - {ad: zirh_etek, tur: etek, ust_z: 1.0, alt_z: 0.78, acilma: 1.10, ofset: 0.080, malzeme: zincir}
+  kusak_kirmizi:
+    kategori: aksesuar
+    donem: [osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Bele sarılan kumaş kuşak."}
+    parcalar:
+      - {ad: kusak, tur: kabuk, bolgeler: [govde_ust], zmin: 0.98, zmax: 1.09, ofset: 0.045, malzeme: kusak_kirmizi, gizle: false}
+  deri_kemer:
+    kategori: aksesuar
+    donem: [bizans-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Deri kemer (Roma: cingulum)."}
+    parcalar:
+      - {ad: kemer, tur: kabuk, bolgeler: [govde_ust], zmin: 1.0, zmax: 1.06, ofset: 0.06, malzeme: kemer_deri, gizle: false}
+
+# ------------------------------------------------------------------ sert ekipman (ayrı GLB; bir kez üretilir, her karakterde paylaşılır)
+# yuva: bas | sag_el | sag_el_dik (konumu eli izler, dik durur) | sol_el | sol_kol | sirt | bel_sol | bel_sag | zemin (çevre)
+parcalar:
+  yeniceri_borku:
+    kategori: baslik
+    yuva: bas
+    uretici: yeniceri_borku
+    p: {kece: kece_beyaz}
+    donem: [osmanli-15yy]
+    tarih: {guven: makul, not: "Keçe yeniçeri börkü (sırta düşen yatırmalı) belgeli; 15. yy biçimi kesin değil. Önündeki kaşıklık geç döneme (18-19. yy) ait olduğu için KONULMADI.",
+            kaynak: "https://dergipark.org.tr/tr/download/article-file/4478646"}
+  osmanli_sarik:
+    kategori: baslik
+    yuva: bas
+    uretici: osmanli_sarik
+    p: {kavuk: kece_kirmizi, sarik: sarik_bezi}
+    donem: [osmanli-15yy]
+    tarih: {guven: makul, not: "Kavuk üzerine sarılan sarık Osmanlı üst tabakasında yaygın; sarış biçimi temsilî.", kaynak: "https://digi.ub.uni-heidelberg.de/diglit/zygulski1992/0131"}
+  sarik_migfer:
+    kategori: baslik
+    yuva: bas
+    uretici: sarik_migfer
+    p: {celik: celik, sus: sus_altin, zincir: zincir}
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: kanitli, not: "Yivli, soğan biçimli 'sarık miğfer', zincir ense-yüz perdesi ve burunlukla; Akkoyunlu ağır süvarisinin başlığı (yak. 1475-1500).",
+            kaynak: "https://www.artic.edu/artworks/106372/turban-helmet"}
+  kece_kulah:
+    kategori: baslik
+    yuva: bas
+    uretici: kece_kulah
+    p: {kece: kece_kahve}
+    donem: [osmanli-15yy]
+    tarih: {guven: makul, not: "Sarıksız uzun keçe külah; Anadolu halkı, esnaf ve dervişlerde yaygın. Biçim ve renk temsilî."}
+  turkmen_tacli_sarik:
+    kategori: baslik
+    yuva: bas
+    uretici: turkmen_tacli_sarik
+    p: {sarik: sarik_bezi, kulah: kece_kirmizi}
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Ortasından ince, uzun külah yükselen sarık; geç 15. yy Türkmen saray ve askeri tasvirlerinde (Akkoyunlu dönemi minyatürleri) görülen biçim. Safevi kızılbaş tacıyla (1501 sonrası) karıştırılmamalı. Kaynak doğrulaması Faz 4'te tamamlanacak; renk temsilî."}
+  turkmen_kalpak:
+    kategori: baslik
+    yuva: bas
+    uretici: turkmen_kalpak
+    p: {kece: kece_kahve, kurk: kurk}
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: belirsiz, not: "Kürk kenarlı keçe başlık; Türkmen sivil/okçu için temsilî."}
+  konik_migfer:
+    kategori: baslik
+    yuva: bas
+    uretici: konik_migfer
+    p: {celik: celik, zincir: zincir}
+    donem: [bizans-15yy]
+    tarih: {guven: belirsiz, not: "Zincir perdeli konik miğfer; 1453 Bizans askerinin başlığı için doğrudan kaynak sınırlı."}
+  sapel_migfer:
+    kategori: baslik
+    yuva: bas
+    uretici: sapel_migfer
+    p: {celik: celik}
+    donem: [bizans-15yy]
+    tarih: {guven: makul, not: "Geniş kenarlı 'kettle hat' (chapel de fer) 15. yy İtalyan/Ceneviz piyadesinde yaygın; 1453 savunmasındaki Cenevizliler için uygun."}
+  montefortino_sorguclu:
+    kategori: baslik
+    yuva: bas
+    uretici: montefortino
+    p: {tunc: tunc, tuy: kece_kirmizi, sorguc: true}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: makul, not: "Enine sorguç (crista transversa) centurio işareti olarak Vegetius'ta geçer ve İmparatorluk dönemi tasvirlerinde görülür; Cumhuriyet dönemi için doğrudan kanıt sınırlı. Rütbe ayırt etmek için kullanılır."}
+  montefortino:
+    kategori: baslik
+    yuva: bas
+    uretici: montefortino
+    p: {tunc: tunc}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: kanitli, not: "Montefortino miğferi Cumhuriyet döneminin en yaygın Roma miğferi; tepe topuzu, kısa ense siperi ve yanak koruyucuları.",
+            kaynak: "https://en.wikipedia.org/wiki/Montefortino_helmet"}
+  hasir_kalkan:
+    kategori: kalkan
+    yuva: sol_kol
+    uretici: hasir_kalkan
+    p: {hasir: hasir, demir: demir}
+    donem: [osmanli-15yy]
+    tarih: {guven: makul, not: "Sarmal hasır 'kalkan' (yak. 62 cm). En bilinen örnekler 16-17. yy; 15. yy kullanımı makul.",
+            kaynak: "https://www.sothebys.com/buy/791551e8-a534-4a3f-9776-2c842054c579/lots/1b9a62b8-908d-4d00-b0d1-5559f376d586"}
+  celik_kalkan:
+    kategori: kalkan
+    yuva: sol_kol
+    uretici: celik_kalkan
+    p: {celik: celik, sus: sus_altin}
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Küçük, kubbeli çelik yuvarlak kalkan; İran-Türkmen sahasında yaygın. Akkoyunluya özgü örnek kaynakla bağlanmadı."}
+  pavez:
+    kategori: kalkan
+    yuva: sirt
+    uretici: pavez
+    p: {yuz: pavez_yuz, demir: demir}
+    donem: [bizans-15yy]
+    tarih: {guven: makul, not: "Uzun dikdörtgen pavez kalkanı İtalyan arbaletçilerinin ekipmanı; 1453'teki Cenevizliler için uygun. Desen temsilî."}
+  badem_kalkan:
+    kategori: kalkan
+    yuva: sol_kol
+    uretici: badem_kalkan
+    p: {yuz: badem_yuz, demir: demir}
+    donem: [bizans-15yy]
+    tarih: {guven: belirsiz, not: "Üstü düz, altı sivri kalkan; geç Bizans için biçim kesin değil."}
+  scutum:
+    kategori: kalkan
+    yuva: sol_kol
+    uretici: scutum
+    p: {yuz: scutum_yuz, demir: demir}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: kanitli, not: "Cumhuriyet döneminde oval, bükük scutum (sonra dikdörtgene dönüştü). Kırmızı boya rengi belirsiz.",
+            kaynak: "https://www.worldhistory.org/audioplayer/en/2-1692/"}
+  osmanli_kilic:
+    kategori: silah
+    yuva: sag_el
+    uretici: osmanli_kilic
+    p: {sap: deri_koyu, sus: sus_altin, celik: celik}
+    donem: [osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Hafif eğri kılıç; 15. yy'da yelmansız. Osmanlı ve Türkmen tarafında ortak parça."}
+  duz_kilic:
+    kategori: silah
+    yuva: sag_el
+    uretici: duz_kilic
+    p: {sap: deri_koyu, celik: celik}
+    donem: [bizans-15yy]
+    tarih: {guven: makul, not: "Düz, çift ağızlı Avrupa kılıcı; 15. yy İtalyan/Bizans savunucuları için uygun."}
+  gladius:
+    kategori: silah
+    yuva: sag_el
+    uretici: gladius
+    p: {sap: sap, celik: celik}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: kanitli, not: "Gladius Hispaniensis, yaklaşık 60 cm.", kaynak: "https://www.wikipedia.org/wiki/Roman_weapons"}
+  pilum:
+    kategori: silah
+    yuva: sag_el_dik
+    uretici: pilum
+    p: {sap: sap, demir: demir}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: kanitli, not: "Uzun demir saplı ağır cirit.", kaynak: "https://www.thecollector.com/roman-legionary-gear/"}
+  mizrak:
+    kategori: silah
+    yuva: sag_el_dik
+    uretici: mizrak
+    p: {sap: direk, celik: celik, demir: demir}
+    donem: [osmanli-15yy, akkoyunlu-15yy, bizans-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Yaprak uçlu mızrak; dört dönemde ortak, modüler parça (Roma: süvari ve triarii mızrağı hasta)."}
+  kargi:
+    kategori: silah
+    yuva: sag_el_dik
+    uretici: kargi
+    p: {sap: direk, celik: celik, demir: demir, flama: sancak_beyaz}
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: belirsiz, not: "Uçta küçük flamalı süvari mızrağı. Flamalı mızrak hem Türkmen hem Osmanlı süvarisi için makul; bu kitte ayırt edici olarak yalnızca Akkoyunlu'ya verildi. Rengi ve biçimi temsilî."}
+  gurz:
+    kategori: silah
+    yuva: sag_el
+    uretici: gurz
+    p: {sap: deri_koyu, celik: celik}
+    donem: [akkoyunlu-15yy, osmanli-15yy]
+    tarih: {guven: makul, not: "Kanatlı gürz; Türk-İran ağır süvarisinde yaygın."}
+  kompozit_yay:
+    kategori: silah
+    yuva: sol_el
+    uretici: turk_yayi
+    p: {govde: yay_govde, kiris: kiris}
+    donem: [osmanli-15yy, akkoyunlu-15yy, bizans-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Refleks kompozit yay. Bizans ordusunda okçuluk geç döneme kadar sürdü (makul); Roma'da yalnızca doğulu yardımcı okçular için (belirsiz)."}
+  arbalet:
+    kategori: silah
+    yuva: sag_el
+    uretici: arbalet
+    p: {sap: sap, celik: celik}
+    donem: [bizans-15yy]
+    tarih: {guven: makul, not: "Çelik yaylı arbalet; Cenevizli arbaletçiler 1453 savunmasında bulundu."}
+  sadak:
+    kategori: sirt
+    yuva: sirt
+    uretici: sadak
+    p: {deri: deri_kahve, ok: ok_sapi, tuy: tuy}
+    donem: [osmanli-15yy, akkoyunlu-15yy, bizans-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Deri ok kılıfı (tirkeş). Sırtta taşıma temsilî; Türk geleneğinde çoğunlukla belde taşınırdı."}
+  hancer:
+    kategori: aksesuar
+    yuva: bel_sag
+    uretici: hancer
+    p: {kin: deri_koyu, sap: sus_altin}
+    donem: [osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Kuşağa takılı kınlı hançer."}
+  pugio:
+    kategori: aksesuar
+    yuva: bel_sol
+    uretici: hancer
+    p: {kin: demir, sap: tunc}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: kanitli, not: "Pugio, Roma askerinin yan silahı (hançer).", kaynak: "https://www.wikipedia.org/wiki/Roman_weapons"}
+  kese:
+    kategori: aksesuar
+    yuva: bel_sag
+    uretici: kese
+    p: {deri: deri_kahve}
+    donem: [bizans-15yy, roma-cumhuriyet, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Deri kese; dönemden bağımsız gündelik eşya."}
+  osmanli_sancagi:
+    kategori: sancak
+    yuva: sag_el_dik
+    uretici: sancak
+    p: {direk: direk, alem: altin, kumas: sancak_kirmizi, kirlangic: true, gen: 1.55, yuk: 0.62}
+    donem: [osmanli-15yy]
+    tarih: {guven: belirsiz, not: "Uzun, kırlangıç kuyruklu kırmızı sancak. Kırlangıç kuyruklu biçim Osmanlı sancaklarında görülür; ancak 15. yy'a ait kesin desen ve renk doğrulanmadı, hilal bilerek konmadı. Biçim uzak planda ayırt edici olsun diye seçildi."}
+  tug:
+    kategori: sancak
+    yuva: sag_el_dik
+    uretici: tug
+    p: {direk: direk, alem: altin, sac: at_kili}
+    donem: [osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "At kılından tuğ; Türk-Moğol geleneğinde makam simgesi. Renk ve sayı temsilî."}
+  akkoyunlu_sancagi:
+    kategori: sancak
+    yuva: sag_el_dik
+    uretici: sancak
+    p: {direk: direk, alem: altin, kumas: sancak_beyaz, gen: 0.55, yuk: 1.35}
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: belirsiz, not: "Akkoyunlu sancağının rengi, biçimi ve deseni bilinmiyor. Dik, uzun ve dar beyaz kumaş TEMSİLÎDİR: yalnızca uzak planda Osmanlı sancağından ayırt edilsin diye seçildi; anlatımda kesin bilgi gibi sunulmaz."}
+  bizans_sancagi:
+    kategori: sancak
+    yuva: sag_el_dik
+    uretici: sancak
+    p: {direk: direk, alem: altin, kumas: sancak_kirmizi, gen: 0.9, yuk: 0.9}
+    donem: [bizans-15yy]
+    tarih: {guven: belirsiz, not: "Düz kırmızı sancak temsilî. Palaiologos dönemi bayrak deseni (dört B'li haç gibi) kaynakla doğrulanmadan çizilmedi."}
+  vexillum:
+    kategori: sancak
+    yuva: sag_el_dik
+    uretici: vexillum
+    p: {direk: direk, alem: tunc, kumas: sancak_kirmizi}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: makul, not: "Çapraz çubuğa asılı kumaş sancak (vexillum)."}
+  aquila:
+    kategori: sancak
+    yuva: sag_el_dik
+    uretici: aquila
+    p: {direk: direk, altin: altin}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: makul, not: "Lejyon kartalı (aquila). Kartal biçimi basitleştirilmiş; yakın çekime uygun değil."}
+  osmanli_cadiri:
+    kategori: cevre
+    yuva: zemin
+    uretici: osmanli_cadiri
+    p: {kumas: cadir_bezi, bant: cadir_bant, direk: direk, alem: altin}
+    donem: [osmanli-15yy]
+    tarih: {guven: makul, not: "Konik çatılı, dilimli saçaklı yuvarlak ordu çadırı; süsleme temsilî."}
+  topak_ev:
+    kategori: cevre
+    yuva: zemin
+    uretici: topak_ev
+    p: {kece: kece_gri, ahsap: sap, ip: ip}
+    donem: [akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Keçe kaplı topak ev (yurt); göçebe Türkmen yerleşimi."}
+  sur_kule:
+    kategori: cevre
+    yuva: zemin
+    uretici: sur_kule
+    p: {tas: tas, tugla: tugla}
+    donem: [bizans-15yy]
+    tarih: {guven: makul, not: "Tuğla hatıllı taş sur ve kule (Theodosius surlarını anımsatan, ölçekli temsil)."}
+  roma_cadiri:
+    kategori: cevre
+    yuva: zemin
+    uretici: roma_cadiri
+    p: {deri: roma_derisi, ahsap: sap}
+    donem: [roma-cumhuriyet]
+    tarih: {guven: makul, not: "Deri asker çadırı (papilio)."}

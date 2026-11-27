@@ -1,0 +1,40 @@
+{
+ "paket": "belgesel_kalite",
+ "anahtar": "gorsel.yaml belgesel_kalite.acik (+ karakter_yuzey, agac, fiziksel_lens)",
+ "olcum": {
+  "orman": {
+   "once_sn": 280.1,
+   "sonra_sn": 358.9,
+   "fark_yuzde": 28,
+   "once_gb": 0.96,
+   "sonra_gb": 1.07
+  },
+  "nehir": {
+   "once_sn": 213.4,
+   "sonra_sn": 225.9,
+   "fark_yuzde": 6,
+   "once_gb": 1.19,
+   "sonra_gb": 1.28
+  },
+  "yakin": {
+   "once_sn": 139.0,
+   "sonra_sn": 131.5,
+   "fark_yuzde": -5,
+   "once_gb": 0.99,
+   "sonra_gb": 1.11
+  },
+  "orta": {
+   "once_sn": 123.0,
+   "sonra_sn": 114.0,
+   "fark_yuzde": -7,
+   "once_gb": 0.86,
+   "sonra_gb": 0.97
+  }
+ },
+ "basarisiz": {
+  "zincir_doku": "ambientCG Chainmail004 bindirmesi zinciri bembeyaz yaptı; kural kaldırıldı, prosedürel halka dokusu korunuyor",
+  "ince_dokuma": "tekrar 4-5: dokuma bu kadrajlarda görünmedi; iri dokuma + aşınma lekesine geçildi",
+  "polyhaven_yaprak_atlasi": "alfa yok, kenar taşmalı; ambientCG alfalı yapraklardan kendi salkım kartı derlendi",
+  "iri_salkim_kart": "1.1 m kart taçta top gibi okundu; 0.8 m x 3 kart"
+ }
+}

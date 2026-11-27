@@ -1,0 +1,4 @@
+ad: TEST - fantastik ortaçağ A (yalnızca doğrulayıcı testi)
+etiket: test-a
+kabul_edilen_donemler: [ortacag-avrupa-fantastik, evrensel]
+roller: {piyade: [korucu_erkek, koylu_erkek, korucu_kadin], isci_sivil: [koylu_kadin]}

@@ -1,0 +1,33 @@
+{
+ "is": "p11_S4a",
+ "makine": {
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+  "cekirdek": 4,
+  "bellek_gb": 16.8
+ },
+ "kurulum_sn": 60.0,
+ "baslangic_utc": "2026-11-24T18:51:20Z",
+ "cekimler": [
+  {
+   "cekim": "S4a",
+   "kare": 81,
+   "karakter": 13,
+   "render_sn": 83.6,
+   "render_cikis": 0,
+   "render_tepe_gb": 1.33,
+   "render_cpu_sn": 271.7,
+   "ort_cekirdek": 3.25,
+   "kare_basina_sn": 1.03,
+   "godot_hata": [],
+   "kodlama_sn": 1.5,
+   "ara_avi_mb": 8.4,
+   "uretilen_kare": 81,
+   "cozunurluk": "1080x1920",
+   "mp4_mb": 3.01,
+   "durum": "TAMAM"
+  }
+ ],
+ "is_render_toplam_sn": 85.7,
+ "bitis_utc": "2026-11-24T18:52:45Z",
+ "basarili": true
+}

@@ -80,11 +80,15 @@ def _bilesik(katmanlar, W, H, cx, cy, z, aci, dx, dy):
     return taban
 
 
+EK_ALANLAR = ('ozne_maskesi', 'arka_plan_dolgu', 'zemin_derinlik_aktif', 'izleme_oranlari', 'nefes_aktif', 'nefes_genlik')
+
+
 def sahne_anahtari(s, W, H, fps):
     alan = {k: s.get(k) for k in ('gorsel', 'katmanlar', 'kamera', 'guc', 'odak', 'sarsinti', 'efektler', 'ton', 'sure_render', 'kirp',
                                   'parallax', 'ozne', 'ufuk', 'atislar', 'darbeler', 'giris_flas', 'yorunge', 'gren', 'vinyet')}
-    h = hashlib.sha1(json.dumps([SURUM, alan, W, H, fps], sort_keys=True, ensure_ascii=False).encode())
-    for g in [s.get('gorsel')] + [k.get('gorsel') for k in s.get('katmanlar') or []]:
+    ek = {k: s[k] for k in EK_ALANLAR if k in s}  # isteğe bağlı alanlar yalnızca verilince (eski anahtarlar değişmez)
+    h = hashlib.sha1(json.dumps([SURUM, alan, W, H, fps] + ([ek] if ek else []), sort_keys=True, ensure_ascii=False).encode())
+    for g in [s.get('gorsel')] + [k.get('gorsel') for k in s.get('katmanlar') or []] + [s.get('ozne_maskesi'), s.get('arka_plan_dolgu')]:
         if g and os.path.exists(g):
             st = os.stat(g)
             h.update(f'{g}:{st.st_size}:{int(st.st_mtime)}'.encode())
@@ -147,7 +151,16 @@ def sahne_render(s, out, W, H, fps, log=print):
     tohum = int(hashlib.md5(s['id'].encode()).hexdigest()[:6], 16)
     par = float(s.get('parallax', 1.0))
     D = mask = on = None
-    if par > 0:
+    if par > 0 and s.get('ozne_maskesi'):
+        # İsteğe bağlı (Faz-53A): dışarıda hazırlanmış alfa maskesi + dolgulu arka plan (aynı en-boy oranında dosyalar).
+        # Verilmezse aşağıdaki özgün yol birebir çalışır.
+        alfa = cv2.imread(s['ozne_maskesi'], cv2.IMREAD_UNCHANGED)
+        alfa = cv2.resize(alfa, (iw, ih), interpolation=cv2.INTER_LINEAR).astype(np.float32) / (65535.0 if alfa.dtype == np.uint16 else 255.0)
+        arka = cv2.resize(cv2.imread(s['arka_plan_dolgu'], cv2.IMREAD_COLOR), (iw, ih), interpolation=cv2.INTER_AREA)
+        on = np.dstack([img[..., :3], (np.clip(alfa, 0, 1) * 255).astype(np.uint8)])
+        img = arka
+        D = derinlik.harita(arka, None, float(s.get('ufuk', 0.38)))[0]
+    elif par > 0:
         D, mask = derinlik.harita(img, s.get('ozne'), float(s.get('ufuk', 0.38)))
         if mask is not None:
             # Katmanlı parallax: özne bükülmeden ayrı katman olur; arkasındaki boşluk onarılır (inpaint)
@@ -162,6 +175,13 @@ def sahne_render(s, out, W, H, fps, log=print):
             on = np.dstack([img, (np.clip((mask - 0.25) * 2.2, 0, 1) * 255).astype(np.uint8)])  # keskin kenar: yarı saydam 'hayalet' olmasın
             img = arka
             D = derinlik.harita(arka, None, float(s.get('ufuk', 0.38)))[0]
+    if s.get('zemin_derinlik_aktif', True) is False:  # isteğe bağlı: zemin bükmesi kapalı (perspektifsiz görseller)
+        D = None
+    io_ = s.get('izleme_oranlari') or {}  # isteğe bağlı: katmanların kamerayı izleme oranları (varsayılanlar özgün değerler)
+    a_kon, a_zum = float(io_.get('arka_konum', 0.75)), float(io_.get('arka_zoom', 0.8))
+    o_kon, o_zum = float(io_.get('ozne_konum', 1 + 0.2 * par)), float(io_.get('ozne_zoom', 1 + 0.15 * par))
+    o_sar = float(io_.get('ozne_sarsinti', 1.3))
+    ng = float(s.get('nefes_genlik', 1.0)) if s.get('nefes_aktif', True) else 0.0  # isteğe bağlı: özne nefesi
     fx, ateslar = [], []
     for e in s.get('efektler') or []:
         tip, g = e['tip'], float(e.get('guc', 1.0))
@@ -197,7 +217,7 @@ def sahne_render(s, out, W, H, fps, log=print):
         darbe = 1.0 + sum(5.0 * math.exp(-(t - d) * 6) for d in darbeler if t >= d)
         dx, dy, da = sars(t, darbe)
         if on is not None:
-            M, olcek = _matris(img, W, H, k0[0] + (cx - k0[0]) * 0.75, k0[1] + (cy - k0[1]) * 0.75, k0[2] + (z - k0[2]) * 0.8, aci + da, dx, dy)
+            M, olcek = _matris(img, W, H, k0[0] + (cx - k0[0]) * a_kon, k0[1] + (cy - k0[1]) * a_kon, k0[2] + (z - k0[2]) * a_zum, aci + da, dx, dy)
         else:
             M, olcek = _matris(img, W, H, cx, cy, z, aci + da, dx, dy)
         kare = cv2.warpAffine(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
@@ -214,13 +234,13 @@ def sahne_render(s, out, W, H, fps, log=print):
             kare = cv2.remap(kare, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
         if on is not None:
             # özne katmanı: kamerayı biraz fazla izler (arka plan ~%75 izler) -> ayrışma; nefes: tabana sabit hafif dikey esneme
-            cxo = k0[0] + (cx - k0[0]) * (1 + 0.2 * par)
-            cyo = k0[1] + (cy - k0[1]) * (1 + 0.2 * par)
-            zo = k0[2] + (z - k0[2]) * (1 + 0.15 * par)
-            Mo, _ = _matris(on, W, H, cxo, cyo, zo, aci + da, dx * 1.3, dy * 1.3)
-            sy = 1 + 0.006 * math.sin(2 * math.pi * t / 3.2)
+            cxo = k0[0] + (cx - k0[0]) * o_kon
+            cyo = k0[1] + (cy - k0[1]) * o_kon
+            zo = k0[2] + (z - k0[2]) * o_zum
+            Mo, _ = _matris(on, W, H, cxo, cyo, zo, aci + da, dx * o_sar, dy * o_sar)
+            sy = 1 + 0.006 * ng * math.sin(2 * math.pi * t / 3.2)
             yb = H * 0.98
-            A = np.array([[1, 0, 2.0 * math.sin(2 * math.pi * t / 4.1)], [0, sy, (1 - sy) * yb]], np.float64)
+            A = np.array([[1, 0, 2.0 * ng * math.sin(2 * math.pi * t / 4.1)], [0, sy, (1 - sy) * yb]], np.float64)
             Mo = A @ np.vstack([Mo, [0, 0, 1]])
             ust = cv2.warpAffine(on, Mo, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0, 0))
             al = ust[..., 3:4].astype(np.float32) / 255

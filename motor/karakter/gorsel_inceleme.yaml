@@ -1,0 +1,14 @@
+# Görsel inceleme kaydı. Kalite sınıfını OTOMATİK ölçütlerle birlikte belirler: inceleme bir sınıfı yükseltemez,
+# yalnızca sınırlar. A (yakın çekim) için "yakin: uygun", B (orta mesafe) için "orta: uygun" gerekir.
+# İnceleyen değişirse (örneğin sen) bu dosyadaki satırı değiştir; sınıflandırma yeniden çalıştırılınca uygulanır.
+inceleyen: "Claude (kontak sayfaları ve yakın/orta çekimler incelendi, 24 Kasım 2026)"
+varsayilan: {yakin: uygun_degil, orta: uygun, uzak: uygun}
+gerekce_yakin: >-
+  Yakın çekimde hiçbir karakter A değil: kumaş ve metal tek renk dokulu, miğferler köşeli düşük poligon,
+  yüzler stilize, giysi kıvrımı yok. Orta mesafede dönemler net okunuyor ve geometri hatası görülmüyor.
+karakterler: {}
+ekipman:
+  varsayilan: {yakin: uygun_degil, orta: uygun}
+  istisna:
+    # pavez ve arbalet Faz 3b'de yeniden modellendi ve yeniden incelendi (yan/arka/orta çekim): orta planda uygun.
+    roma_cadiri: {orta: uygun_degil, not: "18 üçgen; yalnızca uzak plan"}

@@ -1,0 +1,292 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "senaryo",
+ "description": "Anlatı katmanının çıktısı. Görsel üretimden habersizdir: her cümle yalnızca bir görsel NİYET taşır.",
+ "type": "object",
+ "required": [
+  "surum",
+  "konu",
+  "format",
+  "baslik",
+  "cumleler",
+  "kanca",
+  "final"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "niyet": {
+   "type": "object",
+   "required": [
+    "tur"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "tur": {
+     "enum": [
+      "3d",
+      "harita",
+      "bilgi_karti",
+      "gorsel25d"
+     ]
+    },
+    "roller": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "rol"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "rol": {
+        "type": "string"
+       },
+       "donem": {
+        "type": "string"
+       },
+       "adet": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "nesne": {
+        "type": "string"
+       },
+       "odak": {
+        "type": "boolean"
+       }
+      }
+     }
+    },
+    "eylem": {
+     "type": "string"
+    },
+    "mesafe": {
+     "enum": [
+      "yakin",
+      "orta",
+      "uzak"
+     ]
+    },
+    "ortam": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "arazi": {
+       "type": "string"
+      },
+      "isik": {
+       "type": "string"
+      },
+      "cevre": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "mekan": {
+       "type": "string",
+       "description": "Mekân kütüphanesi (kurallar/mekan.yaml): arazi, ışık, yerleşimi birlikte seçer."
+      },
+      "kalabalik": {
+       "type": "string",
+       "description": "Arka plan kalabalığı (kurallar/kalabalik.yaml), ör. ordu."
+      },
+      "yerlesim": {
+       "type": "string",
+       "description": "Prosedürel yerleşim (kurallar/yerlesim.yaml), ör. ordugah."
+      },
+      "efekt": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "description": "Olaya bağlı efektler (kurallar/gorsel.yaml vfx.efektler): ok_yagmuru, yangin."
+      }
+     }
+    },
+    "metin": {
+     "type": "string"
+    },
+    "aciklama": {
+     "type": "string"
+    },
+    "metin_katmani": {
+     "type": "string",
+     "description": "Ekrana yazılacak kısa metin (tarih, yer adı)."
+    },
+    "dizilis": {
+     "type": "string"
+    },
+    "kamera": {
+     "type": "string",
+     "description": "Tercih edilen çekim türü (kurallar/kamera.yaml). Planlayıcı çeşitlilik kuralları izin verirse uygular."
+    },
+    "evre": {
+     "type": "string",
+     "description": "Harita niyeti: konu.harita.evreler içindeki evre kimliği."
+    },
+    "gorsel25d": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "gorsel_id"
+     ],
+     "description": "Faz-53A: tarihî görselden 2.5D çekim (kaos/sinema). gorsel_id motor/varlik/tarihi_gorsel_kaydi.json'da lisansı insan onaylı olmalı.",
+     "properties": {
+      "gorsel_id": {
+       "type": "string"
+      },
+      "hareket": {
+       "oneOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "object"
+        }
+       ],
+       "description": "kaos/sinema/kamera.HAREKETLER adı ya da {bas, son, ease}"
+      },
+      "guc": {
+       "type": "number"
+      },
+      "odak": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       },
+       "minItems": 2,
+       "maxItems": 2
+      },
+      "ozne": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       },
+       "minItems": 4,
+       "maxItems": 4
+      },
+      "parallax": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1.5
+      },
+      "ufuk": {
+       "type": "number"
+      },
+      "efektler": {
+       "type": "array",
+       "items": {
+        "type": "object"
+       }
+      },
+      "ton": {
+       "type": "string"
+      },
+      "ton_guc": {
+       "type": "number"
+      },
+      "gren": {
+       "type": "number"
+      },
+      "sarsinti": {
+       "type": "number"
+      },
+      "yorunge": {
+       "type": "number"
+      },
+      "kirp": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       },
+       "minItems": 4,
+       "maxItems": 4
+      }
+     }
+    }
+   }
+  }
+ },
+ "properties": {
+  "surum": {
+   "const": 1
+  },
+  "konu": {
+   "type": "string"
+  },
+  "format": {
+   "enum": [
+    "shorts",
+    "uzun"
+   ]
+  },
+  "baslik": {
+   "type": "string"
+  },
+  "kanca": {
+   "type": "string"
+  },
+  "final": {
+   "type": "string"
+  },
+  "cumleler": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "metin",
+     "kartlar",
+     "niyet"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^S[0-9]+$"
+     },
+     "metin": {
+      "type": "string",
+      "minLength": 2
+     },
+     "kartlar": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "olgusal": {
+      "type": "boolean",
+      "default": true
+     },
+     "bolum": {
+      "type": "string"
+     },
+     "niyet": {
+      "$ref": "#/$defs/niyet"
+     },
+     "okunus": {
+      "type": "string",
+      "description": "Seslendirme metni (yabancı ad, kısaltma, tarih okunuşu). Yoksa metin seslendirilir."
+     },
+     "amac": {
+      "enum": [
+       "kanca",
+       "baglam",
+       "olay",
+       "gerilim",
+       "donum",
+       "final"
+      ]
+     }
+    }
+   }
+  },
+  "ana_fikir": {
+   "type": "string",
+   "minLength": 10
+  }
+ }
+}

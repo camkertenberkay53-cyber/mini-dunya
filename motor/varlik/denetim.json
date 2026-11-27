@@ -1,0 +1,257 @@
+{
+ "korucu_erkek": {
+  "seviye": "A",
+  "gerekce": [],
+  "donem": [
+   "ortacag-avrupa-fantastik"
+  ],
+  "kiyafet": "quaternius-stage/ModularCharacterOutfitsFantasy/SK_MaleRanger.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 1.869,
+   "genislik_m": 1.859,
+   "ucgen": 36902,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.184
+  },
+  "animasyon_sayisi": 14,
+  "kontak": "korucu_erkek.jpg"
+ },
+ "koylu_erkek": {
+  "seviye": "A",
+  "gerekce": [],
+  "donem": [
+   "ortacag-avrupa-fantastik"
+  ],
+  "kiyafet": "quaternius-stage/ModularCharacterOutfitsFantasy/SK_MalePeasant.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 1.817,
+   "genislik_m": 1.859,
+   "ucgen": 22610,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.161
+  },
+  "animasyon_sayisi": 14,
+  "kontak": "koylu_erkek.jpg"
+ },
+ "korucu_kadin": {
+  "seviye": "A",
+  "gerekce": [],
+  "donem": [
+   "ortacag-avrupa-fantastik"
+  ],
+  "kiyafet": "quaternius-stage/ModularCharacterOutfitsFantasy/SK_FemaleRanger.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 1.798,
+   "genislik_m": 1.669,
+   "ucgen": 39990,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.172
+  },
+  "animasyon_sayisi": 14,
+  "kontak": "korucu_kadin.jpg"
+ },
+ "koylu_kadin": {
+  "seviye": "A",
+  "gerekce": [],
+  "donem": [
+   "ortacag-avrupa-fantastik"
+  ],
+  "kiyafet": "quaternius-stage/ModularCharacterOutfitsFantasy/SK_FemalePeasant.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 1.784,
+   "genislik_m": 1.669,
+   "ucgen": 26214,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 9,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.164
+  },
+  "animasyon_sayisi": 14,
+  "kontak": "koylu_kadin.jpg"
+ },
+ "stilize_asker": {
+  "seviye": "C",
+  "gerekce": [
+   "oran stilize/chibi (baş oranı 0.375, sınır 0.22)",
+   "boy 3.284 m gerçek insan aralığı dışında",
+   "evrensel iskelet 1/65: ortak animasyonları kullanamaz",
+   "2994 üçgen: düşük poligon"
+  ],
+  "donem": [
+   "karisik"
+  ],
+  "kiyafet": "quaternius-stage/UltimateAnimatedCharacter/SK_SoldierMale.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 3.284,
+   "genislik_m": 3.24,
+   "ucgen": 2994,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.375
+  },
+  "animasyon_sayisi": 0,
+  "kontak": "stilize_asker.jpg"
+ },
+ "stilize_viking": {
+  "seviye": "C",
+  "gerekce": [
+   "oran stilize/chibi (baş oranı 0.435, sınır 0.22)",
+   "boy 3.635 m gerçek insan aralığı dışında",
+   "evrensel iskelet 1/65: ortak animasyonları kullanamaz",
+   "6264 üçgen: düşük poligon"
+  ],
+  "donem": [
+   "karisik"
+  ],
+  "kiyafet": "quaternius-stage/UltimateAnimatedCharacter/SK_VikingMale.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 3.635,
+   "genislik_m": 3.24,
+   "ucgen": 6264,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.435
+  },
+  "animasyon_sayisi": 0,
+  "kontak": "stilize_viking.jpg"
+ },
+ "stilize_sovalye": {
+  "seviye": "C",
+  "gerekce": [
+   "oran stilize/chibi (baş oranı 0.428, sınır 0.22)",
+   "boy 3.589 m gerçek insan aralığı dışında",
+   "evrensel iskelet 1/65: ortak animasyonları kullanamaz",
+   "2992 üçgen: düşük poligon"
+  ],
+  "donem": [
+   "karisik"
+  ],
+  "kiyafet": "quaternius-stage/UltimateAnimatedCharacter/SK_KnightMale.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 3.589,
+   "genislik_m": 3.24,
+   "ucgen": 2992,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.428
+  },
+  "animasyon_sayisi": 0,
+  "kontak": "stilize_sovalye.jpg"
+ },
+ "stilize_kimono": {
+  "seviye": "C",
+  "gerekce": [
+   "oran stilize/chibi (baş oranı 0.385, sınır 0.22)",
+   "boy 3.338 m gerçek insan aralığı dışında",
+   "evrensel iskelet 1/65: ortak animasyonları kullanamaz",
+   "2540 üçgen: düşük poligon"
+  ],
+  "donem": [
+   "karisik"
+  ],
+  "kiyafet": "quaternius-stage/UltimateAnimatedCharacter/SK_KimonoMale.usda",
+  "test": null,
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 3.338,
+   "genislik_m": 3.24,
+   "ucgen": 2540,
+   "kemik_sayisi": 32,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 0,
+   "en_buyuk_doku": 0,
+   "bas_orani": 0.385
+  },
+  "animasyon_sayisi": 0,
+  "kontak": "stilize_kimono.jpg"
+ },
+ "test_chibi_sovalye": {
+  "seviye": "C",
+  "gerekce": [
+   "oran stilize/chibi (baş oranı 0.497, sınır 0.22)",
+   "boy 2.467 m gerçek insan aralığı dışında",
+   "evrensel iskelet 1/65: ortak animasyonları kullanamaz",
+   "6952 üçgen: düşük poligon"
+  ],
+  "donem": [
+   "fantastik"
+  ],
+  "kiyafet": "kaykit-adventurers/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb",
+  "test": "reddedilmeli",
+  "renk_degisikligi": false,
+  "olcum": {
+   "boy_m": 2.467,
+   "genislik_m": 2.689,
+   "ucgen": 6952,
+   "kemik_sayisi": 41,
+   "evrensel_iskelet_eslesen": 1,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 1,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.497
+  },
+  "animasyon_sayisi": 0,
+  "kontak": "test_chibi_sovalye.jpg"
+ },
+ "test_renk_kopyasi": {
+  "seviye": "A",
+  "gerekce": [],
+  "donem": [
+   "ortacag-avrupa-fantastik"
+  ],
+  "kiyafet": "quaternius-stage/ModularCharacterOutfitsFantasy/SK_MaleRanger.usda",
+  "test": "kit_ayrismamali",
+  "renk_degisikligi": true,
+  "olcum": {
+   "boy_m": 1.869,
+   "genislik_m": 1.859,
+   "ucgen": 36902,
+   "kemik_sayisi": 65,
+   "evrensel_iskelet_eslesen": 65,
+   "evrensel_iskelet_toplam": 65,
+   "doku_sayisi": 12,
+   "en_buyuk_doku": 1024,
+   "bas_orani": 0.184
+  },
+  "animasyon_sayisi": 14,
+  "kontak": "test_renk_kopyasi.jpg"
+ }
+}

@@ -1,0 +1,250 @@
+# Görsel profil (konudan bağımsız) — Faz 5.2 iyileştirmeleri. render.is_hazirla aktif profili her işe ekler:
+# isik → is.json isik.gorsel, arazi → is.json arazi.gorsel (sahneler/ortam.gd okur).
+# faz52: yönetimin kabul ettiği D1–D5, D9–D15b, D16s, D17 zinciri (deney profili D17, Faz 5.2 raporu); V2 renk
+#        profili dahil. Ölçüm ve karşılaştırmalar: deneyler/faz51/gorsel/sonuc52.
+# faz54: faz52 + prosedürel bulutlu gök (varlık yok; güneş yönü sahne ışığından) + Poly Haven CC0 zemin ayrıntı
+#        dokusu (yalnız parlaklık ayrıntısı + normal; renk arazi hazır ayarından). Dosya yolları motor/ köküne göredir.
+#        arazi_ozel: arazi hazır ayarına göre ek/farklı anahtarlar (konudan bağımsız, coğrafyaya bağlı).
+# yok:   geri dönüş — Faz 5.2 öncesi üretim görüntüsü (piksel eşitliği test edilir).
+aktif: faz54
+profiller:
+  faz52:
+    isik:
+      tonemap: filmic
+      pozlama: 1.24
+      kontrast: 1.15
+      doygunluk: 1.0
+      glow: 0.12
+      gok_tepe: [0.16, 0.34, 0.62]
+      gok_ufuk: [0.86, 0.74, 0.6]
+      gok_egri: 0.25
+      sis_carpan: 0.6
+      sis_gok: 0.25
+      yer_sisi_carpan: 0.4
+      gunes_carpan: 1.2
+      golge_yumusaklik: 1.6
+      ortam_isik: 0.42
+      sis_renk_carpan: 0.67
+    arazi: {ot_alt_parlaklik: 0.75, ot_genislik_carpan: 5.0, ot_boy_carpan: 0.85, ot_sayi_carpan: 1.2, ot_normal: yukari, ot_bicim: tutam, ot_dagilim: kume,
+      kume_yaricap: 0.45, dag_bicim: arazi, dag_yukseklik: 70.0, ot_ust_carpan: 0.7, dag_bas: 110.0, dag_tam: 330.0, dag_ton: 0.65, dag_pus_yogunluk: 0.0025,
+      dag_pus_max: 0.35, dag_gecis: true, gecis_bas: 200.0, dag_pus: dinamik, dag_pus_katsayi: 0.68, zemin_iz: tekerlek, teker_derinlik: 0.15,
+      teker_genislik: 0.3, ot_parca: 4.0, dag_golge_al: yok, dag_golge: yok, ot_cesit: true}
+  yok:
+    isik: {}
+    arazi: {}
+  sinema:   # sinematik render profili (sinematik_render.acik iken aktif): sis film geçişine devredilir, ışık oranı sertleşir
+    taban: faz54
+    isik: {sis_carpan: 0.35, yer_sisi_carpan: 0.25, ortam_isik: 0.38, gunes_carpan: 1.32, tonemap: agx, pozlama: 1.32, golge_mesafe: 120.0}
+  faz54:
+    taban: faz52
+    isik: {gok_bulut: true, bulut_miktar: 0.42, bulut_olcek: 1.4, bulut_yogunluk: 0.85}
+    arazi: {zemin_alb: varlik/polyhaven/rocks_ground_02/diff.jpg, zemin_nor: varlik/polyhaven/rocks_ground_02/nor_gl.jpg,
+      doku_olcek: 0.35, doku_karisim: 0.8, doku_renk: 0.0, doku_normal: 0.8}
+    arazi_ozel:
+      kuru_bozkir: {zemin_alb: varlik/polyhaven/mud_cracked_dry_03/diff.jpg, zemin_nor: varlik/polyhaven/mud_cracked_dry_03/nor_gl.jpg}
+# Faz 5.6 (paket): kişi başına tohumlu görünüm çeşitliliği — klon görünümünü azaltır. acik: false → eski davranış (geri alma).
+karakter_cesit:
+  acik: true
+  kumas_ton: 0.22          # beyaz→rastgele renk tonu karışımı (0 = yok)
+  kumas_deger: [0.70, 1.15]
+  deri_deger: [0.85, 1.10]
+  metal_deger: [0.93, 1.05]
+  ten: [0.62, 1.05]
+  ten_sicak: 0.35
+  sac: [0.12, 1.0]
+  genislik: [0.95, 1.07]
+# Sinematik paket: parçacık efektleri (CPU, belirlenimci). acik: false → efekt yok (geri alma).
+# Doku: Kenney Particle Pack (CC0; varlik/kenney_parcacik/LICENSE.txt). renk_arazi: tozun rengi araziye göre.
+vfx:
+  acik: true
+  toz:
+    esik_hiz: 2.5              # m/sn; bundan hızlı ilerleyen (dörtnala at, koşan asker) toz kaldırır
+    adet: 30
+    omur: 2.2
+    boyut: [2.6, 5.0]
+    opaklik: 0.6
+    geri_m: -0.4
+    geri_binek_m: -1.3
+    doku: varlik/kenney_parcacik/smoke_04.png
+    renk: [0.80, 0.72, 0.60]
+    renk_arazi: {kuru_bozkir: [0.84, 0.76, 0.62], ova_cimen: [0.66, 0.60, 0.50]}
+  duman:                       # çarpışma (kılıç/ölüm animasyonu olan) çekimlerde arka plan savaş dumanı
+    obek: 3
+    adet: 7
+    omur: 7.0
+    boyut: [10.0, 17.0]
+    opaklik: 0.55
+    yaricap_m: 5.0
+    yan_oran: 0.3
+    mesafe_m: [14.0, 30.0]
+    doku: varlik/kenney_parcacik/smoke_07.png
+    renk: [0.44, 0.42, 0.40]
+  zemine_otur: true
+  top:
+    parcalar: [top_arabasi]
+    agiz_yerel: [0.0, 1.0, 1.7]
+    aralik_sn: [2.2, 3.4]
+    isik_guc: 6.0
+    alev_doku: varlik/kenney_parcacik/flame_02.png
+    duman_doku: varlik/kenney_parcacik/smoke_04.png
+  # Olaya bağlı efektler (senaryo niyeti ortam.efekt ile istenir; kıvılcım düello koreografisinde kendiliğinden):
+  ok:                          # ok yağmuru: sahnenin ardından yaylım; parabol uçuş, iniş alanına saplanma
+    adet: 90
+    yaylim_sn: [0.2, 1.9]      # iki yaylım
+    ucus_sn: 1.6
+    alan_m: 14.0
+    menzil_m: 70.0
+    tepe_m: 22.0
+  yangin:                      # yanan çadır/ev/ateş: alev + kara duman + titreşen ışık
+    alev_doku: varlik/kenney_parcacik/flame_02.png
+    duman_doku: varlik/kenney_parcacik/smoke_07.png
+    yaricap_m: 1.2
+    isik_guc: 3.0
+    isik_menzil_m: 10.0
+  kivilcim:                    # düello çiftlerinde kılıç teması
+    doku: varlik/kenney_parcacik/spark_05.png
+    aralik_sn: [0.9, 1.6]
+  efektler: [ok_yagmuru, yangin]   # senaryonun isteyebileceği efektler (başkası uydurulmaz, eksik raporlanır)
+  savas_animasyonlari: [Sword_Attack, Sword_Idle, Death01, Hit_Chest, ual2/Sword_Regular_Combo, ual2/Sword_Regular_A, ual2/Sword_Regular_B, ual2/Sword_Regular_C, ual2/Sword_Block, ual2/Hit_Knockback, ual2/Shield_OneShot]
+# Sinematik paket: son işlem katmanı (godot/sahneler/sinema.gd; kendi yazımımız). acik: false → katman yok (geri alma).
+sinema:
+  acik: true
+  vinyet: 0.42
+  vinyet_yumusak: 0.55
+  golge_ton: [0.96, 0.99, 1.04]   # gölgeler hafif soğuk
+  isik_ton: [1.03, 1.0, 0.965]     # ışıklar hafif sıcak
+  ton_guc: 1.0
+  gren: 0.022
+# (vfx ek) Sinematik paket 2: top atışı (namlu alevi + barut dumanı + ışık) ve çevre varlıklarını zemine oturtma.
+# Mekân kalite paketi: gerçekçi CC0 varlıklar (motor/varlik/mekan_varliklari.yaml 'yerine') ve PBR malzeme yükseltme
+# (kurallar/malzeme.yaml). acik: false → önceki stilize mekânlar aynen (geri alma / önce-sonra karşılaştırması).
+mekan_kalite:
+  acik: true
+  arazi: {}                # bütün arazilere ortak arazi doku eklemeleri
+  arazi_ozel:              # dik yamaçlara gerçek kaya yüzeyi (yalnız tepeli arazilerde)
+    dagli_vadi: {yamac_alb: varlik/cc0/polyhaven/rock_face_03/diff.jpg, yamac_egim: [0.07, 0.17], yamac_olcek: 0.09, yamac_renk: [0.95, 0.93, 0.9],
+                 yamac_egim_uzak: [0.12, 0.3], yamac_olcek_uzak: 0.015}
+    orman_kenari: {yamac_alb: varlik/cc0/polyhaven/rock_face_03/diff.jpg, yamac_egim: [0.12, 0.26], yamac_olcek: 0.1, yamac_renk: [0.8, 0.8, 0.76],
+                   yamac_egim_uzak: [0.3, 0.55], yamac_olcek_uzak: 0.015}
+# Sinematik render iyileştirmesi — TEK ANAHTAR: sinematik_render.acik. Açıkken (1) görsel profil 'profil' olur
+# (ışık/sis/tonlama ayarları; taban faz54), (2) film geçişi (godot/sahneler/film.gd) eklenir: derinlik tabanlı tek
+# hava kütlesi, temas gölgesi, alan derinliği, film renk derecelendirmesi. acik: false → önceki görüntü aynen.
+sinematik_render:
+  acik: true    # yönetim onayıyla varsayılan (2026-11-25). false → Faz 5.2/faz54 görüntüsü aynen
+  profil: sinema
+  sinema: {vinyet: 0.3, gren: 0.016}   # son işlem katmanına ek: AgX ile daha hafif vinyet ve gren (ayrıntı korunur)
+  film:
+    pus_yogunluk: 0.002
+    pus_bas: 45.0
+    pus_max: 0.26
+    pus_yukseklik: 0.01
+    pus_gok_karisim: 0.45      # hava rengi: sis rengi ile gök (tepe) rengi arası — uzak plan hafif soğur
+    ao_guc: 0.5
+    ao_yaricap: 0.6
+    dof_guc: 1.0
+    dof_max: 9.0
+    dof_bas: 2.5
+    dof_fizik: 1      # fiziksel lens (belgesel_kalite.fiziksel_lens): geniş planda derin odak, tele yakın planda arka plan ayrışır
+    dof_klasik: {dof_guc: 0.3, dof_max: 1.4, dof_fizik: 0}   # fiziksel lens kapalıyken (sinematik render kabul ayarı)
+    diyafram: 2.8
+    sensor_m: 0.036
+    egri: 0.15
+    siyah: 0.0
+    doygunluk: 0.88
+# Belgesel kalite paketi — TEK ANAHTAR belgesel_kalite.acik (alt anahtarlarla ayrı ayrı da kapatılabilir):
+#  karakter_yuzey: kıyafet/deri/zırh/ekipmana gerçek PBR ayrıntısı (godot/sahneler/yuzey.gd, kurallar/yuzey.yaml)
+#  agac: prosedürel gerçekçi ağaçlar (blender/agac_uret.py; mekan_varliklari.yaml 'uretici: agac') stilize ağaçların yerine
+#  fiziksel_lens: alan derinliği objektif odak uzaklığı/odak mesafesi/diyaframdan (film geçişi); kapalıysa klasik ayar
+# acik: false → önceki görüntü (sinematik render ve mekân paketleri olduğu gibi).
+belgesel_kalite:
+  acik: true
+  karakter_yuzey: true
+  agac: true
+  fiziksel_lens: true
+# Karakter kalite paketi — TEK ANAHTAR karakter_kalite.acik.
+#  beden: vücut/yüz çeşitliliği (godot/sahneler/beden.gd) — kemik ölçeği animasyondan sonra; giysi gövdeyle birlikte.
+#    taban: herkese uygulanan "süper kahraman → dönemin insanı" düzeltmesi (kalınlık çarpanları).
+#    kisi: kişiye özgü aralıklar (belirlenimci tohum).
+# acik: false → önceki karakterler.
+karakter_kalite:
+  acik: true
+  beden:
+    taban: {gogus: 0.94, bel: 0.96, kol: 0.9, bacak: 0.97, boyun: 0.92}   # "süper kahraman" → sıradan insan (herkese)
+    kisi:
+      yapi: [0.92, 1.06]
+      gobek: [-0.6, 1.0]
+      gobek_guc: 0.14
+      kol: [0.92, 1.06]
+      bacak: [0.94, 1.06]
+      boyun: [0.92, 1.08]
+      bas: [0.95, 1.04]
+      bas_en: [0.96, 1.04]
+      durus_derece: [-2.0, 6.0]
+  #  ten: plastik görünen deriye mat, gözenekli, hafif lekeli yüzey (yuzey.gd gölgelendiricisi; belgesel yuzey.yaml'a dokunmaz)
+  ten:
+    acik: true
+    kural: {desen: "^(mi_superhero|mi_skin)", doku: polyhaven/white_rough_plaster, tekrar: 9.0, detay_guc: 0.12, normal_guc: 0.35, pur_carp: 0.35, pur_taban: 0.5, asinma: 0.14, kenar_koyu: 0.18}
+# Faz 5.2 adım 2 — TEK ANAHTAR isik_onayarlari.acik. Açıkken: (1) plan 'atmosfer.isik_eslesme' (konu verisinden) çekimin
+# ışığını dönemin atmosfer ön ayarına eşler; (2) ön ayarın 'sinema' alanı etkin sinematik profilin gök/sis/pozlama
+# değerlerinin üstüne yazılır; (3) 'pus' alanı film geçişinin hava perspektifini ön ayara göre ayarlar.
+# Kapalıyken plan ve render önceki gibi (bütün ışıklarda aynı sinematik gök/sis).
+isik_onayarlari:
+  acik: true
+# Faz 5.2 adım 3 — TEK ANAHTAR renk_profilleri.acik. Sahne türüne göre derecelendirme:
+#  3D profilleri Godot son işlem katmanında (sinema.gd; ek geçiş yok), harita/2.5D profilleri FFmpeg kodlamasında.
+#  secim: 3D çekimde savaş (çarpışma animasyonu ya da duman) → savas_3d, ölüm/sonuç → agir_3d, diğerleri → belgesel_3d.
+#  ten_koru: turuncu-kahve ton maskesinde derecelendirme geri alınır (cilt tonları korunur). gren: profil başına.
+renk_profilleri:
+  acik: true
+  belgesel_3d: {kontrast: 1.14, golge_derinlik: 0.14, vurgu_sikistir: 0.35, doygunluk: 1.0, ten_koru: 0.6}
+  savas_3d:    {kontrast: 1.22, golge_derinlik: 0.22, vurgu_sikistir: 0.4, doygunluk: 0.86, ten_koru: 0.6, gren: 0.03}
+  agir_3d:     {kontrast: 1.16, golge_derinlik: 0.22, vurgu_sikistir: 0.4, doygunluk: 0.72, ten_koru: 0.5}
+  harita:      {ffmpeg: ""}            # taktik harita nötr kalır (okunaklılık); filtre yok
+  gorsel25d:   {ffmpeg: "eq=contrast=1.05:saturation=0.92:gamma=0.98,vignette=PI/5"}   # tarihî görsel: hafif kontrast, vinyet
+  agir_eylemler: [olum, darbe_alma, geri_savrulma]
+# Faz-53A A1 — TEK ANAHTAR gorsel25d.acik. Açıkken senaryo niyeti 'gorsel25d' olan cümleler, lisansı İNSAN tarafından
+# doğrulanmış tarihî görselden (motor/varlik/tarihi_gorsel_kaydi.json) kaos/sinema motoruyla 2.5D çekime dönüşür
+# (render.py: _gorsel25d_render; kaos/sinema değişmez). Kapalı → bu çekimler eskisi gibi 'ATLANDI' / eksik kaydı.
+# vinyet: kaos/sinema'nın kendi vinyeti kapalı (renk_profilleri.gorsel25d zinciri vinyeti zaten veriyor; çift vinyet olmasın).
+gorsel25d:
+  acik: true
+  sinema_vinyet: 0.0
+  kodlama: {preset: veryfast, crf: 18}     # 3D ve harita çekimleriyle aynı: kurgu concat -c copy güvenli
+  # Faz-53A A2 — TEK ANAHTAR gorsel25d.kalite.acik (motor/uretim/gorsel25d.py). Kapalı → A1 davranışı (kaos/sinema'nın
+  # kendi 480 px GrabCut maskesi ve inpaint'i). Açık → yüksek çözünürlüklü maske + yönlendirmeli filtre, kalite puanı ve
+  # seviye (tam | sinirli | kenburns; hata değil, ölçüm raporuna yazılır), geniş dolgu, belgesel eğrisi, zoom tavanı,
+  # göreli kayma sınırı (px, çıktı karesinde; zemin bükmesi ve nefes dahil ölçülür), dikey görsel → 16:9 tuval.
+  kalite:
+    acik: true
+    maske_olcek: 1200          # GrabCut ve inpaint çözünürlüğü (bölgenin uzun kenarı, px)
+    bolge_payi: 0.35           # GrabCut bölgesi: özne kutusu + her yönde kutu boyutunun bu oranı
+    grabcut_tur: 5
+    kararlilik_tur: 8          # 5 ve 8 tur maskelerinin örtüşmesi = kararlılık
+    parca_esik: 0.02           # en büyük parçanın bu oranından büyük bütün parçalar tutulur
+    # A2 mikro düzeltme: eşiğin altındaki küçük parçalar (burç dişi, ince çıkıntı) yalnızca ana gövdeye YAKIN, çevresine
+    # göre KONTRASTLI ve rengi gövdeye benziyorsa eklenir (uzak/soluk/zemin renkli gürültü eklenmez). acik:false → A2.
+    # Gerçek görsel kalibrasyonu: aday özne kutusunun İÇİNDE olmalı ve gövdeye ya da eklenmiş bir parçaya ≤ yakinlik_px
+    # (maske ölçeğinde) zincirle bağlanmalı; kutu dışı / bağlanmayan süsler (arka plan köşe süsü) eklenmez.
+    yakin_parca: {acik: true, en_kucuk_oran: 0.0005, yakinlik_px: 15, kontrast: 20}
+    filtre: {r: 8, eps: 0.001} # yönlendirmeli filtre (NumPy + cv2.boxFilter)
+    dolgu_pay_px: 4            # yumuşak kenarın ötesine dolgu payı (maske ölçeğinde)
+    seviye:
+      tam:     {kararlilik: 0.95, kenar_orani: 2.0, doluluk: [0.15, 0.90], parca: 6}
+      sinirli: {kararlilik: 0.85, kenar_orani: 1.3, doluluk: [0.08, 0.95]}
+      # doluluk ≥ 0,85 VE güvenilirlik düşük (kenar_orani < 3,0 ya da kararlilik < 0,95) → kenburns
+      kenburns: {doluluk: 0.85, kenar_orani: 3.0, kararlilik: 0.95}
+    kenburns_turleri: [minyatur, harita]   # figür–zemin ayrımı olmayan görsel türleri: maske hesaplanmaz
+    # Faz-53B: kayıttaki onerilen_seviye=kenburns (ozne_tespit: düşük güven / çok figür) uyulur; elle kutu varsa uyulmaz.
+    tespit_onerisine_uy: true
+    kayma_px: {tam: 20, sinirli: 15}
+    zoom_tolerans: 1.1         # kaynak pikselin en çok %10 büyütülmesine izin verilir; aşılırsa zoom kısılır
+    nefes_portre_genlik: 0.4   # nefes yalnızca ozne_bilgisi.tur == insan_portre (özgün genliğin oranı)
+    tuval_en_boy_esigi: 1.0    # en/boy bundan küçük görsel yatay çıktıda 16:9 tuvale konur (kırpılmaz)
+    # A2 mikro düzeltme: YALNIZCA tuval modunda (dikey görsel → 16:9) zoom ≤ 1,06 ve push-in ağırlıkla hafif tilt;
+    # yatay görseller, Shorts ve diğer 2.5D sahnelerin hareketi değişmez. acik:false → A2 davranışı.
+    # olcek_kat: tuval, hedef çıktı yüksekliğinin bu katında kurulur (zoom ≤ 1,06 olduğundan kaynak yüksekliğin tamamı
+    # gereksiz). 0 → A2 mikro davranışı (kaynak çözünürlükte tuval). 1.25: CI kalite karşılaştırmasında (½ çöz. SSIM/keskinlik)
+    # 1.1'e göre yüz/sarık detayını daha iyi korur; eskiye göre bellek −%79, hazırlık −%40.
+    tuval_hareket: {acik: true, zoom_tavani: 1.06, pay: 0.8, olcek_kat: 1.25}
+  # Dolguya düşük opaklıklı, yerel standart sapmaya uyarlı ince gürültü/tarama dokusu (yama kopyalama YOK).
+  doku_doldurma: {acik: true, opaklik: 0.5, pencere_px: 61, tarama_x: 1.2, tarama_y: 0.5}

@@ -1,0 +1,16 @@
+# Kurgu ses ayarları (konudan bağımsız). Kodla üretilen sesler + Faz 5.5: CC0 saha kaydı ambiyans ve eylem sesleri
+# (motor/varlik/oga, lisans.json). 'kayit_sesleri' kapalıysa (ya da dosya yoksa) eski kodla üretilmiş ses kullanılır.
+ruzgar_duzeyi: 0.20          # bütün video boyunca hafif rüzgâr
+davul_amaclari: [olay, gerilim]   # bu amaçlı cümlelerin çekimlerinin altında davul
+davul_duzeyi: 0.30
+konusmada_kisma: 0.6         # konuşma sırasında alt katmanın kısılma oranı
+kayit_sesleri:
+  acik: true
+  ambiyans: {dosya: varlik/oga/park_ambiyans/park_ambience_wind_150s.ogg, duzey: 0.32}   # açık alan rüzgârı (sentez rüzgârın yerine)
+  kus: {dosya: varlik/oga/kus_sesi/birdchirping071414.wav, duzey: 0.06, amaclar: [baglam, final], aralik_sn: 3.5}
+  # eylem sesleri: çekimdeki karakterlerin animasyon eylemine göre çekim boyunca aralıklarla (tohumlu, belirlenimci)
+  eylem_sesleri:
+    - {eylemler: [kilic_saldirisi, savas, carpisma, kilicla_savunma], desen: "varlik/oga/kilic_starninjas/sword_clash.*.ogg", duzey: 0.22, aralik_sn: 0.7}
+    - {eylemler: [kilic_saldirisi, savas], desen: "varlik/oga/kilic_starninjas/sword - StarNinjas/sword.*.ogg", duzey: 0.16, aralik_sn: 0.9}
+    - {eylemler: [kalkan_darbesi, darbe_alma, geri_savrulma], desen: "varlik/oga/rpg_ses/RPG Sound Pack/inventory/metal-small*.wav", duzey: 0.2, aralik_sn: 1.2}
+    - {eylemler: [yuruyus, toren_yuruyusu], desen: "varlik/oga/rpg_ses/RPG Sound Pack/inventory/chainmail*.wav", duzey: 0.05, aralik_sn: 0.55}

@@ -1,0 +1,35 @@
+# Senaryo/sahne planlayıcısı kuralları (motor/orkestrasyon/senaryo_planlayici.py). Sayılar bağlayıcıdır;
+# dağılım hedefi ise DİNAMİK hedeftir (sapma uyarı olarak raporlanır, kota değildir).
+deneme:
+  en_cok: 3              # LLM çıktısı başına toplam deneme (1 ilk + en çok 2 hedefli onarım); sonra fail-safe
+enumlar:
+  gorsel_tur: [harita, gorsel25d, sahne3d]
+  ritim: [vurgu, normal, atmosfer, kritik_harita]
+  ton: [ciddi, gerilimli, epos]
+  gecis_efekti: [boom, yok]
+  ambiyans: [ruzgar, kusatma, saray, sessiz]
+  kesinlik: [kesin, tartismali, belirsiz]
+  arastirma_durum: [dogrulanmis, tartismali, belirsiz]
+  arastirma_tur: [olay, kisi, sayi, tarih, baglam, yer]
+ardisik_ayni_tur_en_cok: 2
+uzun:
+  format: {profil: uzun, en_boy: "16:9", cozunurluk: [1920, 1080]}
+  toplam_sn: [900, 1200]           # 15–20 dk
+  bolum_sirasi: [hook, baglam, catisma, donum_noktasi, sonuc]
+  hook_en_cok_sn: 60
+  sure:                            # sahne süresi kuralları
+    varsayilan: [6, 12]            # 6 hızlı geçiş/vurgu · 8 normal · 10–12 atmosfer/görsel inceleme
+    kisa_vurgu: [3, 6]             # < 6 sn yalnızca ritim=vurgu
+    kritik_harita_en_cok: 20       # > 12 sn yalnızca harita + ritim=kritik_harita
+    atmosfer_en_az: 10
+  dagilim_hedefi: {harita: 0.40, gorsel25d: 0.40, sahne3d: 0.20}
+  dagilim_uyari_sapma: 0.15
+shorts:
+  format: {profil: shorts, en_boy: "9:16", cozunurluk: [1080, 1920]}
+  toplam_sn: [50, 60]
+  bolum_sirasi: [hook, akis, kapanis]
+  hook_sn: [2, 5]                  # 0–3 sn hareketli darbe (hook bölümü 3 sn'yi kapsamalı, en çok 5 sn)
+  ilk_hareketli_sn: 3
+  kapanis_baslangic_sn: [35, 45]   # 3–40 akış, 40–60 kapanış (±5 sn esneklik)
+  sure: [2, 10]
+  hareketli_turler: [gorsel25d, sahne3d]

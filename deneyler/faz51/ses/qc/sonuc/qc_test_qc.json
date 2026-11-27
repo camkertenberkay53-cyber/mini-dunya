@@ -1,0 +1,1888 @@
+{
+ "grup": "test",
+ "mod": "hazirla+qc+yeniden",
+ "maks_deneme": 4,
+ "toplu_durum": "FAIL",
+ "harf_hizi_medyan": 14.27,
+ "yukleme_sn": 36.5,
+ "toplam_sn": 1087.8,
+ "tepe_bellek_gb": 7.45,
+ "uretim_toplam_sn": 865.0,
+ "asr_toplam_sn": 185.8,
+ "insan_incelemesi": [
+  {
+   "no": 0,
+   "orijinal": "Milattan önce elli üç yılında, Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı.",
+   "durum": "INCELEME",
+   "neden": [
+    "kelime hata oranı (0.23)",
+    "araya giren kelime: roma"
+   ]
+  },
+  {
+   "no": 1,
+   "orijinal": "Lejyonun kartalı düşman eline geçti; bu, bir askerin yaşayabileceği en büyük utançtı.",
+   "durum": "FAIL",
+   "neden": [
+    "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı (0.17)"
+   ]
+  },
+  {
+   "no": 2,
+   "orijinal": "Otuz üç yıl sonra, tek bir kılıç bile çekilmeden, kartallar Roma'ya geri döndü.",
+   "durum": "INCELEME",
+   "neden": [
+    "kelime hata oranı (0.25)",
+    "araya giren kelime: roma"
+   ]
+  },
+  {
+   "no": 4,
+   "orijinal": "Bin dört yüz elli üç baharında, Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı.",
+   "durum": "INCELEME",
+   "neden": [
+    "kelime hata oranı (0.20)",
+    "araya giren kelime: mehmet"
+   ]
+  },
+  {
+   "no": 5,
+   "orijinal": "Cengiz Han'ın atlıları, Semerkant'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü.",
+   "durum": "FAIL",
+   "neden": [
+    "kelime hata oranı yüksek (0.36)",
+    "araya giren kelime: han buhara"
+   ]
+  },
+  {
+   "no": 6,
+   "orijinal": "Kraliçe Kleopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mühürledi.",
+   "durum": "FAIL",
+   "neden": [
+    "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+    "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+    "kelime hata oranı yüksek (0.40)"
+   ]
+  },
+  {
+   "no": 9,
+   "orijinal": "Zafer haberi geldiğinde, şehrin dört bir yanında çanlar çalmaya başladı!",
+   "durum": "INCELEME",
+   "neden": [
+    "kelime hata oranı (0.22)",
+    "araya giren kelime: dört"
+   ]
+  }
+ ],
+ "cumleler": [
+  {
+   "no": 0,
+   "orijinal": "Milattan önce elli üç yılında, Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı.",
+   "konusma": "Milattan önce elli üç yılında, Roma'nın en büyük ordularından biri Harran yakınlarında bozguna uğradı.",
+   "metin_uyarilari": [],
+   "durum": "INCELEME",
+   "secilen": "test_00_d3.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_00_d1.wav",
+     "uretim_sn": 35.8,
+     "asr_sn": 5.3,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 43.6,
+      "kritik": [
+       "kelime hata oranı yüksek (0.38)"
+      ],
+      "uyari": [
+       "araya giren kelime: roma bolgun",
+       "özel isim doğrulanamadı: Harran"
+      ],
+      "olcum": {
+       "wer": 0.385,
+       "eksik": [],
+       "fazla_ic": [
+        "roma",
+        "bolgun"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.39,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 6.36,
+       "ses_sn": 6.56,
+       "sure_orani": 1.06,
+       "en_uzun_sessizlik_sn": 0.27,
+       "asr_olasilik": 0.847,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": false
+        }
+       ],
+       "dokum": "Milattan önce 53 yılında Roma'nın en büyük ordularından biri Haren yakınlarında Bolgun'a uğradı."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_00_d2.wav",
+     "uretim_sn": 25.7,
+     "asr_sn": 5.3,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 54.7,
+      "kritik": [
+       "kelime hata oranı yüksek (0.31)"
+      ],
+      "uyari": [
+       "araya giren kelime: roma"
+      ],
+      "olcum": {
+       "wer": 0.308,
+       "eksik": [],
+       "fazla_ic": [
+        "roma"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.18,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.55,
+       "ses_sn": 5.64,
+       "sure_orani": 0.92,
+       "en_uzun_sessizlik_sn": 0.33,
+       "asr_olasilik": 0.876,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Milattan önce 53 yılında Roma'nın en büyük ordularından biri Haranya kınarında bozguna uğradı."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_00_d3.wav",
+     "uretim_sn": 27.3,
+     "asr_sn": 5.4,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 74.8,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.23)",
+       "araya giren kelime: roma"
+      ],
+      "olcum": {
+       "wer": 0.231,
+       "eksik": [],
+       "fazla_ic": [
+        "roma"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.33,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.91,
+       "ses_sn": 6.04,
+       "sure_orani": 0.98,
+       "en_uzun_sessizlik_sn": 0.21,
+       "asr_olasilik": 0.866,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Milattan önce 53 yılında Roma'nın en büyük ordularından biri Haran yakınlarında bozguna uğradı."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_00_d4.wav",
+     "uretim_sn": 27.3,
+     "asr_sn": 5.5,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 1.6,
+      "kritik": [
+       "cümle başında fazladan konuşma (2 kelime, 0.4 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+       "kelime hata oranı yüksek (0.38)"
+      ],
+      "uyari": [
+       "araya giren kelime: roma"
+      ],
+      "olcum": {
+       "wer": 0.385,
+       "eksik": [],
+       "fazla_ic": [
+        "roma"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "m",
+        "ö"
+       ],
+       "kuyruk_ses_sn": 0.03,
+       "bas_ses_sn": 0.45,
+       "konusma_sn": 5.82,
+       "ses_sn": 6.0,
+       "sure_orani": 0.97,
+       "en_uzun_sessizlik_sn": 0.81,
+       "asr_olasilik": 0.862,
+       "butunluk": false,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": true
+        }
+       ],
+       "dokum": "M.Ö. 53 yılında Roma'nın en büyük ordularından biri Haran yakınlarında bozguna uğradı."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 1,
+   "orijinal": "Lejyonun kartalı düşman eline geçti; bu, bir askerin yaşayabileceği en büyük utançtı.",
+   "konusma": "Lejyonun kartalı düşman eline geçti; bu, bir askerin yaşayabileceği en büyük utançtı.",
+   "metin_uyarilari": [],
+   "durum": "FAIL",
+   "secilen": "test_01_d1.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_01_d1.wav",
+     "uretim_sn": 23.7,
+     "asr_sn": 5.1,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 35.3,
+      "kritik": [
+       "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+      ],
+      "uyari": [
+       "kelime hata oranı (0.17)"
+      ],
+      "olcum": {
+       "wer": 0.167,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "legion",
+        "un"
+       ],
+       "kuyruk_ses_sn": 0.57,
+       "bas_ses_sn": 0.21,
+       "konusma_sn": 5.16,
+       "ses_sn": 5.28,
+       "sure_orani": 1.04,
+       "en_uzun_sessizlik_sn": 0.15,
+       "asr_olasilik": 0.878,
+       "butunluk": false,
+       "ozel": [],
+       "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_01_d2.wav",
+     "uretim_sn": 25.4,
+     "asr_sn": 5.4,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 0.0,
+      "kritik": [
+       "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+       "kelime hata oranı yüksek (0.50)"
+      ],
+      "uyari": [
+       "araya giren kelime: the"
+      ],
+      "olcum": {
+       "wer": 0.5,
+       "eksik": [],
+       "fazla_ic": [
+        "the"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "legion",
+        "un"
+       ],
+       "kuyruk_ses_sn": 0.03,
+       "bas_ses_sn": 0.21,
+       "konusma_sn": 5.4,
+       "ses_sn": 5.6,
+       "sure_orani": 1.09,
+       "en_uzun_sessizlik_sn": 0.63,
+       "asr_olasilik": 0.815,
+       "butunluk": false,
+       "ozel": [],
+       "dokum": "Legion'un kartalı düşmanı eline geçti. Bu, The Askel'in yaşayabileceği en büyük utançtı."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_01_d3.wav",
+     "uretim_sn": 23.4,
+     "asr_sn": 5.2,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 35.3,
+      "kritik": [
+       "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+      ],
+      "uyari": [
+       "kelime hata oranı (0.17)"
+      ],
+      "olcum": {
+       "wer": 0.167,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "legion",
+        "un"
+       ],
+       "kuyruk_ses_sn": 0.36,
+       "bas_ses_sn": 0.21,
+       "konusma_sn": 4.86,
+       "ses_sn": 5.0,
+       "sure_orani": 0.98,
+       "en_uzun_sessizlik_sn": 0.36,
+       "asr_olasilik": 0.919,
+       "butunluk": false,
+       "ozel": [],
+       "dokum": "Legion'un kartalı düşman eline geçti. Bu, bir askerin yaşayabileceği en büyük utançtı."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_01_d4.wav",
+     "uretim_sn": 23.4,
+     "asr_sn": 5.4,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 35.3,
+      "kritik": [
+       "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı"
+      ],
+      "uyari": [
+       "kelime hata oranı (0.17)"
+      ],
+      "olcum": {
+       "wer": 0.167,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "legion",
+        "un"
+       ],
+       "kuyruk_ses_sn": 0.39,
+       "bas_ses_sn": 0.18,
+       "konusma_sn": 4.89,
+       "ses_sn": 5.04,
+       "sure_orani": 0.98,
+       "en_uzun_sessizlik_sn": 0.42,
+       "asr_olasilik": 0.881,
+       "butunluk": false,
+       "ozel": [],
+       "dokum": "Legion'un kartalı düşman eline geçti. Bu bir askerin yaşayabileceği en büyük utançtı."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "orijinal": "Otuz üç yıl sonra, tek bir kılıç bile çekilmeden, kartallar Roma'ya geri döndü.",
+   "konusma": "Otuz üç yıl sonra, tek bir kılıç bile çekilmeden, kartallar Roma'ya geri döndü.",
+   "metin_uyarilari": [],
+   "durum": "INCELEME",
+   "secilen": "test_02_d1.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_02_d1.wav",
+     "uretim_sn": 22.3,
+     "asr_sn": 4.8,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 74.0,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.25)",
+       "araya giren kelime: roma"
+      ],
+      "olcum": {
+       "wer": 0.25,
+       "eksik": [],
+       "fazla_ic": [
+        "roma"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.15,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.26,
+       "ses_sn": 4.84,
+       "sure_orani": 0.97,
+       "en_uzun_sessizlik_sn": 0.3,
+       "asr_olasilik": 0.93,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        }
+       ],
+       "dokum": "33 yıl sonra tek bir kalış bile çekilmeden Kartallar Roma'ya geri döndü."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_02_d2.wav",
+     "uretim_sn": 21.8,
+     "asr_sn": 4.9,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 50.3,
+      "kritik": [
+       "kelime hata oranı yüksek (0.42)"
+      ],
+      "uyari": [
+       "araya giren kelime: çekinmeden"
+      ],
+      "olcum": {
+       "wer": 0.417,
+       "eksik": [],
+       "fazla_ic": [
+        "çekinmeden"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.06,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.08,
+       "ses_sn": 4.64,
+       "sure_orani": 0.92,
+       "en_uzun_sessizlik_sn": 0.27,
+       "asr_olasilik": 0.926,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        }
+       ],
+       "dokum": "33 yıl sonra tek bir kıvıç bile çekinmeden Kartalla Roma'ya geri döndü."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_02_d3.wav",
+     "uretim_sn": 20.8,
+     "asr_sn": 4.8,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 74.0,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.25)",
+       "araya giren kelime: roma"
+      ],
+      "olcum": {
+       "wer": 0.25,
+       "eksik": [],
+       "fazla_ic": [
+        "roma"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.39,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.23,
+       "ses_sn": 4.32,
+       "sure_orani": 0.96,
+       "en_uzun_sessizlik_sn": 0.27,
+       "asr_olasilik": 0.947,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        }
+       ],
+       "dokum": "33 yıl sonra tek bir kılıç bile çekinmeden Kartallar Roma'ya geri döndü."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_02_d4.wav",
+     "uretim_sn": 20.7,
+     "asr_sn": 4.8,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 74.0,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.25)",
+       "araya giren kelime: kartalılar"
+      ],
+      "olcum": {
+       "wer": 0.25,
+       "eksik": [],
+       "fazla_ic": [
+        "kartalılar"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.21,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.02,
+       "ses_sn": 4.24,
+       "sure_orani": 0.91,
+       "en_uzun_sessizlik_sn": 0.33,
+       "asr_olasilik": 0.935,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        }
+       ],
+       "dokum": "33 yıl sonra tek bir kılıç bile çekilmeden Kartalılar Roma'ya geri döndü."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "orijinal": "Şimdi düşünün: bir sancak, binlerce insanın onurunu nasıl taşıyabilir?",
+   "konusma": "Şimdi düşünün: bir sancak, binlerce insanın onurunu nasıl taşıyabilir?",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "test_03_d4.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_03_d1.wav",
+     "uretim_sn": 23.5,
+     "asr_sn": 4.7,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 75.0,
+      "kritik": [
+       "cümle sonunda fazladan konuşma (0 kelime, 1.0 sn ses)"
+      ],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.0,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 1.02,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.13,
+       "ses_sn": 5.16,
+       "sure_orani": 1.24,
+       "en_uzun_sessizlik_sn": 0.6,
+       "asr_olasilik": 0.946,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Şimdi düşünün bir sancak binlerce insanın onurunu nasıl taşıyabilir?"
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_03_d2.wav",
+     "uretim_sn": 25.0,
+     "asr_sn": 4.7,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 87.6,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.11)"
+      ],
+      "olcum": {
+       "wer": 0.111,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.48,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.37,
+       "ses_sn": 5.48,
+       "sure_orani": 1.3,
+       "en_uzun_sessizlik_sn": 0.39,
+       "asr_olasilik": 0.967,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Şimdi düşünün, bir sancak binlerce insanın onarını nasıl taşıyabilir?"
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_03_d3.wav",
+     "uretim_sn": 25.9,
+     "asr_sn": 4.6,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 75.0,
+      "kritik": [
+       "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)"
+      ],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.0,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 1.29,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.13,
+       "ses_sn": 5.76,
+       "sure_orani": 1.24,
+       "en_uzun_sessizlik_sn": 0.12,
+       "asr_olasilik": 0.986,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Şimdi düşünün, bir sancak, binlerce insanın onurunu nasıl taşıyabilir?"
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_03_d4.wav",
+     "uretim_sn": 24.3,
+     "asr_sn": 4.6,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.0,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.33,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.29,
+       "ses_sn": 5.32,
+       "sure_orani": 1.04,
+       "en_uzun_sessizlik_sn": 0.3,
+       "asr_olasilik": 0.935,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Şimdi düşünün bir sancak binlerce insanın onurunu nasıl taşıyabilir?"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "orijinal": "Bin dört yüz elli üç baharında, Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı.",
+   "konusma": "Bin dört yüz elli üç baharında, Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı.",
+   "metin_uyarilari": [],
+   "durum": "INCELEME",
+   "secilen": "test_04_d2.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_04_d1.wav",
+     "uretim_sn": 23.3,
+     "asr_sn": 4.9,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 72.0,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.30)",
+       "araya giren kelime: mehmet"
+      ],
+      "olcum": {
+       "wer": 0.3,
+       "eksik": [],
+       "fazla_ic": [
+        "mehmet"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.68,
+       "ses_sn": 5.08,
+       "sure_orani": 0.84,
+       "en_uzun_sessizlik_sn": 0.21,
+       "asr_olasilik": 0.909,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Fatih Sultan Mehmet",
+         "okunus": "Fatih Sultan Mehmet",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "İstanbul",
+         "okunus": "İstanbul",
+         "bulundu": true
+        }
+       ],
+       "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surların önüne dayandı."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_04_d2.wav",
+     "uretim_sn": 26.6,
+     "asr_sn": 4.9,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 76.0,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.20)",
+       "araya giren kelime: mehmet"
+      ],
+      "olcum": {
+       "wer": 0.2,
+       "eksik": [],
+       "fazla_ic": [
+        "mehmet"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.51,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.73,
+       "ses_sn": 5.84,
+       "sure_orani": 1.02,
+       "en_uzun_sessizlik_sn": 0.27,
+       "asr_olasilik": 0.926,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Fatih Sultan Mehmet",
+         "okunus": "Fatih Sultan Mehmet",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "İstanbul",
+         "okunus": "İstanbul",
+         "bulundu": true
+        }
+       ],
+       "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_04_d3.wav",
+     "uretim_sn": 26.2,
+     "asr_sn": 5.0,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 76.0,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.20)",
+       "araya giren kelime: mehmet"
+      ],
+      "olcum": {
+       "wer": 0.2,
+       "eksik": [],
+       "fazla_ic": [
+        "mehmet"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.18,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.43,
+       "ses_sn": 5.8,
+       "sure_orani": 0.97,
+       "en_uzun_sessizlik_sn": 0.75,
+       "asr_olasilik": 0.938,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Fatih Sultan Mehmet",
+         "okunus": "Fatih Sultan Mehmet",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "İstanbul",
+         "okunus": "İstanbul",
+         "bulundu": true
+        }
+       ],
+       "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_04_d4.wav",
+     "uretim_sn": 25.0,
+     "asr_sn": 5.0,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 76.0,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.20)",
+       "araya giren kelime: mehmet"
+      ],
+      "olcum": {
+       "wer": 0.2,
+       "eksik": [],
+       "fazla_ic": [
+        "mehmet"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.59,
+       "ses_sn": 5.44,
+       "sure_orani": 0.82,
+       "en_uzun_sessizlik_sn": 0.03,
+       "asr_olasilik": 0.932,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Fatih Sultan Mehmet",
+         "okunus": "Fatih Sultan Mehmet",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "İstanbul",
+         "okunus": "İstanbul",
+         "bulundu": true
+        }
+       ],
+       "dokum": "1453 baharında Fatih Sultan Mehmet'in ordusu İstanbul surlarının önüne dayandı."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "orijinal": "Cengiz Han'ın atlıları, Semerkant'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü.",
+   "konusma": "Cengiz Han'ın atlıları, Semerkant'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü.",
+   "metin_uyarilari": [],
+   "durum": "FAIL",
+   "secilen": "test_05_d2.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_05_d1.wav",
+     "uretim_sn": 29.4,
+     "asr_sn": 5.6,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 23.8,
+      "kritik": [
+       "cümle sonunda fazladan konuşma (0 kelime, 1.3 sn ses)",
+       "kelime hata oranı yüksek (0.45)"
+      ],
+      "uyari": [
+       "araya giren kelime: han semerkamptan"
+      ],
+      "olcum": {
+       "wer": 0.455,
+       "eksik": [],
+       "fazla_ic": [
+        "han",
+        "semerkamptan"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 1.35,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 6.36,
+       "ses_sn": 6.6,
+       "sure_orani": 1.19,
+       "en_uzun_sessizlik_sn": 0.21,
+       "asr_olasilik": 0.934,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Semerkant",
+         "okunus": "Semerkant",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Cengiz Han",
+         "okunus": "Cengiz Han",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Buhara",
+         "okunus": "Buhara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Cengiz Han'ın atlıları, Semerkamp'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_05_d2.wav",
+     "uretim_sn": 21.4,
+     "asr_sn": 5.7,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 52.5,
+      "kritik": [
+       "kelime hata oranı yüksek (0.36)"
+      ],
+      "uyari": [
+       "araya giren kelime: han buhara"
+      ],
+      "olcum": {
+       "wer": 0.364,
+       "eksik": [],
+       "fazla_ic": [
+        "han",
+        "buhara"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.2,
+       "ses_sn": 4.6,
+       "sure_orani": 0.79,
+       "en_uzun_sessizlik_sn": 0.06,
+       "asr_olasilik": 0.921,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Semerkant",
+         "okunus": "Semerkant",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Cengiz Han",
+         "okunus": "Cengiz Han",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Buhara",
+         "okunus": "Buhara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Cengiz Han'ın atlıları, Semerkant'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_05_d3.wav",
+     "uretim_sn": 26.4,
+     "asr_sn": 5.6,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 48.8,
+      "kritik": [
+       "kelime hata oranı yüksek (0.45)"
+      ],
+      "uyari": [
+       "araya giren kelime: han buhara"
+      ],
+      "olcum": {
+       "wer": 0.455,
+       "eksik": [],
+       "fazla_ic": [
+        "han",
+        "buhara"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.51,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.52,
+       "ses_sn": 5.88,
+       "sure_orani": 1.04,
+       "en_uzun_sessizlik_sn": 0.15,
+       "asr_olasilik": 0.935,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Semerkant",
+         "okunus": "Semerkant",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Cengiz Han",
+         "okunus": "Cengiz Han",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Buhara",
+         "okunus": "Buhara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Cengiz Han'ın haplıları, Semerkant'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_05_d4.wav",
+     "uretim_sn": 24.2,
+     "asr_sn": 5.6,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 48.8,
+      "kritik": [
+       "kelime hata oranı yüksek (0.45)"
+      ],
+      "uyari": [
+       "araya giren kelime: han buhara"
+      ],
+      "olcum": {
+       "wer": 0.455,
+       "eksik": [],
+       "fazla_ic": [
+        "han",
+        "buhara"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.56,
+       "ses_sn": 5.28,
+       "sure_orani": 0.86,
+       "en_uzun_sessizlik_sn": 0.27,
+       "asr_olasilik": 0.935,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Semerkant",
+         "okunus": "Semerkant",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Cengiz Han",
+         "okunus": "Cengiz Han",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Buhara",
+         "okunus": "Buhara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Cengiz Han'ın aklıları Semerkant'tan Buhara'ya kadar uzanan şehirleri birer birer düşürdü."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "orijinal": "Kraliçe Kleopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mühürledi.",
+   "konusma": "Kraliçe Kleopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mühürledi.",
+   "metin_uyarilari": [],
+   "durum": "FAIL",
+   "secilen": "test_06_d4.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_06_d1.wav",
+     "uretim_sn": 22.4,
+     "asr_sn": 5.9,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 0.0,
+      "kritik": [
+       "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+       "kelime hata oranı yüksek (0.70)"
+      ],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.7,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "kraliçek",
+        "leopatra",
+        "mısır",
+        "ın"
+       ],
+       "kuyruk_ses_sn": 0.18,
+       "bas_ses_sn": 1.17,
+       "konusma_sn": 4.71,
+       "ses_sn": 4.84,
+       "sure_orani": 0.9,
+       "en_uzun_sessizlik_sn": 0.72,
+       "asr_olasilik": 0.852,
+       "butunluk": false,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Kleopatra",
+         "okunus": "Kleopatra",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Mısır",
+         "okunus": "Mısır",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Kraliçek Leopatra, Mısır'ın kaderini değiştirecek o mektubu tıçayan ellerleme hürledi."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_06_d2.wav",
+     "uretim_sn": 24.2,
+     "asr_sn": 6.0,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 1.0,
+      "kritik": [
+       "cümle başında fazladan konuşma (4 kelime, 1.3 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+       "kelime hata oranı yüksek (0.60)"
+      ],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.6,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "kraliçek",
+        "leopatra",
+        "mısır",
+        "ın"
+       ],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 1.26,
+       "konusma_sn": 4.35,
+       "ses_sn": 5.28,
+       "sure_orani": 0.83,
+       "en_uzun_sessizlik_sn": 0.12,
+       "asr_olasilik": 0.845,
+       "butunluk": false,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Kleopatra",
+         "okunus": "Kleopatra",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Mısır",
+         "okunus": "Mısır",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Kraliçek Leopatra, Mısır'ın kaderini değiştirecek o mekdubuç içeyen ellerle mühürledi."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_06_d3.wav",
+     "uretim_sn": 24.8,
+     "asr_sn": 5.6,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 0.0,
+      "kritik": [
+       "cümle başında fazladan konuşma (2 kelime, 0.2 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+       "kelime hata oranı yüksek (0.50)"
+      ],
+      "uyari": [
+       "araya giren kelime: mi"
+      ],
+      "olcum": {
+       "wer": 0.5,
+       "eksik": [],
+       "fazla_ic": [
+        "mi"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "curly",
+        "check"
+       ],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.24,
+       "konusma_sn": 4.2,
+       "ses_sn": 5.36,
+       "sure_orani": 0.8,
+       "en_uzun_sessizlik_sn": 0.0,
+       "asr_olasilik": 0.876,
+       "butunluk": false,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Kleopatra",
+         "okunus": "Kleopatra",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Mısır",
+         "okunus": "Mısır",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Curly check Leopatra mısırın kaderini değiştirecek o mektubu titreyen ellerle mi hürledi?"
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_06_d4.wav",
+     "uretim_sn": 23.6,
+     "asr_sn": 5.8,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 9.0,
+      "kritik": [
+       "cümle başında fazladan konuşma (4 kelime, 1.2 sn ses)",
+       "cümle bütünlüğü: ilk ya da son kelime duyulmadı",
+       "kelime hata oranı yüksek (0.40)"
+      ],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.4,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [
+        "kraliçek",
+        "leopatra",
+        "mısır",
+        "ın"
+       ],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 1.17,
+       "konusma_sn": 4.14,
+       "ses_sn": 5.08,
+       "sure_orani": 0.79,
+       "en_uzun_sessizlik_sn": 0.09,
+       "asr_olasilik": 0.969,
+       "butunluk": false,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Kleopatra",
+         "okunus": "Kleopatra",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Mısır",
+         "okunus": "Mısır",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Kraliçek Leopatra, Mısır'ın kaderini değiştirecek o mektubu titreyen ellerle mühürledi."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "orijinal": "Gece çöktüğünde, kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu.",
+   "konusma": "Gece çöktüğünde, kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu.",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "test_07_d2.wav",
+   "deneme_sayisi": 2,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_07_d1.wav",
+     "uretim_sn": 21.7,
+     "asr_sn": 5.0,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 87.6,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.11)"
+      ],
+      "olcum": {
+       "wer": 0.111,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.3,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.38,
+       "ses_sn": 4.6,
+       "sure_orani": 0.89,
+       "en_uzun_sessizlik_sn": 0.3,
+       "asr_olasilik": 0.969,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Gece çöptüğünde kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_07_d2.wav",
+     "uretim_sn": 26.2,
+     "asr_sn": 5.2,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.0,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.44,
+       "ses_sn": 5.64,
+       "sure_orani": 0.91,
+       "en_uzun_sessizlik_sn": 0.06,
+       "asr_olasilik": 0.979,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Gece çöktüğünde kuşatılmış kalenin içinde yalnızca davulların sesi duyuluyordu."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "orijinal": "Peki ama bu imparatorluk, en güçlü olduğu anda neden çöktü?",
+   "konusma": "Peki ama bu imparatorluk, en güçlü olduğu anda neden çöktü?",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "test_08_d2.wav",
+   "deneme_sayisi": 2,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_08_d1.wav",
+     "uretim_sn": 18.9,
+     "asr_sn": 4.5,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 75.0,
+      "kritik": [
+       "cümle sonunda fazladan konuşma (0 kelime, 0.8 sn ses)"
+      ],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.0,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.84,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.6,
+       "ses_sn": 3.96,
+       "sure_orani": 1.07,
+       "en_uzun_sessizlik_sn": 0.21,
+       "asr_olasilik": 0.976,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöktü?"
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_08_d2.wav",
+     "uretim_sn": 18.5,
+     "asr_sn": 4.8,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "olcum": {
+       "wer": 0.0,
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.24,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.36,
+       "ses_sn": 3.48,
+       "sure_orani": 1.0,
+       "en_uzun_sessizlik_sn": 0.3,
+       "asr_olasilik": 0.955,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Peki ama bu imparatorluk en güçlü olduğu anda neden çöktü?"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "orijinal": "Zafer haberi geldiğinde, şehrin dört bir yanında çanlar çalmaya başladı!",
+   "konusma": "Zafer haberi geldiğinde, şehrin dört bir yanında çanlar çalmaya başladı!",
+   "metin_uyarilari": [],
+   "durum": "INCELEME",
+   "secilen": "test_09_d1.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_09_d1.wav",
+     "uretim_sn": 19.9,
+     "asr_sn": 4.9,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 75.1,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.22)",
+       "araya giren kelime: dört"
+      ],
+      "olcum": {
+       "wer": 0.222,
+       "eksik": [],
+       "fazla_ic": [
+        "dört"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.06,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.08,
+       "ses_sn": 4.2,
+       "sure_orani": 0.95,
+       "en_uzun_sessizlik_sn": 0.78,
+       "asr_olasilik": 0.96,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_09_d2.wav",
+     "uretim_sn": 22.7,
+     "asr_sn": 5.1,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 75.1,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.22)",
+       "araya giren kelime: dört"
+      ],
+      "olcum": {
+       "wer": 0.222,
+       "eksik": [],
+       "fazla_ic": [
+        "dört"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.78,
+       "ses_sn": 4.68,
+       "sure_orani": 0.88,
+       "en_uzun_sessizlik_sn": 0.12,
+       "asr_olasilik": 0.967,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Zafer haberi geldiğinde, şehrin dört bir yanında çanlar çalmaya başladı."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "test_09_d3.wav",
+     "uretim_sn": 21.3,
+     "asr_sn": 5.1,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 75.1,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.22)",
+       "araya giren kelime: dört"
+      ],
+      "olcum": {
+       "wer": 0.222,
+       "eksik": [],
+       "fazla_ic": [
+        "dört"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.63,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.05,
+       "ses_sn": 4.36,
+       "sure_orani": 0.95,
+       "en_uzun_sessizlik_sn": 0.21,
+       "asr_olasilik": 0.973,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "test_09_d4.wav",
+     "uretim_sn": 22.0,
+     "asr_sn": 5.1,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 75.1,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (0.22)",
+       "araya giren kelime: dört"
+      ],
+      "olcum": {
+       "wer": 0.222,
+       "eksik": [],
+       "fazla_ic": [
+        "dört"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.54,
+       "ses_sn": 4.56,
+       "sure_orani": 0.83,
+       "en_uzun_sessizlik_sn": 0.0,
+       "asr_olasilik": 0.953,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Zafer haberi geldiğinde şehrin dört bir yanında çanlar çalmaya başladı."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

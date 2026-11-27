@@ -1,0 +1,173 @@
+{
+ "katalog": false,
+ "varliklar": [
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "rough_linen",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kıyafet: kaba keten/yün dokuma"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "fabric_pattern_07",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kıyafet: pamuklu dokuma"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "poly_wool_herringbone",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kıyafet: yün balıksırtı"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "velour_velvet",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "kıyafet: kadife (soylu)"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "brown_leather",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "deri: kahve deri"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "fabric_leather_02",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "deri: yıpranmış deri"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "pine_bark",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ağaç: çam kabuğu"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "jolcham_oak_bark_01",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ağaç: meşe kabuğu"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "bark_brown_02",
+   "tur": "doku",
+   "cozunurluk": "1k",
+   "haritalar": [
+    "diff",
+    "nor_gl",
+    "arm"
+   ],
+   "amac": "ağaç: kahve kabuk"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "tree_small_02",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "yalniz_doku": true,
+   "amac": "ağaç: yaprak ve kabuk atlası (yalnız doku)"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "fir_sapling_medium",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "yalniz_doku": true,
+   "amac": "ağaç: köknar iğne atlası (yalnız doku)"
+  },
+  {
+   "kaynak": "polyhaven",
+   "kimlik": "pine_sapling_small",
+   "tur": "model",
+   "cozunurluk": "1k",
+   "yalniz_doku": true,
+   "amac": "ağaç: çam iğne atlası (yalnız doku)"
+  },
+  {
+   "kaynak": "ambientcg",
+   "kimlik": "Chainmail004",
+   "cozunurluk": "1K",
+   "amac": "zırh: zincir zırh"
+  },
+  {
+   "kaynak": "ambientcg",
+   "kimlik": "Chainmail001",
+   "cozunurluk": "1K",
+   "amac": "zırh: zincir zırh 2"
+  },
+  {
+   "kaynak": "ambientcg",
+   "kimlik": "Metal012",
+   "cozunurluk": "1K",
+   "amac": "zırh: dövme çelik"
+  },
+  {
+   "kaynak": "ambientcg",
+   "kimlik": "Metal032",
+   "cozunurluk": "1K",
+   "amac": "zırh: çizik çelik"
+  },
+  {
+   "kaynak": "ambientcg",
+   "kimlik": "Leaf001",
+   "cozunurluk": "1K",
+   "amac": "ağaç: yaprak"
+  },
+  {
+   "kaynak": "ambientcg",
+   "kimlik": "Leaf002",
+   "cozunurluk": "1K",
+   "amac": "ağaç: yaprak 2"
+  }
+ ]
+}

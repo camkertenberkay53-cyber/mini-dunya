@@ -1,0 +1,138 @@
+{
+ "_aciklama": "Faz 5.1 P2 görsel profilleri. V2 = yerel denemelerde seçilen (filmic, derin gök, daha güçlü kontrast, daha az pus, kalın/aydınlık ot). V2_PH = V2 + Poly Haven HDRI gökyüzü + zemin dokusu. Denemeler: V2_agx ve V2_aces elendi (gri gök / koyu).",
+ "V2": {
+  "isik": {
+   "tonemap": "filmic",
+   "pozlama": 1.0,
+   "kontrast": 1.15,
+   "doygunluk": 1.0,
+   "glow": 0.12,
+   "gok_tepe": [
+    0.16,
+    0.34,
+    0.62
+   ],
+   "gok_ufuk": [
+    0.86,
+    0.74,
+    0.6
+   ],
+   "gok_egri": 0.25,
+   "sis_carpan": 1.3,
+   "sis_gok": 0.25,
+   "yer_sisi_carpan": 0.4,
+   "gunes_carpan": 1.2,
+   "golge_yumusaklik": 1.6,
+   "ortam_isik": 0.42
+  },
+  "arazi": {
+   "ot_alt_parlaklik": 1.05,
+   "ot_genislik_carpan": 1.5,
+   "ot_boy_carpan": 0.85,
+   "ot_sayi_carpan": 1.2
+  }
+ },
+ "V2_PH": {
+  "isik": {
+   "tonemap": "filmic",
+   "pozlama": 1.0,
+   "kontrast": 1.15,
+   "doygunluk": 1.0,
+   "glow": 0.12,
+   "gok_tepe": [
+    0.16,
+    0.34,
+    0.62
+   ],
+   "gok_ufuk": [
+    0.86,
+    0.74,
+    0.6
+   ],
+   "gok_egri": 0.25,
+   "sis_carpan": 1.3,
+   "sis_gok": 0.25,
+   "yer_sisi_carpan": 0.4,
+   "gunes_carpan": 1.2,
+   "golge_yumusaklik": 1.6,
+   "ortam_isik": 0.42,
+   "hdri": "/tmp/ph/kloofendal_48d_partly_cloudy/hdri.hdr",
+   "hdri_enerji": 1.0,
+   "hdri_donus": 0.0
+  },
+  "arazi": {
+   "ot_alt_parlaklik": 1.05,
+   "ot_genislik_carpan": 1.5,
+   "ot_boy_carpan": 0.85,
+   "ot_sayi_carpan": 1.2,
+   "zemin_alb": "/tmp/ph/rocks_ground_02/diff.jpg",
+   "zemin_nor": "/tmp/ph/rocks_ground_02/nor_gl.jpg",
+   "doku_olcek": 0.5,
+   "doku_karisim": 0.7
+  }
+ },
+ "V2_agx_elendi": {
+  "isik": {
+   "tonemap": "agx",
+   "pozlama": 1.25,
+   "kontrast": 1.12,
+   "doygunluk": 1.08,
+   "glow": 0.12,
+   "gok_tepe": [
+    0.3,
+    0.44,
+    0.64
+   ],
+   "gok_ufuk": [
+    0.88,
+    0.74,
+    0.58
+   ],
+   "gok_egri": 0.18,
+   "sis_carpan": 1.6,
+   "sis_gok": 0.25,
+   "yer_sisi_carpan": 0.4,
+   "gunes_carpan": 1.2,
+   "golge_yumusaklik": 1.6,
+   "ortam_isik": 0.42
+  },
+  "arazi": {
+   "ot_alt_parlaklik": 1.05,
+   "ot_genislik_carpan": 1.5,
+   "ot_boy_carpan": 0.85,
+   "ot_sayi_carpan": 1.2
+  }
+ },
+ "V2_aces_elendi": {
+  "isik": {
+   "tonemap": "aces",
+   "pozlama": 0.9,
+   "kontrast": 1.08,
+   "doygunluk": 1.0,
+   "glow": 0.12,
+   "gok_tepe": [
+    0.16,
+    0.34,
+    0.62
+   ],
+   "gok_ufuk": [
+    0.86,
+    0.74,
+    0.6
+   ],
+   "gok_egri": 0.25,
+   "sis_carpan": 1.3,
+   "sis_gok": 0.25,
+   "yer_sisi_carpan": 0.4,
+   "gunes_carpan": 1.2,
+   "golge_yumusaklik": 1.6,
+   "ortam_isik": 0.42
+  },
+  "arazi": {
+   "ot_alt_parlaklik": 1.05,
+   "ot_genislik_carpan": 1.5,
+   "ot_boy_carpan": 0.85,
+   "ot_sayi_carpan": 1.2
+  }
+ }
+}

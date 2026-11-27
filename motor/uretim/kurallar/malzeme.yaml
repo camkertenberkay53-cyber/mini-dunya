@@ -1,0 +1,15 @@
+# Mekân kalite paketi — malzeme yükseltme (godot/sahneler/malzeme.gd). Stilize (düz renkli) çevre parçalarının
+# malzemeleri ADINA göre gerçek PBR dokularla (Poly Haven CC0; albedo + normal + AO/pürüz/metal) değiştirilir.
+# Dokular dünya-uzayı üç yönlü (triplanar) uygulanır: UV'siz/atlas modellerde de esneme olmaz; tekrar_m = bir doku
+# karosunun metre karşılığı. desen: malzeme adı için düzenli ifade (ilk eşleşen kural uygulanır). renk: doku çarpanı.
+# Yalnız gorsel.yaml mekan_kalite.acik iken; gerçekçi varlıkların kendi malzemesine dokunulmaz (adları eşleşmez).
+acik: true
+spekuler_gercek: 0.25   # gerçekçi varlıkların aynasal gücü (Godot varsayılanı 0.5; gök ışığında ıslak görünümü önler)
+kurallar:
+  - {desen: "^(Stone|Stone_Dark)$", doku: polyhaven/rustic_stone_wall, tekrar_m: 2.4, renk: [0.95, 0.93, 0.9]}
+  - {desen: "^Stone_Light$", doku: polyhaven/medieval_blocks_05, tekrar_m: 2.2, renk: [1.0, 0.98, 0.94]}
+  - {desen: "^(Plaster|Beige|Walls)$", doku: polyhaven/medieval_wall_01, tekrar_m: 2.6, renk: [1.0, 0.96, 0.9]}
+  - {desen: "^(Wood|DarkWood|Wood_Side)$", doku: polyhaven/medieval_wood, tekrar_m: 1.6, renk: [0.85, 0.8, 0.75]}
+  - {desen: "^(Wood_Light|LightWood)$", doku: polyhaven/weathered_planks, tekrar_m: 1.6, renk: [1.0, 0.95, 0.9]}
+  - {desen: "^(RoofTiles|RoofTiles_Red|Main)$", doku: polyhaven/clay_roof_tiles_02, tekrar_m: 2.0, renk: [1.0, 0.95, 0.92]}
+  - {desen: "^(Atlas|Rocks)$", doku: polyhaven/rock_face_03, tekrar_m: 3.0, renk: [1.0, 1.0, 1.0]}

@@ -1,0 +1,126 @@
+# Arazi hazır ayarları (coğrafya; dönemden bağımsız). Godot sahne kurucusu bu değerlerle zemini, dağları ve otları kurar.
+araziler:
+  ova_cimen:
+    aciklama: Geniş, hafif dalgalı çayırlık; uzakta sisli dağ sıraları.
+    zemin: {cimen: [0.24, 0.27, 0.13], cimen2: [0.42, 0.40, 0.22], kuru: [0.36, 0.30, 0.20], toprak: [0.33, 0.27, 0.20], toprak2: [0.46, 0.39, 0.29]}
+    tepe_yuksekligi: 14.0
+    yol: {acik: true, genislik: 2.6}
+    dag_katmani: 3
+    dag_renkleri: [[0.26, 0.28, 0.22], [0.36, 0.38, 0.34], [0.48, 0.5, 0.52]]
+    ot_sayisi: 14000
+    ot_boy: 0.26
+    ot_genislik: 0.05
+  kuru_bozkir:
+    aciklama: Kurak, sarımtırak bozkır; seyrek ot, alçak tepeler.
+    zemin: {cimen: [0.24, 0.22, 0.13], cimen2: [0.33, 0.29, 0.18], kuru: [0.31, 0.26, 0.17], toprak: [0.29, 0.24, 0.17], toprak2: [0.36, 0.30, 0.21]}
+    tepe_yuksekligi: 9.0
+    yol: {acik: true, genislik: 2.6}
+    dag_katmani: 2
+    dag_renkleri: [[0.42, 0.37, 0.28], [0.52, 0.48, 0.42]]
+    ot_sayisi: 1500
+    ot_boy: 0.14
+    ot_genislik: 0.045
+  # --- Mekân paketi: yeni arazi tipleri (mevcutlar değişmedi). su: deniz/nehir oyuğu ve su yüzeyi (ortam.gd SU_SHADER);
+  # su yönü çekimde kameranın bakış yönüdür (deniz/nehir oyuncuların ARKASINDA, kadrajda kalır).
+  dagli_vadi:
+    aciklama: Dik yamaçlı dağlık vadi; kayalık sırtlar, geniş savaş düzlüğü.
+    zemin: {cimen: [0.22, 0.25, 0.13], cimen2: [0.36, 0.36, 0.22], kuru: [0.34, 0.30, 0.22], toprak: [0.36, 0.33, 0.29], toprak2: [0.46, 0.43, 0.38]}
+    tepe_yuksekligi: 34.0
+    yol: {acik: true, genislik: 2.6}
+    dag_katmani: 3
+    dag_renkleri: [[0.30, 0.31, 0.29], [0.40, 0.42, 0.42], [0.55, 0.57, 0.60]]
+    ot_sayisi: 9000
+    ot_boy: 0.24
+    ot_genislik: 0.05
+  orman_kenari:
+    aciklama: Orman kenarında açıklık; yoğun ağaçlık, gölgeli zemin.
+    zemin: {cimen: [0.18, 0.24, 0.11], cimen2: [0.30, 0.34, 0.17], kuru: [0.30, 0.27, 0.18], toprak: [0.27, 0.22, 0.16], toprak2: [0.36, 0.30, 0.22]}
+    tepe_yuksekligi: 16.0
+    yol: {acik: true, genislik: 2.4}
+    dag_katmani: 3
+    dag_renkleri: [[0.20, 0.25, 0.18], [0.32, 0.37, 0.32], [0.46, 0.50, 0.50]]
+    ot_sayisi: 16000
+    ot_boy: 0.3
+    ot_genislik: 0.05
+  deniz_kiyisi:
+    aciklama: Alçak kıyı; kumsal ve açık deniz.
+    zemin: {cimen: [0.30, 0.31, 0.17], cimen2: [0.45, 0.42, 0.27], kuru: [0.45, 0.40, 0.29], toprak: [0.47, 0.42, 0.32], toprak2: [0.56, 0.50, 0.38]}
+    tepe_yuksekligi: 8.0
+    yol: {acik: true, genislik: 2.6}
+    dag_katmani: 2
+    dag_renkleri: [[0.40, 0.44, 0.46], [0.56, 0.60, 0.64]]
+    ot_sayisi: 5000
+    ot_boy: 0.22
+    ot_genislik: 0.045
+    su: {tur: deniz, bas_m: 16.0, kiyi_m: 9.0, derin_m: 3.5, seviye_m: -0.45, dalga_m: 0.22, dalga_boy_m: 9.0,
+         derin_renk: [0.02, 0.07, 0.11], sig_renk: [0.05, 0.15, 0.18], kum: [0.60, 0.53, 0.40]}
+  nehir_vadisi:
+    aciklama: Vadi tabanından geçen geniş nehir; yeşil kıyılar.
+    zemin: {cimen: [0.22, 0.27, 0.12], cimen2: [0.38, 0.40, 0.21], kuru: [0.36, 0.31, 0.21], toprak: [0.33, 0.27, 0.20], toprak2: [0.44, 0.38, 0.29]}
+    tepe_yuksekligi: 24.0
+    yol: {acik: true, genislik: 2.6}
+    dag_katmani: 3
+    dag_renkleri: [[0.26, 0.29, 0.22], [0.36, 0.39, 0.35], [0.50, 0.52, 0.54]]
+    ot_sayisi: 12000
+    ot_boy: 0.26
+    ot_genislik: 0.05
+    su: {tur: nehir, bas_m: 20.0, genislik_m: 18.0, kiyi_m: 5.0, derin_m: 2.5, seviye_m: -0.5, dalga_m: 0.04, dalga_boy_m: 3.0,
+         akis: [0.9, 0.0], derin_renk: [0.04, 0.08, 0.08], sig_renk: [0.08, 0.14, 0.12], kum: [0.40, 0.35, 0.27]}
+isiklar:
+  aksam_ustu:
+    aciklama: Alçak, sıcak, karşıdan güneş; uzun gölgeler.
+    gunes: {aci: [-14, 118, 0], renk: [1.0, 0.82, 0.62], guc: 1.6}
+    dolgu: {aci: [-30, -60, 0], renk: [0.6, 0.68, 0.8], guc: 0.35}
+    gok: {tepe: [0.42, 0.5, 0.6], ufuk: [0.86, 0.76, 0.64]}
+    sis: {renk: [0.78, 0.72, 0.64], yogunluk: 0.006}
+  oglen_acik:
+    aciklama: Yüksek, nötr güneş; kısa gölgeler; açık gök.
+    gunes: {aci: [-50, 140, 0], renk: [1.0, 0.95, 0.88], guc: 1.15}
+    dolgu: {aci: [-30, -60, 0], renk: [0.62, 0.7, 0.82], guc: 0.4}
+    gok: {tepe: [0.32, 0.48, 0.72], ufuk: [0.78, 0.8, 0.8]}
+    sis: {renk: [0.75, 0.78, 0.8], yogunluk: 0.006, yukseklik_yogunlugu: 0.012}
+  sabah_puslu:
+    aciklama: Yumuşak, soğuk sabah ışığı; yoğun pus.
+    gunes: {aci: [-10, 60, 0], renk: [1.0, 0.9, 0.78], guc: 1.2}
+    dolgu: {aci: [-30, -120, 0], renk: [0.62, 0.68, 0.78], guc: 0.45}
+    gok: {tepe: [0.55, 0.6, 0.66], ufuk: [0.82, 0.8, 0.76]}
+    sis: {renk: [0.8, 0.8, 0.78], yogunluk: 0.008}
+  gun_batimi:
+    aciklama: Ufka yakın, turuncu gün batımı; uzun gölgeler, sıcak pus.
+    gunes: {aci: [-7, 105, 0], renk: [1.0, 0.66, 0.42], guc: 1.5}
+    dolgu: {aci: [-25, -70, 0], renk: [0.55, 0.58, 0.75], guc: 0.35}
+    gok: {tepe: [0.36, 0.40, 0.55], ufuk: [0.95, 0.66, 0.45]}
+    sis: {renk: [0.85, 0.66, 0.52], yogunluk: 0.007}
+  kapali_kasvetli:
+    aciklama: Kapalı, kasvetli gök; yumuşak gölgeler, soğuk ton.
+    gunes: {aci: [-40, 150, 0], renk: [0.82, 0.85, 0.9], guc: 0.75}
+    dolgu: {aci: [-30, -60, 0], renk: [0.6, 0.64, 0.7], guc: 0.55}
+    gok: {tepe: [0.46, 0.5, 0.55], ufuk: [0.68, 0.7, 0.72]}
+    sis: {renk: [0.66, 0.68, 0.7], yogunluk: 0.009}
+  # --- Faz 5.2 atmosfer ön ayarları (gorsel.yaml isik_onayarlari.acik iken kullanılır; konu.atmosfer eşler) ---
+  # sinema: etkin sinematik profilin üstüne yalnız bu ön ayar için yazılan değerler (gök, sis, pozlama)
+  # pus: film geçişinin hava perspektifi (uzaklıkla artan pus) için ön ayara özel değerler
+  kurak_altin:
+    aciklama: Kurak bozkırda alçak altın güneş (≈15°); sıcak, tozlu hava; uzak tepeler pusta kaybolur.
+    gunes: {aci: [-15, 118, 0], renk: [1.0, 0.76, 0.52], guc: 1.7}
+    dolgu: {aci: [-30, -60, 0], renk: [0.62, 0.64, 0.74], guc: 0.3}
+    gok: {tepe: [0.40, 0.46, 0.56], ufuk: [0.92, 0.78, 0.60]}
+    sis: {renk: [0.88, 0.76, 0.60], yogunluk: 0.007, yukseklik_yogunlugu: 0.03}
+    sinema: {gok_tepe: [0.22, 0.35, 0.56], gok_ufuk: [0.93, 0.76, 0.56], sis_carpan: 0.75, yer_sisi_carpan: 0.6, sis_renk_carpan: 0.85, sis_gok: 0.1, pozlama: 1.26, bulut_miktar: 0.42}
+    pus: {pus_yogunluk: 0.0045, pus_bas: 30.0, pus_max: 0.42, pus_gok_karisim: 0.25}
+  kurak_altin_ogle:
+    aciklama: Kurak bozkırda öğleden sonra (≈35°); sert, sıcak ışık; tozlu, hafif sarımsı pus.
+    gunes: {aci: [-35, 135, 0], renk: [1.0, 0.86, 0.68], guc: 1.4}
+    dolgu: {aci: [-30, -60, 0], renk: [0.62, 0.68, 0.8], guc: 0.35}
+    gok: {tepe: [0.36, 0.48, 0.66], ufuk: [0.88, 0.80, 0.68]}
+    sis: {renk: [0.86, 0.78, 0.66], yogunluk: 0.006, yukseklik_yogunlugu: 0.02}
+    sinema: {gok_tepe: [0.22, 0.38, 0.62], gok_ufuk: [0.90, 0.80, 0.64], sis_carpan: 0.6, yer_sisi_carpan: 0.45, sis_renk_carpan: 0.8, sis_gok: 0.15}
+    pus: {pus_yogunluk: 0.0035, pus_bas: 35.0, pus_max: 0.36, pus_gok_karisim: 0.3}
+  soguk_safak:
+    aciklama: Soğuk şafak; alçak, solgun güneş (≈9°), mavi-gri yoğun pus, yumuşak gölgeler.
+    gunes: {aci: [-9, 60, 0], renk: [0.86, 0.88, 1.0], guc: 1.0}
+    dolgu: {aci: [-30, -120, 0], renk: [0.55, 0.62, 0.78], guc: 0.5}
+    gok: {tepe: [0.36, 0.44, 0.58], ufuk: [0.78, 0.80, 0.86]}
+    sis: {renk: [0.72, 0.78, 0.86], yogunluk: 0.011, yukseklik_yogunlugu: 0.06}
+    sinema: {gok_tepe: [0.30, 0.38, 0.52], gok_ufuk: [0.76, 0.80, 0.88], sis_carpan: 0.95, yer_sisi_carpan: 0.9, sis_renk_carpan: 0.75, pozlama: 1.18, bulut_miktar: 0.55}
+    pus: {pus_yogunluk: 0.006, pus_bas: 20.0, pus_max: 0.5, pus_gok_karisim: 0.55}

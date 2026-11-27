@@ -1,0 +1,134 @@
+# Faz-53A: gerçek tarihî görsel kanıtı. Commons'tan otomatik arar ve indirir (motor/varlik/commons_toplayici.py),
+# testleri ve kanıt üreticisini gerçek görsellerle çalıştırır, panoları ve ölçümleri ARTIFACT olarak yükler.
+# Kaynak görseller depoya commit EDİLMEZ (bu iş akışı hiçbir şey push etmez).
+name: Faz53a gerçek görsel kanıtı
+
+on:
+  workflow_dispatch:
+    inputs:
+      canli_dry_run:
+        description: "Canlı dry-run (Wikipedia + OpenAlex + Gemini). Ücretsiz Gemini kotasını harcar; yalnızca elle."
+        type: boolean
+        default: false
+  push:
+    branches: [faz51-altyapi]
+    paths:
+      - "motor/varlik/commons_toplayici.py"
+      - "motor/varlik/tarihi_gorsel.py"
+      - "motor/varlik/ozne_tespit.py"
+      - "motor/testler/test_ozne_tespit.py"
+      - "deneyler/faz53b/ozne_pano.py"
+      - "motor/orkestrasyon/**"
+      - "motor/testler/test_senaryo_planlayici.py"
+      - "motor/testler/test_kaynak_dogrulama.py"
+      - "motor/uretim/gorsel25d.py"
+      - "motor/testler/gorsel25d_kanit.py"
+      - "deneyler/faz53a/gercek/sorgular.json"
+      - "deneyler/faz53a/a2_mikro/olc_kanit.py"
+      - "motor/testler/sinema_regresyon.py"
+      - "motor/uretim/kurallar/gorsel.yaml"
+      - ".github/workflows/faz53a_gercek_kanit.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  kanit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash   # açık "bash" → -eo pipefail: tee'ye bağlanan komutun hatası adımı düşürür
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Kurulum
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libsndfile1 > /dev/null
+          # sürümler yerel taban ortamıyla aynı (kaos/sinema regresyon tabanı bu ortamda kaydedildi)
+          pip install --quiet numpy==2.5.3 opencv-python-headless==5.0.0.93 pillow==12.3.0 pypdf==6.17.0 pyyaml scipy soundfile psutil jsonschema pytest
+          python3 -c "import cv2, numpy; print('opencv', cv2.__version__, 'numpy', numpy.__version__)"
+      - name: 1) Commons'tan otomatik toplama
+        run: |
+          mkdir -p cikti
+          python3 -m motor.varlik.commons_toplayici deneyler/faz53a/gercek/sorgular.json 2>&1 | tee cikti/toplama.log
+          test "${PIPESTATUS[0]}" -eq 0 || { echo "HATA: toplayıcı başarısız (gerçek görsel testleri atlanacaktı)"; exit 1; }
+          ls -la assets/tarihi_gorsel/
+          git status --porcelain --untracked-files=all assets/ | tee cikti/git_durumu.txt
+          if git status --porcelain --untracked-files=all assets/ | grep -vE '\.json$' | grep -q .; then echo "HATA: görsel ikilisi git'e görünüyor"; exit 1; fi
+      - name: 2a) Faz-53A testleri (gerçek görsel testi dahil; zorunlu)
+        run: |
+          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py motor/testler/test_ozne_tespit.py motor/testler/test_senaryo_planlayici.py motor/testler/test_kaynak_dogrulama.py \
+            --junitxml=cikti/pytest_faz53a.xml 2>&1 | tee cikti/pytest_faz53a.log
+          test "${PIPESTATUS[0]}" -eq 0
+          if grep -q "SKIPPED.*gerçek tarihî görsel" cikti/pytest_faz53a.log; then echo "HATA: gerçek görsel testleri atlandı"; exit 1; fi
+      - name: 2b) Tam test takımı (bilgi; Godot/Blender/karakter önbelleği bu makinede yok)
+        continue-on-error: true
+        run: |
+          python3 -m pytest -q -rs motor/testler --junitxml=cikti/pytest_tam.xml 2>&1 | tail -40 | tee cikti/pytest_tam.log
+      - name: 3) Kanıt üretimi
+        run: |
+          python3 deneyler/faz53a/a2_mikro/olc_kanit.py gercek hepsi deneyler/faz53a/gercek 2>&1 | tee cikti/kanit.log
+          python3 deneyler/faz53a/a2_mikro/olc_kanit.py tuval_karsilastir fatih_portre_bellini_1480 deneyler/faz53a/gercek/tuval_karsilastirma 2>&1 | tee cikti/tuval_karsilastirma.log
+          python3 deneyler/faz53b/ozne_pano.py deneyler/faz53a/gercek 2>&1 | tee cikti/ozne_tespit.log
+          test "${PIPESTATUS[0]}" -eq 0
+          cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
+          mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
+          find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60
+      # Kota koruması: her push'ta ÇALIŞMAZ. Yalnızca Actions → "Run workflow" + canli_dry_run=true ile.
+      # Not: bot.yml saat başı (cron "37 * * * *") AYNI secrets.GEMINI_API_KEY ile çalışır ve aynı ücretsiz günlük kotayı
+      # paylaşır. Dry-run'ı bot'un yoğun olmadığı bir saatte tetikleyin; 429 görülürse kota bot tarafından tüketilmiş olabilir.
+      - name: 5) Canlı dry-run (yalnızca elle) — Kaynak Keşfi → Canlı Doğrulama → Gemini → Kapı
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.canli_dry_run }}
+        continue-on-error: true
+        timeout-minutes: 6   # API yavaşlasa bile iş akışı asılı kalmaz (Gemini bütçeleri: uzun 150 sn, Shorts 75 sn)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}   # isteğe bağlı (ücretsiz); yoksa anahtarsız küçük bütçe
+        run: |
+          set +e   # bilgi adımı; çıkış kodu açıkça yazılır
+          mkdir -p cikti/dry_run
+          echo "GEMINI_API_KEY tanımlı mı: $([ -n "$GEMINI_API_KEY" ] && echo evet || echo hayir)"
+          echo "OPENALEX_API_KEY tanımlı mı: $([ -n "$OPENALEX_API_KEY" ] && echo evet || echo hayir)"
+          python3 -u -m motor.orkestrasyon.canli_dry_run "Otlukbeli Savaşı" --mod uzun,shorts --cikti cikti/dry_run 2>&1 | tee cikti/dry_run/dry_run.log
+          echo "dry-run çıkış kodu: ${PIPESTATUS[0]}"
+      - name: 4) Özet ve önizleme (iş akışı kaydına; artifact'a erişemeyen ortamlar için)
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import base64, io, json, pathlib
+          from PIL import Image
+          ozetler = sorted(pathlib.Path("deneyler/faz53a/gercek").glob("*/ozet.json"))
+          for oz in ozetler:                      # önce bütün özetler (kısa satırlar)
+              print("=== OZET", oz.parent.name)
+              print(json.dumps(json.loads(oz.read_text()), ensure_ascii=False))
+          for t in sorted(pathlib.Path("deneyler/faz53a/gercek").glob("*/ozne_tespit.json")):   # Faz-53B özetleri
+              r = json.loads(t.read_text())
+              print("=== OZNE_TESPIT", t.parent.name, json.dumps({a: r.get(a) for a in ("gorsel_turu", "guven_skoru",
+                    "tespit_yontemi", "tespit_durumu", "fallback_uygulandi", "onerilen_seviye", "neden")} | {
+                    "kutu": r["ozne_bilgisi"]["kutu"], "yuzler": r["olcumler"].get("yuzler")}, ensure_ascii=False))
+          for oz in ozetler:                      # sonra önizlemeler: 900 px, base64 76 karakterlik satırlar
+              for j in sorted(oz.parent.glob("*.jpg")):
+                  im = Image.open(j).convert("RGB")
+                  if im.width > 900:
+                      im = im.resize((900, round(im.height * 900 / im.width)))
+                  b = io.BytesIO()
+                  im.save(b, "JPEG", quality=70)
+                  print(f"=== ONIZLEME {oz.parent.name}/{j.name} {len(b.getvalue())}")
+                  print(base64.encodebytes(b.getvalue()).decode(), end="")
+                  print("=== ONIZLEME_SON")
+          PY
+      - name: Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faz53a-gercek-kanit
+          retention-days: 30
+          path: |
+            deneyler/faz53a/gercek/**/*.jpg
+            deneyler/faz53a/gercek/**/ozet.json
+            cikti/
+            !cikti/onbellek_kanit/**/is/**

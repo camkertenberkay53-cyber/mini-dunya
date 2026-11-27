@@ -1,0 +1,32 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "arastirma",
+ "description": "Kaynaklı iddia kartları. Senaryodaki her olgusal cümle en az bir karta dayanır.",
+ "type": "object",
+ "required": ["surum", "konu", "kaynaklar", "kartlar"],
+ "additionalProperties": false,
+ "properties": {
+  "surum": {"const": 1},
+  "konu": {"type": "string"},
+  "kaynaklar": {"type": "array", "minItems": 1, "items": {
+   "type": "object", "required": ["id", "baslik", "tur"], "additionalProperties": false,
+   "properties": {
+    "id": {"type": "string", "pattern": "^K[0-9]+$"},
+    "baslik": {"type": "string"},
+    "yazar": {"type": "string"},
+    "yil": {"type": ["integer", "string"]},
+    "url": {"type": "string"},
+    "tur": {"enum": ["birincil", "ikincil", "ansiklopedi"]}
+   }}},
+  "kartlar": {"type": "array", "minItems": 1, "items": {
+   "type": "object", "required": ["id", "iddia", "guven", "kaynaklar"], "additionalProperties": false,
+   "properties": {
+    "id": {"type": "string", "pattern": "^C[0-9]+$"},
+    "iddia": {"type": "string", "minLength": 5},
+    "guven": {"enum": ["kesin", "makul", "belirsiz", "tartismali"]},
+    "kaynaklar": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "not": {"type": "string"}
+   }}},
+  "onay": {"type": "object", "properties": {"onaylayan": {"type": "string"}, "tarih": {"type": "string"}}}
+ }
+}

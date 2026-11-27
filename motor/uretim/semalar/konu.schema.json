@@ -1,0 +1,141 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "konu",
+ "description": "Bir videonun konusu. Konuya özel her şey burada ve sonraki veri dosyalarında yaşar; motor kodunda değil.",
+ "type": "object",
+ "required": [
+  "surum",
+  "kimlik",
+  "baslik",
+  "format",
+  "hedef_sure_sn",
+  "donemler",
+  "dil",
+  "ozet"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "surum": {
+   "const": 1
+  },
+  "kimlik": {
+   "type": "string",
+   "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+  },
+  "baslik": {
+   "type": "string",
+   "minLength": 3,
+   "maxLength": 100
+  },
+  "format": {
+   "enum": [
+    "shorts",
+    "uzun"
+   ]
+  },
+  "hedef_sure_sn": {
+   "type": "array",
+   "items": {
+    "type": "number",
+    "exclusiveMinimum": 0
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "donemler": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "minItems": 1,
+   "uniqueItems": true
+  },
+  "dil": {
+   "enum": [
+    "tr",
+    "en"
+   ]
+  },
+  "ozet": {
+   "type": "string",
+   "minLength": 20
+  },
+  "notlar": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "harita": {
+   "type": "object",
+   "description": "Taktik harita verisi (motor/uretim/harita.py): alan, taraflar, arazi, evreler (birlik konumları, oklar). Kaynaklı; konumlar şematik.",
+   "required": [
+    "taraflar",
+    "evreler"
+   ],
+   "properties": {
+    "kaynak": {
+     "type": "string"
+    },
+    "alan_km": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "taraflar": {
+     "type": "object"
+    },
+    "arazi": {
+     "type": "object"
+    },
+    "evreler": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "required": [
+       "id",
+       "birlikler"
+      ],
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "baslik": {
+        "type": "string"
+       },
+       "alt_baslik": {
+        "type": "string"
+       },
+       "birlikler": {
+        "type": "array"
+       },
+       "oklar": {
+        "type": "array"
+       },
+       "odak_km": {
+        "type": "array"
+       }
+      }
+     }
+    }
+   }
+  },
+  "atmosfer": {
+   "type": "object",
+   "description": "Faz 5.2 atmosfer: senaryonun genel ışık adlarını dönemin ön ayarlarına eşler (kurallar/arazi.yaml isiklar).",
+   "properties": {
+    "isik_eslesme": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     }
+    }
+   },
+   "additionalProperties": false
+  }
+ }
+}

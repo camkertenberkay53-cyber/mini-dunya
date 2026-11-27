@@ -1,0 +1,83 @@
+{
+ "uzun": {
+  "durum": "TAMAM",
+  "konu": "faz53a-a1-deneme",
+  "cekim": "A1",
+  "karma": "933ea0593fd85258",
+  "video": "(geçici önbellek; depoda yok)",
+  "tarih": "2026-11-26 16:41",
+  "makine": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cekirdek": 2
+  },
+  "gorsel": {
+   "gorsel_id": "a1_sentetik_kale",
+   "lisans_turu": "CC0-1.0",
+   "sha256": "25f2155f21aeab5c45e384639ae1f6b4fbeb70e306c0ccd71acaf963ed56d3d6",
+   "kaynak_boyut": [
+    3000,
+    2000
+   ],
+   "kanal": 3,
+   "bit": 8,
+   "donusum": []
+  },
+  "olculen": {
+   "render_sn": 44.7,
+   "hazirlik_sn": 0.13,
+   "sinema_sn": 38.0,
+   "renk_kodlama_sn": 6.6,
+   "kare": 180,
+   "uretilen_kare": 180,
+   "cozunurluk": "1920x1080",
+   "kare_basina_sn_acilis_dahil": 0.248,
+   "render_tepe_bellek_gb": 0.42,
+   "karakter": 0,
+   "cevre_varligi": 0,
+   "tur": "gorsel25d",
+   "parallax": 1.0,
+   "ozne": true
+  }
+ },
+ "shorts": {
+  "durum": "TAMAM",
+  "konu": "faz53a-a1-deneme",
+  "cekim": "A1",
+  "karma": "af82d0673bfd28aa",
+  "video": "(geçici önbellek; depoda yok)",
+  "tarih": "2026-11-26 16:42",
+  "makine": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cekirdek": 2
+  },
+  "gorsel": {
+   "gorsel_id": "a1_sentetik_kale",
+   "lisans_turu": "CC0-1.0",
+   "sha256": "25f2155f21aeab5c45e384639ae1f6b4fbeb70e306c0ccd71acaf963ed56d3d6",
+   "kaynak_boyut": [
+    3000,
+    2000
+   ],
+   "kanal": 3,
+   "bit": 8,
+   "donusum": []
+  },
+  "olculen": {
+   "render_sn": 43.2,
+   "hazirlik_sn": 0.11,
+   "sinema_sn": 37.6,
+   "renk_kodlama_sn": 5.4,
+   "kare": 180,
+   "uretilen_kare": 180,
+   "cozunurluk": "1080x1920",
+   "kare_basina_sn_acilis_dahil": 0.24,
+   "render_tepe_bellek_gb": 0.45,
+   "karakter": 0,
+   "cevre_varligi": 0,
+   "tur": "gorsel25d",
+   "parallax": 1.0,
+   "ozne": true
+  }
+ },
+ "not": "Kendi ürettiğimiz sentetik görselle teknik entegrasyon render'ı; geçici deneme kaydıyla (üretim kaydı boş). Gerçek PD görsel insan onayı bekliyor."
+}

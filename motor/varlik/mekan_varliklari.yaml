@@ -1,0 +1,187 @@
+# Gerçekçi mekân varlıkları (mekân kalite paketi). Kaynak: motor/varlik/cc0 (lisansı kaynağın API'sinden doğrulanmış
+# CC0 indirmeler, cc0/lisans.json). Üretim: python3 -m motor.varlik.mekan_varlik → ONBELLEK/mekan/<id>.glb
+# Kayıt: mekan_varlik_kaydi.json (ölçüm, sha256, lisans, kaynak). Kalite: mekan_varlik.kalite_sinifi (çevre ölçeğine göre).
+#
+# yerine: bu varlık hangi stilize katalog parçasının YERİNE kullanılır (gorsel.yaml mekan_kalite.acik iken).
+#   Varlık üretilmemişse ya da RED ise eski parça kullanılmaya devam eder (geri alınabilir, kırılmaz).
+# nesneler: modüler setten yalnız bu nesneler alınır (bir set birden çok varlığa bölünür).
+# yon_derece: uzun eksen +X olacak şekilde döndürme (yerleşim kodu +X'i duvar/sokak boyunca hizalar).
+varliklar:
+  # --- Kale: Poly Haven "Modular Fort 01" (gerçek taş/sıva PBR, 22 modül) ---
+  sur_kalin_hd:
+    kaynak: polyhaven/modular_fort_01
+    nesneler: [modular_fort_01_wall_thick_straight_02]
+    yon_derece: 90
+    ucgen_hedef: 6000
+    yerine: [sur_burclu]
+    rol: sur_modul
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Sıvalı moloz taş sur, yürüme yolu; kolonyal tahkimat modülü, genel kale duvarı olarak temsilî."}
+  sur_kapi_hd:
+    kaynak: polyhaven/modular_fort_01
+    nesneler: [modular_fort_01_wall_thin_gate_01]
+    yon_derece: 90
+    yerine: [kale_kapisi]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Kemerli sur kapısı; temsilî."}
+  kule_yuvarlak_hd:
+    kaynak: polyhaven/modular_fort_01
+    nesneler: [modular_fort_01_tower_round]
+    yerine: [gozetleme_kulesi]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Yuvarlak taş tabya/kule; 15. yy topçu çağı tahkimatına uygun biçim, temsilî."}
+  # --- Liman: Poly Haven tarihî yelkenliler ve iskele ---
+  yelkenli_orta_hd:
+    kaynak: polyhaven/dutch_ship_medium
+    ucgen_hedef: 28000
+    yerine: [yelkenli_gemi]
+    donem: [bizans-15yy, osmanli-15yy]
+    tarih: {guven: zayif, not: "17. yy Hollanda tipi tüccar yelkenlisi; 15. yy karrak/kalyon soyuna yakın, temsilî."}
+  yelkenli_buyuk_hd:
+    kaynak: polyhaven/dutch_ship_large_02
+    yon_derece: 90
+    ucgen_hedef: 32000
+    yerine: [yelkenli_gemi]
+    donem: [bizans-15yy, osmanli-15yy]
+    tarih: {guven: zayif, not: "17. yy büyük yelkenli; 15-16. yy kalyon/karrak yerine temsilî."}
+  iskele_hd:
+    kaynak: polyhaven/modular_wooden_pier
+    yon_derece: 90
+    ucgen_hedef: 14000
+    rol: iskele
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Ahşap kazıklı iskele; her dönem için genel."}
+  # --- Dağ/kaya: fotogrametrik (taranmış) gerçek kayalar ---
+  yamac_kaya_hd:
+    kaynak: polyhaven/mountainside
+    ucgen_hedef: 14000
+    yerine: [ucurum_1]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Doğal kaya (taranmış)."}
+  ucurum_kaya_hd:
+    kaynak: polyhaven/namaqualand_cliff_01
+    ucgen_hedef: 12000
+    yerine: [ucurum_1]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Doğal kaya (taranmış)."}
+  kaya_yuzu_hd:
+    kaynak: polyhaven/rock_face_01
+    ucgen_hedef: 10000
+    yerine: [ucurum_1]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Doğal kaya yüzü (taranmış, tek yüzlü: ön yüzü sahneye döndürülür)."}
+  kaya_iri_hd:
+    kaynak: polyhaven/boulder_01
+    ucgen_hedef: 6000
+    yerine: [kaya_1, kaya_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Doğal iri kaya (taranmış, her yönden kapalı)."}
+  # --- Kasaba/liman ayrıntısı ---
+  fici_grubu_hd:
+    kaynak: polyhaven/wooden_barrels_01
+    ucgen_hedef: 8000
+    rol: ayrinti
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: makul, not: "Ahşap fıçılar; genel."}
+  sandik_hd:
+    kaynak: polyhaven/wooden_crate_01
+    rol: ayrinti
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy]
+    tarih: {guven: makul, not: "Ahşap sandık; genel."}
+
+  # --- Ağaçlar: kendi prosedürel üretecimiz (gövde/dal geometrisi) + CC0 fotoğraf dokuları (kabuk, yaprak, iğne) ---
+  yaprakli_hd_1:
+    uretici: agac
+    tur: yaprakli
+    kabuk: polyhaven/jolcham_oak_bark_01
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 9.5
+    tohum: 3
+    yerine: [agac_yaprakli_1, agac_yaprakli_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Ilıman yaprak döken ağaç (meşe/kayın tipi)."}
+  yaprakli_hd_2:
+    uretici: agac
+    tur: yaprakli
+    kabuk: polyhaven/jolcham_oak_bark_01
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 10.5
+    tohum: 8
+    yerine: [agac_yaprakli_1, agac_yaprakli_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Ilıman yaprak döken ağaç (meşe/kayın tipi)."}
+  yaprakli_hd_3:
+    uretici: agac
+    tur: yaprakli
+    kabuk: polyhaven/jolcham_oak_bark_01
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 8.5
+    tohum: 21
+    yerine: [agac_yaprakli_1, agac_yaprakli_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Ilıman yaprak döken ağaç (meşe/kayın tipi)."}
+  cam_hd_1:
+    uretici: agac
+    tur: igne
+    kabuk: polyhaven/pine_bark
+    seviye: 1
+    boy_m: 12.0
+    tohum: 5
+    yerine: [cam_1, cam_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Köknar/çam tipi kozalaklı."}
+  cam_hd_2:
+    uretici: agac
+    tur: igne
+    kabuk: polyhaven/pine_bark
+    seviye: 1
+    boy_m: 13.5
+    tohum: 14
+    yerine: [cam_1, cam_2]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Köknar/çam tipi kozalaklı."}
+  kuru_hd_1:
+    uretici: agac
+    tur: kuru
+    kabuk: polyhaven/bark_brown_02
+    seviye: 3
+    dal_sayisi: [7, 5, 4]
+    dal_bas: [0.38, 0.2, 0.2]
+    dal_aci: [[35, 60], [30, 55], [25, 50]]
+    dal_oran: [[0.45, 0.6], [0.45, 0.6], [0.4, 0.55]]
+    egilim: [0.05, 0.07, 0.03, -0.01]
+    kart_m: 0.8
+    kart_basina: 3
+    boy_m: 8.5
+    tohum: 33
+    yerine: [kuru_agac]
+    donem: [bizans-15yy, osmanli-15yy, akkoyunlu-15yy, roma-cumhuriyet]
+    tarih: {guven: kesin, not: "Kurumuş ağaç."}
+
+# Kalite sınırları (çevre ölçeği; karakter ekipmanı sınırından ayrı — el ekipmanı değil, sahne yapısı).
+kalite:
+  ucgen_en_cok: 60000
+  bayt_en_cok: 8000000
+  doku_en_cok: 1024
+  boyut_m: [0.3, 60.0]

@@ -1,0 +1,39 @@
+{
+ "paket": "mekan_kalite",
+ "testler": "130/130",
+ "kare": 120,
+ "sure_sn": 4,
+ "cozunurluk": "1080x1920",
+ "olcum": {
+  "M1": {
+   "once_sn": 170.2,
+   "sonra_sn": 239.4,
+   "artis_yuzde": 41,
+   "once_gb": 1.26,
+   "sonra_gb": 1.27
+  },
+  "M3": {
+   "once_sn": 187.2,
+   "sonra_sn": 208.3,
+   "artis_yuzde": 11,
+   "once_gb": 1.26,
+   "sonra_gb": 1.43
+  },
+  "M4": {
+   "once_sn": 235.9,
+   "sonra_sn": 266.6,
+   "artis_yuzde": 13,
+   "once_gb": 1.13,
+   "sonra_gb": 1.26
+  },
+  "M5": {
+   "once_sn": 160.1,
+   "sonra_sn": 204.8,
+   "artis_yuzde": 28,
+   "once_gb": 1.08,
+   "sonra_gb": 1.31
+  }
+ },
+ "maliyet_tl": 0,
+ "geri_alma": "gorsel.yaml mekan_kalite.acik: false → önceki stilize mekânlar (önizleme farkı ort. 2.5/255, jpeg/gren düzeyi)"
+}

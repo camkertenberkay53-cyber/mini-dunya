@@ -1,0 +1,45 @@
+# Karakter tarifleri. Her tarif kayıttaki varlık kimliklerine başvurur; dosya yolu yazılmaz.
+# Bir tarif bir kez derlenir, sonra bütün videolarda kullanılır.
+ortak:
+  animasyon_fbx: ual1/UAL1_Standard.fbx
+  animasyonlar: [Idle_Loop, Walk_Loop, Walk_Formal_Loop, Jog_Fwd_Loop, Sprint_Loop, Sword_Idle, Sword_Attack, Death01, Hit_Chest, Driving_Loop, Idle_Torch_Loop, Push_Loop, Interact, Fixing_Kneeling]
+  doku_siniri: 1024
+karakterler:
+  korucu_erkek:
+    kiyafet: quaternius-stage/ModularCharacterOutfitsFantasy/SK_MaleRanger.usda
+    govde: quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda
+    ekler: [quaternius-stage/UniversalBaseCharacters/SK_HairBeardFBX(Unity).usda, quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda]
+  koylu_erkek:
+    kiyafet: quaternius-stage/ModularCharacterOutfitsFantasy/SK_MalePeasant.usda
+    govde: quaternius-stage/UniversalBaseCharacters/SK_SuperheroMaleFullBody.usda
+    ekler: [quaternius-stage/UniversalBaseCharacters/SK_HairBuzzedFBX(Unity).usda, quaternius-stage/UniversalBaseCharacters/SK_EyebrowsRegularFBX(Unity).usda]
+  korucu_kadin:
+    kiyafet: quaternius-stage/ModularCharacterOutfitsFantasy/SK_FemaleRanger.usda
+    govde: quaternius-stage/UniversalBaseCharacters/SK_SuperheroFemaleFullBody.usda
+    ekler: [quaternius-stage/UniversalBaseCharacters/SK_HairBunsFBX(Unity).usda, quaternius-stage/UniversalBaseCharacters/SK_EyebrowsFemaleFBX(Unity).usda]
+  koylu_kadin:
+    kiyafet: quaternius-stage/ModularCharacterOutfitsFantasy/SK_FemalePeasant.usda
+    govde: quaternius-stage/UniversalBaseCharacters/SK_SuperheroFemaleFullBody.usda
+    ekler: [quaternius-stage/UniversalBaseCharacters/SK_HairLongFBX(Unity).usda, quaternius-stage/UniversalBaseCharacters/SK_EyebrowsFemaleFBX(Unity).usda]
+  # Stilize adaylar: kütüphaneye girip giremeyeceklerini denetim belirler.
+  stilize_asker:
+    kiyafet: quaternius-stage/UltimateAnimatedCharacter/SK_SoldierMale.usda
+    animasyonlar: []
+  stilize_viking:
+    kiyafet: quaternius-stage/UltimateAnimatedCharacter/SK_VikingMale.usda
+    animasyonlar: []
+  stilize_sovalye:
+    kiyafet: quaternius-stage/UltimateAnimatedCharacter/SK_KnightMale.usda
+    animasyonlar: []
+  stilize_kimono:
+    kiyafet: quaternius-stage/UltimateAnimatedCharacter/SK_KimonoMale.usda
+    animasyonlar: []
+  # Negatif örnekler: denetimin bunları REDDETMESİ gerekir.
+  test_chibi_sovalye:
+    kiyafet: kaykit-adventurers/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb
+    animasyonlar: []
+    test: reddedilmeli
+  test_renk_kopyasi:
+    temel: korucu_erkek
+    renk: [0.55, 0.25, 0.2]
+    test: kit_ayrismamali

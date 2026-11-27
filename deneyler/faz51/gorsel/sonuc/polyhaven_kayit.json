@@ -1,0 +1,617 @@
+{
+ "tarih": "2026-11-24 19:42 UTC",
+ "lisans_politikasi": {
+  "ad": "CC0 1.0",
+  "kaynak": "https://polyhaven.com/license"
+ },
+ "kural": "Yalnız CC0; başarısız indirmenin yerine alternatif zorla konmaz.",
+ "toplam_mb": 36.41,
+ "basarili": 11,
+ "toplam": 11,
+ "varliklar": [
+  {
+   "kimlik": "kloofendal_48d_partly_cloudy",
+   "tur": "hdri",
+   "amac": "gökyüzü: parçalı bulutlu gündüz, ortam ışığı",
+   "sayfa": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "hdri",
+     "cozunurluk": "2k",
+     "bicim": "hdr",
+     "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloofendal_48d_partly_cloudy_2k.hdr",
+     "dosya": "/tmp/ph/kloofendal_48d_partly_cloudy/hdri.hdr",
+     "bayt": 6480797,
+     "md5_dogru": true,
+     "sure_sn": 0.98
+    }
+   ],
+   "ad": "Kloofendal 48d Partly Cloudy",
+   "yazarlar": {
+    "Greg Zaal": "All"
+   },
+   "kategoriler": [
+    "outdoor",
+    "skies",
+    "nature",
+    "midday",
+    "partly cloudy",
+    "high contrast",
+    "natural light",
+    "collection: verdant_trail"
+   ],
+   "indirme_sayisi": 207056,
+   "toplam_bayt": 6480797
+  },
+  {
+   "kimlik": "noga",
+   "tur": "hdri",
+   "amac": "gökyüzü: gün doğumu/batımı, açık",
+   "sayfa": "https://polyhaven.com/a/noga",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "hdri",
+     "cozunurluk": "2k",
+     "bicim": "hdr",
+     "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/noga_2k.hdr",
+     "dosya": "/tmp/ph/noga/hdri.hdr",
+     "bayt": 6805709,
+     "md5_dogru": true,
+     "sure_sn": 1.5
+    }
+   ],
+   "ad": "Noga",
+   "yazarlar": {
+    "Greg Zaal": "All"
+   },
+   "kategoriler": [
+    "outdoor",
+    "skies",
+    "nature",
+    "sunrise-sunset",
+    "clear",
+    "high contrast",
+    "natural light"
+   ],
+   "indirme_sayisi": 38527,
+   "toplam_bayt": 6805709
+  },
+  {
+   "kimlik": "rocks_ground_02",
+   "tur": "doku",
+   "amac": "zemin: çakıllı toprak (bozkır, yol kenarı)",
+   "sayfa": "https://polyhaven.com/a/rocks_ground_02",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_02/rocks_ground_02_col_1k.jpg",
+     "dosya": "/tmp/ph/rocks_ground_02/diff.jpg",
+     "bayt": 881510,
+     "md5_dogru": true,
+     "sure_sn": 0.42
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_02/rocks_ground_02_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/rocks_ground_02/nor_gl.jpg",
+     "bayt": 1466816,
+     "md5_dogru": true,
+     "sure_sn": 0.63
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_02/rocks_ground_02_rough_1k.jpg",
+     "dosya": "/tmp/ph/rocks_ground_02/rough.jpg",
+     "bayt": 489453,
+     "md5_dogru": true,
+     "sure_sn": 0.56
+    }
+   ],
+   "ad": "Rocks Ground 02",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "terrain",
+    "natural",
+    "outdoor",
+    "rock"
+   ],
+   "indirme_sayisi": 152831,
+   "toplam_bayt": 2837779
+  },
+  {
+   "kimlik": "rocky_trail",
+   "tur": "doku",
+   "amac": "zemin: taşlı patika",
+   "sayfa": "https://polyhaven.com/a/rocky_trail",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_trail/rocky_trail_diff_1k.jpg",
+     "dosya": "/tmp/ph/rocky_trail/diff.jpg",
+     "bayt": 1076180,
+     "md5_dogru": true,
+     "sure_sn": 0.5
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_trail/rocky_trail_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/rocky_trail/nor_gl.jpg",
+     "bayt": 1398291,
+     "md5_dogru": true,
+     "sure_sn": 0.52
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocky_trail/rocky_trail_rough_1k.jpg",
+     "dosya": "/tmp/ph/rocky_trail/rough.jpg",
+     "bayt": 747035,
+     "md5_dogru": true,
+     "sure_sn": 0.89
+    }
+   ],
+   "ad": "Rocky Trail",
+   "yazarlar": {
+    "Amal Kumar": "All"
+   },
+   "kategoriler": [
+    "outdoor",
+    "natural",
+    "terrain",
+    "rock",
+    "collection: pine_forest"
+   ],
+   "indirme_sayisi": 117204,
+   "toplam_bayt": 3221506
+  },
+  {
+   "kimlik": "mud_cracked_dry_03",
+   "tur": "doku",
+   "amac": "çöl/kurak: çatlak kuru toprak",
+   "sayfa": "https://polyhaven.com/a/mud_cracked_dry_03",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mud_cracked_dry_03/mud_cracked_dry_03_diff_1k.jpg",
+     "dosya": "/tmp/ph/mud_cracked_dry_03/diff.jpg",
+     "bayt": 974865,
+     "md5_dogru": true,
+     "sure_sn": 0.44
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mud_cracked_dry_03/mud_cracked_dry_03_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/mud_cracked_dry_03/nor_gl.jpg",
+     "bayt": 1292317,
+     "md5_dogru": true,
+     "sure_sn": 0.46
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mud_cracked_dry_03/mud_cracked_dry_03_rough_1k.jpg",
+     "dosya": "/tmp/ph/mud_cracked_dry_03/rough.jpg",
+     "bayt": 446706,
+     "md5_dogru": true,
+     "sure_sn": 0.27
+    }
+   ],
+   "ad": "Mud Cracked Dry 03",
+   "yazarlar": {
+    "Dario Barresi": "Processing",
+    "Dimitrios Savva": "Photography"
+   },
+   "kategoriler": [
+    "outdoor",
+    "natural",
+    "terrain",
+    "sand"
+   ],
+   "indirme_sayisi": 46109,
+   "toplam_bayt": 2713888
+  },
+  {
+   "kimlik": "sandstone_cracks",
+   "tur": "doku",
+   "amac": "çöl/kaya yüzeyi: kumtaşı",
+   "sayfa": "https://polyhaven.com/a/sandstone_cracks",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandstone_cracks/sandstone_cracks_diff_1k.jpg",
+     "dosya": "/tmp/ph/sandstone_cracks/diff.jpg",
+     "bayt": 696657,
+     "md5_dogru": true,
+     "sure_sn": 0.52
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandstone_cracks/sandstone_cracks_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/sandstone_cracks/nor_gl.jpg",
+     "bayt": 1307622,
+     "md5_dogru": true,
+     "sure_sn": 0.5
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandstone_cracks/sandstone_cracks_rough_1k.jpg",
+     "dosya": "/tmp/ph/sandstone_cracks/rough.jpg",
+     "bayt": 352483,
+     "md5_dogru": true,
+     "sure_sn": 0.34
+    }
+   ],
+   "ad": "Sandstone Cracks",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "wall",
+    "floor",
+    "natural",
+    "man made",
+    "outdoor",
+    "road",
+    "terrain"
+   ],
+   "indirme_sayisi": 120137,
+   "toplam_bayt": 2356762
+  },
+  {
+   "kimlik": "forest_ground_04",
+   "tur": "doku",
+   "amac": "orman zemini",
+   "sayfa": "https://polyhaven.com/a/forest_ground_04",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_diff_1k.jpg",
+     "dosya": "/tmp/ph/forest_ground_04/diff.jpg",
+     "bayt": 1113899,
+     "md5_dogru": true,
+     "sure_sn": 0.5
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/forest_ground_04/nor_gl.jpg",
+     "bayt": 1326812,
+     "md5_dogru": true,
+     "sure_sn": 0.49
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_rough_1k.jpg",
+     "dosya": "/tmp/ph/forest_ground_04/rough.jpg",
+     "bayt": 627507,
+     "md5_dogru": true,
+     "sure_sn": 0.45
+    }
+   ],
+   "ad": "Forest Ground 04",
+   "yazarlar": {
+    "Rob Tuytel": "Photography, Processing",
+    "Rico Cilliers": "Minor adjustment"
+   },
+   "kategoriler": [
+    "outdoor",
+    "natural",
+    "terrain",
+    "rock",
+    "collection: pine_forest",
+    "collection: verdant_trail"
+   ],
+   "indirme_sayisi": 171969,
+   "toplam_bayt": 3068218
+  },
+  {
+   "kimlik": "rock_boulder_dry",
+   "tur": "model",
+   "amac": "kaya: ön plan kayası (derinlik katmanı)",
+   "sayfa": "https://polyhaven.com/a/rock_boulder_dry",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "gltf",
+     "cozunurluk": "1k",
+     "bicim": "gltf",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/1k/rock_boulder_dry/rock_boulder_dry_1k.gltf",
+     "dosya": "/tmp/ph/rock_boulder_dry/rock_boulder_dry_1k.gltf",
+     "bayt": 3343,
+     "md5_dogru": true,
+     "sure_sn": 0.25
+    },
+    {
+     "harita": "gltf_ek",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_arm_1k.jpg",
+     "dosya": "/tmp/ph/rock_boulder_dry/textures/rock_boulder_dry_arm_1k.jpg",
+     "bayt": 784728,
+     "md5_dogru": true,
+     "sure_sn": 0.44
+    },
+    {
+     "harita": "gltf_ek",
+     "cozunurluk": "1k",
+     "bicim": "bin",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/rock_boulder_dry/rock_boulder_dry.bin",
+     "dosya": "/tmp/ph/rock_boulder_dry/rock_boulder_dry.bin",
+     "bayt": 2369172,
+     "md5_dogru": true,
+     "sure_sn": 0.51
+    },
+    {
+     "harita": "gltf_ek",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/rock_boulder_dry/textures/rock_boulder_dry_nor_gl_1k.jpg",
+     "bayt": 802497,
+     "md5_dogru": true,
+     "sure_sn": 0.4
+    },
+    {
+     "harita": "gltf_ek",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_diff_1k.jpg",
+     "dosya": "/tmp/ph/rock_boulder_dry/textures/rock_boulder_dry_diff_1k.jpg",
+     "bayt": 859211,
+     "md5_dogru": true,
+     "sure_sn": 0.32
+    }
+   ],
+   "ad": "Rock Boulder Dry",
+   "yazarlar": {
+    "Dimitrios Savva": "Photography",
+    "Rico Cilliers": "Processing"
+   },
+   "kategoriler": [
+    "rock",
+    "outdoor",
+    "natural",
+    "terrain"
+   ],
+   "indirme_sayisi": 145038,
+   "toplam_bayt": 4818951
+  },
+  {
+   "kimlik": "red_brick",
+   "tur": "doku",
+   "amac": "tarihî çevre: tuğla duvar (kategorideki en çok indirilen)",
+   "sayfa": "https://polyhaven.com/a/red_brick",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick/red_brick_diff_1k.jpg",
+     "dosya": "/tmp/ph/red_brick/diff.jpg",
+     "bayt": 766044,
+     "md5_dogru": true,
+     "sure_sn": 0.43
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick/red_brick_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/red_brick/nor_gl.jpg",
+     "bayt": 1052038,
+     "md5_dogru": true,
+     "sure_sn": 0.48
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick/red_brick_rough_1k.jpg",
+     "dosya": "/tmp/ph/red_brick/rough.jpg",
+     "bayt": 178614,
+     "md5_dogru": true,
+     "sure_sn": 0.28
+    }
+   ],
+   "ad": "Red Brick",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "wall",
+    "brick",
+    "man made"
+   ],
+   "indirme_sayisi": 186199,
+   "toplam_bayt": 1996696
+  },
+  {
+   "kimlik": "cobblestone_floor_04",
+   "tur": "doku",
+   "amac": "tarihî çevre: arnavut kaldırımı (kategorideki en çok indirilen)",
+   "sayfa": "https://polyhaven.com/a/cobblestone_floor_04",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_04/cobblestone_floor_04_diff_1k.jpg",
+     "dosya": "/tmp/ph/cobblestone_floor_04/diff.jpg",
+     "bayt": 575440,
+     "md5_dogru": true,
+     "sure_sn": 0.41
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_04/cobblestone_floor_04_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/cobblestone_floor_04/nor_gl.jpg",
+     "bayt": 781854,
+     "md5_dogru": true,
+     "sure_sn": 0.41
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_04/cobblestone_floor_04_rough_1k.jpg",
+     "dosya": "/tmp/ph/cobblestone_floor_04/rough.jpg",
+     "bayt": 416114,
+     "md5_dogru": true,
+     "sure_sn": 0.53
+    }
+   ],
+   "ad": "Cobblestone Floor 04",
+   "yazarlar": {
+    "Rob Tuytel": "All"
+   },
+   "kategoriler": [
+    "floor",
+    "outdoor",
+    "dirty",
+    "man made",
+    "cobblestone"
+   ],
+   "indirme_sayisi": 68770,
+   "toplam_bayt": 1773408
+  },
+  {
+   "kimlik": "beige_wall_001",
+   "tur": "doku",
+   "amac": "tarihî çevre: sıva duvar (kategorideki en çok indirilen)",
+   "sayfa": "https://polyhaven.com/a/beige_wall_001",
+   "lisans": {
+    "ad": "CC0 1.0",
+    "kaynak": "https://polyhaven.com/license"
+   },
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "harita": "diff",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_diff_1k.jpg",
+     "dosya": "/tmp/ph/beige_wall_001/diff.jpg",
+     "bayt": 33074,
+     "md5_dogru": true,
+     "sure_sn": 0.21
+    },
+    {
+     "harita": "nor_gl",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_nor_gl_1k.jpg",
+     "dosya": "/tmp/ph/beige_wall_001/nor_gl.jpg",
+     "bayt": 153434,
+     "md5_dogru": true,
+     "sure_sn": 0.27
+    },
+    {
+     "harita": "rough",
+     "cozunurluk": "1k",
+     "bicim": "jpg",
+     "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_rough_1k.jpg",
+     "dosya": "/tmp/ph/beige_wall_001/rough.jpg",
+     "bayt": 151256,
+     "md5_dogru": true,
+     "sure_sn": 0.29
+    }
+   ],
+   "ad": "Beige Wall 001",
+   "yazarlar": {
+    "Dimitrios Savva": "Photography",
+    "Rico Cilliers": "Processing"
+   },
+   "kategoriler": [
+    "man made",
+    "wall",
+    "plaster",
+    "outdoor",
+    "indoor",
+    "plaster-concrete"
+   ],
+   "indirme_sayisi": 432753,
+   "toplam_bayt": 337764
+  }
+ ]
+}

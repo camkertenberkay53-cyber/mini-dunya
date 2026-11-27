@@ -1,0 +1,33 @@
+{
+ "is": "g4_2",
+ "makine": {
+  "cpu": "AMD EPYC 9V45 96-Core Processor",
+  "cekirdek": 4,
+  "bellek_gb": 16.8
+ },
+ "kurulum_sn": 41.0,
+ "baslangic_utc": "2026-11-24T18:43:24Z",
+ "cekimler": [
+  {
+   "cekim": "S2",
+   "kare": 147,
+   "karakter": 10,
+   "render_sn": 152.0,
+   "render_cikis": 0,
+   "render_tepe_gb": 1.22,
+   "render_cpu_sn": 526.1,
+   "ort_cekirdek": 3.46,
+   "kare_basina_sn": 1.03,
+   "godot_hata": [],
+   "kodlama_sn": 2.1,
+   "ara_avi_mb": 27.4,
+   "uretilen_kare": 147,
+   "cozunurluk": "1080x1920",
+   "mp4_mb": 13.28,
+   "durum": "TAMAM"
+  }
+ ],
+ "is_render_toplam_sn": 155.5,
+ "bitis_utc": "2026-11-24T18:45:59Z",
+ "basarili": true
+}

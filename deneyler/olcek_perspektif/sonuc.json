@@ -1,0 +1,75 @@
+{
+ "perspektif": {
+  "kale": {
+   "once": {
+    "kamera_mesafe_m": 14.5,
+    "fov": 55.0,
+    "asker_boy_m": 1.84,
+    "gorunen_oran": 1.38
+   },
+   "sonra": {
+    "kamera_mesafe_m": 28.4,
+    "fov": 29.7,
+    "asker_boy_m": 1.69,
+    "gorunen_oran": 2.29
+   },
+   "gercek_oran": 5.03
+  },
+  "kasaba": {
+   "once": {
+    "kamera_mesafe_m": 14.5,
+    "fov": 55.0,
+    "asker_boy_m": 1.84,
+    "gorunen_oran": 1.75
+   },
+   "sonra": {
+    "kamera_mesafe_m": 18.4,
+    "fov": 44.5,
+    "asker_boy_m": 1.69,
+    "gorunen_oran": 2.19
+   },
+   "gercek_oran": 4.79
+  },
+  "liman": {
+   "once": {
+    "kamera_mesafe_m": 14.5,
+    "fov": 55.0,
+    "asker_boy_m": 1.84,
+    "gorunen_oran": 4.62
+   },
+   "sonra": {
+    "kamera_mesafe_m": 33.4,
+    "fov": 25.4,
+    "asker_boy_m": 1.69,
+    "gorunen_oran": 8.63
+   },
+   "gercek_oran": 18.93
+  }
+ },
+ "olcum": {
+  "kale": {
+   "once_sn": 227.8,
+   "sonra_sn": 226.4,
+   "once_gb": 1.46,
+   "sonra_gb": 1.5
+  },
+  "liman": {
+   "once_sn": 235.4,
+   "sonra_sn": 251.0,
+   "once_gb": 1.5,
+   "sonra_gb": 1.44
+  },
+  "kasaba": {
+   "once_sn": 293.6,
+   "sonra_sn": 291.6,
+   "once_gb": 1.44,
+   "sonra_gb": 1.43
+  },
+  "dag": {
+   "once_sn": 254.5,
+   "sonra_sn": 249.9,
+   "once_gb": 1.38,
+   "sonra_gb": 1.42
+  }
+ }
+}

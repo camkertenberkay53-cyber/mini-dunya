@@ -1,0 +1,509 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "cekim_plani",
+ "description": "Plan katmanının çıktısı, render katmanının tek girdisi. Godot sahne kurucusu yalnızca bunu okur.",
+ "type": "object",
+ "required": [
+  "surum",
+  "konu",
+  "donem",
+  "fps",
+  "cozunurluk",
+  "cekimler",
+  "eksikler"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "v3": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   },
+   "minItems": 3,
+   "maxItems": 3
+  },
+  "kamera_an": {
+   "type": "object",
+   "required": [
+    "konum",
+    "hedef",
+    "fov"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "konum": {
+     "$ref": "#/$defs/v3"
+    },
+    "hedef": {
+     "$ref": "#/$defs/v3"
+    },
+    "fov": {
+     "type": "number",
+     "minimum": 10,
+     "maximum": 90
+    }
+   }
+  },
+  "karakter": {
+   "type": "object",
+   "required": [
+    "takim",
+    "konum",
+    "yon_derece",
+    "animasyon"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "takim": {
+     "type": "string"
+    },
+    "konum": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "yon_derece": {
+     "type": "number"
+    },
+    "animasyon": {
+     "type": "string"
+    },
+    "faz_sn": {
+     "type": "number",
+     "minimum": 0
+    },
+    "hiz_m_sn": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 8
+    },
+    "rol": {
+     "type": "string"
+    },
+    "binek": {
+     "type": "object",
+     "description": "Atlı karakter: binici yerinde oturur, binek (kurallar/binek.yaml) ölçülen yürüyüş hızıyla ilerler.",
+     "required": [
+      "id",
+      "animasyon"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "id": {
+       "type": "string"
+      },
+      "animasyon": {
+       "type": "string"
+      }
+     }
+    },
+    "gecikme_sn": {
+     "type": "number",
+     "minimum": 0,
+     "description": "Tek seferlik animasyon bu süre sonra başlar; o ana kadar ilk karede bekler."
+    },
+    "olcek": {
+     "type": "number",
+     "minimum": 0.9,
+     "maximum": 1.1,
+     "description": "Boy çeşitliliği (tek tip ordu hissini azaltır). Yer değiştirme hızı ve kadraj ölçümü bununla ölçeklenir."
+    }
+   }
+  },
+  "cevre": {
+   "type": "object",
+   "required": [
+    "id",
+    "konum"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "konum": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "yon_derece": {
+     "type": "number"
+    },
+    "olcek": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "temsili": {
+     "type": "boolean"
+    }
+   }
+  }
+ },
+ "properties": {
+  "surum": {
+   "const": 1
+  },
+  "konu": {
+   "type": "string"
+  },
+  "donem": {
+   "type": "string"
+  },
+  "fps": {
+   "type": "integer",
+   "enum": [
+    24,
+    25,
+    30
+   ]
+  },
+  "cozunurluk": {
+   "type": "array",
+   "items": {
+    "type": "integer"
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "tohum": {
+   "type": "integer"
+  },
+  "cekimler": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "cumleler",
+     "sure_sn",
+     "tur"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "cumleler": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "sure_sn": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 60
+     },
+     "tur": {
+      "enum": [
+       "3d",
+       "harita",
+       "bilgi_karti",
+       "gorsel25d"
+      ]
+     },
+     "ortam": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "arazi",
+       "isik"
+      ],
+      "properties": {
+       "arazi": {
+        "type": "string"
+       },
+       "isik": {
+        "type": "string"
+       },
+       "cevre": {
+        "type": "array",
+        "items": {
+         "$ref": "#/$defs/cevre"
+        }
+       },
+       "kalabalik": {
+        "type": "string",
+        "description": "Arka plan kalabalığı (kurallar/kalabalik.yaml), ör. ordu."
+       },
+       "yerlesim": {
+        "type": "string",
+        "description": "Prosedürel yerleşim (kurallar/yerlesim.yaml), ör. ordugah."
+       },
+       "efekt": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "ok_yagmuru",
+          "yangin"
+         ]
+        },
+        "description": "Olaya bağlı efektler (kurallar/gorsel.yaml vfx)."
+       }
+      }
+     },
+     "karakterler": {
+      "type": "array",
+      "items": {
+       "$ref": "#/$defs/karakter"
+      }
+     },
+     "kamera": {
+      "type": "object",
+      "required": [
+       "plan",
+       "hareket",
+       "bas",
+       "son"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "plan": {
+        "enum": [
+         "yakin",
+         "orta",
+         "uzak"
+        ]
+       },
+       "hareket": {
+        "type": "string"
+       },
+       "bas": {
+        "$ref": "#/$defs/kamera_an"
+       },
+       "son": {
+        "$ref": "#/$defs/kamera_an"
+       },
+       "yumusatma": {
+        "enum": [
+         "dogrusal",
+         "giris",
+         "cikis",
+         "giris_cikis"
+        ]
+       },
+       "takip": {
+        "type": "string"
+       },
+       "sarsinti": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "derece": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2.5
+         }
+        },
+        "description": "El kamerası sarsıntısı (tepe genlik, derece)."
+       }
+      }
+     },
+     "metin": {
+      "type": "string"
+     },
+     "notlar": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "amac": {
+      "enum": [
+       "kanca",
+       "baglam",
+       "olay",
+       "gerilim",
+       "donum",
+       "final"
+      ]
+     },
+     "metin_katmani": {
+      "type": "string"
+     },
+     "meta": {
+      "type": "object",
+      "description": "Planlayıcının kaydettiği bilgiler (çekim türü, diziliş, odak); render'ı etkilemez."
+     },
+     "donem": {
+      "type": "string",
+      "description": "Çekimin dönemi (odak taraf); yoksa planın ana dönemi."
+     },
+     "insan_boy_orani": {
+      "type": "number",
+      "minimum": 0.85,
+      "maximum": 1.0,
+      "description": "Dönemin ortalama insan boyu / gövde modeli boyu (kurallar/insan_olcek.yaml). Yaya karakterlerin ölçeği, hızı ve kadraj ölçümü bununla çarpılır; atlılar hariç."
+     },
+     "harita": {
+      "type": "object",
+      "required": [
+       "evre",
+       "veri"
+      ],
+      "properties": {
+       "evre": {
+        "type": "string"
+       },
+       "veri": {
+        "type": "object"
+       }
+      },
+      "description": "Taktik harita çekimi (harita.py)."
+     },
+     "gorsel25d": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "gorsel_id"
+      ],
+      "description": "Faz-53A: tarihî görselden 2.5D çekim (kaos/sinema). gorsel_id motor/varlik/tarihi_gorsel_kaydi.json'da lisansı insan onaylı olmalı.",
+      "properties": {
+       "gorsel_id": {
+        "type": "string"
+       },
+       "hareket": {
+        "oneOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "object"
+         }
+        ],
+        "description": "kaos/sinema/kamera.HAREKETLER adı ya da {bas, son, ease}"
+       },
+       "guc": {
+        "type": "number"
+       },
+       "odak": {
+        "type": "array",
+        "items": {
+         "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+       },
+       "ozne": {
+        "type": "array",
+        "items": {
+         "type": "number"
+        },
+        "minItems": 4,
+        "maxItems": 4
+       },
+       "parallax": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1.5
+       },
+       "ufuk": {
+        "type": "number"
+       },
+       "efektler": {
+        "type": "array",
+        "items": {
+         "type": "object"
+        }
+       },
+       "ton": {
+        "type": "string"
+       },
+       "ton_guc": {
+        "type": "number"
+       },
+       "gren": {
+        "type": "number"
+       },
+       "sarsinti": {
+        "type": "number"
+       },
+       "yorunge": {
+        "type": "number"
+       },
+       "kirp": {
+        "type": "array",
+        "items": {
+         "type": "number"
+        },
+        "minItems": 4,
+        "maxItems": 4
+       }
+      }
+     }
+    }
+   }
+  },
+  "eksikler": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "tur",
+     "ne",
+     "nerede"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "tur": {
+      "enum": [
+       "karakter",
+       "ekipman",
+       "animasyon",
+       "ortam",
+       "binek",
+       "diger"
+      ]
+     },
+     "ne": {
+      "type": "string"
+     },
+     "nerede": {
+      "type": "string"
+     },
+     "cozum": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "ses": {
+   "type": "object",
+   "description": "Seslendirme ölçümü ve zaman çizelgesi (planlayıcı doldurur)."
+  },
+  "donemler": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "minItems": 1,
+   "description": "Konunun bütün dönemleri (çok taraflı konular). donem: ana dönem."
+  },
+  "atmosfer": {
+   "type": "object",
+   "properties": {
+    "isik_eslesme": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "format": {
+   "enum": [
+    "shorts",
+    "uzun"
+   ],
+   "description": "Faz-53A çıktı profili (kurallar/format.yaml). Yoksa shorts."
+  }
+ }
+}

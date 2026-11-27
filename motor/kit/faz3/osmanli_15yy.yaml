@@ -1,0 +1,38 @@
+ad: Osmanlı, 15-16. yüzyıl
+etiket: osmanli-15yy
+kabul_edilen_donemler: [osmanli-15yy]
+kategoriler:
+  baslik: [yeniceri_borku, osmanli_sarik, kece_kulah]
+  kiyafet: [yeniceri_dolamasi, osmanli_kaftani, salvar, salvar_koyu, cizme_uzun_sari, cizme_uzun_kahve]
+  zirh: [zincir_zirh_gomlek]
+  kalkan: [hasir_kalkan]
+  silah: [osmanli_kilic, mizrak, kompozit_yay, gurz]
+  sancak: [osmanli_sancagi, tug]
+  aksesuar: [kusak_kirmizi, hancer, kese, sadak]
+  cevre: [osmanli_cadiri]
+karakterler:
+  piyade:
+    - {ad: osm_yeniceri_kilic, govde: erkek, sac: [kisa, sakal], giysiler: [yeniceri_dolamasi, salvar, cizme_uzun_sari, kusak_kirmizi],
+       takilanlar: {bas: yeniceri_borku, sag_el: osmanli_kilic, sol_kol: hasir_kalkan, bel_sag: hancer}}
+    - {ad: osm_yeniceri_mizrak, govde: erkek, sac: [kisa, sakal], giysiler: [yeniceri_dolamasi, salvar, cizme_uzun_sari, kusak_kirmizi],
+       takilanlar: {bas: yeniceri_borku, sag_el_dik: mizrak, sol_kol: hasir_kalkan}}
+    - {ad: osm_yeniceri_sancak, govde: erkek, sac: [kisa, sakal], giysiler: [yeniceri_dolamasi, salvar, cizme_uzun_sari, kusak_kirmizi],
+       takilanlar: {bas: yeniceri_borku, sag_el_dik: osmanli_sancagi, bel_sag: hancer}}
+  okcu:
+    - {ad: osm_yeniceri_okcu, govde: erkek, sac: [kisa, sakal], giysiler: [yeniceri_dolamasi, salvar, cizme_uzun_sari, kusak_kirmizi],
+       takilanlar: {bas: yeniceri_borku, sol_el: kompozit_yay, sirt: sadak, bel_sag: hancer}}
+    - {ad: osm_yeniceri_okcu_kilic, govde: erkek, sac: [kisa, sakal], giysiler: [yeniceri_dolamasi, salvar, cizme_uzun_sari, kusak_kirmizi], takilanlar: {bas: yeniceri_borku, sol_el: kompozit_yay, sirt: sadak, sag_el: osmanli_kilic}}
+    - {ad: osm_okcu_sarikli, govde: erkek, sac: [sakal], giysiler: [osmanli_kaftani, salvar, cizme_uzun_kahve, kusak_kirmizi], takilanlar: {bas: osmanli_sarik, sol_el: kompozit_yay, sirt: sadak}}
+  komutan:
+    - {ad: osm_bey, govde: erkek, sac: [sakal], giysiler: [osmanli_kaftani, salvar_koyu, cizme_uzun_kahve, kusak_kirmizi],
+       takilanlar: {bas: osmanli_sarik, sag_el: osmanli_kilic, bel_sag: hancer}}
+    - {ad: osm_bey_tug, govde: erkek, sac: [sakal], giysiler: [osmanli_kaftani, salvar_koyu, cizme_uzun_kahve, kusak_kirmizi], takilanlar: {bas: osmanli_sarik, sag_el_dik: tug}}
+  isci_sivil:
+    - {ad: osm_sivil, govde: erkek, sac: [sakal], giysiler: [osmanli_kaftani, salvar, cizme_uzun_kahve, kusak_kirmizi],
+       takilanlar: {bas: osmanli_sarik, bel_sag: kese}}
+    - {ad: osm_sivil_kulahli, govde: erkek, sac: [sakal], giysiler: [osmanli_kaftani, salvar, cizme_uzun_kahve, kusak_kirmizi], takilanlar: {bas: kece_kulah, bel_sag: kese}}
+  suvari:
+    - {ad: osm_sipahi, govde: erkek, sac: [kisa, sakal], giysiler: [osmanli_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_zirh_gomlek],
+       takilanlar: {bas: osmanli_sarik, sag_el: gurz, sol_kol: hasir_kalkan}, binek: at}
+    - {ad: osm_sipahi_mizrak, govde: erkek, sac: [kisa, sakal], giysiler: [osmanli_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_zirh_gomlek], takilanlar: {bas: osmanli_sarik, sag_el_dik: mizrak, sirt: sadak}, binek: at}
+    - {ad: osm_sipahi_yay, govde: erkek, sac: [kisa, sakal], giysiler: [osmanli_kaftani, salvar_koyu, cizme_uzun_kahve, zincir_zirh_gomlek], takilanlar: {bas: osmanli_sarik, sol_el: kompozit_yay, sirt: sadak, sag_el: osmanli_kilic}, binek: at}

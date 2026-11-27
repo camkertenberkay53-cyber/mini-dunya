@@ -1,0 +1,29 @@
+{
+ "kaynak": "OpenGameArt.org",
+ "varliklar": [
+  {
+   "kimlik": "ciftlik_hayvanlari",
+   "sayfa": "https://opengameart.org/content/lowpoly-animated-farm-animal-pack",
+   "amac": "animasyonlu at (Idle/Walk/Run) — süvari ve binek",
+   "durum": "TAMAM",
+   "dosyalar": [
+    {
+     "dosya": "ciftlik_hayvanlari/Farm Animals by @Quaternius.zip",
+     "url": "https://opengameart.org/sites/default/files/Farm%20Animals%20by%20%40Quaternius.zip",
+     "bayt": 6965696,
+     "sha256": "9ff42b7e2445eaf259e4734c08172637db92e4b59a6145909ac56d946152c39b",
+     "acilan": [
+      "Farm Animals by @Quaternius/Blends/Horse.blend",
+      "Farm Animals by @Quaternius/FBX/Horse.fbx",
+      "Farm Animals by @Quaternius/OBJ/Horse.mtl",
+      "Farm Animals by @Quaternius/OBJ/Horse.obj"
+     ]
+    }
+   ],
+   "lisanslar_sayfada": [
+    "CC0"
+   ],
+   "yazar": "quaternius"
+  }
+ ]
+}

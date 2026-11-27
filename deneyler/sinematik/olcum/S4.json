@@ -1,0 +1,33 @@
+{
+ "durum": "TAMAM",
+ "konu": "otlukbeli-1473",
+ "cekim": "S4",
+ "karma": "9867a3cf70a5ef76",
+ "video": "/tmp/motor_onbellek/uretim/otlukbeli-1473/S4_9867a3cf70a5ef76/cekim.mp4",
+ "tarih": "2026-11-25 17:19",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+  "cekirdek": 2
+ },
+ "olculen": {
+  "plan_denetim_sn": 0.2,
+  "render_sn": 116.9,
+  "kare": 120,
+  "uretilen_kare": 120,
+  "cozunurluk": "1080x1920",
+  "kare_basina_sn_acilis_dahil": 0.97,
+  "render_tepe_bellek_gb": 0.74,
+  "kodlama_sn": 4.0,
+  "ara_avi_mb": 23.8,
+  "mp4_mb": 10.93,
+  "karakter": 2,
+  "cevre_varligi": 0
+ },
+ "godot_hatalari": [],
+ "denetim_uyarilari": [
+  "S2: akk_zirhli_mizrak 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "S2: akk_zirhli_mizrak 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "S4: akk_suvari 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz",
+  "S7: akk_zirhli_mizrak 'kargi' taşıyor (tarih güveni belirsiz): görüntüde temsilî; anlatıda kesin bilgi gibi sunulamaz"
+ ]
+}

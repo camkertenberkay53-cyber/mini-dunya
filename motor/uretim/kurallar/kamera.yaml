@@ -1,0 +1,75 @@
+# Çekim kataloğu (konudan bağımsız) — Faz 5.3 kamera sistemi. Planlayıcı her çekim için anlatı amacına, eyleme ve
+# role göre tercih sırasını kurar; çeşitlilik kurallarına ve kadraj/çarpışma denetimine uyan ilk türü seçer.
+# Tür başına lens (fov, fov_son) ve hedef ekran oranı (oran / oran_<mesafe>) tanımlanabilir.
+# Faz 5.3 öncesi katalog: deneyler/faz53/kamera_v1_yedek.yaml (geri dönüş).
+# aci_derece: kameranın, odak karakterin baktığı yöne göre konumu (0 = tam karşıdan, 90 = sağ yandan, 180 = arkadan)
+# yukseklik_m: kamera yüksekliği; hedef_y_m: bakılan noktanın yüksekliği (odak karakterin ayağına göre)
+# fov: dikey görüş açısı (derece). Geniş (>45) mekân, tele (<28) kalabalık sıkıştırma ve profil.
+# perspektif_k: arkada belirgin yapı (yerleşim 'arka_plan_m' = B) varsa kamera uzaklığı d, (d+B)/d <= k olacak kadar
+#   büyür; odak karakterin ekran oranı korunsun diye lens daralır (tele sıkıştırma, en az fov_en_az). Geniş açı + yakın
+#   öznenin ön planı şişirip kale/ev/gemiyi küçük göstermesini önler. Arka plan yoksa tür kendi lensiyle kalır.
+hedef_oran: {orta: 0.55, uzak: 0.17}
+fov: 38
+cekimler:
+  alcak_yaklasma:   {aciklama: Alçak açıdan yavaş yaklaşma (güç, kahramanlık), aci_derece: 15, yukseklik_m: 0.6, hedef_y_m: 1.6, hareket: yaklasma, fov: 34, mesafeler: [orta]}
+  alcak_geri_takip: {aciklama: Gelen kolun önünde, alçak açıyla geri çekilerek takip, aci_derece: 20, yukseklik_m: 0.9, hedef_y_m: 1.5, hareket: geri_takip, fov: 36, mesafeler: [orta], gerekli: hareketli}
+  yan_takip:        {aciklama: Göz hizasında yandan paralel takip, aci_derece: 80, yukseklik_m: 1.6, hedef_y_m: 1.3, hareket: takip, fov: 38, oran_uzak: 0.25, mesafeler: [orta, uzak], gerekli: hareketli}
+  yuksek_genis:     {aciklama: Yüksekten genel görünüm (kuş bakışına yakın), aci_derece: 140, yukseklik_m: 9.0, hedef_y_m: 0.5, hareket: sabit_suzulme, fov: 46, mesafeler: [uzak]}
+  yukselme:         {aciklama: Yerden yükselen vinç hareketi (kapanış, büyüklük), aci_derece: 25, yukseklik_m: 1.0, hedef_y_m: 1.4, hareket: yukselme, fov: 42, mesafeler: [uzak]}
+  arkadan_uzak:     {aciklama: Uzaklaşan kolu arkadan izleme (yolculuk, gidiş), aci_derece: 170, yukseklik_m: 2.4, hedef_y_m: 1.0, hareket: sabit, fov: 30, mesafeler: [uzak], gerekli: hareketli}
+  capraz_yorunge:   {aciklama: Çapraz açıdan yarım yörünge (gerilim), aci_derece: 45, yukseklik_m: 1.4, hedef_y_m: 1.3, hareket: yorunge, fov: 38, mesafeler: [orta, uzak]}
+  goz_pan:          {aciklama: Göz hizasında hattı tarayan yatay kaydırma, aci_derece: 0, yukseklik_m: 1.55, hedef_y_m: 1.3, hareket: yanal_kayma, fov: 36, mesafeler: [orta, uzak]}
+  ust_aci_yaklasma: {aciklama: Omuz üstü yükseklikten yavaş yaklaşma (gözlem, yargı), aci_derece: 35, yukseklik_m: 3.4, hedef_y_m: 1.0, hareket: yaklasma, fov: 38, mesafeler: [orta]}
+  yan_profil:       {aciklama: Yandan sabit profil, hafif süzülme (bekleyiş, yalnızlık), aci_derece: 95, yukseklik_m: 1.5, hedef_y_m: 1.2, hareket: sabit_suzulme, fov: 30, mesafeler: [orta, uzak]}
+  sabit_uzak:       {aciklama: Sabit uzak kadraj (sonuç, kayıp), aci_derece: 60, yukseklik_m: 1.3, hedef_y_m: 0.6, hareket: sabit, fov: 34, mesafeler: [uzak]}
+  # --- Faz 5.3 yeni türler ---
+  kurulus_genis:    {aciklama: Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing), aci_derece: -40, yukseklik_m: 4.0, hedef_y_m: 3.2, hareket: genis_suzulme, fov: 55, oran: 0.12, mesafeler: [uzak], perspektif_k: 2.2, fov_en_az: 24}
+  tele_kalabalik:   {aciklama: Ordunun büyüklüğü; önden uzun lens, sıraları üst üste sıkıştırır (ufuk ve gök kadrajda), aci_derece: 12, yukseklik_m: 1.8, hedef_y_m: 1.9, hareket: sabit_suzulme, fov: 18, oran: 0.26, mesafeler: [uzak]}
+  itme_dramatik:    {aciklama: Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma), aci_derece: 10, yukseklik_m: 1.45, hedef_y_m: 1.5, hareket: itme, fov: 40, fov_son: 32, mesafeler: [orta]}
+  orta_konusma:     {aciklama: Komutanın konuşması / dinleyen; medium plan, göz hizası, hafif çapraz, aci_derece: 25, yukseklik_m: 1.6, hedef_y_m: 1.4, hareket: sabit_suzulme, fov: 32, oran: 0.85, mesafeler: [orta]}
+  # --- Savaş anlatımı türleri ---
+  # sarsinti: el kamerası (Godot'da deterministik çok frekanslı açısal sarsıntı; derece = tepe genlik). Yalnız çarpışma.
+  el_kamerasi:      {aciklama: Savaşın içinden el kamerası; omuz hizası, yakın takip ve hafif sarsıntı, aci_derece: 35, yukseklik_m: 1.5, hedef_y_m: 1.35, hareket: el, fov: 42, sarsinti: {derece: 0.8}, mesafeler: [orta]}
+  drone_gecis:      {aciklama: Ordunun üzerinden drone geçişi; yüksekten öne doğru süzülen kuşbakışına yakın plan, aci_derece: 170, yukseklik_m: 16.0, hedef_y_m: 0.0, hareket: drone, fov: 50, oran: 0.11, mesafeler: [uzak]}
+yukseklik_siniflari: {alcak: 1.0, yuksek: 2.2}   # < alcak: alçak açı; > yuksek: yüksek açı; arası göz hizası
+aci_kovalari: {onden: 35, capraz: 70, yan: 115, capraz_arka: 150}
+en_az_gorunur_oran: 0.6
+
+# --- Anlatı grameri: seçim rastgele değil, cümlenin amacına ve eylemine bağlı. Liste sırası tercih sırasıdır. ---
+# Uygunluk (mesafe, hareketli odak, yakın plan sınıfı) ve çeşitlilik kuralları (ardışık aynı hareket yasak) yine
+# uygulanır; tercih edilen tür uymazsa ya da kadraj denetiminden geçmezse listenin sonrakine, o da yoksa en
+# çeşitli uygun türe düşülür.
+amac_kamera:
+  kanca:   [itme_dramatik, alcak_yaklasma, capraz_yorunge]          # merak: yaklaşma, güç
+  baglam:  [kurulus_genis, yuksek_genis, goz_pan, yan_takip]        # mekân ve durum tanıtımı
+  olay:    [yan_takip, tele_kalabalik, capraz_yorunge, arkadan_uzak] # ordunun ilerlemesi, olayın kendisi
+  gerilim: [alcak_yaklasma, capraz_yorunge, alcak_geri_takip, yan_profil]  # tehlike, dramatik vurgu (alçak açı)
+  donum:   [itme_dramatik, ust_aci_yaklasma, alcak_geri_takip, alcak_yaklasma]  # tarihsel dönüm: yaklaşma
+  final:   [yukselme, sabit_uzak, kurulus_genis, arkadan_uzak]      # sonuç: geniş, kontrollü kompozisyon
+# Eylem kuralları amaçtan önce gelir. yasak: o eylemde kullanılmaz (ör. ölümde alçak/itme dramatize etmez).
+eylem_kamera:
+  olum:    {once: [sabit_uzak, yan_profil, yuksek_genis], yasak: [alcak_yaklasma, itme_dramatik, alcak_geri_takip, el_kamerasi]}
+  savas:   {once: [el_kamerasi, capraz_yorunge]}
+  carpisma: {once: [el_kamerasi, capraz_yorunge]}
+  kilic_saldirisi: {once: [el_kamerasi, capraz_yorunge]}
+  isaret:  {once: [orta_konusma]}
+  jest:    {once: [orta_konusma]}
+  dinleme: {once: [orta_konusma]}
+  suvari_hucum:   {once: [yan_takip, alcak_geri_takip, capraz_yorunge]}   # atlı hücum: yanından/önünden takip
+  suvari_yuruyus: {once: [yan_takip, arkadan_uzak]}
+# Rol kuralı: yerinde duran komutan → medium (konuşma, emir). Hareketli komutanda uygulanmaz.
+rol_kamera:
+  komutan: {once: [orta_konusma], yalniz_yerinde: true, amaclar_haric: [kanca, gerilim]}   # gerilimde dramatik dil önce gelir
+# Kalabalık (aynı çekimde en az bu kadar karakter): ordunun büyüklüğü için tele ve yüksek açı amaç listesinin
+# ilk türünden hemen sonra öne alınır.
+kalabalik_kamera: {en_az: 8, once: [tele_kalabalik, drone_gecis, yuksek_genis]}
+
+# --- Kadraj ve çarpışma denetimi (alternatif seçimi tetikler) ---
+denetim:
+  ornek: 13                 # kamera hareketi boyunca ölçülen an sayısı
+  zemin_en_az_m: 0.35       # kamera yüksekliği
+  govde_yaricap_m: 0.6      # kamera bir karakterin gövdesine bundan yakın geçemez
+  objektif_en_az_m: 1.0     # kadrajdaki bir karakter objektife bundan yakın olamaz (bulanık leke / kesilme)
+  odak_kenar: 0.97          # odak karakterin başı ve ayağı bu NDC sınırı içinde kalmalı (kesilme yok)
+  en_cok_donus_der_sn: 35   # bakış yönünün dönme hızı
+  en_cok_hiz_m_sn: 8.0      # kamera konumunun hızı

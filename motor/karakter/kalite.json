@@ -1,0 +1,1754 @@
+{
+ "karakter": {
+  "akk_zirhli_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_zirhli_gurz": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_zirhli_mizrak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_okcu": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "akk_okcu_zirhli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_okcu_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "akk_bey": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "komutan",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_bey_gurz": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "komutan",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_sivil": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "akk_sivil_kalpakli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "akk_suvari": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_suvari_yay": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "akk_suvari_gurz": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "akkoyunlu_15yy",
+   "rol": "suvari",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "biz_piyade_mizrak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_piyade_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_piyade_sancak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_arbaletci": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_okcu_pavezli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_okcu_milis": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "okcu",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_komutan": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "komutan",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_komutan_sancak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "komutan",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_sivil": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_sivil_pavezli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_suvari": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_suvari_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "biz_suvari_sancak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "bizans_15yy",
+   "rol": "suvari",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_yeniceri_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_yeniceri_mizrak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_yeniceri_sancak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_yeniceri_okcu": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_yeniceri_okcu_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_okcu_sarikli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_bey": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "komutan",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_bey_tug": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "komutan",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_sivil": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_sivil_kulahli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "isci_sivil",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "osm_sipahi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_sipahi_mizrak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "osm_sipahi_yay": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "osmanli_15yy",
+   "rol": "suvari",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop",
+    "Sword_Attack"
+   ]
+  },
+  "rom_lejyoner_gladius": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_lejyoner_pilum": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_aquilifer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "piyade",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_yardimci_okcu": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "rom_yardimci_okcu_migferli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "rom_yardimci_okcu_zirhli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "okcu",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_centurio": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "komutan",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_centurio_kalkanli": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "komutan",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_sivil": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "isci_sivil",
+   "neden": [],
+   "yasak_animasyon": []
+  },
+  "rom_sivil_avci": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "isci_sivil",
+   "neden": [
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": []
+  },
+  "rom_suvari": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_suvari_mizrak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  },
+  "rom_suvari_vexillum": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "kit": "roma_cumhuriyet",
+   "rol": "suvari",
+   "neden": [
+    "belirsiz tarihsel parça taşıyor",
+    "öndeki ekipman yakın çekim sınıfında değil"
+   ],
+   "yasak_animasyon": [
+    "Driving_Loop",
+    "Jog_Fwd_Loop"
+   ]
+  }
+ },
+ "ekipman": {
+  "yeniceri_borku": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "404 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "osmanli_sarik": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "sarik_migfer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "kanitli",
+   "kategori": "baslik"
+  },
+  "turkmen_kalpak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "384 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "baslik"
+  },
+  "konik_migfer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "464 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "baslik"
+  },
+  "sapel_migfer": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "montefortino": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "kanitli",
+   "kategori": "baslik"
+  },
+  "hasir_kalkan": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "kalkan"
+  },
+  "celik_kalkan": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "kalkan"
+  },
+  "pavez": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "kalkan"
+  },
+  "badem_kalkan": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "332 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "kalkan"
+  },
+  "scutum": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "kanitli",
+   "kategori": "kalkan"
+  },
+  "osmanli_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "304 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "duz_kilic": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "284 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "gladius": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "356 üçgen: yakın çekim için az"
+   ],
+   "guven": "kanitli",
+   "kategori": "silah"
+  },
+  "pilum": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "216 üçgen: yakın çekim için az"
+   ],
+   "guven": "kanitli",
+   "kategori": "silah"
+  },
+  "mizrak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "352 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "gurz": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "208 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "kompozit_yay": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "300 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "arbalet": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "224 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "silah"
+  },
+  "sadak": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "248 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sirt"
+  },
+  "hancer": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "90 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "makul",
+   "kategori": "aksesuar"
+  },
+  "pugio": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "90 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "kanitli",
+   "kategori": "aksesuar"
+  },
+  "kese": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "112 üçgen: yalnızca uzak plan"
+   ],
+   "guven": "makul",
+   "kategori": "aksesuar"
+  },
+  "osmanli_sancagi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "432 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "sancak"
+  },
+  "tug": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "288 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sancak"
+  },
+  "akkoyunlu_sancagi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "464 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "sancak"
+  },
+  "bizans_sancagi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "464 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "sancak"
+  },
+  "vexillum": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "266 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sancak"
+  },
+  "aquila": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "166 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "sancak"
+  },
+  "osmanli_cadiri": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "544 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "topak_ev": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "460 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "sur_kule": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "204 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "roma_cadiri": {
+   "sinif": "C",
+   "kullanim": [
+    "uzak"
+   ],
+   "neden": [
+    "18 üçgen: yalnızca uzak plan",
+    "görsel inceleme: 18 üçgen; yalnızca uzak plan"
+   ],
+   "guven": "makul",
+   "kategori": "cevre"
+  },
+  "turkmen_tacli_sarik": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "montefortino_sorguclu": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "kece_kulah": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "224 üçgen: yakın çekim için az"
+   ],
+   "guven": "makul",
+   "kategori": "baslik"
+  },
+  "kargi": {
+   "sinif": "B",
+   "kullanim": [
+    "orta",
+    "uzak"
+   ],
+   "neden": [
+    "460 üçgen: yakın çekim için az",
+    "tarihsel güven belirsiz: yakın çekimde öne çıkarılmaz"
+   ],
+   "guven": "belirsiz",
+   "kategori": "silah"
+  }
+ },
+ "karakter_dagilimi": {
+  "A": 0,
+  "B": 52,
+  "C": 0,
+  "RED": 0
+ },
+ "ekipman_dagilimi": {
+  "A": 0,
+  "B": 34,
+  "C": 4,
+  "RED": 0
+ },
+ "siluet": {
+  "esikler": {
+   "ayrisma": 0.8,
+   "karisma": 0.9,
+   "uzak_boy_px": 24
+  },
+  "kit_ciftleri": {
+   "akkoyunlu_15yy|bizans_15yy": {
+    "isci_sivil": 0.662,
+    "komutan": 0.67,
+    "okcu": 0.742,
+    "piyade": 0.636,
+    "suvari": 0.674
+   },
+   "akkoyunlu_15yy|osmanli_15yy": {
+    "isci_sivil": 0.741,
+    "komutan": 0.698,
+    "okcu": 0.766,
+    "piyade": 0.78,
+    "suvari": 0.751
+   },
+   "akkoyunlu_15yy|roma_cumhuriyet": {
+    "isci_sivil": 0.741,
+    "komutan": 0.594,
+    "okcu": 0.737,
+    "piyade": 0.605,
+    "suvari": 0.616
+   },
+   "bizans_15yy|osmanli_15yy": {
+    "isci_sivil": 0.701,
+    "komutan": 0.576,
+    "okcu": 0.675,
+    "piyade": 0.666,
+    "suvari": 0.626
+   },
+   "bizans_15yy|roma_cumhuriyet": {
+    "isci_sivil": 0.603,
+    "komutan": 0.642,
+    "okcu": 0.722,
+    "piyade": 0.658,
+    "suvari": 0.658
+   },
+   "osmanli_15yy|roma_cumhuriyet": {
+    "isci_sivil": 0.589,
+    "komutan": 0.624,
+    "okcu": 0.637,
+    "piyade": 0.69,
+    "suvari": 0.641
+   }
+  },
+  "ayrismayan": [],
+  "karisabilir": [],
+  "uzak_tanima_orani": 0.885,
+  "karakterler": {
+   "akk_bey": {
+    "en_yakin": "akk_zirhli_mizrak",
+    "benzerlik": 0.79,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_sancak",
+    "baska_kit_benzerlik": 0.752,
+    "uzak_en_yakin": "akk_zirhli_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "akk_bey_gurz": {
+    "en_yakin": "akk_suvari_gurz",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sivil_kulahli",
+    "baska_kit_benzerlik": 0.767,
+    "uzak_en_yakin": "akk_suvari_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_okcu": {
+    "en_yakin": "akk_okcu_kilic",
+    "benzerlik": 0.802,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_okcu_pavezli",
+    "baska_kit_benzerlik": 0.742,
+    "uzak_en_yakin": "akk_okcu_kilic",
+    "uzak_dogru_kit": true
+   },
+   "akk_okcu_kilic": {
+    "en_yakin": "akk_okcu",
+    "benzerlik": 0.802,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_suvari_kilic",
+    "baska_kit_benzerlik": 0.757,
+    "uzak_en_yakin": "akk_okcu",
+    "uzak_dogru_kit": true
+   },
+   "akk_okcu_zirhli": {
+    "en_yakin": "akk_suvari_yay",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.766,
+    "uzak_en_yakin": "akk_suvari_yay",
+    "uzak_dogru_kit": true
+   },
+   "akk_sivil": {
+    "en_yakin": "akk_sivil_kalpakli",
+    "benzerlik": 0.839,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.734,
+    "uzak_en_yakin": "akk_sivil_kalpakli",
+    "uzak_dogru_kit": true
+   },
+   "akk_sivil_kalpakli": {
+    "en_yakin": "akk_sivil",
+    "benzerlik": 0.839,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.757,
+    "uzak_en_yakin": "akk_sivil",
+    "uzak_dogru_kit": true
+   },
+   "akk_suvari": {
+    "en_yakin": "akk_zirhli_mizrak",
+    "benzerlik": 0.914,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_mizrak",
+    "baska_kit_benzerlik": 0.779,
+    "uzak_en_yakin": "akk_zirhli_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "akk_suvari_gurz": {
+    "en_yakin": "akk_bey_gurz",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sivil_kulahli",
+    "baska_kit_benzerlik": 0.767,
+    "uzak_en_yakin": "akk_bey_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_suvari_yay": {
+    "en_yakin": "akk_okcu_zirhli",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_okcu",
+    "baska_kit_benzerlik": 0.766,
+    "uzak_en_yakin": "akk_okcu_zirhli",
+    "uzak_dogru_kit": true
+   },
+   "akk_zirhli_gurz": {
+    "en_yakin": "akk_bey_gurz",
+    "benzerlik": 0.991,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sivil_kulahli",
+    "baska_kit_benzerlik": 0.768,
+    "uzak_en_yakin": "akk_bey_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_zirhli_kilic": {
+    "en_yakin": "akk_zirhli_gurz",
+    "benzerlik": 0.808,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_kilic",
+    "baska_kit_benzerlik": 0.759,
+    "uzak_en_yakin": "akk_zirhli_gurz",
+    "uzak_dogru_kit": true
+   },
+   "akk_zirhli_mizrak": {
+    "en_yakin": "akk_suvari",
+    "benzerlik": 0.914,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_sancak",
+    "baska_kit_benzerlik": 0.78,
+    "uzak_en_yakin": "akk_suvari",
+    "uzak_dogru_kit": true
+   },
+   "biz_arbaletci": {
+    "en_yakin": "biz_okcu_pavezli",
+    "benzerlik": 0.92,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu",
+    "baska_kit_benzerlik": 0.726,
+    "uzak_en_yakin": "biz_okcu_pavezli",
+    "uzak_dogru_kit": true
+   },
+   "biz_komutan": {
+    "en_yakin": "biz_piyade_kilic",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_yardimci_okcu_zirhli",
+    "baska_kit_benzerlik": 0.71,
+    "uzak_en_yakin": "biz_piyade_kilic",
+    "uzak_dogru_kit": true
+   },
+   "biz_komutan_sancak": {
+    "en_yakin": "biz_piyade_sancak",
+    "benzerlik": 0.97,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_suvari_vexillum",
+    "baska_kit_benzerlik": 0.783,
+    "uzak_en_yakin": "biz_piyade_sancak",
+    "uzak_dogru_kit": true
+   },
+   "biz_okcu_milis": {
+    "en_yakin": "biz_sivil_pavezli",
+    "benzerlik": 0.841,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sipahi_yay",
+    "baska_kit_benzerlik": 0.714,
+    "uzak_en_yakin": "biz_sivil_pavezli",
+    "uzak_dogru_kit": true
+   },
+   "biz_okcu_pavezli": {
+    "en_yakin": "biz_arbaletci",
+    "benzerlik": 0.92,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu",
+    "baska_kit_benzerlik": 0.742,
+    "uzak_en_yakin": "biz_arbaletci",
+    "uzak_dogru_kit": true
+   },
+   "biz_piyade_kilic": {
+    "en_yakin": "biz_komutan",
+    "benzerlik": 1.0,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_yardimci_okcu_zirhli",
+    "baska_kit_benzerlik": 0.71,
+    "uzak_en_yakin": "biz_komutan",
+    "uzak_dogru_kit": true
+   },
+   "biz_piyade_mizrak": {
+    "en_yakin": "biz_suvari",
+    "benzerlik": 0.97,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_mizrak",
+    "baska_kit_benzerlik": 0.666,
+    "uzak_en_yakin": "biz_suvari",
+    "uzak_dogru_kit": true
+   },
+   "biz_piyade_sancak": {
+    "en_yakin": "biz_komutan_sancak",
+    "benzerlik": 0.97,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "rom_suvari_vexillum",
+    "baska_kit_benzerlik": 0.779,
+    "uzak_en_yakin": "biz_komutan_sancak",
+    "uzak_dogru_kit": true
+   },
+   "biz_sivil": {
+    "en_yakin": "osm_sipahi_mizrak",
+    "benzerlik": 0.79,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "osm_sipahi_mizrak",
+    "baska_kit_benzerlik": 0.79,
+    "uzak_en_yakin": "osm_sipahi_mizrak",
+    "uzak_dogru_kit": false
+   },
+   "biz_sivil_pavezli": {
+    "en_yakin": "biz_okcu_milis",
+    "benzerlik": 0.841,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_sipahi_yay",
+    "baska_kit_benzerlik": 0.714,
+    "uzak_en_yakin": "biz_okcu_milis",
+    "uzak_dogru_kit": true
+   },
+   "biz_suvari": {
+    "en_yakin": "biz_piyade_mizrak",
+    "benzerlik": 0.97,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "osm_yeniceri_mizrak",
+    "baska_kit_benzerlik": 0.672,
+    "uzak_en_yakin": "biz_piyade_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "biz_suvari_kilic": {
+    "en_yakin": "biz_komutan",
+    "benzerlik": 0.853,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu_kilic",
+    "baska_kit_benzerlik": 0.757,
+    "uzak_en_yakin": "biz_komutan",
+    "uzak_dogru_kit": true
+   },
+   "biz_suvari_sancak": {
+    "en_yakin": "rom_aquilifer",
+    "benzerlik": 0.739,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "rom_aquilifer",
+    "baska_kit_benzerlik": 0.739,
+    "uzak_en_yakin": "rom_aquilifer",
+    "uzak_dogru_kit": false
+   },
+   "osm_bey": {
+    "en_yakin": "osm_sipahi_yay",
+    "benzerlik": 0.962,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.743,
+    "uzak_en_yakin": "osm_sipahi_yay",
+    "uzak_dogru_kit": true
+   },
+   "osm_bey_tug": {
+    "en_yakin": "osm_sipahi_mizrak",
+    "benzerlik": 0.797,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu_zirhli",
+    "baska_kit_benzerlik": 0.7,
+    "uzak_en_yakin": "osm_sipahi_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "osm_okcu_sarikli": {
+    "en_yakin": "osm_sivil",
+    "benzerlik": 0.959,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_gurz",
+    "baska_kit_benzerlik": 0.749,
+    "uzak_en_yakin": "osm_sivil",
+    "uzak_dogru_kit": true
+   },
+   "osm_sipahi": {
+    "en_yakin": "osm_sivil",
+    "benzerlik": 0.914,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_gurz",
+    "baska_kit_benzerlik": 0.739,
+    "uzak_en_yakin": "osm_sivil",
+    "uzak_dogru_kit": true
+   },
+   "osm_sipahi_mizrak": {
+    "en_yakin": "osm_bey_tug",
+    "benzerlik": 0.797,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_sivil",
+    "baska_kit_benzerlik": 0.79,
+    "uzak_en_yakin": "osm_bey_tug",
+    "uzak_dogru_kit": true
+   },
+   "osm_sipahi_yay": {
+    "en_yakin": "osm_bey",
+    "benzerlik": 0.962,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.746,
+    "uzak_en_yakin": "osm_bey",
+    "uzak_dogru_kit": true
+   },
+   "osm_sivil": {
+    "en_yakin": "osm_okcu_sarikli",
+    "benzerlik": 0.959,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_gurz",
+    "baska_kit_benzerlik": 0.746,
+    "uzak_en_yakin": "osm_okcu_sarikli",
+    "uzak_dogru_kit": true
+   },
+   "osm_sivil_kulahli": {
+    "en_yakin": "osm_sivil",
+    "benzerlik": 0.924,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_gurz",
+    "baska_kit_benzerlik": 0.768,
+    "uzak_en_yakin": "osm_sivil",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_kilic": {
+    "en_yakin": "osm_yeniceri_okcu_kilic",
+    "benzerlik": 0.885,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.759,
+    "uzak_en_yakin": "osm_yeniceri_okcu_kilic",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_mizrak": {
+    "en_yakin": "akk_suvari",
+    "benzerlik": 0.779,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "akk_suvari",
+    "baska_kit_benzerlik": 0.779,
+    "uzak_en_yakin": "akk_suvari",
+    "uzak_dogru_kit": false
+   },
+   "osm_yeniceri_okcu": {
+    "en_yakin": "osm_yeniceri_okcu_kilic",
+    "benzerlik": 0.854,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu_zirhli",
+    "baska_kit_benzerlik": 0.766,
+    "uzak_en_yakin": "osm_yeniceri_okcu_kilic",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_okcu_kilic": {
+    "en_yakin": "osm_yeniceri_kilic",
+    "benzerlik": 0.885,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_zirhli_kilic",
+    "baska_kit_benzerlik": 0.755,
+    "uzak_en_yakin": "osm_yeniceri_kilic",
+    "uzak_dogru_kit": true
+   },
+   "osm_yeniceri_sancak": {
+    "en_yakin": "akk_zirhli_mizrak",
+    "benzerlik": 0.78,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "akk_zirhli_mizrak",
+    "baska_kit_benzerlik": 0.78,
+    "uzak_en_yakin": "akk_zirhli_mizrak",
+    "uzak_dogru_kit": false
+   },
+   "rom_aquilifer": {
+    "en_yakin": "rom_suvari_mizrak",
+    "benzerlik": 0.8,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_suvari_sancak",
+    "baska_kit_benzerlik": 0.739,
+    "uzak_en_yakin": "rom_suvari_mizrak",
+    "uzak_dogru_kit": true
+   },
+   "rom_centurio": {
+    "en_yakin": "rom_suvari",
+    "benzerlik": 0.808,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_sivil_kalpakli",
+    "baska_kit_benzerlik": 0.714,
+    "uzak_en_yakin": "rom_suvari",
+    "uzak_dogru_kit": true
+   },
+   "rom_centurio_kalkanli": {
+    "en_yakin": "rom_lejyoner_gladius",
+    "benzerlik": 0.83,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_okcu_pavezli",
+    "baska_kit_benzerlik": 0.668,
+    "uzak_en_yakin": "rom_lejyoner_gladius",
+    "uzak_dogru_kit": true
+   },
+   "rom_lejyoner_gladius": {
+    "en_yakin": "rom_centurio_kalkanli",
+    "benzerlik": 0.83,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.658,
+    "uzak_en_yakin": "rom_centurio_kalkanli",
+    "uzak_dogru_kit": true
+   },
+   "rom_lejyoner_pilum": {
+    "en_yakin": "rom_centurio_kalkanli",
+    "benzerlik": 0.672,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_suvari",
+    "baska_kit_benzerlik": 0.652,
+    "uzak_en_yakin": "rom_centurio_kalkanli",
+    "uzak_dogru_kit": true
+   },
+   "rom_sivil": {
+    "en_yakin": "akk_sivil_kalpakli",
+    "benzerlik": 0.741,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "akk_sivil_kalpakli",
+    "baska_kit_benzerlik": 0.741,
+    "uzak_en_yakin": "akk_sivil_kalpakli",
+    "uzak_dogru_kit": false
+   },
+   "rom_sivil_avci": {
+    "en_yakin": "rom_yardimci_okcu",
+    "benzerlik": 0.999,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.701,
+    "uzak_en_yakin": "rom_yardimci_okcu",
+    "uzak_dogru_kit": true
+   },
+   "rom_suvari": {
+    "en_yakin": "rom_centurio",
+    "benzerlik": 0.808,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_sivil_kalpakli",
+    "baska_kit_benzerlik": 0.695,
+    "uzak_en_yakin": "rom_centurio",
+    "uzak_dogru_kit": true
+   },
+   "rom_suvari_mizrak": {
+    "en_yakin": "rom_aquilifer",
+    "benzerlik": 0.8,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_sivil",
+    "baska_kit_benzerlik": 0.677,
+    "uzak_en_yakin": "rom_aquilifer",
+    "uzak_dogru_kit": true
+   },
+   "rom_suvari_vexillum": {
+    "en_yakin": "biz_komutan_sancak",
+    "benzerlik": 0.783,
+    "ayni_kit": false,
+    "en_yakin_baska_kit": "biz_komutan_sancak",
+    "baska_kit_benzerlik": 0.783,
+    "uzak_en_yakin": "biz_komutan_sancak",
+    "uzak_dogru_kit": false
+   },
+   "rom_yardimci_okcu": {
+    "en_yakin": "rom_sivil_avci",
+    "benzerlik": 0.999,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.701,
+    "uzak_en_yakin": "rom_sivil_avci",
+    "uzak_dogru_kit": true
+   },
+   "rom_yardimci_okcu_migferli": {
+    "en_yakin": "rom_yardimci_okcu",
+    "benzerlik": 0.746,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "akk_okcu",
+    "baska_kit_benzerlik": 0.737,
+    "uzak_en_yakin": "rom_yardimci_okcu",
+    "uzak_dogru_kit": true
+   },
+   "rom_yardimci_okcu_zirhli": {
+    "en_yakin": "rom_yardimci_okcu",
+    "benzerlik": 0.934,
+    "ayni_kit": true,
+    "en_yakin_baska_kit": "biz_komutan",
+    "baska_kit_benzerlik": 0.71,
+    "uzak_en_yakin": "rom_yardimci_okcu",
+    "uzak_dogru_kit": true
+   }
+  }
+ },
+ "inceleme": "Claude (kontak sayfaları ve yakın/orta çekimler incelendi, 24 Kasım 2026)"
+}

@@ -1,0 +1,1011 @@
+{
+ "hatalar": {
+  "plan_denetimi": [],
+  "ortu": [],
+  "cesitlilik": [],
+  "uyum": []
+ },
+ "uyarilar": [],
+ "kamera_eksik_hata": [],
+ "cesitlilik": {
+  "cekim_sayisi": 11,
+  "dagilim": {
+   "plan": {
+    "orta": 7,
+    "uzak": 4
+   },
+   "hareket": {
+    "yaklasma": 3,
+    "yanal_kayma": 1,
+    "genis_suzulme": 1,
+    "takip": 1,
+    "sabit_suzulme": 2,
+    "yorunge": 1,
+    "itme": 1,
+    "yukselme": 1
+   },
+   "yukseklik": {
+    "alcak": 2,
+    "goz": 7,
+    "yuksek": 2
+   },
+   "aci_kovasi": {
+    "onden": 7,
+    "capraz": 3,
+    "yan": 1
+   },
+   "tur": {
+    "alcak_yaklasma": 2,
+    "goz_pan": 1,
+    "kurulus_genis": 1,
+    "yan_takip": 1,
+    "tele_kalabalik": 1,
+    "capraz_yorunge": 1,
+    "orta_konusma": 1,
+    "ust_aci_yaklasma": 1,
+    "itme_dramatik": 1,
+    "yukselme": 1
+   }
+  },
+  "sira": [
+   {
+    "tur": "alcak_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "alcak",
+    "aci_kovasi": "onden",
+    "dizilis": "tek",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     34,
+     34
+    ],
+    "secim_gerekcesi": [
+     "senaryo niyeti: alcak_yaklasma",
+     "amaç 'kanca': ['itme_dramatik', 'alcak_yaklasma', 'capraz_yorunge']"
+    ],
+    "tercih_sirasi": [
+     "alcak_yaklasma",
+     "itme_dramatik",
+     "capraz_yorunge"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S1",
+    "plan": "orta"
+   },
+   {
+    "tur": "goz_pan",
+    "hareket": "yanal_kayma",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Göz hizasında hattı tarayan yatay kaydırma",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     36,
+     36
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (10 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+    ],
+    "tercih_sirasi": [
+     "kurulus_genis",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "goz_pan",
+     "yan_takip"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S2",
+    "plan": "orta"
+   },
+   {
+    "tur": "kurulus_genis",
+    "hareket": "genis_suzulme",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "capraz",
+    "dizilis": "sira",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     55,
+     55
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (12 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+    ],
+    "tercih_sirasi": [
+     "kurulus_genis",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "goz_pan",
+     "yan_takip"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S3",
+    "plan": "uzak"
+   },
+   {
+    "tur": "yan_takip",
+    "hareket": "takip",
+    "yukseklik": "goz",
+    "aci_kovasi": "yan",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Göz hizasında yandan paralel takip",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yan_takip",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "capraz_yorunge",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S4a",
+    "plan": "uzak"
+   },
+   {
+    "tur": "tele_kalabalik",
+    "hareket": "sabit_suzulme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Ordunun büyüklüğü; önden uzun lens",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     18,
+     18
+    ],
+    "secim_gerekcesi": [
+     "kalabalık (13 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'olay': ['yan_takip', 'tele_kalabalik', 'yuksek_genis', 'capraz_yorunge', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yan_takip",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "capraz_yorunge",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S4b",
+    "plan": "uzak"
+   },
+   {
+    "tur": "capraz_yorunge",
+    "hareket": "yorunge",
+    "yukseklik": "goz",
+    "aci_kovasi": "capraz",
+    "dizilis": "dagin",
+    "odak": "rom_lejyoner_gladius",
+    "arazi": "kuru_bozkir",
+    "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "eylem 'olum': ['sabit_uzak', 'yan_profil', 'yuksek_genis'] önce, yasak ['alcak_geri_takip', 'alcak_yaklasma', 'itme_dramatik']",
+     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+    ],
+    "tercih_sirasi": [
+     "sabit_uzak",
+     "yan_profil",
+     "yuksek_genis",
+     "capraz_yorunge"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S5",
+    "plan": "orta"
+   },
+   {
+    "tur": "alcak_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "alcak",
+    "aci_kovasi": "onden",
+    "dizilis": "tek",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     34,
+     34
+    ],
+    "secim_gerekcesi": [
+     "amaç 'gerilim': ['alcak_yaklasma', 'capraz_yorunge', 'alcak_geri_takip', 'yan_profil']"
+    ],
+    "tercih_sirasi": [
+     "alcak_yaklasma",
+     "capraz_yorunge",
+     "alcak_geri_takip",
+     "yan_profil"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S6",
+    "plan": "orta"
+   },
+   {
+    "tur": "orta_konusma",
+    "hareket": "sabit_suzulme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Komutanın konuşması / dinleyen; medium plan",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     32,
+     32
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "itme_dramatik",
+     "ust_aci_yaklasma",
+     "alcak_geri_takip",
+     "alcak_yaklasma"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S7a",
+    "plan": "orta"
+   },
+   {
+    "tur": "ust_aci_yaklasma",
+    "hareket": "yaklasma",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "capraz",
+    "dizilis": "sira",
+    "odak": "rom_centurio",
+    "arazi": "ova_cimen",
+    "aciklama": "Omuz üstü yükseklikten yavaş yaklaşma (gözlem",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_gladius",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     38,
+     38
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "itme_dramatik",
+     "ust_aci_yaklasma",
+     "alcak_geri_takip",
+     "alcak_yaklasma"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S7b",
+    "plan": "orta"
+   },
+   {
+    "tur": "itme_dramatik",
+    "hareket": "itme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "kol",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     40,
+     32
+    ],
+    "secim_gerekcesi": [
+     "amaç 'donum': ['itme_dramatik', 'ust_aci_yaklasma', 'alcak_geri_takip', 'alcak_yaklasma']"
+    ],
+    "tercih_sirasi": [
+     "itme_dramatik",
+     "ust_aci_yaklasma",
+     "alcak_geri_takip",
+     "alcak_yaklasma"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S8",
+    "plan": "orta"
+   },
+   {
+    "tur": "yukselme",
+    "hareket": "yukselme",
+    "yukseklik": "goz",
+    "aci_kovasi": "onden",
+    "dizilis": "sira",
+    "odak": "rom_aquilifer",
+    "arazi": "ova_cimen",
+    "aciklama": "Yerden yükselen vinç hareketi (kapanış",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [
+     "rom_lejyoner_pilum",
+     "rom_lejyoner_pilum"
+    ],
+    "lens_fov": [
+     42,
+     42
+    ],
+    "secim_gerekcesi": [
+     "senaryo niyeti: yukselme",
+     "kalabalık (14 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'final': ['yukselme', 'tele_kalabalik', 'yuksek_genis', 'sabit_uzak', 'kurulus_genis', 'arkadan_uzak']"
+    ],
+    "tercih_sirasi": [
+     "yukselme",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "sabit_uzak",
+     "kurulus_genis",
+     "arkadan_uzak"
+    ],
+    "reddedilen_adaylar": [],
+    "kalan_kusur": [],
+    "id": "S9",
+    "plan": "uzak"
+   }
+  ],
+  "benzer_gruplar": []
+ },
+ "uyum": [
+  {
+   "cumle": "S1",
+   "metin": "Bir kuş için 33 yıl.",
+   "cekimler": [
+    "S1"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S1 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S1 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S1 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S1 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S1 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S1 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S1 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S2",
+   "metin": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "cekimler": [
+    "S2"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S2 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S2 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "10 görünür"
+    },
+    {
+     "kontrol": "S2 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %89'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S2 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "10 görünür"
+    },
+    {
+     "kontrol": "S2 eylem 'yuruyus'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Loop"
+    },
+    {
+     "kontrol": "S2 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S2 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S2 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S3",
+   "metin": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "cekimler": [
+    "S3"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S3 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S3 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S3 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S3 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S3 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S3 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S3 mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S3 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S3 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    },
+    {
+     "kontrol": "S3 çevre 'roma_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    },
+    {
+     "kontrol": "S3 çevre 'roma_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S4",
+   "metin": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "cekimler": [
+    "S4a",
+    "S4b"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "2 çekim"
+    },
+    {
+     "kontrol": "S4a görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S4a ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 53 · Carrhae (bugünkü Harran)"
+    },
+    {
+     "kontrol": "S4a 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "3 görünür"
+    },
+    {
+     "kontrol": "S4a 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S4a 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "3 görünür"
+    },
+    {
+     "kontrol": "S4a eylem 'yuruyus'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Loop"
+    },
+    {
+     "kontrol": "S4a mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S4a arazi",
+     "gecti": true,
+     "ayrinti": "istenen kuru_bozkir, planlanan kuru_bozkir"
+    },
+    {
+     "kontrol": "S4a isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    },
+    {
+     "kontrol": "S4b görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S4b ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 53 · Carrhae (bugünkü Harran)"
+    },
+    {
+     "kontrol": "S4b 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "13 görünür"
+    },
+    {
+     "kontrol": "S4b 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S4b 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "13 görünür"
+    },
+    {
+     "kontrol": "S4b eylem 'yuruyus'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Loop"
+    },
+    {
+     "kontrol": "S4b mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S4b arazi",
+     "gecti": true,
+     "ayrinti": "istenen kuru_bozkir, planlanan kuru_bozkir"
+    },
+    {
+     "kontrol": "S4b isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S5",
+   "metin": "Kartallar düşmanın eline geçti; Crassus da öldürüldü.",
+   "cekimler": [
+    "S5"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S5 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S5 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "3 görünür"
+    },
+    {
+     "kontrol": "S5 eylem 'olum'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Death01"
+    },
+    {
+     "kontrol": "S5 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S5 arazi",
+     "gecti": true,
+     "ayrinti": "istenen kuru_bozkir, planlanan kuru_bozkir"
+    },
+    {
+     "kontrol": "S5 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S6",
+   "metin": "Roma yıllarca bu utançla yaşadı.",
+   "cekimler": [
+    "S6"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S6 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S6 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S6 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S6 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S6 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S6 isik",
+     "gecti": true,
+     "ayrinti": "istenen sabah_puslu, planlanan sabah_puslu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S7",
+   "metin": "33 yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
+   "cekimler": [
+    "S7a",
+    "S7b"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "2 çekim"
+    },
+    {
+     "kontrol": "S7a görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S7a ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 20"
+    },
+    {
+     "kontrol": "S7a 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S7a 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "2 görünür"
+    },
+    {
+     "kontrol": "S7a eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S7a mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S7a arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S7a isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    },
+    {
+     "kontrol": "S7b görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S7b ekran yazısı",
+     "gecti": true,
+     "ayrinti": "MÖ 20"
+    },
+    {
+     "kontrol": "S7b 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S7b 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "3 görünür"
+    },
+    {
+     "kontrol": "S7b eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S7b mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S7b arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S7b isik",
+     "gecti": true,
+     "ayrinti": "istenen oglen_acik, planlanan oglen_acik"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S8",
+   "metin": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "cekimler": [
+    "S8"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S8 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S8 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S8 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S8 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S8 eylem 'toren_yuruyusu'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Walk_Formal_Loop"
+    },
+    {
+     "kontrol": "S8 mesafe 'orta'",
+     "gecti": true,
+     "ayrinti": "ölçülen orta"
+    },
+    {
+     "kontrol": "S8 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S8 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    }
+   ],
+   "gecti": true
+  },
+  {
+   "cumle": "S9",
+   "metin": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "cekimler": [
+    "S9"
+   ],
+   "kontroller": [
+    {
+     "kontrol": "çekim var",
+     "gecti": true,
+     "ayrinti": "1 çekim"
+    },
+    {
+     "kontrol": "S9 görsel türü",
+     "gecti": true,
+     "ayrinti": "istenen 3d, planlanan 3d"
+    },
+    {
+     "kontrol": "S9 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S9 'aquila' tepesi kadrajda",
+     "gecti": true,
+     "ayrinti": "anların %100'inde (tepe yüksekliği yaklaşık)"
+    },
+    {
+     "kontrol": "S9 'komutan' görünüyor",
+     "gecti": true,
+     "ayrinti": "1 görünür"
+    },
+    {
+     "kontrol": "S9 'piyade' görünüyor",
+     "gecti": true,
+     "ayrinti": "11 görünür"
+    },
+    {
+     "kontrol": "S9 eylem 'bekleme'",
+     "gecti": true,
+     "ayrinti": "odak animasyonu Idle_Loop"
+    },
+    {
+     "kontrol": "S9 mesafe 'uzak'",
+     "gecti": true,
+     "ayrinti": "ölçülen uzak"
+    },
+    {
+     "kontrol": "S9 arazi",
+     "gecti": true,
+     "ayrinti": "istenen ova_cimen, planlanan ova_cimen"
+    },
+    {
+     "kontrol": "S9 isik",
+     "gecti": true,
+     "ayrinti": "istenen aksam_ustu, planlanan aksam_ustu"
+    },
+    {
+     "kontrol": "S9 çevre 'roma_cadiri'",
+     "gecti": true,
+     "ayrinti": ""
+    }
+   ],
+   "gecti": true
+  }
+ ],
+ "gecti": true
+}

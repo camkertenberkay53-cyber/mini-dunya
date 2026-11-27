@@ -1,0 +1,11 @@
+ad: Osmanlı, 15. yüzyıl (1450-1520)
+etiket: osmanli-15yy
+kabul_edilen_donemler: [osmanli-15yy, evrensel]
+roller:            # rol: [karakter tarifleri]. Faz 3'te doldurulacak.
+  piyade: []       # yeniçeri, azap
+  okcu: []
+  suvari: []       # sipahi, akıncı
+  komutan: []
+  isci_sivil: []
+# Bu kitin siluetini diğerlerinden ayıracak parçalar. Faz 3'te her biri kaynakla doğrulanacak.
+ayirt_edici: [yeniçeri börkü (ketçe), sarık ve kavuk, uzun kaftan, yuvarlak kalkan, kompozit yay, kılıç ve tüfek (geç dönem)]

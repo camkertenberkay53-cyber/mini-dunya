@@ -1,0 +1,15 @@
+{
+ "kaynak": "Kenney Particle Pack 1.1 (Kenney Vleugels, kenney.nl) — GitHub kopyası Calinou/kenney-particle-pack",
+ "url": "https://github.com/Calinou/kenney-particle-pack",
+ "commit": "ab7086639ee73be31abd87feb21bf1402d4e8144",
+ "lisans": "CC0-1.0",
+ "lisans_dosyasi": "LICENSE.txt (depodaki özgün lisans metni, aynen)",
+ "dosyalar": {
+  "dirt_01.png": "5dc794d1cde78d48b92b538f3fb4eedc47edefb636724df00d9815c15b4dc987",
+  "dirt_02.png": "ffd9d893775a42fa9d9d471cdd6d6fed15ed6ebf266f227274cd3ffeea7eaf05",
+  "smoke_01.png": "89df665bb2e9a021edad2a9077d2651c44e6c6cd28f3fd38f800c41a5febd2a2",
+  "smoke_04.png": "be2579db131de274567e0e1b5a2e81f9790205f0e68a3c1a038d130a7b24e092",
+  "smoke_07.png": "b18497db9e6acfa194bace6d417e7e2d480df3b54d6d5c9b3e07fabc6398345a",
+  "smoke_08.png": "a42300871565cb677e6b4eb68dcc149fd968660b22dfcc8ec49285d4c4531a85"
+ }
+}

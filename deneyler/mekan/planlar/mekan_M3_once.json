@@ -1,0 +1,273 @@
+{
+ "surum": 1,
+ "konu": "mekan-M3-once",
+ "donem": "bizans-15yy",
+ "donemler": [
+  "osmanli-15yy",
+  "akkoyunlu-15yy"
+ ],
+ "fps": 30,
+ "cozunurluk": [
+  1080,
+  1920
+ ],
+ "tohum": 7,
+ "cekimler": [
+  {
+   "id": "M3",
+   "cumleler": [
+    "Kalenin önünde savunma hattı."
+   ],
+   "sure_sn": 4.0,
+   "tur": "3d",
+   "amac": "baglam",
+   "ortam": {
+    "arazi": "ova_cimen",
+    "isik": "aksam_ustu",
+    "cevre": []
+   },
+   "karakterler": [
+    {
+     "takim": "biz_komutan",
+     "rol": "komutan",
+     "konum": [
+      0.0,
+      1.6
+     ],
+     "yon_derece": 0.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.0,
+     "hiz_m_sn": 0.0
+    },
+    {
+     "takim": "biz_piyade_kilic",
+     "rol": "piyade",
+     "konum": [
+      -3.48,
+      -0.06
+     ],
+     "yon_derece": 5.0,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.216,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.004
+    },
+    {
+     "takim": "biz_piyade_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -2.49,
+      -0.02
+     ],
+     "yon_derece": 4.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.083,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.036
+    },
+    {
+     "takim": "biz_piyade_kilic",
+     "rol": "piyade",
+     "konum": [
+      -1.26,
+      0.05
+     ],
+     "yon_derece": 3.7,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.299,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.986
+    },
+    {
+     "takim": "biz_piyade_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -0.12,
+      0.1
+     ],
+     "yon_derece": -0.2,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.165,
+     "hiz_m_sn": 0.0,
+     "olcek": 1.029
+    },
+    {
+     "takim": "biz_piyade_kilic",
+     "rol": "piyade",
+     "konum": [
+      1.24,
+      0.07
+     ],
+     "yon_derece": 5.5,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.032,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.96
+    },
+    {
+     "takim": "biz_piyade_mizrak",
+     "rol": "piyade",
+     "konum": [
+      2.44,
+      -0.08
+     ],
+     "yon_derece": 3.7,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.248,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.951
+    },
+    {
+     "takim": "biz_piyade_kilic",
+     "rol": "piyade",
+     "konum": [
+      3.6,
+      0.12
+     ],
+     "yon_derece": -4.1,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.114,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.964
+    },
+    {
+     "takim": "biz_piyade_mizrak",
+     "rol": "piyade",
+     "konum": [
+      -0.07,
+      -1.47
+     ],
+     "yon_derece": -5.6,
+     "animasyon": "Idle_Loop",
+     "faz_sn": 0.33,
+     "hiz_m_sn": 0.0,
+     "olcek": 0.983
+    }
+   ],
+   "kamera": {
+    "plan": "uzak",
+    "hareket": "genis_suzulme",
+    "bas": {
+     "konum": [
+      -8.157,
+      4.0,
+      13.563
+     ],
+     "hedef": [
+      0.0,
+      3.2,
+      1.6
+     ],
+     "fov": 55.0
+    },
+    "son": {
+     "konum": [
+      -10.365,
+      5.0,
+      11.711
+     ],
+     "hedef": [
+      0.0,
+      3.2,
+      1.6
+     ],
+     "fov": 55.0
+    },
+    "yumusatma": "giris_cikis"
+   },
+   "meta": {
+    "tur": "kurulus_genis",
+    "hareket": "genis_suzulme",
+    "yukseklik": "yuksek",
+    "aci_kovasi": "capraz",
+    "dizilis": "sira",
+    "odak": "biz_komutan",
+    "arazi": "ova_cimen",
+    "aciklama": "Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing)",
+    "odak_indeks": 0,
+    "budanan_gorunmeyen": [],
+    "lens_fov": [
+     55,
+     55
+    ],
+    "secim_gerekcesi": [
+     "rol 'komutan' (yerinde): ['orta_konusma']",
+     "kalabalık (9 karakter): ['tele_kalabalik', 'yuksek_genis'] öne alındı",
+     "amaç 'baglam': ['kurulus_genis', 'tele_kalabalik', 'yuksek_genis', 'goz_pan', 'yan_takip']"
+    ],
+    "tercih_sirasi": [
+     "orta_konusma",
+     "kurulus_genis",
+     "tele_kalabalik",
+     "yuksek_genis",
+     "goz_pan",
+     "yan_takip"
+    ],
+    "reddedilen_adaylar": []
+   }
+  }
+ ],
+ "eksikler": [],
+ "ses": {
+  "motor": "piper",
+  "cizelge": [
+   {
+    "cumle": "S1",
+    "ses_bas_sn": 0.15,
+    "ses_sure_sn": 1.911,
+    "goruntu_bas_sn": 0.0,
+    "goruntu_son_sn": 2.561
+   },
+   {
+    "cumle": "S2",
+    "ses_bas_sn": 2.561,
+    "ses_sure_sn": 4.148,
+    "goruntu_bas_sn": 2.561,
+    "goruntu_son_sn": 7.059
+   },
+   {
+    "cumle": "S3",
+    "ses_bas_sn": 7.059,
+    "ses_sure_sn": 5.261,
+    "goruntu_bas_sn": 7.059,
+    "goruntu_son_sn": 12.67
+   },
+   {
+    "cumle": "S4",
+    "ses_bas_sn": 12.67,
+    "ses_sure_sn": 3.659,
+    "goruntu_bas_sn": 12.67,
+    "goruntu_son_sn": 16.679
+   },
+   {
+    "cumle": "S5",
+    "ses_bas_sn": 16.679,
+    "ses_sure_sn": 2.862,
+    "goruntu_bas_sn": 16.679,
+    "goruntu_son_sn": 19.891
+   },
+   {
+    "cumle": "S6",
+    "ses_bas_sn": 19.891,
+    "ses_sure_sn": 3.059,
+    "goruntu_bas_sn": 19.891,
+    "goruntu_son_sn": 23.3
+   },
+   {
+    "cumle": "S7",
+    "ses_bas_sn": 23.3,
+    "ses_sure_sn": 2.87,
+    "goruntu_bas_sn": 23.3,
+    "goruntu_son_sn": 26.77
+   },
+   {
+    "cumle": "S8",
+    "ses_bas_sn": 26.77,
+    "ses_sure_sn": 3.433,
+    "goruntu_bas_sn": 26.77,
+    "goruntu_son_sn": 32.003
+   }
+  ],
+  "toplam_sn": 32.0
+ }
+}

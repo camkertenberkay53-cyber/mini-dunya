@@ -1,0 +1,90 @@
+# Faz 5.1 ses P0 deneyi: Chatterbox ve (yalnızca test amaçlı) Piper seslerini aynı 10 cümleyle ölçer.
+# Yalnızca faz51-altyapi dalında, deneyler/faz51/ses/kosu.json değişince çalışır.
+# TEST/ÖLÇÜM işidir: yayın üretmez, hiçbir yere yüklemez; ücretli servis kullanmaz.
+# Dala yalnızca ölçüm JSON'u ve kısa MP3 dinleme örnekleri yazılır.
+name: Faz51 ses deneyi
+
+on:
+  push:
+    branches: [faz51-altyapi]
+    paths: ["deneyler/faz51/ses/kosu.json"]
+
+permissions:
+  contents: write
+
+jobs:
+  uret:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        motor: [chatterbox, piper_fahrettin, piper_fettah, piper_dfki]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Kurulum
+        run: |
+          T0=$(date +%s)
+          pip install --quiet psutil numpy
+          if [ "${{ matrix.motor }}" = "chatterbox" ]; then
+            pip install --quiet torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+            pip install --quiet chatterbox-tts==0.1.7
+            pip show chatterbox-tts resemble-perth torch | grep -E "^(Name|Version|License)"
+          else
+            pip install --quiet sherpa-onnx==1.12.40
+            v=${{ matrix.motor }}; v=${v#piper_}
+            mkdir -p /tmp/piper && cd /tmp/piper
+            curl -sSL -o m.tar.bz2 "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-$v-medium.tar.bz2"
+            tar xjf m.tar.bz2 && rm m.tar.bz2
+          fi
+          echo "kurulum $(( $(date +%s) - T0 )) sn"; nproc; free -g
+      - name: Üret (${{ matrix.motor }})
+        run: python3 deneyler/faz51/ses/ses_uret.py ${{ matrix.motor }} /tmp/ses
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ses-${{ matrix.motor }}
+          path: /tmp/ses
+          retention-days: 3
+
+  degerlendir:
+    needs: uret
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Kurulum
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install --quiet torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet faster-whisper num2words librosa soundfile resemble-perth
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ses-*
+          merge-multiple: true
+          path: /tmp/ses
+      - name: Değerlendir
+        run: python3 deneyler/faz51/ses/degerlendir.py /tmp/ses /tmp/deg
+      - name: Sonuçları dala yaz
+        if: always()
+        run: |
+          D=deneyler/faz51/ses/sonuc
+          mkdir -p "$D/dinleme" "$D/uretim"
+          cp /tmp/deg/degerlendirme.json "$D/" || true
+          cp /tmp/deg/anahtar.json "$D/dinleme_anahtari.json" || true
+          cp /tmp/deg/*.mp3 "$D/dinleme/" || true
+          cp /tmp/ses/uretim_*.json "$D/uretim/" || true
+          echo '{"run_id": "${{ github.run_id }}", "uret_sonucu": "${{ needs.uret.result }}"}' > "$D/kosu.json"
+          git config user.name "faz51-olcum"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$D"
+          git commit -m "Faz 5.1 ses ölçümü [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push && exit 0; sleep 5; done
+          exit 1

@@ -1,0 +1,9 @@
+# Kamera ve çekim çeşitliliği kuralları (Shorts). Ölçümler planlanan değil, kadraj ölçümüyle hesaplanan değerlerdir.
+ardisik_ayni_plan_ve_hareket: yasak
+ardisik_ayni_hareket: yasak
+en_az_farkli_hareket: 4
+en_az_farkli_plan_olcegi: 2      # orta ve uzak (yakın yasak)
+en_az_farkli_yukseklik_sinifi: 2
+en_az_farkli_aci_kovasi: 3
+bir_hareketin_en_cok_payi: 0.34
+benzer_cekim: yasak              # aynı (plan, hareket, yükseklik, açı kovası, diziliş, odak, arazi) birden fazla çekimde

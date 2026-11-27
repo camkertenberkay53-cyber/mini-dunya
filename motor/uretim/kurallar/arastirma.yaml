@@ -1,0 +1,4 @@
+# Kaynak takibi kuralları.
+kesin_icin:                      # 'kesin' güvenli kart için kaynak şartı
+  en_az_kaynak: 2                # en az iki ayrı kaynak (tek kaynaklı iddia en çok 'makul' olabilir)
+url_zorunlu_turler: [ikincil, ansiklopedi]   # birincil antik metinler için çeviri bağlantısı önerilir

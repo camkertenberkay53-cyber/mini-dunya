@@ -4,3 +4,14 @@ __pycache__/
 *.pyc
 
 !assets/models/
+
+# Faz-53A: tarihî görsel dosyaları depoya girmez; yalnızca .json metadata commit edilir
+assets/tarihi_gorsel/*.jpg
+assets/tarihi_gorsel/*.jpeg
+assets/tarihi_gorsel/*.png
+assets/tarihi_gorsel/*.tif
+assets/tarihi_gorsel/*.tiff
+assets/tarihi_gorsel/*.webp
+assets/tarihi_gorsel/*.JPG
+assets/tarihi_gorsel/*.PNG
+assets/tarihi_gorsel/*.TIF

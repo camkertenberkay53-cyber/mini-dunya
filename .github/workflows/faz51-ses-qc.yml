@@ -1,0 +1,110 @@
+# Faz 5.1 P0: Chatterbox ses kalite kontrol sistemi deneyi (metin hazırlama + QC + sınırlı yeniden üretim).
+# Yalnızca faz51-altyapi dalında, deneyler/faz51/ses/qc/kosu.json değişince çalışır.
+# TEST/ÖLÇÜM işidir: üretim hattına bağlı değildir, yayın üretmez, hiçbir yere yüklemez, ücretli servis kullanmaz.
+# Chatterbox filigranına dokunulmaz.
+name: Faz51 ses QC deneyi
+
+on:
+  push:
+    branches: [faz51-altyapi]
+    paths: ["deneyler/faz51/ses/qc/kosu.json"]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  uret:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        grup: [test, pilot]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Kurulum
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install --quiet torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet chatterbox-tts==0.1.7 faster-whisper soundfile pyyaml psutil
+          pip show chatterbox-tts resemble-perth faster-whisper | grep -E "^(Name|Version|License)"
+      - name: Üret + QC (${{ matrix.grup }})
+        run: python3 deneyler/faz51/ses/qc/uret_qc.py ${{ matrix.grup }} /tmp/qc
+      - name: Seçilen sesleri MP3'e çevir
+        if: always()
+        run: |
+          mkdir -p /tmp/qcout
+          cp /tmp/qc/qc_*.json /tmp/qcout/ || true
+          python3 - <<'E'
+          import json, subprocess, glob
+          for f in glob.glob("/tmp/qc/qc_*.json"):
+              r = json.load(open(f))
+              for s in r["cumleler"]:
+                  subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", f"/tmp/qc/{s['secilen']}", "-c:a", "libmp3lame",
+                                  "-b:a", "96k", f"/tmp/qcout/{r['grup']}_{s['no']:02d}_{s['durum']}.mp3"])
+          E
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qc-${{ matrix.grup }}
+          path: /tmp/qcout
+          retention-days: 3
+
+  guvenilirlik:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Kurulum
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install --quiet torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet faster-whisper soundfile pyyaml psutil
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ses-*
+          merge-multiple: true
+          path: /tmp/onceki
+          run-id: 45463091865
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: QC güvenilirliği (enjeksiyon, yanlış alarm, gerçek vaka)
+        run: python3 deneyler/faz51/ses/qc/guvenilirlik.py /tmp/onceki /tmp/guv
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qc-guvenilirlik
+          path: /tmp/guv/qc_guvenilirlik.json
+          retention-days: 3
+
+  rapor:
+    needs: [uret, guvenilirlik]
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qc-*
+          merge-multiple: true
+          path: /tmp/r
+      - name: Sonuçları dala yaz
+        run: |
+          K=$(python3 -c "import json;print(json.load(open('deneyler/faz51/ses/qc/kosu.json'))['kosu_id'])")
+          D=deneyler/faz51/ses/qc/sonuc/$K
+          mkdir -p "$D/ses"
+          cp /tmp/r/*.json "$D/" || true
+          cp /tmp/r/*.mp3 "$D/ses/" || true
+          echo '{"run_id": "${{ github.run_id }}", "uret": "${{ needs.uret.result }}", "guvenilirlik": "${{ needs.guvenilirlik.result }}"}' > "$D/kosu.json"
+          git config user.name "faz51-olcum"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$D"
+          git commit -m "Faz 5.1 ses QC ölçümü [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push && exit 0; sleep 5; done
+          exit 1

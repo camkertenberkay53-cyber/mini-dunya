@@ -1,0 +1,12 @@
+# Kamera mesafesi, karakterin EKRANDAKİ boyuna göre tanımlanır (metre değil; objektiften bağımsız):
+#   oran = karakter boyu (m) / kameranın o uzaklıkta gördüğü dikey yükseklik (m)
+# yakin: karakter kareye sığmaz (göğüs, yüz)  -> A sınıfı gerekir
+# orta : boydan boya görünür                  -> B ve üstü
+# uzak : küçük figür                          -> C ve üstü
+karakter_boyu_m: 1.8
+sinirlar:
+  yakin: 1.0     # oran > 1.0 ise yakın
+  uzak: 0.3      # oran < 0.3 ise uzak; arası orta
+ornekleme: 9     # kamera hareketi boyunca kaç anda ölçülür (baş, son ve aralar)
+# Kadrajın dışındaki karakter mesafe denetimine girmez (görünmüyor). Kenar payı (NDC):
+kadraj_payi: 0.05

@@ -1,0 +1,62 @@
+{
+ "paket": "sinematik_render",
+ "testler": "134/134 (test_faz53 profil testi: faz52 anahtarlarının tümü + sinema profilinin yazdığı değerler birebir; kapalı modda faz52 değerleri birebir)",
+ "anahtar": "gorsel.yaml sinematik_render.acik: true (yönetim onayıyla varsayılan); false → Faz 5.2/faz54 görüntüsü",
+ "olcum": {
+  "M1": {
+   "once_sn": 239.4,
+   "sonra_sn": 261.6,
+   "artis_yuzde": 9,
+   "once_gb": 1.27,
+   "sonra_gb": 1.33
+  },
+  "M3": {
+   "once_sn": 208.3,
+   "sonra_sn": 239.0,
+   "artis_yuzde": 15,
+   "once_gb": 1.43,
+   "sonra_gb": 1.46
+  },
+  "M4": {
+   "once_sn": 266.6,
+   "sonra_sn": 283.1,
+   "artis_yuzde": 6,
+   "once_gb": 1.26,
+   "sonra_gb": 1.32
+  },
+  "M5": {
+   "once_sn": 204.8,
+   "sonra_sn": 228.9,
+   "artis_yuzde": 12,
+   "once_gb": 1.31,
+   "sonra_gb": 1.34
+  }
+ },
+ "denemeler": {
+  "d1": "film geçişi + mevcut sis: çift sis, yıkanmış ve şeftali — RED",
+  "d2": "sahne sisi azaltıldı, pus geç başlar: orta plan hâlâ soluk — RED",
+  "dA": "AgX pozlama 1.15: doğal ama gölgeler çöküyor — geliştirildi",
+  "dB": "filmic pozlama 1.1: hâlâ oyunsu doygunluk — RED",
+  "dC": "AgX 1.32 + ortam 0.38 + gölge 120 m: kabul; DoF fazla — azaltıldı (dE = son)"
+ },
+ "dogrulama": {
+  "isik_hazir_ayarlari": [
+   "aksam_ustu",
+   "oglen_acik",
+   "sabah_puslu",
+   "gun_batimi",
+   "kapali_kasvetli"
+  ],
+  "pilot_cekimler": 9,
+  "mekanlar": [
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6"
+  ],
+  "godot_hatasi": 0,
+  "geri_alma": "kapalı modda liman önizlemesi piksel farkı 0, kale 0.2/255"
+ }
+}

@@ -1,0 +1,32 @@
+# Sinematik paket: binekler (atlı birlikler). Konudan bağımsız; her dönemin "binek: at" taşıyan süvari takımları kullanır.
+# Kaynak model CC0 (Quaternius, OpenGameArt; lisans kaydı motor/varlik/oga2/lisans.json). Model değiştirilmez: yalnız
+# gerçek boya ölçeklenir, malzeme rengi motorda don paletiyle verilir. Yürüyüş hızları GLB üretilirken toynak izinden
+# ÖLÇÜLÜR (motor/varlik/blender/binek_uret.py → <glb>.olc.json); planlayıcı atı bu hızla ilerletir (toynak kaymasın).
+binekler:
+  at:
+    kaynak: varlik/oga2/ciftlik_hayvanlari/Farm Animals by @Quaternius/Blends/Horse.blend
+    lisans: {lisans: CC0-1.0, yazar: Quaternius, sayfa: "https://opengameart.org/content/lowpoly-animated-farm-animal-pack", kayit: varlik/oga2/lisans.json}
+    yukseklik_m: 2.3            # baş ucu; sağrı ~1.5 m
+    boy_ek_m: 0.85              # binicinin başı ayakta duran birine göre bu kadar yüksekte (kadraj hesabı)
+    eyer_kemik: Torso
+    eyer_ust_m: 0.20            # eyer kemiğinden sırt yüzeyine
+    eyer_z_m: 0.05
+    uyluk_asagi_derece: 40
+    uyluk_disa_derece: 24
+    en_az_aralik_m: 2.0
+    # sRGB; doğal don dağılımı (doru ve yağız çoğunlukta, kır ve boz az)
+    donlar:
+      - [0.27, 0.16, 0.11]      # doru
+      - [0.27, 0.16, 0.11]
+      - [0.17, 0.11, 0.08]      # koyu doru
+      - [0.17, 0.11, 0.08]
+      - [0.36, 0.18, 0.10]      # al
+      - [0.09, 0.085, 0.08]      # yağız
+      - [0.09, 0.085, 0.08]
+      - [0.48, 0.47, 0.45]      # kır
+      - [0.45, 0.36, 0.25]      # boz
+yuruyusler:                     # eylem -> atın animasyonu (hız ölçümden)
+  suvari_hucum:   {binek: at, animasyon: Run}
+  suvari_yuruyus: {binek: at, animasyon: WalkSlow}
+  binicilik:      {binek: at, animasyon: Idle}
+  suvari_bekleme: {binek: at, animasyon: Idle}

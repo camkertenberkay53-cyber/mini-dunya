@@ -1,0 +1,69 @@
+{
+ "is": "p4_2",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) 6975P-C",
+  "cekirdek": 4,
+  "bellek_gb": 16.5
+ },
+ "kurulum_sn": 72.0,
+ "baslangic_utc": "2026-11-24T19:01:00Z",
+ "cekimler": [
+  {
+   "cekim": "S9",
+   "kare": 133,
+   "karakter": 12,
+   "render_sn": 146.5,
+   "render_cikis": 0,
+   "render_tepe_gb": 1.32,
+   "render_cpu_sn": 506.2,
+   "ort_cekirdek": 3.46,
+   "kare_basina_sn": 1.1,
+   "godot_hata": [],
+   "kodlama_sn": 2.8,
+   "ara_avi_mb": 25.3,
+   "uretilen_kare": 133,
+   "cozunurluk": "1080x1920",
+   "mp4_mb": 9.0,
+   "durum": "TAMAM"
+  },
+  {
+   "cekim": "S7b",
+   "kare": 79,
+   "karakter": 5,
+   "render_sn": 74.2,
+   "render_cikis": 0,
+   "render_tepe_gb": 0.76,
+   "render_cpu_sn": 264.6,
+   "ort_cekirdek": 3.57,
+   "kare_basina_sn": 0.94,
+   "godot_hata": [],
+   "kodlama_sn": 1.5,
+   "ara_avi_mb": 13.8,
+   "uretilen_kare": 79,
+   "cozunurluk": "1080x1920",
+   "mp4_mb": 5.83,
+   "durum": "TAMAM"
+  },
+  {
+   "cekim": "S1",
+   "kare": 72,
+   "karakter": 1,
+   "render_sn": 37.2,
+   "render_cikis": 0,
+   "render_tepe_gb": 0.59,
+   "render_cpu_sn": 126.1,
+   "ort_cekirdek": 3.39,
+   "kare_basina_sn": 0.52,
+   "godot_hata": [],
+   "kodlama_sn": 0.9,
+   "ara_avi_mb": 8.0,
+   "uretilen_kare": 72,
+   "cozunurluk": "1080x1920",
+   "mp4_mb": 2.87,
+   "durum": "TAMAM"
+  }
+ ],
+ "is_render_toplam_sn": 265.4,
+ "bitis_utc": "2026-11-24T19:05:26Z",
+ "basarili": true
+}

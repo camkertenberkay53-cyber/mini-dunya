@@ -1,0 +1,1298 @@
+{
+ "grup": "pilot",
+ "mod": "hazirla+qc+yeniden",
+ "maks_deneme": 4,
+ "toplu_durum": "FAIL",
+ "harf_hizi_medyan": 10.4,
+ "yukleme_sn": 37.4,
+ "toplam_sn": 645.9,
+ "tepe_bellek_gb": 7.38,
+ "uretim_toplam_sn": 502.7,
+ "asr_toplam_sn": 105.5,
+ "insan_incelemesi": [
+  {
+   "no": 1,
+   "orijinal": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "durum": "INCELEME",
+   "neden": [
+    "kelime hata oranı (isimler hariç 0.14)"
+   ]
+  },
+  {
+   "no": 3,
+   "orijinal": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "durum": "FAIL",
+   "neden": [
+    "sayi okunmadı/yanlış: '53'te' → beklenen 'elli üçte'",
+    "kelime hata oranı (isimler hariç 0.14)"
+   ]
+  },
+  {
+   "no": 7,
+   "orijinal": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "durum": "INCELEME",
+   "neden": [
+    "cümle sonunda kelimesiz ses (0.8 sn; nefes/gürültü olabilir, dinlenmeli)"
+   ]
+  }
+ ],
+ "cumleler": [
+  {
+   "no": 0,
+   "orijinal": "Bir kuş için 33 yıl.",
+   "konusma": "Bir kuş için otuz üç yıl.",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "pilot_00_d2.wav",
+   "deneme_sayisi": 2,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_00_d1.wav",
+     "uretim_sn": 26.9,
+     "asr_sn": 4.0,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 50.0,
+      "kritik": [
+       "cümle sonunda fazladan konuşma (0 kelime, 2.1 sn ses)",
+       "süre anomalisi (beklenenin 2.20 katı)"
+      ],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 2.07,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.02,
+       "ses_sn": 4.12,
+       "sure_orani": 2.2,
+       "en_uzun_sessizlik_sn": 0.54,
+       "asr_olasilik": 0.871,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "sayi",
+         "yazim": "33",
+         "okunus": "otuz üç",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bir kuş için 33 yıl."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_00_d2.wav",
+     "uretim_sn": 18.4,
+     "asr_sn": 3.9,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 1.2,
+       "ses_sn": 3.76,
+       "sure_orani": 0.66,
+       "en_uzun_sessizlik_sn": 0.0,
+       "asr_olasilik": 0.906,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "sayi",
+         "yazim": "33",
+         "okunus": "otuz üç",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bir kuş için 33 yıl."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 1,
+   "orijinal": "Bu, lejyonun kartalıydı: aquila. Onu taşıyan askere aquilifer denirdi.",
+   "konusma": "Bu, lejyonun kartalıydı: akuila. Onu taşıyan askere akuilifer denirdi.",
+   "metin_uyarilari": [],
+   "durum": "INCELEME",
+   "secilen": "pilot_01_d2.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_01_d1.wav",
+     "uretim_sn": 24.4,
+     "asr_sn": 5.1,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 58.2,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.14)",
+       "araya giren kelime: akuy",
+       "özel isim doğrulanamadı: aquilifer"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.444,
+       "wer_isimsiz": 0.143,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [
+        "akuy"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.06,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.04,
+       "ses_sn": 5.24,
+       "sure_orani": 0.9,
+       "en_uzun_sessizlik_sn": 0.66,
+       "asr_olasilik": 0.844,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "aquilifer",
+         "okunus": "akuilifer",
+         "bulundu": false
+        },
+        {
+         "tur": "isim",
+         "yazim": "aquila",
+         "okunus": "akuila",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bu, Legion'un kartalıydı, akuyla onu taşıyan askere akuy lifer denirdi."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_01_d2.wav",
+     "uretim_sn": 21.1,
+     "asr_sn": 5.1,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 78.7,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.14)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.333,
+       "wer_isimsiz": 0.143,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.09,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.93,
+       "ses_sn": 4.24,
+       "sure_orani": 0.7,
+       "en_uzun_sessizlik_sn": 0.24,
+       "asr_olasilik": 0.818,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "aquilifer",
+         "okunus": "akuilifer",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "aquila",
+         "okunus": "akuila",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bu legionu kartalıydı. Akuyla onu taşıyan askere akuylifer denirdi."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_01_d3.wav",
+     "uretim_sn": 26.2,
+     "asr_sn": 5.2,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 78.7,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.14)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.333,
+       "wer_isimsiz": 0.143,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.06,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.52,
+       "ses_sn": 5.76,
+       "sure_orani": 0.99,
+       "en_uzun_sessizlik_sn": 0.75,
+       "asr_olasilik": 0.861,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "aquilifer",
+         "okunus": "akuilifer",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "aquila",
+         "okunus": "akuila",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bu, Legion'un kartalıydı. Aquila, onu taşıyan askere Aquilifer denirdi."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "pilot_01_d4.wav",
+     "uretim_sn": 22.8,
+     "asr_sn": 5.1,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 74.2,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.29)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.444,
+       "wer_isimsiz": 0.286,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.69,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.83,
+       "ses_sn": 4.92,
+       "sure_orani": 0.87,
+       "en_uzun_sessizlik_sn": 0.36,
+       "asr_olasilik": 0.768,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "aquilifer",
+         "okunus": "akuilifer",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "aquila",
+         "okunus": "akuila",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bu, Legion'un kartalıydı Aquila, onu taşıyan afkara Aquilifer denirdi."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "orijinal": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "konusma": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı.",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "pilot_02_d2.wav",
+   "deneme_sayisi": 2,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_02_d1.wav",
+     "uretim_sn": 21.0,
+     "asr_sn": 4.4,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 92.0,
+      "kritik": [],
+      "uyari": [
+       "cümle sonunda kelimesiz ses (1.3 sn; nefes/gürültü olabilir, dinlenmeli)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 1.29,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.23,
+       "ses_sn": 4.32,
+       "sure_orani": 1.0,
+       "en_uzun_sessizlik_sn": 0.24,
+       "asr_olasilik": 0.907,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Kartalı kaybetmek bir lejyon için büyük bir utançtı."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_02_d2.wav",
+     "uretim_sn": 20.5,
+     "asr_sn": 4.5,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.3,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.11,
+       "ses_sn": 4.24,
+       "sure_orani": 0.97,
+       "en_uzun_sessizlik_sn": 0.6,
+       "asr_olasilik": 0.933,
+       "butunluk": true,
+       "ozel": [],
+       "dokum": "Kartalı kaybetmek, bir lejyon için büyük bir utançtı."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "orijinal": "MÖ 53'te, bugünkü Harran yakınlarında, Crassus'un ordusu Partlara yenildi.",
+   "konusma": "milattan önce elli üçte, bugünkü Harran yakınlarında, Krassus'un ordusu Partlara yenildi.",
+   "metin_uyarilari": [],
+   "durum": "FAIL",
+   "secilen": "pilot_03_d2.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_03_d1.wav",
+     "uretim_sn": 23.7,
+     "asr_sn": 5.2,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 51.0,
+      "kritik": [
+       "sayi okunmadı/yanlış: '53'te' → beklenen 'elli üçte'"
+      ],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.14)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.4,
+       "wer_isimsiz": 0.143,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.09,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.89,
+       "ses_sn": 5.0,
+       "sure_orani": 0.68,
+       "en_uzun_sessizlik_sn": 0.54,
+       "asr_olasilik": 0.793,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "kisaltma",
+         "yazim": "MÖ",
+         "okunus": "milattan önce",
+         "bulundu": true
+        },
+        {
+         "tur": "sayi",
+         "yazim": "53'te",
+         "okunus": "elli üçte",
+         "bulundu": false
+        },
+        {
+         "tur": "isim",
+         "yazim": "Crassus",
+         "okunus": "Krassus",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Partlara",
+         "okunus": "Partlara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Milattan önce 53'de, bugünkü Haran yakınlarında Krasus'un ordusu partları yenildi."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_03_d2.wav",
+     "uretim_sn": 24.3,
+     "asr_sn": 5.2,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 55.0,
+      "kritik": [
+       "sayi okunmadı/yanlış: '53'te' → beklenen 'elli üçte'"
+      ],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.14)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.3,
+       "wer_isimsiz": 0.143,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.12,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.98,
+       "ses_sn": 5.16,
+       "sure_orani": 0.69,
+       "en_uzun_sessizlik_sn": 0.24,
+       "asr_olasilik": 0.793,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "kisaltma",
+         "yazim": "MÖ",
+         "okunus": "milattan önce",
+         "bulundu": true
+        },
+        {
+         "tur": "sayi",
+         "yazim": "53'te",
+         "okunus": "elli üçte",
+         "bulundu": false
+        },
+        {
+         "tur": "isim",
+         "yazim": "Crassus",
+         "okunus": "Krassus",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Partlara",
+         "okunus": "Partlara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Milattan önce 53'de bugünkü harang yakınlarında Krassus'un ordusu parklara yenildi."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_03_d3.wav",
+     "uretim_sn": 22.9,
+     "asr_sn": 5.2,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 26.0,
+      "kritik": [
+       "süre anomalisi (beklenenin 0.57 katı)",
+       "sayi okunmadı/yanlış: '53'te' → beklenen 'elli üçte'"
+      ],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.29)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.4,
+       "wer_isimsiz": 0.286,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.0,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.11,
+       "ses_sn": 4.92,
+       "sure_orani": 0.57,
+       "en_uzun_sessizlik_sn": 0.03,
+       "asr_olasilik": 0.813,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "kisaltma",
+         "yazim": "MÖ",
+         "okunus": "milattan önce",
+         "bulundu": true
+        },
+        {
+         "tur": "sayi",
+         "yazim": "53'te",
+         "okunus": "elli üçte",
+         "bulundu": false
+        },
+        {
+         "tur": "isim",
+         "yazim": "Crassus",
+         "okunus": "Krassus",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Partlara",
+         "okunus": "Partlara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Milattan önce 53'de bugünkü Harang yakınlarında Krassus'un ordusu parklara inildi."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "pilot_03_d4.wav",
+     "uretim_sn": 23.8,
+     "asr_sn": 5.2,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 47.0,
+      "kritik": [
+       "sayi okunmadı/yanlış: '53'te' → beklenen 'elli üçte'"
+      ],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.29)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.5,
+       "wer_isimsiz": 0.286,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.03,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.95,
+       "ses_sn": 5.12,
+       "sure_orani": 0.69,
+       "en_uzun_sessizlik_sn": 0.69,
+       "asr_olasilik": 0.796,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "kisaltma",
+         "yazim": "MÖ",
+         "okunus": "milattan önce",
+         "bulundu": true
+        },
+        {
+         "tur": "sayi",
+         "yazim": "53'te",
+         "okunus": "elli üçte",
+         "bulundu": false
+        },
+        {
+         "tur": "isim",
+         "yazim": "Crassus",
+         "okunus": "Krassus",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Harran",
+         "okunus": "Harran",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Partlara",
+         "okunus": "Partlara",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Milattan önce 53'de bugünkü Haran yakınlarında Krastus'un ordusu parklara inildi."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "orijinal": "Kartallar düşmanın eline geçti; Crassus da öldürüldü.",
+   "konusma": "Kartallar düşmanın eline geçti; Krassus da öldürüldü.",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "pilot_04_d3.wav",
+   "deneme_sayisi": 3,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_04_d1.wav",
+     "uretim_sn": 22.0,
+     "asr_sn": 4.7,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 92.0,
+      "kritik": [],
+      "uyari": [
+       "cümle sonunda kelimesiz ses (0.9 sn; nefes/gürültü olabilir, dinlenmeli)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.93,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.44,
+       "ses_sn": 4.64,
+       "sure_orani": 1.03,
+       "en_uzun_sessizlik_sn": 0.18,
+       "asr_olasilik": 0.856,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Crassus",
+         "okunus": "Krassus",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Kartallar düşmanın eline geçti, Krassus da öldürüldü."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_04_d2.wav",
+     "uretim_sn": 19.8,
+     "asr_sn": 4.8,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 80.6,
+      "kritik": [],
+      "uyari": [
+       "kelime hata oranı (isimler hariç 0.17)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.286,
+       "wer_isimsiz": 0.167,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.24,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.84,
+       "ses_sn": 4.0,
+       "sure_orani": 0.89,
+       "en_uzun_sessizlik_sn": 0.57,
+       "asr_olasilik": 0.864,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Crassus",
+         "okunus": "Krassus",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Kartallar düşmanın eline geçti, Krastus'u da öldürüyordu."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_04_d3.wav",
+     "uretim_sn": 21.5,
+     "asr_sn": 4.7,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.48,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.35,
+       "ses_sn": 4.44,
+       "sure_orani": 1.01,
+       "en_uzun_sessizlik_sn": 0.72,
+       "asr_olasilik": 0.874,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Crassus",
+         "okunus": "Krassus",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Kartallar düşmanın eline geçti, Krassus da öldürüldü."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "orijinal": "Roma yıllarca bu utançla yaşadı.",
+   "konusma": "Roma yıllarca bu utançla yaşadı.",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "pilot_05_d1.wav",
+   "deneme_sayisi": 1,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_05_d1.wav",
+     "uretim_sn": 18.6,
+     "asr_sn": 4.1,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.27,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.54,
+       "ses_sn": 3.76,
+       "sure_orani": 1.36,
+       "en_uzun_sessizlik_sn": 0.93,
+       "asr_olasilik": 0.984,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Roma yıllarca bu utançla yaşadı."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "orijinal": "33 yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
+   "konusma": "otuz üç yıl sonra Augustus, savaşmadan ama gücünü göstererek Partlarla anlaştı.",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "pilot_06_d1.wav",
+   "deneme_sayisi": 1,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_06_d1.wav",
+     "uretim_sn": 24.1,
+     "asr_sn": 4.8,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 96.0,
+      "kritik": [],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.1,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.24,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 5.01,
+       "ses_sn": 5.12,
+       "sure_orani": 0.78,
+       "en_uzun_sessizlik_sn": 0.6,
+       "asr_olasilik": 0.971,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "sayi",
+         "yazim": "33",
+         "okunus": "otuz üç",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Augustus",
+         "okunus": "Augustus",
+         "bulundu": true
+        },
+        {
+         "tur": "isim",
+         "yazim": "Partlarla",
+         "okunus": "Partlarla",
+         "bulundu": true
+        }
+       ],
+       "dokum": "33 yıl sonra Augustus savaşmadan ama gücünü göstererek parklarla anlaştı."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "orijinal": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "konusma": "Bazı kaynaklara göre kartalları Tiberius teslim aldı.",
+   "metin_uyarilari": [],
+   "durum": "INCELEME",
+   "secilen": "pilot_07_d3.wav",
+   "deneme_sayisi": 4,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_07_d1.wav",
+     "uretim_sn": 38.5,
+     "asr_sn": 6.7,
+     "qc": {
+      "durum": "KRITIK",
+      "puan": 0.0,
+      "kritik": [
+       "cümle sonunda fazladan konuşma (11 kelime, 5.1 sn ses)",
+       "kelime hata oranı yüksek (isimler hariç 1.83)",
+       "süre anomalisi (beklenenin 2.10 katı)"
+      ],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 1.571,
+       "wer_isimsiz": 1.833,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [
+        "moduk",
+        "çokunum",
+        "izime",
+        "tetiyere",
+        "de",
+        "omeden",
+        "izime",
+        "tetiyere",
+        "bez",
+        "dugumun",
+        "çokunuması"
+       ],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 5.13,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 9.27,
+       "ses_sn": 9.36,
+       "sure_orani": 2.1,
+       "en_uzun_sessizlik_sn": 0.27,
+       "asr_olasilik": 0.806,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Tiberius",
+         "okunus": "Tiberius",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bazı kaynaklara göre kartalları Tiberius teslim aldı. Moduk çokunum izime tetiyere de Omeden izime tetiyere Bez dugumun çokunuması."
+      }
+     }
+    },
+    {
+     "deneme": 2,
+     "ayar": {
+      "tohum": 2,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_07_d2.wav",
+     "uretim_sn": 20.5,
+     "asr_sn": 4.4,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 72.6,
+      "kritik": [],
+      "uyari": [
+       "araya giren kelime: t",
+       "özel isim doğrulanamadı: Tiberius"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.286,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [
+        "t"
+       ],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.45,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.05,
+       "ses_sn": 4.16,
+       "sure_orani": 0.92,
+       "en_uzun_sessizlik_sn": 0.6,
+       "asr_olasilik": 0.839,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Tiberius",
+         "okunus": "Tiberius",
+         "bulundu": false
+        }
+       ],
+       "dokum": "Bazı kaynaklara göre kartalları T100 teslim aldı."
+      }
+     }
+    },
+    {
+     "deneme": 3,
+     "ayar": {
+      "tohum": 3,
+      "temperature": 0.6,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_07_d3.wav",
+     "uretim_sn": 20.3,
+     "asr_sn": 4.5,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 92.0,
+      "kritik": [],
+      "uyari": [
+       "cümle sonunda kelimesiz ses (0.8 sn; nefes/gürültü olabilir, dinlenmeli)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.78,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.14,
+       "ses_sn": 4.24,
+       "sure_orani": 0.94,
+       "en_uzun_sessizlik_sn": 0.33,
+       "asr_olasilik": 0.965,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Tiberius",
+         "okunus": "Tiberius",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bazı kaynaklara göre kartalları Tiberius teslim aldı."
+      }
+     }
+    },
+    {
+     "deneme": 4,
+     "ayar": {
+      "tohum": 4,
+      "temperature": 0.5,
+      "cfg_weight": 0.6
+     },
+     "dosya": "pilot_07_d4.wav",
+     "uretim_sn": 22.1,
+     "asr_sn": 4.4,
+     "qc": {
+      "durum": "UYARI",
+      "puan": 92.0,
+      "kritik": [],
+      "uyari": [
+       "uzun iç sessizlik (1.3 sn)"
+      ],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.09,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 4.08,
+       "ses_sn": 4.72,
+       "sure_orani": 0.92,
+       "en_uzun_sessizlik_sn": 1.35,
+       "asr_olasilik": 0.977,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Tiberius",
+         "okunus": "Tiberius",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Bazı kaynaklara göre kartalları Tiberius teslim aldı."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "orijinal": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "konusma": "Ve Roma bunu, kazanılmış bir savaş gibi kutladı.",
+   "metin_uyarilari": [],
+   "durum": "GECTI",
+   "secilen": "pilot_08_d1.wav",
+   "deneme_sayisi": 1,
+   "filigran": 1.0,
+   "denemeler": [
+    {
+     "deneme": 1,
+     "ayar": {
+      "tohum": 1,
+      "temperature": 0.8,
+      "cfg_weight": 0.5
+     },
+     "dosya": "pilot_08_d1.wav",
+     "uretim_sn": 19.3,
+     "asr_sn": 4.3,
+     "qc": {
+      "durum": "GECTI",
+      "puan": 100.0,
+      "kritik": [],
+      "uyari": [],
+      "surum": "v2",
+      "olcum": {
+       "wer": 0.0,
+       "wer_isimsiz": 0.0,
+       "eksik_isim": [],
+       "eksik": [],
+       "fazla_ic": [],
+       "kuyruk_kelime": [],
+       "bas_kelime": [],
+       "kuyruk_ses_sn": 0.48,
+       "bas_ses_sn": 0.0,
+       "konusma_sn": 3.69,
+       "ses_sn": 3.92,
+       "sure_orani": 0.98,
+       "en_uzun_sessizlik_sn": 0.33,
+       "asr_olasilik": 0.939,
+       "butunluk": true,
+       "ozel": [
+        {
+         "tur": "isim",
+         "yazim": "Roma",
+         "okunus": "Roma",
+         "bulundu": true
+        }
+       ],
+       "dokum": "Ve Roma bunu kazanılmış bir savaş gibi kutladı."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

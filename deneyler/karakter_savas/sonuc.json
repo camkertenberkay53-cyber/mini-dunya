@@ -1,0 +1,7 @@
+{
+  "paket": "karakter_kalite + koreografi",
+  "geri_alma": ["kurallar/gorsel.yaml karakter_kalite.acik: false (beden + ten)", "kurallar/koreografi.yaml acik: false"],
+  "olcum_S6_tam_render": {"once": {"render_sn": 310.5, "tepe_bellek_gb": 1.12}, "sonra": {"render_sn": 298.4, "tepe_bellek_gb": 1.26}},
+  "testler": "157 geçti (149 + yeni 8); test_uretim_hazirlik 'taraflar karışmaz' kuralı düello istisnasıyla sıkılaştırıldı",
+  "lisans": {"UAL2 Sword_Regular_A/B/C": "CC0 (Quaternius Universal Animation Library 2, zaten kayıtlı)", "white_rough_plaster": "CC0 Poly Haven (zaten kayıtlı)", "beden.gd/koreografi.py": "kendi kodumuz"}
+}

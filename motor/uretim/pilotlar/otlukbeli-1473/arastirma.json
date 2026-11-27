@@ -1,0 +1,101 @@
+{
+ "surum": 1,
+ "konu": "otlukbeli-1473",
+ "kaynaklar": [
+  {
+   "id": "K1",
+   "baslik": "OTLUKBELİ SAVAŞI (TDV İslâm Ansiklopedisi)",
+   "tur": "ansiklopedi",
+   "url": "https://islamansiklopedisi.org.tr/otlukbeli-savasi",
+   "yazar": "Erhan Afyoncu",
+   "yil": 2007
+  },
+  {
+   "id": "K2",
+   "baslik": "Battle of Otlukbeli",
+   "tur": "ansiklopedi",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Otlukbeli",
+   "yazar": "Wikipedia"
+  },
+  {
+   "id": "K3",
+   "baslik": "OTLUKBELİ SAVAŞI (Küre Ansiklopedi)",
+   "tur": "ansiklopedi",
+   "url": "https://kureansiklopedi.com/tr/detay/otlukbeli-savasi",
+   "yazar": "Erhan Afyoncu",
+   "yil": 2024
+  },
+  {
+   "id": "K4",
+   "baslik": "Otlukbeli Savaşı ve Anadolu'nun birliği (DergiPark makale)",
+   "tur": "ikincil",
+   "url": "https://dergipark.org.tr/tr/download/article-file/2705141"
+  },
+  {
+   "id": "K5",
+   "baslik": "Battle of Otlukbeli Martyrs' Monument",
+   "tur": "ansiklopedi",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Otlukbeli_Martyrs%27_Monument",
+   "yazar": "Wikipedia"
+  }
+ ],
+ "kartlar": [
+  {
+   "id": "C1",
+   "iddia": "Otlukbeli Savaşı 11 Ağustos 1473'te Tercan yakınlarında, Otlukbeli (Başkent) mevkiinde yapıldı.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K1",
+    "K2",
+    "K3"
+   ]
+  },
+  {
+   "id": "C2",
+   "iddia": "Savaş, Fatih Sultan Mehmed komutasındaki Osmanlı ordusu ile Uzun Hasan komutasındaki Akkoyunlular arasında yapıldı.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K2",
+    "K5",
+    "K3"
+   ]
+  },
+  {
+   "id": "C3",
+   "iddia": "Uzun Hasan, ordusunun eksiğini bildiği için Venedik'ten top ve tüfek istedi; Venedik top ve topçu ustası gönderdi.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K1",
+    "K3"
+   ]
+  },
+  {
+   "id": "C4",
+   "iddia": "Osmanlı top ve tüfekleri savaşın kaderini belirledi; Akkoyunlu ordusu ağırlıkla geleneksel süvariye dayanıyordu.",
+   "guven": "makul",
+   "kaynaklar": [
+    "K3",
+    "K2"
+   ]
+  },
+  {
+   "id": "C5",
+   "iddia": "Savaş Osmanlı zaferiyle sonuçlandı.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K2",
+    "K1",
+    "K5"
+   ]
+  },
+  {
+   "id": "C6",
+   "iddia": "Otlukbeli, Anadolu'nun birliğinin sağlanmasında bir dönüm noktası sayılır.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K1",
+    "K4"
+   ]
+  }
+ ]
+}

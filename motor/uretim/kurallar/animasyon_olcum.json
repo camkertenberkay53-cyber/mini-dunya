@@ -1,0 +1,104 @@
+{
+ "fps": 24.0,
+ "kaynak": "/tmp/motor_onbellek/karakter3/erkek_c418aa6d94.glb",
+ "animasyonlar": {
+  "Death01": {
+   "sure_sn": 3.0,
+   "kare": 73,
+   "zemin_hizi_m_sn": 0.016,
+   "olculen_kare": 24,
+   "kok_kaymasi_m": 0.0
+  },
+  "Driving_Loop": {
+   "sure_sn": 2.083,
+   "kare": 51,
+   "zemin_hizi_m_sn": 0.0,
+   "olculen_kare": 50,
+   "kok_kaymasi_m": 0.0
+  },
+  "Fixing_Kneeling": {
+   "sure_sn": 6.5,
+   "kare": 157,
+   "zemin_hizi_m_sn": 0.019,
+   "olculen_kare": 36,
+   "kok_kaymasi_m": 0.0
+  },
+  "Hit_Chest": {
+   "sure_sn": 0.417,
+   "kare": 11,
+   "zemin_hizi_m_sn": 0.005,
+   "olculen_kare": 10,
+   "kok_kaymasi_m": 0.0
+  },
+  "Idle_Loop": {
+   "sure_sn": 3.125,
+   "kare": 76,
+   "zemin_hizi_m_sn": 0.0,
+   "olculen_kare": 75,
+   "kok_kaymasi_m": 0.0
+  },
+  "Idle_Torch_Loop": {
+   "sure_sn": 1.583,
+   "kare": 39,
+   "zemin_hizi_m_sn": 0.0,
+   "olculen_kare": 38,
+   "kok_kaymasi_m": 0.0
+  },
+  "Interact": {
+   "sure_sn": 2.5,
+   "kare": 61,
+   "zemin_hizi_m_sn": 0.001,
+   "olculen_kare": 60,
+   "kok_kaymasi_m": 0.0
+  },
+  "Jog_Fwd_Loop": {
+   "sure_sn": 1.167,
+   "kare": 29,
+   "zemin_hizi_m_sn": 4.921,
+   "olculen_kare": 10,
+   "kok_kaymasi_m": 0.0
+  },
+  "Push_Loop": {
+   "sure_sn": 3.333,
+   "kare": 81,
+   "zemin_hizi_m_sn": 0.235,
+   "olculen_kare": 80,
+   "kok_kaymasi_m": 0.0
+  },
+  "Sprint_Loop": {
+   "sure_sn": 0.833,
+   "kare": 21,
+   "zemin_hizi_m_sn": 7.384,
+   "olculen_kare": 7,
+   "kok_kaymasi_m": 0.0
+  },
+  "Sword_Attack": {
+   "sure_sn": 1.917,
+   "kare": 47,
+   "zemin_hizi_m_sn": 0.024,
+   "olculen_kare": 46,
+   "kok_kaymasi_m": 0.0
+  },
+  "Sword_Idle": {
+   "sure_sn": 2.083,
+   "kare": 51,
+   "zemin_hizi_m_sn": 0.003,
+   "olculen_kare": 50,
+   "kok_kaymasi_m": 0.0
+  },
+  "Walk_Formal_Loop": {
+   "sure_sn": 1.667,
+   "kare": 41,
+   "zemin_hizi_m_sn": 0.817,
+   "olculen_kare": 40,
+   "kok_kaymasi_m": 0.0
+  },
+  "Walk_Loop": {
+   "sure_sn": 1.667,
+   "kare": 41,
+   "zemin_hizi_m_sn": 0.817,
+   "olculen_kare": 40,
+   "kok_kaymasi_m": 0.0
+  }
+ }
+}

@@ -1,0 +1,8040 @@
+{
+ "esikler": {
+  "kayma_mm": 2.0,
+  "kayma_derece": 0.5,
+  "tutus_cm": 25.0,
+  "bas_tasma_orani": 0.02,
+  "bas_bosluk_cm": 6.0,
+  "kalkan_gomulme_kare_orani": 0.25,
+  "giysi_tasma_orani": 0.03
+ },
+ "animasyonlar": [
+  "Death01",
+  "Fixing_Kneeling",
+  "Hit_Chest",
+  "Idle_Torch_Loop",
+  "Interact",
+  "Push_Loop",
+  "Sprint_Loop",
+  "Sword_Idle",
+  "Walk_Formal_Loop",
+  "ual2/Sword_Regular_Combo",
+  "ual2/Sword_Block",
+  "ual2/Idle_Shield_Loop",
+  "ual2/Shield_OneShot",
+  "ual2/Hit_Knockback",
+  "ual2/OverhandThrow",
+  "ual2/Idle_FoldArms_Loop",
+  "ual2/Yes",
+  "ual2/Farm_Harvest",
+  "ual2/LayToIdle",
+  "ual2/Sword_Regular_A",
+  "ual2/Sword_Regular_B",
+  "ual2/Sword_Regular_C"
+ ],
+ "kare": 5,
+ "sure_sn": 205.0,
+ "takimlar": {
+  "akk_bey": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_arbaletci": {
+   "Death01": {
+    "gecti": false,
+    "hatalar": [
+     "pavez: kalkan karelerin %60'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "arbalet: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [
+     "arbalet: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_okcu_milis": {
+   "Death01": {
+    "gecti": false,
+    "hatalar": [
+     "pavez: kalkan karelerin %60'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_okcu_sarikli": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_yeniceri_kilic": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "hasir_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%60 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_sivil": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_okcu": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_1_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_komutan": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "duz_kilic: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [
+     "duz_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_bey": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%60 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_sipahi": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "hasir_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_5_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%8.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%9.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%10.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%4.6)",
+     "giysi_5_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%5.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%10.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%16.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%11.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_aquilifer": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_yardimci_okcu": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_bey_gurz": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_okcu_zirhli": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_sivil_kalpakli": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_1_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_suvari_gurz": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_zirhli_gurz": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_zirhli_mizrak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_okcu_pavezli": {
+   "Death01": {
+    "gecti": false,
+    "hatalar": [
+     "pavez: kalkan karelerin %60'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_piyade_mizrak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_sivil": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_suvari": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_suvari_sancak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_sipahi_mizrak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%8.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%9.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%10.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%4.6)",
+     "giysi_5_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%5.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%10.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%16.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%11.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_sivil": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_yeniceri_mizrak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "hasir_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_yeniceri_okcu_kilic": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%60 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_centurio": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_lejyoner_gladius": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %60'inde gövdeye gömülüyor",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_sivil_avci": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_suvari_mizrak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_yardimci_okcu_migferli": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_okcu_kilic": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%60 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_1_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_sivil": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_1_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_suvari": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_suvari_yay": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "akk_zirhli_kilic": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%4.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%60 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_5_levha: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%18.0)",
+     "giysi_6_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)",
+     "giysi_5_levha: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.9)"
+    ],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_6_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%9.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_6_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%3.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%5.8)",
+     "giysi_5_levha: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_levha: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%10.0)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%3.1)",
+     "giysi_6_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%8.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_komutan_sancak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_piyade_kilic": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "duz_kilic: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [
+     "duz_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_piyade_sancak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_sivil_pavezli": {
+   "Death01": {
+    "gecti": false,
+    "hatalar": [
+     "pavez: kalkan karelerin %60'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "biz_suvari_kilic": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.5)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "duz_kilic: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%4.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "badem_kalkan: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_4_lamel: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%3.5)"
+    ],
+    "uyarilar": [
+     "duz_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_lamel: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%3.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_lamel_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%6.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_bey_tug": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_sipahi_yay": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Push_Loop sırasında alt katman dışarı taşıyor (%8.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%9.2)"
+    ],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%60 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%10.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%4.6)",
+     "giysi_5_zirh_etek: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%3.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%5.6)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Hit_Knockback sırasında alt katman dışarı taşıyor (%10.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [
+     "osmanli_kilic: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%16.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/LayToIdle sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%8.0)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%4.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%11.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_4_zirh: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.9)",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%9.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_sivil_kulahli": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_yeniceri_okcu": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "osm_yeniceri_sancak": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_centurio_kalkanli": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %60'inde gövdeye gömülüyor",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_lejyoner_pilum": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %100'inde gövdeye gömülüyor"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %100'inde gövdeye gömülüyor",
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "scutum: kalkan karelerin %60'inde gövdeye gömülüyor",
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_suvari": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_suvari_vexillum": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  },
+  "rom_yardimci_okcu_zirhli": {
+   "Death01": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Fixing_Kneeling": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Fixing_Kneeling sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Hit_Chest": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Idle_Torch_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: Idle_Torch_Loop sırasında alt katman dışarı taşıyor (%4.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Interact": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Push_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Sprint_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: Sprint_Loop sırasında alt katman dışarı taşıyor (%4.4)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%80 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "Sword_Idle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "Walk_Formal_Loop": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_Combo": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_Combo sırasında alt katman dışarı taşıyor (%5.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Block": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Block sırasında alt katman dışarı taşıyor (%5.4)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_Shield_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_Shield_Loop sırasında alt katman dışarı taşıyor (%7.0)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Shield_OneShot": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Shield_OneShot sırasında alt katman dışarı taşıyor (%3.1)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Hit_Knockback": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/OverhandThrow": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/OverhandThrow sırasında alt katman dışarı taşıyor (%3.3)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Idle_FoldArms_Loop": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Idle_FoldArms_Loop sırasında alt katman dışarı taşıyor (%5.1)"
+    ],
+    "uyarilar": [
+     "gladius: bazı karelerde gövdeden geçiyor (%100 kare); silaha özel animasyon gerekir"
+    ],
+    "ornek_kare": 5
+   },
+   "ual2/Yes": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Farm_Harvest": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%4.4)",
+     "giysi_5_zirh_etek: ual2/Farm_Harvest sırasında alt katman dışarı taşıyor (%3.8)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/LayToIdle": {
+    "gecti": true,
+    "hatalar": [],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_A": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_3_zirh: ual2/Sword_Regular_A sırasında alt katman dışarı taşıyor (%6.2)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_B": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_B sırasında alt katman dışarı taşıyor (%5.9)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   },
+   "ual2/Sword_Regular_C": {
+    "gecti": false,
+    "hatalar": [
+     "giysi_5_zirh_etek: ual2/Sword_Regular_C sırasında alt katman dışarı taşıyor (%4.7)"
+    ],
+    "uyarilar": [],
+    "ornek_kare": 5
+   }
+  }
+ },
+ "kutuphane_testleri": {
+  "ual2": {
+   "animasyonlar": [
+    "ual2/Sword_Regular_A",
+    "ual2/Sword_Regular_B",
+    "ual2/Sword_Regular_C"
+   ],
+   "sure_sn": 284.5,
+   "kare": 5
+  }
+ }
+}

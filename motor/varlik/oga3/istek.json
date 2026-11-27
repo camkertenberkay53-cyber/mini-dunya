@@ -1,0 +1,6 @@
+{"aciklama": "Gerçekçi insan tenleri ve gözleri: MakeHuman topluluk CC0 dokuları (OGA'da yeniden yayımlanmış; makehumancommunity.org sunucusu Actions süre sınırını aşıyor). Lisans OGA sayfasından doğrulanır.",
+ "izinli_lisanslar": ["CC0"],
+ "varliklar": [
+  {"kimlik": "ten_erkek", "sayfa": "toigo-natural-male-skin", "amac": "MakeHuman UV'li erkek ten dokusu (2048) — gerçekçi insan teni", "dosya_deseni": "bronze|freckles|ginger", "goruntu": true},
+  {"kimlik": "goz", "sayfa": "makehuman-system-assets-eyes", "amac": "MakeHuman göz dokuları (iris)", "dosya_deseni": "^(brown|brownlight|green|grey|bluegreen)_eye", "goruntu": true}
+ ]}

@@ -1,0 +1,28 @@
+# Poly Haven / ambientCG CC0 varlıklarını (lisans API'den doğrulanarak) motor/varlik/cc0'a indirir.
+# Yalnızca faz51-altyapi dalında, motor/varlik/cc0/istek.json değişince çalışır.
+name: Varlik CC0
+
+on:
+  push:
+    branches: [faz51-altyapi]
+    paths: ["motor/varlik/cc0/istek.json"]
+
+permissions:
+  contents: write
+
+jobs:
+  indir:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m motor.varlik.cc0_indir motor/varlik/cc0/istek.json
+      - name: Boyut ve dala yaz
+        run: |
+          du -sh motor/varlik/cc0/* || true
+          git config user.name "varlik-cc0"
+          git config user.email "actions@users.noreply.github.com"
+          git add motor/varlik/cc0
+          git commit -m "CC0 varlıkları (Poly Haven/ambientCG, lisans kaydıyla) [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push && exit 0; sleep 5; done
+          exit 1

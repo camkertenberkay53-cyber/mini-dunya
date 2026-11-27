@@ -1,0 +1,263 @@
+{
+ "surum": 1,
+ "konu": "roma-lejyon-kartali",
+ "kaynaklar": [
+  {
+   "id": "K1",
+   "baslik": "Signa Militaria (W. Smith, A Dictionary of Greek and Roman Antiquities, 1875; Plinius NH 10.16'ya dayanır)",
+   "tur": "ikincil",
+   "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/secondary/SMIGRA*/Signa_Militaria.html",
+   "yazar": "William Smith",
+   "yil": 1875
+  },
+  {
+   "id": "K2",
+   "baslik": "Aquila (Roman)",
+   "tur": "ansiklopedi",
+   "url": "https://en.wikipedia.org/wiki/Aquila_(Roman)",
+   "yazar": "Wikipedia"
+  },
+  {
+   "id": "K3",
+   "baslik": "Battle of Carrhae",
+   "tur": "ansiklopedi",
+   "url": "https://www.britannica.com/event/Battle-of-Carrhae",
+   "yazar": "Encyclopaedia Britannica"
+  },
+  {
+   "id": "K4",
+   "baslik": "Cassius Dio, Roman History 54.8 (E. Cary çevirisi)",
+   "tur": "birincil",
+   "url": "https://lexundria.com/dio/54.8/cy",
+   "yazar": "Cassius Dio"
+  },
+  {
+   "id": "K5",
+   "baslik": "Res Gestae Divi Augusti 29",
+   "tur": "birincil",
+   "url": "https://lexundria.com/aug_anc/29/cf",
+   "yazar": "Augustus"
+  },
+  {
+   "id": "K6",
+   "baslik": "Battle of Carrhae (Encyclopaedia Romana)",
+   "tur": "ikincil",
+   "url": "https://penelope.uchicago.edu/encyclopaedia_romana/miscellanea/trivia/carrhae.html",
+   "yazar": "James Grout"
+  },
+  {
+   "id": "K7",
+   "baslik": "Arch of Augustus (Encyclopaedia Romana)",
+   "tur": "ikincil",
+   "url": "https://penelope.uchicago.edu/encyclopaedia_romana/romanforum/archaugustus.html",
+   "yazar": "James Grout"
+  },
+  {
+   "id": "K8",
+   "baslik": "Roman Legionaries: Standards",
+   "tur": "ikincil",
+   "url": "https://www.roman-britain.co.uk/military/roman-military-standards-signa-et-vexillia",
+   "yazar": "Roman-Britain.co.uk"
+  },
+  {
+   "id": "K9",
+   "baslik": "Augustus ve Partlar: sikkeler (SIGN RECE)",
+   "tur": "ikincil",
+   "url": "https://parthia.com/rome_augustus.htm",
+   "yazar": "parthia.com"
+  },
+  {
+   "id": "K10",
+   "baslik": "Battle of Carrhae",
+   "tur": "ansiklopedi",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Carrhae",
+   "yazar": "Wikipedia"
+  },
+  {
+   "id": "K11",
+   "baslik": "Augustus's Parthian honours, the temple of Mars Ultor and the arch in the Forum Romanum (Papers of the British School at Rome, 1998)",
+   "tur": "ikincil",
+   "url": "https://resolve.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/augustuss-parthian-honours-the-temple-of-mars-ultor-and-the-arch-in-the-forum-romanum/AA870C2F21D5D95BA04C36B936E8C515",
+   "yazar": "J. W. Rich",
+   "yil": 1998
+  },
+  {
+   "id": "K12",
+   "baslik": "The Parthians in Augustan Rome (American Journal of Archaeology 109, 2005)",
+   "tur": "ikincil",
+   "url": "https://ajaonline.org/wp-content/uploads/2013/09/1091_Rose.pdf",
+   "yazar": "C. B. Rose",
+   "yil": 2005
+  },
+  {
+   "id": "K13",
+   "baslik": "Suetonius, The Life of Tiberius 9 (J. C. Rolfe çevirisi)",
+   "tur": "birincil",
+   "url": "https://lexundria.com/suet_tib/9/r",
+   "yazar": "Suetonius"
+  },
+  {
+   "id": "K14",
+   "baslik": "How did Tiberius become famous?",
+   "tur": "ansiklopedi",
+   "url": "https://www.britannica.com/question/How-did-Tiberius-become-famous",
+   "yazar": "Encyclopaedia Britannica"
+  }
+ ],
+ "kartlar": [
+  {
+   "id": "C1",
+   "iddia": "Aquila (kartal) Roma lejyonunun standardıydı; onu taşıyan askere aquilifer ('kartal taşıyıcı') denirdi.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K2",
+    "K8",
+    "K1"
+   ]
+  },
+  {
+   "id": "C2",
+   "iddia": "Geç Cumhuriyet'ten itibaren her lejyonun tek bir kartalı vardı.",
+   "guven": "makul",
+   "kaynaklar": [
+    "K2",
+    "K8"
+   ],
+   "not": "Bu dönemde lejyonların başka hayvan simgeleri de kullandığını gösteren buluntular var (K2)."
+  },
+  {
+   "id": "C3",
+   "iddia": "Plinius'a göre Marius MÖ 104'te kartalı tek lejyon standardı yaptı.",
+   "guven": "tartismali",
+   "kaynaklar": [
+    "K1",
+    "K2"
+   ],
+   "not": "K2: Plinius'un bu atfı geç Cumhuriyet'te başka simgelerin de kullanıldığını gösteren kaynaklarla çelişiyor. Senaryoda kullanılmadı."
+  },
+  {
+   "id": "C4",
+   "iddia": "Kartalı kaybetmek ağır bir onursuzluk ve utanç sayılırdı; Roma ordusu kaybedilen kartalı geri almak için büyük çaba gösterirdi.",
+   "guven": "makul",
+   "kaynaklar": [
+    "K2",
+    "K8"
+   ],
+   "not": "Duygu ve tutum bildiren iddia: iki ikincil kaynak; 'en ağır' gibi üstünlük sıfatı kullanılmaz."
+  },
+  {
+   "id": "C5",
+   "iddia": "Carrhae Savaşı MÖ 53'te, bugünkü Harran (Şanlıurfa) yakınında yapıldı.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K3",
+    "K10",
+    "K6"
+   ]
+  },
+  {
+   "id": "C6",
+   "iddia": "Crassus'un ordusu Partlara ağır biçimde yenildi; Crassus savaştan sonra öldürüldü.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K3",
+    "K6",
+    "K10"
+   ],
+   "not": "Crassus savaşın içinde değil, ardından yapılan görüşmede çıkan arbedede öldürüldü (K3/K10): 'savaşta öldü' denmez."
+  },
+  {
+   "id": "C7",
+   "iddia": "Carrhae'de Roma lejyonlarının standartları (kartalları) Partların eline geçti.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K6",
+    "K2",
+    "K10"
+   ]
+  },
+  {
+   "id": "C8",
+   "iddia": "Carrhae'de kaybedilen kartal sayısı kaynaklarda kesin değildir.",
+   "guven": "belirsiz",
+   "kaynaklar": [
+    "K2",
+    "K10"
+   ],
+   "not": "Bazı modern kaynaklar sayı verir; antik kaynaklarda kesin sayı yok. Senaryoda sayı verilmedi."
+  },
+  {
+   "id": "C9",
+   "iddia": "MÖ 20'de Augustus, Carrhae'de kaybedilen standartları Partlardan müzakereyle geri aldı.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K6",
+    "K5",
+    "K4"
+   ],
+   "not": "Aynı anlaşmayla MÖ 40 ve MÖ 36'da kaybedilen standartlar da geri verildi (K5: 'üç Roma ordusunun')."
+  },
+  {
+   "id": "C10",
+   "iddia": "Standartların geri alınması için savaş yapılmadı; Dio'ya göre Augustus 'savaşta kaybedileni savaşmadan geri aldığı' için övündü.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K4",
+    "K7",
+    "K6"
+   ]
+  },
+  {
+   "id": "C11",
+   "iddia": "Anlaşma güce dayanan bir diplomasiydi: aynı yaz Tiberius komutasında bir Roma ordusu Ermenistan'a girdi, Augustus da devir için Suriye'ye gitti.",
+   "guven": "makul",
+   "kaynaklar": [
+    "K12",
+    "K11",
+    "K10"
+   ],
+   "not": "'Savaşmadan' doğru; ama baskısız bir barış gibi sunulmamalı."
+  },
+  {
+   "id": "C12",
+   "iddia": "Augustus standartları bir savaş kazanmış gibi karşıladı: kurbanlar, zafer takı ve 'SIGNIS RECEPTIS' (standartlar geri alındı) yazılı sikkeler.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K4",
+    "K7",
+    "K9"
+   ]
+  },
+  {
+   "id": "C13",
+   "iddia": "Standartlar Mars Ultor (İntikamcı Mars) tapınağına konuldu.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K5",
+    "K7"
+   ],
+   "not": "İlk konuldukları yer tartışmalı (K7); senaryoda kullanılmadı."
+  },
+  {
+   "id": "C14",
+   "iddia": "Carrhae (MÖ 53) ile standartların geri alınması (MÖ 20) arasında 33 yıl vardır.",
+   "guven": "kesin",
+   "kaynaklar": [
+    "K3",
+    "K6"
+   ],
+   "not": "C5 ve C9'dan hesaplanmıştır (53 - 20 = 33)."
+  },
+  {
+   "id": "C15",
+   "iddia": "Suetonius'a göre Carrhae standartlarını Partlardan Tiberius geri aldı; diğer antik yazarlar dönüşü Augustus'a bağlar.",
+   "guven": "tartismali",
+   "kaynaklar": [
+    "K13",
+    "K12",
+    "K14"
+   ],
+   "not": "K12 (Rose): bu bilgiyi antik yazarlardan yalnızca Suetonius verir. Senaryoda 'bazı kaynaklara göre' diye temkinli anlatılır."
+  }
+ ]
+}

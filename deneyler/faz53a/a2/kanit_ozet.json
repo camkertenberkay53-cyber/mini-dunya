@@ -1,0 +1,56 @@
+{
+ "tam": {
+  "kayma_px": 20.0,
+  "zemin_par": 0.36,
+  "sinema_sn": 15.0
+ },
+ "sinirli": {
+  "kayma_px": 15.0,
+  "zemin_par": 0.216,
+  "sinema_sn": 15.6
+ },
+ "kenburns": {
+  "kayma_px": 0.0,
+  "zemin_par": null,
+  "sinema_sn": 8.5
+ },
+ "portre": {
+  "seviye": "tam",
+  "tuval": true,
+  "nefes": true,
+  "zemin_derinlik": false,
+  "kayma_px": 20.0,
+  "puan": {
+   "kararlilik": 1.0,
+   "kenar_orani": 156.13,
+   "doluluk": 0.594,
+   "parca": 1,
+   "olcek": [
+    501,
+    674
+   ],
+   "bolge": [
+    1240,
+    0,
+    3025,
+    2400
+   ]
+  }
+ },
+ "maske_puani_kale": {
+  "kararlilik": 1.0,
+  "kenar_orani": 11.59,
+  "doluluk": 0.748,
+  "parca": 1,
+  "olcek": [
+   652,
+   743
+  ],
+  "bolge": [
+   689,
+   136,
+   2263,
+   1930
+  ]
+ }
+}

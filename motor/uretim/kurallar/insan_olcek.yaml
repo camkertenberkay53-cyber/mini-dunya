@@ -1,0 +1,14 @@
+# İnsan ölçeği (konudan bağımsız). Karakter gövde modeli ölçülen boyu (model_boy_m) ile dönemin erkek ortalama boyu
+# arasındaki oran, sahnedeki her yaya karaktere uygulanır (dizilişteki ±%5 boy çeşitliliği bunun üstüne biner).
+# Amaç: modern uzun bir gövde (1,84 m) yerine dönemin gerçek insanı; çevre (kapı ~1,9-2 m, sur 8,5 m, fıçı 0,95 m)
+# insanla doğru oranda okunur. Atlılar (binek) ölçeklenmez: eyer oturuşu ve at boyu birlikte ayarlı.
+# Kaynak aralıkları (iskelet çalışmaları; yaklaşık): Orta Çağ/erken modern Anadolu ve Bizans erkekleri ~1,66-1,71 m;
+# Roma dönemi İtalya erkekleri ~1,64-1,68 m. Değerler aralığın ortasıdır.
+acik: true
+model_boy_m: 1.84           # karakter3 gövde GLB'lerinin ölçülen boyu (başlık hariç; motor/varlik ölçümü)
+varsayilan_m: 1.70
+donemler:
+  osmanli-15yy: 1.69
+  akkoyunlu-15yy: 1.68
+  bizans-15yy: 1.69
+  roma-cumhuriyet: 1.67

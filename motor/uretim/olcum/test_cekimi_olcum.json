@@ -1,0 +1,35 @@
+{
+ "durum": "TAMAM",
+ "konu": "test-lejyon-yuruyusu",
+ "cekim": "T1",
+ "karma": "f3466a96882007f4",
+ "video": "(repo dışında: ONBELLEK/uretim/...; kullanıcıya ayrıca gönderildi)",
+ "tarih": "2026-11-24 16:58",
+ "makine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "cekirdek": 2
+ },
+ "olculen": {
+  "plan_denetim_sn": 0.12,
+  "render_sn": 431.0,
+  "kare": 180,
+  "uretilen_kare": 180,
+  "cozunurluk": "1080x1920",
+  "kare_basina_sn_acilis_dahil": 2.39,
+  "render_tepe_bellek_gb": 1.29,
+  "kodlama_sn": 5.0,
+  "ara_avi_mb": 36.2,
+  "mp4_mb": 18.54,
+  "karakter": 14,
+  "cevre_varligi": 3
+ },
+ "godot_hatalari": [],
+ "denetim_uyarilari": [],
+ "ek_olcumler": {
+  "acilis_2_kare_render_sn": 8.0,
+  "acilis_tepe_bellek_gb": 1.18,
+  "kare_basina_sn_acilis_haric": 2.38,
+  "onbellekten_tekrar_sn": 0.33,
+  "ayni_makinede_faz2_olcum_sahnesi_kare_basina_sn": 3.18
+ }
+}

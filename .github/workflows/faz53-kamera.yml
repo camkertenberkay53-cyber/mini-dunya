@@ -1,0 +1,89 @@
+# Faz 5.3: kamera sistemi deneyi — test sahnesi (her kamera türü) ve pilot v1/v2 çekimleri, Faz 5.2 kabul profiliyle
+# (D17 = D15b + D16s + D17) render edilir. Her grup kendi işinde, aynı makinede sırayla (grup içi maliyet karşılaştırılabilir).
+# Yalnızca faz51-altyapi dalında, deneyler/faz53/kosu53.json değişince çalışır. Ölçüm işidir; yayın yok.
+name: Faz53 kamera
+
+on:
+  push:
+    branches: [faz51-altyapi]
+    paths: ["deneyler/faz53/kosu53.json"]
+
+permissions:
+  contents: write
+
+env:
+  GODOT: /tmp/godot/Godot_v4.7.2-stable_linux.x86_64
+  PROFIL_DOSYASI: profiller_52.json
+  DENEY_PROJE: /tmp/gv53
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        grup: [test, pilot_v1, pilot_v2, pilot_ikili, gorsel_ikili, gorsel54]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kurulum
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xauth ffmpeg libgl1-mesa-dri libglu1-mesa > /dev/null
+          pip install --quiet psutil pillow pyyaml numpy
+          curl -sSLo /tmp/g.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          echo "9aa00f7a605200940bce3027a567b782f49bd8e940dd06ae9e987bd65aee1b1467edd56ed84fcdcbdd44354bf613bdbb4e5d2913e925850368e150c59ed54c65  /tmp/g.zip" | sha512sum -c -
+          unzip -q /tmp/g.zip -d /tmp/godot
+          mkdir -p /tmp/motor_onbellek && cp -r deneyler/faz51/altyapi/onbellek/* /tmp/motor_onbellek/
+      - name: Render (aynı makinede sırayla)
+        run: |
+          if ! python3 -c "import json,sys;g=json.load(open('deneyler/faz53/kosu53.json')).get('gruplar');sys.exit(0 if (g is None or '${{ matrix.grup }}' in g) else 1)"; then echo "grup bu koşuda yok"; mkdir -p /tmp/m; exit 0; fi
+          case "${{ matrix.grup }}" in
+            test) CIFTLER="T:$PWD/deneyler/faz53/test/isler" ;;
+            pilot_v1) CIFTLER="P:$PWD/deneyler/faz51/altyapi/isler" ;;
+            pilot_v2) CIFTLER="P:$PWD/deneyler/faz53/pilot_v2/isler" ;;
+            gorsel_ikili) CIFTLER="eski:$PWD/deneyler/faz52_entegrasyon/isler_yok yeni:$PWD/deneyler/faz52_entegrasyon/isler_faz52" ;;   # Faz 5.2 entegrasyonu: aynı makinede
+            gorsel54) CIFTLER="eski:$PWD/deneyler/uretim_hazirlik/isler_faz52 yeni:$PWD/deneyler/uretim_hazirlik/isler_faz54" ;;   # bulutlu gök + CC0 zemin dokusu
+            pilot_ikili) CIFTLER="eski:$PWD/deneyler/faz51/altyapi/isler yeni:$PWD/deneyler/faz53/pilot_uretim/isler" ;;   # aynı makinede eski/yeni
+          esac
+          PROFIL=$(python3 -c "import json;print(json.load(open('deneyler/faz53/kosu53.json'))['profil'])")
+          # işlerdeki yerel depo yolları (varlık dosyaları) bu makinedeki depoya çevrilir
+          grep -rl "/home/claude/mini-dunya" deneyler/uretim_hazirlik deneyler/faz52_entegrasyon 2>/dev/null | xargs -r sed -i "s#/home/claude/mini-dunya#$PWD#g"
+          cd deneyler/faz51/gorsel
+          for cift in $CIFTLER; do ET=${cift%%:*}; export ISLER_KLASORU=${cift#*:}
+          for f in $(ls $ISLER_KLASORU/*.json | sort); do c0=$(basename $f .json); c=$c0; if [ "$ET" = eski ] || [ "$ET" = yeni ]; then c=${ET}_$c0; fi
+            python3 render_profil.py $c0 $PROFIL 0 /tmp/m || true
+            for x in json mp4 png; do [ -f /tmp/m/${c0}_${PROFIL}.$x ] && [ "$c" != "$c0" ] && mv /tmp/m/${c0}_${PROFIL}.$x /tmp/m/${c}_${PROFIL}.$x || true; done
+            mv /tmp/m/${c}_${PROFIL}.json /tmp/m/${c}.json 2>/dev/null || true
+            if [ -f /tmp/m/${c}_${PROFIL}.mp4 ]; then
+              mv /tmp/m/${c}_${PROFIL}.mp4 /tmp/m/${c}.mp4
+              n=$(ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of csv=p=0 /tmp/m/${c}.mp4)
+              for k in 0 $((n/2)) $((n-1)); do ffmpeg -loglevel error -y -i /tmp/m/${c}.mp4 -vf "select=eq(n\,$k)" -frames:v 1 /tmp/m/${c}_k$k.png; done
+              python3 -c "
+          from PIL import Image, ImageDraw; import glob,sys
+          fs=sorted(glob.glob('/tmp/m/${c}_k*.png'), key=lambda f:int(f.split('_k')[-1][:-4]))
+          W,H=270,480; im=Image.new('RGB',(W*len(fs),H))
+          for i,f in enumerate(fs): im.paste(Image.open(f).convert('RGB').resize((W,H)),(i*W,0))
+          im.save('/tmp/m/${c}.jpg',quality=85)"
+              rm -f /tmp/m/${c}_k*.png /tmp/m/${c}_${PROFIL}.png
+              ffmpeg -loglevel error -y -i /tmp/m/${c}.mp4 -vf "scale=360:640,drawtext=text='${c}':x=8:y=8:fontsize=18:fontcolor=white:box=1:boxcolor=black@0.5" -c:v libx264 -crf 28 -preset veryfast -pix_fmt yuv420p /tmp/m/onz_${c}.mp4 || ffmpeg -loglevel error -y -i /tmp/m/${c}.mp4 -vf scale=360:640 -c:v libx264 -crf 28 -preset veryfast -pix_fmt yuv420p /tmp/m/onz_${c}.mp4
+            fi
+          done; done
+          ls /tmp/m/onz_*.mp4 | sort | sed "s/^/file '/;s/$/'/" > /tmp/m/liste.txt
+          ffmpeg -loglevel error -y -f concat -safe 0 -i /tmp/m/liste.txt -c copy /tmp/m/onizleme_${{ matrix.grup }}.mp4
+      - name: Sonucu dala yaz
+        if: always()
+        run: |
+          K=$(python3 -c "import json;print(json.load(open('deneyler/faz53/kosu53.json'))['kosu_id'])")
+          D=deneyler/faz53/sonuc/$K/${{ matrix.grup }}
+          ls /tmp/m/*.json >/dev/null 2>&1 || exit 0
+          mkdir -p "$D"
+          cp /tmp/m/*.json /tmp/m/*.jpg /tmp/m/onizleme_*.mp4 "$D"/ 2>/dev/null || true
+          rm -f "$D"/*.is.json
+          git checkout -- deneyler/uretim_hazirlik deneyler/faz52_entegrasyon 2>/dev/null || true   # yol çevirisi geri alınır
+          git config user.name "faz53-olcum"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$D"
+          git commit -m "Faz 5.3 kamera render: ${{ matrix.grup }} [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do git pull --rebase -q && git push && exit 0; sleep $((5*i)); done
+          exit 1

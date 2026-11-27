@@ -1,0 +1,230 @@
+[
+ {
+  "tur": "alcak_yaklasma",
+  "aciklama": "Alçak açıdan yavaş yaklaşma (güç",
+  "mesafe": "orta",
+  "hareket": "yaklasma",
+  "lens": [
+   34,
+   34
+  ],
+  "kusur": [],
+  "odak_orani": 0.64,
+  "karakter": 9,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "alcak_geri_takip",
+  "aciklama": "Gelen kolun önünde",
+  "mesafe": "orta",
+  "hareket": "geri_takip",
+  "lens": [
+   36,
+   36
+  ],
+  "kusur": [],
+  "odak_orani": 0.614,
+  "karakter": 8,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "yan_takip",
+  "aciklama": "Göz hizasında yandan paralel takip",
+  "mesafe": "uzak",
+  "hareket": "takip",
+  "lens": [
+   38,
+   38
+  ],
+  "kusur": [],
+  "odak_orani": 0.25,
+  "karakter": 3,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "yuksek_genis",
+  "aciklama": "Yüksekten genel görünüm (kuş bakışına yakın)",
+  "mesafe": "uzak",
+  "hareket": "sabit_suzulme",
+  "lens": [
+   46,
+   46
+  ],
+  "kusur": [],
+  "odak_orani": 0.159,
+  "karakter": 12,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "yukselme",
+  "aciklama": "Yerden yükselen vinç hareketi (kapanış",
+  "mesafe": "uzak",
+  "hareket": "yukselme",
+  "lens": [
+   42,
+   42
+  ],
+  "kusur": [],
+  "odak_orani": 0.174,
+  "karakter": 13,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "arkadan_uzak",
+  "aciklama": "Uzaklaşan kolu arkadan izleme (yolculuk",
+  "mesafe": "uzak",
+  "hareket": "sabit",
+  "lens": [
+   30,
+   30
+  ],
+  "kusur": [],
+  "odak_orani": 0.157,
+  "karakter": 13,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "capraz_yorunge",
+  "aciklama": "Çapraz açıdan yarım yörünge (gerilim)",
+  "mesafe": "uzak",
+  "hareket": "yorunge",
+  "lens": [
+   38,
+   38
+  ],
+  "kusur": [],
+  "odak_orani": 0.179,
+  "karakter": 12,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "goz_pan",
+  "aciklama": "Göz hizasında hattı tarayan yatay kaydırma",
+  "mesafe": "uzak",
+  "hareket": "yanal_kayma",
+  "lens": [
+   36,
+   36
+  ],
+  "kusur": [],
+  "odak_orani": 0.185,
+  "karakter": 13,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "ust_aci_yaklasma",
+  "aciklama": "Omuz üstü yükseklikten yavaş yaklaşma (gözlem",
+  "mesafe": "orta",
+  "hareket": "yaklasma",
+  "lens": [
+   38,
+   38
+  ],
+  "kusur": [],
+  "odak_orani": 0.564,
+  "karakter": 5,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "yan_profil",
+  "aciklama": "Yandan sabit profil",
+  "mesafe": "uzak",
+  "hareket": "sabit_suzulme",
+  "lens": [
+   30,
+   30
+  ],
+  "kusur": [],
+  "odak_orani": 0.171,
+  "karakter": 7,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "sabit_uzak",
+  "aciklama": "Sabit uzak kadraj (sonuç",
+  "mesafe": "uzak",
+  "hareket": "sabit",
+  "lens": [
+   34,
+   34
+  ],
+  "kusur": [],
+  "odak_orani": 0.179,
+  "karakter": 10,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "kurulus_genis",
+  "aciklama": "Mekân tanıtımı; önden-çaprazdan geniş lensle ufku da alan yavaş yanal süzülme (establishing)",
+  "mesafe": "uzak",
+  "hareket": "genis_suzulme",
+  "lens": [
+   55,
+   55
+  ],
+  "kusur": [],
+  "odak_orani": 0.127,
+  "karakter": 13,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "tele_kalabalik",
+  "aciklama": "Ordunun büyüklüğü; önden uzun lens",
+  "mesafe": "uzak",
+  "hareket": "sabit_suzulme",
+  "lens": [
+   18,
+   18
+  ],
+  "kusur": [],
+  "odak_orani": 0.269,
+  "karakter": 13,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "itme_dramatik",
+  "aciklama": "Dönüm noktası; göz hizasından itme ve hafif daralan lens (dramatik yaklaşma)",
+  "mesafe": "orta",
+  "hareket": "itme",
+  "lens": [
+   40,
+   32
+  ],
+  "kusur": [],
+  "odak_orani": 0.689,
+  "karakter": 13,
+  "hareketli_kolda_kusur": null,
+  "durum": "temiz"
+ },
+ {
+  "tur": "orta_konusma",
+  "aciklama": "Komutanın konuşması / dinleyen; medium plan",
+  "mesafe": "orta",
+  "hareket": "sabit_suzulme",
+  "lens": [
+   32,
+   32
+  ],
+  "kusur": [],
+  "odak_orani": 0.862,
+  "karakter": 5,
+  "hareketli_kolda_kusur": [
+   "odak karakterin ayağı kadraj dışına taşıyor",
+   "odak karakterin başı kadraj dışına taşıyor"
+  ],
+  "durum": "temiz"
+ }
+]

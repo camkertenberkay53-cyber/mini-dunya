@@ -1,0 +1,14 @@
+# Gerçekçi karakter yüzeyi (godot/sahneler/yuzey.gd). Karakter kıyafeti ve taktığı ekipmanın malzemeleri ADINA göre
+# (küçük harf, düzenli ifade; ilk eşleşen) gerçek PBR ayrıntısı alır. Doku yolları motor/varlik/cc0'a göre.
+# tekrar: UV başına doku tekrarı (giysi UV'si ~0.5 m/birim). detay_guc: dokunun parlaklık ayrıntısı (renk korunur).
+# renk_karis: dokunun kendi renginin karışımı (zincir halkası/çelik). metal: metallik. pur_*: pürüzlülük.
+# Açma/kapama: gorsel.yaml gercekci_karakter.acik.
+kurallar:
+  - {desen: "^(kaftan|dolama)", doku: polyhaven/poly_wool_herringbone, tekrar: 1.6, detay_guc: 0.55, normal_guc: 1.2, pur_carp: 1.0, asinma: 0.22, kenar_koyu: 0.35}
+  - {desen: "^(tunik|roma_tunik|salvar|sarik_bezi|cadir_bezi|sancak|kusak)", doku: polyhaven/rough_linen, tekrar: 1.8, detay_guc: 0.6, normal_guc: 1.2, asinma: 0.25, kenar_koyu: 0.35}
+  - {desen: "^kece", doku: polyhaven/rough_linen, tekrar: 3.0, detay_guc: 0.35, normal_guc: 0.8, asinma: 0.15, kenar_koyu: 0.3}
+  - {desen: "^(cizme|kemer|deri|roma_derisi)", doku: polyhaven/brown_leather, tekrar: 1.5, detay_guc: 0.65, normal_guc: 1.2, pur_carp: 0.9, asinma: 0.3, kenar_koyu: 0.25}
+  # zincir: kuralsız — kıyafetin kendi prosedürel halka dokusu daha iyi; ambientCG Chainmail004 bindirmesi parlaklığı patlattı (denendi, reddedildi)
+  - {desen: "^(lamel_celik|celik|demir)", doku: ambientcg/Metal032, tekrar: 2.0, detay_guc: 0.5, renk_karis: 0.2, metal: 0.9, normal_guc: 0.8, pur_arm: false, pur_carp: 0.8, pur_taban: 0.12}
+  - {desen: "^(tunc|altin|sus_altin)", doku: ambientcg/Metal012, tekrar: 2.0, detay_guc: 0.35, metal: 0.95, normal_guc: 0.6, pur_arm: false, pur_carp: 0.7, pur_taban: 0.1}
+  - {desen: "^(sap|direk|ok_sapi|kiris|yay_govde)$", doku: polyhaven/rough_wood, tekrar: 3.0, detay_guc: 0.5, normal_guc: 0.8}

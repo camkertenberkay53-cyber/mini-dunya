@@ -1,0 +1,26 @@
+{
+ "ortam": "yerel",
+ "tarih": "2026-11-24 12:11",
+ "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+ "cekirdek": 2,
+ "bellek_gb": 8.4,
+ "olculen": {
+  "ice_aktarma_sn": 4.0,
+  "render_kare": 60,
+  "render_cozunurluk": "1080x1920",
+  "uretilen_kare": 60,
+  "render_sn": 193.5,
+  "acilis_sn": 9.0,
+  "kare_basina_sn": 3.18,
+  "render_tepe_bellek_gb": 1.07,
+  "kodlama_sn": 2.0,
+  "ara_dosya_avi_mb": 8.8,
+  "mp4_mb": 2.28
+ },
+ "tahmin": {
+  "aciklama": "Ölçülen kare süresinin 50 sn x 30 fps'e doğrusal uzatılması. Sahne yükü değişirse değişir.",
+  "shorts_50sn_dk": 80.5,
+  "gunde_2_shorts_dk": 161.0,
+  "shorts_ara_dosya_gb": 0.22
+ }
+}

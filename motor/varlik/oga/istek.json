@@ -1,0 +1,10 @@
+{"aciklama": "Faz 5.5 ücretsiz varlık paketi: yalnız CC0 (sayfadan doğrulanır).",
+ "izinli_lisanslar": ["CC0"],
+ "varliklar": [
+  {"kimlik": "ual2", "sayfa": "universal-animation-library-2", "amac": "insan animasyonları (savaş kombinasyonları, mızrak, yay, tepki) — UAL1 ile aynı evrensel iskelet", "zip_deseni": "\\.(glb|gltf|bin|txt|md)$"},
+  {"kimlik": "ruzgar_ignasd", "sayfa": "wind", "amac": "rüzgâr ambiyansı"},
+  {"kimlik": "park_ambiyans", "sayfa": "park-ambiences", "amac": "açık alan rüzgâr/kuş ambiyansı (saha kaydı)", "dosya_deseni": "wind|field"},
+  {"kimlik": "rpg_ses", "sayfa": "rpg-sound-pack", "amac": "kılıç çekme/çarpışma, savurma, zırh sesleri", "zip_deseni": "(battle|inventory)/.*\\.(wav|ogg)$"},
+  {"kimlik": "kilic_starninjas", "sayfa": "20-sword-sound-effects-attacks-and-clashes", "amac": "kılıç saldırı/çarpışma sesleri"},
+  {"kimlik": "kus_sesi", "sayfa": "bird-chirping-sounds", "amac": "sakin sahnelerde uzak kuş sesi"}
+ ]}
