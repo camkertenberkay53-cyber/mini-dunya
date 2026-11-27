@@ -35,7 +35,10 @@ from motor.orkestrasyon.kaynak_dogrulayici import GuvenliIstemci, KaynakDogrulay
 from motor.orkestrasyon.kaynak_kesif import OpenAlexKesif, WikipediaKesif, havuz_olustur
 from motor.orkestrasyon.senaryo_planlayici import plan_uret
 
-SURE_BUTCESI = {"uzun": 210.0, "shorts": 90.0}   # sıralı 6 istek + 503 beklemeleri (15/30 sn); CI adımı ≤ 6 dk
+# Faz-61: uzun 210 → 360 sn. 3 parçalı anlatı + 2 hedefli onarım ~151 sn sürdü; 3 parçalı sahne planına ~59 sn kaldı
+# ve 2. parça 19 sn zaman aşımıyla kesildi. Tekil istek tavanı (≤90 sn) ve 503 + zaman aşımı yedek davranışı değişmez
+# (yedek rezervi: min(60, bütçe × 0,4) = 60 sn).
+SURE_BUTCESI = {"uzun": 360.0, "shorts": 90.0}
 ANAHTAR_SIRASI = ("GEMINI_DRYRUN_KEY", "GEMINI_API_KEY")
 
 
