@@ -48,6 +48,8 @@ def test_is_akisi_kurulum_ve_sure():
     metin = WF.read_text()
     assert "bpy==5.3.0" in metin and "sha512sum -c -" in metin and "Godot_v4.7.2-stable" in metin
     assert "vits-piper-tr_TR-fahrettin-medium" in metin and "sherpa-onnx-whisper-base" in metin
+    mpfb = _wf()["env"]["MPFB_COMMIT"]
+    assert len(mpfb) == 40 and "github.com/makehumancommunity/mpfb2" in metin   # MPFB sabit commit, GitHub'dan
     komutlar = " ".join(a.get("run", "") for a in wf["jobs"]["hat"]["steps"])
     for alt in ("anahtar", "kaynaklar", "varlik", "render"):
         assert f"araclar/faz62a_hat.py {alt}" in komutlar, alt
@@ -81,6 +83,14 @@ def test_varlik_anahtari_belirlenimci_ve_girdiye_duyarli(tmp_path):
     (k / "motor/varlik/blender/__pycache__").mkdir()
     (k / "motor/varlik/blender/__pycache__/x.pyc").write_bytes(b"\0")
     assert h.varlik_anahtari(k) == b                                     # ilgisiz dosya / pyc anahtarı değiştirmez
+
+
+def test_varlik_anahtari_mpfb_surumune_duyarli(tmp_path, monkeypatch):
+    k = _sahte_kok(tmp_path)
+    monkeypatch.setenv("MPFB_COMMIT", "a" * 40)
+    a = h.varlik_anahtari(k)
+    monkeypatch.setenv("MPFB_COMMIT", "b" * 40)
+    assert h.varlik_anahtari(k) != a
 
 
 def test_anahtar_girdileri_depoda_var():

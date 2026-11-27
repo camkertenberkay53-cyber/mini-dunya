@@ -40,6 +40,9 @@ env:
   MOTOR_KAYNAK: /tmp/varlik
   PIPER_MODELS: ${{ github.workspace }}/models
   CIKTI: /tmp/faz62a_cikti
+  # MPFB2 (MakeHuman, GPL-3.0 eklenti kodu; insan gövdeleri CC0): gerçekçi insan derlemesinin kullandığı sürüm.
+  # Yerel geliştirme ortamındaki kurulumla git ağaç karması birebir eşleşen commit (2026-11-22, PR #468).
+  MPFB_COMMIT: 650c5c53bd6989a8ac264f31fa1d11d4a0c7bd8a
 
 jobs:
   hat:
@@ -66,6 +69,20 @@ jobs:
           echo "9aa00f7a605200940bce3027a567b782f49bd8e940dd06ae9e987bd65aee1b1467edd56ed84fcdcbdd44354bf613bdbb4e5d2913e925850368e150c59ed54c65  /tmp/g.zip" | sha512sum -c -
           unzip -q /tmp/g.zip -d /tmp/godot && rm /tmp/g.zip
           nproc; free -g; df -h /
+
+      - name: MPFB2 eklentisi (sabit commit; bpy kullanıcı eklenti deposu)
+        run: |
+          set -euo pipefail
+          d=$(mktemp -d)
+          git -C "$d" init -q
+          git -C "$d" remote add origin https://github.com/makehumancommunity/mpfb2
+          git -C "$d" fetch -q --depth 1 origin "$MPFB_COMMIT"
+          git -C "$d" checkout -q FETCH_HEAD
+          [ "$(git -C "$d" rev-parse HEAD)" = "$MPFB_COMMIT" ]
+          hedef="$HOME/.config/blender/5.3/extensions/user_default/mpfb"
+          mkdir -p "$(dirname "$hedef")"
+          rm -rf "$hedef" && cp -r "$d/src/mpfb" "$hedef" && rm -rf "$d"
+          python3 -c "import addon_utils, bpy; addon_utils.enable('bl_ext.user_default.mpfb', default_set=True); import importlib; importlib.import_module('bl_ext.user_default.mpfb.services.humanservice'); print('MPFB etkin')"
 
       - name: Ses modelleri önbelleği (Piper fahrettin + Whisper base)
         uses: actions/cache@v4

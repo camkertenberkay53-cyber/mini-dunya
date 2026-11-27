@@ -70,6 +70,7 @@ def varlik_anahtari(kok: Path = KOK) -> str:
             h.update(str(f.relative_to(kok)).encode())
             h.update(hashlib.sha256(f.read_bytes()).digest())
     h.update(f"python{sys.version_info.major}.{sys.version_info.minor}".encode())
+    h.update(os.environ.get("MPFB_COMMIT", "").encode())   # insan derlemesindeki MPFB2 sürümü
     return h.hexdigest()[:20]
 
 
