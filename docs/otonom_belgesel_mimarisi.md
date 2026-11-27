@@ -224,3 +224,16 @@ konu başlığı
     - **Aynı küme:** Aynı küme birden çok değer veriyorsa o küme sayı karşılaştırmasından çıkarılır.
     - **Aynı kaynak:** Kaynağın başka bir penceresi iddianın rakamını veriyorsa sayı çelişkisi düşer. Yıl ve gün-ay
       çelişkisi korunur.
+- **Faz-62a: CI'da 3D varlık derleme, önbellek ve Godot render hattı** (`faz62a_varlik_render.yml`, `araclar/faz62a_hat.py`):
+  - **Kurulum:** bpy 5.3.0 (Python 3.13), Godot 4.7.2 (SHA512 doğrulamalı), Piper `fahrettin-medium` ve Whisper
+    base. MPFB2 eklentisi sabit commit'ten (`650c5c5`) kurulur.
+  - **Kaynaklar:** CC0 kaynak depoları `kaynaklar.yaml`'daki sabit commit'lerden sığ klonlanır.
+  - **Varlıklar:** `takim.derle` (ekipman, karakter3, insan, takım), insan montaj testi ve `mekan_varlik.uret`
+    çalıştırılır. Sonuç `actions/cache` ile girdi karmasına (MPFB sürümü dahil) bağlı olarak saklanır.
+  - **İlk CI ölçümü (run 46041447188, 4 çekirdek):**
+    - Varlık derleme 1.314 sn: insan 48 GLB / 248 MB; 208 kişi montaj testinden geçirildi, 168'i geçti.
+    - Otlukbeli Shorts pilotu: 10 çekim, render 1.910 sn, kurgu 64 sn. Video 31,7 sn, 1080×1920, 30 fps, sesli,
+      49 MB. Kalite kontrol TAMAM; Whisper benzerliği en düşük 0,80, ortalama 0,91.
+  - **Kapasite notu (Faz-62b için):** 3D render bu makinede gerçek sürenin ~60 katı. 15–20 dk belgeselde 3D payı
+    (%20, ~3–4 dk) tek iş üzerinde ~3–4 saat sürer. Faz-62b'de çekimler paralel işlere bölünmeli
+    (`faz51-paralel` deseni); harita ve 2.5D çekimler CPU/FFmpeg ile çok daha ucuzdur.
