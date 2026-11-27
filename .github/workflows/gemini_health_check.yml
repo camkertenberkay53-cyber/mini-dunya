@@ -1,0 +1,48 @@
+name: Gemini Health Check (minimal ping)
+
+# Yalnızca elle tetiklenir: zamanlanmış ya da push tetikleyicisi YOK.
+# Birincil ve yedek Gemini modeline ayrı ayrı TEK kısa istek gönderir (sıfır tekrar, 25 sn katı zaman aşımı) ve sonucu
+# Actions Summary'ye tablo olarak yazar. Üretim kodunu çalıştırmaz, dosya üretmez, artifact yüklemez.
+on:
+  workflow_dispatch:
+    inputs:
+      zaman_asimi:
+        description: "İstek başına zaman aşımı (sn, 20–30)"
+        required: false
+        default: "25"
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Gemini ping (birincil + yedek)
+        shell: bash
+        env:
+          GEMINI_DRYRUN_KEY: ${{ secrets.GEMINI_DRYRUN_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ZAMAN_ASIMI: ${{ github.event.inputs.zaman_asimi || '25' }}
+        run: |
+          set +e
+          python3 -u araclar/gemini_ping.py --zaman-asimi "$ZAMAN_ASIMI" --json
+          kod=$?
+          set -e
+          echo "ping çıkış kodu: $kod (0 = hepsi OK, 1 = en az bir model OK değil, 2 = anahtar yok, 3 = geçersiz argüman)"
+          if [ "$kod" -eq 1 ]; then
+            echo "::warning title=Gemini health check::En az bir model OK değil (tabloya bakın: 503_overload / 429_quota / timeout / auth_or_other_error)"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "> ⚠️ En az bir model OK değil. Bu bir sağlık ölçümüdür; iş akışı bilerek başarılı bırakıldı." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          # Anahtar yoksa (2), argüman geçersizse (3) ya da beklenmedik çıkışta iş başarısız olur; 503 / 429 / timeout yalnızca uyarıdır.
+          if [ "$kod" -ne 0 ] && [ "$kod" -ne 1 ]; then
+            exit "$kod"
+          fi
