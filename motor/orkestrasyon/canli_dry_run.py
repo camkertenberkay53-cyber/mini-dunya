@@ -15,9 +15,10 @@ python3 -u -m motor.orkestrasyon.canli_dry_run "<konu>" [--mod uzun,shorts] [--c
   `GEMINI_API_KEY`. İkisi de yoksa Gemini adımı ATLANIR ve rapor bunu açıkça söyler; mock'a GEÇİLMEZ.
   Raporda yalnızca anahtarın KAYNAK ADI yazılır; değeri hiçbir loga ya da çıktıya yazılmaz.
 - 429 (kota) alınırsa üretim kontrollü durur ve kalan modlar için Gemini çağrılmaz (gereksiz istek yok).
-- Faz-57: bir mod (uzun) 503 aşırı yük bütçesini (birincil 15 → 30 sn + tek atışlık yedek model) tüketerek durursa,
-  kalan modlar (Shorts) için de Gemini ÇAĞRILMAZ (`atlandi_asiri_yuk`). Bu kısa devre YALNIZCA `asiri_yuk` sınıfı
-  içindir; zaman aşımı, genel 5xx ve ağ hatalarında kalan modlar eskisi gibi denenir.
+- Faz-57/58: bir mod (uzun) 503 aşırı yük bağlamında başarısız olursa kalan modlar (Shorts) için Gemini ÇAĞRILMAZ
+  (`atlandi_asiri_yuk`). Aşırı yük bağlamı: son sınıf `asiri_yuk` ya da sağlayıcı 503 görmüşken son sınıf
+  `zaman_asimi` / `sure_butcesi` (`asiri_yuk_baglami`, bkz. gemini.py). 503 görülmemiş zaman aşımı, genel 5xx,
+  ağ hatası ve 429'da (429 → `atlandi_kota`) davranış değişmez.
 - Render başlatılmaz (dry-run). Anahtar hiçbir çıktıya yazılmaz.
 """
 from __future__ import annotations
@@ -82,6 +83,14 @@ def _gemini(m: str, anahtar: str, kaynak: str, log_fn):
                              en_az_aralik=3.0, anahtar=anahtar, anahtar_kaynagi=kaynak)
 
 
+_YUK_ILISKILI = ("asiri_yuk", "zaman_asimi", "sure_butcesi")
+
+
+def _asiri_yuk_basarisizligi(sinif: str | None, baglam: bool) -> bool:
+    """Başarısızlık aşırı yükle ilişkili mi: 503 sınıfı ya da 503 bağlamında zaman aşımı / süre bütçesi."""
+    return sinif == "asiri_yuk" or (bool(baglam) and sinif in _YUK_ILISKILI)
+
+
 def _gemini_asamasi(r: dict, konu: str, modlar: list[str], havuz: dict, anahtar: str, kaynak: str) -> list[str]:
     """Modları sırayla üretir; mod özetlerini r['asamalar'] / r['planlar'] içine yazar, mod durumlarını döndürür."""
     durumlar, kota_doldu, asiri_yuk = [], False, None
@@ -107,6 +116,9 @@ def _gemini_asamasi(r: dict, konu: str, modlar: list[str], havuz: dict, anahtar:
             p = plan_uret(konu, m, g, arastirma=havuz, parcali=(m == "uzun"), ilerleme=log, paralel=3)
             ozet = {"durum": p["durum"], "model": g.kullanilan_model, "gemini_cagri": g.cagri_sayisi,
                     "yedek_gecisi": getattr(g, "yedek_gecisi", None),
+                    "asiri_yuk_goruldu": getattr(g, "asiri_yuk_goruldu", False),
+                    "son_basarisizlik": getattr(g, "son_basarisizlik", None),
+                    "tekrar_kaydi": getattr(g, "tekrar_kaydi", [])[-10:],
                     "sure_sn": round(time.time() - tm, 1),
                     "katmanlar": {k: [{"deneme": d["deneme"], "tur": d["tur"], "hata_sayisi": len(d["hatalar"]),
                                        "hata_kodlari": dict(Counter(h["kod"] for h in d["hatalar"]))} for d in v.get("denemeler", [])]
@@ -122,17 +134,20 @@ def _gemini_asamasi(r: dict, konu: str, modlar: list[str], havuz: dict, anahtar:
             if sinif == "kota":
                 kota_doldu = True
                 ozet["durum"] = p["durum"] = "gemini_kota"
-            elif sinif == "asiri_yuk" and p["durum"] != "uretime_hazir":
+            elif p["durum"] != "uretime_hazir" and _asiri_yuk_basarisizligi(
+                    sinif, (getattr(g, "son_basarisizlik", None) or {}).get("asiri_yuk_baglami")):
                 asiri_yuk = m
                 ozet["durum"] = p["durum"] = "gemini_asiri_yuk"
             durumlar.append(p["durum"])
         except GercekUretimHatasi as e:
-            ozet = {"durum": ("gemini_kota" if e.sinif == "kota" else "gemini_asiri_yuk" if e.sinif == "asiri_yuk"
+            yuk_e = e.sinif != "kota" and _asiri_yuk_basarisizligi(e.sinif, getattr(e, "asiri_yuk_baglami", False))
+            ozet = {"durum": ("gemini_kota" if e.sinif == "kota" else "gemini_asiri_yuk" if yuk_e
                               else "gemini_basarisiz"), "sinif": e.sinif,
+                    "asiri_yuk_baglami": bool(getattr(e, "asiri_yuk_baglami", False)),
                     "hata": str(e)[:600], "gemini_hatalari": e.hatalar[-20:], "sure_sn": round(time.time() - tm, 1),
                     "gemini_cagri": getattr(g, "cagri_sayisi", 0)}
             kota_doldu = kota_doldu or e.sinif == "kota"
-            if e.sinif == "asiri_yuk":
+            if yuk_e:
                 asiri_yuk = m
             durumlar.append(ozet["durum"])
         log("onay_kapisi", f"--- mod={m} bitti: {ozet['durum']} ({ozet['sure_sn']} sn)"
