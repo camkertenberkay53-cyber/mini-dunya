@@ -182,3 +182,21 @@ konu başlığı
     önceki parçanın son birimlerini ve sahnelerini bağlam olarak alır.
   - **Shorts:** Değişmedi.
   - **Dry-run süre bütçeleri:** Uzun 210 sn, Shorts 90 sn. CI adımı en çok 6 dakika sürer.
+- **Faz-57: çelişki yanlış pozitifleri ve sınırlı 503 yedeği** (Run 45966548518 bulguları):
+  - **Kaynakça / dipnot dışlama:** "↑ Yazar (1986).", ISBN, "222-223, 272" sayfa listesi, `[dipnot …]` ve
+    BİBLİYOGRAFYA başlığı altındaki paragraflar yıl, gün-ay ve sayı çelişkisi üretmez. Destek sınıflaması etkilenmez.
+  - **Genel olay sözcükleri:** "savaş, muharebe, battle, war…" tek başına olay bağlamı kurmaz ve yıl çelişkisi
+    tetiklemez. Yıl, yalnızca konuya özgü olay adına bağlıysa olayın yılıdır. "<Başka ad> Savaşı (1514)" kalıbında
+    yıl o başka olaya bağlanır.
+  - **Sayı çelişkisi:** değer + ölçü türü (kelime sınırıyla) + taraf (aynı yan cümledeki en yakın özel ad, olay adı
+    hariç) + olay (yan cümlede iddiada olmayan yıl yok) birlikte eşleşmelidir. Taraf belirsizse karşılaştırma yapılmaz.
+    Kümeler arası sayı çelişkisi de aynı ölçü + taraf + olay grubunda aranır.
+  - **OCR rakam onarımı:** yalnız doğrulama kopyasında, güçlü bağlamda `ı → 1` ("ı473", "ı ı Ağustos"). Özgün metin
+    değişmez; alıntı özgün metinden verilir. OCR onarımlı pencere çelişki üretmez. OCR'a bağlı destek, iddianın
+    OCR'sız bir desteği yoksa sayılmaz (`sayilmadi`).
+  - **503 yedeği:** birincil model 503 bütçesini (15 → 30 sn) bitirirse yapılandırılmış sırada ondan sonraki ilk
+    farklı Flash modele BİR KEZ geçilir; yedeğin bütçesi tek tekrar (15 sn). Yedek de başarısızsa başka model
+    aranmaz, birincile dönülmez. 429 her modelde anında durdurur. 503 yolunda en çok 5 istek, 60 sn bekleme.
+  - **Shorts kısa devresi:** uzun mod 503 bütçesini tüketerek durursa Shorts için Gemini çağrılmaz
+    (`atlandi_asiri_yuk`, koşu durumu `gemini_asiri_yuk`, çıkış 1). Zaman aşımı, genel 5xx ve ağ hatalarında
+    davranış değişmedi.

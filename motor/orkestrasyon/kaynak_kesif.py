@@ -37,11 +37,7 @@ _AKADEMIK = ("doi.org", "jstor.org", "dergipark.org.tr", "academia.edu", "resear
              "openedition.org", "muse.jhu.edu", "semanticscholar.org")
 _ARSIV = ("archive.org", "devletarsivleri.gov.tr", "gallica.bnf.fr", "loc.gov", "europeana.eu", "wdl.org",
           "digitale-sammlungen.de", "e-codices.ch")
-_OLCU = {   # sayının hemen çevresinde aranan anahtarlar (ilk 5 harf, ASCII katlanmış)
-    "ordu": ["asker", "kisil", "ordu", "kuvve", "sueva", "atli", "piyad", "yenic", "troop", "army", "soldi", "force",
-             "caval", "infan", "streng", "janis", "men", "peopl", "warri", "horse"],
-    "kayip": ["kayip", "kayb", "olu", "oldu", "olum", "sehit", "casua", "kille", "losse", "dead", "death", "slain"],
-}
+# Ölçü türü ve taraf (özne) tespiti iddia_atom.sayi_baglamlari'ndadır: kelime sınırlı ölçü + aynı yan cümlede özne.
 
 
 def ozgun_url(url: str) -> str:
@@ -286,8 +282,11 @@ def bagimsizlik_kumeleri(kaynaklar: list[dict], kopya_esigi: float = 0.5) -> dic
 _SAYI = re.compile(r"(?<![\w.,])(\d{1,3}(?:[.,]\d{3})+|\d+)(?![\w])")
 
 
-def _sayilar(cumle: str) -> list[dict]:
-    """Yıl dışı sayılar ve ölçü türleri (sayının ±6 kelimelik çevresinde anahtar aranır)."""
+def _sayilar(cumle: str, olay_kokleri=frozenset()) -> list[dict]:
+    """Yıl dışı sayılar, ölçü türleri ve taraf (özne) kökleri. Ölçü kelime sınırıyla ve aynı yan cümlede aranır
+    (iddia_atom.sayi_baglamlari); 'men' artık 'document' içinde bulunmaz."""
+    from motor.orkestrasyon import iddia_atom as ia
+    baglam = ia.sayi_baglamlari(cumle, frozenset(olay_kokleri))
     out = []
     kel = re.findall(r"\S+", cumle)
     for i, w in enumerate(kel):
@@ -301,9 +300,11 @@ def _sayilar(cumle: str) -> list[dict]:
             continue
         if deger < 50:
             continue   # gün, sıra vb. küçük sayılar ölçü sayılmaz
-        cevre = [_katla(x)[:5] for x in kel[max(0, i - 6): i + 7]]
-        tur = next((t for t, anahtar in _OLCU.items() if any(a in c or c.startswith(a) for c in cevre for a in anahtar)), "diger")
-        out.append({"deger": deger, "ham": ham, "olcu_turu": tur})
+        b = next((x for x in baglam if x["deger"] == deger and not x.get("_kullanildi")), None)
+        if b is not None:
+            b["_kullanildi"] = True
+        out.append({"deger": deger, "ham": ham, "olcu_turu": (b or {}).get("olcu") or "diger",
+                    "taraf": sorted((b or {}).get("taraf") or ())})
     return out
 
 
@@ -322,7 +323,7 @@ def _cumleler(metin: str) -> list[str]:
     return out
 
 
-def iddialari_cikar(kaynak: dict, en_cok: int = 60) -> list[dict]:
+def iddialari_cikar(kaynak: dict, en_cok: int = 60, olay_kokleri=frozenset()) -> list[dict]:
     """Ana madde metninden yıl ya da sayı içeren cümleler (deterministik). Her biri tek iddia."""
     metin = kaynak.get("metin") or ""
     out = []
@@ -330,7 +331,7 @@ def iddialari_cikar(kaynak: dict, en_cok: int = 60) -> list[dict]:
         c = c.strip()
         if not 40 <= len(c) <= 400:
             continue
-        s = _sayilar(c)
+        s = _sayilar(c, olay_kokleri)
         if not s:
             continue
         out.append({"metin": c, "sayilar": s, "yillar": sorted({x["deger"] for x in s if x["olcu_turu"] == "tarih"}),
@@ -364,7 +365,7 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
     for k in kaynaklar:
         if not k.get("metin"):
             continue
-        for i in iddialari_cikar(k):
+        for i in iddialari_cikar(k, olay_kokleri=frozenset(terim)):
             # aday dış sayfalardan yalnızca konuyla ilgili (konu terimi geçen) cümleler iddia olur
             if k.get("aday") and not any(t in _katla(i["metin"]) for t in terim):
                 continue
@@ -394,7 +395,8 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
             sayi_teyidi = sinif in ("supported", "partial") and at.get("sayi") is True and baglam
             ozet_d = {x: d.get(x) for x in ("verification_status", "verification_method", "http_status", "destek_sinifi",
                                            "atomlar", "celiski", "year_match", "event_match", "entity_match",
-                                           "number_match", "content_match", "content_score", "supporting_excerpt", "neden")}
+                                           "number_match", "content_match", "content_score", "supporting_excerpt", "neden",
+                                           "kaynakca_penceresi", "ocr_duzeltmeli", "ocr_bagimli")}
             if sinif == "contradicts":
                 karsi.append({"id": k["id"], "url": k["url"], "eser": k.get("baslik"), "yayinci": k.get("yayinci"),
                               "tur": k.get("tur"), "kume": kume[k["id"]], "dogrulama": ozet_d})
@@ -412,9 +414,11 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
             if d.get("destek_sinifi"):
                 ds = rapor_kaynak[k["id"]].setdefault("destek", {})
                 ds[d["destek_sinifi"]] = ds.get(d["destek_sinifi"], 0) + 1
-        icerik_kume = {x["kume"] for x in destek if x["teyit_turu"] == "icerik"}
-        tum_kume = {x["kume"] for x in destek if x.get("tarih_teyidi")}
-        sayi_kume = {x["kume"] for x in destek if x.get("sayi_teyidi")}
+        ocr_tek_basina_isaretle(destek)
+        sayilan = [x for x in destek if not x.get("sayilmadi")]
+        icerik_kume = {x["kume"] for x in sayilan if x["teyit_turu"] == "icerik"}
+        tum_kume = {x["kume"] for x in sayilan if x.get("tarih_teyidi")}
+        sayi_kume = {x["kume"] for x in sayilan if x.get("sayi_teyidi")}
         karsi_kume = {x["kume"] for x in karsi} - icerik_kume
         kayitlar.append({"id": f"ark_{n:03d}", "iddia": idd["metin"], "yil": idd["yillar"][0] if idd["yillar"] else None,
                          "sayilar": idd["sayilar"], "kaynaklar": destek, "kaynak_kesfi": idd["kaynak_id"],
@@ -444,6 +448,16 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
             "kume_sayisi": len(set(kume.values())), "dogrulama_yontemi": "structured_and_contextual"}
 
 
+def ocr_tek_basina_isaretle(destek: list[dict]) -> list[dict]:
+    """OCR rakam onarımına BAĞLI destek tek başına doğrulama kanıtı sayılmaz: iddianın OCR'sız hiçbir desteği yoksa
+    bütün destekler `sayilmadi` ile işaretlenir (küme sayımlarına girmez; iddia doğrulanmış olamaz). OCR'sız en az bir
+    destek varsa OCR'a bağlı destekler de sayılır. Yerinde günceller ve listeyi döndürür."""
+    if destek and all(x["dogrulama"].get("ocr_bagimli") for x in destek):
+        for x in destek:
+            x["sayilmadi"] = "ocr_onarimina_bagli_tek_basina"
+    return destek
+
+
 def _atom_ozeti(sorgu: dict) -> dict:
     from motor.orkestrasyon import iddia_atom as ia
     at = ia.atomlar(sorgu)
@@ -453,35 +467,50 @@ def _atom_ozeti(sorgu: dict) -> dict:
 def sayisal_koruma(kayitlar: list[dict]) -> None:
     """Durum ataması (yerinde). Faz-56: atomik destek.
     - Tam destekleyen (supported) küme yok → belirsiz.
-    - Ordu/kayıp ölçüsünde kümeler arası farklı rakam → tartismali + celiski. Değerler AYRI tutulur, ortalama YOK.
+    - Ordu/kayıp ölçüsünde AYNI taraf ve olay için kümeler arası farklı rakam → tartismali + celiski. Değerler AYRI
+      tutulur, ortalama YOK. (Faz-57: farklı ordulara/birliklere ait rakamlar çelişki değildir.)
+    - OCR onarımına bağlı destek tek başına sayılmaz (`sayilmadi`).
     - Bağımsız bir küme çelişiyor (contradicts: farklı yıl/gün-ay/rakam) → tartismali + karsi_kanit.
     - Sayısal iddia (ordu/kayıp ya da ≥ 100 rakam): aynı rakam en az 2 bağımsız kümede değilse tek_kaynak_uyarisi.
     - Tarih iddiası: yıl (ve iddiada varsa gün-ay) en az 2 bağımsız kümede değilse tek_kaynak_uyarisi.
     - Tarihsel yorum (dönüm noktası, belirleyici…): 2 bağımsız kümede tam destek yoksa tek_kaynak_uyarisi.
     - Aksi → dogrulanmis.
     """
-    degerler: dict[str, dict[int, set]] = {}
+    # Kümeler arası sayı çelişkisi yalnızca AYNI ölçü türü + AYNI taraf (özne kökü kesişimi) + AYNI olay (olay_id eşit
+    # ya da biri genel) için aranır: 'A ordusu 70.000' ile 'B ordusu 40.000' çelişki DEĞİLDİR. Tarafı
+    # belirsiz rakamlar karşılaştırılmaz. Değerler ayrı tutulur, ortalama alınmaz.
+    girdiler = []
     for k in kayitlar:
-        kumeler = {x["kume"] for x in k["kaynaklar"] if x["teyit_turu"] == "icerik" or x.get("sayi_teyidi")}
-        for s in k["sayilar"]:
-            if s["olcu_turu"] in ("ordu", "kayip") and kumeler:
-                degerler.setdefault(s["olcu_turu"], {}).setdefault(s["deger"], set()).update(kumeler)
-    celiskili = {}
-    for tur, d in degerler.items():
-        kumeler = set().union(*d.values()) if d else set()
-        if len(d) > 1 and len(kumeler) > 1:
-            celiskili[tur] = [{"deger": v, "kume": sorted(c)} for v, c in sorted(d.items())]
+        kumeler = {x["kume"] for x in k["kaynaklar"] if not x.get("sayilmadi")
+                   and (x["teyit_turu"] == "icerik" or x.get("sayi_teyidi"))}
+        for s_ in k["sayilar"]:
+            if s_["olcu_turu"] in ("ordu", "kayip") and s_.get("taraf") and kumeler:
+                girdiler.append((s_["olcu_turu"], set(s_["taraf"]), k.get("olay_id"), s_["deger"], kumeler))
+
+    def _celiski(k):
+        for s_ in k["sayilar"]:
+            if s_["olcu_turu"] not in ("ordu", "kayip") or not s_.get("taraf"):
+                continue
+            grup: dict[int, set] = {}
+            for tur, taraf, olay, deger, kumeler in girdiler:
+                if (tur == s_["olcu_turu"] and taraf & set(s_["taraf"])
+                        and (olay == k.get("olay_id") or "olay_genel" in (olay, k.get("olay_id")))):
+                    grup.setdefault(deger, set()).update(kumeler)
+            tum = set().union(*grup.values()) if grup else set()
+            if len(grup) > 1 and len(tum) > 1:
+                return s_["olcu_turu"], [{"deger": v, "kume": sorted(c)} for v, c in sorted(grup.items())], sorted(s_["taraf"])
+        return None
     for k in kayitlar:
-        icerik = [x for x in k["kaynaklar"] if x["teyit_turu"] == "icerik"]
+        icerik = [x for x in k["kaynaklar"] if x["teyit_turu"] == "icerik" and not x.get("sayilmadi")]
         k["tek_kaynak_uyarisi"] = False
-        olcu = {s["olcu_turu"] for s in k["sayilar"]}
+        olcu = {s_["olcu_turu"] for s_ in k["sayilar"]}
         if not icerik:
             k["durum"] = "belirsiz"
             continue
-        c = [celiskili[t] for t in olcu if t in celiskili]
+        c = _celiski(k)
         if c:
             k["durum"] = "tartismali"
-            k["celiski"] = {"olcu_turleri": sorted(t for t in olcu if t in celiskili), "degerler": c[0],
+            k["celiski"] = {"olcu_turleri": [c[0]], "taraf": c[2], "degerler": c[1],
                             "kural": "ortalama alınmaz; değerler ayrı aktarılır"}
             k["celiski_notu"] = CELISKI_IFADESI
             continue

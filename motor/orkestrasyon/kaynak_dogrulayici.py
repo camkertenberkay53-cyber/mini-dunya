@@ -340,28 +340,80 @@ def varliklar(metin: str) -> list[str]:
     return list(dict.fromkeys(out))
 
 
-def _pencereler(metin: str) -> list[str]:
-    paragraflar = [re.sub(r"\s+", " ", p).strip() for p in re.split(r"\n+", metin) if len(p.strip()) > 30]
-    out = []
-    for p in paragraflar:
-        cumleler = re.split(r"(?<=[.!?])\s+", p)
-        if len(cumleler) <= 3:
-            out.append(p)
-        else:
-            out += [" ".join(cumleler[i:i + 3]) for i in range(0, len(cumleler) - 2)]
+class Pencere(str):
+    """Doğrulama penceresi (str). kaynakca: kaynakça/dipnot paragrafından mı. ocr: OCR rakam onarımı içeriyor mu.
+    orijinal: OCR onarımı öncesi özgün pencere metni (alıntı her zaman özgün metinden verilir)."""
+    kaynakca: bool = False
+    ocr: bool = False
+    orijinal: str | None = None
+
+
+_BIBLIYO_BASLIK = re.compile(r"^\s*(?:bibliyografya|bibliography|kaynakça|kaynakca|kaynaklar|references|notlar|notes|"
+                             r"dipnotlar|further reading)\s*:?\s*$", re.I)
+
+
+def _paragraflar(metin: str) -> list[tuple[str, bool]]:
+    """(paragraf, kaynakca_mi). Kaynakça başlığından ('BİBLİYOGRAFYA', 'References'…) sonraki kısa paragraflar da
+    kaynakça sayılır (bir sonraki uzun düzyazı paragrafına kadar)."""
+    from motor.orkestrasyon import iddia_atom as ia
+    out, bib = [], False
+    for ham in re.split(r"\n+", metin):
+        p = re.sub(r"\s+", " ", ham).strip()
+        if _BIBLIYO_BASLIK.match(p):
+            bib = True
+            continue
+        if len(p) <= 30:
+            continue
+        k = ia.kaynakca_mi(p)
+        if bib and not k and len(p) > 400:
+            bib = False   # başlıktan sonra uzun düzyazı: yeni madde başladı
+        out.append((p, k or bib))
     return out
+
+
+def _pencereler(metin: str) -> list[Pencere]:
+    out = []
+    for p, kaynakca in _paragraflar(metin):
+        cumleler = re.split(r"(?<=[.!?])\s+", p)
+        parcalar = [p] if len(cumleler) <= 3 else [" ".join(cumleler[i:i + 3]) for i in range(0, len(cumleler) - 2)]
+        for x in parcalar:
+            w = Pencere(x)
+            w.kaynakca = kaynakca
+            out.append(w)
+    return out
+
+
+def dogrulama_pencereleri(metin: str) -> tuple[list[Pencere], list[dict]]:
+    """Özgün metnin DOĞRULAMA KOPYASI üzerinden pencereler. OCR rakam onarımı (ı473 → 1473) yalnız bu kopyada yapılır;
+    uzunluk korunduğu için pencereler özgün metinle birebir eşleşir ve her pencere özgün halini `orijinal` olarak
+    taşır (boşluk sıkıştırması yüzünden pencere uzunluğu 1-2 karakter oynayabilir; sıra ve sayı aynıdır). Eşleşme
+    bozulursa OCR onarımı hiç kullanılmaz."""
+    from motor.orkestrasyon import iddia_atom as ia
+    kopya, duz = ia.ocr_rakam_normalize(metin)
+    oz = _pencereler(metin)
+    if not duz:
+        return oz, []
+    yeni = _pencereler(kopya)
+    if len(yeni) != len(oz) or any(abs(len(a) - len(b)) > 4 for a, b in zip(yeni, oz)):
+        return oz, []
+    for w, o in zip(yeni, oz):
+        w.ocr = str(w) != str(o)
+        w.orijinal = str(o)
+    return yeni, duz
 
 
 def icerik_dogrula(metin: str, iddia: dict) -> dict:
     """iddia: {'metin', 'yillar'?, 'olay_terimleri'?, 'varliklar'?}. Atomik değerlendirme (iddia_atom): yalnızca
-    `supported` → verified. Eski alanlar (year/event/entity/number/content_match) geriye dönük uyum için korunur."""
+    `supported` → verified. Eski alanlar (year/event/entity/number/content_match) geriye dönük uyum için korunur.
+    Özgün metin değişmez; OCR onarımı yalnızca doğrulama kopyasındadır (bkz. dogrulama_pencereleri)."""
     from motor.orkestrasyon import iddia_atom as ia
-    r = ia.degerlendir(_pencereler(metin), iddia)
+    pencereler, duz = dogrulama_pencereleri(metin or "")
+    r = ia.degerlendir(pencereler, iddia)
     at = r["atomlar"]
     if not r["supporting_excerpt"] and not at:
         neden = "metin_bos"
     elif r["destek_sinifi"] == "supported":
-        neden = "uyumlu"
+        neden = "uyumlu" + ("; ocr_onarimina_bagli" if r.get("ocr_bagimli") else "")
     else:
         eksik = [k for k, v in at.items() if v is False] + ([] if r["icerik_orani"] >= ia.ICERIK_ESIGI else ["content_match"])
         neden = f"destek={r['destek_sinifi']}" + (f"; eksik: {','.join(eksik)}" if eksik else "") + (
@@ -372,7 +424,9 @@ def icerik_dogrula(metin: str, iddia: dict) -> dict:
             "year_match": at.get("yil"), "event_match": at.get("olay"), "entity_match": at.get("varlik"),
             "number_match": at.get("sayi"), "content_score": r["icerik_orani"],
             "content_match": r["icerik_orani"] >= ia.ICERIK_ESIGI,
-            "supporting_excerpt": r["supporting_excerpt"], "neden": neden}
+            "supporting_excerpt": r["supporting_excerpt"], "neden": neden,
+            "kaynakca_penceresi": r.get("kaynakca_penceresi", False), "ocr_duzeltmeli": r.get("ocr_duzeltmeli", False),
+            "ocr_bagimli": r.get("ocr_bagimli", False), "ocr_duzeltme_sayisi": len(duz)}
 
 
 # ------------------------------------------------------------------ kaynak politikası (SSRF'den AYRI katman)
