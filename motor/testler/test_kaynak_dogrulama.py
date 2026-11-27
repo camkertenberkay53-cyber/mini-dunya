@@ -880,7 +880,7 @@ def test_canli_dry_run_yalnizca_elle_tetiklenir():
     tetik = wf.get("on", wf.get(True))
     assert tetik["workflow_dispatch"]["inputs"]["canli_dry_run"]["default"] is False
     adim = next(a for a in wf["jobs"]["kanit"]["steps"] if a.get("name", "").startswith("5) Canlı dry-run"))
-    assert "workflow_dispatch" in adim["if"] and "canli_dry_run" in adim["if"] and adim["timeout-minutes"] == 6
+    assert "workflow_dispatch" in adim["if"] and "canli_dry_run" in adim["if"] and adim["timeout-minutes"] == 10   # Faz-61b: uzun 360 + Shorts 90 + keşif ~20 ≈ 470 sn
     assert "OPENALEX_API_KEY" in adim["env"]
 
 

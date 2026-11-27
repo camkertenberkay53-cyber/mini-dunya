@@ -97,7 +97,7 @@ jobs:
       - name: 5) Canlı dry-run (yalnızca elle) — Kaynak Keşfi → Canlı Doğrulama → Gemini → Kapı
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.canli_dry_run }}
         continue-on-error: true
-        timeout-minutes: 6   # API yavaşlasa bile iş akışı asılı kalmaz (Gemini bütçeleri: uzun 210 sn, Shorts 90 sn)
+        timeout-minutes: 10  # API yavaşlasa bile iş akışı asılı kalmaz (Gemini bütçeleri: uzun 360 sn, Shorts 90 sn; keşif ~20 sn → ~470 sn)
         env:
           # Anahtar seçimi yalnızca bu adımda: önce GEMINI_DRYRUN_KEY (bot.yml kotasından ayrı), yoksa GEMINI_API_KEY.
           GEMINI_DRYRUN_KEY: ${{ secrets.GEMINI_DRYRUN_KEY }}
