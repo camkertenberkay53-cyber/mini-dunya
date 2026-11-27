@@ -82,7 +82,7 @@ jobs:
           hedef="$HOME/.config/blender/5.3/extensions/user_default/mpfb"
           mkdir -p "$(dirname "$hedef")"
           rm -rf "$hedef" && cp -r "$d/src/mpfb" "$hedef" && rm -rf "$d"
-          python3 -c "import addon_utils, bpy; addon_utils.enable('bl_ext.user_default.mpfb', default_set=True); import importlib; importlib.import_module('bl_ext.user_default.mpfb.services.humanservice'); print('MPFB etkin')"
+          python3 -c "import bpy; import addon_utils; addon_utils.enable('bl_ext.user_default.mpfb', default_set=True); import importlib; importlib.import_module('bl_ext.user_default.mpfb.services.humanservice'); print('MPFB etkin')"
 
       - name: Ses modelleri önbelleği (Piper fahrettin + Whisper base)
         uses: actions/cache@v4
