@@ -463,9 +463,34 @@ Kayıtlar:
 Yalnızca JSON: {{"mod": "{mod}", "birimler": [{{"id","bolum","metin","dayanak_ids":[...],"kesinlik"}}]}}"""
 
 
+SHORTS_HEDEF_SN = (52, 58)   # Faz-61: kapı sınırı 50–60 sn; plan bandın ortasını hedefler
+
+
+def gecerli_dayanak_ids(havuz: dict) -> list[str]:
+    """Kapının (`_dayanak_kontrol`) kabul ettiği dayanak kimlikleri: araştırma havuzundaki KAYIT kimlikleri."""
+    return [k["id"] for k in (havuz or {}).get("kayitlar", []) if isinstance(k, dict) and k.get("id")]
+
+
+def _dayanak_kurali(havuz: dict) -> str:
+    ids = gecerli_dayanak_ids(havuz)
+    liste = ", ".join(ids[:80]) + (f" … (+{len(ids) - 80})" if len(ids) > 80 else "")
+    return (f"ZORUNLU dayanak_ids KURALI: sahneler[*].dayanak_ids yalnızca araştırma havuzundaki geçerli kayıt "
+            f"kimliklerini içerir: [{liste}]. Anlatı birimi kimlikleri (birim_001, birim_002 …) dayanak DEĞİLDİR, "
+            f"asla yazma; bir birimin dayanağı için o birimin kendi dayanak_ids listesini kullan.")
+
+
+def _shorts_sure_kurali() -> str:
+    lo, hi = kurallar()["shorts"]["toplam_sn"]
+    a, b = SHORTS_HEDEF_SN
+    return (f"ZORUNLU SÜRE KURALI: sahneler[*].sure_sn toplamı KESİNLİKLE {a}–{b} sn olmalı (kapı sınırı {lo}–{hi} sn; "
+            f"bandın ortasını hedefle). JSON'u yazmadan önce sure_sn değerlerini topla ve kontrol et.")
+
+
 def _istem_plan(konu: str, mod: str, havuz: dict, anlati: dict) -> str:
     R, K = kurallar()[mod], kurallar()["enumlar"]
     return f"""Konu: "{konu}". Mod: {mod} ({R['format']['en_boy']}). Anlatı birimlerinden sahne planı çıkar.
+{_dayanak_kurali(havuz)}
+{_shorts_sure_kurali() if mod == 'shorts' else ''}
 Toplam {R['toplam_sn'][0]}–{R['toplam_sn'][1]} sn. Sahne süresi: {'6–12 sn (6 vurgu, 8 normal, 10–12 atmosfer; <6 yalnızca ritim=vurgu; >12 yalnızca harita+kritik_harita ≤20)' if mod == 'uzun' else '2–10 sn'}.
 Süre doldurmak için sahne çoğaltma; her sahne yeni bilgi ya da dramatik katkı (katki) sunar.
 Görsel türleri {K['gorsel_tur']}: dinamik hedef ~%40 harita, ~%40 gorsel25d, ~%20 sahne3d; aynı tür en fazla 2 sahne üst üste.
@@ -516,11 +541,49 @@ def _onarim_baglami(hatalar: list[dict], mevcut: dict, sinir: int = 30000) -> st
     return metin[:sinir]
 
 
-def _istem_onarim(adim: str, hatalar: list[dict], mevcut: dict) -> str:
+def _onarim_ipuclari(hatalar: list[dict], mevcut: dict, havuz: dict | None, mod: str | None,
+                     anlati: dict | None) -> str:
+    """Hata koduna göre hedefli onarım ipuçları (Faz-61): geçersiz dayanakta geçerli havuz kimlikleri ve birim →
+    dayanak eşlemesi; toplam süre hatasında mevcut toplam ve hedef aralık."""
+    satirlar = []
+    kodlar = {h.get("kod") for h in hatalar}
+    if kodlar & {"dayanak_yok", "dayanaksiz"} and havuz is not None:
+        satirlar.append(_dayanak_kurali(havuz))
+        birimler = {b.get("id"): b.get("dayanak_ids") for b in ((anlati or {}).get("birimler") or [])
+                    if isinstance(b, dict)}
+        gecerli = set(gecerli_dayanak_ids(havuz))
+        eslesme = []
+        for i, sn in enumerate((mevcut or {}).get("sahneler") or []):
+            for x in (sn.get("dayanak_ids") or []) if isinstance(sn, dict) else []:
+                if x not in gecerli and x in birimler:
+                    hedef = [d for d in (birimler[x] or []) if d in gecerli]
+                    if hedef:
+                        eslesme.append(f"sahneler[{i}]: {x} → {hedef}")
+        if eslesme:
+            satirlar.append("Anlatı birimi kimliği yazılmış sahneler; o birimin geçerli dayanakları: " + "; ".join(eslesme[:40]))
+    if "toplam_sure" in kodlar and isinstance(mevcut, dict):
+        try:
+            toplam = sum(float(x["sure_sn"]) for x in mevcut.get("sahneler") or [])
+        except (KeyError, TypeError, ValueError):
+            toplam = None
+        m = mod or mevcut.get("mod")
+        if m in kurallar() and "toplam_sn" in kurallar()[m]:
+            lo, hi = kurallar()[m]["toplam_sn"]
+            hedef = f"; {SHORTS_HEDEF_SN[0]}–{SHORTS_HEDEF_SN[1]} sn'yi hedefle" if m == "shorts" else ""
+            mevcut_t = f"{toplam:.0f} sn" if toplam is not None else "hesaplanamadı"
+            satirlar.append(f"SÜRE: mevcut toplam sure_sn = {mevcut_t}; hedef aralık {lo}–{hi} sn{hedef}. "
+                            f"Toplam bu aralığa girecek şekilde sure_sn değerlerini ayarla (sahne başı sınırları koru).")
+    return "\n".join(satirlar)
+
+
+def _istem_onarim(adim: str, hatalar: list[dict], mevcut: dict, havuz: dict | None = None, mod: str | None = None,
+                  anlati: dict | None = None) -> str:
     satir = "\n".join(f"- {h['yol']}: {h['mesaj']}" for h in hatalar[:60])
+    ipucu = _onarim_ipuclari(hatalar, mevcut, havuz, mod, anlati)
     return f"""{ONARIM_TALIMATI}
 Adım: {adim}. Yalnızca şu yollardaki geçersiz alanları düzelt; başka hiçbir alanı değiştirme:
 {satir}
+{ipucu}
 Hatalı alanları içeren nesnelerin güncel hali (yalnızca bağlam için; listelenmeyen alanları değiştirme):
 {_onarim_baglami(hatalar, mevcut)}
 Yanıt yalnızca JSON yaması: {{"duzeltmeler": [{{"yol": "<yukarıdaki yollardan biri ya da altı>", "deger": <yeni değer>}}]}}"""
@@ -583,7 +646,8 @@ def _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler, ilk_ure
             tur = "tam_uretim"
         else:              # hedefli onarım: yalnızca hatalı yollar
             izinli = sorted({h["yol"] for h in hatalar if h["yol"]})
-            ham = saglayici.tamamla(_istem_onarim(adim, hatalar, veri), "onarim",
+            ham = saglayici.tamamla(_istem_onarim(adim, hatalar, veri, baglam.get("havuz"), baglam.get("mod"),
+                                                  baglam.get("anlati")), "onarim",
                                     dict(baglam, deneme=d, hedef_adim=adim, onarilacak_yollar=izinli, mevcut=veri, hatalar=hatalar))
             yama, perr = _cozumle(ham)
             red = []
