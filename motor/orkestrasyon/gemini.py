@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.request
@@ -113,7 +114,7 @@ class GeminiLLMProvider(LLMProvider):
                 try:
                     kod, metin = self.tasiyici(API.format(model=model), self._govde(istem, model), basliklar, zaman)
                 except Exception as e:   # ağ hatası / zaman aşımı: mesaj maskelenir
-                    sorunlar.append(f"{model}: ag_hatasi {type(e).__name__}: {self._maskele(str(e))[:160]}")
+                    sorunlar.append(f"{model}: ag_hatasi {type(e).__name__}: {self._maskele(str(e))[:300]}")
                     self._log(f"✗ {etiket} model={model} {type(e).__name__} ({self.saat() - t0:.1f}s)")
                     if tekrar < self.en_cok_tekrar:
                         self.uyku(2 ** tekrar)
@@ -139,7 +140,7 @@ class GeminiLLMProvider(LLMProvider):
                     self.uyku(min(30, 5 * (tekrar + 1)))
                     tekrar += 1
                     continue
-                sorunlar.append(f"{model}: HTTP {kod} {self._maskele(metin)[:160]}")
+                sorunlar.append(f"{model}: HTTP {kod} {self._maskele(re.sub(r"\s+", " ", metin))[:400]}")
                 break
         raise GercekUretimHatasi(self._maskele("Gemini çağrısı başarısız (mock'a geçilmez): " + " | ".join(sorunlar)))
 

@@ -307,11 +307,26 @@ def _sayilar(cumle: str) -> list[dict]:
     return out
 
 
+_KISALTMA = re.compile(r"(?:\b[IVXLC]{1,6}|\b(?:St|Dr|Prof|vb|vs|Hz|bkz|yy|ö|M\.Ö|M\.S|c|ca|cf|no|Bk|Sl|ed|trans|vol|pp))\.$")
+
+
+def _cumleler(metin: str) -> list[str]:
+    """Cümle bölme: "II. Mehmed", "Hz. Ali", "M.Ö." gibi kısaltma/romen rakamı noktalarında bölmez."""
+    parcalar = re.split(r"(?<=[.!?])\s+(?=[A-ZÇĞİÖŞÜ0-9\"“])", re.sub(r"\s+", " ", metin))
+    out = []
+    for p in parcalar:
+        if out and _KISALTMA.search(out[-1]):
+            out[-1] = out[-1] + " " + p
+        else:
+            out.append(p)
+    return out
+
+
 def iddialari_cikar(kaynak: dict, en_cok: int = 60) -> list[dict]:
     """Ana madde metninden yıl ya da sayı içeren cümleler (deterministik). Her biri tek iddia."""
     metin = kaynak.get("metin") or ""
     out = []
-    for c in re.split(r"(?<=[.!?])\s+(?=[A-ZÇĞİÖŞÜ0-9])", re.sub(r"\s+", " ", metin)):
+    for c in _cumleler(metin):
         c = c.strip()
         if not 40 <= len(c) <= 400:
             continue

@@ -876,3 +876,10 @@ def test_canli_dry_run_yalnizca_elle_tetiklenir():
     adim = next(a for a in wf["jobs"]["kanit"]["steps"] if a.get("name", "").startswith("5) Canlı dry-run"))
     assert "workflow_dispatch" in adim["if"] and "canli_dry_run" in adim["if"] and adim["timeout-minutes"] == 6
     assert "OPENALEX_API_KEY" in adim["env"]
+
+
+def test_cumle_bolme_roma_rakami_ve_kisaltmada_bolmez():
+    m = ("Otlukbeli Muharebesi, 11 Ağustos 1473 tarihinde Osmanlı padişahı II. Mehmed ile Uzun Hasan arasında yapıldı. "
+         "Hz. Ali dönemine atıf yapan kaynaklar M.Ö. tarihleri vermez. Ertesi yıl barış konuşuldu.")
+    c = kk._cumleler(m)
+    assert c[0].endswith("arasında yapıldı.") and "II. Mehmed" in c[0] and len(c) == 3
