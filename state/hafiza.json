@@ -650,6 +650,9 @@
   ],
   "2026-11-26": [
    "fikir"
+  ],
+  "2026-11-27": [
+   "fikir"
   ]
  },
  "en_bolumler": [
@@ -773,79 +776,9 @@
  "oynatma_en": {
   "Mini World · Season 1": "PLIvGBQws7jrw"
  },
- "_gun": 8,
+ "_gun": 9,
  "fikir_havuzu": {
   "tr": {
-   "2026-11-25": {
-    "sabah": {
-     "slot": "sabah",
-     "ad": "Mıknatıs Kutbu Karmaşası",
-     "ana_karakter": "bulut",
-     "mekan": "buzdolabi",
-     "nesne": "mıknatıs",
-     "tehlike": "ışığın kapanması",
-     "mekanizma": "yeni icat",
-     "ilk_saniye": "Dev mıknatısın metal rafa 'ÇANK!' diye yapışmasıyla çıkan devasa titreşim.",
-     "problem": "Işıklar sönünce Nil'in çizdiği rotadaki pusula mıknatıs yüzünden ters dönmeye başlar.",
-     "surpriz": "Mıknatıs aslında buzdolabı kapağının sensörünü şaşırtmaktadır.",
-     "cozum": "Bulut mıknatısı ters çevirip raf metaline sabitleyerek yönü manuel hesaplar.",
-     "final": "Pusulasız da yön bulunabileceği kanıtlanır.",
-     "final_turu": "tatmin",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    },
-    "oglen": {
-     "slot": "oglen",
-     "ad": "Ataş Frenli Kızak",
-     "ana_karakter": "tuna",
-     "mekan": "buzdolabi",
-     "nesne": "ataş",
-     "tehlike": "kaygan yüzey",
-     "mekanizma": "yarış",
-     "ilk_saniye": "Ataşın buz yüzeyini kıvılcımlar saçarak çizmesi.",
-     "problem": "Buz küpü kızağı donmuş sebzelik rafında aşırı hızlanıp uçuruma yaklaşır.",
-     "surpriz": "Ataş buz yüzeyine saplanarak harika bir çapa görevi görür.",
-     "cozum": "Tuna ataşı buza saplayıp kızağı uçurumun kenarında 180 derece döndürür.",
-     "final": "Yarışı tam uçurum kenarında durarak kazanırlar.",
-     "final_turu": "tatmin",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    },
-    "aksam": {
-     "slot": "aksam",
-     "ad": "Lastik Bant Fırlatışı",
-     "ana_karakter": "nil",
-     "mekan": "buzdolabi",
-     "nesne": "lastik bant",
-     "tehlike": "rüzgâr/vantilatör",
-     "mekanizma": "hayatta kalma",
-     "ilk_saniye": "Buzdolabı kapağının kapanırken oluşturduğu devasa hava akımı.",
-     "problem": "Hava akımı ekibi geriye savurur, Nil'in harita rulosu elinden uçar.",
-     "surpriz": "Benek'in parıldayan kanatları rüzgarda yön gösteren bir deniz fenerine dönüşür.",
-     "cozum": "Nil lastik bantı kapı kolunun iç kısmına takıp kendilerini dışarı doğru sapanla fırlatır.",
-     "final": "Dışarıdaki sıcak havaya ulaşmanın heyecanı kaplar.",
-     "final_turu": "tatmin",
-     "yenilik_puani": 8,
-     "izlenme_potansiyeli": 9
-    },
-    "gece": {
-     "slot": "gece",
-     "ad": "Gece Yarısı Şeker Baskını",
-     "ana_karakter": "pire",
-     "mekan": "tezgah",
-     "nesne": "şeker",
-     "tehlike": "evcil hayvanın yaklaşması",
-     "mekanizma": "gizli bölge",
-     "ilk_saniye": "Dev bir kedi patisinin tezgahın kenarına gürültüyle koyulması.",
-     "problem": "Pire gece tatlı krizine girip tezgahtaki şeker küpüne tırmanırken kedinin dikkatini çeker.",
-     "surpriz": "Kedi şeker küpünden ziyade Pire'nin arkasındaki gölgeyle oynamak ister.",
-     "cozum": "Tuna bozuk parayı tezgahta yuvarlayıp kedinin dikkatini başka yöne çeker.",
-     "final": "Pire cebinde tek bir şeker kristaliyle yatağına döner.",
-     "final_turu": "komik",
-     "yenilik_puani": 9,
-     "izlenme_potansiyeli": 9
-    }
-   },
    "2026-11-26": {
     "sabah": {
      "slot": "sabah",
@@ -984,6 +917,76 @@
      "final_turu": "komik",
      "yenilik_puani": 8,
      "izlenme_potansiyeli": 8
+    }
+   },
+   "2026-11-28": {
+    "sabah": {
+     "slot": "sabah",
+     "ad": "Kürdan Kayalıklarında Panik",
+     "ana_karakter": "nil",
+     "mekan": "cekmece",
+     "nesne": "kürdan",
+     "tehlike": "yiyeceklerin düşmesi",
+     "mekanizma": "yanlış anlaşılma",
+     "ilk_saniye": "Dev kürdanlar birer birer dominolar gibi kameranın önüne devrilir.",
+     "problem": "Yukarıdaki bölmeden dökülen pirinç taneleri kürdan kulesini yıkar; Benek pirinç çığının altında kalıp kaybolur.",
+     "surpriz": "Benek aslında pirinçlerin altında değil, dev bir düğmeyle korunan sığınaktadır.",
+     "cozum": "Nil pirinçlerin ağırlık merkezini hesaplayıp ekibe güvenli kazı alanı gösterir.",
+     "final": "Sığınak boş çıkar ama Benek'in oraya sığındığı kesinleşir.",
+     "final_turu": "sasirtici",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "oglen": {
+     "slot": "oglen",
+     "ad": "24 Saatlik Ataş Dengesi",
+     "ana_karakter": "pire",
+     "mekan": "cekmece",
+     "nesne": "ataş",
+     "tehlike": "büyük bir titreşim",
+     "mekanizma": "yarış",
+     "ilk_saniye": "Pire dev bir ataşın tepesinde tek ayağı üzerinde durmaya çalışırken rüzgâr çığlıkları atar.",
+     "problem": "Pire dev ataşın üzerinde en uzun süre durma iddiasına girer fakat çekmecenin titreşimiyle ataş sallanmaya başlar.",
+     "surpriz": "Ataş sallandıkça altındaki gizli boşluktan tatlı bir bal damlası sızar.",
+     "cozum": "Pire dengesini kaybetmemek için lastik banttan bir emniyet kemeri uydurur.",
+     "final": "Pire iddiayı kazanır ama ataşın üstünde başı dönerek bayılır.",
+     "final_turu": "komik",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
+    },
+    "aksam": {
+     "slot": "aksam",
+     "ad": "Düğme Kulesindeki Buluşma",
+     "ana_karakter": "tuna",
+     "mekan": "cekmece",
+     "nesne": "düğme",
+     "tehlike": "büyük bir nesnenin yuvarlanması",
+     "mekanizma": "kurtarma",
+     "ilk_saniye": "Tuna aceleyle ileri atılacakken elini kaldırıp arkadakilere 'Durun ve bekleyin' der.",
+     "problem": "Benek yuvarlanan dev bir bilyenin arkasında mahsur kalmıştır, acele bir hareket bilyeyi kaydırabilir.",
+     "surpriz": "Tuna'nın beklemesi sayesinde Bulut arkadan dolanıp bilyeyi düğmeyle takozlayabilir.",
+     "cozum": "Tuna ekibin düğme takozunu yerleştirmesini sabırla izler ve işareti verince Benek'i çeker.",
+     "final": "Benek kurtulur ve ekibin üzerine neşeyle tırmanır.",
+     "final_turu": "tatmin",
+     "yenilik_puani": 8,
+     "izlenme_potansiyeli": 8
+    },
+    "gece": {
+     "slot": "gece",
+     "ad": "Gölge Tiyatrosu",
+     "ana_karakter": "bulut",
+     "mekan": "cekmece",
+     "nesne": "pil",
+     "tehlike": "işığın kapanması",
+     "mekanizma": "yeni icat",
+     "ilk_saniye": "Çekmece duvarında dev canavar gölgeleri dans eder.",
+     "problem": "Bulut pil ve küçük kabloyla gece lambası yapar ama devasa gölgeler Pire'yi korkutur.",
+     "surpriz": "Canavar gölgesi sadece Benek'in anteninin gölgesidir.",
+     "cozum": "Bulut ışığın açısını değiştirerek gölge oyunu tiyatrosuna çevirir.",
+     "final": "Tüm ekip gece yarısı patlamış ekmek kırıntısı yiyerek gölge oyunu izler.",
+     "final_turu": "komik",
+     "yenilik_puani": 9,
+     "izlenme_potansiyeli": 9
     }
    }
   },
