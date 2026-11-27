@@ -22,12 +22,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import urllib.parse
 from abc import ABC, abstractmethod
 
-from motor.orkestrasyon.kaynak_dogrulayici import (_YIL, GuvenliIstemci, KaynakDogrulayici, _katla, html_metin,
-                                                   url_gizle, varliklar)
+from motor.orkestrasyon.kaynak_dogrulayici import (_YIL, YONTEM, GuvenliIstemci, KaynakDogrulayici, _katla, html_metin,
+                                                   icerik_dogrula, url_gizle, varliklar)
 
 ONCELIK = {"birincil_arsiv": 4, "akademik": 3, "ansiklopedi": 2, "genel_web": 1}
 CELISKI_IFADESI = "kaynaklar farklı rakamlar aktarmaktadır"
@@ -158,6 +159,84 @@ class WikipediaKesif(KaynakKesifSaglayici):
         return list(tekil.values())
 
 
+class OpenAlexKesif(KaynakKesifSaglayici):
+    """OpenAlex (CC0 akademik meta veri): Wikipedia'dan BAĞIMSIZ akademik kaynak kümesi.
+
+    - Yayın başlığı ve özeti (abstract_inverted_index'ten yeniden kurulur) API metni olarak kullanılır. Özet,
+      sayfa getirilmeden doğrudan bağlamsal doğrulamaya girer (`api_metni: true`).
+    - Açık erişimli PDF bağlantısı varsa aday olarak eklenir. Bu PDF SSRF korumalı getirilir ve pypdf ile okunur.
+    - Anahtar: Şubat 2026'dan beri OpenAlex API anahtarı istiyor (ücretsiz, 0 TL). `OPENALEX_API_KEY` ortam
+      değişkeni varsa kullanılır. Yoksa anahtarsız denenir; anahtarsız günlük bütçe çok küçüktür. Anahtar yalnızca
+      ortamdan okunur; kaynak URL'lerine ve loglara yazılmaz (url_gizle sorgu değerlerini gizler).
+    - 401/403/429 alınırsa sessizce değil, `log` alanında açıkça atlanır; keşif durmaz.
+    - Konuyla ilgisiz yayınlar elenir: başlıkta ya da özette konu/ipucu terimi geçmelidir.
+    """
+    ad = "openalex"
+    API = "https://api.openalex.org/works"
+
+    def __init__(self, istemci: GuvenliIstemci | None = None, en_cok: int = 8):
+        self.istemci = istemci or GuvenliIstemci()
+        self.en_cok = en_cok
+        self.log: list[str] = []
+
+    @staticmethod
+    def ozet_kur(ters: dict | None) -> str:
+        if not isinstance(ters, dict):
+            return ""
+        konum = [(i, w) for w, yer in ters.items() for i in (yer or []) if isinstance(i, int)]
+        return " ".join(w for _, w in sorted(konum))
+
+    def kesfet(self, konu: str, ipuclari: list[str] | tuple = ()) -> list[dict]:
+        sorgular = list(dict.fromkeys([konu] + [i for i in ipuclari if i]))[:2]
+        terimler = {_katla(w)[:5] for q in sorgular for w in re.findall(r"\w+", q) if len(w) >= 4}
+        terimler -= {"savas", "battl", "muhar", "harbi"}   # genel olay sözcükleri tek başına ilgi kanıtı değil
+        anahtar = os.environ.get("OPENALEX_API_KEY", "").strip()
+        out, gor = [], set()
+        for q in sorgular:
+            p = {"search": q, "per_page": str(self.en_cok),
+                 "select": "id,display_name,publication_year,doi,abstract_inverted_index,primary_location,open_access,language"}
+            if anahtar:
+                p["api_key"] = anahtar
+            url = self.API + "?" + urllib.parse.urlencode(p)
+            try:
+                y = self.istemci.getir(url)
+            except Exception as e:
+                self.log.append(f"openalex: {type(e).__name__}: {str(e)[:100]}")
+                continue
+            if y.durum != 200:
+                self.log.append(f"openalex: HTTP {y.durum} ({'API anahtarı/bütçe gerekebilir' if y.durum in (401, 403, 429) else 'atlandı'})")
+                continue
+            try:
+                isler = json.loads(y.govde.decode("utf-8")).get("results", [])
+            except (ValueError, AttributeError):
+                self.log.append("openalex: yanit_bicimi")
+                continue
+            for w in isler:
+                wid = str(w.get("id", "")).rsplit("/", 1)[-1]
+                if not wid or wid in gor:
+                    continue
+                baslik = w.get("display_name") or ""
+                ozet = self.ozet_kur(w.get("abstract_inverted_index"))
+                metin = (baslik + ". " + ozet).strip()
+                if not any(t in _katla(metin) for t in terimler):
+                    continue   # konu dışı yayın
+                gor.add(wid)
+                pl = w.get("primary_location") or {}
+                kaynak = (pl.get("source") or {}) if isinstance(pl, dict) else {}
+                yay = kaynak.get("display_name") or kaynak.get("host_organization_name") or (w.get("doi") or "openalex")
+                kurl = w.get("doi") or f"https://openalex.org/{wid}"
+                out.append({"id": f"oa_{wid}", "url": kurl, "baslik": baslik, "yayinci": f"openalex:{yay}",
+                            "tur": "akademik", "oncelik": ONCELIK["akademik"], "metin": metin if ozet else "",
+                            "api_metni": bool(ozet), "aday": True, "yil": w.get("publication_year"),
+                            "kesif": "OpenAlex özeti" if ozet else "OpenAlex (özet yok)"})
+                oa = (w.get("open_access") or {}).get("oa_url") or (pl.get("pdf_url") if isinstance(pl, dict) else None)
+                if oa and str(oa).lower().split("?")[0].endswith(".pdf"):
+                    out.append({"id": "web_" + hashlib.sha1(oa.encode()).hexdigest()[:10], "url": oa, "baslik": baslik,
+                                "yayinci": f"openalex:{yay}", "tur": "akademik", "oncelik": ONCELIK["akademik"],
+                                "aday": True, "kesif": f"oa_{wid} açık erişim PDF"})
+        return out
+
+
 # ------------------------------------------------------------------ bağımsızlık
 
 def _zincirler(metin: str, n: int = 5) -> set:
@@ -251,13 +330,13 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
     """Kaynaklar + iddialar → planlayıcının araştırma biçiminde havuz (statüler işaretli). LLM kullanılmaz."""
     ilerleme = ilerleme or (lambda *a: None)
     ilerleme("kaynak_dogrulama", f"{len(kaynaklar)} kaynak sayfası paralel getiriliyor (SSRF korumalı)")
-    sayim = dogrulayici.onden_getir([k["url"] for k in kaynaklar])
+    sayim = dogrulayici.onden_getir([k["url"] for k in kaynaklar if not k.get("api_metni")])
     ilerleme("kaynak_dogrulama", f"sayfalar getirildi: {sayim}")
     olay_terimleri = olay_terimleri or [w for w in re.findall(r"\w+", konu) if len(w) >= 4]
     # aday dış kaynaklar canlı (SSRF korumalı) getirilir; metni olanlar hem bağımsızlık (kopya tespiti) hem de
     # kendi iddiaları (farklı rakamlar → çelişki) için kullanılır
     for k in kaynaklar:
-        if k.get("aday") and not k.get("metin"):
+        if k.get("aday") and not k.get("metin") and not k.get("api_metni"):
             sinif, kod, metin, neden = dogrulayici.sayfa(k["url"])
             k["erisim"] = {"durum": sinif, "http_status": kod, "neden": neden}
             if sinif == "ok":
@@ -285,7 +364,11 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
         sorgu = {"metin": idd["metin"], "yillar": idd["yillar"], "varliklar": idd["varliklar"], "olay_terimleri": olay_terimleri}
         destek = []
         for k in ana + adaylar:
-            d = dogrulayici.dogrula(k["url"], sorgu)   # sayfa bir kez getirilir (önbellek), iddia yerelde denetlenir
+            if k.get("api_metni"):   # API'den gelen metin (OpenAlex özeti): sayfa getirilmez, aynı bağlamsal kontrol
+                d = dict({"url": url_gizle(k["url"]), "http_status": 200, "verification_method": YONTEM},
+                         **icerik_dogrula(k["metin"], sorgu))
+            else:
+                d = dogrulayici.dogrula(k["url"], sorgu)   # sayfa bir kez getirilir (önbellek), iddia yerelde denetlenir
             # tarih teyidi: farklı dilde/kaynakta aynı yıl + kişi/yer + olay (içerik dili farklı olabilir)
             tarih_teyidi = (bool(idd["yillar"]) and d.get("year_match") and d.get("entity_match") and d.get("event_match") is not False
                             and d.get("number_match") is not False)

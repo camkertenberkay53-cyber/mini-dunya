@@ -619,6 +619,8 @@ def _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler, ilk_ure
 
 
 PARCA_SURE_SN = {"hook": 45, "baglam": 200, "catisma": 320, "donum_noktasi": 280, "sonuc": 205}   # ≈ 17,5 dk
+# Kota dostu parçalama: 5 bölüm 3 istekte üretilir (anlatı 3 + plan 3 istek; onarımlar hedefli)
+PARCA_GRUPLARI = [["hook", "baglam"], ["catisma"], ["donum_noktasi", "sonuc"]]
 
 
 def _paralel(fn, ogeler, en_cok_is: int = 5) -> list:
@@ -627,50 +629,49 @@ def _paralel(fn, ogeler, en_cok_is: int = 5) -> list:
         return list(ex.map(fn, ogeler))   # bir parçadaki LLMHatasi burada yükselir → adım durur (fallback yok)
 
 
-def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme, paralel=5):
-    sira = kurallar()[mod]["bolum_sirasi"]
-
-    def tek(bolum):
-        sn = PARCA_SURE_SN[bolum]
+def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme, paralel=3):
+    def tek(grup):
+        sn = sum(PARCA_SURE_SN[b] for b in grup)
         ist = _istem_anlati(konu, mod, havuz) + (
-            f"\nBU İSTEKTE YALNIZCA '{bolum}' bölümünü yaz (her birimde bolum='{bolum}'). Hedef: yaklaşık {sn} sn anlatım, "
-            f"yaklaşık {max(3, round(sn / 8.5))} birim. Diğer bölümleri yazma.")
-        ilerleme("gemini_cagri", f"anlati/{bolum} başlıyor")
-        return bolum, saglayici.tamamla(ist, "anlati", {"konu": konu, "mod": mod, "havuz": havuz, "bolum": bolum})
+            f"\nBU İSTEKTE YALNIZCA şu bölüm(ler)i yaz, bu sırayla: {', '.join(grup)} (her birimin bolum alanı bunlardan "
+            f"biri). Hedef: " + ", ".join(f"{b} ≈ {PARCA_SURE_SN[b]} sn / ≈ {max(3, round(PARCA_SURE_SN[b] / 8.5))} birim"
+                                          for b in grup) + ". Diğer bölümleri yazma.")
+        ilerleme("gemini_cagri", f"anlati/{'+'.join(grup)} başlıyor (≈{sn} sn)")
+        return grup, saglayici.tamamla(ist, "anlati", {"konu": konu, "mod": mod, "havuz": havuz, "bolumler": grup})
 
     def uret(deneme):
         birimler = []
-        for bolum, ham in _paralel(tek, sira, paralel):
+        for grup, ham in _paralel(tek, PARCA_GRUPLARI, paralel):
             v, _ = _cozumle(ham)
             if not isinstance(v, dict) or not isinstance(v.get("birimler"), list):
-                ilerleme("onay_kapisi", f"anlati/{bolum}: JSON çözümlenemedi")
-                return f"PARCA_JSON_HATASI anlati/{bolum}"
-            birimler += [dict(b, bolum=bolum) if isinstance(b, dict) else b for b in v["birimler"]]
+                ilerleme("onay_kapisi", f"anlati/{'+'.join(grup)}: JSON çözümlenemedi")
+                return f"PARCA_JSON_HATASI anlati/{'+'.join(grup)}"
+            birimler += [dict(b, bolum=b.get("bolum") if b.get("bolum") in grup else grup[0]) if isinstance(b, dict) else b
+                         for b in v["birimler"]]
         return json.dumps({"mod": mod, "birimler": birimler}, ensure_ascii=False)
     return uret
 
 
-def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme, paralel=5):
-    sira = kurallar()[mod]["bolum_sirasi"]
-
-    def tek(bolum):
-        alt = {"mod": mod, "birimler": [b for b in anlati["birimler"] if b.get("bolum") == bolum]}
+def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme, paralel=3):
+    def tek(grup):
+        alt = {"mod": mod, "birimler": [b for b in anlati["birimler"] if b.get("bolum") in grup]}
         ist = _istem_plan(konu, mod, havuz, alt) + (
-            f"\nBU İSTEKTE YALNIZCA '{bolum}' bölümünün sahnelerini üret (bütün plan değil). Bu bölümün toplamı yaklaşık "
-            f"{PARCA_SURE_SN[bolum]} sn olsun. Bölüm geçişinde aynı görsel türünün 3. kez üst üste gelmemesi için ilk ve son "
-            f"sahnelerde tür çeşitliliğine dikkat et.")
-        ilerleme("gemini_cagri", f"sahne_plani/{bolum} başlıyor ({len(alt['birimler'])} birim)")
-        return bolum, saglayici.tamamla(ist, "sahne_plani", {"konu": konu, "mod": mod, "havuz": havuz, "anlati": alt, "bolum": bolum})
+            f"\nBU İSTEKTE YALNIZCA şu bölüm(ler)in sahnelerini üret (bütün plan değil): {', '.join(grup)}. Toplam yaklaşık "
+            f"{sum(PARCA_SURE_SN[b] for b in grup)} sn. Parça sınırlarında aynı görsel türü 3. kez üst üste gelmesin "
+            f"(ilk ve son sahnelerde tür çeşitliliği).")
+        ilerleme("gemini_cagri", f"sahne_plani/{'+'.join(grup)} başlıyor ({len(alt['birimler'])} birim)")
+        return grup, saglayici.tamamla(ist, "sahne_plani", {"konu": konu, "mod": mod, "havuz": havuz, "anlati": alt, "bolumler": grup})
 
     def uret(deneme):
         sahneler, baslik = [], None
-        for bolum, ham in _paralel(tek, sira, paralel):
+        for grup, ham in _paralel(tek, PARCA_GRUPLARI, paralel):
             v, _ = _cozumle(ham)
             if not isinstance(v, dict) or not isinstance(v.get("sahneler"), list):
-                ilerleme("onay_kapisi", f"sahne_plani/{bolum}: JSON çözümlenemedi")
-                return f"PARCA_JSON_HATASI sahne_plani/{bolum}"
+                ilerleme("onay_kapisi", f"sahne_plani/{'+'.join(grup)}: JSON çözümlenemedi")
+                return f"PARCA_JSON_HATASI sahne_plani/{'+'.join(grup)}"
             baslik = baslik or v.get("baslik")
-            sahneler += [dict(x, bolum=bolum) if isinstance(x, dict) else x for x in v["sahneler"]]
+            sahneler += [dict(x, bolum=x.get("bolum") if x.get("bolum") in grup else grup[0]) if isinstance(x, dict) else x
+                         for x in v["sahneler"]]
         for i, x in enumerate(sahneler):   # parçalardaki kimlikler çakışabilir: birleşik planda yeniden numaralanır
             if isinstance(x, dict):
                 x["id"] = f"s{i + 1:03d}"
@@ -681,7 +682,7 @@ def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme, paralel=5):
 
 def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | None = None,
               uretime_gonder=None, arastirma: dict | None = None, parcali: bool = False, ilerleme=None,
-              paralel: int = 5) -> dict:
+              paralel: int = 3) -> dict:
     """parcali=True (yalnızca uzun mod): anlatı ve sahne planı bölüm bölüm PARALEL üretilir, birleştirilir ve
     birleşik plan aynı Validation Gate'ten geçer; onarım birleşik planda hedefli yapılır. ilerleme(asama, mesaj)."""
     ilerleme = ilerleme or (lambda *a: None)

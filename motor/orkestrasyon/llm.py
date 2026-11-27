@@ -144,8 +144,9 @@ class MockLLMProvider(LLMProvider):
         else:
             plan = [("hook", "mock_olay_4", 4), ("baglam", "mock_olay_1", 12), ("baglam", "mock_olay_2", 13),
                     ("catisma", "mock_olay_3", 40), ("donum_noktasi", "mock_olay_4", 30), ("sonuc", "mock_olay_5", 19)]
-        if b.get("bolum"):   # parçalı üretim: yalnızca istenen bölüm
-            plan = [x for x in plan if x[0] == b["bolum"]]
+        istenen = b.get("bolumler") or ([b["bolum"]] if b.get("bolum") else None)
+        if istenen:   # parçalı üretim: yalnızca istenen bölüm(ler)
+            plan = [x for x in plan if x[0] in istenen]
         birimler, n = [], 0
         for bolum, oid, adet in plan:
             ids = olay_kayit[oid]
@@ -153,7 +154,7 @@ class MockLLMProvider(LLMProvider):
                 kid = ids[j % len(ids)]
                 k = havuz[kid]
                 temkin = k["durum"] != "dogrulanmis"
-                etiket = f"{b.get('bolum', '')[:2].upper()}{_kod(n)}" if b.get("bolum") else _kod(n)
+                etiket = f"{bolum[:2].upper()}{_kod(n)}" if istenen else _kod(n)
                 metin = (f"{'Bazı kaynaklara göre ' if temkin else ''}{k['iddia']} "
                          f"Bu sahne {_ACILAR[n % len(_ACILAR)]} yönünü öne çıkarır [{etiket}].")
                 birimler.append({"id": f"b{n + 1:03d}", "bolum": bolum, "metin": metin, "dayanak_ids": [kid],

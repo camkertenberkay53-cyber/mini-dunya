@@ -19,7 +19,14 @@ import urllib.request
 from motor.orkestrasyon.llm import LLMHatasi, LLMProvider, MockLLMProvider
 
 API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-MODELLER = ("gemini-3.8-flash", "gemini-flash-latest", "gemini-3.7-flash")
+# Varsayılan: ücretsiz katmanda yüksek RPM/TPM'li hızlı model. Kullanımdan kalkmışsa (404) sıradaki denenir;
+# sıra GEMINI_MODELLER="m1,m2" ortam değişkeniyle değiştirilebilir. Model değiştirmek mock fallback DEĞİLDİR.
+MODELLER = ("gemini-2.5-flash", "gemini-flash-latest", "gemini-3.7-flash")
+
+
+def modeller() -> tuple[str, ...]:
+    e = os.environ.get("GEMINI_MODELLER", "").strip()
+    return tuple(m.strip() for m in e.split(",") if m.strip()) or MODELLER
 
 
 class GercekUretimHatasi(LLMHatasi):
@@ -39,16 +46,18 @@ class GeminiLLMProvider(LLMProvider):
     ad = "gemini"
     sentetik = False
 
-    def __init__(self, modeller=MODELLER, tasiyici=None, zaman_asimi: float = 90.0, uyku=time.sleep, en_cok_tekrar: int = 2,
-                 dusunme_butcesi: int | None = 1024, sure_butcesi: float | None = None, ilerleme=None, saat=time.monotonic):
+    def __init__(self, modeller=None, tasiyici=None, zaman_asimi: float = 90.0, uyku=time.sleep, en_cok_tekrar: int = 2,
+                 dusunme_butcesi: int | None = 1024, sure_butcesi: float | None = None, ilerleme=None, saat=time.monotonic,
+                 en_az_aralik: float = 0.0):
         """zaman_asimi: istek başına en çok bekleme (sn). dusunme_butcesi: thinking token sınırı (None → gönderilmez;
         model desteklemiyorsa 400 sonrası o model için kendiliğinden kapatılır). sure_butcesi: bu sağlayıcının bütün
-        çağrıları için toplam duvar saati sınırı (aşılırsa GercekUretimHatasi; asılı kalma yok)."""
+        çağrıları için toplam duvar saati sınırı (aşılırsa GercekUretimHatasi; asılı kalma yok). en_az_aralik: iki istek
+        başlangıcı arasında en az bekleme (sn) — ücretsiz katman dakika başı istek sınırını (429) korur."""
         anahtar = os.environ.get("GEMINI_API_KEY")
         if not anahtar or not anahtar.strip():
             raise GercekUretimHatasi("GEMINI_API_KEY tanımlı değil: gerçek üretim yapılamaz (mock'a geçilmez)")
         self.__anahtar = anahtar.strip()
-        self.modeller = tuple(modeller)
+        self.modeller = tuple(modeller) if modeller else globals()["modeller"]()
         self.tasiyici = tasiyici or _urllib_tasiyici
         self.zaman_asimi, self.uyku, self.en_cok_tekrar = zaman_asimi, uyku, en_cok_tekrar
         self.kullanilan_model: str | None = None
@@ -56,6 +65,8 @@ class GeminiLLMProvider(LLMProvider):
         self.dusunme_butcesi, self.sure_butcesi, self.ilerleme, self.saat = dusunme_butcesi, sure_butcesi, ilerleme, saat
         self._baslangic = saat()
         self._dusunmesiz: set[str] = set()
+        self.en_az_aralik = float(en_az_aralik)
+        self._son_istek: float | None = None
         import threading
         self._kilit = threading.Lock()
 
@@ -90,7 +101,12 @@ class GeminiLLMProvider(LLMProvider):
                     raise GercekUretimHatasi(self._maskele(f"Gemini süre bütçesi ({self.sure_butcesi:.0f} sn) doldu; "
                                                            f"üretim durduruldu (mock'a geçilmez): " + " | ".join(sorunlar)))
                 zaman = self.zaman_asimi if kalan is None else max(5.0, min(self.zaman_asimi, kalan))
-                with self._kilit:
+                with self._kilit:   # istek aralığı: paralel çağrılar da sıraya girer
+                    if self.en_az_aralik and self._son_istek is not None:
+                        bekle = self.en_az_aralik - (self.saat() - self._son_istek)
+                        if bekle > 0:
+                            self.uyku(bekle)
+                    self._son_istek = self.saat()
                     self.cagri_sayisi += 1
                 t0 = self.saat()
                 self._log(f"→ {etiket} model={model} deneme={tekrar + 1} zaman_asimi={zaman:.0f}s istem={len(istem)} kr")

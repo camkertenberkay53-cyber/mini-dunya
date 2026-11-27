@@ -117,3 +117,27 @@ konu başlığı
 | 54 | `motor/orkestrasyon`: LLMProvider arayüzü, MockLLMProvider, 6 katmanlı senaryo/sahne planlayıcısı, Validation Gate | Kodlandı (mock); gerçek sağlayıcı bekliyor |
 | 55 | Kaynak keşfi (Wikipedia TR/EN), SSRF/DNS korumalı canlı doğrulama, bağımsızlık + sayısal koruma, `GeminiLLMProvider` (sessiz mock fallback yok) | Kodlandı; ağsız testler zorunlu, canlı dry-run CI bilgi adımı |
 | Sonraki | Gerçek kaynak doğrulamanın genişletilmesi (akademik API), planın üretim hattına bağlanması, uzun format kurgu, ses tasarımı, zero-fail fallback, yükleme entegrasyonu | Planlanmadı |
+
+## 8. Operasyon notları (Faz-55)
+
+- **Canlı dry-run yalnızca elle:** Her push'ta ücretsiz Gemini kotası harcanmasın diye canlı dry-run otomatik
+  çalışmaz. Başlatmak için: Actions → "Faz53a gerçek görsel kanıtı" → Run workflow → `canli_dry_run = true`.
+  Zorunlu ağsız testler her push'ta çalışmaya devam eder.
+- **Gemini kotası paylaşılıyor:** `bot.yml` saat başı (`37 * * * *`) aynı `secrets.GEMINI_API_KEY` ile çalışır ve
+  aynı ücretsiz günlük kotayı kullanır. Dry-run'da 429 görülürse kota bot tarafından tüketilmiş olabilir. Dry-run'ı
+  bot'un yoğun olmadığı bir saatte tetikleyin ya da ayrı bir ücretsiz anahtar kullanın.
+- **Model:**
+  - Varsayılan model `gemini-2.5-flash`. Yanıt vermezse (404) sırasıyla `gemini-flash-latest` ve `gemini-3.7-flash`
+    denenir. Sıra `GEMINI_MODELLER="m1,m2"` ile değiştirilebilir. Model değiştirmek mock'a geçiş anlamına gelmez.
+  - Uzun mod 3 parçada üretilir: anlatı 3 istek, plan 3 istek. İstek başlangıçları arasında en az 3 sn bekleme var.
+    İstek başına en çok 90 sn beklenir. Süre bütçesi uzun mod için 150 sn, Shorts için 75 sn.
+- **OpenAlex** (bağımsız akademik küme):
+  - Şubat 2026'dan beri API anahtarı gerektiriyor. Anahtar ücretsizdir (openalex.org/settings/api), bu yüzden
+    0 TL kuralına uyar.
+  - İsteğe bağlı `secrets.OPENALEX_API_KEY` tanımlanabilir. Anahtar yoksa anahtarsız denenir; bu durumda günlük
+    bütçe çok küçüktür.
+  - Anahtar yalnızca ortamdan okunur; loglara ve kaynak URL'lerine yazılmaz.
+- **Wikidata** Wikimedia'ya aittir, yani Wikipedia ile aynı yayıncıdır. Bağımsız küme sayılmaz, o yüzden kaynak
+  kanalı olarak kullanılmadı.
+- **PDF:** Açık erişimli PDF'ler (en çok 3 MB, ilk 10 sayfa) `pypdf` ile yalıtılmış bir alt süreçte okunur. Bu
+  süreç bellek, CPU ve süre sınırıyla çalışır. Okunamayan PDF `unverified` sayılır; içeriği yanlış sayılmaz.

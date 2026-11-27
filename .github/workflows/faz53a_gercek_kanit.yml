@@ -5,6 +5,11 @@ name: Faz53a gerçek görsel kanıtı
 
 on:
   workflow_dispatch:
+    inputs:
+      canli_dry_run:
+        description: "Canlı dry-run (Wikipedia + OpenAlex + Gemini). Ücretsiz Gemini kotasını harcar; yalnızca elle."
+        type: boolean
+        default: false
   push:
     branches: [faz51-altyapi]
     paths:
@@ -44,7 +49,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libsndfile1 > /dev/null
           # sürümler yerel taban ortamıyla aynı (kaos/sinema regresyon tabanı bu ortamda kaydedildi)
-          pip install --quiet numpy==2.5.3 opencv-python-headless==5.0.0.93 pillow==12.3.0 pyyaml scipy soundfile psutil jsonschema pytest
+          pip install --quiet numpy==2.5.3 opencv-python-headless==5.0.0.93 pillow==12.3.0 pypdf==6.17.0 pyyaml scipy soundfile psutil jsonschema pytest
           python3 -c "import cv2, numpy; print('opencv', cv2.__version__, 'numpy', numpy.__version__)"
       - name: 1) Commons'tan otomatik toplama
         run: |
@@ -73,15 +78,21 @@ jobs:
           cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
           mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
           find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60
-      - name: 5) Canlı dry-run (bilgi; ağ + GEMINI_API_KEY varsa) — Kaynak Keşfi → Canlı Doğrulama → Gemini → Kapı
+      # Kota koruması: her push'ta ÇALIŞMAZ. Yalnızca Actions → "Run workflow" + canli_dry_run=true ile.
+      # Not: bot.yml saat başı (cron "37 * * * *") AYNI secrets.GEMINI_API_KEY ile çalışır ve aynı ücretsiz günlük kotayı
+      # paylaşır. Dry-run'ı bot'un yoğun olmadığı bir saatte tetikleyin; 429 görülürse kota bot tarafından tüketilmiş olabilir.
+      - name: 5) Canlı dry-run (yalnızca elle) — Kaynak Keşfi → Canlı Doğrulama → Gemini → Kapı
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.canli_dry_run }}
         continue-on-error: true
         timeout-minutes: 6   # API yavaşlasa bile iş akışı asılı kalmaz (Gemini bütçeleri: uzun 150 sn, Shorts 75 sn)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}   # isteğe bağlı (ücretsiz); yoksa anahtarsız küçük bütçe
         run: |
           set +e   # bilgi adımı; çıkış kodu açıkça yazılır
           mkdir -p cikti/dry_run
           echo "GEMINI_API_KEY tanımlı mı: $([ -n "$GEMINI_API_KEY" ] && echo evet || echo hayir)"
+          echo "OPENALEX_API_KEY tanımlı mı: $([ -n "$OPENALEX_API_KEY" ] && echo evet || echo hayir)"
           python3 -u -m motor.orkestrasyon.canli_dry_run "Otlukbeli Savaşı" --mod uzun,shorts --cikti cikti/dry_run 2>&1 | tee cikti/dry_run/dry_run.log
           echo "dry-run çıkış kodu: ${PIPESTATUS[0]}"
       - name: 4) Özet ve önizleme (iş akışı kaydına; artifact'a erişemeyen ortamlar için)

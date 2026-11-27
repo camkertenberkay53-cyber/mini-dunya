@@ -26,6 +26,8 @@ from __future__ import annotations
 
 import html
 import http.client
+import subprocess
+import sys
 import ipaddress
 import re
 import socket
@@ -36,7 +38,10 @@ import urllib.parse
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
 
-EN_COK_BAYT = 2 * 1024 * 1024
+EN_COK_BAYT = 2 * 1024 * 1024          # HTML/metin yanıtı
+PDF_EN_COK_BAYT = 3 * 1024 * 1024      # PDF (yalnızca açık erişimli metin çıkarımı için)
+PDF_EN_COK_SAYFA = 10
+PDF_SURE_SN = 20
 EN_COK_YONLENDIRME = 3
 ZAMAN_ASIMI = 12.0
 KULLANICI_AJANI = "mini-dunya-kaynak-dogrulayici/1.0 (https://github.com/camkertenberkay53-cyber/mini-dunya; egitim amacli)"
@@ -243,6 +248,51 @@ def html_metin(govde: bytes, basliklar: dict | None = None) -> str:
     return re.sub(r"[ \t\r\f\v]+", " ", re.sub(r"\n\s*\n+", "\n\n", metin)).strip()
 
 
+# ------------------------------------------------------------------ PDF metin çıkarımı (pypdf, yalıtılmış alt süreç)
+
+# Güvenilmeyen PDF ayrı süreçte ayrıştırılır. Süreç -I ile yalıtılır. Bellek (768 MB), CPU (PDF_SURE_SN) ve duvar saati
+# sınırı vardır. Yalnızca ilk PDF_EN_COK_SAYFA sayfanın metni çıkarılır. PDF içindeki JavaScript/eylemler
+# çalıştırılmaz: pypdf yalnızca metin okur.
+_PDF_BETIGI = r"""
+import io, resource, sys
+resource.setrlimit(resource.RLIMIT_AS, (768 * 1024 * 1024, 768 * 1024 * 1024))
+resource.setrlimit(resource.RLIMIT_CPU, (int(sys.argv[2]), int(sys.argv[2])))
+try:
+    import pypdf
+except ImportError:
+    sys.stdout.write("__PYPDF_YOK__"); sys.exit(3)
+r = pypdf.PdfReader(io.BytesIO(sys.stdin.buffer.read()))
+if r.is_encrypted:
+    sys.stdout.write("__SIFRELI__"); sys.exit(4)
+out = []
+for i, sayfa in enumerate(r.pages):
+    if i >= int(sys.argv[1]):
+        break
+    out.append(sayfa.extract_text() or "")
+sys.stdout.write("\n\n".join(out)[:400000])
+"""
+
+
+def pdf_metin(govde: bytes, en_cok_sayfa: int = PDF_EN_COK_SAYFA, sure: int = PDF_SURE_SN) -> tuple[str | None, str]:
+    """(metin | None, neden). Başarısızlık içerik yanlışlığı DEĞİLDİR; çağıran 'unverified' der."""
+    try:
+        r = subprocess.run([sys.executable, "-I", "-c", _PDF_BETIGI, str(en_cok_sayfa), str(sure)], input=govde,
+                           capture_output=True, timeout=sure + 5)
+    except subprocess.TimeoutExpired:
+        return None, "pdf_zaman_asimi"
+    cikti = r.stdout.decode("utf-8", errors="replace")
+    if r.returncode == 3 or "__PYPDF_YOK__" in cikti:
+        return None, "pdf_kutuphanesi_yok (pypdf kurulu değil)"
+    if r.returncode == 4:
+        return None, "pdf_sifreli"
+    if r.returncode != 0:
+        return None, "pdf_okunamadi"
+    metin = re.sub(r"[ \t]+", " ", cikti).strip()
+    if len(metin) < 40:
+        return None, "pdf_metin_yok (taranmış görüntü olabilir)"
+    return metin, "pdf_metni"
+
+
 # ------------------------------------------------------------------ bağlamsal içerik doğrulaması
 
 _DURAK = set("""ve ile bir bu da de için olarak olan daha sonra ancak gibi kadar çok en ki ise veya ya hem the a an of and in
@@ -341,8 +391,11 @@ def _sonuc(url, durum, http_kodu=None, neden="", **ek) -> dict:
 
 
 class KaynakDogrulayici:
-    def __init__(self, istemci: GuvenliIstemci | None = None, uyku=time.sleep, en_cok_429: int = 2, bekleme_tavani: float = 10.0):
-        self.istemci = istemci or GuvenliIstemci()
+    def __init__(self, istemci: GuvenliIstemci | None = None, uyku=time.sleep, en_cok_429: int = 2, bekleme_tavani: float = 10.0,
+                 html_en_cok_bayt: int = EN_COK_BAYT, pdf_en_cok_bayt: int = PDF_EN_COK_BAYT):
+        # istemci PDF sınırı kadar (3 MB) okur; HTML/metin için 2 MB sınırı burada ayrıca uygulanır
+        self.istemci = istemci or GuvenliIstemci(en_cok_bayt=pdf_en_cok_bayt)
+        self.html_en_cok_bayt, self.pdf_en_cok_bayt = html_en_cok_bayt, pdf_en_cok_bayt
         self.uyku, self.en_cok_429, self.bekleme_tavani = uyku, en_cok_429, bekleme_tavani
         self._onbellek: dict[str, tuple] = {}
 
@@ -374,9 +427,16 @@ class KaynakDogrulayici:
             if y.durum == 200:
                 tur = (y.basliklar.get("content-type") or "").lower()
                 if "pdf" in tur or y.govde[:5] == b"%PDF-":
-                    return ("unverified", 200, "", "pdf_metin_cikarimi_desteklenmiyor (içerik yanlış sayılmaz)")
+                    if len(y.govde) > self.pdf_en_cok_bayt:
+                        return ("unverified", 200, "", "ag_cok_buyuk (PDF > 3 MB)")
+                    metin, neden = pdf_metin(y.govde)
+                    if metin is None:
+                        return ("unverified", 200, "", neden + " (içerik yanlış sayılmaz)")
+                    return ("ok", 200, metin, "pdf_metni")
                 if tur and not any(t in tur for t in ("html", "text/plain", "xml")):
                     return ("unverified", 200, "", f"desteklenmeyen_icerik_turu: {tur.split(';')[0]}")
+                if len(y.govde) > self.html_en_cok_bayt:
+                    return ("unverified", 200, "", "ag_cok_buyuk (HTML > 2 MB)")
                 return ("ok", 200, html_metin(y.govde, y.basliklar), "")
             if y.durum == 403:
                 return ("unverified", 403, "", "erisim_engelli (kaynak ölü/uydurma sayılmaz)")

@@ -25,7 +25,7 @@ from pathlib import Path
 
 from motor.orkestrasyon.gemini import GercekUretimHatasi, GeminiLLMProvider
 from motor.orkestrasyon.kaynak_dogrulayici import GuvenliIstemci, KaynakDogrulayici, url_gizle
-from motor.orkestrasyon.kaynak_kesif import WikipediaKesif, havuz_olustur
+from motor.orkestrasyon.kaynak_kesif import OpenAlexKesif, WikipediaKesif, havuz_olustur
 from motor.orkestrasyon.senaryo_planlayici import plan_uret
 
 SURE_BUTCESI = {"uzun": 150.0, "shorts": 75.0}   # Gemini duvar saati (sn); aşılırsa açık hata, asılı kalma yok
@@ -40,8 +40,12 @@ def _kesif():
     return WikipediaKesif(GuvenliIstemci(zaman_asimi=8.0))
 
 
+def _openalex():
+    return OpenAlexKesif(GuvenliIstemci(zaman_asimi=10.0))
+
+
 def _dogrulayici():
-    return KaynakDogrulayici(GuvenliIstemci(zaman_asimi=8.0), bekleme_tavani=4.0)
+    return KaynakDogrulayici(GuvenliIstemci(zaman_asimi=8.0, en_cok_bayt=3 * 1024 * 1024), bekleme_tavani=4.0)
 
 
 def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
@@ -53,10 +57,20 @@ def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
     kaynaklar = kesif.kesfet(konu)
     ana = [k for k in kaynaklar if not k.get("aday")]
     log("kaynak_kesif", f"{len(ana)} ana madde, {sum(1 for k in kaynaklar if k.get('aday'))} aday dış kaynak; log={kesif.log}")
+    # bağımsız ikinci küme: OpenAlex (EN madde başlığı ipucu olarak)
+    oa = _openalex()
+    ipucu = [k["baslik"] for k in ana if k.get("dil") == "en"]
+    oa_k = oa.kesfet(konu, ipucu)
+    kaynaklar += oa_k
+    log("kaynak_kesif", f"OpenAlex: {sum(1 for k in oa_k if k.get('api_metni'))} özetli yayın, "
+                        f"{sum(1 for k in oa_k if not k.get('api_metni'))} diğer/PDF aday; log={oa.log}; "
+                        f"anahtar={'var' if os.environ.get('OPENALEX_API_KEY') else 'yok (anahtarsız bütçe küçük)'}")
     r["asamalar"]["1_kesif"] = {"ana_madde": [{"id": k["id"], "url": url_gizle(k["url"]), "baslik": k["baslik"],
                                                 "bolum_sayisi": len(k.get("bolumler", [])), "metin_karakter": len(k.get("metin") or "")}
                                                for k in ana],
-                                "aday_dis_kaynak": Counter(k["tur"] for k in kaynaklar if k.get("aday")), "log": kesif.log}
+                                "aday_dis_kaynak": Counter(k["tur"] for k in kaynaklar if k.get("aday")), "log": kesif.log,
+                                "openalex": [{"id": k["id"], "baslik": k["baslik"][:120], "yayinci": k["yayinci"],
+                                              "ozet": bool(k.get("api_metni"))} for k in oa_k]}
     if not ana:
         r["durum"] = "kesif_basarisiz"
         r["sure_sn"] = round(time.time() - t0, 1)
@@ -83,9 +97,9 @@ def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
                             f"{', bölüm bölüm paralel' if m == 'uzun' else ''})")
         tm = time.time()
         try:
-            g = GeminiLLMProvider(zaman_asimi=90.0, en_cok_tekrar=1, sure_butcesi=SURE_BUTCESI[m], ilerleme=log)
-            # paralel=2: ücretsiz katman dakika başı istek sınırına (429) takılmamak için
-            p = plan_uret(konu, m, g, arastirma=havuz, parcali=(m == "uzun"), ilerleme=log, paralel=2)
+            # kota dostu: uzun mod 3 parça (anlatı 3 + plan 3 istek), istek başlangıçları arası ≥3 sn
+            g = GeminiLLMProvider(zaman_asimi=90.0, en_cok_tekrar=1, sure_butcesi=SURE_BUTCESI[m], ilerleme=log, en_az_aralik=3.0)
+            p = plan_uret(konu, m, g, arastirma=havuz, parcali=(m == "uzun"), ilerleme=log, paralel=3)
             ozet = {"durum": p["durum"], "model": g.kullanilan_model, "gemini_cagri": g.cagri_sayisi,
                     "sure_sn": round(time.time() - tm, 1),
                     "katmanlar": {k: [{"deneme": d["deneme"], "tur": d["tur"], "hata_sayisi": len(d["hatalar"]),

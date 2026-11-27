@@ -555,6 +555,7 @@ def test_canli_dry_run_anahtarsiz_gemini_atlar_mocka_gecmez(monkeypatch, capsys)
     ag = _wp_ag()
     monkeypatch.setattr(cdr, "_kesif", lambda: kk.WikipediaKesif(ag.istemci()))
     monkeypatch.setattr(cdr, "_dogrulayici", lambda: kd.KaynakDogrulayici(ag.istemci()))
+    monkeypatch.setattr(cdr, "_openalex", lambda: kk.OpenAlexKesif(ag.istemci()))   # ağsız: sahte ağda yok → 404
     r = cdr.calistir("Örnekova Muharebesi", ["uzun", "shorts"])
     assert r["durum"] == "gemini_atlandi" and "mock'a geçilmedi" in r["asamalar"]["3_gemini"]["neden"]
     assert r["asamalar"]["2_dogrulama"]["kayit_sayisi"] >= 3 and r["planlar"] == {}
@@ -664,7 +665,7 @@ def test_uzun_parcali_uretim_bolum_bolum_ve_kapidan_gecer():
     r = sp.plan_uret("Örnek Kale", "uzun", m, parcali=True, ilerleme=lambda a, b: log.append((a, b)))
     assert r["durum"] == "uretime_hazir" and 900 <= r["ozet"]["toplam_sn"] <= 1200
     adim = [c["adim"] for c in m.cagrilar]
-    assert adim.count("anlati") == 5 and adim.count("sahne_plani") == 5
+    assert adim.count("anlati") == 3 and adim.count("sahne_plani") == 3   # kota dostu: 5 bölüm 3 istekte
     ids = [s["id"] for s in r["plan"]["sahneler"]]
     assert len(ids) == len(set(ids)) and sum(s["hook"] for s in r["plan"]["sahneler"]) == 1
     assert any(a == "onay_kapisi" and "GEÇTİ" in b for a, b in log)
@@ -687,3 +688,191 @@ def test_siniflanamayan_buyuk_rakam_da_tek_kaynakla_kesinlesmez():
            "kaynaklar": [{"kume": 0, "teyit_turu": "icerik"}], "bagimsiz_kaynak_sayisi": 1, "tarih_teyit_kume_sayisi": 1}]
     kk.sayisal_koruma(k3)
     assert k3[0]["tek_kaynak_uyarisi"]
+
+
+# ------------------------------------------------------------------ PDF metin çıkarımı (pypdf)
+
+def _pdf(metinler):
+    """Elle kurulmuş geçerli küçük PDF (Helvetica, düz metin akışı)."""
+    objs = {1: b"<< /Type /Catalog /Pages 2 0 R >>", 3: b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"}
+    n, kids = 4, []
+    for t in metinler:
+        satir = [t[i:i + 80] for i in range(0, len(t), 80)]
+        akim = ("BT /F1 11 Tf 50 750 Td 14 TL " + " ".join(
+            "(%s) '" % x.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)") for x in satir) + " ET").encode("latin-1")
+        objs[n] = b"<< /Length %d >>\nstream\n" % len(akim) + akim + b"\nendstream"
+        objs[n + 1] = (b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents %d 0 R "
+                       b"/Resources << /Font << /F1 3 0 R >> >> >>" % n)
+        kids.append(n + 1)
+        n += 2
+    objs[2] = b"<< /Type /Pages /Kids [" + b" ".join(b"%d 0 R" % k for k in kids) + b"] /Count %d >>" % len(kids)
+    out, ofs = b"%PDF-1.4\n", {}
+    for i in sorted(objs):
+        ofs[i] = len(out)
+        out += b"%d 0 obj\n" % i + objs[i] + b"\nendobj\n"
+    x = len(out)
+    out += b"xref\n0 %d\n0000000000 65535 f \n" % (max(objs) + 1)
+    for i in range(1, max(objs) + 1):
+        out += b"%010d 00000 n \n" % ofs[i]
+    return out + b"trailer\n<< /Size %d /Root 1 0 R >>\nstartxref\n%d\n%%%%EOF\n" % (max(objs) + 1, x)
+
+
+PDF_METIN = "Ornekova Muharebesi 1501 yilinda Demir Han ile Tas Bey arasinda Ornekova duzlugunde yapildi."
+IDDIA_ASCII = {"metin": "Ornekova Muharebesi 1501 yilinda Demir Han ile Tas Bey arasinda yapildi.", "olay_terimleri": ["Ornekova"]}
+
+
+def test_pdf_metni_cikarilir_ve_baglamsal_dogrulanir():
+    ag = _ag(makale=(200, {"Content-Type": "application/pdf"}, _pdf(["Giris sayfasi.", PDF_METIN])))
+    r = _dog(ag).dogrula("https://ornek.org/makale", IDDIA_ASCII)
+    assert r["verification_status"] == "verified" and r["http_status"] == 200, r
+    assert "1501" in r["supporting_excerpt"] and r["verification_method"] == "structured_and_contextual"
+
+
+def test_pdf_ilk_10_sayfa_siniri():
+    sayfalar = ["Bos sayfa metni burada yer alir ve konu disidir."] * 12 + [PDF_METIN]   # iddia 13. sayfada
+    metin, neden = kd.pdf_metin(_pdf(sayfalar))
+    assert neden == "pdf_metni" and "1501" not in metin
+    ag = _ag(uzun=(200, {"Content-Type": "application/pdf"}, _pdf(sayfalar)))
+    assert _dog(ag).dogrula("https://ornek.org/uzun", IDDIA_ASCII)["verification_status"] == "content_mismatch"
+
+
+def test_pdf_boyut_bozuk_ve_kutuphane_yok_unverified(monkeypatch):
+    buyuk = _pdf([PDF_METIN]) + b"%" + b"0" * (3 * 1024 * 1024)
+    ag = _ag(buyuk=(200, {"Content-Type": "application/pdf"}, buyuk), bozuk=(200, {"Content-Type": "application/pdf"}, b"%PDF-1.4 x"))
+    d = kd.KaynakDogrulayici(ag.istemci(en_cok_bayt=4 * 1024 * 1024))
+    r = d.dogrula("https://ornek.org/buyuk", IDDIA_ASCII)
+    assert r["verification_status"] == "unverified" and "3 MB" in r["neden"]
+    r2 = d.dogrula("https://ornek.org/bozuk", IDDIA_ASCII)
+    assert r2["verification_status"] == "unverified" and r2["neden"].startswith("pdf_okunamadi")
+    monkeypatch.setattr(kd, "_PDF_BETIGI", kd._PDF_BETIGI.replace("import pypdf", "import pypdf_olmayan_modul"))
+    metin, neden = kd.pdf_metin(_pdf([PDF_METIN]))
+    assert metin is None and neden.startswith("pdf_kutuphanesi_yok")
+
+
+def test_html_2mb_siniri_pdf_3mb_istemcisinde_de_korunur():
+    ag = _ag(koca=(200, {"Content-Type": "text/html"}, b"<p>" + b"a" * (2 * 1024 * 1024 + 10) + b"</p>"))
+    r = kd.KaynakDogrulayici(ag.istemci(en_cok_bayt=3 * 1024 * 1024)).dogrula("https://ornek.org/koca", IDDIA)
+    assert r["verification_status"] == "unverified" and "2 MB" in r["neden"]
+
+
+# ------------------------------------------------------------------ OpenAlex: bağımsız akademik küme
+
+def _oa_yanit(isler):
+    return (200, {"Content-Type": "application/json"}, json.dumps({"results": isler}).encode())
+
+
+def _ters(metin):
+    d = {}
+    for i, w in enumerate(metin.split()):
+        d.setdefault(w, []).append(i)
+    return d
+
+
+OA_ISLER = [
+    {"id": "https://openalex.org/W111", "display_name": "The Ornekova campaign of 1501", "publication_year": 2012,
+     "doi": "https://doi.org/10.1/abc",
+     "abstract_inverted_index": _ters("This article studies the Örnekova Muharebesi fought in 1501 between Demir Han and "
+                                      "Taş Bey on the Örnekova plain, based on chronicles."),
+     "primary_location": {"source": {"display_name": "Tarih Dergisi"}, "pdf_url": None},
+     "open_access": {"oa_url": "https://akademi.edu/acik.pdf"}},
+    {"id": "https://openalex.org/W222", "display_name": "Soil chemistry of river deltas", "publication_year": 2020,
+     "abstract_inverted_index": _ters("We measure nitrogen in 1501 samples."), "primary_location": {"source": {"display_name": "Soil J"}}},
+]
+
+
+def _oa_ag(isler=OA_ISLER, durum=200):
+    ag = _wp_ag()
+    ag.dns["api.openalex.org"] = ["104.18.0.1"]
+    temel = ag.baglayici
+
+    def baglayici(sema, host, port, ip, zaman):
+        if host == "api.openalex.org":
+            class B:
+                def istek(self, yol, basliklar, en_cok):
+                    ag.baglantilar.append((sema, host, ip, yol))
+                    if durum != 200:
+                        return kd.HamYanit(durum, {}, b"{}", ip)
+                    d = _oa_yanit(isler)
+                    return kd.HamYanit(d[0], {k.lower(): v for k, v in d[1].items()}, d[2], ip)
+            return B()
+        return temel(sema, host, port, ip, zaman)
+    ag.baglayici = baglayici
+    return ag
+
+
+def test_openalex_ozet_kurulur_ilgisiz_elenir_pdf_aday_eklenir(monkeypatch):
+    monkeypatch.delenv("OPENALEX_API_KEY", raising=False)
+    ag = _oa_ag()
+    k = kk.OpenAlexKesif(ag.istemci()).kesfet("Örnekova Muharebesi", ["Battle of Ornekova"])
+    ids = {x["id"] for x in k}
+    assert "oa_W111" in ids and "oa_W222" not in ids          # konu dışı yayın elendi
+    w = next(x for x in k if x["id"] == "oa_W111")
+    assert w["api_metni"] and w["tur"] == "akademik" and w["yayinci"] == "openalex:Tarih Dergisi"
+    assert "fought in 1501 between Demir Han" in w["metin"]      # ters indeksten özet
+    assert any(x["url"] == "https://akademi.edu/acik.pdf" and x["aday"] for x in k)
+    assert all("api_key" not in b[3] for b in ag.baglantilar if b[1] == "api.openalex.org")
+
+
+def test_openalex_anahtar_ortamdan_url_de_ama_kaynak_ve_logda_yok(monkeypatch):
+    monkeypatch.setenv("OPENALEX_API_KEY", "OA-GIZLI-999")
+    ag = _oa_ag(durum=403)
+    oa = kk.OpenAlexKesif(ag.istemci())
+    assert oa.kesfet("Örnekova Muharebesi") == []
+    assert any("api_key=OA-GIZLI-999" in b[3] for b in ag.baglantilar)   # istekte var
+    assert "OA-GIZLI-999" not in json.dumps(oa.log) and "HTTP 403" in oa.log[0] and "anahtar" in oa.log[0]
+
+
+def test_openalex_bagimsiz_kume_tarih_iddiasini_dogrular(monkeypatch):
+    monkeypatch.delenv("OPENALEX_API_KEY", raising=False)
+    ag = _oa_ag()
+    wp = kk.WikipediaKesif(ag.istemci()).kesfet("Örnekova Muharebesi")
+    sadece_wp = kk.havuz_olustur("Örnekova Muharebesi", [k for k in wp if not k["aday"]], kd.KaynakDogrulayici(ag.istemci()))
+    ilk = next(k for k in sadece_wp["kayitlar"] if "1501" in k["iddia"] and "yapıldı" in k["iddia"])
+    assert ilk["durum"] == "tartismali" and ilk["tek_kaynak_uyarisi"]          # yalnız Wikipedia: tek küme
+    oa = kk.OpenAlexKesif(ag.istemci()).kesfet("Örnekova Muharebesi", ["Battle of Ornekova"])
+    h = kk.havuz_olustur("Örnekova Muharebesi", [k for k in wp if not k["aday"]] + [x for x in oa if x["id"] == "oa_W111"],
+                         kd.KaynakDogrulayici(ag.istemci()))
+    k = next(k for k in h["kayitlar"] if "1501" in k["iddia"] and "yapıldı" in k["iddia"])
+    assert k["tarih_teyit_kume_sayisi"] == 2 and k["durum"] == "dogrulanmis" and not k["tek_kaynak_uyarisi"]
+    oa_destek = [x for x in k["kaynaklar"] if x["id"] == "oa_W111"]
+    assert oa_destek and oa_destek[0]["dogrulama"]["supporting_excerpt"]
+    assert sp.arastirma_dogrula(h, sentetik=False) == []
+
+
+# ------------------------------------------------------------------ Gemini kota koruması + iş akışı
+
+def test_gemini_varsayilan_model_ve_ortamdan_sira(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    monkeypatch.delenv("GEMINI_MODELLER", raising=False)
+    assert gm.GeminiLLMProvider(tasiyici=SahteGemini()).modeller[0] == "gemini-2.5-flash"
+    monkeypatch.setenv("GEMINI_MODELLER", "m-bir, m-iki")
+    assert gm.GeminiLLMProvider(tasiyici=SahteGemini()).modeller == ("m-bir", "m-iki")
+
+
+def test_gemini_istekler_arasi_en_az_aralik(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    saat = [0.0]
+    uykular = []
+
+    def uyku(s):
+        uykular.append(round(s, 2))
+        saat[0] += s
+
+    def t(url, govde, bas, zaman):
+        saat[0] += 0.5
+        return 200, json.dumps({"candidates": [{"content": {"parts": [{"text": "{}"}]}}]})
+    g = gm.GeminiLLMProvider(tasiyici=t, en_az_aralik=3.0, saat=lambda: saat[0], uyku=uyku)
+    for _ in range(3):
+        g.tamamla("x", "anlati", {})
+    assert uykular == [2.5, 2.5]
+
+
+def test_canli_dry_run_yalnizca_elle_tetiklenir():
+    import yaml
+    from pathlib import Path
+    wf = yaml.safe_load(Path(".github/workflows/faz53a_gercek_kanit.yml").read_text())
+    tetik = wf.get("on", wf.get(True))
+    assert tetik["workflow_dispatch"]["inputs"]["canli_dry_run"]["default"] is False
+    adim = next(a for a in wf["jobs"]["kanit"]["steps"] if a.get("name", "").startswith("5) Canlı dry-run"))
+    assert "workflow_dispatch" in adim["if"] and "canli_dry_run" in adim["if"] and adim["timeout-minutes"] == 6
+    assert "OPENALEX_API_KEY" in adim["env"]
