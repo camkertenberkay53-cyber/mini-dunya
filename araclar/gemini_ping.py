@@ -10,8 +10,10 @@ Tamamen bağımsızdır: hiçbir üretim modülünü import etmez, dosya/sahne/p
   sınırı da uygulanır; yanıt 25 sn içinde gelmezse `timeout` sayılır (yavaş akan yanıt da süreyi uzatamaz).
 - Sınıflar: `OK` | `503_overload` | `429_quota` | `timeout` | `auth_or_other_error` (401/403/404/400/diğer 5xx/ağ
   hatası/anahtar yok). Bir model başarısız olsa da diğeri MUTLAKA denenir.
-- Anahtar: `GEMINI_DRYRUN_KEY`, yoksa `GEMINI_API_KEY`. URL'ye değil `x-goog-api-key` başlığına konur; hiçbir çıktıya,
-  loga, özete ya da hata metnine yazılmaz (geçerse `***` ile maskelenir). Raporda yalnızca değişkenin ADI görünür.
+- Anahtar önceliği: `GEMINI_HEALTH_KEY` (izole sağlık/Tier 1 test anahtarı) → `GEMINI_DRYRUN_KEY` → `GEMINI_API_KEY`.
+  Boş/yalnız boşluk değer tanımsız sayılır ve sıradakine geçilir. URL'ye değil `x-goog-api-key` başlığına konur;
+  hiçbir çıktıya, loga, özete ya da hata metnine yazılmaz: ortamdaki ÜÇ anahtar değerinin de (kullanılmayanlar dahil)
+  geçtiği her yer `***` ile maskelenir. Raporda yalnızca kullanılan değişkenin ADI görünür.
 - Çıktı: Markdown tablo (stdout) ve `GITHUB_STEP_SUMMARY` tanımlıysa oraya; `--json` ile makine okunur özet.
 - Çıkış kodu: 0 = bütün modeller OK; 1 = en az bir model OK değil; 2 = anahtar yok (hiç istek gönderilmez);
   3 = geçersiz argüman (ör. zaman aşımı 20–30 sn dışı; hiç istek gönderilmez).
@@ -34,6 +36,7 @@ API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateC
 VARSAYILAN_MODELLER = ("gemini-flash-latest", "gemini-3.7-flash")   # üretim sırasının ilk ikisi (testte eşlenir)
 ISTEM = "Respond with OK only."
 ZAMAN_ASIMI = 25.0
+ANAHTAR_SIRASI = ("GEMINI_HEALTH_KEY", "GEMINI_DRYRUN_KEY", "GEMINI_API_KEY")
 SINIFLAR = ("OK", "503_overload", "429_quota", "timeout", "auth_or_other_error")
 
 
@@ -53,11 +56,24 @@ def modeller(ortam=None) -> tuple[str, str]:
 def anahtar_sec(ortam=None) -> tuple[str | None, str | None]:
     """(anahtar, kaynak_adı). Değer hiçbir yerde raporlanmaz; yalnızca kaynak ADI raporlanır."""
     ortam = os.environ if ortam is None else ortam
-    for ad in ("GEMINI_DRYRUN_KEY", "GEMINI_API_KEY"):
+    for ad in ANAHTAR_SIRASI:
         v = (ortam.get(ad) or "").strip()
         if v:
             return v, ad
     return None, None
+
+
+def gizli_degerler(ortam=None) -> tuple[str, ...]:
+    """Maskelenecek bütün anahtar değerleri (kullanılmayanlar dahil), uzundan kısaya."""
+    ortam = os.environ if ortam is None else ortam
+    return tuple(sorted({(ortam.get(ad) or "").strip() for ad in ANAHTAR_SIRASI} - {""}, key=len, reverse=True))
+
+
+def _maskele(metin: str, gizliler) -> str:
+    metin = metin or ""
+    for g in gizliler:
+        metin = metin.replace(g, "***")
+    return metin
 
 
 def _govde() -> bytes:
@@ -112,12 +128,14 @@ def sinifla(kod: int | None) -> str:
     return "auth_or_other_error"
 
 
-def ping(model: str, anahtar: str, tasiyici=urllib_tasiyici, zaman: float = ZAMAN_ASIMI, saat=time.monotonic) -> dict:
+def ping(model: str, anahtar: str, tasiyici=urllib_tasiyici, zaman: float = ZAMAN_ASIMI, saat=time.monotonic,
+         gizliler=()) -> dict:
     """Tek model, TEK istek, sıfır tekrar. Dönüş: {model, durum, sure_sn, http, ayrinti} (anahtar içermez)."""
     basliklar = {"Content-Type": "application/json", "x-goog-api-key": anahtar}
+    tum_gizli = tuple(sorted(set(gizliler) | {anahtar}, key=len, reverse=True))
 
     def maskele(m: str) -> str:
-        return (m or "").replace(anahtar, "***")
+        return _maskele(m, tum_gizli)
     t0 = saat()
     try:
         kod, metin = _kati_sure(lambda: tasiyici(API.format(model=model), _govde(), basliklar, zaman), zaman)
@@ -155,12 +173,13 @@ def calistir(ortam=None, tasiyici=None, zaman: float = ZAMAN_ASIMI, saat=time.mo
     roller = (("birincil", birincil), ("yedek", yedek))
     if not anahtar:
         sonuclar = [{"rol": r, "model": m, "durum": "auth_or_other_error", "sure_sn": None, "http": None,
-                     "ayrinti": "anahtar_yok: GEMINI_DRYRUN_KEY / GEMINI_API_KEY tanımlı değil; istek gönderilmedi"}
+                     "ayrinti": "anahtar_yok: " + " / ".join(ANAHTAR_SIRASI) + " tanımlı değil; istek gönderilmedi"}
                     for r, m in roller]
         return {"anahtar_kaynagi": None, "zaman_asimi_sn": zaman, "sonuclar": sonuclar, "cikis": 2}
+    gizliler = gizli_degerler(ortam)
     sonuclar = []
     for rol, model in roller:   # sırayla; biri başarısız olsa da diğeri MUTLAKA denenir
-        sonuclar.append(dict(ping(model, anahtar, tasiyici, zaman, saat), rol=rol))
+        sonuclar.append(dict(ping(model, anahtar, tasiyici, zaman, saat, gizliler), rol=rol))
     cikis = 0 if all(s["durum"] == "OK" for s in sonuclar) else 1
     return {"anahtar_kaynagi": kaynak, "zaman_asimi_sn": zaman, "sonuclar": sonuclar, "cikis": cikis}
 
@@ -189,8 +208,10 @@ def main(argv=None) -> int:
     try:
         rapor = calistir(zaman=a.zaman_asimi)
     except ValueError as e:
-        print(f"geçersiz argüman: {e}", file=sys.stderr)
+        print(f"geçersiz argüman: {_maskele(str(e), gizli_degerler())}", file=sys.stderr)
         return 3
+    print(f"anahtar kaynağı: {rapor['anahtar_kaynagi'] or 'yok'} (yalnızca değişken adı; değer yazdırılmaz)",
+          file=sys.stderr)
     md = markdown(rapor)
     print(md)
     if a.json:
