@@ -64,7 +64,8 @@ def test_retry_after_http_tarihi_ve_gecersiz_deger():
 
 
 def test_503_tekrar_limiti_asilinca_kontrollu_durur_sonsuz_dongu_yok(monkeypatch):
-    g, istek, uyku = _saglayici(monkeypatch, lambda m, n: (503, "x"), en_cok_tekrar=5)
+    # Faz-57: yedek geçişi kapalıyken birincil modelin 503 sınırı (yedekli yol test_faz57_* içinde)
+    g, istek, uyku = _saglayici(monkeypatch, lambda m, n: (503, "x"), en_cok_tekrar=5, yedek_503=False)
     with pytest.raises(gm.GercekUretimHatasi) as e:
         g.tamamla("x", "anlati", {})
     assert e.value.sinif == "asiri_yuk" and "2 tekrardan sonra" in str(e.value) and ANAHTAR not in str(e.value)

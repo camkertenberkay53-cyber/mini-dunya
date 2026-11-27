@@ -13,8 +13,13 @@
   - `kota` (429): tekrar YOK, diğer modeller denenmez; `GeminiKotaHatasi` ile kontrollü durulur.
   - `yetki` (401/403): durulur.
   - `asiri_yuk` (503): `Retry-After` başlığı varsa ona uyulur, yoksa 15 sn, sonra 30 sn beklenip AYNI model yeniden
-    denenir. Bekleme sırası `beklemeler_503` ile verilir. İki tekrardan sonra hâlâ 503 ise kontrollü durulur; başka
-    modele yük bindirilmez. Bekleme süre bütçesini aşacaksa beklenmez, durulur.
+    denenir. Bekleme sırası `beklemeler_503` ile verilir. Bekleme süre bütçesini aşacaksa beklenmez, durulur.
+  - Faz-57 tek atışlık 503 yedeği: birincil model 503 bütçesini (15 → 30 sn) tükettiğinde, YAPILANDIRILMIŞ model
+    sırasında (`MODELLER` / `GEMINI_MODELLER`) ondan sonra gelen, ondan farklı ve 404 vermemiş ilk Flash modele BİR KEZ
+    geçilir (yeni model adı uydurulmaz). Yedeğin 503 bütçesi `beklemeler_503_yedek` (varsayılan tek tekrar: 15 sn).
+    Yedek de 503 / 404 / başka hata verirse başka model ARANMAZ, kontrollü durulur. Geçiş hakkı sağlayıcı ömründe
+    birdir; yedek bir kez kullanıldıysa sonraki çağrılarda yeni geçiş olmaz. 429 hangi modelde gelirse gelsin anında
+    durulur. Toplam istek üst sınırı (503 yolu): 1 + len(beklemeler_503) + 1 + len(beklemeler_503_yedek).
   - `zaman_asimi`, `ag` ve `sunucu` (diğer 5xx): sınırlı tekrar, sonra sıradaki model.
 - Tekrar güvenliği: generateContent durumsuzdur. 503 yanıtında üretilmiş bir metin yoktur; zaman aşımında sunucu
   yanıt üretmiş olsa bile bize ulaşmadığı için kullanılmaz. Her `tamamla` çağrısı tam olarak BİR yanıt döndürür, yani
@@ -87,6 +92,7 @@ def _urllib_tasiyici(url: str, govde: bytes, basliklar: dict, zaman: float) -> t
 
 
 BEKLEMELER_503 = (15.0, 30.0)
+BEKLEMELER_503_YEDEK = (15.0,)
 RETRY_AFTER_TAVANI = 120.0
 
 
@@ -114,7 +120,8 @@ class GeminiLLMProvider(LLMProvider):
     def __init__(self, modeller=None, tasiyici=None, zaman_asimi: float = 90.0, uyku=time.sleep, en_cok_tekrar: int = 2,
                  dusunme_butcesi: int | None = 1024, sure_butcesi: float | None = None, ilerleme=None, saat=time.monotonic,
                  en_az_aralik: float = 0.0, anahtar: str | None = None, anahtar_kaynagi: str = "GEMINI_API_KEY",
-                 beklemeler_503: tuple = BEKLEMELER_503):
+                 beklemeler_503: tuple = BEKLEMELER_503, yedek_503: bool = True,
+                 beklemeler_503_yedek: tuple = BEKLEMELER_503_YEDEK):
         """zaman_asimi: istek başına en çok bekleme (sn). dusunme_butcesi: thinking token sınırı (None → gönderilmez;
         model desteklemiyorsa 400 sonrası o model için kendiliğinden kapatılır). sure_butcesi: bu sağlayıcının bütün
         çağrıları için toplam duvar saati sınırı (aşılırsa GercekUretimHatasi; asılı kalma yok). en_az_aralik: iki istek
@@ -128,6 +135,11 @@ class GeminiLLMProvider(LLMProvider):
         self.kota_doldu = False   # ilk 429'dan sonra (paralel parçalar dahil) yeni istek GÖNDERİLMEZ
         self.beklemeler_503 = tuple(float(x) for x in beklemeler_503)   # testte (0, 0) verilebilir
         self.tekrar_kaydi: list[dict] = []   # 503 tekrarları: {etiket, model, tekrar, bekleme_sn, kaynak}
+        self.yedek_503 = bool(yedek_503)
+        self.beklemeler_503_yedek = tuple(float(x) for x in beklemeler_503_yedek)
+        self.yedek_gecisi: dict | None = None   # {etiket, kimden, kime}: en çok BİR kez dolar
+        self._bulunamayan: set[str] = set()     # 404 veren modeller (yedek seçilmez)
+        self.asiri_yuk_doldu = False            # 503 ile kontrollü durulduysa yeni istek GÖNDERİLMEZ (çift çağrı yok)
         self.modeller = tuple(modeller) if modeller else globals()["modeller"]()
         self.tasiyici = tasiyici or _urllib_tasiyici
         self.zaman_asimi, self.uyku, self.en_cok_tekrar = zaman_asimi, uyku, en_cok_tekrar
@@ -164,7 +176,18 @@ class GeminiLLMProvider(LLMProvider):
         with self._kilit:
             self.hatalar.append({"model": model, "sinif": sinif, "http": http})
 
+    def _yedek_sec(self, model: str) -> str | None:
+        """503 bütçesi biten `model` için yapılandırmadan tek yedek: sırada ondan SONRA gelen, ondan farklı, adında
+        'flash' geçen ve 404 vermemiş ilk model. Geçiş daha önce yapıldıysa ya da kapalıysa None (sonsuz zincir yok)."""
+        if not self.yedek_503 or self.yedek_gecisi is not None or model not in self.modeller:
+            return None
+        sonra = self.modeller[self.modeller.index(model) + 1:]
+        return next((m for m in sonra if m != model and "flash" in m.lower() and m not in self._bulunamayan), None)
+
     def _kota_kontrol(self, etiket: str) -> None:
+        if self.asiri_yuk_doldu:
+            raise GercekUretimHatasi(f"Gemini 503 aşırı yük bütçesi bu sağlayıcıda daha önce tükendi; {etiket} için istek "
+                                     f"gönderilmedi (mock'a geçilmez)", "asiri_yuk", self.hatalar)
         if self.kota_doldu:
             raise GeminiKotaHatasi(f"Gemini kotası bu koşuda daha önce aşıldı (HTTP 429); {etiket} için istek gönderilmedi "
                                    f"(mock'a geçilmez)", "kota", self.hatalar)
@@ -173,9 +196,16 @@ class GeminiLLMProvider(LLMProvider):
         basliklar = {"Content-Type": "application/json", "x-goog-api-key": self.__anahtar}
         sorunlar, son_sinif = [], "bilinmiyor"
         etiket = adim + (f"/{baglam['bolum']}" if baglam.get("bolum") else "")
-        sira = ([self.kullanilan_model] if self.kullanilan_model else []) + [m for m in self.modeller if m != self.kullanilan_model]
+        if self.yedek_gecisi is not None:   # yedeğe geçildiyse yalnız yedek: birincile geri dönüş / yeni zincir yok
+            sira = [self.yedek_gecisi["kime"]]
+        else:
+            sira = ([self.kullanilan_model] if self.kullanilan_model else []) + [m for m in self.modeller if m != self.kullanilan_model]
         self._kota_kontrol(etiket)
-        for model in sira:
+        kuyruk = list(sira)
+        while kuyruk:
+            model = kuyruk.pop(0)
+            yedek_mi = self.yedek_gecisi is not None and model == self.yedek_gecisi["kime"]
+            beklemeler = self.beklemeler_503_yedek if yedek_mi else self.beklemeler_503
             tekrar, yuk_tekrar = 0, 0
             while tekrar <= self.en_cok_tekrar:
                 kalan = self._kalan()
@@ -193,7 +223,8 @@ class GeminiLLMProvider(LLMProvider):
                     self._son_istek = self.saat()
                     self.cagri_sayisi += 1
                 t0 = self.saat()
-                self._log(f"→ {etiket} model={model} deneme={tekrar + 1} 503_tekrar={yuk_tekrar}/{len(self.beklemeler_503)} "
+                self._log(f"→ {etiket} model={model}{' (yedek)' if yedek_mi else ''} deneme={tekrar + 1} "
+                          f"503_tekrar={yuk_tekrar}/{len(beklemeler)} "
                           f"zaman_asimi={zaman:.0f}s istem={len(istem)} kr")
                 try:
                     yanit_ham = self.tasiyici(API.format(model=model), self._govde(istem, model), basliklar, zaman)
@@ -228,6 +259,8 @@ class GeminiLLMProvider(LLMProvider):
                     return yanit
                 son_sinif = hata_sinifi(kod)
                 self._hata(model, son_sinif, kod)
+                if son_sinif == "model_bulunamadi":
+                    self._bulunamayan.add(model)
                 ozet = self._maskele(re.sub(r"\s+", " ", metin))[:400]
                 sorunlar.append(f"{model}: {son_sinif} HTTP {kod} {ozet}")
                 if son_sinif == "kota":   # agresif tekrar YOK; diğer modelleri de zorlamadan kontrollü dur
@@ -240,16 +273,29 @@ class GeminiLLMProvider(LLMProvider):
                     raise GercekUretimHatasi(self._maskele(
                         f"Gemini yetki hatası (HTTP {kod}, anahtar={self.anahtar_kaynagi}); üretim durduruldu: {ozet}"),
                         "yetki", self.hatalar)
-                if son_sinif == "asiri_yuk":   # 503: Retry-After ya da 15 → 30 sn; sınırlı; sonra kontrollü dur
-                    if yuk_tekrar >= len(self.beklemeler_503):
-                        self._log(f"■ {etiket} model={model} 503 aşırı yük {yuk_tekrar} tekrardan sonra sürüyor: durduruluyor")
+                if son_sinif == "asiri_yuk":   # 503: Retry-After ya da 15 → 30 sn; sınırlı; tek yedek; sonra dur
+                    if yuk_tekrar >= len(beklemeler):
+                        yedek = None if yedek_mi else self._yedek_sec(model)
+                        if yedek:
+                            with self._kilit:
+                                self.yedek_gecisi = {"etiket": etiket, "kimden": model, "kime": yedek}
+                            self._log(f"⇄ {etiket} model={model} 503 bütçesi bitti ({yuk_tekrar} tekrar): tek atışlık "
+                                      f"yedek modele geçiliyor → {yedek} (en çok {1 + len(self.beklemeler_503_yedek)} istek)")
+                            kuyruk = [yedek]
+                            break
+                        self._log(f"■ {etiket} model={model} 503 aşırı yük {yuk_tekrar} tekrardan sonra sürüyor"
+                                  f"{' (yedek model)' if yedek_mi else ''}: durduruluyor")
+                        self.asiri_yuk_doldu = True
+                        gecis = (f"; yedek geçişi {self.yedek_gecisi['kimden']} → {self.yedek_gecisi['kime']} de "
+                                 f"başarısız" if yedek_mi else "")
                         raise GercekUretimHatasi(self._maskele(
-                            f"Gemini aşırı yük (HTTP 503, model={model}); {yuk_tekrar} tekrardan sonra sürüyor, üretim "
-                            f"durduruldu (mock'a geçilmez): {ozet}"), "asiri_yuk", self.hatalar)
+                            f"Gemini aşırı yük (HTTP 503, model={model}); {yuk_tekrar} tekrardan sonra sürüyor{gecis}, "
+                            f"üretim durduruldu (mock'a geçilmez): {ozet}"), "asiri_yuk", self.hatalar)
                     ra = retry_after_sn(yanit_basliklari)
-                    bekle = ra if ra is not None else self.beklemeler_503[yuk_tekrar]
+                    bekle = ra if ra is not None else beklemeler[yuk_tekrar]
                     kalan = self._kalan()
                     if kalan is not None and bekle >= kalan - 1:
+                        self.asiri_yuk_doldu = True
                         self._log(f"■ {etiket} model={model} 503: {bekle:.0f} sn bekleme süre bütçesini ({kalan:.0f} sn) aşıyor")
                         raise GercekUretimHatasi(self._maskele(
                             f"Gemini aşırı yük (HTTP 503); gereken {bekle:.0f} sn bekleme süre bütçesini aşıyor, üretim "
@@ -259,7 +305,7 @@ class GeminiLLMProvider(LLMProvider):
                         self.tekrar_kaydi.append({"etiket": etiket, "model": model, "tekrar": yuk_tekrar,
                                                   "bekleme_sn": bekle, "kaynak": "retry-after" if ra is not None else "plan"})
                     self._log(f"↻ {etiket} model={model} 503 aşırı yük: {bekle:.0f} sn bekleniyor "
-                              f"({'Retry-After' if ra is not None else 'plan'}), tekrar {yuk_tekrar}/{len(self.beklemeler_503)}")
+                              f"({'Retry-After' if ra is not None else 'plan'}), tekrar {yuk_tekrar}/{len(beklemeler)}")
                     self.uyku(bekle)
                     continue
                 if son_sinif == "sunucu" and tekrar < self.en_cok_tekrar:

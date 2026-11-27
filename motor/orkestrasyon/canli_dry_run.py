@@ -15,6 +15,9 @@ python3 -u -m motor.orkestrasyon.canli_dry_run "<konu>" [--mod uzun,shorts] [--c
   `GEMINI_API_KEY`. İkisi de yoksa Gemini adımı ATLANIR ve rapor bunu açıkça söyler; mock'a GEÇİLMEZ.
   Raporda yalnızca anahtarın KAYNAK ADI yazılır; değeri hiçbir loga ya da çıktıya yazılmaz.
 - 429 (kota) alınırsa üretim kontrollü durur ve kalan modlar için Gemini çağrılmaz (gereksiz istek yok).
+- Faz-57: bir mod (uzun) 503 aşırı yük bütçesini (birincil 15 → 30 sn + tek atışlık yedek model) tüketerek durursa,
+  kalan modlar (Shorts) için de Gemini ÇAĞRILMAZ (`atlandi_asiri_yuk`). Bu kısa devre YALNIZCA `asiri_yuk` sınıfı
+  içindir; zaman aşımı, genel 5xx ve ağ hatalarında kalan modlar eskisi gibi denenir.
 - Render başlatılmaz (dry-run). Anahtar hiçbir çıktıya yazılmaz.
 """
 from __future__ import annotations
@@ -72,6 +75,72 @@ def _dogrulayici():
     return KaynakDogrulayici(GuvenliIstemci(zaman_asimi=8.0, en_cok_bayt=3 * 1024 * 1024), bekleme_tavani=4.0)
 
 
+def _gemini(m: str, anahtar: str, kaynak: str, log_fn):
+    """Mod başına Gemini sağlayıcısı (testlerde sahte taşıyıcıyla değiştirilebilir)."""
+    # kota dostu: uzun mod 3 parça (anlatı 3 + plan 3 istek), istek başlangıçları arası ≥3 sn
+    return GeminiLLMProvider(zaman_asimi=90.0, en_cok_tekrar=1, sure_butcesi=SURE_BUTCESI[m], ilerleme=log_fn,
+                             en_az_aralik=3.0, anahtar=anahtar, anahtar_kaynagi=kaynak)
+
+
+def _gemini_asamasi(r: dict, konu: str, modlar: list[str], havuz: dict, anahtar: str, kaynak: str) -> list[str]:
+    """Modları sırayla üretir; mod özetlerini r['asamalar'] / r['planlar'] içine yazar, mod durumlarını döndürür."""
+    durumlar, kota_doldu, asiri_yuk = [], False, None
+    for m in modlar:
+        if kota_doldu:   # 429 sonrası gereksiz Gemini çağrısı yapılmaz
+            r["asamalar"][f"3_gemini_{m}"] = {"durum": "atlandi_kota", "neden": "önceki modda Gemini kotası aşıldı (429)",
+                                              "gemini_cagri": 0}
+            durumlar.append("gemini_kota")
+            log("onay_kapisi", f"--- mod={m} atlandı: kota (429) önceki modda doldu")
+            continue
+        if asiri_yuk:    # 503 bütçesi (yedek dahil) bitti: kalan modlarda yük bindirilmez
+            r["asamalar"][f"3_gemini_{m}"] = {"durum": "atlandi_asiri_yuk", "gemini_cagri": 0,
+                                              "neden": f"önceki mod ({asiri_yuk}) Gemini 503 aşırı yük bütçesini tüketti"}
+            durumlar.append("gemini_asiri_yuk")
+            log("onay_kapisi", f"--- mod={m} atlandı: önceki mod ({asiri_yuk}) 503 aşırı yükle durdu, istek gönderilmedi")
+            continue
+        log("gemini_cagri", f"--- mod={m} başlıyor (süre bütçesi {SURE_BUTCESI[m]:.0f} sn, istek başı ≤90 sn"
+                            f"{', 3 parça sıralı' if m == 'uzun' else ''})")
+        tm = time.time()
+        g = None
+        try:
+            g = _gemini(m, anahtar, kaynak, log)
+            p = plan_uret(konu, m, g, arastirma=havuz, parcali=(m == "uzun"), ilerleme=log, paralel=3)
+            ozet = {"durum": p["durum"], "model": g.kullanilan_model, "gemini_cagri": g.cagri_sayisi,
+                    "yedek_gecisi": getattr(g, "yedek_gecisi", None),
+                    "sure_sn": round(time.time() - tm, 1),
+                    "katmanlar": {k: [{"deneme": d["deneme"], "tur": d["tur"], "hata_sayisi": len(d["hatalar"]),
+                                       "hata_kodlari": dict(Counter(h["kod"] for h in d["hatalar"]))} for d in v.get("denemeler", [])]
+                                  for k, v in p["katmanlar"].items() if isinstance(v, dict) and "denemeler" in v},
+                    "ozet": p.get("ozet"), "uyarilar": p.get("uyarilar"), "ozet_hata": p.get("ozet_hata"),
+                    "hatalar_ilk20": (p.get("hatalar") or [])[:20], "render_baslatildi": p["render_baslatildi"]}
+            if p["durum"] == "uretime_hazir":
+                r["planlar"][m] = p["plan"]
+                ozet["ilk_sahneler"] = p["plan"]["sahneler"][:4]
+                ozet["guven_durumlari"] = Counter(s["guven_durumu"] for s in p["plan"]["sahneler"])
+            ozet["gemini_hatalari"] = g.hatalar[-20:]
+            sinif = next((h.get("sinif") for h in (p.get("hatalar") or []) if h.get("kod") == "saglayici_hatasi"), None)
+            if sinif == "kota":
+                kota_doldu = True
+                ozet["durum"] = p["durum"] = "gemini_kota"
+            elif sinif == "asiri_yuk" and p["durum"] != "uretime_hazir":
+                asiri_yuk = m
+                ozet["durum"] = p["durum"] = "gemini_asiri_yuk"
+            durumlar.append(p["durum"])
+        except GercekUretimHatasi as e:
+            ozet = {"durum": ("gemini_kota" if e.sinif == "kota" else "gemini_asiri_yuk" if e.sinif == "asiri_yuk"
+                              else "gemini_basarisiz"), "sinif": e.sinif,
+                    "hata": str(e)[:600], "gemini_hatalari": e.hatalar[-20:], "sure_sn": round(time.time() - tm, 1),
+                    "gemini_cagri": getattr(g, "cagri_sayisi", 0)}
+            kota_doldu = kota_doldu or e.sinif == "kota"
+            if e.sinif == "asiri_yuk":
+                asiri_yuk = m
+            durumlar.append(ozet["durum"])
+        log("onay_kapisi", f"--- mod={m} bitti: {ozet['durum']} ({ozet['sure_sn']} sn)"
+                           f"{' — ' + ozet['ozet_hata'] if ozet.get('ozet_hata') else ''}")
+        r["asamalar"][f"3_gemini_{m}"] = ozet
+    return durumlar
+
+
 def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
     modlar = [mod] if isinstance(mod, str) else list(mod)
     t0 = time.time()
@@ -125,48 +194,10 @@ def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
         return r
     log("gemini_cagri", f"anahtar kaynağı: {kaynak}" + ("" if kaynak == "GEMINI_DRYRUN_KEY" else
                                                        " (bot.yml ile aynı kota paylaşılıyor)"))
-    durumlar, kota_doldu = [], False
-    for m in modlar:
-        if kota_doldu:   # 429 sonrası gereksiz Gemini çağrısı yapılmaz
-            r["asamalar"][f"3_gemini_{m}"] = {"durum": "atlandi_kota", "neden": "önceki modda Gemini kotası aşıldı (429)"}
-            durumlar.append("gemini_kota")
-            log("onay_kapisi", f"--- mod={m} atlandı: kota (429) önceki modda doldu")
-            continue
-        log("gemini_cagri", f"--- mod={m} başlıyor (süre bütçesi {SURE_BUTCESI[m]:.0f} sn, istek başı ≤90 sn"
-                            f"{', 3 parça sıralı' if m == 'uzun' else ''})")
-        tm = time.time()
-        try:
-            # kota dostu: uzun mod 3 parça (anlatı 3 + plan 3 istek), istek başlangıçları arası ≥3 sn
-            g = GeminiLLMProvider(zaman_asimi=90.0, en_cok_tekrar=1, sure_butcesi=SURE_BUTCESI[m], ilerleme=log,
-                                  en_az_aralik=3.0, anahtar=anahtar, anahtar_kaynagi=kaynak)
-            p = plan_uret(konu, m, g, arastirma=havuz, parcali=(m == "uzun"), ilerleme=log, paralel=3)
-            ozet = {"durum": p["durum"], "model": g.kullanilan_model, "gemini_cagri": g.cagri_sayisi,
-                    "sure_sn": round(time.time() - tm, 1),
-                    "katmanlar": {k: [{"deneme": d["deneme"], "tur": d["tur"], "hata_sayisi": len(d["hatalar"]),
-                                       "hata_kodlari": dict(Counter(h["kod"] for h in d["hatalar"]))} for d in v.get("denemeler", [])]
-                                  for k, v in p["katmanlar"].items() if isinstance(v, dict) and "denemeler" in v},
-                    "ozet": p.get("ozet"), "uyarilar": p.get("uyarilar"), "ozet_hata": p.get("ozet_hata"),
-                    "hatalar_ilk20": (p.get("hatalar") or [])[:20], "render_baslatildi": p["render_baslatildi"]}
-            if p["durum"] == "uretime_hazir":
-                r["planlar"][m] = p["plan"]
-                ozet["ilk_sahneler"] = p["plan"]["sahneler"][:4]
-                ozet["guven_durumlari"] = Counter(s["guven_durumu"] for s in p["plan"]["sahneler"])
-            ozet["gemini_hatalari"] = g.hatalar[-20:]
-            sinif = next((h.get("sinif") for h in (p.get("hatalar") or []) if h.get("kod") == "saglayici_hatasi"), None)
-            if sinif == "kota":
-                kota_doldu = True
-                ozet["durum"] = p["durum"] = "gemini_kota"
-            durumlar.append(p["durum"])
-        except GercekUretimHatasi as e:
-            ozet = {"durum": "gemini_kota" if e.sinif == "kota" else "gemini_basarisiz", "sinif": e.sinif,
-                    "hata": str(e)[:600], "gemini_hatalari": e.hatalar[-20:], "sure_sn": round(time.time() - tm, 1)}
-            kota_doldu = kota_doldu or e.sinif == "kota"
-            durumlar.append(ozet["durum"])
-        log("onay_kapisi", f"--- mod={m} bitti: {ozet['durum']} ({ozet['sure_sn']} sn)"
-                           f"{' — ' + ozet['ozet_hata'] if ozet.get('ozet_hata') else ''}")
-        r["asamalar"][f"3_gemini_{m}"] = ozet
+    durumlar = _gemini_asamasi(r, konu, modlar, havuz, anahtar, kaynak)
     r["durum"] = ("uretime_hazir" if all(d == "uretime_hazir" for d in durumlar) else
                   "gemini_kota" if "gemini_kota" in durumlar else
+                  "gemini_asiri_yuk" if "gemini_asiri_yuk" in durumlar else
                   "gemini_basarisiz" if "gemini_basarisiz" in durumlar else "durduruldu")
     r["sure_sn"] = round(time.time() - t0, 1)
     return r
@@ -189,7 +220,11 @@ def main(argv: list[str]) -> int:
     if r["durum"] == "gemini_kota":
         log("ozet", "KOTA: Gemini 429 döndü; tekrar denenmedi. Kota sıfırlandıktan sonra elle yeniden tetikleyin "
                     "(ayrı GEMINI_DRYRUN_KEY bot.yml kotasından bağımsızdır).")
-    return {"uretime_hazir": 0, "gemini_atlandi": 0, "durduruldu": 1, "gemini_basarisiz": 1, "gemini_kota": 4}.get(r["durum"], 3)
+    if r["durum"] == "gemini_asiri_yuk":
+        log("ozet", "AŞIRI YÜK: Gemini 503 (birincil + tek yedek model) sürdü; kalan modlar atlandı. Yük düşünce elle "
+                    "yeniden tetikleyin.")
+    return {"uretime_hazir": 0, "gemini_atlandi": 0, "durduruldu": 1, "gemini_basarisiz": 1, "gemini_asiri_yuk": 1,
+            "gemini_kota": 4}.get(r["durum"], 3)
 
 
 if __name__ == "__main__":
