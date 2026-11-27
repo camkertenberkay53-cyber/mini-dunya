@@ -74,8 +74,9 @@ def test_503_tekrar_limiti_asilinca_kontrollu_durur_sonsuz_dongu_yok(monkeypatch
 
 def test_503_beklemesi_sure_butcesini_asarsa_beklemeden_durur(monkeypatch):
     saat = [0.0]
+    # Faz-58: yedek kapalıyken (yedekli yolda birincil, rezervi aşan beklemede yedeğe geçer: test_faz58_*)
     g, istek, uyku = _saglayici(monkeypatch, lambda m, n: (503, "x", {"retry-after": "100"}), sure_butcesi=50.0,
-                                saat=lambda: saat[0])
+                                saat=lambda: saat[0], yedek_503=False)
     with pytest.raises(gm.GercekUretimHatasi) as e:
         g.tamamla("x", "anlati", {})
     assert e.value.sinif == "asiri_yuk" and "süre bütçesini aşıyor" in str(e.value) and uyku == [] and len(istek) == 1

@@ -70,6 +70,14 @@ _OLCU = {
               "tam": ("olu", "olusu", "oluler", "olum", "dead", "death", "deaths", "loss", "kaybi")},
 }
 _CARPAN = {"bin": 1000, "thousand": 1000, "milyon": 1_000_000, "million": 1_000_000}
+# Olay AŞAMASI / birlik bölümü işaretleri (yan cümlede, kelime başı eşleşmesi). Farklı aşama → karşılaştırılmaz.
+_ASAMA = {"oncu": ("oncu", "vanguard", "advance"), "kanat": ("kanat", "wing", "flank"),
+          "takip": ("takip", "pursu", "ricat", "retreat"), "garnizon": ("garnizon", "garris", "muhafiz"),
+          "takviye": ("takviye", "reinforc", "auxiliar"), "pusu": ("pusu", "ambush", "baskin")}
+# Sayının SAĞINDA özne aranırken arada bulunabilecek sözcükler ("5,000 men of X", "100,000-strong X army").
+# Başka bir sözcük (fiil vb.) gelirse sağda aranmaz: "60,000 … began to harass X's forces" → X nesnedir, özne değil.
+_SAG_GECIRGEN = {"of", "from", "under", "strong", "guclu", "kadar", "civarinda", "yaklasik", "about", "some", "around",
+                 "nearly", "over", "more", "than", "fazla", "askin", "the", "an", "a", "his", "its", "their"}
 _GENEL_OLAY = {"savas", "muhar", "battl", "war", "wars", "harbi", "harp", "siege", "kusat", "sefer", "campa", "catis",
                "confl", "meyda", "ceng"}
 _ILISKI = {"ardindan", "sonra", "sonrasinda", "sonraki", "once", "oncesinde", "onceki", "after", "before", "following",
@@ -309,9 +317,12 @@ def sayi_baglamlari(metin: str, haric=frozenset()) -> list[dict]:
     """Yıl olmayan ≥ 50 rakamlar için {deger, olcu, taraf, yillar}. Hepsi AYNI YAN CÜMLEDE aranır (sınır: . ; : ', '
     ve/and/while/iken/ancak…):
     - olcu: sayıdan sonraki ya da önceki en çok 3 sözcükte kelime sınırıyla eşleşen ölçü sözcüğü (ordu/kayip);
-    - taraf: sayıya en yakın (önce soldan) özel ad kökü; olay adları (`haric` kökleri) taraf sayılmaz; kısa bir adla
+    - taraf: önce sağda bitişik nitelemedeki özel ad ("5,000 men of X"; araya fiil girerse sağda aranmaz — nesne özne
+      sayılmaz), yoksa soldaki en yakın özel ad kökü; olay adları (`haric` kökleri) taraf sayılmaz; kısa bir adla
       bitişik özel ad birleşik kök de verir ('Kara Kale' → 'karak');
-    - yillar: yan cümledeki yıllar (iddiada olmayan bir yıl → başka olay)."""
+    - yillar: yan cümledeki yıllar (iddiada olmayan bir yıl → başka olay);
+    - asama: yan cümledeki olay aşaması / birlik bölümü işaretleri (öncü, kanat, takip, garnizon, takviye, pusu);
+      aşaması farklı rakamlar karşılaştırılmaz."""
     tok = _TOK_NOKTALI.findall(metin or "")
     sinir = [i for i, t in enumerate(tok) if t in (";", ":", ",", ".", "!", "?") or katla(t) in _BAGLAC]
     out = []
@@ -336,7 +347,15 @@ def sayi_baglamlari(metin: str, haric=frozenset()) -> list[dict]:
                 if olcu:
                     break
         taraf: set[str] = set()
-        sira = list(range(i - 1, max(bas, i - 9) - 1, -1)) + list(range(i + 1, min(son, i + 9)))
+        sag = []   # sağda yalnızca bitişik nitelemede ("5,000 men of X") özne aranır; fiil vb. görülünce durulur
+        for j in range(i + 1, min(son, i + 9)):
+            k_ = katla(re.split(r"['’]", tok[j])[0])
+            if _taraf_adayi(tok[j], haric):
+                sag.append(j)
+                break
+            if not (k_ in _SAG_GECIRGEN or k_ in _CARPAN or _olcu_kelime(tok[j]) or tok[j][:1].isdigit()):
+                break
+        sira = sag + list(range(i - 1, max(bas, i - 9) - 1, -1))
         for j in sira:
             if _taraf_adayi(tok[j], haric):
                 ad = re.split(r"['’]", tok[j])[0]
@@ -351,7 +370,9 @@ def sayi_baglamlari(metin: str, haric=frozenset()) -> list[dict]:
                 if taraf:
                     break
         yillar = {int(x) for x in tok[bas:son] if x.isdigit() and _YIL.fullmatch(x)}
-        out.append({"deger": d, "olcu": olcu, "taraf": taraf, "yillar": yillar})
+        kk = [katla(x) for x in tok[bas:son]]
+        asama = frozenset(e for e, onek in _ASAMA.items() if any(x.startswith(o) for x in kk for o in onek))
+        out.append({"deger": d, "olcu": olcu, "taraf": taraf, "yillar": yillar, "asama": asama})
     return out
 
 
@@ -416,7 +437,8 @@ def pencere_degerlendir(w: str, a: dict, kaynakca: bool | None = None, ocr: bool
         for c in a["_sayi_baglam"]:
             if c["olcu"] not in ("ordu", "kayip") or not c["taraf"]:
                 continue   # ölçüsü ya da öznesi belirsiz rakam karşılaştırılmaz
-            aday = [x for x in pb if x["olcu"] == c["olcu"] and x["taraf"] & c["taraf"] and not (x["yillar"] - iddia_yil)]
+            aday = [x for x in pb if x["olcu"] == c["olcu"] and x["taraf"] & c["taraf"] and not (x["yillar"] - iddia_yil)
+                    and x["asama"] == c["asama"]]
             if aday and all(x["deger"] != c["deger"] for x in aday):
                 celiski.append("sayi")
                 break
@@ -450,12 +472,20 @@ def degerlendir(pencereler: list, iddia: dict) -> dict:
     a["_olcu"] = {d: _olcu_turu(m, i) for d, i in _sayilar(m)}
     a["_olay_yili"] = _olay_yili_bagli(_tokenler(m), a["olay"])
     a["_sayi_baglam"] = sayi_baglamlari(m, frozenset(a["olay"]))
-    en = None
-    for w in pencereler:
-        r = pencere_degerlendir(w, a, kaynakca=getattr(w, "kaynakca", None), ocr=bool(getattr(w, "ocr", False)))
-        puan = (_ONCELIK[r["destek_sinifi"]], sum(1 for v in r["atomlar"].values() if v), r["icerik_orani"])
-        if en is None or puan > en[0]:
-            en = (puan, r, w)
+    def _sec(a_):
+        en_, sayi_var = None, False
+        for w in pencereler:
+            r = pencere_degerlendir(w, a_, kaynakca=getattr(w, "kaynakca", None), ocr=bool(getattr(w, "ocr", False)))
+            sayi_var = sayi_var or bool(r["atomlar"].get("sayi"))
+            puan = (_ONCELIK[r["destek_sinifi"]], sum(1 for v in r["atomlar"].values() if v), r["icerik_orani"])
+            if en_ is None or puan > en_[0]:
+                en_ = (puan, r, w)
+        return en_, sayi_var
+    en, sayi_var = _sec(a)
+    if en is not None and "sayi" in en[1]["celiski"] and sayi_var:
+        # Aynı kaynak iddianın rakamını başka bir yerde de veriyor: kaynaktaki farklı rakam büyük olasılıkla farklı
+        # bağlama ait; tek başına sayı çelişkisi sayılmaz (yıl/gün-ay çelişkisi korunur)
+        en, _ = _sec(dict(a, _sayi_baglam=[]))
     atom_ozet = {k: (v if k != "varlik" else [x["ad"] for x in v]) for k, v in a.items() if not k.startswith("_") and v}
     if en is None:
         return {"destek_sinifi": "no_evidence", "atomlar": {}, "iddia_atomlari": atom_ozet, "icerik_orani": 0.0,

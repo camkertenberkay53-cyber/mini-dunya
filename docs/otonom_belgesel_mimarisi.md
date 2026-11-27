@@ -200,3 +200,27 @@ konu başlığı
   - **Shorts kısa devresi:** uzun mod 503 bütçesini tüketerek durursa Shorts için Gemini çağrılmaz
     (`atlandi_asiri_yuk`, koşu durumu `gemini_asiri_yuk`, çıkış 1). Zaman aşımı, genel 5xx ve ağ hatalarında
     davranış değişmedi.
+- **Faz-58: 503 + zaman aşımı aşırı yük bağlamı ve sayı çelişkisi** (Run 45984647430 bulguları):
+  - **Aşırı yük bağlamı:** Bir model 503 verdiğinde o model için bağlam açılır ve sağlayıcı ömrü boyunca korunur.
+    - Bağlam açıkken gelen zaman aşımı `zaman_asimi` sınıfıyla kaydedilir, 503 sayılmaz. Hata kaydında
+      `asiri_yuk_baglami` ayrıca işaretlenir.
+    - Bu zaman aşımı genel tekrar hakkını değil, 503 tekrar hakkını tüketir. Ek bekleme yapılmaz.
+  - **Kısa zaman aşımı:** Bağlam açıkken birincil ve yedek modele giden istekler `zaman_asimi_yuk` kullanır
+    (30–45 sn arası, varsayılan 40). Bağlam açılmadan önceki ilk istek 90 sn'de kalır.
+  - **Yedek rezervi:** Süre bütçesinin `yedek_rezerv_sn` kadarı yedek modele ayrılır (varsayılan: 60 sn ile bütçenin
+    %40'ından küçük olanı; uzun mod 60 sn, Shorts 36 sn). Birincil model bu payı kullanamaz.
+    - Payı biterse ya da gereken bekleme payını aşacaksa, birincil doğrudan yedeğe geçer.
+    - Yedek tek atışlıktır; zincir oluşmaz, birincile geri dönülmez. 429 her modelde anında durdurur.
+  - **Deterministik üst sınır:** birincilde 3, yedekte 2 istek; bağlam açıldıktan sonra her istek en çok 40 sn.
+  - **Shorts kısa devresi:** Uzun mod şu iki durumda başarısız olursa Shorts için istek gönderilmez:
+    - son sınıf `asiri_yuk`,
+    - sağlayıcı 503 görmüşken son sınıf `zaman_asimi` ya da `sure_butcesi`.
+
+    503 görülmemiş zaman aşımı, 5xx, ağ hatası ve 429'da davranış değişmedi.
+  - **Sayı çelişkisi:**
+    - **Özne/nesne:** Sayının sağındaki özel ad yalnızca bitişik nitelemede özne sayılır ("5,000 men of X",
+      "100,000-strong X army"). Araya fiil girerse ("60,000 … began to harass X's forces") özne aranmaz.
+    - **Olay aşaması:** Öncü, kanat, takip, garnizon, takviye ve pusu işaretleri farklıysa rakamlar karşılaştırılmaz.
+    - **Aynı küme:** Aynı küme birden çok değer veriyorsa o küme sayı karşılaştırmasından çıkarılır.
+    - **Aynı kaynak:** Kaynağın başka bir penceresi iddianın rakamını veriyorsa sayı çelişkisi düşer. Yıl ve gün-ay
+      çelişkisi korunur.

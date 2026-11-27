@@ -304,7 +304,7 @@ def _sayilar(cumle: str, olay_kokleri=frozenset()) -> list[dict]:
         if b is not None:
             b["_kullanildi"] = True
         out.append({"deger": deger, "ham": ham, "olcu_turu": (b or {}).get("olcu") or "diger",
-                    "taraf": sorted((b or {}).get("taraf") or ())})
+                    "taraf": sorted((b or {}).get("taraf") or ()), "asama": sorted((b or {}).get("asama") or ())})
     return out
 
 
@@ -477,25 +477,30 @@ def sayisal_koruma(kayitlar: list[dict]) -> None:
     - Aksi → dogrulanmis.
     """
     # Kümeler arası sayı çelişkisi yalnızca AYNI ölçü türü + AYNI taraf (özne kökü kesişimi) + AYNI olay (olay_id eşit
-    # ya da biri genel) için aranır: 'A ordusu 70.000' ile 'B ordusu 40.000' çelişki DEĞİLDİR. Tarafı
-    # belirsiz rakamlar karşılaştırılmaz. Değerler ayrı tutulur, ortalama alınmaz.
+    # ya da biri genel) + AYNI aşama için aranır: 'A ordusu 70.000' ile 'B ordusu 40.000' çelişki DEĞİLDİR. Tarafı
+    # belirsiz rakamlar karşılaştırılmaz. Aynı kümenin verdiği farklı değerler o kümede çelişki sayılmaz (Faz-58).
+    # Değerler ayrı tutulur, ortalama alınmaz.
     girdiler = []
     for k in kayitlar:
         kumeler = {x["kume"] for x in k["kaynaklar"] if not x.get("sayilmadi")
                    and (x["teyit_turu"] == "icerik" or x.get("sayi_teyidi"))}
         for s_ in k["sayilar"]:
             if s_["olcu_turu"] in ("ordu", "kayip") and s_.get("taraf") and kumeler:
-                girdiler.append((s_["olcu_turu"], set(s_["taraf"]), k.get("olay_id"), s_["deger"], kumeler))
+                girdiler.append((s_["olcu_turu"], set(s_["taraf"]), k.get("olay_id"), s_["deger"], kumeler,
+                                 tuple(s_.get("asama") or ())))
 
     def _celiski(k):
         for s_ in k["sayilar"]:
             if s_["olcu_turu"] not in ("ordu", "kayip") or not s_.get("taraf"):
                 continue
             grup: dict[int, set] = {}
-            for tur, taraf, olay, deger, kumeler in girdiler:
-                if (tur == s_["olcu_turu"] and taraf & set(s_["taraf"])
+            for tur, taraf, olay, deger, kumeler, asama in girdiler:
+                if (tur == s_["olcu_turu"] and taraf & set(s_["taraf"]) and asama == tuple(s_.get("asama") or ())
                         and (olay == k.get("olay_id") or "olay_genel" in (olay, k.get("olay_id")))):
                     grup.setdefault(deger, set()).update(kumeler)
+            # Faz-58: AYNI kümede birden çok değer → o küme farklı bağlamları anlatıyor olabilir; karşılaştırmadan çıkar
+            cok = {c for c in set().union(*grup.values()) if sum(c in v for v in grup.values()) > 1} if grup else set()
+            grup = {v: c - cok for v, c in grup.items() if c - cok}
             tum = set().union(*grup.values()) if grup else set()
             if len(grup) > 1 and len(tum) > 1:
                 return s_["olcu_turu"], [{"deger": v, "kume": sorted(c)} for v, c in sorted(grup.items())], sorted(s_["taraf"])
