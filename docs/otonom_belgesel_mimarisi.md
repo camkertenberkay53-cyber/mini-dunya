@@ -126,11 +126,24 @@ konu başlığı
 - **Gemini kotası paylaşılıyor:** `bot.yml` saat başı (`37 * * * *`) aynı `secrets.GEMINI_API_KEY` ile çalışır ve
   aynı ücretsiz günlük kotayı kullanır. Dry-run'da 429 görülürse kota bot tarafından tüketilmiş olabilir. Dry-run'ı
   bot'un yoğun olmadığı bir saatte tetikleyin ya da ayrı bir ücretsiz anahtar kullanın.
-- **Model:**
-  - Varsayılan model `gemini-2.5-flash`. Yanıt vermezse (404) sırasıyla `gemini-flash-latest` ve `gemini-3.7-flash`
-    denenir. Sıra `GEMINI_MODELLER="m1,m2"` ile değiştirilebilir. Model değiştirmek mock'a geçiş anlamına gelmez.
+- **Model (Faz-55B):**
+  - Varsayılan sıra: `gemini-flash-latest`, sonra `gemini-3.7-flash`, sonra `gemini-2.5-flash`. Bu hesapta
+    `gemini-2.5-flash` 404 veriyor ("no longer available to new users"). Sıra `GEMINI_MODELLER="m1,m2"` ile
+    değiştirilebilir.
+  - Hata sınıfları ve davranışlar:
+    - 404 `model_bulunamadi`: tekrar yok, sıradaki modele geçilir.
+    - 429 `kota`: tekrar YOK. Diğer modeller ve paralel parçalar için de yeni istek gönderilmez; koşu kontrollü durur.
+    - 401/403 `yetki`: durulur.
+    - `zaman_asimi`, `ag` ve 5xx `sunucu`: sınırlı tekrar, sonra sıradaki model.
+    - Diğer 4xx `istek_gecersiz`: sıradaki model.
   - Uzun mod 3 parçada üretilir: anlatı 3 istek, plan 3 istek. İstek başlangıçları arasında en az 3 sn bekleme var.
     İstek başına en çok 90 sn beklenir. Süre bütçesi uzun mod için 150 sn, Shorts için 75 sn.
+- **Dry-run anahtarı (yalnızca canlı dry-run adımında):**
+  - Önce `secrets.GEMINI_DRYRUN_KEY` kullanılır; bu anahtar bot.yml kotasından ayrıdır. Tanımlı değilse
+    `secrets.GEMINI_API_KEY` kullanılır. Hiçbiri yoksa Gemini adımı atlanır; mock'a geçilmez.
+  - Raporda yalnızca anahtarın KAYNAK ADI görünür. Log satırları ve çıktı dosyaları, ortamdaki bütün anahtar
+    değerlerine karşı ayrıca maskelenir.
+  - bot.yml ve diğer otomasyonlar değiştirilmedi.
 - **OpenAlex** (bağımsız akademik küme):
   - Şubat 2026'dan beri API anahtarı gerektiriyor. Anahtar ücretsizdir (openalex.org/settings/api), bu yüzden
     0 TL kuralına uyar.

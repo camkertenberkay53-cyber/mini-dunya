@@ -86,11 +86,14 @@ jobs:
         continue-on-error: true
         timeout-minutes: 6   # API yavaşlasa bile iş akışı asılı kalmaz (Gemini bütçeleri: uzun 150 sn, Shorts 75 sn)
         env:
+          # Anahtar seçimi yalnızca bu adımda: önce GEMINI_DRYRUN_KEY (bot.yml kotasından ayrı), yoksa GEMINI_API_KEY.
+          GEMINI_DRYRUN_KEY: ${{ secrets.GEMINI_DRYRUN_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}   # isteğe bağlı (ücretsiz); yoksa anahtarsız küçük bütçe
         run: |
           set +e   # bilgi adımı; çıkış kodu açıkça yazılır
           mkdir -p cikti/dry_run
+          echo "GEMINI_DRYRUN_KEY tanımlı mı: $([ -n "$GEMINI_DRYRUN_KEY" ] && echo evet || echo hayir)"
           echo "GEMINI_API_KEY tanımlı mı: $([ -n "$GEMINI_API_KEY" ] && echo evet || echo hayir)"
           echo "OPENALEX_API_KEY tanımlı mı: $([ -n "$OPENALEX_API_KEY" ] && echo evet || echo hayir)"
           python3 -u -m motor.orkestrasyon.canli_dry_run "Otlukbeli Savaşı" --mod uzun,shorts --cikti cikti/dry_run 2>&1 | tee cikti/dry_run/dry_run.log

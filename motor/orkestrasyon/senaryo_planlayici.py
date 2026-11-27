@@ -558,7 +558,7 @@ def _adim(saglayici: LLMProvider, adim: str, istem: str, baglam: dict, dogrula, 
     try:
         return _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler, ilk_uretim, ilerleme or (lambda *a: None))
     except LLMHatasi as e:   # gerçek sağlayıcı başarısız: DUR (mock'a sessiz geçiş YOK)
-        h = [_h("saglayici", "", "saglayici_hatasi", str(e)[:400])]
+        h = [dict(_h("saglayici", "", "saglayici_hatasi", str(e)[:600]), sinif=getattr(e, "sinif", "bilinmiyor"))]
         denemeler.append({"deneme": len(denemeler) + 1, "tur": "saglayici_hatasi", "hatalar": h})
         return {"veri": None, "denemeler": denemeler, "hatalar": h}
 

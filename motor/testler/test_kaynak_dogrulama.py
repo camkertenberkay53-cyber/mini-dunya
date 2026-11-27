@@ -552,6 +552,7 @@ def test_gercek_havuz_kapisi_tek_kaynak_ve_celiski_tekillestirme_reddi():
 def test_canli_dry_run_anahtarsiz_gemini_atlar_mocka_gecmez(monkeypatch, capsys):
     from motor.orkestrasyon import canli_dry_run as cdr
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_DRYRUN_KEY", raising=False)
     ag = _wp_ag()
     monkeypatch.setattr(cdr, "_kesif", lambda: kk.WikipediaKesif(ag.istemci()))
     monkeypatch.setattr(cdr, "_dogrulayici", lambda: kd.KaynakDogrulayici(ag.istemci()))
@@ -844,7 +845,7 @@ def test_openalex_bagimsiz_kume_tarih_iddiasini_dogrular(monkeypatch):
 def test_gemini_varsayilan_model_ve_ortamdan_sira(monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
     monkeypatch.delenv("GEMINI_MODELLER", raising=False)
-    assert gm.GeminiLLMProvider(tasiyici=SahteGemini()).modeller[0] == "gemini-2.5-flash"
+    assert gm.GeminiLLMProvider(tasiyici=SahteGemini()).modeller[0] == "gemini-flash-latest"
     monkeypatch.setenv("GEMINI_MODELLER", "m-bir, m-iki")
     assert gm.GeminiLLMProvider(tasiyici=SahteGemini()).modeller == ("m-bir", "m-iki")
 
@@ -883,3 +884,157 @@ def test_cumle_bolme_roma_rakami_ve_kisaltmada_bolmez():
          "Hz. Ali dönemine atıf yapan kaynaklar M.Ö. tarihleri vermez. Ertesi yıl barış konuşuldu.")
     c = kk._cumleler(m)
     assert c[0].endswith("arasında yapıldı.") and "II. Mehmed" in c[0] and len(c) == 3
+
+
+# ------------------------------------------------------------------ Faz-55B: hata sınıfları, kota, dry-run anahtarı
+
+def _yanit200(metin="{}"):
+    return 200, json.dumps({"candidates": [{"content": {"parts": [{"text": metin}]}}]})
+
+
+def _kayitci(davranis):
+    """davranis(model, n) → (kod, metin) ya da istisna. İstek kayıtları: [(model, anahtar)]."""
+    kayit = []
+
+    def t(url, govde, bas, zaman):
+        model = url.split("/models/")[1].split(":")[0]
+        kayit.append((model, bas["x-goog-api-key"]))
+        return davranis(model, len(kayit))
+    return t, kayit
+
+
+def test_hata_sinifi_tablosu():
+    assert gm.hata_sinifi(404) == "model_bulunamadi" and gm.hata_sinifi(429) == "kota"
+    assert gm.hata_sinifi(401) == gm.hata_sinifi(403) == "yetki" and gm.hata_sinifi(503) == "sunucu"
+    assert gm.hata_sinifi(400) == "istek_gecersiz"
+    assert gm.hata_sinifi(None, TimeoutError("x")) == "zaman_asimi" and gm.hata_sinifi(None, OSError("reset")) == "ag"
+
+
+def test_404_sonraki_modele_gecer_tekrar_yok(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    t, kayit = _kayitci(lambda m, n: (404, '{"error": "no longer available"}') if m == "gemini-flash-latest" else _yanit200("ok"))
+    g = gm.GeminiLLMProvider(tasiyici=t, uyku=lambda s: None)
+    assert g.tamamla("x", "anlati", {}) == "ok"
+    assert [m for m, _ in kayit] == ["gemini-flash-latest", "gemini-3.7-flash"] and g.kullanilan_model == "gemini-3.7-flash"
+    assert g.hatalar == [{"model": "gemini-flash-latest", "sinif": "model_bulunamadi", "http": 404}]
+
+
+def test_429_tek_istekte_kontrollu_durur_agresif_tekrar_yok(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    t, kayit = _kayitci(lambda m, n: (429, '{"error": {"message": "You exceeded your current quota"}}'))
+    uykular = []
+    g = gm.GeminiLLMProvider(tasiyici=t, uyku=uykular.append, en_cok_tekrar=2)
+    with pytest.raises(gm.GeminiKotaHatasi) as e:
+        g.tamamla("x", "anlati", {})
+    assert len(kayit) == 1 and uykular == []          # tekrar yok, diğer modeller denenmedi, bekleme yok
+    assert e.value.sinif == "kota" and "429" in str(e.value) and ANAHTAR not in str(e.value)
+    with pytest.raises(gm.GeminiKotaHatasi):        # aynı koşuda sonraki çağrı istek GÖNDERMEZ
+        g.tamamla("y", "sahne_plani", {})
+    assert len(kayit) == 1
+
+
+def test_403_yetki_durur_5xx_sinirli_tekrar_timeout_siniflanir(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", ANAHTAR)
+    t, kayit = _kayitci(lambda m, n: (403, "forbidden"))
+    with pytest.raises(gm.GercekUretimHatasi) as e:
+        gm.GeminiLLMProvider(tasiyici=t, uyku=lambda s: None).tamamla("x", "anlati", {})
+    assert e.value.sinif == "yetki" and len(kayit) == 1 and "GEMINI_API_KEY" in str(e.value)
+    t2, k2 = _kayitci(lambda m, n: (503, "overloaded") if n <= 2 else _yanit200("ok"))
+    g2 = gm.GeminiLLMProvider(tasiyici=t2, uyku=lambda s: None, en_cok_tekrar=1)
+    assert g2.tamamla("x", "anlati", {}) == "ok"
+    assert [m for m, _ in k2] == ["gemini-flash-latest", "gemini-flash-latest", "gemini-3.7-flash"]
+    assert [h["sinif"] for h in g2.hatalar] == ["sunucu", "sunucu"]
+
+    def zaman(m, n):
+        raise TimeoutError("The read operation timed out")
+    t3, k3 = _kayitci(zaman)
+    with pytest.raises(gm.GercekUretimHatasi) as e3:
+        gm.GeminiLLMProvider(tasiyici=t3, uyku=lambda s: None, en_cok_tekrar=0).tamamla("x", "anlati", {})
+    assert e3.value.sinif == "zaman_asimi" and {h["sinif"] for h in e3.value.hatalar} == {"zaman_asimi"} and len(k3) == 3
+
+
+@pytest.mark.parametrize("ortam,beklenen", [
+    ({}, (None, None)),
+    ({"GEMINI_API_KEY": "api-anahtari-1234"}, ("api-anahtari-1234", "GEMINI_API_KEY")),
+    ({"GEMINI_DRYRUN_KEY": "dry-anahtari-5678", "GEMINI_API_KEY": "api-anahtari-1234"}, ("dry-anahtari-5678", "GEMINI_DRYRUN_KEY")),
+    ({"GEMINI_DRYRUN_KEY": "   ", "GEMINI_API_KEY": "api-anahtari-1234"}, ("api-anahtari-1234", "GEMINI_API_KEY")),
+    ({"GEMINI_DRYRUN_KEY": "dry-anahtari-5678"}, ("dry-anahtari-5678", "GEMINI_DRYRUN_KEY")),
+])
+def test_dryrun_anahtar_secimi(ortam, beklenen):
+    from motor.orkestrasyon import canli_dry_run as cdr
+    assert cdr.dryrun_anahtari_sec(ortam) == beklenen
+
+
+def test_anahtar_secimi_yalnizca_dry_runda_saglayici_varsayilani_degismez(monkeypatch):
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.setenv("GEMINI_DRYRUN_KEY", "dry-anahtari-5678")
+    with pytest.raises(gm.GercekUretimHatasi) as e:   # sağlayıcı kendi başına DRYRUN anahtarını kullanmaz
+        gm.GeminiLLMProvider()
+    assert e.value.sinif == "anahtar_yok"
+
+
+def _dry_run_ortami(monkeypatch, davranis):
+    from motor.orkestrasyon import canli_dry_run as cdr
+    ag = _wp_ag()
+    monkeypatch.setattr(cdr, "_kesif", lambda: kk.WikipediaKesif(ag.istemci()))
+    monkeypatch.setattr(cdr, "_dogrulayici", lambda: kd.KaynakDogrulayici(ag.istemci()))
+    monkeypatch.setattr(cdr, "_openalex", lambda: kk.OpenAlexKesif(ag.istemci()))
+    t, kayit = _kayitci(davranis)
+    gercek = gm.GeminiLLMProvider
+    monkeypatch.setattr(cdr, "GeminiLLMProvider", lambda **kw: gercek(**dict(kw, tasiyici=t, uyku=lambda s: None)))
+    return cdr, kayit
+
+
+@pytest.mark.parametrize("dry,api,kullanilan", [("dry-anahtari-5678", "api-anahtari-1234", "dry-anahtari-5678"),
+                                                (None, "api-anahtari-1234", "api-anahtari-1234")])
+def test_dry_run_secilen_anahtari_kullanir_429da_durur_ve_maskeler(monkeypatch, capsys, tmp_path, dry, api, kullanilan):
+    for ad, d in (("GEMINI_DRYRUN_KEY", dry), ("GEMINI_API_KEY", api)):
+        if d:
+            monkeypatch.setenv(ad, d)
+        else:
+            monkeypatch.delenv(ad, raising=False)
+    cdr, kayit = _dry_run_ortami(monkeypatch, lambda m, n: (429, f'{{"error": "quota exceeded for key {kullanilan}"}}'))
+    kod = cdr.main(["Örnekova Muharebesi", "--mod", "uzun,shorts", "--cikti", str(tmp_path)])
+    cikti = capsys.readouterr().out + (tmp_path / "dry_run.json").read_text()
+    assert kod == 4 and kayit and {a for _, a in kayit} == {kullanilan}     # yalnız seçilen anahtar gönderildi
+    assert len(kayit) <= 3                                                   # paralel parçalar dahil, 429 sonrası yeni istek yok
+    r = json.loads((tmp_path / "dry_run.json").read_text())
+    assert r["durum"] == "gemini_kota" and r["asamalar"]["3_gemini_shorts"]["durum"] == "atlandi_kota"
+    assert r["gemini_anahtar_kaynagi"] == ("GEMINI_DRYRUN_KEY" if dry else "GEMINI_API_KEY")
+    for d in (dry, api):
+        if d:
+            assert d not in cikti                                           # anahtar değeri hiçbir çıktıda yok
+    assert "KOTA" in cikti and "mock" in cikti
+
+
+def test_dry_run_anahtar_yoksa_atlar(monkeypatch, tmp_path):
+    monkeypatch.delenv("GEMINI_DRYRUN_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    cdr, kayit = _dry_run_ortami(monkeypatch, lambda m, n: _yanit200())
+    assert cdr.main(["Örnekova Muharebesi", "--mod", "uzun", "--cikti", str(tmp_path)]) == 0
+    r = json.loads((tmp_path / "dry_run.json").read_text())
+    assert r["durum"] == "gemini_atlandi" and kayit == [] and r["gemini_anahtar_kaynagi"] is None
+
+
+def test_is_akisi_dryrun_anahtarini_yalniz_canli_adimda_verir():
+    import yaml
+    from pathlib import Path
+    wf = yaml.safe_load(Path(".github/workflows/faz53a_gercek_kanit.yml").read_text())
+    for a in wf["jobs"]["kanit"]["steps"]:
+        env = a.get("env") or {}
+        if a.get("name", "").startswith("5) Canlı dry-run"):
+            assert "GEMINI_DRYRUN_KEY" in env and "GEMINI_API_KEY" in env and "workflow_dispatch" in a["if"]
+        else:
+            assert "GEMINI_DRYRUN_KEY" not in env and "GEMINI_API_KEY" not in env, a.get("name")
+
+
+def test_dry_run_son_guvence_maskelemesi(monkeypatch, capsys):
+    """Sağlayıcı maskesinden bağımsız son katman: log satırları ve çıktı ortamdaki bütün anahtar değerlerini gizler."""
+    from motor.orkestrasyon import canli_dry_run as cdr
+    monkeypatch.setenv("GEMINI_DRYRUN_KEY", "dry-anahtari-5678")
+    monkeypatch.setenv("GEMINI_API_KEY", "api-anahtari-1234")
+    monkeypatch.setenv("OPENALEX_API_KEY", "oa-anahtari-9999")
+    cdr.log("test", "sızıntı denemesi dry-anahtari-5678 api-anahtari-1234 oa-anahtari-9999")
+    out = capsys.readouterr().out
+    assert "5678" not in out and "1234" not in out and "9999" not in out and out.count("***") == 3
+    assert cdr._maskele('{"k": "api-anahtari-1234"}') == '{"k": "***"}'
