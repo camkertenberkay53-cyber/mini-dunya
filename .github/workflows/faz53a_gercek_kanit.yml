@@ -11,7 +11,7 @@ on:
         type: boolean
         default: false
   push:
-    branches: [faz51-altyapi]
+    branches: [faz51-altyapi, faz56-arastirma]
     paths:
       - "motor/varlik/commons_toplayici.py"
       - "motor/varlik/tarihi_gorsel.py"
@@ -21,6 +21,8 @@ on:
       - "motor/orkestrasyon/**"
       - "motor/testler/test_senaryo_planlayici.py"
       - "motor/testler/test_kaynak_dogrulama.py"
+      - "motor/testler/test_faz56_arastirma.py"
+      - "deneyler/faz56/**"
       - "motor/uretim/gorsel25d.py"
       - "motor/testler/gorsel25d_kanit.py"
       - "deneyler/faz53a/gercek/sorgular.json"
@@ -61,7 +63,7 @@ jobs:
           if git status --porcelain --untracked-files=all assets/ | grep -vE '\.json$' | grep -q .; then echo "HATA: görsel ikilisi git'e görünüyor"; exit 1; fi
       - name: 2a) Faz-53A testleri (gerçek görsel testi dahil; zorunlu)
         run: |
-          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py motor/testler/test_ozne_tespit.py motor/testler/test_senaryo_planlayici.py motor/testler/test_kaynak_dogrulama.py \
+          python3 -m pytest -q -rs motor/testler/test_faz53a.py motor/testler/test_faz53a_a2.py motor/testler/test_commons_toplayici.py motor/testler/test_ozne_tespit.py motor/testler/test_senaryo_planlayici.py motor/testler/test_kaynak_dogrulama.py motor/testler/test_faz56_arastirma.py \
             --junitxml=cikti/pytest_faz53a.xml 2>&1 | tee cikti/pytest_faz53a.log
           test "${PIPESTATUS[0]}" -eq 0
           if grep -q "SKIPPED.*gerçek tarihî görsel" cikti/pytest_faz53a.log; then echo "HATA: gerçek görsel testleri atlandı"; exit 1; fi
@@ -78,6 +80,14 @@ jobs:
           cp assets/tarihi_gorsel/*.json cikti/ 2>/dev/null || true
           mkdir -p cikti/onbellek_kanit && cp -r /tmp/motor_onbellek/faz53a_gercek_kanit/* cikti/onbellek_kanit/ 2>/dev/null || true
           find deneyler/faz53a/gercek cikti/onbellek_kanit -path '*/is/*' -prune -o -type f -print | head -60
+      # Gemini YOK, kota harcamaz: gerçek TDV PDF'lerinde normalizasyon öncesi/sonrası doğrulama (bilgi adımı).
+      - name: 6) Canlı TDV PDF normalizasyon kontrolü (bilgi; Gemini yok)
+        continue-on-error: true
+        timeout-minutes: 3
+        run: |
+          set +e
+          python3 -u deneyler/faz56/tdv_pdf_kontrol.py 2>&1 | tee cikti/tdv_pdf_kontrol.log
+          echo "tdv kontrol çıkış kodu: ${PIPESTATUS[0]}"
       # Kota koruması: her push'ta ÇALIŞMAZ. Yalnızca Actions → "Run workflow" + canli_dry_run=true ile.
       # Not: bot.yml saat başı (cron "37 * * * *") AYNI secrets.GEMINI_API_KEY ile çalışır ve aynı ücretsiz günlük kotayı
       # paylaşır. Dry-run'ı bot'un yoğun olmadığı bir saatte tetikleyin; 429 görülürse kota bot tarafından tüketilmiş olabilir.

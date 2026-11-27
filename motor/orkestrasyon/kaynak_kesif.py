@@ -377,52 +377,92 @@ def havuz_olustur(konu: str, kaynaklar: list[dict], dogrulayici: KaynakDogrulayi
     kayitlar = []
     for n, idd in enumerate(iddialar, 1):
         sorgu = {"metin": idd["metin"], "yillar": idd["yillar"], "varliklar": idd["varliklar"], "olay_terimleri": olay_terimleri}
-        destek = []
+        destek, karsi = [], []
         for k in ana + adaylar:
             if k.get("api_metni"):   # API'den gelen metin (OpenAlex özeti): sayfa getirilmez, aynı bağlamsal kontrol
                 d = dict({"url": url_gizle(k["url"]), "http_status": 200, "verification_method": YONTEM},
                          **icerik_dogrula(k["metin"], sorgu))
             else:
                 d = dogrulayici.dogrula(k["url"], sorgu)   # sayfa bir kez getirilir (önbellek), iddia yerelde denetlenir
-            # tarih teyidi: farklı dilde/kaynakta aynı yıl + kişi/yer + olay (içerik dili farklı olabilir)
-            tarih_teyidi = (bool(idd["yillar"]) and d.get("year_match") and d.get("entity_match") and d.get("event_match") is not False
-                            and d.get("number_match") is not False)
-            if d["verification_status"] == "verified" or (tarih_teyidi and d["verification_status"] == "content_mismatch"):
+            # Atomik destek (iddia_atom): yalnız 'supported' tam teyittir. Tarih teyidi: yıl + (iddiada varsa) gün-ay +
+            # olay/varlık aynı pencerede; sayı teyidi: aynı rakam aynı pencerede. 'mention' hiçbir teyit sayılmaz.
+            at = d.get("atomlar") or {}
+            sinif = d.get("destek_sinifi")
+            baglam = at.get("olay") is True or at.get("varlik") is True or (at.get("olay") is None and at.get("varlik") is None)
+            tarih_teyidi = (sinif in ("supported", "partial") and bool(idd["yillar"]) and at.get("yil") is True
+                            and at.get("gun_ay") is not False and baglam and at.get("sayi") is not False)
+            sayi_teyidi = sinif in ("supported", "partial") and at.get("sayi") is True and baglam
+            ozet_d = {x: d.get(x) for x in ("verification_status", "verification_method", "http_status", "destek_sinifi",
+                                           "atomlar", "celiski", "year_match", "event_match", "entity_match",
+                                           "number_match", "content_match", "content_score", "supporting_excerpt", "neden")}
+            if sinif == "contradicts":
+                karsi.append({"id": k["id"], "url": k["url"], "eser": k.get("baslik"), "yayinci": k.get("yayinci"),
+                              "tur": k.get("tur"), "kume": kume[k["id"]], "dogrulama": ozet_d})
+            elif sinif == "supported" or tarih_teyidi or sayi_teyidi:
                 destek.append({"id": k["id"], "url": k["url"], "eser": k.get("baslik"), "yayinci": k.get("yayinci"),
-                               "tur": k.get("tur"), "kume": kume[k["id"]],
-                               "dogrulama": {x: d[x] for x in ("verification_status", "verification_method", "http_status",
-                                                               "year_match", "event_match", "entity_match", "number_match",
-                                                               "content_match",
-                                                               "content_score", "supporting_excerpt", "neden")},
-                               "teyit_turu": "icerik" if d["verification_status"] == "verified" else "yalniz_tarih"})
+                               "tur": k.get("tur"), "kume": kume[k["id"]], "dogrulama": ozet_d,
+                               "teyit_turu": "icerik" if sinif == "supported" else ("yalniz_tarih" if tarih_teyidi else "yalniz_sayi"),
+                               "tarih_teyidi": bool(tarih_teyidi or (sinif == "supported" and idd["yillar"])),
+                               "sayi_teyidi": bool(sayi_teyidi)})
             rapor_kaynak.setdefault(k["id"], {"url": url_gizle(k["url"]), "tur": k.get("tur"), "yayinci": k.get("yayinci"),
-                                              "kume": kume[k["id"]], "sonuclar": {}})
+                                              "kume": kume[k["id"]], "sonuclar": {},
+                                              "erisim": ({"durum": "ok", "neden_kodu": "api_metni", "http_status": 200}
+                                                         if k.get("api_metni") else dict(dogrulayici.erisim.get(k["url"], {})))})
             rapor_kaynak[k["id"]]["sonuclar"][d["verification_status"]] = rapor_kaynak[k["id"]]["sonuclar"].get(d["verification_status"], 0) + 1
+            if d.get("destek_sinifi"):
+                ds = rapor_kaynak[k["id"]].setdefault("destek", {})
+                ds[d["destek_sinifi"]] = ds.get(d["destek_sinifi"], 0) + 1
         icerik_kume = {x["kume"] for x in destek if x["teyit_turu"] == "icerik"}
-        tum_kume = {x["kume"] for x in destek}
+        tum_kume = {x["kume"] for x in destek if x.get("tarih_teyidi")}
+        sayi_kume = {x["kume"] for x in destek if x.get("sayi_teyidi")}
+        karsi_kume = {x["kume"] for x in karsi} - icerik_kume
         kayitlar.append({"id": f"ark_{n:03d}", "iddia": idd["metin"], "yil": idd["yillar"][0] if idd["yillar"] else None,
                          "sayilar": idd["sayilar"], "kaynaklar": destek, "kaynak_kesfi": idd["kaynak_id"],
                          "bagimsiz_kaynak_sayisi": len(icerik_kume), "tarih_teyit_kume_sayisi": len(tum_kume),
+                         "sayi_teyit_kume_sayisi": len(sayi_kume), "karsi_kaynaklar": karsi,
+                         "karsi_kume_sayisi": len(karsi_kume),
+                         "iddia_atomlari": _atom_ozeti(sorgu),
                          "tur": ("sayi" if any(s["olcu_turu"] in ("ordu", "kayip") for s in idd["sayilar"])
                                  else "tarih" if idd["yillar"] else "olay"),
                          "olay_id": f"olay_{idd['yillar'][0]}" if idd["yillar"] else "olay_genel"})
     sayisal_koruma(kayitlar)
+    for r in rapor_kaynak.values():   # kaynak bazında karar: erişim mi, PDF mi, içerik mi, yetersiz doğrulama mı?
+        e, ds = r.get("erisim") or {}, r.get("destek", {})
+        if e.get("durum") not in (None, "ok"):
+            r["dogrulama_sonucu"] = f"erisilemedi:{e.get('neden_kodu')}"
+        elif ds.get("supported"):
+            r["dogrulama_sonucu"] = "destekledi"
+        elif ds.get("contradicts"):
+            r["dogrulama_sonucu"] = "celisti"
+        elif ds.get("partial"):
+            r["dogrulama_sonucu"] = "dogrulama_yetersiz"   # verification insufficient: yalnız iddia parçaları
+        else:
+            r["dogrulama_sonucu"] = "icerik_uyusmazligi"   # content mismatch: yalnız anma ya da kanıt yok
     ilerleme("kaynak_dogrulama", f"{len(kayitlar)} iddia denetlendi; durumlar: "
              f"{ {d: sum(k['durum'] == d for k in kayitlar) for d in ('dogrulanmis', 'tartismali', 'belirsiz')} }")
     return {"konu": konu, "kayitlar": kayitlar, "kaynak_raporu": rapor_kaynak,
             "kume_sayisi": len(set(kume.values())), "dogrulama_yontemi": "structured_and_contextual"}
 
 
+def _atom_ozeti(sorgu: dict) -> dict:
+    from motor.orkestrasyon import iddia_atom as ia
+    at = ia.atomlar(sorgu)
+    return {k: (v if k != "varlik" else [x["ad"] for x in v]) for k, v in at.items() if v and k != "icerik"}
+
+
 def sayisal_koruma(kayitlar: list[dict]) -> None:
-    """Durum ataması (yerinde):
-    - doğrulanmış kaynak yok → belirsiz
-    - ordu/kayıp ölçüsünde kümeler arası farklı rakam → tartismali + celiski (değerler AYRI; ortalama YOK)
-    - tek bağımsız küme + sayısal (ordu/kayıp ya da yalnızca tek kümede teyitli tarih) → tartismali + tek_kaynak_uyarisi
-    - aksi → dogrulanmis
+    """Durum ataması (yerinde). Faz-56: atomik destek.
+    - Tam destekleyen (supported) küme yok → belirsiz.
+    - Ordu/kayıp ölçüsünde kümeler arası farklı rakam → tartismali + celiski. Değerler AYRI tutulur, ortalama YOK.
+    - Bağımsız bir küme çelişiyor (contradicts: farklı yıl/gün-ay/rakam) → tartismali + karsi_kanit.
+    - Sayısal iddia (ordu/kayıp ya da ≥ 100 rakam): aynı rakam en az 2 bağımsız kümede değilse tek_kaynak_uyarisi.
+    - Tarih iddiası: yıl (ve iddiada varsa gün-ay) en az 2 bağımsız kümede değilse tek_kaynak_uyarisi.
+    - Tarihsel yorum (dönüm noktası, belirleyici…): 2 bağımsız kümede tam destek yoksa tek_kaynak_uyarisi.
+    - Aksi → dogrulanmis.
     """
     degerler: dict[str, dict[int, set]] = {}
     for k in kayitlar:
-        kumeler = {x["kume"] for x in k["kaynaklar"] if x["teyit_turu"] == "icerik"}
+        kumeler = {x["kume"] for x in k["kaynaklar"] if x["teyit_turu"] == "icerik" or x.get("sayi_teyidi")}
         for s in k["sayilar"]:
             if s["olcu_turu"] in ("ordu", "kayip") and kumeler:
                 degerler.setdefault(s["olcu_turu"], {}).setdefault(s["deger"], set()).update(kumeler)
@@ -445,12 +485,21 @@ def sayisal_koruma(kayitlar: list[dict]) -> None:
                             "kural": "ortalama alınmaz; değerler ayrı aktarılır"}
             k["celiski_notu"] = CELISKI_IFADESI
             continue
-        # ordu/kayıp ya da sınıflanamamış büyük rakam (≥100): tek bağımsız kaynakla kesin anlatılamaz
+        if k.get("karsi_kume_sayisi", 0) > 0:
+            k["durum"] = "tartismali"
+            k["karsi_kanit"] = [{"id": x["id"], "celiski": x["dogrulama"].get("celiski"),
+                                 "alinti": x["dogrulama"].get("supporting_excerpt", "")[:200]} for x in k.get("karsi_kaynaklar", [])]
+            k["celiski_notu"] = "bağımsız bir kaynak bu iddiayla çelişiyor; kesin anlatılamaz"
+            continue
+        # ordu/kayıp ya da sınıflanamamış büyük rakam (≥100): aynı rakam 2 bağımsız kümede değilse kesinleşmez
         sayisal = bool(olcu & {"ordu", "kayip"}) or any(s["olcu_turu"] == "diger" and s["deger"] >= 100 for s in k["sayilar"])
+        sayi_kume = max(k.get("sayi_teyit_kume_sayisi", 0), k["bagimsiz_kaynak_sayisi"])
         tarih_tek = bool(k["yil"]) and k["tarih_teyit_kume_sayisi"] < 2
-        if (sayisal and k["bagimsiz_kaynak_sayisi"] < 2) or tarih_tek:
+        yorum_tek = bool((k.get("iddia_atomlari") or {}).get("yorum")) and k["bagimsiz_kaynak_sayisi"] < 2
+        if (sayisal and sayi_kume < 2) or tarih_tek or yorum_tek:
             k["durum"] = "tartismali"
             k["tek_kaynak_uyarisi"] = True
-            k["celiski_notu"] = "tek bağımsız kaynak; kesin anlatılamaz"
+            k["celiski_notu"] = ("tarihsel yorum tek bağımsız kaynakta; kesin anlatılamaz" if yorum_tek and not
+                                 ((sayisal and sayi_kume < 2) or tarih_tek) else "tek bağımsız kaynak; kesin anlatılamaz")
             continue
         k["durum"] = "dogrulanmis"

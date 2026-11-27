@@ -103,8 +103,13 @@ def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
     kay = havuz["kayitlar"]
     r["asamalar"]["2_dogrulama"] = {
         "kaynak_raporu": havuz["kaynak_raporu"], "bagimsiz_kume_sayisi": havuz["kume_sayisi"],
+        "kaynak_sonuc_dagilimi": Counter(r.get("dogrulama_sonucu") for r in havuz["kaynak_raporu"].values()),
+        "erisim_neden_dagilimi": Counter((r.get("erisim") or {}).get("neden_kodu") for r in havuz["kaynak_raporu"].values()),
+        "pdf": [{"id": i, **(r.get("erisim") or {}).get("pdf", {}), "neden_kodu": (r.get("erisim") or {}).get("neden_kodu")}
+                for i, r in havuz["kaynak_raporu"].items() if (r.get("erisim") or {}).get("belge") == "pdf"],
         "kayit_sayisi": len(kay), "durumlar": Counter(k["durum"] for k in kay), "turler": Counter(k["tur"] for k in kay),
         "tek_kaynak_uyarisi": sum(k["tek_kaynak_uyarisi"] for k in kay),
+        "karsi_kanitli": [{"id": k["id"], "iddia": k["iddia"][:160], "karsi": k.get("karsi_kanit")} for k in kay if k.get("karsi_kanit")][:8],
         "celiskiler": [{"id": k["id"], "celiski": k["celiski"], "iddia": k["iddia"][:200]} for k in kay if k.get("celiski")],
         "ornek_dogrulanmis": [{"id": k["id"], "iddia": k["iddia"][:200], "kaynaklar": [x["id"] for x in k["kaynaklar"]],
                                "excerpt": k["kaynaklar"][0]["dogrulama"]["supporting_excerpt"][:200]}

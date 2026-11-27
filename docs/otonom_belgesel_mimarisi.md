@@ -154,3 +154,21 @@ konu başlığı
   kanalı olarak kullanılmadı.
 - **PDF:** Açık erişimli PDF'ler (en çok 3 MB, ilk 10 sayfa) `pypdf` ile yalıtılmış bir alt süreçte okunur. Bu
   süreç bellek, CPU ve süre sınırıyla çalışır. Okunamayan PDF `unverified` sayılır; içeriği yanlış sayılmaz.
+- **Faz-56 araştırma güvenilirliği:**
+  - **PDF normalizasyonu (`pdf_normal.py`):**
+    - Satır sonları paragrafa birleştirilir.
+    - Tireyle bölünmüş kelimeler birleştirilir; bileşik adlardaki tire korunur.
+    - Tiresiz bölünmüş kelimeler yalnızca birleşik hal belgede başka yerde de geçiyorsa birleştirilir.
+    - Sayfa işaretleri `[s. N]` biçiminde korunur.
+    - Başlık, altbilgi ve dipnotlar ana metinden ayrılır.
+    - Ham metin ayrıca saklanır.
+  - **Atomik doğrulama (`iddia_atom.py`):**
+    - İddia şu parçalara ayrılır: yıl, gün-ay, sayı, kişi/komutan, olay, sonuç, yorum.
+    - Kaynak başına destek sınıfı: `supported` / `partial` / `mention` / `contradicts` / `no_evidence`.
+    - Yalnızca konuyu anmak ya da yalnızca yılı vermek tam destek sayılmaz.
+    - Tek kaynaktaki tarihsel yorum kesinleşmez.
+  - **Kaynak raporu:** Her kaynak için erişim nedeni ve doğrulama sonucu yazılır. Erişim nedeni kodları:
+    `http_403`, `http_404`, `http_429`, `http_5xx`, `timeout`, `pdf_parse_hatasi`, `pdf_metin_yok`, `bos_icerik`,
+    `desteklenmeyen_belge`, `politika_reddi`.
+  - **Politika katmanı:** Dosya paylaşım ve korsan kütüphane barındırıcıları ağa hiç çıkılmadan reddedilir. Bu katman
+    SSRF korumasına ektir, onun yerine geçmez.

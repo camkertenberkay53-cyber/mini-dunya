@@ -99,7 +99,7 @@ def test_200_icerik_uyumsuz_content_mismatch():
     ag = _ag(uyumsuz=(200, {"Content-Type": "text/html"}, HTML_UYUMSUZ))
     r = _dog(ag).dogrula("https://ornek.org/uyumsuz", IDDIA)
     assert r["http_status"] == 200 and r["verification_status"] == "content_mismatch"   # 200 ≠ doğrulandı
-    assert r["year_match"] is False and r["neden"].startswith("eksik")
+    assert r["year_match"] is False and "eksik" in r["neden"] and r["destek_sinifi"] == "mention"
 
 
 def test_ayni_yil_baska_olay_ayni_paragrafta_degilse_dogrulanmaz():
@@ -319,8 +319,13 @@ def test_havuz_sayisal_celiski_ortalama_yok_tek_kaynak_uyarisi():
     assert "50000" not in json.dumps(h) and "50.000" not in json.dumps(h)
     assert ordu["celiski_notu"] == kk.CELISKI_IFADESI
     # kayıp 3.000: akademik + Wikipedia iki bağımsız küme aynı rakam → çelişki yok, doğrulanmış
-    kayip = next(k for k in h["kayitlar"] if "3.000" in k["iddia"])
-    assert kayip["bagimsiz_kaynak_sayisi"] == 2 and kayip["durum"] == "dogrulanmis" and not kayip["tek_kaynak_uyarisi"]
+    kayip = next(k for k in h["kayitlar"] if "3.000" in k["iddia"] and "çekildi" in k["iddia"])
+    # Faz-56: akademik kaynak yalnız "3.000 kayıp verdi" diyor; "geri çekildi" kısmını desteklemiyor → partial.
+    # Tam destek 1 kümede; rakam 2 bağımsız kümede teyitli → sayısal koruma geçer, iddia doğrulanmış.
+    assert kayip["bagimsiz_kaynak_sayisi"] == 1 and kayip["sayi_teyit_kume_sayisi"] == 2
+    assert kayip["durum"] == "dogrulanmis" and not kayip["tek_kaynak_uyarisi"]
+    akad_k = [x for x in kayip["kaynaklar"] if x["tur"] == "akademik"]
+    assert akad_k and akad_k[0]["teyit_turu"] == "yalniz_sayi" and akad_k[0]["dogrulama"]["destek_sinifi"] == "partial"
     # 1502 antlaşma: yalnızca Wikipedia kümesi (TR+EN tek yayıncı) → tek kaynak uyarısı, kesin değil
     barisi = next(k for k in h["kayitlar"] if "1502" in k["iddia"])
     assert barisi["tek_kaynak_uyarisi"] and barisi["durum"] == "tartismali"
