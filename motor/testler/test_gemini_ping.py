@@ -147,6 +147,7 @@ def test_anahtar_hicbir_ciktiya_sizmaz(tmp_path, capsys, monkeypatch):
     assert "***" in r["sonuclar"][1]["ayrinti"]
     # main(): stdout + GITHUB_STEP_SUMMARY
     ozet = tmp_path / "ozet.md"
+    monkeypatch.delenv("GEMINI_HEALTH_KEY", raising=False)
     monkeypatch.setenv("GEMINI_DRYRUN_KEY", ANAHTAR)
     monkeypatch.delenv("GEMINI_MODELLER", raising=False)
     monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(ozet))
@@ -190,6 +191,7 @@ def test_betik_uretim_modulu_import_etmez_ve_dosya_yazmaz(tmp_path):
 
 def test_gecersiz_zaman_asimi_cikis_3_ve_istek_yok(monkeypatch, capsys):
     kayit = Kayit({})
+    monkeypatch.delenv("GEMINI_HEALTH_KEY", raising=False)
     monkeypatch.setenv("GEMINI_DRYRUN_KEY", ANAHTAR)
     monkeypatch.setattr(gp, "urllib_tasiyici", kayit)
     assert gp.main(["--zaman-asimi", "90"]) == 3 and kayit.istekler == []
@@ -205,3 +207,73 @@ def test_is_akisi_yalniz_elle_tetiklenir_ve_secretlari_alir():
     assert adim["env"]["GEMINI_DRYRUN_KEY"] == "${{ secrets.GEMINI_DRYRUN_KEY }}"
     assert adim["env"]["GEMINI_API_KEY"] == "${{ secrets.GEMINI_API_KEY }}"
     assert wf["permissions"] == {"contents": "read"}
+
+
+# ---------------------------------------------------------------- Faz-60: izole GEMINI_HEALTH_KEY (Tier 1)
+
+SAGLIK = "AIzaHEALTH-tier1-fedcba9876543210"
+DRY = "AIzaDRYRUN-ikinci-1111111111111111"
+API = "AIzaAPIKEY-ucuncu-2222222222222222"
+
+
+def test_health_key_en_once_gelir():
+    ortam = {"GEMINI_HEALTH_KEY": SAGLIK, "GEMINI_DRYRUN_KEY": DRY, "GEMINI_API_KEY": API}
+    assert gp.anahtar_sec(ortam) == (SAGLIK, "GEMINI_HEALTH_KEY")
+    r, t = _calistir({P: _ok(), Y: _ok()}, ortam=ortam)
+    assert r["anahtar_kaynagi"] == "GEMINI_HEALTH_KEY"
+    assert {i["basliklar"]["x-goog-api-key"] for i in t.istekler} == {SAGLIK}   # istekler yalnız sağlık anahtarıyla
+
+
+@pytest.mark.parametrize("ortam,beklenen", [
+    ({"GEMINI_HEALTH_KEY": SAGLIK, "GEMINI_DRYRUN_KEY": DRY, "GEMINI_API_KEY": API}, "GEMINI_HEALTH_KEY"),
+    ({"GEMINI_DRYRUN_KEY": DRY, "GEMINI_API_KEY": API}, "GEMINI_DRYRUN_KEY"),
+    ({"GEMINI_HEALTH_KEY": "", "GEMINI_DRYRUN_KEY": DRY, "GEMINI_API_KEY": API}, "GEMINI_DRYRUN_KEY"),   # tanımsız secret
+    ({"GEMINI_HEALTH_KEY": "   ", "GEMINI_API_KEY": API}, "GEMINI_API_KEY"),
+    ({"GEMINI_HEALTH_KEY": SAGLIK, "GEMINI_API_KEY": API}, "GEMINI_HEALTH_KEY"),
+    ({"GEMINI_API_KEY": API}, "GEMINI_API_KEY"),
+    ({"GEMINI_HEALTH_KEY": "", "GEMINI_DRYRUN_KEY": "", "GEMINI_API_KEY": ""}, None),
+])
+def test_fallback_sirasi(ortam, beklenen):
+    anahtar, kaynak = gp.anahtar_sec(ortam)
+    assert kaynak == beklenen
+    assert anahtar == (ortam[beklenen].strip() if beklenen else None)
+    assert gp.ANAHTAR_SIRASI == ("GEMINI_HEALTH_KEY", "GEMINI_DRYRUN_KEY", "GEMINI_API_KEY")
+
+
+def test_health_key_yokken_eski_davranis_ve_anahtarsiz_mesaj():
+    r, t = _calistir({}, ortam={"GEMINI_HEALTH_KEY": ""})
+    assert t.istekler == [] and r["cikis"] == 2
+    assert "GEMINI_HEALTH_KEY / GEMINI_DRYRUN_KEY / GEMINI_API_KEY" in r["sonuclar"][0]["ayrinti"]
+    r2, t2 = _calistir({P: _ok(), Y: _ok()}, ortam={"GEMINI_HEALTH_KEY": "", "GEMINI_DRYRUN_KEY": DRY})
+    assert r2["anahtar_kaynagi"] == "GEMINI_DRYRUN_KEY" and {i["basliklar"]["x-goog-api-key"] for i in t2.istekler} == {DRY}
+
+
+def test_uc_anahtar_degeri_de_hicbir_ciktiya_sizmaz(tmp_path, capsys, monkeypatch):
+    """Kullanılan (sağlık) ve kullanılmayan (dry-run, api) anahtarların değerleri hata metinlerinde geçse bile
+    rapor JSON'unda, Markdown'da, stdout/stderr'de ve Actions Summary dosyasında görünmez; yalnız kaynak ADI görünür."""
+    hatali = {P: (503, json.dumps({"error": {"status": "UNAVAILABLE", "message": f"{SAGLIK} {DRY} {API}"}})),
+              Y: ConnectionResetError(f"koptu {SAGLIK} / {DRY} / {API}")}
+    ozet = tmp_path / "ozet.md"
+    for ad, deger in (("GEMINI_HEALTH_KEY", SAGLIK), ("GEMINI_DRYRUN_KEY", DRY), ("GEMINI_API_KEY", API)):
+        monkeypatch.setenv(ad, deger)
+    monkeypatch.delenv("GEMINI_MODELLER", raising=False)
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(ozet))
+    monkeypatch.setattr(gp, "urllib_tasiyici", Kayit(hatali))
+    assert gp.main(["--json"]) == 1
+    cikti = capsys.readouterr()
+    hepsi = cikti.out + cikti.err + ozet.read_text()
+    for deger in (SAGLIK, DRY, API):
+        assert deger not in hepsi
+    assert "***" in cikti.out and "GEMINI_HEALTH_KEY" in ozet.read_text() and "GEMINI_HEALTH_KEY" in cikti.err
+    r, _ = _calistir(hatali, ortam={"GEMINI_HEALTH_KEY": SAGLIK, "GEMINI_DRYRUN_KEY": DRY, "GEMINI_API_KEY": API})
+    metin = json.dumps(r, ensure_ascii=False) + gp.markdown(r)
+    assert all(d not in metin for d in (SAGLIK, DRY, API))
+
+
+def test_is_akisi_health_key_secretini_alir():
+    yaml = pytest.importorskip("yaml")
+    wf = yaml.safe_load((KOK / ".github" / "workflows" / "gemini_health_check.yml").read_text())
+    adim = next(a for a in wf["jobs"]["ping"]["steps"] if "gemini_ping.py" in a.get("run", ""))
+    assert adim["env"]["GEMINI_HEALTH_KEY"] == "${{ secrets.GEMINI_HEALTH_KEY }}"
+    assert list(adim["env"])[:3] == ["GEMINI_HEALTH_KEY", "GEMINI_DRYRUN_KEY", "GEMINI_API_KEY"]
+    assert list(wf.get("on", wf.get(True))) == ["workflow_dispatch"]

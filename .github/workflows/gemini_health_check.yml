@@ -28,6 +28,9 @@ jobs:
       - name: Gemini ping (birincil + yedek)
         shell: bash
         env:
+          # Öncelik: GEMINI_HEALTH_KEY (izole Tier 1 test anahtarı) → GEMINI_DRYRUN_KEY → GEMINI_API_KEY.
+          # Tanımsız secret boş dize olarak gelir ve betik sıradakine geçer.
+          GEMINI_HEALTH_KEY: ${{ secrets.GEMINI_HEALTH_KEY }}
           GEMINI_DRYRUN_KEY: ${{ secrets.GEMINI_DRYRUN_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ZAMAN_ASIMI: ${{ github.event.inputs.zaman_asimi || '25' }}
