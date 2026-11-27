@@ -172,3 +172,13 @@ konu başlığı
     `desteklenmeyen_belge`, `politika_reddi`.
   - **Politika katmanı:** Dosya paylaşım ve korsan kütüphane barındırıcıları ağa hiç çıkılmadan reddedilir. Bu katman
     SSRF korumasına ektir, onun yerine geçmez.
+- **Faz-56B Gemini dayanıklılığı:**
+  - **503 (aşırı yük):** `Retry-After` başlığı varsa ona uyulur (en çok 120 sn). Yoksa 15 sn, sonra 30 sn beklenip
+    aynı model yeniden denenir. İki tekrardan sonra hâlâ 503 ise ya da bekleme süre bütçesini aşacaksa kontrollü
+    durulur; sonsuz tekrar yoktur.
+  - **Diğer hatalar:** 429'da anında durulur. Diğer 5xx hataları ve zaman aşımı eski davranışını korur.
+  - **Sıralı üretim:** Uzun belgeselin 3 parçası sırayla üretilir. Bir parça başarısız olursa sonrakiler istenmez.
+    Başarılı parçalar aynı adımın sonraki denemesinde yeniden istenmez; böylece çift üretim olmaz. Her parça,
+    önceki parçanın son birimlerini ve sahnelerini bağlam olarak alır.
+  - **Shorts:** Değişmedi.
+  - **Dry-run süre bütçeleri:** Uzun 210 sn, Shorts 90 sn. CI adımı en çok 6 dakika sürer.

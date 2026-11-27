@@ -553,7 +553,7 @@ def _cozumle(ham: str):
 def _adim(saglayici: LLMProvider, adim: str, istem: str, baglam: dict, dogrula, en_cok: int,
           ilk_uretim=None, ilerleme=None) -> dict:
     """Bir LLM adımını en çok `en_cok` denemeyle doğrulanmış veriye çevirir. Dönüş: {veri|None, denemeler, hatalar}.
-    ilk_uretim(deneme) → ham metin: tam üretim için özel yol (ör. bölüm bölüm paralel üretim); onarım her zaman hedefli."""
+    ilk_uretim(deneme) → ham metin: tam üretim için özel yol (ör. bölüm bölüm sıralı üretim); onarım her zaman hedefli."""
     denemeler = []
     try:
         return _adim_ic(saglayici, adim, istem, baglam, dogrula, en_cok, denemeler, ilk_uretim, ilerleme or (lambda *a: None))
@@ -623,55 +623,84 @@ PARCA_SURE_SN = {"hook": 45, "baglam": 200, "catisma": 320, "donum_noktasi": 280
 PARCA_GRUPLARI = [["hook", "baglam"], ["catisma"], ["donum_noktasi", "sonuc"]]
 
 
-def _paralel(fn, ogeler, en_cok_is: int = 5) -> list:
-    from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(max_workers=max(1, min(en_cok_is, len(ogeler)))) as ex:
-        return list(ex.map(fn, ogeler))   # bir parçadaki LLMHatasi burada yükselir → adım durur (fallback yok)
+def _sirali_parcalar(adim: str, tek, ilerleme, onbellek: dict) -> list | str:
+    """Parçaları SIRAYLA üretir (Faz-56B). Önceki parça başarılı olmadan sonraki başlatılmaz. Başarılı parçalar
+    `onbellek`te tutulur: adımın sonraki tam-üretim denemesinde YENİDEN İSTENMEZ (çift üretim / gereksiz API yok).
+    Bir parça JSON üretemezse sonraki parçalar çağrılmaz ve işaret metni döner (kapıda json_parse sayılır).
+    LLMHatasi (429 kota, 503 aşırı yük, süre bütçesi…) yükselir → adım durur."""
+    sonuc = []
+    for n, grup in enumerate(PARCA_GRUPLARI, 1):
+        anahtar = "+".join(grup)
+        if anahtar in onbellek:
+            ilerleme("gemini_cagri", f"{adim}/{anahtar} önceki denemeden hazır (yeniden istenmedi)")
+            sonuc.append((grup, onbellek[anahtar]))
+            continue
+        ilerleme("gemini_cagri", f"{adim}/{anahtar} parça {n}/{len(PARCA_GRUPLARI)} başlıyor (sıralı)")
+        v = tek(grup, [x for _, x in sonuc])
+        if v is None:
+            ilerleme("onay_kapisi", f"{adim}/{anahtar}: JSON çözümlenemedi; sonraki parçalar başlatılmadı")
+            return f"PARCA_JSON_HATASI {adim}/{anahtar}"
+        onbellek[anahtar] = v
+        sonuc.append((grup, v))
+    return sonuc
 
 
-def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme, paralel=3):
-    def tek(grup):
+def _parcali_anlati(saglayici, konu, mod, havuz, ilerleme, paralel=1):
+    onbellek: dict = {}
+
+    def tek(grup, onceki):
         sn = sum(PARCA_SURE_SN[b] for b in grup)
+        son = [b for v in onceki for b in v["birimler"]][-3:]
+        devam = ("" if not son else "\nÖNCEKİ PARÇANIN SON BİRİMLERİ (anlatım tonunu ve tarihsel devamlılığı sürdür; "
+                 "bunları TEKRARLAMA):\n" + json.dumps(son, ensure_ascii=False)[:4000])
         ist = _istem_anlati(konu, mod, havuz) + (
             f"\nBU İSTEKTE YALNIZCA şu bölüm(ler)i yaz, bu sırayla: {', '.join(grup)} (her birimin bolum alanı bunlardan "
             f"biri). Hedef: " + ", ".join(f"{b} ≈ {PARCA_SURE_SN[b]} sn / ≈ {max(3, round(PARCA_SURE_SN[b] / 8.5))} birim"
-                                          for b in grup) + ". Diğer bölümleri yazma.")
-        ilerleme("gemini_cagri", f"anlati/{'+'.join(grup)} başlıyor (≈{sn} sn)")
-        return grup, saglayici.tamamla(ist, "anlati", {"konu": konu, "mod": mod, "havuz": havuz, "bolumler": grup})
+                                          for b in grup) + ". Diğer bölümleri yazma." + devam)
+        ham = saglayici.tamamla(ist, "anlati", {"konu": konu, "mod": mod, "havuz": havuz, "bolumler": grup})
+        v, _ = _cozumle(ham)
+        if not isinstance(v, dict) or not isinstance(v.get("birimler"), list):
+            return None
+        v["birimler"] = [dict(b, bolum=b.get("bolum") if b.get("bolum") in grup else grup[0]) if isinstance(b, dict) else b
+                         for b in v["birimler"]]
+        return v
 
     def uret(deneme):
-        birimler = []
-        for grup, ham in _paralel(tek, PARCA_GRUPLARI, paralel):
-            v, _ = _cozumle(ham)
-            if not isinstance(v, dict) or not isinstance(v.get("birimler"), list):
-                ilerleme("onay_kapisi", f"anlati/{'+'.join(grup)}: JSON çözümlenemedi")
-                return f"PARCA_JSON_HATASI anlati/{'+'.join(grup)}"
-            birimler += [dict(b, bolum=b.get("bolum") if b.get("bolum") in grup else grup[0]) if isinstance(b, dict) else b
-                         for b in v["birimler"]]
-        return json.dumps({"mod": mod, "birimler": birimler}, ensure_ascii=False)
+        r = _sirali_parcalar("anlati", tek, ilerleme, onbellek)
+        if isinstance(r, str):
+            return r
+        return json.dumps({"mod": mod, "birimler": [b for _, v in r for b in v["birimler"]]}, ensure_ascii=False)
     return uret
 
 
-def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme, paralel=3):
-    def tek(grup):
+def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme, paralel=1):
+    onbellek: dict = {}
+
+    def tek(grup, onceki):
         alt = {"mod": mod, "birimler": [b for b in anlati["birimler"] if b.get("bolum") in grup]}
+        son = [{k: x.get(k) for k in ("bolum", "gorsel_tur", "ton", "ambiyans", "sure_sn")}
+               for v in onceki for x in v["sahneler"] if isinstance(x, dict)][-2:]
+        devam = ("" if not son else "\nÖNCEKİ PARÇANIN SON SAHNELERİ (ton/ambiyans sürekliliğini koru; aynı görsel türü "
+                 "toplamda 3. kez üst üste gelmesin): " + json.dumps(son, ensure_ascii=False))
         ist = _istem_plan(konu, mod, havuz, alt) + (
             f"\nBU İSTEKTE YALNIZCA şu bölüm(ler)in sahnelerini üret (bütün plan değil): {', '.join(grup)}. Toplam yaklaşık "
             f"{sum(PARCA_SURE_SN[b] for b in grup)} sn. Parça sınırlarında aynı görsel türü 3. kez üst üste gelmesin "
-            f"(ilk ve son sahnelerde tür çeşitliliği).")
-        ilerleme("gemini_cagri", f"sahne_plani/{'+'.join(grup)} başlıyor ({len(alt['birimler'])} birim)")
-        return grup, saglayici.tamamla(ist, "sahne_plani", {"konu": konu, "mod": mod, "havuz": havuz, "anlati": alt, "bolumler": grup})
+            f"(ilk ve son sahnelerde tür çeşitliliği)." + devam)
+        ilerleme("gemini_cagri", f"sahne_plani/{'+'.join(grup)} ({len(alt['birimler'])} birim)")
+        ham = saglayici.tamamla(ist, "sahne_plani", {"konu": konu, "mod": mod, "havuz": havuz, "anlati": alt, "bolumler": grup})
+        v, _ = _cozumle(ham)
+        if not isinstance(v, dict) or not isinstance(v.get("sahneler"), list):
+            return None
+        v["sahneler"] = [dict(x, bolum=x.get("bolum") if x.get("bolum") in grup else grup[0]) if isinstance(x, dict) else x
+                         for x in v["sahneler"]]
+        return v
 
     def uret(deneme):
-        sahneler, baslik = [], None
-        for grup, ham in _paralel(tek, PARCA_GRUPLARI, paralel):
-            v, _ = _cozumle(ham)
-            if not isinstance(v, dict) or not isinstance(v.get("sahneler"), list):
-                ilerleme("onay_kapisi", f"sahne_plani/{'+'.join(grup)}: JSON çözümlenemedi")
-                return f"PARCA_JSON_HATASI sahne_plani/{'+'.join(grup)}"
-            baslik = baslik or v.get("baslik")
-            sahneler += [dict(x, bolum=x.get("bolum") if x.get("bolum") in grup else grup[0]) if isinstance(x, dict) else x
-                         for x in v["sahneler"]]
+        r = _sirali_parcalar("sahne_plani", tek, ilerleme, onbellek)
+        if isinstance(r, str):
+            return r
+        sahneler = [x for _, v in r for x in v["sahneler"]]
+        baslik = next((v.get("baslik") for _, v in r if v.get("baslik")), None)
         for i, x in enumerate(sahneler):   # parçalardaki kimlikler çakışabilir: birleşik planda yeniden numaralanır
             if isinstance(x, dict):
                 x["id"] = f"s{i + 1:03d}"
@@ -683,7 +712,8 @@ def _parcali_plan(saglayici, konu, mod, havuz, anlati, ilerleme, paralel=3):
 def plan_uret(konu: str, mod: str, saglayici: LLMProvider, en_cok_deneme: int | None = None,
               uretime_gonder=None, arastirma: dict | None = None, parcali: bool = False, ilerleme=None,
               paralel: int = 3) -> dict:
-    """parcali=True (yalnızca uzun mod): anlatı ve sahne planı bölüm bölüm PARALEL üretilir, birleştirilir ve
+    """parcali=True (yalnızca uzun mod): anlatı ve sahne planı 3 parçada SIRALI üretilir (Faz-56B; paralel parametresi
+    geriye dönük uyum için kabul edilir ama kullanılmaz), birleştirilir ve
     birleşik plan aynı Validation Gate'ten geçer; onarım birleşik planda hedefli yapılır. ilerleme(asama, mesaj)."""
     ilerleme = ilerleme or (lambda *a: None)
     parcali = parcali and mod == "uzun"

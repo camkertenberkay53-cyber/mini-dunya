@@ -9,7 +9,7 @@ python3 -u -m motor.orkestrasyon.canli_dry_run "<konu>" [--mod uzun,shorts] [--c
   - Sayfa isteği başına 8 sn, sayfalar paralel getirilir.
   - Gemini isteği başına en çok 90 sn, düşünme bütçesi sınırlı.
   - Moda göre toplam Gemini süre bütçesi var.
-  - Uzun mod bölüm bölüm paralel üretilir.
+  - Uzun mod 3 parçada SIRALI üretilir; bir parça başarısız olursa sonrakiler istenmez.
 - Ağ yoksa ya da keşif sonuç vermezse bunu açıkça raporlar (çıkış 3).
 - Anahtar seçimi (YALNIZCA bu dry-run'da): önce `GEMINI_DRYRUN_KEY` (bot.yml'nin kotasından ayrı), yoksa
   `GEMINI_API_KEY`. İkisi de yoksa Gemini adımı ATLANIR ve rapor bunu açıkça söyler; mock'a GEÇİLMEZ.
@@ -31,7 +31,7 @@ from motor.orkestrasyon.kaynak_dogrulayici import GuvenliIstemci, KaynakDogrulay
 from motor.orkestrasyon.kaynak_kesif import OpenAlexKesif, WikipediaKesif, havuz_olustur
 from motor.orkestrasyon.senaryo_planlayici import plan_uret
 
-SURE_BUTCESI = {"uzun": 150.0, "shorts": 75.0}
+SURE_BUTCESI = {"uzun": 210.0, "shorts": 90.0}   # sıralı 6 istek + 503 beklemeleri (15/30 sn); CI adımı ≤ 6 dk
 ANAHTAR_SIRASI = ("GEMINI_DRYRUN_KEY", "GEMINI_API_KEY")
 
 
@@ -133,7 +133,7 @@ def calistir(konu: str, mod: str | list[str] = "uzun") -> dict:
             log("onay_kapisi", f"--- mod={m} atlandı: kota (429) önceki modda doldu")
             continue
         log("gemini_cagri", f"--- mod={m} başlıyor (süre bütçesi {SURE_BUTCESI[m]:.0f} sn, istek başı ≤90 sn"
-                            f"{', bölüm bölüm paralel' if m == 'uzun' else ''})")
+                            f"{', 3 parça sıralı' if m == 'uzun' else ''})")
         tm = time.time()
         try:
             # kota dostu: uzun mod 3 parça (anlatı 3 + plan 3 istek), istek başlangıçları arası ≥3 sn

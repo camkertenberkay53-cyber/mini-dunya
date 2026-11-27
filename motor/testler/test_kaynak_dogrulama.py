@@ -910,7 +910,8 @@ def _kayitci(davranis):
 
 def test_hata_sinifi_tablosu():
     assert gm.hata_sinifi(404) == "model_bulunamadi" and gm.hata_sinifi(429) == "kota"
-    assert gm.hata_sinifi(401) == gm.hata_sinifi(403) == "yetki" and gm.hata_sinifi(503) == "sunucu"
+    assert gm.hata_sinifi(401) == gm.hata_sinifi(403) == "yetki" and gm.hata_sinifi(500) == gm.hata_sinifi(502) == "sunucu"
+    assert gm.hata_sinifi(503) == "asiri_yuk"   # Faz-56B: 503 ayrı sınıf (15/30 sn bekleme), diğer 5xx 'sunucu' 
     assert gm.hata_sinifi(400) == "istek_gecersiz"
     assert gm.hata_sinifi(None, TimeoutError("x")) == "zaman_asimi" and gm.hata_sinifi(None, OSError("reset")) == "ag"
 
@@ -944,7 +945,7 @@ def test_403_yetki_durur_5xx_sinirli_tekrar_timeout_siniflanir(monkeypatch):
     with pytest.raises(gm.GercekUretimHatasi) as e:
         gm.GeminiLLMProvider(tasiyici=t, uyku=lambda s: None).tamamla("x", "anlati", {})
     assert e.value.sinif == "yetki" and len(kayit) == 1 and "GEMINI_API_KEY" in str(e.value)
-    t2, k2 = _kayitci(lambda m, n: (503, "overloaded") if n <= 2 else _yanit200("ok"))
+    t2, k2 = _kayitci(lambda m, n: (500, "internal") if n <= 2 else _yanit200("ok"))   # genel 5xx yolu (503 değil)
     g2 = gm.GeminiLLMProvider(tasiyici=t2, uyku=lambda s: None, en_cok_tekrar=1)
     assert g2.tamamla("x", "anlati", {}) == "ok"
     assert [m for m, _ in k2] == ["gemini-flash-latest", "gemini-flash-latest", "gemini-3.7-flash"]
