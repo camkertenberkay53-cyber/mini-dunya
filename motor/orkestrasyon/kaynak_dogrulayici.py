@@ -269,28 +269,46 @@ for i, sayfa in enumerate(r.pages):
     if i >= int(sys.argv[1]):
         break
     out.append(sayfa.extract_text() or "")
-sys.stdout.write("\n\n".join(out)[:400000])
+sys.stdout.write("\f".join(out)[:400000])   # sayfalar form feed ile ayrılır
 """
 
 
-def pdf_metin(govde: bytes, en_cok_sayfa: int = PDF_EN_COK_SAYFA, sure: int = PDF_SURE_SN) -> tuple[str | None, str]:
-    """(metin | None, neden). Başarısızlık içerik yanlışlığı DEĞİLDİR; çağıran 'unverified' der."""
+def pdf_cikar(govde: bytes, en_cok_sayfa: int = PDF_EN_COK_SAYFA, sure: int = PDF_SURE_SN) -> dict:
+    """PDF → {ham, metin (normalize), sayfa_sayisi, kaldirilan, dipnot_sayisi, neden, neden_kodu}. metin None ise
+    neden_kodu başarısızlığın TÜRÜNÜ ayırır: pdf_zaman_asimi | pdf_kutuphanesi_yok | pdf_sifreli | pdf_parse_hatasi |
+    pdf_metin_yok. Bunların hiçbiri içerik yanlışlığı değildir."""
+    from motor.orkestrasyon.pdf_normal import normalize_sayfalar
+
+    def hata(kod, neden):
+        return {"ham": None, "metin": None, "sayfa_sayisi": 0, "kaldirilan": [], "dipnot_sayisi": 0,
+                "neden": neden, "neden_kodu": kod}
     try:
         r = subprocess.run([sys.executable, "-I", "-c", _PDF_BETIGI, str(en_cok_sayfa), str(sure)], input=govde,
                            capture_output=True, timeout=sure + 5)
     except subprocess.TimeoutExpired:
-        return None, "pdf_zaman_asimi"
+        return hata("pdf_zaman_asimi", "pdf_zaman_asimi")
     cikti = r.stdout.decode("utf-8", errors="replace")
     if r.returncode == 3 or "__PYPDF_YOK__" in cikti:
-        return None, "pdf_kutuphanesi_yok (pypdf kurulu değil)"
+        return hata("pdf_kutuphanesi_yok", "pdf_kutuphanesi_yok (pypdf kurulu değil)")
     if r.returncode == 4:
-        return None, "pdf_sifreli"
+        return hata("pdf_sifreli", "pdf_sifreli")
     if r.returncode != 0:
-        return None, "pdf_okunamadi"
-    metin = re.sub(r"[ \t]+", " ", cikti).strip()
-    if len(metin) < 40:
-        return None, "pdf_metin_yok (taranmış görüntü olabilir)"
-    return metin, "pdf_metni"
+        return hata("pdf_parse_hatasi", "pdf_okunamadi (parse hatası)")
+    sayfalar = cikti.split("\f")
+    n = normalize_sayfalar(sayfalar)
+    govde_metni = re.sub(r"\[(?:pdf )?s\. [^\]]+\]", "", n["metin"]).strip()
+    if len(govde_metni) < 40:
+        d = hata("pdf_metin_yok", "pdf_metin_yok (taranmış görüntü olabilir)")
+        d.update(ham=cikti, sayfa_sayisi=len(sayfalar))
+        return d
+    return {"ham": cikti, "metin": n["metin"], "sayfa_sayisi": n["sayfa_sayisi"], "kaldirilan": n["kaldirilan"],
+            "dipnot_sayisi": len(n["dipnotlar"]), "neden": "pdf_metni", "neden_kodu": "pdf_metni"}
+
+
+def pdf_metin(govde: bytes, en_cok_sayfa: int = PDF_EN_COK_SAYFA, sure: int = PDF_SURE_SN) -> tuple[str | None, str]:
+    """(normalize metin | None, neden). Geriye dönük uyumlu kısa yol; ayrıntı için pdf_cikar."""
+    d = pdf_cikar(govde, en_cok_sayfa, sure)
+    return d["metin"], d["neden"]
 
 
 # ------------------------------------------------------------------ bağlamsal içerik doğrulaması
@@ -334,55 +352,66 @@ def _pencereler(metin: str) -> list[str]:
     return out
 
 
-def icerik_dogrula(metin: str, iddia: dict, esik_icerik: float = 0.5) -> dict:
-    """iddia: {'metin', 'yillar'?, 'olay_terimleri'?, 'varliklar'?}. Aynı pencerede dört boyut birlikte aranır."""
-    yillar = [str(y) for y in (iddia.get("yillar") or _YIL.findall(iddia.get("metin", "")))]
-    # yıl dışı sayılar (ordu, kayıp…): kaynakta AYNI rakam geçmeli; farklı rakam doğrulama değil çelişkidir
-    sayilar = {re.sub(r"[.,]", "", x) for x in re.findall(r"(?<![\w.,])\d{1,3}(?:[.,]\d{3})+|(?<![\w.,])\d{2,}(?![\w])",
-                                                         iddia.get("metin", ""))
-               if not _YIL.fullmatch(re.sub(r"[.,]", "", x)) and int(re.sub(r"[.,]", "", x)) >= 50}
-    # olay terimi: yalnızca iddianın KENDİSİNDE geçen olay terimleri kaynakta aranır
-    olay = [o for o in (_katla(t)[:5] for t in iddia.get("olay_terimleri", []) if t) if o in _katla(iddia.get("metin", ""))]
-    var = [_katla(v)[:5] for v in (iddia.get("varliklar") or varliklar(iddia.get("metin", "")))]
-    icerik = list(dict.fromkeys(_kokler(iddia.get("metin", ""))))
-    en = None
-    for w in _pencereler(metin):
-        k = set(_kokler(w))
-        kv = {t[:5] for t in re.findall(r"[a-z0-9]+", _katla(w)) if len(t) >= 3}   # özel adlar kısa olabilir (Han, Bey)
-        wy = set(_YIL.findall(w))
-        ws = {re.sub(r"[.,]", "", x) for x in re.findall(r"\d{1,3}(?:[.,]\d{3})+|\d+", w)}
-        sonuc = {
-            "year_match": all(y in wy for y in yillar) if yillar else None,
-            "event_match": any(o in k for o in olay) if olay else None,
-            "entity_match": (sum(v in kv for v in var) / len(var) >= 0.5) if var else None,
-            "content_score": round(sum(c in k for c in icerik) / len(icerik), 3) if icerik else 0.0,
-            "number_match": (sayilar <= ws) if sayilar else None,
-        }
-        sonuc["content_match"] = sonuc["content_score"] >= esik_icerik
-        puan = (sonuc["content_score"] + (sonuc["year_match"] is True) + (sonuc["entity_match"] is True)
-                + (sonuc["event_match"] is True) + (sonuc["number_match"] is True))
-        if en is None or puan > en[0]:
-            en = (puan, sonuc, w)
-    if en is None:
-        return {"verification_status": "content_mismatch", "year_match": False, "event_match": False, "entity_match": False,
-                "number_match": None, "content_match": False, "content_score": 0.0, "supporting_excerpt": "", "neden": "metin_bos"}
-    _, s, w = en
-    gerekli = {k: s[k] for k in ("year_match", "event_match", "entity_match", "number_match") if s[k] is not None}
-    tamam = s["content_match"] and all(gerekli.values())
-    eksik = [k for k, v in gerekli.items() if not v] + ([] if s["content_match"] else ["content_match"])
-    return {"verification_status": "verified" if tamam else "content_mismatch",
-            "year_match": bool(s["year_match"]) if s["year_match"] is not None else None,
-            "event_match": bool(s["event_match"]) if s["event_match"] is not None else None,
-            "entity_match": bool(s["entity_match"]) if s["entity_match"] is not None else None,
-            "content_match": bool(s["content_match"]), "content_score": s["content_score"],
-            "number_match": s["number_match"],
-            "supporting_excerpt": w[:400], "neden": "uyumlu" if tamam else "eksik: " + ",".join(eksik)}
+def icerik_dogrula(metin: str, iddia: dict) -> dict:
+    """iddia: {'metin', 'yillar'?, 'olay_terimleri'?, 'varliklar'?}. Atomik değerlendirme (iddia_atom): yalnızca
+    `supported` → verified. Eski alanlar (year/event/entity/number/content_match) geriye dönük uyum için korunur."""
+    from motor.orkestrasyon import iddia_atom as ia
+    r = ia.degerlendir(_pencereler(metin), iddia)
+    at = r["atomlar"]
+    if not r["supporting_excerpt"] and not at:
+        neden = "metin_bos"
+    elif r["destek_sinifi"] == "supported":
+        neden = "uyumlu"
+    else:
+        eksik = [k for k, v in at.items() if v is False] + ([] if r["icerik_orani"] >= ia.ICERIK_ESIGI else ["content_match"])
+        neden = f"destek={r['destek_sinifi']}" + (f"; eksik: {','.join(eksik)}" if eksik else "") + (
+            f"; çelişki: {','.join(r['celiski'])}" if r["celiski"] else "")
+    return {"verification_status": "verified" if r["destek_sinifi"] == "supported" else "content_mismatch",
+            "destek_sinifi": r["destek_sinifi"], "atomlar": at, "iddia_atomlari": r["iddia_atomlari"],
+            "celiski": r["celiski"],
+            "year_match": at.get("yil"), "event_match": at.get("olay"), "entity_match": at.get("varlik"),
+            "number_match": at.get("sayi"), "content_score": r["icerik_orani"],
+            "content_match": r["icerik_orani"] >= ia.ICERIK_ESIGI,
+            "supporting_excerpt": r["supporting_excerpt"], "neden": neden}
+
+
+# ------------------------------------------------------------------ kaynak politikası (SSRF'den AYRI katman)
+
+# Dosya paylaşım / korsan kütüphane barındırıcıları: içerik kaynağı doğrulanamaz ve telif ihlali riski taşır.
+# Bunlar ağa hiç çıkılmadan reddedilir. SSRF korumasının yerine geçmez, ona ek bir katmandır.
+REDDEDILEN_HOSTLAR = ("cdn.discordapp.com", "media.discordapp.net", "discordapp.com", "discord.com", "mega.nz",
+                      "mediafire.com", "rapidgator.net", "uploaded.net", "4shared.com", "scribd.com", "dokumen.pub",
+                      "vdoc.pub", "ebin.pub", "pdfdrive.com", "pdfcoffee.com", "idoc.pub", "kupdf.net", "dokumen.tips",
+                      "library.lol", "libgen.rs", "libgen.is", "libgen.li", "sci-hub.se", "sci-hub.ru", "sci-hub.st")
+REDDEDILEN_ETIKETLER = ("z-lib", "zlibrary", "1lib", "b-ok", "libgen", "annas-archive", "sci-hub")
+
+
+def _ozgun(url: str) -> str:
+    m = re.match(r"https?://web\.archive\.org/web/\d+[a-z_]*/(.+)$", url, re.I)
+    if not m:
+        return url
+    o = m.group(1)
+    return o if re.match(r"https?://", o, re.I) else "http://" + o
+
+
+def kaynak_politikasi(url: str) -> tuple[bool, str]:
+    """(izinli, neden). Arşiv anlık görüntüsü (web.archive.org) özgün adrese göre değerlendirilir."""
+    try:
+        h = (urllib.parse.urlsplit(_ozgun(url)).hostname or "").lower().rstrip(".")
+    except ValueError:
+        return False, "gecersiz_url"
+    if any(h == d or h.endswith("." + d) for d in REDDEDILEN_HOSTLAR):
+        return False, f"dosya_paylasim_barindiricisi ({h})"
+    if any(lbl == e or lbl.startswith(e) for lbl in h.split(".") for e in REDDEDILEN_ETIKETLER):
+        return False, f"korsan_kutuphane_supheli ({h})"
+    return True, ""
 
 
 # ------------------------------------------------------------------ kaynak doğrulama
 
 def _sonuc(url, durum, http_kodu=None, neden="", **ek) -> dict:
     d = {"url": url_gizle(url), "http_status": http_kodu, "verification_status": durum, "verification_method": YONTEM,
+         "destek_sinifi": None, "atomlar": {}, "celiski": [],
          "year_match": None, "event_match": None, "entity_match": None, "number_match": None, "content_match": None,
          "content_score": None,
          "supporting_excerpt": "", "neden": neden}
@@ -392,11 +421,14 @@ def _sonuc(url, durum, http_kodu=None, neden="", **ek) -> dict:
 
 class KaynakDogrulayici:
     def __init__(self, istemci: GuvenliIstemci | None = None, uyku=time.sleep, en_cok_429: int = 2, bekleme_tavani: float = 10.0,
-                 html_en_cok_bayt: int = EN_COK_BAYT, pdf_en_cok_bayt: int = PDF_EN_COK_BAYT):
+                 html_en_cok_bayt: int = EN_COK_BAYT, pdf_en_cok_bayt: int = PDF_EN_COK_BAYT, politika=None):
         # istemci PDF sınırı kadar (3 MB) okur; HTML/metin için 2 MB sınırı burada ayrıca uygulanır
         self.istemci = istemci or GuvenliIstemci(en_cok_bayt=pdf_en_cok_bayt)
         self.html_en_cok_bayt, self.pdf_en_cok_bayt = html_en_cok_bayt, pdf_en_cok_bayt
         self.uyku, self.en_cok_429, self.bekleme_tavani = uyku, en_cok_429, bekleme_tavani
+        self.politika = politika or kaynak_politikasi
+        self.erisim: dict[str, dict] = {}      # url → erişim/neden kaydı (kaynak raporu için)
+        self.ham_metin: dict[str, str] = {}    # url → PDF ham metni (normalizasyon öncesi)
         self._onbellek: dict[str, tuple] = {}
 
     def sayfa(self, url: str):
@@ -408,13 +440,21 @@ class KaynakDogrulayici:
         return sonuc
 
     def _getir(self, url: str):
+        """(sinif, http_kodu, metin, neden). Ayrıca self.erisim[url] = {neden_kodu, …}: başarısızlığın TÜRÜ."""
+        def kayit(sinif, kod, metin, neden, neden_kodu, **ek):
+            self.erisim[url] = dict({"durum": sinif, "http_status": kod, "neden_kodu": neden_kodu, "neden": neden}, **ek)
+            return (sinif, kod, metin, neden)
+        izin, politika_nedeni = self.politika(url)
+        if not izin:   # ağa hiç çıkılmaz
+            return kayit("unverified", None, "", f"politika_reddi: {politika_nedeni}", "politika_reddi")
         for deneme in range(self.en_cok_429 + 1):
             try:
                 y = self.istemci.getir(url)
             except GuvenlikHatasi as e:
-                return ("unverified", None, "", f"guvenlik_reddi: {e}")
+                return kayit("unverified", None, "", f"guvenlik_reddi: {e}", "guvenlik_reddi")
             except AgHatasi as e:
-                return ("unverified", None, "", f"ag_{e.tur}")
+                kod = {"zaman_asimi": "timeout", "cok_buyuk": "cok_buyuk"}.get(e.tur, "ag_hatasi")
+                return kayit("unverified", None, "", f"ag_{e.tur}", kod)
             if y.durum == 429:
                 if deneme < self.en_cok_429:
                     try:
@@ -423,29 +463,39 @@ class KaynakDogrulayici:
                         bekle = 2.0 ** deneme
                     self.uyku(min(self.bekleme_tavani, max(0.5, bekle)))
                     continue
-                return ("unverified", 429, "", "rate_limit_asildi")
+                return kayit("unverified", 429, "", "rate_limit_asildi", "http_429")
             if y.durum == 200:
                 tur = (y.basliklar.get("content-type") or "").lower()
                 if "pdf" in tur or y.govde[:5] == b"%PDF-":
                     if len(y.govde) > self.pdf_en_cok_bayt:
-                        return ("unverified", 200, "", "ag_cok_buyuk (PDF > 3 MB)")
-                    metin, neden = pdf_metin(y.govde)
-                    if metin is None:
-                        return ("unverified", 200, "", neden + " (içerik yanlış sayılmaz)")
-                    return ("ok", 200, metin, "pdf_metni")
+                        return kayit("unverified", 200, "", "ag_cok_buyuk (PDF > 3 MB)", "cok_buyuk", belge="pdf")
+                    p = pdf_cikar(y.govde)
+                    pdf = {"sayfa_sayisi": p["sayfa_sayisi"], "ham_karakter": len(p["ham"] or ""),
+                           "normal_karakter": len(p["metin"] or ""), "kaldirilan_satir": len(p["kaldirilan"]),
+                           "dipnot": p["dipnot_sayisi"]}
+                    if p["metin"] is None:   # HTTP erişimi başarılı; sorun PDF'in kendisinde
+                        return kayit("unverified", 200, "", p["neden"] + " (içerik yanlış sayılmaz)", p["neden_kodu"],
+                                     belge="pdf", pdf=pdf)
+                    self.ham_metin[url] = p["ham"]   # normalize metin doğrulamada; ham metin kaybolmaz
+                    return kayit("ok", 200, p["metin"], "pdf_metni", "ok", belge="pdf", pdf=pdf)
                 if tur and not any(t in tur for t in ("html", "text/plain", "xml")):
-                    return ("unverified", 200, "", f"desteklenmeyen_icerik_turu: {tur.split(';')[0]}")
+                    return kayit("unverified", 200, "", f"desteklenmeyen_icerik_turu: {tur.split(';')[0]}",
+                                 "desteklenmeyen_belge")
                 if len(y.govde) > self.html_en_cok_bayt:
-                    return ("unverified", 200, "", "ag_cok_buyuk (HTML > 2 MB)")
-                return ("ok", 200, html_metin(y.govde, y.basliklar), "")
+                    return kayit("unverified", 200, "", "ag_cok_buyuk (HTML > 2 MB)", "cok_buyuk", belge="html")
+                metin = html_metin(y.govde, y.basliklar)
+                if len(metin.strip()) < 30:
+                    return kayit("unverified", 200, "", "bos_icerik (sayfa metni yok/çok kısa; JS ile yükleniyor olabilir)",
+                                 "bos_icerik", belge="html")
+                return kayit("ok", 200, metin, "", "ok", belge="html")
             if y.durum == 403:
-                return ("unverified", 403, "", "erisim_engelli (kaynak ölü/uydurma sayılmaz)")
+                return kayit("unverified", 403, "", "erisim_engelli (kaynak ölü/uydurma sayılmaz)", "http_403")
             if y.durum in (404, 410):
-                return ("unreachable", y.durum, "", "sayfa_bulunamadi")
+                return kayit("unreachable", y.durum, "", "sayfa_bulunamadi", f"http_{y.durum}")
             if y.durum >= 500:
-                return ("unverified", y.durum, "", "gecici_sunucu_hatasi")
-            return ("unverified", y.durum, "", f"beklenmeyen_http_{y.durum}")
-        return ("unverified", 429, "", "rate_limit_asildi")
+                return kayit("unverified", y.durum, "", "gecici_sunucu_hatasi", "http_5xx")
+            return kayit("unverified", y.durum, "", f"beklenmeyen_http_{y.durum}", "http_diger")
+        return kayit("unverified", 429, "", "rate_limit_asildi", "http_429")
 
     def onden_getir(self, urller: list[str], paralel: int = 8) -> dict:
         """Sayfaları paralel getirip önbelleğe alır (her biri SSRF korumalı). Dönüş: durum sınıfı sayımı."""

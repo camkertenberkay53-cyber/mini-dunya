@@ -126,11 +126,24 @@ konu başlığı
 - **Gemini kotası paylaşılıyor:** `bot.yml` saat başı (`37 * * * *`) aynı `secrets.GEMINI_API_KEY` ile çalışır ve
   aynı ücretsiz günlük kotayı kullanır. Dry-run'da 429 görülürse kota bot tarafından tüketilmiş olabilir. Dry-run'ı
   bot'un yoğun olmadığı bir saatte tetikleyin ya da ayrı bir ücretsiz anahtar kullanın.
-- **Model:**
-  - Varsayılan model `gemini-2.5-flash`. Yanıt vermezse (404) sırasıyla `gemini-flash-latest` ve `gemini-3.7-flash`
-    denenir. Sıra `GEMINI_MODELLER="m1,m2"` ile değiştirilebilir. Model değiştirmek mock'a geçiş anlamına gelmez.
+- **Model (Faz-55B):**
+  - Varsayılan sıra: `gemini-flash-latest`, sonra `gemini-3.7-flash`, sonra `gemini-2.5-flash`. Bu hesapta
+    `gemini-2.5-flash` 404 veriyor ("no longer available to new users"). Sıra `GEMINI_MODELLER="m1,m2"` ile
+    değiştirilebilir.
+  - Hata sınıfları ve davranışlar:
+    - 404 `model_bulunamadi`: tekrar yok, sıradaki modele geçilir.
+    - 429 `kota`: tekrar YOK. Diğer modeller ve paralel parçalar için de yeni istek gönderilmez; koşu kontrollü durur.
+    - 401/403 `yetki`: durulur.
+    - `zaman_asimi`, `ag` ve 5xx `sunucu`: sınırlı tekrar, sonra sıradaki model.
+    - Diğer 4xx `istek_gecersiz`: sıradaki model.
   - Uzun mod 3 parçada üretilir: anlatı 3 istek, plan 3 istek. İstek başlangıçları arasında en az 3 sn bekleme var.
     İstek başına en çok 90 sn beklenir. Süre bütçesi uzun mod için 150 sn, Shorts için 75 sn.
+- **Dry-run anahtarı (yalnızca canlı dry-run adımında):**
+  - Önce `secrets.GEMINI_DRYRUN_KEY` kullanılır; bu anahtar bot.yml kotasından ayrıdır. Tanımlı değilse
+    `secrets.GEMINI_API_KEY` kullanılır. Hiçbiri yoksa Gemini adımı atlanır; mock'a geçilmez.
+  - Raporda yalnızca anahtarın KAYNAK ADI görünür. Log satırları ve çıktı dosyaları, ortamdaki bütün anahtar
+    değerlerine karşı ayrıca maskelenir.
+  - bot.yml ve diğer otomasyonlar değiştirilmedi.
 - **OpenAlex** (bağımsız akademik küme):
   - Şubat 2026'dan beri API anahtarı gerektiriyor. Anahtar ücretsizdir (openalex.org/settings/api), bu yüzden
     0 TL kuralına uyar.
@@ -141,3 +154,31 @@ konu başlığı
   kanalı olarak kullanılmadı.
 - **PDF:** Açık erişimli PDF'ler (en çok 3 MB, ilk 10 sayfa) `pypdf` ile yalıtılmış bir alt süreçte okunur. Bu
   süreç bellek, CPU ve süre sınırıyla çalışır. Okunamayan PDF `unverified` sayılır; içeriği yanlış sayılmaz.
+- **Faz-56 araştırma güvenilirliği:**
+  - **PDF normalizasyonu (`pdf_normal.py`):**
+    - Satır sonları paragrafa birleştirilir.
+    - Tireyle bölünmüş kelimeler birleştirilir; bileşik adlardaki tire korunur.
+    - Tiresiz bölünmüş kelimeler yalnızca birleşik hal belgede başka yerde de geçiyorsa birleştirilir.
+    - Sayfa işaretleri `[s. N]` biçiminde korunur.
+    - Başlık, altbilgi ve dipnotlar ana metinden ayrılır.
+    - Ham metin ayrıca saklanır.
+  - **Atomik doğrulama (`iddia_atom.py`):**
+    - İddia şu parçalara ayrılır: yıl, gün-ay, sayı, kişi/komutan, olay, sonuç, yorum.
+    - Kaynak başına destek sınıfı: `supported` / `partial` / `mention` / `contradicts` / `no_evidence`.
+    - Yalnızca konuyu anmak ya da yalnızca yılı vermek tam destek sayılmaz.
+    - Tek kaynaktaki tarihsel yorum kesinleşmez.
+  - **Kaynak raporu:** Her kaynak için erişim nedeni ve doğrulama sonucu yazılır. Erişim nedeni kodları:
+    `http_403`, `http_404`, `http_429`, `http_5xx`, `timeout`, `pdf_parse_hatasi`, `pdf_metin_yok`, `bos_icerik`,
+    `desteklenmeyen_belge`, `politika_reddi`.
+  - **Politika katmanı:** Dosya paylaşım ve korsan kütüphane barındırıcıları ağa hiç çıkılmadan reddedilir. Bu katman
+    SSRF korumasına ektir, onun yerine geçmez.
+- **Faz-56B Gemini dayanıklılığı:**
+  - **503 (aşırı yük):** `Retry-After` başlığı varsa ona uyulur (en çok 120 sn). Yoksa 15 sn, sonra 30 sn beklenip
+    aynı model yeniden denenir. İki tekrardan sonra hâlâ 503 ise ya da bekleme süre bütçesini aşacaksa kontrollü
+    durulur; sonsuz tekrar yoktur.
+  - **Diğer hatalar:** 429'da anında durulur. Diğer 5xx hataları ve zaman aşımı eski davranışını korur.
+  - **Sıralı üretim:** Uzun belgeselin 3 parçası sırayla üretilir. Bir parça başarısız olursa sonrakiler istenmez.
+    Başarılı parçalar aynı adımın sonraki denemesinde yeniden istenmez; böylece çift üretim olmaz. Her parça,
+    önceki parçanın son birimlerini ve sahnelerini bağlam olarak alır.
+  - **Shorts:** Değişmedi.
+  - **Dry-run süre bütçeleri:** Uzun 210 sn, Shorts 90 sn. CI adımı en çok 6 dakika sürer.
