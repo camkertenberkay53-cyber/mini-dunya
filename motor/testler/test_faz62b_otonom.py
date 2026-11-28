@@ -319,7 +319,7 @@ def test_is_akisi_elle_varsayilan_konu_ve_bicimler():
     wf = _yaml(WF)
     t = wf.get("on", wf.get(True))
     assert set(t) == {"workflow_dispatch", "push"}
-    assert t["push"]["branches"] == ["faz62b-otonom-uretim", "faz62c-long-documentary-engine"]
+    assert t["push"]["branches"] == ["faz62b-otonom-uretim", "faz62c-long-documentary-engine", "faz62d-gorsel-cesitliligi"]
     g = t["workflow_dispatch"]["inputs"]
     assert g["konu"]["default"] == "Otlukbeli Savaşı"
     assert g["mod"]["type"] == "choice" and g["mod"]["options"] == ["shorts", "uzun", "her_ikisi"]

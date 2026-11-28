@@ -33,13 +33,15 @@ on:
         type: boolean
         default: false
   push:
-    branches: [faz62b-otonom-uretim, faz62c-long-documentary-engine]
+    branches: [faz62b-otonom-uretim, faz62c-long-documentary-engine, faz62d-gorsel-cesitliligi]
     paths:
       - ".github/workflows/belgesel_uret.yml"
       - ".github/actions/motor-ortami/action.yml"
       - "otonom_uret.py"
       - "deneyler/faz62b/dogrulama.json"
       - "motor/uretim/**"
+      - "motor/varlik/commons_toplayici.py"
+      - "motor/varlik/tarihi_gorsel.py"
 
 permissions:
   contents: read
