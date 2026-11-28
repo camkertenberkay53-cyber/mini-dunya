@@ -7,12 +7,14 @@ Dosya iki yoldan gelir (hibrit):
 
 Üretim kapısı (dogrulanmis_dosya): aşağıdakilerin HEPSİ sağlanmadan görsel hiçbir çekime girmez:
   - zorunlu alanlar dolu
-  - lisans_turu ∈ IZINLI_LISANSLAR (CC0-1.0, PD-Old, PD-Art; atıf isteyen lisans yok)
+  - lisans_turu ∈ IZINLI_LISANSLAR (CC0-1.0, PD-Old, PD-Art) ya da atıflı CC-BY* (Faz-62d: otonom üretimde kabul)
   - lisans_dogrulandi == true VE onay.onaylayan + onay.tarih dolu (İNSAN onayı; motor bu alanları hiçbir zaman yazmaz)
   - durum != "red" (müze/arşivin fotoğraf üzerinde ayrı telif iddiası olan kopyalar 'red' kaydedilir)
   - dosya diskte ve SHA-256'sı kayıttakiyle aynı
 """
 from __future__ import annotations
+
+import re
 
 import hashlib
 import json
@@ -26,6 +28,7 @@ IZINLI_LISANSLAR = ("CC0-1.0", "PD-Old", "PD-Art")
 # Kullanıcı kararı (2026-11-26, otomatik Commons toplama): atıf isteyen CC-BY / CC-BY-SA lisansları da kabul edilir,
 # ANCAK yalnızca 'atif' alanı (yazar, lisans, kaynak) doluysa — yayında açıklamaya yazılmak üzere. Atıfsız CC-BY reddedilir.
 ATIFLI_LISANS_ONEKLERI = ("CC-BY",)
+ATIFLI_DESEN = re.compile(r"CC-BY(-SA)?(-[\d.]+)?")
 ZORUNLU_ALANLAR = ("gorsel_id", "kaynak_url", "kaynak_kurum", "eser_adi", "tarih", "bolge", "donem", "kultur",
                    "taraf_faction", "gorsel_turu", "uygun_sahne_turleri", "cozunurluk", "ozne_bilgisi",
                    "derinlik_uygunlugu", "lisans_turu", "kamu_mali_gerekcesi", "lisans_dogrulandi", "sha256")
@@ -70,7 +73,8 @@ def denetle(g: dict, dosya_kontrol: bool = True) -> list[str]:
     h = [f"eksik alan {a}" for a in ZORUNLU_ALANLAR if a not in g or g[a] in (None, "", [])]
     lis = str(g.get("lisans_turu") or "")
     atif = g.get("atif") or {}
-    atifli = lis.upper().startswith(ATIFLI_LISANS_ONEKLERI) and all(atif.get(a) for a in ("yazar", "lisans", "kaynak"))
+    # Faz-62d: yalnız CC-BY ve CC-BY-SA (sürümlü ya da değil); CC-BY-NC / CC-BY-ND önekle geçemez
+    atifli = bool(ATIFLI_DESEN.fullmatch(lis.upper())) and all(atif.get(a) for a in ("yazar", "lisans", "kaynak"))
     if lis not in IZINLI_LISANSLAR and not atifli:
         h.append(f"izin verilmeyen lisans {g.get('lisans_turu')!r} (izinli: {', '.join(IZINLI_LISANSLAR)}; "
                  f"CC-BY* yalnızca 'atif' alanıyla)")
@@ -125,6 +129,6 @@ def kayit_denetle(yol: Path | None = None) -> list[str]:
             h.append(f"{i}: tekrar eden kimlik")
         gorulen.add(i)
         lis = str(g.get("lisans_turu") or "")
-        if lis not in IZINLI_LISANSLAR and not lis.upper().startswith(ATIFLI_LISANS_ONEKLERI) and g.get("durum") != "red":
+        if lis not in IZINLI_LISANSLAR and not ATIFLI_DESEN.fullmatch(lis.upper()) and g.get("durum") != "red":
             h.append(f"{i}: izinli olmayan lisans ama 'red' işaretli değil")
     return h

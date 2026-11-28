@@ -262,6 +262,7 @@ jobs:
           path: |
             ${{ env.CIKTI }}/video/*.mp4
             ${{ env.CIKTI }}/video/*.srt
+            ${{ env.CIKTI }}/video/*.txt
             ${{ env.CIKTI }}/video/*.json
             ${{ env.CIKTI }}/*.json
           retention-days: 14

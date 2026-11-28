@@ -128,7 +128,7 @@ def denetle(plan: dict) -> dict:
     en_boy = plan["cozunurluk"][0] / plan["cozunurluk"][1]
     u, cekimler = [], {}
     h += sozlesme._tekrar([c["id"] for c in plan["cekimler"]], "çekimler")
-    gorulen = {}
+    gorulen, gorsel_atanan = {}, {}
     for c in plan["cekimler"]:
         r = cekim_denetle(c, plan["donem"], en_boy, donemler)
         cekimler[c["id"]] = r
@@ -138,6 +138,11 @@ def denetle(plan: dict) -> dict:
         if s in gorulen:
             h.append(f"{c['id']}: {gorulen[s]} ile aynı çekim (tekrar)")
         gorulen.setdefault(s, c["id"])
+        gid = (c.get("gorsel25d") or {}).get("gorsel_id") if c["tur"] == "gorsel25d" else None
+        if gid:   # Faz-62d: bir tarihî görsel dosyası bir videoda yalnız bir çekime atanabilir (Shorts + uzun)
+            if gid in gorsel_atanan:
+                h.append(f"{c['id']}: '{gid}' görseli {gorsel_atanan[gid]} çekiminde zaten kullanıldı (görsel tekrarı yasak)")
+            gorsel_atanan.setdefault(gid, c["id"])
     return {"gecti": not h, "hatalar": h, "uyarilar": u, "cekimler": cekimler, "eksikler": plan["eksikler"]}
 
 

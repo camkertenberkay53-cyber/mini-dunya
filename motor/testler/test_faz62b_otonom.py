@@ -123,6 +123,7 @@ def denetim_yalitik(monkeypatch):
     monkeypatch.setattr(sozlesme, "senaryo_denetle", lambda s, a: [])
     monkeypatch.setattr(anlati, "shorts_denetle", lambda s, sr: ([], {}))
     sure = {"t": 50.0}
+    monkeypatch.setattr(ou, "EN_AZ_GORSEL", {"shorts": 1, "uzun": 1})   # en az görsel kapısı test_faz62d'de sınanır
     monkeypatch.setattr(sahne_bolucu, "zaman_cizelgesi", lambda s, sr: None)
     monkeypatch.setattr(sahne_bolucu, "toplam_sure", lambda c: sure["t"])
     return sure
@@ -147,7 +148,9 @@ def test_ek_niyet_kurallari(denetim_yalitik):
 def test_sure_hedef_disinda_geri_bildirim(denetim_yalitik, t, parca):
     denetim_yalitik["t"] = t
     k = ou.konu_kur(PILOT, "Otlukbeli Savaşı", "shorts")
-    h = ou.senaryo_denetle({"cumleler": [_cumle(1)]}, {}, k, [], lambda cs: {})
+    g = [{"gorsel_id": "g1", "aciklama": "x"}]
+    h = ou.senaryo_denetle({"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "g1"}, aciklama="p")]}, {}, k, g,
+                           lambda cs: {})
     assert len(h) == 1 and f"{t:.1f} sn" in h[0] and "45–60" in h[0] and parca in h[0]
 
 
@@ -232,26 +235,33 @@ def test_planla_uctan_uca_sahte_saglayiciyla(tmp_path, denetim_yalitik, monkeypa
     assert r["arastirma"]["kart"] == 5 and r["arastirma"]["kesin"] == 5
 
 
-def test_gorsel_sorgusu_basarisizsa_25d_siz_devam_kota_ise_durur(tmp_path, denetim_yalitik):
+def test_gorsel_sorgusu_basarisizsa_en_az_gorsel_kapisi_durdurur_kota_ise_kod4(tmp_path, denetim_yalitik):
+    # Faz-62d: görsel sorgusu alınamazsa artık 2.5D'siz devam edilmez — en az görsel kapısı açık hatayla durdurur (kod 5)
     havuz = {"kayitlar": [_kayit(1)]}
-    senaryo = {"cumleler": [_cumle(1), _cumle(2)]}
 
     class Kota(Exception):
         sinif = "kota"
-    r = ou.planla("Otlukbeli Savaşı", "shorts", tmp_path / "a", "AIza", havuz_fn=lambda k: havuz,
-                  saglayici_fn=lambda: Sahte([TimeoutError("x"), json.dumps(senaryo)]), topla=lambda q, h: {},
+    with pytest.raises(ou.UretimHatasi) as e:
+        ou.planla("Otlukbeli Savaşı", "shorts", tmp_path / "a", "AIza", havuz_fn=lambda k: havuz,
+                  saglayici_fn=lambda: Sahte([TimeoutError("x")]), topla=lambda q, h: {},
                   planla_fn=_sahte_planla, olc=lambda cs: {})
-    assert r["gorseller"] == [] and r["isler"][0]["senaryo"]["turler"]["3d"] == 2
+    assert e.value.kod == 5 and e.value.asama == "gorsel" and "0 benzersiz" in str(e.value)
     with pytest.raises(ou.UretimHatasi) as e:
         ou.planla("Otlukbeli Savaşı", "shorts", tmp_path / "b", "AIza", havuz_fn=lambda k: havuz,
                   saglayici_fn=lambda: Sahte([Kota("429")]), planla_fn=_sahte_planla)
     assert e.value.kod == 4
 
 
-def test_plan_kapidan_gecmezse_durur(tmp_path, denetim_yalitik):
+def test_plan_kapidan_gecmezse_durur(tmp_path, denetim_yalitik, monkeypatch):
+    from motor.varlik import tarihi_gorsel
+    monkeypatch.setattr(tarihi_gorsel, "dogrulanmis_dosya", lambda gid: (tmp_path / gid, {}))
+    monkeypatch.setattr(ou, "GORSEL_KOK", tmp_path / "g")
     with pytest.raises(ou.UretimHatasi) as e:
+        k = ou.konu_kur(PILOT, "Otlukbeli Savaşı", "shorts")
+        sen = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": f"{k['kimlik']}-p"}, aciklama="p")]}
         ou.planla("Otlukbeli Savaşı", "shorts", tmp_path, "AIza", havuz_fn=lambda k: {"kayitlar": [_kayit(1)]},
-                  saglayici_fn=lambda: Sahte(["[]", json.dumps({"cumleler": [_cumle(1)]})]),
+                  saglayici_fn=lambda: Sahte([json.dumps([{"gorsel_id": "p", "sorgu": "q"}]), json.dumps(sen)]),
+                  topla=lambda q, h: {"lisans_turu": "PD-Old"},
                   planla_fn=lambda is_: {"gecti": False, "hatalar": {"sure": ["toplam 30 sn"]}}, olc=lambda cs: {})
     assert e.value.asama == "plan" and "toplam 30 sn" in str(e.value)
 
