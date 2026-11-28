@@ -1,0 +1,121 @@
+name: motor-ortami
+description: >
+  Faz-62b üretim işlerinin ortak kurulumu: Python 3.13 paketleri, isteğe bağlı bpy 5.3.0 + MPFB2, Godot 4.7.2
+  (SHA512 doğrulamalı), Piper fahrettin + Whisper base ses modelleri ve Faz-62a varlık önbelleğinin geri yüklenmesi.
+  Secret kullanmaz.
+inputs:
+  bpy:
+    description: "bpy 5.3.0 kur (binek / varlık derleme için)"
+    default: "false"
+  mpfb:
+    description: "MPFB2 eklentisini kur (yalnız varlık derleme)"
+    default: "false"
+  godot:
+    description: "Godot 4.7.2 kur ve motor/godot projesini içe aktar"
+    default: "false"
+  ses:
+    description: "Piper + Whisper modellerini kur (seslendirme / kalite kontrol)"
+    default: "false"
+  varlik:
+    description: "Varlık önbelleği: 'gerekli' (yoksa dur), 'istege-bagli' (yoksa devam), 'hayir'"
+    default: "gerekli"
+outputs:
+  varlik_anahtari:
+    description: "Faz-62a varlık önbelleği anahtarı"
+    value: ${{ steps.anahtar.outputs.anahtar }}
+  varlik_isabet:
+    description: "Varlık önbelleği bulundu mu"
+    value: ${{ steps.onbellek.outputs.cache-hit }}
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+        cache: pip
+
+    - name: Paketler
+      shell: bash
+      run: |
+        set -euo pipefail
+        sudo apt-get update -qq
+        sudo apt-get install -y -qq ffmpeg xvfb xauth libgl1-mesa-dri libglu1-mesa libxi6 libxkbcommon0 libsm6 \
+          libxrender1 libxxf86vm1 libxfixes3 libgl1 libegl1 fonts-dejavu-core libsndfile1 > /dev/null
+        pip install --quiet -r requirements.txt
+        pip install --quiet psutil jsonschema pypdf==6.17.0 scipy soundfile
+        if [ "${{ inputs.bpy }}" = "true" ]; then pip install --quiet bpy==5.3.0; fi
+
+    - name: MPFB2 (sabit commit)
+      if: ${{ inputs.mpfb == 'true' }}
+      shell: bash
+      run: |
+        set -euo pipefail
+        d=$(mktemp -d)
+        git -C "$d" init -q
+        git -C "$d" remote add origin https://github.com/makehumancommunity/mpfb2
+        git -C "$d" fetch -q --depth 1 origin "$MPFB_COMMIT"
+        git -C "$d" checkout -q FETCH_HEAD
+        [ "$(git -C "$d" rev-parse HEAD)" = "$MPFB_COMMIT" ]
+        hedef="$HOME/.config/blender/5.3/extensions/user_default/mpfb"
+        mkdir -p "$(dirname "$hedef")" && rm -rf "$hedef" && cp -r "$d/src/mpfb" "$hedef" && rm -rf "$d"
+        python3 -c "import bpy; import addon_utils; addon_utils.enable('bl_ext.user_default.mpfb', default_set=True); print('MPFB etkin')"
+
+    - name: Godot 4.7.2
+      if: ${{ inputs.godot == 'true' }}
+      shell: bash
+      run: |
+        set -euo pipefail
+        curl -sSLo /tmp/g.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+        echo "9aa00f7a605200940bce3027a567b782f49bd8e940dd06ae9e987bd65aee1b1467edd56ed84fcdcbdd44354bf613bdbb4e5d2913e925850368e150c59ed54c65  /tmp/g.zip" | sha512sum -c -
+        mkdir -p /tmp/godot && unzip -q -o /tmp/g.zip -d /tmp/godot && rm /tmp/g.zip
+
+    - name: Ses modelleri önbelleği
+      if: ${{ inputs.ses == 'true' }}
+      uses: actions/cache@v4
+      with:
+        path: models
+        key: faz62a-ses-modelleri-v1
+
+    - name: Ses modelleri
+      if: ${{ inputs.ses == 'true' }}
+      shell: bash
+      run: |
+        set -euo pipefail
+        mkdir -p models && cd models
+        [ -d vits-piper-tr_TR-fahrettin-medium ] || { curl -sSL -o m.tar.bz2 \
+          https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-fahrettin-medium.tar.bz2
+          tar xjf m.tar.bz2 && rm m.tar.bz2; }
+        [ -d sherpa-onnx-whisper-base ] || { curl -sSL -o w.tar.bz2 \
+          https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-base.tar.bz2
+          tar xjf w.tar.bz2 && rm w.tar.bz2; }
+
+    - name: Varlık anahtarı
+      id: anahtar
+      shell: bash
+      run: echo "anahtar=$(python3 araclar/faz62a_hat.py anahtar)" >> "$GITHUB_OUTPUT"
+
+    - name: Varlık önbelleği (geri yükle)
+      id: onbellek
+      if: ${{ inputs.varlik != 'hayir' }}
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          /tmp/motor_onbellek/ekipman
+          /tmp/motor_onbellek/karakter3
+          /tmp/motor_onbellek/insan
+          /tmp/motor_onbellek/takim
+          /tmp/motor_onbellek/mekan
+          /tmp/motor_onbellek/binek
+          /tmp/motor_onbellek/denetim
+          motor/varlik/ekipman_kaydi.json
+          motor/varlik/mekan_varlik_kaydi.json
+        key: faz62a-varlik-${{ steps.anahtar.outputs.anahtar }}
+        fail-on-cache-miss: ${{ inputs.varlik == 'gerekli' }}
+
+    - name: Godot içe aktarma
+      if: ${{ inputs.godot == 'true' }}
+      shell: bash
+      run: |
+        set -o pipefail
+        "$GODOT" --headless --path motor/godot --import > /tmp/ice.log 2>&1 || { tail -40 /tmp/ice.log; exit 1; }
+        tail -2 /tmp/ice.log

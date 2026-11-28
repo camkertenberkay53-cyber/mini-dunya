@@ -1,0 +1,250 @@
+# Faz-62b — otonom belgesel / Shorts üretimi (YouTube'a ya da başka bir yere YÜKLEME YAPMAZ).
+#
+# Akış: varlik (Faz-62a önbelleği; yoksa Blender ile derlenir) → plan (araştırma havuzu + Commons CC0/PD 2.5D görselleri
+# + Gemini senaryo → çekim planı → 3D parçaları) → render (3D çekimler PARALEL matris işlerinde) → kurgu (harita +
+# 2.5D + önbellekteki 3D → Piper TTS → FFmpeg → kalite kontrol). Çıktı: .mp4 + raporlar Actions artifact'ı (14 gün).
+#
+# Biçimler: 'shorts' uçtan uca. 'uzun' bugün desteklenmez ve AÇIKÇA reddedilir (otonom_uret.py UZUN_ENGELI: korunan
+# motor/uretim/ değişikliği gerektirir); 'her_ikisi' Shorts'u üretir, uzun için reddi raporlar.
+#
+# Tetikleme: yalnız elle (Actions → "Belgesel üret" → Run workflow). Gemini: GEMINI_API_KEY (Tier 1, faturalı).
+# Ayrıca bu dalda (faz62b-otonom-uretim) hat dosyaları değişince Gemini'SİZ doğrulama koşusu çalışır: pilot senaryo +
+# bir harita + bir Commons 2.5D cümlesiyle paralel render / kurgu sınanır (secret kullanılmaz, üretim değildir).
+name: Belgesel üret
+
+on:
+  workflow_dispatch:
+    inputs:
+      konu:
+        description: "Tarihî konu başlığı"
+        required: true
+        default: "Otlukbeli Savaşı"
+      mod:
+        description: "Biçim"
+        type: choice
+        options: [shorts, uzun, her_ikisi]
+        default: shorts
+      parca_sayisi:
+        description: "3D render paralel iş sayısı (1–8)"
+        required: false
+        default: "4"
+  push:
+    branches: [faz62b-otonom-uretim]
+    paths:
+      - ".github/workflows/belgesel_uret.yml"
+      - ".github/actions/motor-ortami/action.yml"
+      - "otonom_uret.py"
+      - "deneyler/faz62b/dogrulama.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: belgesel-uret-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  GODOT: /tmp/godot/Godot_v4.7.2-stable_linux.x86_64
+  MOTOR_ONBELLEK: /tmp/motor_onbellek
+  MOTOR_KAYNAK: /tmp/varlik
+  PIPER_MODELS: ${{ github.workspace }}/models
+  MPFB_COMMIT: 650c5c53bd6989a8ac264f31fa1d11d4a0c7bd8a
+  IS: /tmp/otonom_is
+  CIKTI: /tmp/otonom_cikti
+  DOGRULAMA: ${{ github.event_name == 'push' }}
+
+jobs:
+  varlik:
+    name: Varlıklar (önbellek ya da Blender derleme)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - id: ortam
+        uses: ./.github/actions/motor-ortami
+        with: {bpy: "true", mpfb: "true", varlik: istege-bagli}
+      - name: Kaynak depo önbelleği
+        if: ${{ steps.ortam.outputs.varlik_isabet != 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: /tmp/varlik
+          key: faz62a-kaynak-${{ hashFiles('motor/varlik/kaynaklar.yaml') }}
+      - name: Varlıkları derle (önbellek yoksa)
+        if: ${{ steps.ortam.outputs.varlik_isabet != 'true' }}
+        run: |
+          python3 -u araclar/faz62a_hat.py kaynaklar --cikti "$CIKTI"
+          python3 -u araclar/faz62a_hat.py varlik --cikti "$CIKTI"
+      - name: Varlık önbelleğini kaydet
+        if: ${{ steps.ortam.outputs.varlik_isabet != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            /tmp/motor_onbellek/ekipman
+            /tmp/motor_onbellek/karakter3
+            /tmp/motor_onbellek/insan
+            /tmp/motor_onbellek/takim
+            /tmp/motor_onbellek/mekan
+            /tmp/motor_onbellek/binek
+            /tmp/motor_onbellek/denetim
+            motor/varlik/ekipman_kaydi.json
+            motor/varlik/mekan_varlik_kaydi.json
+          key: faz62a-varlik-${{ steps.ortam.outputs.varlik_anahtari }}
+
+  plan:
+    name: Plan (araştırma + görseller + senaryo + çekim planı)
+    needs: varlik
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    outputs:
+      kimlik: ${{ steps.plan.outputs.kimlik }}
+      parcalar: ${{ steps.plan.outputs.parcalar }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/motor-ortami
+        with: {bpy: "true", ses: "true", varlik: gerekli}   # bpy: plan denetimi binek GLB'lerini istek üzerine üretir
+      - name: Biçim kontrolü
+        run: |
+          MOD="${{ inputs.mod || 'shorts' }}"
+          if [ "$MOD" = "uzun" ] || [ "$MOD" = "her_ikisi" ]; then
+            python3 -c "from otonom_uret import UZUN_ENGELI; print('::warning title=Uzun belgesel üretilmedi::' + UZUN_ENGELI)"
+            { echo "## Uzun belgesel üretilmedi"; echo; python3 -c "from otonom_uret import UZUN_ENGELI; print(UZUN_ENGELI)"; echo; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ "$MOD" = "uzun" ]; then echo "::error::Yalnız 'uzun' seçildi; desteklenen biçim yok, üretim yapılmadı."; exit 3; fi
+      - name: Plan
+        id: plan
+        env:
+          GEMINI_API_KEY: ${{ github.event_name == 'workflow_dispatch' && secrets.GEMINI_API_KEY || '' }}
+          OPENALEX_API_KEY: ${{ github.event_name == 'workflow_dispatch' && secrets.OPENALEX_API_KEY || '' }}
+          KONU: ${{ inputs.konu || 'Otlukbeli Savaşı' }}
+          PARCA: ${{ inputs.parca_sayisi || '3' }}
+        run: |
+          if [ "$DOGRULAMA" = "true" ]; then
+            python3 -u otonom_uret.py dogrula --fikstur deneyler/faz62b/dogrulama.json \
+              --is "$IS" --cikti "$CIKTI" --parca-sayisi "$PARCA"
+          else
+            python3 -u otonom_uret.py planla --konu "$KONU" --mod shorts \
+              --is "$IS" --cikti "$CIKTI" --parca-sayisi "$PARCA"
+          fi
+      - name: Plan artifact'ı
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan
+          path: ${{ env.IS }}
+          retention-days: 14
+          if-no-files-found: error
+      - name: Binek artifact'ı (plan sırasında üretilen GLB'ler; render/kurgu aynı dosyaları kullanır)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: binek
+          path: /tmp/motor_onbellek/binek
+          retention-days: 3
+          if-no-files-found: ignore
+      - name: 2.5D görseller artifact'ı
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gorseller
+          path: assets/tarihi_gorsel
+          retention-days: 14
+          if-no-files-found: ignore
+      - name: Plan raporu artifact'ı
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapor-plan
+          path: ${{ env.CIKTI }}/*.json
+          retention-days: 14
+          if-no-files-found: warn
+
+  render:
+    name: 3D render (parça ${{ matrix.parca }})
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: true
+      matrix:
+        parca: ${{ fromJSON(needs.plan.outputs.parcalar) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/motor-ortami
+        with: {bpy: "true", godot: "true", varlik: gerekli}
+      - uses: actions/download-artifact@v4
+        with: {name: plan, path: "${{ env.IS }}"}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {name: binek, path: /tmp/motor_onbellek/binek}
+      - name: Render
+        run: |
+          python3 -u otonom_uret.py render --is "$IS" --kimlik "${{ needs.plan.outputs.kimlik }}" \
+            --parca "${{ matrix.parca }}" --cikti "$CIKTI"
+      - name: Render artifact'ı
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-${{ matrix.parca }}
+          path: /tmp/motor_onbellek/uretim/${{ needs.plan.outputs.kimlik }}
+          retention-days: 3
+          if-no-files-found: warn
+
+  kurgu:
+    name: Kurgu (harita + 2.5D + 3D → TTS → FFmpeg → kalite kontrol)
+    needs: [plan, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/motor-ortami
+        with: {bpy: "true", godot: "true", ses: "true", varlik: gerekli}
+      - uses: actions/download-artifact@v4
+        with: {name: plan, path: "${{ env.IS }}"}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {name: gorseller, path: assets/tarihi_gorsel}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {name: binek, path: /tmp/motor_onbellek/binek}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: render-*
+          merge-multiple: true
+          path: /tmp/motor_onbellek/uretim/${{ needs.plan.outputs.kimlik }}
+      - name: Kurgu
+        run: |
+          python3 -u otonom_uret.py kurgu --is "$IS" --kimlik "${{ needs.plan.outputs.kimlik }}" \
+            --cikti "$CIKTI"
+      - name: Özet
+        if: always()
+        run: |
+          python3 - <<'E' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          c = pathlib.Path("/tmp/otonom_cikti")
+          k = c / "otonom_kurgu.json"
+          print("## Belgesel üret — sonuç\n")
+          if __import__("os").environ.get("DOGRULAMA") == "true":
+              print("> Doğrulama koşusu: Gemini kullanılmadı (pilot senaryo + fikstür). Bu bir üretim çıktısı değildir.\n")
+          if not k.exists():
+              print("Kurgu raporu yok."); raise SystemExit
+          r = json.loads(k.read_text())
+          print(f"- durum: **{r.get('durum')}** ({'✅' if r.get('gecti') else '❌'}), kurgu {r.get('sure_sn')} sn, "
+                f"önbellekten gelen 3D çekim: {r.get('onbellekten_3d')}")
+          m = r.get("mp4")
+          if m:
+              print(f"- video: `{pathlib.Path(m['yol']).name}` — {m['cozunurluk'][0]}×{m['cozunurluk'][1]}, "
+                    f"{m['sure_sn']} sn, {m['boyut_mb']} MB, ses: {m['ses']}")
+          kk = r.get("kalite_kontrol") or {}
+          if kk:
+              print(f"- kalite kontrol: {json.dumps(kk, ensure_ascii=False)[:600]}")
+          E
+      - name: Video artifact'ı
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-${{ needs.plan.outputs.kimlik }}
+          path: |
+            ${{ env.CIKTI }}/video/*.mp4
+            ${{ env.CIKTI }}/video/*.json
+            ${{ env.CIKTI }}/*.json
+          retention-days: 14
+          if-no-files-found: warn
