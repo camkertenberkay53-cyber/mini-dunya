@@ -364,7 +364,7 @@ def normalize_senaryo(veri, kanca_final: bool = True, gorseller: list[dict] | No
     return v
 
 
-def kaynak_ihtiyati_kurali(ara: dict) -> str:
+def kaynak_ihtiyati_kurali(ara: dict, bicim: str | None = None) -> str:
     """Faz-63c: tartışmalı kartlara dayanan iddialar için anlatım disiplini. İfade listesi doğrulayıcının kullandığı
     kurallar/dil_tr.yaml temkin_ifadeleri'nden gelir (orada olmayan bir ifade sozlesme kapısından geçmez)."""
     from motor.uretim import veri
@@ -378,8 +378,19 @@ def kaynak_ihtiyati_kurali(ara: dict) -> str:
              "- Kaynaklar farklı değer veriyorsa (kart notu: 'kaynaklar arasında farklı değer') farklılığı açıkça söyle.",
              "- 'kesin' ve 'makul' kartlara dayanan, güçlü kanıtlı iddiaları gereksiz yere belirsizleştirme: bu cümlelerde "
              "ihtiyat ifadesi KULLANMA."]
+    # Faz-64d: doğrulayıcı ifadeyi küçük harfli metinde ARAR (kurallar/dil_tr.yaml); çekimli türevler eşleşmez ve
+    # Python'da 'İ'.lower() noktalı i üretir: cümle başındaki "İddia edilir" eşleşmez.
+    satir.append("- İfade listedeki biçimiyle geçmeli: 'söyleniyor', 'anlatılıyor', 'iddiaya göre', 'tahmin ediliyor', "
+                 "'rivayete göre' gibi TÜREVLER sayılmaz ('rivayet' içeren her biçim sayılır). 'İ' ile başlayan ifadeyi "
+                 "cümle başına koyma (\"İddia edilir ki…\" yerine \"…olduğu iddia edilir.\").")
+    if bicim == "shorts":
+        satir.append("- SHORTS: önce doğrulanmış ('kesin'/'makul') kartlara dayan; 'tartismali' karta yalnız anlatı "
+                     "gerçekten gerektiriyorsa ve ihtiyat ifadesiyle dayan.")
     satir.append(f"- Bu araştırmadaki tartışmalı kartlar: {', '.join(tartismali)}." if tartismali else
                  "- Bu araştırmada tartışmalı kart yok.")
+    for c in ara.get("kartlar", []):   # Faz-64d: tartışmalı kartları içerikleriyle vurgula
+        if c.get("guven") in ("tartismali", "belirsiz"):
+            satir.append(f"  ⚠ {c['id']} [{c['guven'].upper()}] — ihtiyatlı anlat: {c.get('iddia', '')}")
     return "\n".join(satir)
 
 
@@ -627,6 +638,88 @@ def _shorts_3d_esik() -> tuple[int, int]:
     return int(k["en_az_farkli_hareket"]), int(k["en_az_farkli_plan_olcegi"])
 
 
+# Faz-64d: hedefli cümle onarımı. Doğrulayıcı (sozlesme) DEĞİŞMEZ; yalnız onun tartışmalı-dil hatası tek başına
+# kaldığında, diğer cümleler / niyetler / kanca korunarak yalnız hatalı cümle(ler)in METNİ Gemini'ye yeniden yazdırılır.
+HEDEFLI_ONARIM_EN_COK = 2
+_TEMKIN_HATASI = re.compile(r"^(\S+): '(?:tartismali|belirsiz)' karta \((\S+)\) dayanıyor ama kesin dille anlatılmış$")
+ONARIM_API_SEMASI = _nesne({"cumleler": {"type": "array", "minItems": 1, "items": _nesne(
+    {"id": _S, "metin": _S}, ["id", "metin"])}}, ["cumleler"])
+
+
+def temkin_hatali_cumleler(hatalar: list[str]) -> dict[str, list[str]] | None:
+    """Hataların TAMAMI tartışmalı-dil hatasıysa {cümle kimliği: [kart kimlikleri]}; başka hata varsa None."""
+    hedef: dict[str, list[str]] = {}
+    for x in hatalar:
+        m = _TEMKIN_HATASI.match(x)
+        if not m:
+            return None
+        hedef.setdefault(m.group(1), []).append(m.group(2))
+    return hedef or None
+
+
+def temkin_var(metin: str) -> bool:
+    """sozlesme.senaryo_denetle ile aynı ölçüt (küçük harfli metinde temkin ifadesi)."""
+    from motor.uretim import veri
+    return any(t in metin.lower() for t in veri.kural("dil_tr")["temkin_ifadeleri"])
+
+
+def onarim_istemi(s: dict, hedef: dict[str, list[str]], ara: dict) -> str:
+    from motor.uretim import veri
+    kartlar = {c["id"]: c for c in ara.get("kartlar", [])}
+    en_cok = veri.kural("shorts")["cumle"]["en_cok_kelime"]
+    baglam = "\n".join(f"{c['id']}: {c['metin']}" for c in s["cumleler"])
+    yaz = []
+    for c in s["cumleler"]:
+        if c["id"] in hedef:
+            dayanak = "; ".join(f"{k} [{kartlar.get(k, {}).get('guven', '?')}]: {kartlar.get(k, {}).get('iddia', '')}"
+                                for k in hedef[c["id"]])
+            yaz.append(f"- {c['id']}: \"{c['metin']}\" — dayandığı tartışmalı kart(lar): {dayanak}")
+    return f"""Aşağıdaki Türkçe Shorts senaryosunda YALNIZCA listelenen cümle(ler) tartışmalı bir karta dayandığı hâlde kesin
+dille anlatılmış. Yalnız bu cümle(ler)i ihtiyatlı dille YENİDEN YAZ; diğer cümlelere dokunma.
+Kurallar:
+- Anlam ve olgular aynı kalır; yeni bilgi ekleme, bilgi çıkarma. Yalnız kesinlik ihtiyatla değiştirilir.
+- Doğal bir Türkçe cümle kur; ifadeyi mekanik olarak başa yapıştırma. En çok {en_cok} kelime.
+{kaynak_ihtiyati_kurali(ara)}
+Senaryonun tamamı (bağlam; değiştirme):
+{baglam}
+Yeniden yazılacak cümle(ler):
+{chr(10).join(yaz)}
+Yanıt YALNIZCA JSON: {{"cumleler": [{{"id": "<cümle kimliği>", "metin": "<yeni metin>"}}]}}"""
+
+
+def hedefli_onar(saglayici, s: dict, hedef: dict[str, list[str]], ara: dict, d: int) -> tuple[dict | None, list[str]]:
+    """Dönüş: (onarılmış senaryo, []) ya da (None, nedenler). Yalnız hedef cümlelerin 'metin'i değişir ('okunus'
+    eski metne aitse düşürülür); id, kartlar, amaç, niyet (kamera/3D/harita), kanca ve final aynen korunur."""
+    from motor.uretim import veri
+    en_cok = veri.kural("shorts")["cumle"]["en_cok_kelime"]
+    ham = saglayici.tamamla(onarim_istemi(s, hedef, ara), "senaryo",
+                            {"bolum": f"deneme{d}-onarim", "yanit_semasi": ONARIM_API_SEMASI})
+    try:
+        veri_ = json_ayikla(ham)
+    except (json.JSONDecodeError, TypeError) as e:
+        return None, [f"hedefli onarım yanıtı JSON değil: {e}"]
+    yeni = {}
+    for x in (veri_.get("cumleler") if isinstance(veri_, dict) else None) or []:
+        if isinstance(x, dict) and isinstance(x.get("id"), str) and isinstance(x.get("metin"), str) and x["metin"].strip():
+            yeni[x["id"]] = x["metin"].strip()
+    neden = []
+    if set(yeni) != set(hedef):
+        neden.append(f"hedefli onarım cümle kümesi uymuyor (istenen {sorted(hedef)}, gelen {sorted(yeni)})")
+    for cid, m in sorted(yeni.items()):
+        if cid in hedef and not temkin_var(m):
+            neden.append(f"{cid}: onarılan metinde hâlâ ihtiyat ifadesi yok")
+        if cid in hedef and len(m.split()) > en_cok:
+            neden.append(f"{cid}: onarılan metin {len(m.split())} kelime (en çok {en_cok})")
+    if neden:
+        return None, neden
+    o = json.loads(json.dumps(s))
+    for c in o["cumleler"]:
+        if c["id"] in yeni:
+            c["metin"] = yeni[c["id"]]
+            c.pop("okunus", None)
+    return o, []
+
+
 def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme: int = 3, olc=None,
                  ilk_hatalar: list[str] | None = None) -> tuple[dict, list[dict]]:
     from motor.uretim import senaryo_uretici
@@ -634,7 +727,7 @@ def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme
     gecmis = []
     for d in range(1, deneme + 1):
         istem = (senaryo_uretici.istem(konu, ara, hatalar) + "\n" + gorsel_kurallari(konu, gorseller) + "\n"
-                 + kaynak_ihtiyati_kurali(ara))
+                 + kaynak_ihtiyati_kurali(ara, "shorts"))
         ham = saglayici.tamamla(istem, "senaryo", {"bolum": f"deneme{d}", "yanit_semasi": shorts_api_semasi()})
         try:
             s = json_ayikla(ham)
@@ -653,6 +746,14 @@ def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme
         log("senaryo", f"deneme {d}: {len(hatalar)} hata" + (f" — {hatalar[:3]}" if hatalar else ""))
         if not hatalar:
             return s, gecmis
+        hedef = temkin_hatali_cumleler(hatalar)   # Faz-64d: yalnız 1–2 cümle ihtiyat diline takıldıysa hedefli onarım
+        if hedef and len(hedef) <= HEDEFLI_ONARIM_EN_COK:
+            onarilan, neden = hedefli_onar(saglayici, s, hedef, ara, d)
+            h2 = senaryo_denetle(onarilan, ara, konu, gorseller, olc) if onarilan is not None else neden
+            gecmis[-1]["hedefli_onarim"] = {"cumleler": sorted(hedef), "hatalar": h2[:20]}
+            log("senaryo", f"deneme {d} hedefli onarım ({', '.join(sorted(hedef))}): {len(h2)} hata")
+            if onarilan is not None and not h2:
+                return onarilan, gecmis
     raise UretimHatasi("senaryo", f"{deneme} denemede kapıdan geçen senaryo üretilemedi: {hatalar[:8]}")
 
 
