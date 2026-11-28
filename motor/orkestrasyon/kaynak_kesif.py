@@ -71,6 +71,17 @@ def yayinci(url: str) -> str:
 
 # ------------------------------------------------------------------ keşif arayüzü
 
+def koordinat(sayfa: dict) -> dict | None:
+    """Faz-66: Wikipedia 'coordinates' özelliğinden birincil (yoksa ilk) dünya koordinatı; geçersizse None."""
+    ks = [c for c in sayfa.get("coordinates") or [] if isinstance(c, dict) and c.get("globe", "earth") == "earth"]
+    c = next((c for c in ks if c.get("primary") not in (None, False)), ks[0] if ks else None)
+    try:
+        enlem, boylam = float(c["lat"]), float(c["lon"])
+    except (TypeError, KeyError, ValueError):
+        return None
+    return {"enlem": enlem, "boylam": boylam} if -90 <= enlem <= 90 and -180 <= boylam <= 180 else None
+
+
 class KaynakKesifSaglayici(ABC):
     ad = "soyut"
 
@@ -103,7 +114,7 @@ class WikipediaKesif(KaynakKesifSaglayici):
         return s[0]["title"] if s else None
 
     def _madde(self, dil: str, baslik: str) -> dict | None:
-        d = self._api(dil, action="query", prop="extracts|info|extlinks|langlinks", titles=baslik, redirects=1,
+        d = self._api(dil, action="query", prop="extracts|info|extlinks|langlinks|coordinates", titles=baslik, redirects=1,
                       explaintext=1, exsectionformat="wiki", inprop="url", ellimit=200, lllimit=50)
         sayfalar = d.get("query", {}).get("pages", [])
         if not sayfalar or sayfalar[0].get("missing"):
@@ -137,7 +148,8 @@ class WikipediaKesif(KaynakKesifSaglayici):
                 out.append({"id": f"wp_{dil}_{m['pageid']}", "url": m.get("fullurl") or f"https://{dil}.wikipedia.org/wiki/{b}",
                             "baslik": m.get("title", b), "yayinci": "Wikimedia", "tur": "ansiklopedi",
                             "oncelik": ONCELIK["ansiklopedi"], "dil": dil, "metin": re.sub(r"^==+.*?==+\s*$", "", metin, flags=re.M),
-                            "bolumler": bolumler, "ozet": self._ozet(dil, m.get("title", b)), "aday": False})
+                            "bolumler": bolumler, "ozet": self._ozet(dil, m.get("title", b)), "aday": False,
+                            **({"koordinat": kd} if (kd := koordinat(m)) else {})})
                 dis = sorted({e.get("url", "") if isinstance(e, dict) else str(e) for e in m.get("extlinks", [])} - {""},
                              key=lambda u: (-ONCELIK[kaynak_turu(u)], u))
                 for u in dis[: self.dis_baglanti_sayisi]:

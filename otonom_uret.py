@@ -8,8 +8,10 @@ YouTube'a ya da başka bir yere YÜKLEME YAPMAZ. Mock'a geçmez: anahtar yoksa, 
 açık hata koduyla durur. Korunan modüller (motor/uretim/*, kaos/*) yalnızca ÇAĞRILIR, değiştirilmez.
 
 Akış (alt komutlar; CI'da ayrı işler):
-  planla  1) Konu şablonu: motor/uretim/pilotlar/<kimlik>/konu.json (dönemler, harita evreleri). Şablonu olmayan
-             konu reddedilir (harita koordinatları ve dönem kitleri olmadan çekim kurulamaz).
+  planla  1) Konu şablonu: motor/uretim/pilotlar/<kimlik>/konu.json (dönemler, harita evreleri). Faz-66: pilotu
+             olmayan konu, araştırmadan SONRA motor.uretim.konu_profili ile deterministik olarak profillenir
+             (<is>/_profil/<kimlik>/: konu.json, profil_meta.json, uc_boyut_katalogu.json, profil_raporu.json) ve
+             üretim hazırlık kapısından (profil_denetle) geçmezse üretim durur (kod 2). Pilotlar için profil üretilmez.
           2) Araştırma: Wikipedia TR/EN + OpenAlex keşfi, kaynak doğrulama, havuz (canli_dry_run ile aynı motor).
              Havuzdaki 'dogrulanmis' ve 'tartismali' kayıtlar arastirma.json kartlarına dönüşür (Gemini hafızası
              araştırma sayılmaz). Kart ↔ havuz kimlik eşlemesi kart_eslemesi.json'da tutulur.
@@ -156,7 +158,13 @@ def havuz_kur(konu: str) -> dict:
     oa = cdr._openalex()
     kaynaklar += oa.kesfet(konu, [k["baslik"] for k in ana if k.get("dil") == "en"])
     log("arastirma", f"{len(ana)} ana madde, toplam {len(kaynaklar)} kaynak; doğrulama başlıyor")
-    return havuz_olustur(konu, kaynaklar, cdr._dogrulayici(), ilerleme=log)
+    havuz = havuz_olustur(konu, kaynaklar, cdr._dogrulayici(), ilerleme=log)
+    # Faz-66: ana maddenin Wikipedia koordinatı (varsa; TR önce) — dinamik konu profili meta'sına girer
+    konum = next(({"enlem": k["koordinat"]["enlem"], "boylam": k["koordinat"]["boylam"], "kaynak": k["id"]}
+                  for k in sorted(ana, key=lambda x: (x.get("dil") != "tr", x["id"])) if k.get("koordinat")), None)
+    if konum:
+        havuz["konum"] = konum
+    return havuz
 
 
 # ------------------------------------------------------------------ Gemini yardımcıları
@@ -882,10 +890,36 @@ def parcalara_bol(plan: dict, parca_sayisi: int) -> list[dict]:
 
 
 def _sablon_katalog(sablon: Path) -> list[dict]:
-    """Uzun formatta 3D yalnızca sınırlı ve DENETLENMİŞ sahnelerle: pilot senaryonun render'da kanıtlanmış 3D niyetleri."""
+    """Uzun formatta 3D yalnızca sınırlı ve DENETLENMİŞ sahnelerle: pilot senaryonun render'da kanıtlanmış 3D niyetleri.
+    Faz-66 dinamik profil: pilot senaryosu yoktur; hazırlık kapısının planlayıcıdan geçirdiği uc_boyut_katalogu.json."""
+    if not (sablon / "senaryo.json").exists():
+        k = sablon / "uc_boyut_katalogu.json"
+        return json.loads(k.read_text()) if k.exists() else []
     sen = json.loads((sablon / "senaryo.json").read_text())
     return [{"katalog": f"3D-{c['id']}", "aciklama": c["metin"], "niyet": c["niyet"]}
             for c in sen["cumleler"] if c["niyet"]["tur"] == "3d"]
+
+
+def dinamik_sablon(konu: str, havuz: dict, is_kok: Path, bicimler: tuple) -> tuple[Path, dict]:
+    """Faz-66: pilotu olmayan konu için profil → hazırlık kapısı. Profil iş klasörüne yazılır (pilotlara değil);
+    kapıdan geçmezse rapor yazılır ve üretim durur. Render/kurgu ile bağı yoktur."""
+    from motor.uretim import konu_profili as kp
+    try:
+        k, meta, katalog = kp.olustur(konu, havuz)
+    except kp.ProfilHatasi as e:
+        raise UretimHatasi("profil", f"'{konu}' için konu profili kurulamadı: {e}", 2) from e
+    rapor = kp.profil_denetle(k, meta, katalog, tuple(bicimler))
+    d = is_kok / "_profil" / k["kimlik"]
+    shutil.rmtree(d, ignore_errors=True)
+    d.mkdir(parents=True)
+    for ad, v in (("konu.json", k), ("profil_meta.json", meta), ("uc_boyut_katalogu.json", katalog),
+                  ("profil_raporu.json", rapor)):
+        (d / ad).write_text(json.dumps(v, ensure_ascii=False, indent=1) + "\n")
+    if not rapor["gecti"]:
+        raise UretimHatasi("profil", f"'{konu}' otomatik konu profili üretim hazırlık kapısından geçmedi: "
+                                     + "; ".join(rapor["hatalar"]) + f" (rapor: {d / 'profil_raporu.json'})", 2)
+    log("profil", f"dinamik profil {k['kimlik']} kapıdan geçti; uyarılar: {rapor['uyarilar']}")
+    return d, rapor
 
 
 def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi: int = 4,
@@ -898,9 +932,17 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
         raise UretimHatasi("anahtar", "GEMINI_API_KEY tanımlı değil; üretim yapılmadı (mock'a geçilmez)", 2)
     t0 = time.time()
     bicimler = MODLAR[mod]
-    sablon = sablon_bul(konu)
-    log("arastirma", f"şablon {sablon.name}; araştırma havuzu kuruluyor (biçimler: {', '.join(bicimler)})")
+    try:
+        sablon, profil = sablon_bul(konu), None
+    except UretimHatasi as e:   # Faz-66: pilot yok → araştırmadan sonra dinamik profil (kapıdan geçmezse kod 2)
+        if e.asama != "sablon":
+            raise
+        sablon = profil = None
+    log("arastirma", f"şablon {sablon.name if sablon else 'yok (dinamik profil kurulacak)'}; araştırma havuzu "
+                     f"kuruluyor (biçimler: {', '.join(bicimler)})")
     havuz = (havuz_fn or havuz_kur)(konu)
+    if sablon is None:
+        sablon, profil = dinamik_sablon(konu, havuz, is_kok, bicimler)
     uzun_var = "uzun" in bicimler
     ara_tam, esleme_tam = kartlar_kur(havuz, "gecici", UZUN_KART if uzun_var else 30)
     g = (saglayici_fn or (lambda: gemini(anahtar, 2400.0 if uzun_var else 420.0)))()
@@ -931,6 +973,8 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
         raise UretimHatasi("gorsel", "; ".join(eksik) + f" — {len(sorgular) if isinstance(sorgular, list) else 0} "
                                      "sorgu denendi", 5)
     r: dict = {"konu": konu, "mod": mod, "sablon": sablon.name, "gorseller": gorseller,
+               "profil": ({"dinamik": True, "dizin": str(sablon), "uyarilar": profil["uyarilar"]} if profil
+                          else {"dinamik": False}),
                "arastirma": {"kayit": len(havuz["kayitlar"]), "kart": len(ara_tam["kartlar"]), "kaynak": len(ara_tam["kaynaklar"]),
                              "kesin": sum(c["guven"] == "kesin" for c in ara_tam["kartlar"]),
                              "makul": sum(c["guven"] == "makul" for c in ara_tam["kartlar"]),

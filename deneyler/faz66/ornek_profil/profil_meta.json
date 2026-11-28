@@ -1,0 +1,227 @@
+{
+ "surum": "konu-profili-1",
+ "uretici": "motor.uretim.konu_profili",
+ "girdi_ozeti": "9a9e28b9a2e90f1aee9cb455c70a95cedaf1c7097148fc9380916cb15eb90d9c",
+ "konu_basligi": "Mohaç Meydan Muharebesi",
+ "yer": "Mohaç",
+ "konum": {
+  "enlem": 45.993,
+  "boylam": 18.683,
+  "kaynak": "wp_tr_1 (Wikipedia coordinates)"
+ },
+ "tarih": {
+  "yil": 1526,
+  "gun_ay": [
+   29,
+   8
+  ],
+  "metin": "29 Ağustos 1526",
+  "kesinlik": "kesin",
+  "kartlar": [
+   "ark_001",
+   "ark_002",
+   "ark_003",
+   "ark_004",
+   "ark_005",
+   "ark_006",
+   "ark_007",
+   "ark_008",
+   "ark_009",
+   "ark_010",
+   "ark_011"
+  ],
+  "alternatifler": []
+ },
+ "olay_turu": {
+  "tur": "kara",
+  "deniz_kartlari": []
+ },
+ "taraflar": [
+  {
+   "anahtar": "macar-16yy",
+   "sozluk": "macar",
+   "ad": "Macar Krallığı",
+   "kit": null,
+   "kit_uygunlugu": "yok",
+   "kit_farki_yil": null,
+   "kesinlik": "kesin",
+   "kartlar": [
+    "ark_001",
+    "ark_002",
+    "ark_003",
+    "ark_004",
+    "ark_005",
+    "ark_006",
+    "ark_007",
+    "ark_008",
+    "ark_010",
+    "ark_011"
+   ],
+   "birlikler": [
+    {
+     "tur": "suvari",
+     "harita": "suvari",
+     "rol": "suvari",
+     "ad": "Süvari",
+     "kartlar": [
+      "ark_006",
+      "ark_008"
+     ],
+     "temsili": false
+    },
+    {
+     "tur": "piyade",
+     "harita": "piyade",
+     "rol": "piyade",
+     "ad": "Piyade",
+     "kartlar": [
+      "ark_008"
+     ],
+     "temsili": false
+    }
+   ]
+  },
+  {
+   "anahtar": "osmanli-15yy",
+   "sozluk": "osmanli",
+   "ad": "Osmanlı",
+   "kit": "osmanli-15yy",
+   "kit_uygunlugu": "yakin",
+   "kit_farki_yil": 6,
+   "kesinlik": "kesin",
+   "kartlar": [
+    "ark_001",
+    "ark_002",
+    "ark_004",
+    "ark_005",
+    "ark_006",
+    "ark_007",
+    "ark_008",
+    "ark_009"
+   ],
+   "birlikler": [
+    {
+     "tur": "suvari",
+     "harita": "suvari",
+     "rol": "suvari",
+     "ad": "Süvari",
+     "kartlar": [
+      "ark_007"
+     ],
+     "temsili": false
+    },
+    {
+     "tur": "piyade",
+     "harita": "piyade",
+     "rol": "piyade",
+     "ad": "Piyade",
+     "kartlar": [
+      "ark_006"
+     ],
+     "temsili": false
+    },
+    {
+     "tur": "top",
+     "harita": "top",
+     "rol": null,
+     "ad": "Toplar",
+     "kartlar": [
+      "ark_006"
+     ],
+     "temsili": false
+    }
+   ]
+  }
+ ],
+ "kisiler": [
+  {
+   "ad": "Kanuni Sultan Süleyman",
+   "kartlar": [
+    "ark_002",
+    "ark_005"
+   ],
+   "kesinlik": "kesin"
+  }
+ ],
+ "diger_adlar": [
+  {
+   "ad": "Pál Tomori",
+   "kartlar": [
+    "ark_008",
+    "ark_011"
+   ],
+   "kesinlik": "kesin"
+  }
+ ],
+ "sonuc": {
+  "kesinlik": "kesin",
+  "kazanan": "osmanli-15yy",
+  "oylar": {
+   "dogrulanmis": {
+    "osmanli-15yy": 2
+   },
+   "tartismali": {}
+  },
+  "kartlar": [
+   "ark_002",
+   "ark_005"
+  ]
+ },
+ "belirsizlikler": [],
+ "kartlar": [
+  {
+   "id": "ark_001",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_002",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_003",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_004",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_005",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_006",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_007",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_008",
+   "durum": "dogrulanmis"
+  },
+  {
+   "id": "ark_009",
+   "durum": "tartismali"
+  },
+  {
+   "id": "ark_010",
+   "durum": "tartismali"
+  },
+  {
+   "id": "ark_011",
+   "durum": "tartismali"
+  }
+ ],
+ "uc_boyut": {
+  "kitler": [
+   "osmanli-15yy"
+  ],
+  "katalog": [
+   "3D-osmanli-suvari",
+   "3D-osmanli-piyade",
+   "3D-osmanli-komutan"
+  ]
+ }
+}
