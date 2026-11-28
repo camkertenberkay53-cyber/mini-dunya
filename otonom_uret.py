@@ -537,10 +537,11 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
         satir.append("Kullanılabilir tarihî görsel yok: 'gorsel25d' niyeti KULLANMA.")
     satir.append("3d niyeti yukarıdaki rol/eylem/arazi kurallarına uyar; belirli kişiler temsilî karakterle gösterilir.")
     satir.append(ROL_KURALI)
-    satir.append(rol_katalogu_kurali(rol_katalogu(konu)))
+    kat = rol_katalogu(konu)
+    satir.append(rol_katalogu_kurali(kat, mesafe_kisitlari(konu, kat)))
     satir.append(f"3D ÇEŞİTLİLİK (zorunlu): en az {_shorts_3d_esik()[0]} 3D çekim gerekir (en az 3 '3d' cümle yaz; uzun "
                  f"3D cümle iki çekim olur); 3D cümlelerde 'mesafe' en az {_shorts_3d_esik()[1]} farklı değer almalı "
-                 "(en az biri 'orta', biri 'uzak'); eylemleri çeşitlendir.")
+                 "(en az biri 'orta', biri 'uzak'); eylemleri çeşitlendir. Bu şart her düzeltme turunda da geçerlidir.")
     a, b = konu["hedef_sure_sn"]
     satir.append(f"SÜRE: ölçülen seslendirme toplamı {a}–{b} sn olmalı; bunun için 9–10 cümle, cümle başına 10–14 kelime yaz "
                  f"(kanca hariç).")
@@ -593,14 +594,33 @@ def rol_katalogu(konu: dict) -> dict[str, dict[str, list[str]]]:
     return kat
 
 
-def rol_katalogu_kurali(kat: dict[str, dict[str, list[str]]]) -> str:
+def mesafe_kisitlari(konu: dict, kat: dict[str, dict[str, list[str]]]) -> dict[tuple[str, str, str], str]:
+    """Faz-66b: katalogdaki (dönem, rol, eylem) yalnız TEK mesafede kuruluyorsa o mesafe. Katalog orta ∪ uzak birleşimi
+    olduğundan 'uzak'ta kurulamayan eylem de listede görünür (gerçek koşu: suvari + uzak + suvari_yuruyus)."""
+    from motor.uretim import planlayici
+    out = {}
+    for d, roller in kat.items():
+        for r, ey in roller.items():
+            for e in ey:
+                ok = [m for m in KATALOG_MESAFELERI if planlayici.oyuncu_sec(
+                    {"tur": "3d", "eylem": e, "mesafe": m, "roller": [{"rol": r, "donem": d}]}, d)[0]]
+                if len(ok) == 1:
+                    out[(d, r, e)] = ok[0]
+    return out
+
+
+def rol_katalogu_kurali(kat: dict[str, dict[str, list[str]]], kisit: dict | None = None) -> str:
     if not kat:
         return "3D ROL KATALOĞU: bu konu için oyuncuya dönüşebilen rol yok — '3d' niyeti KULLANMA."
+    kisit = kisit or {}
     satir = ["3D ROL KATALOĞU (TAM LİSTE; yalnız bunlar oyuncuya dönüşür — listede olmayan rol, dönem ya da "
              "rol-eylem eşleşmesi YAZMA; 'donem' alanına aşağıdaki dönem kimliğini aynen yaz):"]
     for d, roller in kat.items():
         for r, ey in roller.items():
-            satir.append(f"- donem '{d}', rol '{r}': eylem ∈ {{{', '.join(ey)}}}")
+            ad = [f"{e} (yalnız {kisit[(d, r, e)]})" if (d, r, e) in kisit else e for e in ey]
+            satir.append(f"- donem '{d}', rol '{r}': eylem ∈ {{{', '.join(ad)}}}")
+    if kisit:
+        satir.append("  '(yalnız orta)' / '(yalnız uzak)' işaretli eylem YALNIZ o 'mesafe' ile yazılır.")
     return "\n".join(satir)
 
 
@@ -655,8 +675,16 @@ def oyuncu_hatalari(s: dict, konu: dict, kat: dict | None = None) -> list[str]:
                 ipucu = f"'{rd}' döneminde geçerli roller: {sorted(kat[rd])}"
             else:
                 ipucu = f"'{rd}' / '{r['rol']}' için geçerli eylemler: {', '.join(kat[rd][r['rol']])}"
+                mes = n.get("mesafe", "orta")   # Faz-66b: katalog orta ∪ uzak; mesafeye özgü yön ver
+                burada = [e for e in kat[rd][r["rol"]] if planlayici.oyuncu_sec(dict(n, eylem=e, roller=[r]), donem)[0]]
+                if mes != "orta" and planlayici.oyuncu_sec(dict(n, mesafe="orta", roller=[r]), donem)[0]:
+                    ipucu += (f"; '{n.get('eylem')}' '{mes}' mesafede kurulamıyor ama 'orta'da kuruluyor: SAHNEYİ "
+                              f"SİLME — 'mesafe'yi 'orta' yap (başka 'uzak' 3D cümle kalıyorsa) ya da '{mes}' mesafede "
+                              f"kurulan bir eylem seç: {', '.join(burada) or '-'}")
+                elif burada != kat[rd][r["rol"]]:
+                    ipucu += f"; '{mes}' mesafede kurulanlar: {', '.join(burada) or '-'} — sahneyi silme, eylemi değiştir"
             h.append(f"{c.get('id')}: 3D roller[{i}] ('{r['rol']}', {rd}) oyuncuya dönüşmüyor — "
-                     f"{eksik[0] if eksik else 'uygun karakter yok'}; {ipucu}")
+                     f"{eksik[0] if eksik else 'uygun karakter yok'}; {ipucu}" + YEREL_DUZELTME)
     return h
 
 
@@ -710,7 +738,7 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
     mesafeler = {c["niyet"].get("mesafe", "orta") for c in s["cumleler"] if c["niyet"]["tur"] == "3d"}
     if len(mesafeler) < en_az_mesafe:
         h.append(f"3D cümlelerde {len(mesafeler)} farklı mesafe ({', '.join(sorted(mesafeler)) or '-'}); çeşitlilik için en az "
-                 f"{en_az_mesafe} (en az biri 'orta', biri 'uzak')")
+                 f"{en_az_mesafe} (en az biri 'orta', biri 'uzak')" + SILME_YASAGI)
     if h:
         return h
     sureler = (olc or seslendirme.olc)(s["cumleler"])
@@ -724,12 +752,12 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
     a, b = konu["hedef_sure_sn"]
     if not a <= toplam <= b:
         yon = "cümleleri uzat ya da cümle ekle (en çok 10 cümle, cümle başına en çok 14 kelime)" if toplam < a else \
-              "cümleleri kısalt ya da cümle çıkar"
+              "cümleleri kısalt ya da 3D olmayan bir cümle çıkar (3D cümleleri silme)"
         return [f"ölçülen toplam süre {toplam:.1f} sn; hedef {a}–{b} sn: {yon}"]
     uc_d = sum(1 for t in sahne_bolucu.cekimlere_bol(s, sahne_bolucu.zaman_cizelgesi(s, sureler)) if t["niyet"]["tur"] == "3d")
     if uc_d < en_az_3d:
         return [f"{uc_d} 3D çekim; Shorts çeşitlilik kapısı (en az {en_az_3d} farklı kamera hareketi) için en az {en_az_3d} "
-                "3D çekim gerekli: 3D cümle ekle (farklı mesafe ve eylemle)"]
+                "3D çekim gerekli: 3D cümle ekle (farklı mesafe ve eylemle)" + SILME_YASAGI]
     return []
 
 
@@ -823,14 +851,82 @@ def hedefli_onar(saglayici, s: dict, hedef: dict[str, list[str]], ara: dict, d: 
     return o, []
 
 
+# Faz-66b: geri besleme mesajlarının kendisi de silmeye değil yerel düzeltmeye yönlendirir (kural/eşik değişmez)
+SILME_YASAGI = (" — 3D cümleleri silme ya da 2.5D/haritaya çevirme; önceki turun 3D sahnelerini koru, eksikse 3D cümle "
+                "ekle")
+YEREL_DUZELTME = " — sahneyi SİLME: yalnız bu cümlenin mesafe/eylem/rol alanını katalogdan düzelt"
+
+
+def _uc_d_sayisi(s: dict | None) -> int:
+    cs = (s or {}).get("cumleler") if isinstance(s, dict) else None
+    return sum(1 for c in cs or [] if isinstance(c, dict) and (c.get("niyet") or {}).get("tur") == "3d")
+
+
+def hatali_cumleler(hatalar: list[str]) -> list[str]:
+    """Hata mesajlarında adı geçen cümle kimlikleri (S5, alt çekim S3a → S3), sayı sırasıyla."""
+    ids = {m for h in hatalar for m in re.findall(r"(?<![A-Za-z0-9])(S\d+)(?:[a-z])?(?![0-9])", h)}
+    return sorted(ids, key=lambda x: int(x[1:]))
+
+
+GERI_BESLEME_KURALLARI = [
+    "Bu tur bir DÜZELTME turudur: hatayı en az değişiklikle gider; senaryoyu baştan yazma.",
+    "3D cümleleri SİLMEK, 3D cümle sayısını AZALTMAK ya da 3D cümleleri 2.5D/harita cümlesine ÇEVİRMEK doğrulama "
+    "hatasının çözümü DEĞİLDİR ve YASAKTIR.",
+    "Shorts 3D çeşitlilik şartı bu turda da korunur: en az {en_az_3d} 3D çekim; 3D cümlelerde en az {en_az_mesafe} "
+    "farklı 'mesafe' — en az biri 'orta', en az biri 'uzak'.",
+    "Geçersiz rol/eylem/mesafe kombinasyonunda sahne SİLİNMEZ; sırayla: (1) 'uzak' mesafede kurulamıyorsa önce "
+    "'mesafe'yi 'orta' yap (ama bu son 'uzak' 3D cümleyse 'uzak' kalsın ve 2. adıma geç); (2) eylem geçersizse aynı "
+    "dönem ve rol için 3D ROL KATALOĞU'ndaki (mesafe işaretine uyan) bir eylemi seç; (3) gerekirse aynı tarafın "
+    "katalogdaki başka bir rolünü seç.",
+    "Hatalı sahnenin tarihî anlatı amacını (metin, kartlar, amac) koru; yalnız gereken niyet alanlarını değiştir.",
+    "Yeni rol, eylem, animasyon, kamera, karakter, varlık ya da katalogda olmayan bir kombinasyon UYDURMA.",
+    "Hata mesajında adı geçmeyen cümleleri (metin, niyet, mesafe, rol, eylem) AYNEN koru; önceki turda geçen sahneleri "
+    "değiştirme.",
+    "Bir düzeltme başka bir kuralı bozarsa onu da düzelt; ama yeni hatayı sahne silerek ya da zorunlu sayıları "
+    "azaltarak çözme.",
+]
+
+
+def geri_besleme_kurali(hatalar: list[str], onceki: dict | None) -> str:
+    """Faz-66b: Shorts geri besleme turunun zorunlu kuralları + (varsa) önceki senaryo ve korunacak/düzeltilecek
+    cümleler. İlk turda (hata yok) boş döner: ilk istem değişmez."""
+    if not hatalar:
+        return ""
+    en_az_3d, en_az_mesafe = _shorts_3d_esik()
+    satir = ["GERİ BESLEME KURALLARI (zorunlu):"] + [
+        "- " + k.format(en_az_3d=en_az_3d, en_az_mesafe=en_az_mesafe) for k in GERI_BESLEME_KURALLARI]
+    hatali = hatali_cumleler(hatalar)
+    cs = (onceki or {}).get("cumleler") if isinstance(onceki, dict) else None
+    if isinstance(cs, list) and cs:
+        uc_d = [c for c in cs if isinstance(c, dict) and (c.get("niyet") or {}).get("tur") == "3d"]
+        kimlik = [c.get("id") for c in cs if isinstance(c, dict)]
+        satir.append(f"- Önceki turda {len(uc_d)} 3D cümle vardı (" + ", ".join(
+            f"{c.get('id')}: {(c.get('niyet') or {}).get('mesafe', 'orta')}" for c in uc_d) +
+            f"); bu tur en az {len(uc_d)} 3D cümle kalır.")
+        if hatali:
+            satir.append(f"- DÜZELTİLECEK cümleler: {', '.join(hatali)}. KORUNACAK cümleler (aynen): "
+                         f"{', '.join(x for x in kimlik if x not in hatali) or '-'}.")
+        satir.append("ÖNCEKİ SENARYO (temel al; yalnız düzeltilecek cümleleri değiştir):")
+        satir.append(json.dumps({"cumleler": [{a: c.get(a) for a in ("id", "metin", "amac", "kartlar", "niyet") if a in c}
+                                              for c in cs if isinstance(c, dict)]}, ensure_ascii=False))
+    elif hatali:
+        satir.append(f"- DÜZELTİLECEK cümleler: {', '.join(hatali)}.")
+    return "\n".join(satir)
+
+
 def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme: int = 3, olc=None,
-                 ilk_hatalar: list[str] | None = None) -> tuple[dict, list[dict]]:
+                 ilk_hatalar: list[str] | None = None, onceki: dict | None = None) -> tuple[dict, list[dict]]:
+    """onceki: önceki tur senaryosu (Faz-66b: plan kapısı geri beslemesinde planla verir); düzeltme turlarında istemde
+    temel alınır ki geçerli 3D sahneler korunsun."""
     from motor.uretim import senaryo_uretici
     hatalar: list[str] = list(ilk_hatalar or [])   # Faz-64: önceki planın kapı hataları geri beslenebilir
     gecmis = []
     for d in range(1, deneme + 1):
         istem = (senaryo_uretici.istem(konu, ara, hatalar) + "\n" + gorsel_kurallari(konu, gorseller) + "\n"
                  + kaynak_ihtiyati_kurali(ara, "shorts"))
+        gb = geri_besleme_kurali(hatalar, onceki)   # Faz-66b: düzeltme turunda 3D koruma + yerel düzeltme
+        if gb:
+            istem += "\n" + gb
         ham = saglayici.tamamla(istem, "senaryo", {"bolum": f"deneme{d}", "yanit_semasi": shorts_api_semasi()})
         try:
             s = json_ayikla(ham)
@@ -848,6 +944,8 @@ def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme
             s["konu"] = konu["kimlik"]
             s.setdefault("format", konu["format"])
         hatalar = senaryo_denetle(s, ara, konu, gorseller, olc) if isinstance(s, dict) else ["yanıt nesne değil"]
+        if isinstance(s, dict) and isinstance(s.get("cumleler"), list) and _uc_d_sayisi(s) >= _uc_d_sayisi(onceki):
+            onceki = s   # Faz-66b: sonraki düzeltme turu bunu temel alır; 3D'si azalan senaryo referans olmaz
         gecmis.append({"deneme": d, "hatalar": hatalar[:20]})
         log("senaryo", f"deneme {d}: {len(hatalar)} hata" + (f" — {hatalar[:3]}" if hatalar else ""))
         if not hatalar:
@@ -993,7 +1091,8 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
                     sen, gecmis = uzun_senaryo_uret(g, k, ara, gorseller, _sablon_katalog(sablon), olc=olc, taslak=taslak)
                     gecmis = taslak_gecmis + gecmis
                 else:
-                    sen, gecmis = senaryo_uret(g, k, ara, gorseller, olc=olc, ilk_hatalar=plan_hatalari)
+                    sen, gecmis = senaryo_uret(g, k, ara, gorseller, olc=olc, ilk_hatalar=plan_hatalari,
+                                               onceki=sen if plan_hatalari else None)   # Faz-66b
             except Exception as e:
                 if isinstance(e, UretimHatasi):
                     raise
