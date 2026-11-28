@@ -174,6 +174,8 @@ class GeminiLLMProvider(LLMProvider):
                                 float(yedek_rezerv_sn) if yedek_rezerv_sn is not None else
                                 min(YEDEK_REZERV_SN, 0.4 * float(sure_butcesi)))
         self._dusunmesiz: set[str] = set()
+        self._semasiz: set[str] = set()          # Faz-63: responseJsonSchema'yı 400 ile reddeden modeller
+        self.sema_dusurulen: list[dict] = []     # {etiket, model}: şemasız tekrar edilen istekler (raporlanır)
         self.en_az_aralik = float(en_az_aralik)
         self._son_istek: float | None = None
         import threading
@@ -192,8 +194,12 @@ class GeminiLLMProvider(LLMProvider):
     def _kalan(self) -> float | None:
         return None if self.sure_butcesi is None else self.sure_butcesi - (self.saat() - self._baslangic)
 
-    def _govde(self, istem: str, model: str) -> bytes:
+    def _govde(self, istem: str, model: str, sema: dict | None = None) -> bytes:
         cfg = {"temperature": 0.2, "responseMimeType": "application/json"}
+        if sema is not None and model not in self._semasiz:
+            # Faz-63: yapılandırılmış çıktı — REST GenerationConfig.responseJsonSchema (responseMimeType ile birlikte
+            # zorunlu; responseSchema ile birlikte gönderilmez). İstemdeki JSON talimatı korunur; güvence şemadan gelir.
+            cfg["responseJsonSchema"] = sema
         if self.dusunme_butcesi is not None and model not in self._dusunmesiz:
             cfg["thinkingConfig"] = {"thinkingBudget": int(self.dusunme_butcesi)}
         return json.dumps({"contents": [{"role": "user", "parts": [{"text": istem}]}], "generationConfig": cfg}).encode()
@@ -239,6 +245,7 @@ class GeminiLLMProvider(LLMProvider):
         basliklar = {"Content-Type": "application/json", "x-goog-api-key": self.__anahtar}
         sorunlar, son_sinif = [], "bilinmiyor"
         etiket = adim + (f"/{baglam['bolum']}" if baglam.get("bolum") else "")
+        sema = baglam.get("yanit_semasi")   # Faz-63: isteğe bağlı JSON Schema (yapılandırılmış çıktı)
         if self.yedek_gecisi is not None:   # yedeğe geçildiyse yalnız yedek: birincile geri dönüş / yeni zincir yok
             sira = [self.yedek_gecisi["kime"]]
         else:
@@ -297,7 +304,7 @@ class GeminiLLMProvider(LLMProvider):
                           f"503_tekrar={yuk_tekrar}/{len(beklemeler)} zaman_asimi={zaman:.0f}s"
                           f"{' [aşırı yük bağlamı]' if yuk or yedek_mi else ''} istem={len(istem)} kr")
                 try:
-                    yanit_ham = self.tasiyici(API.format(model=model), self._govde(istem, model), basliklar, zaman)
+                    yanit_ham = self.tasiyici(API.format(model=model), self._govde(istem, model, sema), basliklar, zaman)
                     kod, metin = yanit_ham[0], yanit_ham[1]
                     yanit_basliklari = yanit_ham[2] if len(yanit_ham) > 2 else {}
                 except Exception as e:   # zaman aşımı / ağ hatası: mesaj maskelenir
@@ -325,6 +332,15 @@ class GeminiLLMProvider(LLMProvider):
                 self._log(f"← {etiket} model={model} HTTP {kod} ({self.saat() - t0:.1f}s, {len(metin)} kr)")
                 if kod == 400 and "thinking" in metin.lower() and model not in self._dusunmesiz:
                     self._dusunmesiz.add(model)   # bu model thinking yapılandırmasını desteklemiyor: onsuz tekrar
+                    continue
+                if (kod == 400 and sema is not None and model not in self._semasiz
+                        and re.search(r"schema", metin, re.I)):
+                    # Faz-63: model şemayı reddetti → bu model için şemasız TEK tekrar (istem JSON talimatı + yerel
+                    # normalizasyon ve doğrulama yine çalışır); raporlanır, sessiz değil
+                    with self._kilit:
+                        self._semasiz.add(model)
+                        self.sema_dusurulen.append({"etiket": etiket, "model": model})
+                    self._log(f"⚠ {etiket} model={model} responseJsonSchema reddedildi (HTTP 400): şemasız tekrar")
                     continue
                 if kod == 200:
                     try:
