@@ -39,7 +39,7 @@ def _sahte_oyuncu(n, donem):
     return ([{"takim": "t", "rol": r.get("rol"), "odak": True}] if ok else []), []
 
 
-def _sahte_cekim(taslak, donem, oran, gecmis, tohum):
+def _sahte_cekim(taslak, donem, oran, gecmis, tohum, **_):
     return {"kamera": {"tur": "x"}}, [], {}
 
 

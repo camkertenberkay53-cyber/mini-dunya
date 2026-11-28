@@ -95,6 +95,7 @@ def test_hatali_cumleler(hata, beklenen):
 
 @pytest.fixture
 def kapilar(monkeypatch):
+    monkeypatch.setattr(ou, "EN_AZ_3D_CUMLE", 0)   # Faz-66c: en az 3 ayrı 3D cümle kuralı test_faz66c'de
     from motor.uretim import anlati, sozlesme
     monkeypatch.setattr(sozlesme, "senaryo_denetle", lambda s, a: [])
     monkeypatch.setattr(anlati, "shorts_denetle", lambda s, sr: ([], {}))
@@ -204,6 +205,7 @@ def test_plan_kapisi_geri_beslemesinde_onceki_senaryo_verilir(tmp_path, monkeypa
 @pytest.fixture
 def mesafeli_planlayici(monkeypatch):
     """suvari: 'kosu' yalnız ortada, 'yuruyus' iki mesafede kurulur."""
+    monkeypatch.setattr(ou, "_odak_uyumu", lambda n, d, k=None: (True, ""))   # Faz-66c: gerçek uyum test_faz66c'de
     from motor.uretim import planlayici, veri
 
     def sec(n, donem):
