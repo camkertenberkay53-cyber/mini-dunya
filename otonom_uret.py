@@ -517,13 +517,53 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
     else:
         satir.append("Kullanılabilir tarihî görsel yok: 'gorsel25d' niyeti KULLANMA.")
     satir.append("3d niyeti yukarıdaki rol/eylem/arazi kurallarına uyar; belirli kişiler temsilî karakterle gösterilir.")
+    satir.append(ROL_KURALI)
     satir.append(f"3D ÇEŞİTLİLİK (zorunlu): en az {_shorts_3d_esik()[0]} 3D çekim gerekir (en az 3 '3d' cümle yaz; uzun "
                  f"3D cümle iki çekim olur); 3D cümlelerde 'mesafe' en az {_shorts_3d_esik()[1]} farklı değer almalı "
                  "(en az biri 'orta', biri 'uzak'); eylemleri çeşitlendir.")
     a, b = konu["hedef_sure_sn"]
     satir.append(f"SÜRE: ölçülen seslendirme toplamı {a}–{b} sn olmalı; bunun için 9–10 cümle, cümle başına 10–14 kelime yaz "
-                 f"(kanca hariç: kanca 4–6 kelime).")
+                 f"(kanca hariç).")
+    satir.append(kanca_kurali())
     return "\n".join(satir)
+
+
+# Faz-64c: rolsüz 3D niyeti planda oyuncusuz (kamerasız) çekime dönüşür; senaryo kapısında yakalanır.
+ROL_KURALI = ("3D ROL (zorunlu): 'tur': '3d' olan HER cümlede 'roller' boş olamaz; her öğede oyuncuya dönüşecek 'rol' "
+              "yazılır (ör. Osmanlı süvarileri = {\"rol\": \"suvari\", \"donem\": \"osmanli-15yy\", \"adet\": 6}; "
+              "Akkoyunlu okçuları = {\"rol\": \"okcu\", \"donem\": \"akkoyunlu-15yy\", \"adet\": 4}). Rol yazamıyorsan "
+              "o cümle için 'harita' ya da 'gorsel25d' seç.")
+# Faz-64c: kanca üst sınırı (kurallar/shorts.yaml, 2.0 sn) korunur; prompt 1.7 sn payla daha kısa kanca ister.
+KANCA_HEDEF_SN = 1.7
+
+
+def kanca_kurali() -> str:
+    """Üst sınır kurallar/shorts.yaml'dan okunur (değiştirilmez); hedef onun altında güvenlik payı bırakır."""
+    from motor.uretim import veri
+    ust = float(veri.kural("shorts")["kanca"]["en_cok_sure_sn"])
+    hedef = min(KANCA_HEDEF_SN, ust)
+    return (f"KANCA (ilk cümle): EN FAZLA 4–5 kelime; ölçülen seslendirmesi {hedef:.1f} saniyenin ALTINDA olmalı "
+            f"(üst sınır {ust:.1f} sn, aşılırsa senaryo reddedilir). Uzun sayı/yıl ve çok heceli sözcük yerine kısa bir soru "
+            "ya da çarpıcı tek bir ifade kullan.")
+
+
+def rol_hatalari(s: dict) -> list[str]:
+    """3D niyetinde oyuncuya dönüşecek rol yoksa hata (boş 'roller', boş/eksik 'rol')."""
+    h = []
+    for c in s.get("cumleler") or []:
+        n = c.get("niyet") or {}
+        if n.get("tur") != "3d":
+            continue
+        roller = n.get("roller")
+        if not isinstance(roller, list) or not roller:
+            h.append(f"{c.get('id')}: 3D niyetinde 'roller' boş; oyuncuya dönüşecek en az bir 'rol' yaz "
+                     "(ör. {\"rol\": \"suvari\", \"donem\": \"osmanli-15yy\"}) ya da harita/gorsel25d seç")
+            continue
+        for i, r in enumerate(roller):
+            if not isinstance(r, dict) or not isinstance(r.get("rol"), str) or not r["rol"].strip():
+                h.append(f"{c.get('id')}: 3D niyetinde roller[{i}].rol boş; oyuncuya dönüşecek rolü yaz "
+                         "(ör. 'suvari', 'okcu')")
+    return h
 
 
 def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=None) -> list[str]:
@@ -550,6 +590,7 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
             haritalar.setdefault(imza, c["id"])
         if n["tur"] == "bilgi_karti":
             h.append(f"{c['id']}: bilgi_karti kullanılmaz; 3d, harita ya da gorsel25d seç")
+    h += rol_hatalari(s)
     h += [x for x in gorsel_kapisi(s.get("format") or "shorts", gorseller, s) if "indirildi" not in x]
     en_az_3d, en_az_mesafe = _shorts_3d_esik()
     mesafeler = {c["niyet"].get("mesafe", "orta") for c in s["cumleler"] if c["niyet"]["tur"] == "3d"}
@@ -561,6 +602,8 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
     sureler = (olc or seslendirme.olc)(s["cumleler"])
     hatalar, _ = anlati.shorts_denetle(s, sureler)
     if hatalar:
+        if any("kanca seslendirmesi" in x for x in hatalar):   # Faz-64c: geri beslemede somut kısaltma yönü
+            hatalar = hatalar + [f"kancayı kısalt: en fazla 4–5 kelime, hedef {KANCA_HEDEF_SN} sn altı"]
         return hatalar
     from motor.uretim import sahne_bolucu   # planla ile aynı ölçüm: ölçülen seslendirme + duraklamalar
     toplam = sahne_bolucu.toplam_sure(sahne_bolucu.zaman_cizelgesi(s, sureler))
