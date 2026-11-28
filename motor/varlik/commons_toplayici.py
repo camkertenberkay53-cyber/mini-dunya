@@ -39,6 +39,8 @@ KULLANICI_AJANI = "mini-dunya-belgesel/1.0 (https://github.com/camkertenberkay53
 EN_AZ_PX = 2000
 MIME = {"image/jpeg": ".jpg", "image/png": ".png", "image/tiff": ".tif"}
 RED_IFADELER = ("all rights reserved", "fair use", "non-free", "nonfree")
+# Faz-62d: CC BY-NC / BY-ND (ve NC-SA, NC-ND) belgesel kullanımına uygun değil: ticari kullanım ya da türev (2.5D) yasak
+KISITLI_CC = re.compile(r"cc[- ]?by[- ](?:[a-z]+[- ])*(?:nc|nd)\b|non[- ]?commercial|no[- ]?deriv")
 META = "LicenseShortName|UsageTerms|License|Artist|DateTimeOriginal|ObjectName|ImageDescription|Credit|AttributionRequired|Copyrighted|Restrictions"
 HEDEF = ayar.REPO / "assets" / "tarihi_gorsel"
 SAHNE_TURLERI = {"insan_portre": ["komutan_tanitimi", "baglam"], "mimari": ["sehir", "kusatma", "baglam"]}
@@ -119,7 +121,8 @@ def lisans_kategorisi(meta: dict) -> tuple[str, bool]:
         return "CC0-1.0", False
     if kod.startswith("pd") or "public domain" in kisa or kisa.startswith("pd"):
         return ("PD-Art" if ("pd-art" in kisa or "pd-art" in kod or "art" in kod) else "PD-Old"), False
-    m = re.match(r"(cc[- ]by(?:[- ]sa)?)[- ]?([\d.]+)?", kod or kisa)
+    # Faz-62d: NC / ND ekleri yutulmaz (önceden "CC BY-NC 4.0" → "CC-BY" oluyordu); tam ad döner: CC-BY-NC-4.0
+    m = re.match(r"(cc[- ]by(?:[- ](?:nc|nd|sa))*)[- ]?([\d.]+)?", kod or kisa)
     if m:
         ad = m.group(1).upper().replace(" ", "-")
         return (f"{ad}-{m.group(2)}" if m.group(2) else ad), True
@@ -136,6 +139,8 @@ def elenme_nedeni(a: dict, en_az: int = EN_AZ_PX) -> str | None:
     metin = _duz(" ".join([m.get("LicenseShortName", ""), m.get("UsageTerms", ""), m.get("Restrictions", "")]))
     if any(r in metin for r in RED_IFADELER) or _duz(m.get("LicenseShortName", "")) == "copyrighted":
         return f"telifli: {m.get('LicenseShortName') or m.get('UsageTerms')}"
+    if KISITLI_CC.search(_duz(" ".join([m.get("LicenseShortName", ""), m.get("License", "")]))):
+        return f"kısıtlı lisans (ticari kullanım/türev yasak): {m.get('LicenseShortName') or m.get('License')}"
     return None
 
 
@@ -206,6 +211,8 @@ def topla(s: dict, hedef: Path = HEDEF) -> dict:
                 break
     if s.get("kategori") and not any(not elenme_nedeni(a) for a in adaylar):
         adaylar, sorgu_kullanilan = ara(kategori=s["kategori"]), s["kategori"]
+    haric = set(s.get("haric") or [])   # Faz-62d: aynı videoda daha önce seçilmiş Commons dosyaları (tekrar yasağı)
+    adaylar = [a for a in adaylar if a.get("baslik") not in haric]
     secilen, elenen = sec(adaylar, sorgu_kullanilan or "", s.get("tercih") or s.get("dosya"), s.get("en_az_px", EN_AZ_PX))
     if secilen is None:
         raise ToplayiciHatasi(f"{gid}: uygun aday yok ({len(adaylar)} aday; elenenler: {elenen[:8]})")

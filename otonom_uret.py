@@ -13,9 +13,11 @@ Akış (alt komutlar; CI'da ayrı işler):
           2) Araştırma: Wikipedia TR/EN + OpenAlex keşfi, kaynak doğrulama, havuz (canli_dry_run ile aynı motor).
              Havuzdaki 'dogrulanmis' ve 'tartismali' kayıtlar arastirma.json kartlarına dönüşür (Gemini hafızası
              araştırma sayılmaz). Kart ↔ havuz kimlik eşlemesi kart_eslemesi.json'da tutulur.
-          3) 2.5D görseller: Gemini konuya uygun Wikimedia Commons arama sorguları önerir; motor.varlik.
-             commons_toplayici indirir (SHA-1 doğrulamalı). Yalnızca CC0 / PD lisanslı görseller kullanılır
-             (tarihi_gorsel kapısı: IZINLI_LISANSLAR; insan onayı yok, 'otomatik_toplayici' olarak açıkça işaretli).
+          3) 2.5D görseller (Faz-62d): Gemini sahne konularına göre (uzunda bölüm taslağından) alt konu sorguları
+             üretir (kişiler, ordular, silahlar, mekân/harita, dönem sanatı); motor.varlik.commons_toplayici indirir
+             (SHA-1 doğrulamalı; daha önce seçilen dosya hariç tutulur). Lisans: CC0 / PD ya da atıflı CC-BY / CC-BY-SA
+             (yazar, lisans, kaynak metadata'da; insan onayı yok, 'otomatik_toplayici' olarak açıkça işaretli).
+             Bir görsel bir videoda en çok bir kez; en az 3 (Shorts) / 12 (uzun) benzersiz görsel yoksa üretim durur.
           4) Senaryo: motor.uretim.senaryo_uretici.istem (render'ın anladığı niyet sözlüğü) + görsel tür kuralları
              (harita evreleri, toplanan 2.5D görsel kimlikleri, hedef karışım) → GeminiLLMProvider (anahtar başlıkta,
              503 + zaman aşımı yedeği). Yanıt sozlesme.senaryo_denetle + anlati.shorts_denetle kapılarından geçer;
@@ -45,19 +47,21 @@ KOK = Path(__file__).resolve().parent
 sys.path.insert(0, str(KOK))
 PILOTLAR = KOK / "motor" / "uretim" / "pilotlar"
 GORSEL_KOK = KOK / "assets" / "tarihi_gorsel"
-IZINLI = ("CC0-1.0", "PD-Old", "PD-Art")
+IZINLI = ("CC0-1.0", "PD-Old", "PD-Art")            # atıf istemeyen
+# Faz-62d: CC-BY-x ve CC-BY-SA-x — atıf (yazar, lisans, kaynak) zorunlu; CC-BY-NC / CC-BY-ND kabul edilmez
+EN_AZ_GORSEL = {"shorts": 3, "uzun": 12}         # Faz-62d: render'a geçmeden indirilmiş + kullanılmış benzersiz görsel
 MODLAR = {"shorts": ("shorts",), "uzun": ("uzun",), "her_ikisi": ("shorts", "uzun")}
 HEDEF_KARISIM = {"harita": 0.4, "gorsel25d": 0.4, "3d": 0.2}
-EN_COK_GORSEL = 8
+EN_COK_GORSEL = 12
 # Faz-62c uzun belgesel
 UZUN_HEDEF_SN = [900, 1200]          # 15–20 dk (gerçek TTS zaman çizelgesi)
 UZUN_PLAN_SN = 1050                  # bölüm hedeflerinin toplamı (aralığın ortası)
 UZUN_KART = 80                       # uzun anlatı daha çok doğrulanmış bilgi ister (Shorts 30 kartla aynı kalır)
-EN_COK_GORSEL_UZUN = 24
+EN_COK_GORSEL_UZUN = 48
 EN_COK_GEMINI_CAGRI = 32             # uzun senaryo için toplam çağrı tavanı (sonsuz yeniden deneme yok)
 KELIME_HIZI = 2.3                    # ilk bölüm için kelime/sn tahmini; sonra ölçülen TTS'den güncellenir
 HAREKETLER = ("zoom_in", "zoom_out", "push_in", "pull_back", "pan_sol", "pan_sag", "pan_yukari", "pan_asagi", "capraz", "sabit")
-GORSEL_EN_COK_KULLANIM = 6
+GORSEL_EN_COK_KULLANIM = 1          # Faz-62d: bir görsel dosyası bir videoda en çok bir kez
 
 
 class UretimHatasi(Exception):
@@ -172,49 +176,114 @@ def json_ayikla(ham: str):
 
 # ------------------------------------------------------------------ 3) Commons 2.5D görselleri
 
-def gorsel_sorgu_istemi(konu: str, ara: dict, adet: int = EN_COK_GORSEL) -> str:
-    iddialar = "\n".join(f"- {c['iddia']}" for c in ara["kartlar"][:12])
-    return f"""Konu: "{konu}". Bu belgesel için Wikimedia Commons'ta aranacak tarihî görsel sorguları öner.
-Yalnızca kamu malı olması muhtemel eserler: dönem minyatürleri, eski gravürler, tarihî portre resimleri, eski haritalar,
-dönem mimarisinin eski fotoğrafları/çizimleri. Modern illüstrasyon, oyun görseli, film karesi İSTEME.
+def gorsel_sorgu_istemi(konu: str, ara: dict, adet: int = EN_COK_GORSEL, sahneler: list[str] | None = None) -> str:
+    """Faz-62d: sorgular konu adından değil SAHNE KONULARINDAN türetilir (kişiler, ordular, silahlar, mekânlar, haritalar,
+    dönem sanatı); her sorgu farklı bir dosyaya gider."""
+    iddialar = "\n".join(f"- {c['iddia']}" for c in ara["kartlar"][:20])
+    sahne = "\n".join(f"- {x}" for x in (sahneler or [])) or "(sahne listesi yok: doğrulanmış bilgilerden çıkar)"
+    return f"""Konu: "{konu}". Bu belgeselin sahneleri için Wikimedia Commons'ta aranacak tarihî görsel sorguları üret.
+SAHNE KONULARI:
+{sahne}
 Doğrulanmış bilgiler:
 {iddialar}
-Yanıt YALNIZCA JSON dizi: en çok {adet} öğe, her öğe {{"gorsel_id": "kısa-kimlik", "sorgu": "İngilizce Commons araması",
-"yedek_sorgular": ["…"], "tur": "insan_portre|mimari|cok_figurlu|genel", "aciklama": "Türkçe kısa açıklama (ne görünüyor)"}}.
-gorsel_id yalnız küçük harf, rakam ve tire."""
+KURALLAR:
+- Sorguyu yalnızca konu/savaş adıyla ("{konu}") KURMA; o adla Commons'ta çok az dosya var. Her sahne için o sahnede
+  görünmesi gereken ALT KONULARI ara: kişiler (ör. "Mehmed II", "Uzun Hasan", "Bayezid II portrait"), ordular
+  (ör. "Janissaries", "Ottoman sipahi", "Turkoman cavalry"), silahlar (ör. "Ottoman artillery", "15th century cannon"),
+  mekânlar ve haritalar (ör. "Anatolia historical map", "Tabriz", "Erzincan"), dönem sanatı (ör. "Ottoman miniature",
+  "Tabriz miniature", "Persian miniature 15th century"), olay türü (ör. "15th century battle").
+- Her öğe FARKLI bir görsel hedeflesin (aynı eseri iki sorguyla isteme); sorgular İngilizce, 2–5 kelime.
+- Kaynak: dönem minyatürleri, gravürler, tarihî portre resimleri, eski haritalar, müze nesneleri, tarihî yapı fotoğrafları.
+  Lisans: kamu malı ya da CC0 tercih; CC-BY / CC-BY-SA de olur (atıf kaydedilir). Modern illüstrasyon, oyun görseli,
+  film karesi İSTEME.
+Yanıt YALNIZCA JSON dizi: {adet} öğe, her öğe {{"gorsel_id": "kısa-kimlik", "sahne": "hangi sahne konusu",
+"sorgu": "İngilizce Commons araması", "yedek_sorgular": ["…", "…"], "tur": "insan_portre|mimari|cok_figurlu|genel",
+"aciklama": "Türkçe kısa açıklama (ne görünüyor)"}}. gorsel_id yalnız küçük harf, rakam ve tire; hepsi farklı."""
+
+
+def lisans_uygun(k: dict) -> tuple[bool, str]:
+    """CC0 / PD; ya da CC-BY* (CC-BY-SA dahil) + tam atıf (yazar bilinmeli, lisans ve kaynak URL'si)."""
+    lis = str(k.get("lisans_turu") or "")
+    if lis in IZINLI:
+        return True, "serbest"
+    if re.fullmatch(r"CC-BY(-SA)?(-[\d.]+)?", lis.upper()):   # NC / ND ekli lisanslar burada da reddedilir
+        atif = k.get("atif") or {}
+        eksik = [a for a in ("yazar", "lisans", "kaynak") if not str(atif.get(a) or "").strip()]
+        if str(atif.get("yazar") or "").strip().lower() in ("bilinmiyor", "unknown", ""):
+            eksik.append("yazar bilinmiyor")
+        return (not eksik), ("atıflı" if not eksik else f"atıf eksik ({', '.join(eksik)})")
+    return False, f"lisans {lis or '?'} kabul edilmiyor (CC0, PD, CC-BY, CC-BY-SA; NC/ND hayır)"
 
 
 def gorselleri_topla(konu_kimlik: str, sorgular: list[dict], hedef: Path = GORSEL_KOK, topla=None,
                     en_cok: int = EN_COK_GORSEL) -> list[dict]:
-    """Sorguları indirir; yalnızca IZINLI (CC0/PD) lisanslı ve tarihi_gorsel kapısından geçenleri döndürür."""
+    """Sorguları indirir. Kabul: CC0/PD ya da atıflı CC-BY/CC-BY-SA (lisans_uygun) + tarihi_gorsel kapısı.
+    Aynı Commons dosyası (başlık ya da SHA-256) ikinci kez alınmaz: sonraki sorgular önceki seçimleri hariç tutar."""
     from motor.varlik import commons_toplayici, tarihi_gorsel
     topla = topla or commons_toplayici.topla
     hedef.mkdir(parents=True, exist_ok=True)
-    alinan = []
+    alinan, basliklar, shalar, kimlikler = [], set(), set(), set()
+
+    def sil(gid):
+        for uz in (".jpg", ".jpeg", ".png", ".tif", ".json"):
+            (hedef / f"{gid}{uz}").unlink(missing_ok=True)
+
     for i, s in enumerate(sorgular[:en_cok], 1):
+        if not isinstance(s, dict) or not s.get("sorgu"):
+            continue
         gid = f"{konu_kimlik}-{kisa_ad(str(s.get('gorsel_id') or i))[:40] or i}"
+        if gid in kimlikler:
+            gid = f"{gid}-{i}"
         s2 = {"gorsel_id": gid, "sorgu": s.get("sorgu"), "yedek_sorgular": list(s.get("yedek_sorgular") or [])[:3],
               "tur": s.get("tur") if s.get("tur") in ("insan_portre", "mimari", "cok_figurlu") else None,
-              "en_az_px": 1500, "eser_adi": s.get("aciklama")}
+              "en_az_px": 1500, "eser_adi": s.get("aciklama"), "haric": sorted(basliklar)}
         try:
             k = topla(s2, hedef)
         except Exception as e:   # noqa: BLE001 — tek görselin bulunamaması üretimi durdurmaz; raporlanır
             log("gorsel", f"✗ {gid}: {type(e).__name__}: {str(e)[:160]}")
             continue
-        if k.get("lisans_turu") not in IZINLI:
-            log("gorsel", f"✗ {gid}: lisans {k.get('lisans_turu')} izinli değil (yalnız {', '.join(IZINLI)}); kullanılmaz")
-            for uz in (".jpg", ".png", ".tif", ".json"):
-                (hedef / f"{gid}{uz}").unlink(missing_ok=True)
+        uygun, neden = lisans_uygun(k)
+        if not uygun:
+            log("gorsel", f"✗ {gid}: {neden}; kullanılmaz")
+            sil(gid)
+            continue
+        baslik, sha = (k.get("toplama") or {}).get("baslik"), k.get("sha256")
+        if (baslik and baslik in basliklar) or (sha and sha in shalar):
+            log("gorsel", f"✗ {gid}: aynı dosya daha önce alındı ({baslik}); tekrar kullanılmaz")
+            sil(gid)
             continue
         try:
             tarihi_gorsel.dogrulanmis_dosya(gid)
         except Exception as e:   # noqa: BLE001
             log("gorsel", f"✗ {gid}: lisans/dosya kapısı: {str(e)[:160]}")
             continue
+        basliklar.update([baslik] if baslik else [])
+        shalar.update([sha] if sha else [])
+        kimlikler.add(gid)
         alinan.append({"gorsel_id": gid, "aciklama": s.get("aciklama") or k.get("eser_adi"), "lisans": k["lisans_turu"],
-                       "kaynak_url": k.get("kaynak_url"), "tur": k.get("gorsel_turu")})
-        log("gorsel", f"✓ {gid}: {k['lisans_turu']} {k.get('cozunurluk')} — {k.get('toplama', {}).get('baslik')}")
+                       "kaynak_url": k.get("kaynak_url"), "tur": k.get("gorsel_turu"), "sahne": s.get("sahne"),
+                       "commons_baslik": baslik, **({"atif": k["atif"]} if k.get("atif") else {})})
+        log("gorsel", f"✓ {gid}: {k['lisans_turu']} ({neden}) {k.get('cozunurluk')} — {baslik}")
     return alinan
+
+
+def gorsel_kapisi(bicim: str, gorseller: list[dict], senaryo: dict | None = None) -> list[str]:
+    """Faz-62d: render'a geçmeden önce (1) en az EN_AZ_GORSEL[bicim] benzersiz görsel indirilmiş, (2) senaryo bunları
+    benzersiz kullanıyor (bir görsel bir kez) ve en az o kadar farklı görsel içeriyor olmalı."""
+    en_az = EN_AZ_GORSEL[bicim]
+    h = []
+    ids = {g["gorsel_id"] for g in gorseller}
+    if len(ids) < en_az:
+        h.append(f"{bicim}: {len(ids)} benzersiz tarihî görsel indirildi; en az {en_az} gerekli (render'a geçilmez)")
+    if senaryo is not None:
+        kul = [(c["niyet"].get("gorsel25d") or {}).get("gorsel_id") for c in senaryo["cumleler"]
+               if c["niyet"]["tur"] == "gorsel25d"]
+        tekrar = sorted({x for x in kul if kul.count(x) > 1})
+        if tekrar:
+            h.append(f"{bicim}: aynı görsel birden fazla cümlede: {tekrar}")
+        if len(set(kul)) < en_az:
+            h.append(f"{bicim}: senaryoda {len(set(kul))} farklı tarihî görsel; en az {en_az} gerekli")
+    return h
 
 
 # ------------------------------------------------------------------ 4) senaryo
@@ -232,7 +301,8 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
     if gorseller:
         satir.append("gorsel25d niyeti: {\"tur\": \"gorsel25d\", \"gorsel25d\": {\"gorsel_id\": <kimlik>}, \"aciklama\": "
                      "<görselde ne olduğu, kısa>} (aciklama ZORUNLU) — yalnızca şu "
-                     "görseller (anlatılan cümleyle ilgili olanı seç; aynı görseli iki kez kullanma): "
+                     f"görseller (anlatılan cümleyle ilgili olanı seç; HER GÖRSEL EN ÇOK BİR KEZ; en az "
+                     f"{EN_AZ_GORSEL['shorts']} farklı görsel kullan): "
                      + "; ".join(f"{g['gorsel_id']} = {g['aciklama']}" for g in gorseller))
     else:
         satir.append("Kullanılabilir tarihî görsel yok: 'gorsel25d' niyeti KULLANMA.")
@@ -260,6 +330,7 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
             h.append(f"{c['id']}: harita evresi geçersiz (geçerli: {sorted(evreler)})")
         if n["tur"] == "bilgi_karti":
             h.append(f"{c['id']}: bilgi_karti kullanılmaz; 3d, harita ya da gorsel25d seç")
+    h += [x for x in gorsel_kapisi(s.get("format") or "shorts", gorseller, s) if "indirildi" not in x]
     if h:
         return h
     sureler = (olc or seslendirme.olc)(s["cumleler"])
@@ -351,8 +422,20 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
     ara_tam, esleme_tam = kartlar_kur(havuz, "gecici", UZUN_KART if uzun_var else 30)
     g = (saglayici_fn or (lambda: gemini(anahtar, 2400.0 if uzun_var else 420.0)))()
     adet = EN_COK_GORSEL_UZUN if uzun_var else EN_COK_GORSEL
+    taslak, taslak_gecmis = None, []
+    if uzun_var:   # Faz-62d: önce bölüm taslağı → görsel sorguları sahne (bölüm) konularından türetilir
+        try:
+            taslak, taslak_gecmis = uzun_taslak_uret(g, konu_kur(sablon, konu, "uzun"), ara_tam)
+        except Exception as e:
+            if isinstance(e, UretimHatasi):
+                raise
+            raise UretimHatasi("gemini", f"{getattr(e, 'sinif', type(e).__name__)}: {str(e)[:300]}",
+                               4 if getattr(e, "sinif", None) == "kota" else 1) from e
+        sahneler = [f"{b['baslik']} ({', '.join(b['roller'])}): {b.get('ozet', '')}" for b in taslak["bolumler"]]
+    else:
+        sahneler = [c["iddia"] for c in ara_tam["kartlar"][:10]]
     try:
-        sorgular = json_ayikla(g.tamamla(gorsel_sorgu_istemi(konu, ara_tam, adet), "gorsel_sorgu", {}))
+        sorgular = json_ayikla(g.tamamla(gorsel_sorgu_istemi(konu, ara_tam, adet, sahneler), "gorsel_sorgu", {}))
     except Exception as e:   # noqa: BLE001 — görsel önerisi alınamazsa 2.5D'siz devam edilir (raporlanır)
         if getattr(e, "sinif", None) == "kota":
             raise UretimHatasi("gemini", f"kota (429): {e}", 4) from e
@@ -360,6 +443,10 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
         sorgular = []
     gorsel_on = konu_kur(sablon, konu, bicimler[0])["kimlik"].rsplit("-oto", 1)[0] + "-oto"
     gorseller = gorselleri_topla(gorsel_on, sorgular if isinstance(sorgular, list) else [], topla=topla, en_cok=adet)
+    eksik = [x for b in bicimler for x in gorsel_kapisi(b, gorseller)]
+    if eksik:   # Faz-62d: yeterli benzersiz görsel yoksa senaryo/render'a hiç geçilmez
+        raise UretimHatasi("gorsel", "; ".join(eksik) + f" — {len(sorgular) if isinstance(sorgular, list) else 0} "
+                                     "sorgu denendi", 5)
     r: dict = {"konu": konu, "mod": mod, "sablon": sablon.name, "gorseller": gorseller,
                "arastirma": {"kayit": len(havuz["kayitlar"]), "kart": len(ara_tam["kartlar"]), "kaynak": len(ara_tam["kaynaklar"]),
                              "kesin": sum(c["guven"] == "kesin" for c in ara_tam["kartlar"]),
@@ -374,7 +461,8 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
         ara, esleme = kartlar_kur(havuz, k["kimlik"], UZUN_KART if bicim == "uzun" else 30)
         try:
             if bicim == "uzun":
-                sen, gecmis = uzun_senaryo_uret(g, k, ara, gorseller, _sablon_katalog(sablon), olc=olc)
+                sen, gecmis = uzun_senaryo_uret(g, k, ara, gorseller, _sablon_katalog(sablon), olc=olc, taslak=taslak)
+                gecmis = taslak_gecmis + gecmis
             else:
                 sen, gecmis = senaryo_uret(g, k, ara, gorseller, olc=olc)
         except Exception as e:
@@ -385,7 +473,15 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
         ri = {"bicim": bicim, "kimlik": k["kimlik"], "is": str(is_),
               "senaryo": {"cumle": len(sen["cumleler"]), "bolum": len(sen.get("bolumler", [])), "denemeler": gecmis,
                           "turler": {t: sum(c["niyet"]["tur"] == t for c in sen["cumleler"]) for t in ("harita", "gorsel25d", "3d")}}}
-        for ad, v in (("konu.json", k), ("arastirma.json", ara), ("senaryo.json", sen), ("kart_eslemesi.json", esleme)):
+        kapi = gorsel_kapisi(bicim, gorseller, sen)
+        if kapi:
+            raise UretimHatasi("gorsel", "; ".join(kapi), 5)
+        kullanilan = sorted({c["niyet"]["gorsel25d"]["gorsel_id"] for c in sen["cumleler"] if c["niyet"]["tur"] == "gorsel25d"})
+        ri["gorseller"] = kullanilan
+        for ad, v in (("konu.json", k), ("arastirma.json", ara), ("senaryo.json", sen), ("kart_eslemesi.json", esleme),
+                      ("gorsel_kapisi.json", {"bicim": bicim, "en_az": EN_AZ_GORSEL[bicim], "indirilen": len(gorseller),
+                                              "kullanilan": kullanilan}),
+                      ("gorsel_atiflari.json", [g_ for g_ in gorseller if g_["gorsel_id"] in kullanilan])):
             (is_ / ad).write_text(json.dumps(v, ensure_ascii=False, indent=1))
         p = (planla_fn or uretim_hatti_planla)(is_)
         ri["plan"] = {"gecti": p["gecti"], "toplam_sure_sn": p.get("toplam_sure_sn"),
@@ -479,12 +575,15 @@ def niyet_kurallari_uzun(konu: dict, gorseller: list[dict], katalog: list[dict],
                      '"metin_katmani": "<isteğe bağlı tarih/yer>"} — evreler: '
                      + "; ".join(f"{e['id']} = {e.get('baslik', '')}" for e in evreler)
                      + ". Aynı evre başka cümlede ancak FARKLI 'metin' ile kullanılabilir.")
-    if gorseller:
+    bos = [g for g in gorseller if kullanim.get(g["gorsel_id"], 0) < GORSEL_EN_COK_KULLANIM]
+    if bos:
         satir.append('gorsel25d: {"tur": "gorsel25d", "gorsel_id": <kimlik>, "aciklama": "<bu cümlede görselin ne '
-                     'gösterdiği, BENZERSİZ>", "hareket": <' + "|".join(HAREKETLER) + '>} — görseller (kullanım sayısı): '
-                     + "; ".join(f"{g['gorsel_id']} = {g['aciklama']} ({kullanim.get(g['gorsel_id'], 0)}/"
-                                 f"{GORSEL_EN_COK_KULLANIM})" for g in gorseller)
-                     + ". Aynı görsel art arda iki cümlede kullanılmaz.")
+                     'gösterdiği, BENZERSİZ>", "hareket": <' + "|".join(HAREKETLER) + '>} — HER GÖRSEL BELGESEL BOYUNCA '
+                     'EN ÇOK BİR KEZ; henüz kullanılmamış görseller: '
+                     + "; ".join(f"{g['gorsel_id']} = {g['aciklama']}" + (f" [sahne: {g['sahne']}]" if g.get("sahne") else "")
+                                 for g in bos))
+    else:
+        satir.append("Kullanılmamış tarihî görsel kalmadı: 'gorsel25d' kullanma.")
     kalan = [x for x in katalog if x["katalog"] not in kullanim]
     if kalan:
         satir.append('3d (yalnızca savaş sahneleri, belgesel boyunca en çok ' + str(kg["en_cok_3d_cumle"]) +
@@ -497,7 +596,8 @@ def niyet_kurallari_uzun(konu: dict, gorseller: list[dict], katalog: list[dict],
 
 
 def bolum_istemi(konu: dict, ara: dict, taslak: dict, b: dict, onceki: list[dict], gorseller: list[dict],
-                 katalog: list[dict], kullanim: dict, hedef_kelime: int, hatalar: list[str], ilk: bool, son: bool) -> str:
+                 katalog: list[dict], kullanim: dict, hedef_kelime: int, hatalar: list[str], ilk: bool, son: bool,
+                 en_az_yeni: int = 0) -> str:
     from motor.uretim import veri
     kc = _uzun_kural()["cumle"]
     temkin = ", ".join(veri.kural("dil_tr")["temkin_ifadeleri"])
@@ -510,6 +610,9 @@ def bolum_istemi(konu: dict, ara: dict, taslak: dict, b: dict, onceki: list[dict
         ek.append("İLK CÜMLE açılış kancasıdır: en çok 12 sn (≈20 kelime), bir sayı, soru ya da şaşırtıcı bir karşıtlık içerir.")
     if son:
         ek.append("SON CÜMLE belgeseli kapatır (anlamını özetler, yeni bilgi eklemez).")
+    if en_az_yeni:
+        ek.append(f"Bu bölümde EN AZ {en_az_yeni} farklı, daha önce kullanılmamış tarihî görsel (gorsel25d) kullan; "
+                  "her biri anlatılan cümleyle ilgili olsun.")
     return f"""Sen titiz bir tarih belgeseli anlatıcısısın. Belgesel: "{konu['baslik']}" (Türkçe, 16:9, 15–20 dk).
 BÖLÜM PLANI:
 {plan}
@@ -560,7 +663,7 @@ def niyet_normalle(n, gorseller: list[dict], katalog: list[dict], konu: dict) ->
 
 
 def bolum_cumleleri(yanit, ara: dict, konu: dict, gorseller: list[dict], katalog: list[dict], kullanim: dict,
-                    bolum_id: str, bas_no: int, onceki: list[dict]) -> tuple[list[dict], list[str]]:
+                    bolum_id: str, bas_no: int, onceki: list[dict], en_az_yeni: int = 0) -> tuple[list[dict], list[str]]:
     """Gemini bölüm yanıtı → şemaya uygun cümleler + yerel kapı hataları (kart, dil, uzunluk, niyet, tekrar)."""
     from motor.uretim import anlati, veri
     from motor.uretim.sozlesme import TEMKINLI_GUVEN
@@ -623,14 +726,38 @@ def bolum_cumleleri(yanit, ara: dict, konu: dict, gorseller: list[dict], katalog
             c["okunus"] = str(x["okunus"])
         cs.append(c)
     ids = {c["id"] for c in cs}
+    yeni = {c["niyet"]["gorsel25d"]["gorsel_id"] for c in cs if c["niyet"]["tur"] == "gorsel25d"}
+    if len(yeni) < en_az_yeni:
+        h.append(f"bu bölümde {len(yeni)} farklı tarihî görsel kullanıldı; en az {en_az_yeni} farklı, daha önce "
+                 "kullanılmamış görsel kullan (gorsel25d)")
     h += [e for e in anlati.tekrar_denetle(onceki + cs, _uzun_kural()["tekrar"]) if e.split(":")[0] in ids]
     kullanim.clear()
     kullanim.update(kul)
     return cs, h
 
 
+def uzun_taslak_uret(saglayici, konu: dict, ara: dict, deneme: int = 3) -> tuple[dict, list[dict]]:
+    """6–8 bölümlük taslak (kronolojik roller). planla bunu görsel sorgusundan ÖNCE çağırır (sahne konuları)."""
+    hatalar: list[str] = []
+    gecmis: list[dict] = []
+    for d in range(1, deneme + 1):
+        try:
+            t = json_ayikla(saglayici.tamamla(taslak_istemi(konu, ara, hatalar), "uzun_taslak", {"bolum": "uzun_taslak"}))
+        except (json.JSONDecodeError, TypeError) as e:
+            hatalar = [f"yanıt JSON değil: {e}"]
+            continue
+        hatalar = taslak_denetle(t, ara)
+        gecmis.append({"adim": "taslak", "deneme": d, "hatalar": hatalar[:10]})
+        log("senaryo", f"taslak deneme {d}: {len(hatalar)} hata" + (f" — {hatalar[:3]}" if hatalar else ""))
+        if not hatalar:
+            for i, b in enumerate(t["bolumler"], 1):
+                b["id"] = f"B{i}"
+            return t, gecmis
+    raise UretimHatasi("senaryo", f"bölüm taslağı kapıdan geçmedi: {hatalar[:6]}")
+
+
 def uzun_senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], katalog: list[dict],
-                      olc=None, deneme: int = 3, onarim: int = 2) -> tuple[dict, list[dict]]:
+                      olc=None, deneme: int = 3, onarim: int = 2, taslak: dict | None = None) -> tuple[dict, list[dict]]:
     """Taslak (6–8 bölüm) → bölüm bölüm yazım (her bölüm yerel kapılar + gerçek TTS süresi) → bütün senaryo kapıları
     (sozlesme, anlati.uzun_denetle, 15–20 dk zaman çizelgesi). Süre tutmazsa en sapan bölüm yeniden yazılır (en çok
     `onarim` kez); yine tutmazsa AÇIK HATA. Çağrı tavanı: EN_COK_GEMINI_CAGRI."""
@@ -645,22 +772,10 @@ def uzun_senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], k
         cagri["n"] += 1
         return json_ayikla(saglayici.tamamla(istem, adim, {"bolum": adim}))
 
-    hatalar: list[str] = []
-    taslak = None
-    for d in range(1, deneme + 1):
-        try:
-            t = iste(taslak_istemi(konu, ara, hatalar), "uzun_taslak")
-        except (json.JSONDecodeError, TypeError) as e:
-            hatalar = [f"yanıt JSON değil: {e}"]
-            continue
-        hatalar = taslak_denetle(t, ara)
-        gecmis.append({"adim": "taslak", "deneme": d, "hatalar": hatalar[:10]})
-        log("senaryo", f"taslak deneme {d}: {len(hatalar)} hata" + (f" — {hatalar[:3]}" if hatalar else ""))
-        if not hatalar:
-            taslak = t
-            break
     if taslak is None:
-        raise UretimHatasi("senaryo", f"bölüm taslağı kapıdan geçmedi: {hatalar[:6]}")
+        taslak, g0 = uzun_taslak_uret(saglayici, konu, ara, deneme)
+        cagri["n"] += len(g0)
+        gecmis += g0
     bs = taslak["bolumler"]
     for i, b in enumerate(bs, 1):
         b["id"] = f"B{i}"
@@ -679,16 +794,22 @@ def uzun_senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], k
         hh: list[str] = list(ilk_hatalar or [])
         bas_no = 1 + max((int(c["id"][1:]) for c in onceki), default=0)   # geçici kimlikler çakışmaz
         hedef_konusma = hedef_sn * 0.9    # ≈%10 duraklama payı (zaman çizelgesi)
+        # Faz-62d görsel kotası: belgesel toplamında en az EN_AZ_GORSEL['uzun'] farklı görsel → kalan ihtiyaç bölümlere
+        onceki_g = {c["niyet"]["gorsel25d"]["gorsel_id"] for c in onceki if c["niyet"]["tur"] == "gorsel25d"}
+        sonrakiler = {x["id"] for x in bs[bi + 1:]}
+        kalan = 1 if any(c.get("bolum") in sonrakiler for c in onceki) else len(bs) - bi
+        gerek = max(0, EN_AZ_GORSEL["uzun"] - len(onceki_g))
+        en_az_yeni = min(len(gorseller) - len(onceki_g), -(-gerek // kalan))
         for d in range(1, deneme + 1):
             kul = dict(kullanim)
             hedef_kelime = int(hedef_sn * 0.9 * kelime_hizi())
             try:
                 y = iste(bolum_istemi(konu, ara, taslak, b, onceki, gorseller, katalog, kul, hedef_kelime, hh,
-                                      bi == 0, bi == len(bs) - 1), f"uzun_{b['id']}")
+                                      bi == 0, bi == len(bs) - 1, en_az_yeni), f"uzun_{b['id']}")
             except (json.JSONDecodeError, TypeError) as e:
                 hh = [f"yanıt JSON değil: {e}"]
                 continue
-            cs, hh = bolum_cumleleri(y, ara, konu, gorseller, katalog, kul, b["id"], bas_no, onceki)
+            cs, hh = bolum_cumleleri(y, ara, konu, gorseller, katalog, kul, b["id"], bas_no, onceki, en_az_yeni)
             if hh:
                 gecmis.append({"adim": b["id"], "deneme": d, "hatalar": hh[:10]})
                 log("senaryo", f"{b['id']} deneme {d}: {len(hh)} hata — {hh[:3]}")
@@ -818,7 +939,12 @@ def dogrulama_plani(fikstur: Path, is_kok: Path, parca_sayisi: int = 4, topla=No
         if bicim == "uzun":
             sen.update(format="uzun", bolumler=ek["bolumler"])
             sen.pop("ana_fikir", None)
-        for ad, v in (("konu.json", k), ("arastirma.json", ara), ("senaryo.json", sen)):
+        kullanilan = sorted({c["niyet"]["gorsel25d"]["gorsel_id"] for c in sen["cumleler"] if c["niyet"]["tur"] == "gorsel25d"})
+        for ad, v in (("konu.json", k), ("arastirma.json", ara), ("senaryo.json", sen),
+                      ("gorsel_kapisi.json", {"bicim": bicim, "dogrulama": True, "en_az": EN_AZ_GORSEL[bicim],
+                                              "kullanilan": kullanilan,
+                                              "not": "doğrulama fikstürü: en az görsel kapısı uygulanmaz; tekrar yasağı uygulanır"}),
+                      ("gorsel_atiflari.json", [g_ for g_ in gorseller if g_["gorsel_id"] in kullanilan])):
             (is_ / ad).write_text(json.dumps(v, ensure_ascii=False, indent=1))
         p = (planla_fn or uretim_hatti_planla)(is_)
         hatalar = {a: b for a, b in p["hatalar"].items() if b}
@@ -842,8 +968,28 @@ def dogrulama_plani(fikstur: Path, is_kok: Path, parca_sayisi: int = 4, topla=No
 
 # ------------------------------------------------------------------ render / kurgu
 
+def render_kapisi(is_: Path) -> dict:
+    """Faz-62d: render/kurgu, planla'nın yazdığı görsel kapısı kaydı ve çekim planı tutarlı değilse başlamaz:
+    her tarihî görsel en çok bir çekimde, en az EN_AZ_GORSEL[biçim] farklı görsel. Doğrulama fikstürü açıkça muaf."""
+    f = is_ / "gorsel_kapisi.json"
+    if not f.exists():
+        raise UretimHatasi("gorsel", "gorsel_kapisi.json yok: plan görsel kapısından geçmemiş; render yapılmaz", 5)
+    k = json.loads(f.read_text())
+    if k.get("dogrulama"):
+        log("gorsel", "doğrulama fikstürü: en az görsel kapısı uygulanmaz (üretim değildir)")
+        return k
+    plan = json.loads((is_ / "cekim_plani.json").read_text())
+    ids = [c["gorsel25d"]["gorsel_id"] for c in plan["cekimler"] if c["tur"] == "gorsel25d" and c.get("gorsel25d")]
+    tekrar = sorted({x for x in ids if ids.count(x) > 1})
+    if tekrar or len(set(ids)) < k["en_az"]:
+        raise UretimHatasi("gorsel", f"çekim planında {len(set(ids))} farklı tarihî görsel (en az {k['en_az']})"
+                                     + (f"; tekrar eden: {tekrar}" if tekrar else "") + "; render yapılmaz", 5)
+    return k
+
+
 def parca_render(is_: Path, parca: int) -> dict:
     from motor.uretim import render
+    render_kapisi(is_)
     parcalar = json.loads((is_ / "parcalar.json").read_text())
     ids = next((p["cekimler"] for p in parcalar if p["parca"] == parca), [])
     sonuc = {}
@@ -869,9 +1015,21 @@ def ffprobe(yol: Path) -> dict:
 def kurgu_yap(is_: Path, cikti: Path) -> dict:
     from motor import ayar
     from motor.uretim import kurgu
+    render_kapisi(is_)
     t = time.time()
     k = kurgu.uret(is_)
     konu = json.loads((is_ / "konu.json").read_text())["kimlik"]
+    atif = is_ / "gorsel_atiflari.json"
+    if atif.exists():   # Faz-62d: kullanılan her görselin kaynağı; CC-BY/CC-BY-SA için yazar + lisans (yayında zorunlu)
+        cikti.mkdir(parents=True, exist_ok=True)
+        satir = []
+        for g in json.loads(atif.read_text()):
+            a = g.get("atif") or {}
+            satir.append(f"- {g.get('commons_baslik') or g['gorsel_id']} — lisans: {g.get('lisans')}"
+                         + (f" — yazar: {a.get('yazar')} — {a.get('lisans')}" if a else "") + f" — {g.get('kaynak_url')}")
+        (cikti / f"{konu}_gorsel_atiflari.txt").write_text(
+            "Tarihî görseller (Wikimedia Commons). CC-BY / CC-BY-SA görseller yayında atıf ister.\n" + "\n".join(satir) + "\n",
+            encoding="utf-8")
     r = {"durum": k.get("durum"), "format": k.get("format", "shorts"), "sure_sn": round(time.time() - t, 1),
          "onbellekten_3d": sum(1 for c in k.get("cekimler", []) if c.get("onbellekten")),
          **{x: k[x] for x in ("hatalar", "neden", "eksik", "cekim", "render", "olculen", "kalite_kontrol", "bolumler", "srt",

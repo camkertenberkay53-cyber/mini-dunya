@@ -484,13 +484,22 @@ TASLAK = {"baslik": "Otlukbeli", "bolumler": [
     {"baslik": "Etkiler", "roller": ["etkiler"], "hedef_sn": 150}, {"baslik": "Kapanış", "roller": ["kapanis"], "hedef_sn": 150}]}
 
 
-def _bolum_yaniti(b: int, adet=20, gorsel=None, uc=None):
+HAVUZ = [f"otlukbeli-1473-oto-g{i}" for i in range(14)]
+SORGULAR = [{"gorsel_id": f"g{i}", "sorgu": f"q{i}", "aciklama": f"görsel {i}", "sahne": "s"} for i in range(14)]
+
+
+def _topla(q, h):
+    return {"lisans_turu": "PD-Old", "eser_adi": "p", "toplama": {"baslik": f"File:{q['gorsel_id']}.jpg"}}
+
+
+def _bolum_yaniti(b: int, adet=20, gorseller=(), uc=None):
     cs = []
+    yerler = dict(zip((1, 7, 13), gorseller))
     for j in range(adet):
         no = b * 100 + j
         n = {"tur": "harita", "evre": "E1", "metin": f"başlık {no}"}
-        if gorsel and j in (1, 7, 13):
-            n = {"tur": "gorsel25d", "gorsel_id": gorsel, "aciklama": f"görsel açıklama {no}", "hareket": "pan_sol"}
+        if j in yerler:
+            n = {"tur": "gorsel25d", "gorsel_id": yerler[j], "aciklama": f"görsel açıklama {no}", "hareket": "pan_sol"}
         if uc and j == 4:
             n = {"tur": "3d", "katalog": uc}
         cs.append({"metin": _metin(no), "kartlar": ["C1"], "olgusal": True, "niyet": n})
@@ -512,15 +521,13 @@ def gorsel_kapisi(tmp_path, monkeypatch):
 
 
 def test_uzun_otonom_bolum_bolum_gercek_kapilarla(tmp_path, gorsel_kapisi):
-    gid = "otlukbeli-1473-oto-portre"
-    yan = [[{"gorsel_id": "portre", "sorgu": "q", "aciklama": "portre"}], TASLAK]
-    yan += [_bolum_yaniti(b, gorsel=gid if b in (1, 3) else None, uc="3D-S6" if b == 4 else None) for b in range(7)]
+    yan = [TASLAK, SORGULAR]
+    yan += [_bolum_yaniti(b, gorseller=HAVUZ[2 * b:2 * b + 2], uc="3D-S6" if b == 4 else None) for b in range(7)]
     s = Sahte(yan)
     havuz_cagri = []
     r = ou.planla("Otlukbeli Savaşı", "uzun", tmp_path / "is", "AIza", 4,
                   havuz_fn=lambda k: havuz_cagri.append(k) or {"kayitlar": [_kayit(i) for i in range(1, 9)]},
-                  saglayici_fn=lambda: s, topla=lambda q, h: {"lisans_turu": "PD-Old", "eser_adi": "p"},
-                  planla_fn=_sahte_planla, olc=_olc)
+                  saglayici_fn=lambda: s, topla=_topla, planla_fn=_sahte_planla, olc=_olc)
     i = r["isler"][0]
     sen = json.loads((Path(i["is"]) / "senaryo.json").read_text())
     konu = json.loads((Path(i["is"]) / "konu.json").read_text())
@@ -531,21 +538,24 @@ def test_uzun_otonom_bolum_bolum_gercek_kapilarla(tmp_path, gorsel_kapisi):
     toplam = sahne_bolucu.toplam_sure(sahne_bolucu.zaman_cizelgesi(sen, _olc(sen["cumleler"])))
     assert 900 <= toplam <= 1200
     g = [c["niyet"] for c in sen["cumleler"] if c["niyet"]["tur"] == "gorsel25d"]
-    assert g and all(n["gorsel25d"]["hareket"] == "pan_sol" and n["aciklama"] for n in g)
+    assert len(g) == 14 and all(n["gorsel25d"]["hareket"] == "pan_sol" and n["aciklama"] for n in g)
+    assert len({n["gorsel25d"]["gorsel_id"] for n in g}) == 14                         # her görsel bir kez
     uc = [c["niyet"] for c in sen["cumleler"] if c["niyet"]["tur"] == "3d"]
     pilot = json.loads((PILOT / "senaryo.json").read_text())["cumleler"][5]["niyet"]
     assert uc == [pilot]                                                               # 3D yalnız denetlenmiş katalogdan
-    assert [a for a, _ in s.istemler] == ["gorsel_sorgu", "uzun_taslak"] + [f"uzun_B{b}" for b in range(1, 8)]
+    assert [a for a, _ in s.istemler] == ["uzun_taslak", "gorsel_sorgu"] + [f"uzun_B{b}" for b in range(1, 8)]
+    assert "Taraflar" in s.istemler[1][1] and "Ottoman artillery" in s.istemler[1][1]     # sorgular sahne konularından
     assert len(havuz_cagri) == 1 and r["gemini_cagri"] == 9
     assert "k0x1" in s.istemler[3][1]                                                  # önceki bölüm tekrar karşıtı istemde
     assert all(p["kimlik"] == i["kimlik"] and "maliyet" in p for p in r["parcalar"]) and len(r["parcalar"]) == 8
     assert sum(len(p["cekimler"]) for p in r["parcalar"]) == 140                       # uzun: bütün türler paralel
 
 
-def test_uzun_bolum_sure_geri_bildirimi_ve_yerel_kapilar(tmp_path, gorsel_kapisi):
+def test_uzun_bolum_sure_geri_bildirimi_ve_yerel_kapilar(tmp_path, gorsel_kapisi, monkeypatch):
+    monkeypatch.setattr(ou, "EN_AZ_GORSEL", {"shorts": 0, "uzun": 0})                  # görsel kapısı ayrı testte
     kisa = _bolum_yaniti(0, adet=6)
     kotu = {"cumleler": [{"metin": _metin(5), "kartlar": ["C99"], "niyet": {"tur": "bilgi_karti"}}]}
-    yan = [[], TASLAK, kotu, kisa, _bolum_yaniti(0)] + [_bolum_yaniti(b) for b in range(1, 7)]
+    yan = [TASLAK, [], kotu, kisa, _bolum_yaniti(0)] + [_bolum_yaniti(b) for b in range(1, 7)]
     s = Sahte(yan)
     r = ou.planla("Otlukbeli Savaşı", "uzun", tmp_path / "is", "AIza", havuz_fn=lambda k: {"kayitlar": [_kayit(1)]},
                   saglayici_fn=lambda: s, topla=lambda q, h: {}, planla_fn=_sahte_planla, olc=_olc)
@@ -558,8 +568,9 @@ def test_uzun_bolum_sure_geri_bildirimi_ve_yerel_kapilar(tmp_path, gorsel_kapisi
     assert r["isler"][0]["senaryo"]["cumle"] == 140
 
 
-def test_uzun_sure_tutmazsa_onarim_sonra_acik_hata(tmp_path, gorsel_kapisi):
-    s = Sahte([[], TASLAK, lambda n: _bolum_yaniti(100 + n, adet=6)])   # her bölüm hep kısa (yeni cümlelerle)
+def test_uzun_sure_tutmazsa_onarim_sonra_acik_hata(tmp_path, gorsel_kapisi, monkeypatch):
+    monkeypatch.setattr(ou, "EN_AZ_GORSEL", {"shorts": 0, "uzun": 0})
+    s = Sahte([TASLAK, [], lambda n: _bolum_yaniti(100 + n, adet=6)])   # her bölüm hep kısa (yeni cümlelerle)
     with pytest.raises(ou.UretimHatasi) as e:
         ou.planla("Otlukbeli Savaşı", "uzun", tmp_path / "is", "AIza", havuz_fn=lambda k: {"kayitlar": [_kayit(1)]},
                   saglayici_fn=lambda: s, topla=lambda q, h: {}, planla_fn=_sahte_planla, olc=_olc)
@@ -579,16 +590,17 @@ def test_uzun_kota_aninda_durur(tmp_path, gorsel_kapisi):
 
 def test_her_ikisi_ortak_arastirma_ve_gorseller(tmp_path, gorsel_kapisi, monkeypatch):
     monkeypatch.setattr(ou, "senaryo_denetle", lambda *a, **k: [])                     # Shorts kapıları 62b testlerinde
-    shorts = {"cumleler": [{"id": "S1", "metin": "a", "kartlar": ["C1"], "niyet": {"tur": "3d"}}], "kanca": "S1", "final": "S1"}
-    yan = [[{"gorsel_id": "portre", "sorgu": "q", "aciklama": "portre"}], shorts, TASLAK] + [_bolum_yaniti(b) for b in range(7)]
+    shorts = {"cumleler": [{"id": f"S{i + 1}", "metin": "a", "kartlar": ["C1"], "niyet": {"tur": "gorsel25d",
+              "gorsel25d": {"gorsel_id": HAVUZ[i]}, "aciklama": f"a{i}"}} for i in range(3)], "kanca": "S1", "final": "S3"}
+    yan = [TASLAK, SORGULAR, shorts] + [_bolum_yaniti(b, gorseller=HAVUZ[2 * b:2 * b + 2]) for b in range(7)]
     s = Sahte(yan)
     havuz_cagri = []
     r = ou.planla("Otlukbeli Savaşı", "her_ikisi", tmp_path / "is", "AIza", 3,
                   havuz_fn=lambda k: havuz_cagri.append(k) or {"kayitlar": [_kayit(i) for i in range(1, 40)]},
-                  saglayici_fn=lambda: s, topla=lambda q, h: {"lisans_turu": "CC0-1.0", "eser_adi": "p"},
-                  planla_fn=_sahte_planla, olc=_olc)
+                  saglayici_fn=lambda: s, topla=_topla, planla_fn=_sahte_planla, olc=_olc)
     assert [i["bicim"] for i in r["isler"]] == ["shorts", "uzun"] and len(havuz_cagri) == 1
-    assert [a for a, _ in s.istemler].count("gorsel_sorgu") == 1 and len(r["gorseller"]) == 1
+    assert [a for a, _ in s.istemler].count("gorsel_sorgu") == 1 and len(r["gorseller"]) == 14
+    assert r["isler"][0]["gorseller"] == sorted(HAVUZ[:3]) and len(r["isler"][1]["gorseller"]) == 14
     sk = json.loads((Path(r["isler"][0]["is"]) / "arastirma.json").read_text())
     uk = json.loads((Path(r["isler"][1]["is"]) / "arastirma.json").read_text())
     assert len(sk["kartlar"]) == 30 and len(uk["kartlar"]) == 39 and uk["kartlar"][:30] == sk["kartlar"]
@@ -687,27 +699,31 @@ def test_cesitlilik_olceklemesi_yalniz_uzun():
 
 def test_gemini_cagri_tavani(tmp_path, gorsel_kapisi, monkeypatch):
     monkeypatch.setattr(ou, "EN_COK_GEMINI_CAGRI", 3)
-    s = Sahte([[], TASLAK, lambda n: _bolum_yaniti(200 + n, adet=6)])
+    monkeypatch.setattr(ou, "EN_AZ_GORSEL", {"shorts": 0, "uzun": 0})
+    s = Sahte([TASLAK, [], lambda n: _bolum_yaniti(200 + n, adet=6)])
     with pytest.raises(ou.UretimHatasi) as e:
         ou.planla("Otlukbeli Savaşı", "uzun", tmp_path / "is", "AIza", havuz_fn=lambda k: {"kayitlar": [_kayit(1)]},
                   saglayici_fn=lambda: s, topla=lambda q, h: {}, planla_fn=_sahte_planla, olc=_olc)
-    assert "çağrı tavanı (3)" in str(e.value) and s.cagri_sayisi == 4                 # 1 görsel sorgusu + 3 senaryo
+    assert "çağrı tavanı (3)" in str(e.value) and s.cagri_sayisi == 5     # taslak + görsel sorgusu + 3 bölüm çağrısı
 
 
 def test_gorsel_en_cok_kullanim_ve_art_arda_yasak():
     konu = ou.konu_kur(PILOT, "Otlukbeli Savaşı", "uzun")
-    g = [{"gorsel_id": "g1", "aciklama": "x"}]
+    g = [{"gorsel_id": f"g{i}", "aciklama": "x"} for i in range(3)]
     ara = {"kartlar": [{"id": "C1", "guven": "kesin", "iddia": "x"}]}
-    def y(idx):
+    def y(idx, ayni=True):
         return {"cumleler": [{"metin": _metin(300 + j), "kartlar": ["C1"], "niyet":
-                              ({"tur": "gorsel25d", "gorsel_id": "g1", "aciklama": f"a{j}"} if j in idx else
-                               {"tur": "harita", "evre": "E1", "metin": f"m{j}"})} for j in range(16)]}
-    _, h = ou.bolum_cumleleri(y(range(0, 14, 2)), ara, konu, g, [], {}, "B1", 1, [])
-    assert any("6 kereden fazla" in x for x in h)
+                              ({"tur": "gorsel25d", "gorsel_id": "g0" if ayni else f"g{idx.index(j)}", "aciklama": f"a{j}"}
+                               if j in idx else {"tur": "harita", "evre": "E1", "metin": f"m{j}"})} for j in range(16)]}
+    _, h = ou.bolum_cumleleri(y([1, 5]), ara, konu, g, [], {}, "B1", 1, [])
+    assert any("1 kereden fazla" in x for x in h)                                       # Faz-62d: görsel bir kez
     _, h = ou.bolum_cumleleri(y([3, 4]), ara, konu, g, [], {}, "B1", 1, [])
     assert any("art arda" in x for x in h)
-    _, h = ou.bolum_cumleleri(y([1, 3, 5]), ara, konu, g, [], {}, "B1", 1, [])
+    _, h = ou.bolum_cumleleri(y([1, 3, 5], ayni=False), ara, konu, g, [], {}, "B1", 1, [])
     assert h == []
+    kul = {"g0": 1}                                                                   # önceki bölümde kullanılmış
+    _, h = ou.bolum_cumleleri(y([1], ayni=True), ara, konu, g, [], kul, "B2", 20, [])
+    assert any("1 kereden fazla" in x for x in h)
 
 
 def test_dogrulama_shorts_anlati_kapisi_atlanmaz(tmp_path, gorsel_kapisi):

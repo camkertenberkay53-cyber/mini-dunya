@@ -11,6 +11,16 @@
    ],
    "tur": "insan_portre",
    "aciklama": "II. Mehmed portresi (Gentile Bellini, 1480)"
+  },
+  {
+   "gorsel_id": "katip-portre",
+   "sorgu": "Gentile Bellini Seated Scribe",
+   "yedek_sorgular": [
+    "Ottoman miniature janissaries 16th century",
+    "Nakkas Osman miniature"
+   ],
+   "tur": "insan_portre",
+   "aciklama": "Osmanlı sarayında oturan katip (Gentile Bellini, 1479–1481)"
   }
  ],
  "niyet_degisiklikleri": {
@@ -97,9 +107,8 @@
    },
    "S8": {
     "tur": "gorsel25d",
-    "gorsel_sira": 0,
-    "hareket": "pull_back",
-    "aciklama": "Fatih Sultan Mehmed — zaferden sonra Anadolu'da birlik"
+    "gorsel_sira": 1,
+    "hareket": "pull_back"
    }
   }
  }
