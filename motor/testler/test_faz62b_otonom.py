@@ -73,7 +73,7 @@ def test_json_ayikla():
 def test_gorsel_kurallari_evre_ve_gorsel_listesi():
     k = ou.konu_kur(PILOT, "Otlukbeli Savaşı", "shorts")
     m = ou.gorsel_kurallari(k, [{"gorsel_id": "g1", "aciklama": "portre"}])
-    assert "E1 = " in m and "g1 = portre" in m and "≈%40" in m and "45–60 sn" in m
+    assert "E1 = " in m and "g1 = portre" in m and "≈%35" in m and "45–60 sn" in m
     bos = ou.gorsel_kurallari(dict(k, harita={}), [])
     assert "'harita' niyeti KULLANMA" in bos and "'gorsel25d' niyeti KULLANMA" in bos
 
@@ -124,7 +124,9 @@ def denetim_yalitik(monkeypatch):
     monkeypatch.setattr(anlati, "shorts_denetle", lambda s, sr: ([], {}))
     sure = {"t": 50.0}
     monkeypatch.setattr(ou, "EN_AZ_GORSEL", {"shorts": 1, "uzun": 1})   # en az görsel kapısı test_faz62d'de sınanır
+    monkeypatch.setattr(ou, "_shorts_3d_esik", lambda: (0, 0))         # 3D çeşitlilik ön kapısı test_faz64'te sınanır
     monkeypatch.setattr(sahne_bolucu, "zaman_cizelgesi", lambda s, sr: None)
+    monkeypatch.setattr(sahne_bolucu, "cekimlere_bol", lambda s, cz, havuz=None: [])
     monkeypatch.setattr(sahne_bolucu, "toplam_sure", lambda c: sure["t"])
     return sure
 

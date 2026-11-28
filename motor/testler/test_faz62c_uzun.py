@@ -508,7 +508,8 @@ def _bolum_yaniti(b: int, adet=20, gorseller=(), uc=None):
 
 def _sahte_planla(is_):
     sen = json.loads((is_ / "senaryo.json").read_text())
-    cekimler = [{"id": c["id"], "tur": c["niyet"]["tur"], "sure_sn": 7.0, "cumleler": [c["id"]]} for c in sen["cumleler"]]
+    cekimler = [{"id": c["id"], "tur": c["niyet"]["tur"], "sure_sn": 7.0, "cumleler": [c["id"]],
+                 **({"gorsel25d": c["niyet"]["gorsel25d"]} if c["niyet"].get("gorsel25d") else {})} for c in sen["cumleler"]]
     (is_ / "cekim_plani.json").write_text(json.dumps({"konu": sen["konu"], "format": sen["format"], "cekimler": cekimler}))
     return {"gecti": True, "hatalar": {}, "toplam_sure_sn": 1000.0}
 

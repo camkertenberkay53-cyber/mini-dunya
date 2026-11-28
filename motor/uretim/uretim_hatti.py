@@ -53,16 +53,23 @@ def planla(klasor: Path, tohum: int = 7) -> dict:
     rapor["toplam_sure_sn"] = toplam
     a, b = konu["hedef_sure_sn"]
     rapor["hatalar"]["sure"] = [] if a <= toplam <= b else [f"toplam süre {toplam} sn; hedef {a}-{b} sn"]
-    taslaklar = sahne_bolucu.cekimlere_bol(sen, cizelge)
+    # Faz-64: isteğe bağlı görsel havuzu (otonom üretim yazar): uzun 2.5D cümlenin ikinci çekimi yalnız havuzda
+    # kullanılmamış, ilgili bir görsel varsa açılır; yoksa tek çekim kalır (aynı görüntü iki kez çekilmez)
+    havuz_yolu = klasor / "gorsel_havuzu.json"
+    havuz = json.loads(havuz_yolu.read_text()) if havuz_yolu.exists() else None
+    taslaklar = sahne_bolucu.cekimlere_bol(sen, cizelge, havuz)
     donem = konu["donemler"][0]
     fmt, prf = format_profili(konu)
     w, hgt = prf["cozunurluk"]
     cekimler, eksikler, gecmis = [], [], []
+    uc_d = [i for i, t in enumerate(taslaklar) if t["niyet"]["tur"] == "3d"]
+    esik = cesitlilik.esikler(fmt, len(uc_d))
     for i, t in enumerate(taslaklar):
         # yalnızca SONRAKİ cümlelerin tercih ettiği kamera türleri saklı tutulur
         tercihler = {x["niyet"].get("kamera") for x in taslaklar[i + 1:]} - {None, t["niyet"].get("kamera")}
+        hedef = {"kalan": sum(1 for j in uc_d if j >= i), "toplam": len(uc_d), "esik": esik}   # Faz-64
         c, eks, kayit = planlayici.cekim_kur(t, donem, w / hgt, gecmis, tohum + i, tercihler, list(konu["donemler"]),
-                                             konu.get("harita"))
+                                             konu.get("harita"), hedef)
         cekimler.append(c)
         if kayit:
             gecmis.append(kayit)

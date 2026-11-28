@@ -51,7 +51,8 @@ IZINLI = ("CC0-1.0", "PD-Old", "PD-Art")            # atıf istemeyen
 # Faz-62d: CC-BY-x ve CC-BY-SA-x — atıf (yazar, lisans, kaynak) zorunlu; CC-BY-NC / CC-BY-ND kabul edilmez
 EN_AZ_GORSEL = {"shorts": 3, "uzun": 12}         # Faz-62d: render'a geçmeden indirilmiş + kullanılmış benzersiz görsel
 MODLAR = {"shorts": ("shorts",), "uzun": ("uzun",), "her_ikisi": ("shorts", "uzun")}
-HEDEF_KARISIM = {"harita": 0.4, "gorsel25d": 0.4, "3d": 0.2}
+HEDEF_KARISIM = {"harita": 0.3, "gorsel25d": 0.35, "3d": 0.35}   # Faz-64: Shorts 3D çeşitlilik eşiği ≥4 3D çekim ister
+PLAN_YENIDEN_DENEME = 2   # Faz-64: Shorts planı tekrar/çeşitlilik kapısına takılırsa senaryo hatalar geri beslenerek
 EN_COK_GORSEL = 12
 # Faz-62c uzun belgesel
 UZUN_HEDEF_SN = [900, 1200]          # 15–20 dk (gerçek TTS zaman çizelgesi)
@@ -502,7 +503,8 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
     hedef = ", ".join(f"{t} ≈%{int(v * 100)}" for t, v in HEDEF_KARISIM.items())
     satir.append(f"Hedef karışım (cümle sayısına göre): {hedef}. Aynı tür üç cümleden fazla art arda gelmesin.")
     if evreler:
-        satir.append("harita niyeti: {\"tur\": \"harita\", \"evre\": <evre kimliği>, \"metin_katmani\": <kısa yazı>} — evreler: "
+        satir.append("harita niyeti: {\"tur\": \"harita\", \"evre\": <evre kimliği>, \"metin\": <BENZERSİZ harita başlığı>, "
+                     "\"metin_katmani\": <kısa yazı>} — aynı evre ikinci kez ancak FARKLI 'metin' ile; evreler: "
                      + "; ".join(f"{e['id']} = {e.get('baslik', '')}" for e in evreler))
     else:
         satir.append("Bu konuda harita evresi yok: 'harita' niyeti KULLANMA.")
@@ -515,6 +517,9 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
     else:
         satir.append("Kullanılabilir tarihî görsel yok: 'gorsel25d' niyeti KULLANMA.")
     satir.append("3d niyeti yukarıdaki rol/eylem/arazi kurallarına uyar; belirli kişiler temsilî karakterle gösterilir.")
+    satir.append(f"3D ÇEŞİTLİLİK (zorunlu): en az {_shorts_3d_esik()[0]} 3D çekim gerekir (en az 3 '3d' cümle yaz; uzun "
+                 f"3D cümle iki çekim olur); 3D cümlelerde 'mesafe' en az {_shorts_3d_esik()[1]} farklı değer almalı "
+                 "(en az biri 'orta', biri 'uzak'); eylemleri çeşitlendir.")
     a, b = konu["hedef_sure_sn"]
     satir.append(f"SÜRE: ölçülen seslendirme toplamı {a}–{b} sn olmalı; bunun için 9–10 cümle, cümle başına 10–14 kelime yaz "
                  f"(kanca hariç: kanca 4–6 kelime).")
@@ -528,6 +533,7 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
         return h
     gecerli = {g["gorsel_id"] for g in gorseller}
     evreler = {e["id"] for e in (konu.get("harita") or {}).get("evreler") or []}
+    haritalar: dict = {}
     for c in s["cumleler"]:
         n = c["niyet"]
         if n["tur"] == "gorsel25d" and (n.get("gorsel25d") or {}).get("gorsel_id") not in gecerli:
@@ -536,9 +542,20 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
             h.append(f"{c['id']}: gorsel25d niyetinde 'aciklama' zorunlu (çekim metni)")
         if n["tur"] == "harita" and n.get("evre") not in evreler:
             h.append(f"{c['id']}: harita evresi geçersiz (geçerli: {sorted(evreler)})")
+        elif n["tur"] == "harita":   # Faz-64: aynı evre + aynı başlık = birebir aynı harita çekimi (plan_denetim tekrarı)
+            imza = (n.get("evre"), (n.get("metin") or "").strip())
+            if imza in haritalar:
+                h.append(f"{c['id']}: {haritalar[imza]} ile aynı harita (evre {imza[0]}, aynı başlık) — farklı 'metin' "
+                         "başlığı ver ya da başka evre/görsel kullan")
+            haritalar.setdefault(imza, c["id"])
         if n["tur"] == "bilgi_karti":
             h.append(f"{c['id']}: bilgi_karti kullanılmaz; 3d, harita ya da gorsel25d seç")
     h += [x for x in gorsel_kapisi(s.get("format") or "shorts", gorseller, s) if "indirildi" not in x]
+    en_az_3d, en_az_mesafe = _shorts_3d_esik()
+    mesafeler = {c["niyet"].get("mesafe", "orta") for c in s["cumleler"] if c["niyet"]["tur"] == "3d"}
+    if len(mesafeler) < en_az_mesafe:
+        h.append(f"3D cümlelerde {len(mesafeler)} farklı mesafe ({', '.join(sorted(mesafeler)) or '-'}); çeşitlilik için en az "
+                 f"{en_az_mesafe} (en az biri 'orta', biri 'uzak')")
     if h:
         return h
     sureler = (olc or seslendirme.olc)(s["cumleler"])
@@ -552,12 +569,25 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
         yon = "cümleleri uzat ya da cümle ekle (en çok 10 cümle, cümle başına en çok 14 kelime)" if toplam < a else \
               "cümleleri kısalt ya da cümle çıkar"
         return [f"ölçülen toplam süre {toplam:.1f} sn; hedef {a}–{b} sn: {yon}"]
+    uc_d = sum(1 for t in sahne_bolucu.cekimlere_bol(s, sahne_bolucu.zaman_cizelgesi(s, sureler)) if t["niyet"]["tur"] == "3d")
+    if uc_d < en_az_3d:
+        return [f"{uc_d} 3D çekim; Shorts çeşitlilik kapısı (en az {en_az_3d} farklı kamera hareketi) için en az {en_az_3d} "
+                "3D çekim gerekli: 3D cümle ekle (farklı mesafe ve eylemle)"]
     return []
 
 
-def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme: int = 3, olc=None) -> tuple[dict, list[dict]]:
+def _shorts_3d_esik() -> tuple[int, int]:
+    """(en az 3D çekim, en az farklı 3D mesafe): çeşitlilik kapısının kendi eşiklerinden (kurallar/cesitlilik.yaml).
+    Hareket eşiği n ise n farklı hareket için en az n 3D çekim; plan ölçeği eşiği mesafe çeşitliliğiyle gelir."""
+    from motor.uretim import veri
+    k = veri.kural("cesitlilik")
+    return int(k["en_az_farkli_hareket"]), int(k["en_az_farkli_plan_olcegi"])
+
+
+def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme: int = 3, olc=None,
+                 ilk_hatalar: list[str] | None = None) -> tuple[dict, list[dict]]:
     from motor.uretim import senaryo_uretici
-    hatalar: list[str] = []
+    hatalar: list[str] = list(ilk_hatalar or [])   # Faz-64: önceki planın kapı hataları geri beslenebilir
     gecmis = []
     for d in range(1, deneme + 1):
         istem = (senaryo_uretici.istem(konu, ara, hatalar) + "\n" + gorsel_kurallari(konu, gorseller) + "\n"
@@ -670,35 +700,51 @@ def planla(konu: str, mod: str, is_kok: Path, anahtar: str | None, parca_sayisi:
         is_.mkdir(parents=True)
         # Shorts: Faz-62b ile aynı (ilk 30 kart; sıralama belirlenimci olduğundan aynı kartlar)
         ara, esleme = kartlar_kur(havuz, k["kimlik"], UZUN_KART if bicim == "uzun" else 30)
-        try:
-            if bicim == "uzun":
-                sen, gecmis = uzun_senaryo_uret(g, k, ara, gorseller, _sablon_katalog(sablon), olc=olc, taslak=taslak)
-                gecmis = taslak_gecmis + gecmis
-            else:
-                sen, gecmis = senaryo_uret(g, k, ara, gorseller, olc=olc)
-        except Exception as e:
-            if isinstance(e, UretimHatasi):
-                raise
-            raise UretimHatasi("gemini", f"{getattr(e, 'sinif', type(e).__name__)}: {str(e)[:300]}",
-                               4 if getattr(e, "sinif", None) == "kota" else 1) from e
-        ri = {"bicim": bicim, "kimlik": k["kimlik"], "is": str(is_),
-              "senaryo": {"cumle": len(sen["cumleler"]), "bolum": len(sen.get("bolumler", [])), "denemeler": gecmis,
-                          "turler": {t: sum(c["niyet"]["tur"] == t for c in sen["cumleler"]) for t in ("harita", "gorsel25d", "3d")}}}
-        kapi = gorsel_kapisi(bicim, gorseller, sen)
-        if kapi:
-            raise UretimHatasi("gorsel", "; ".join(kapi), 5)
-        kullanilan = sorted({c["niyet"]["gorsel25d"]["gorsel_id"] for c in sen["cumleler"] if c["niyet"]["tur"] == "gorsel25d"})
+        plan_hatalari: list[str] = []
+        for tur_no in range(1 + (PLAN_YENIDEN_DENEME if bicim == "shorts" else 0)):
+            try:
+                if bicim == "uzun":
+                    sen, gecmis = uzun_senaryo_uret(g, k, ara, gorseller, _sablon_katalog(sablon), olc=olc, taslak=taslak)
+                    gecmis = taslak_gecmis + gecmis
+                else:
+                    sen, gecmis = senaryo_uret(g, k, ara, gorseller, olc=olc, ilk_hatalar=plan_hatalari)
+            except Exception as e:
+                if isinstance(e, UretimHatasi):
+                    raise
+                raise UretimHatasi("gemini", f"{getattr(e, 'sinif', type(e).__name__)}: {str(e)[:300]}",
+                                   4 if getattr(e, "sinif", None) == "kota" else 1) from e
+            ri = {"bicim": bicim, "kimlik": k["kimlik"], "is": str(is_), "plan_turu": tur_no + 1,
+                  "senaryo": {"cumle": len(sen["cumleler"]), "bolum": len(sen.get("bolumler", [])), "denemeler": gecmis,
+                              "turler": {t: sum(c["niyet"]["tur"] == t for c in sen["cumleler"])
+                                         for t in ("harita", "gorsel25d", "3d")}}}
+            kapi = gorsel_kapisi(bicim, gorseller, sen)
+            if kapi:
+                raise UretimHatasi("gorsel", "; ".join(kapi), 5)
+            for ad, v in (("konu.json", k), ("arastirma.json", ara), ("senaryo.json", sen), ("kart_eslemesi.json", esleme),
+                          # Faz-64: planlayıcı uzun 2.5D cümlenin ikinci çekimini yalnız bu havuzdaki kullanılmamış,
+                          # ilgili görselle açar (yoksa tek çekim)
+                          ("gorsel_havuzu.json", [{x: g_.get(x) for x in ("gorsel_id", "aciklama", "sahne")} for g_ in gorseller])):
+                (is_ / ad).write_text(json.dumps(v, ensure_ascii=False, indent=1))
+            p = (planla_fn or uretim_hatti_planla)(is_)
+            ri["plan"] = {"gecti": p["gecti"], "toplam_sure_sn": p.get("toplam_sure_sn"),
+                          "hatalar": {a_: b_ for a_, b_ in p["hatalar"].items() if b_}}
+            if p["gecti"]:
+                break
+            yeniden = set(ri["plan"]["hatalar"]) <= {"plan_denetimi", "cesitlilik", "uyum"}
+            if bicim != "shorts" or not yeniden or tur_no == PLAN_YENIDEN_DENEME:
+                raise UretimHatasi("plan", f"{bicim} çekim planı kapıdan geçmedi: {ri['plan']['hatalar']}")
+            plan_hatalari = [f"ÇEKİM PLANI KAPISI ({x}): {y}" for x, ys in ri["plan"]["hatalar"].items() for y in ys][:12]
+            log("plan", f"plan kapıdan geçmedi (tur {tur_no + 1}); hatalar senaryoya geri besleniyor: {plan_hatalari[:3]}")
+        plan = json.loads((is_ / "cekim_plani.json").read_text())
+        kullanilan = plan_gorselleri(plan)   # Faz-64: plandaki GERÇEK görseller (ikinci çekim görselleri dahil)
+        kopya = ayni_dosya_kopyalari(kullanilan)
+        if kopya:
+            raise UretimHatasi("gorsel", f"aynı görsel dosyası farklı kimliklerle: {kopya}", 5)
         ri["gorseller"] = kullanilan
-        for ad, v in (("konu.json", k), ("arastirma.json", ara), ("senaryo.json", sen), ("kart_eslemesi.json", esleme),
-                      ("gorsel_kapisi.json", {"bicim": bicim, "en_az": EN_AZ_GORSEL[bicim], "indirilen": len(gorseller),
+        for ad, v in (("gorsel_kapisi.json", {"bicim": bicim, "en_az": EN_AZ_GORSEL[bicim], "indirilen": len(gorseller),
                                               "kullanilan": kullanilan}),
                       ("gorsel_atiflari.json", [g_ for g_ in gorseller if g_["gorsel_id"] in kullanilan])):
             (is_ / ad).write_text(json.dumps(v, ensure_ascii=False, indent=1))
-        p = (planla_fn or uretim_hatti_planla)(is_)
-        ri["plan"] = {"gecti": p["gecti"], "toplam_sure_sn": p.get("toplam_sure_sn"),
-                      "hatalar": {a: b for a, b in p["hatalar"].items() if b}}
-        if not p["gecti"]:
-            raise UretimHatasi("plan", f"{bicim} çekim planı kapıdan geçmedi: {ri['plan']['hatalar']}")
         plan = json.loads((is_ / "cekim_plani.json").read_text())
         ri["cekimler"] = {t: [c["id"] for c in plan["cekimler"] if c["tur"] == t] for t in ("3d", "harita", "gorsel25d")}
         ri["parcalar"] = parcalara_bol(plan, max(parca_sayisi, 8) if bicim == "uzun" else parca_sayisi)
@@ -1180,6 +1226,28 @@ def dogrulama_plani(fikstur: Path, is_kok: Path, parca_sayisi: int = 4, topla=No
 
 # ------------------------------------------------------------------ render / kurgu
 
+def plan_gorselleri(plan: dict) -> list[str]:
+    return sorted({c["gorsel25d"]["gorsel_id"] for c in plan["cekimler"] if c.get("tur") == "gorsel25d" and c.get("gorsel25d")})
+
+
+def gorsel_sha(gid: str) -> str | None:
+    try:
+        from motor.varlik import tarihi_gorsel
+        return tarihi_gorsel.bul(gid).get("sha256")
+    except Exception:   # noqa: BLE001 — kaydı olmayan görsel zaten lisans kapısında durur
+        return None
+
+
+def ayni_dosya_kopyalari(ids: list[str]) -> list[list[str]]:
+    """Faz-64: farklı kimlikle kaydedilmiş AYNI dosya (SHA-256) — kimlik farklı olsa da görsel tekrarıdır."""
+    gruplar: dict = {}
+    for i in ids:
+        sha = gorsel_sha(i)
+        if sha:
+            gruplar.setdefault(sha, []).append(i)
+    return [sorted(v) for v in gruplar.values() if len(v) > 1]
+
+
 def render_kapisi(is_: Path) -> dict:
     """Faz-62d: render/kurgu, planla'nın yazdığı görsel kapısı kaydı ve çekim planı tutarlı değilse başlamaz:
     her tarihî görsel en çok bir çekimde, en az EN_AZ_GORSEL[biçim] farklı görsel. Doğrulama fikstürü açıkça muaf."""
@@ -1193,9 +1261,11 @@ def render_kapisi(is_: Path) -> dict:
     plan = json.loads((is_ / "cekim_plani.json").read_text())
     ids = [c["gorsel25d"]["gorsel_id"] for c in plan["cekimler"] if c["tur"] == "gorsel25d" and c.get("gorsel25d")]
     tekrar = sorted({x for x in ids if ids.count(x) > 1})
-    if tekrar or len(set(ids)) < k["en_az"]:
+    kopya = ayni_dosya_kopyalari(sorted(set(ids)))
+    if tekrar or kopya or len(set(ids)) < k["en_az"]:
         raise UretimHatasi("gorsel", f"çekim planında {len(set(ids))} farklı tarihî görsel (en az {k['en_az']})"
-                                     + (f"; tekrar eden: {tekrar}" if tekrar else "") + "; render yapılmaz", 5)
+                                     + (f"; tekrar eden: {tekrar}" if tekrar else "")
+                                     + (f"; aynı dosyanın kopyaları: {kopya}" if kopya else "") + "; render yapılmaz", 5)
     return k
 
 
