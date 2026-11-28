@@ -144,6 +144,39 @@ def elenme_nedeni(a: dict, en_az: int = EN_AZ_PX) -> str | None:
     return None
 
 
+# Faz-65: cümle bağlamıyla ilgisiz sayfa türleri. Başlık (+ ObjectName) kelime sınırıyla aranır; sorgu aynı türden bir
+# kelime içeriyorsa (ör. "Ottoman galley ship", "battle map") o tür ELENMEZ. Harita çekimleri motorun kendi taktik
+# haritasıdır (harita.py); belge/mektup/ferman sayfası ve gemi görseli savaş/kişi cümlesine dayanak olamaz.
+ILGISIZ_TURLER = {
+    "gemi": ("ship", "ships", "gemi", "gemisi", "gemiler", "gemileri", "frigate", "galleon", "warship", "battleship",
+             "steamship", "schooner", "vessel", "navy", "naval", "fleet", "donanma", "donanmasi", "kalyon", "firkateyn",
+             "kadirga"),
+    "belge": ("document", "documents", "belge", "belgesi", "belgeler", "letter", "mektup", "mektubu", "certificate",
+              "deed", "ferman", "fermani", "berat", "charter", "title page", "text page", "manuscript page", "newspaper",
+              "gazete", "stamp", "postage", "banknote"),
+    "harita": ("map", "maps", "harita", "haritasi", "haritalar", "karte", "carte", "atlas", "plan of"),
+}
+
+
+def _kelime_var(metin: str, kelimeler: tuple) -> str | None:
+    for k in kelimeler:
+        if re.search(rf"(?<![a-z0-9]){re.escape(k)}(?![a-z0-9])", metin):
+            return k
+    return None
+
+
+def ilgisizlik(a: dict, sorgu: str) -> str | None:
+    """Aday sorgunun istemediği bir sayfa türündense neden, değilse None."""
+    baslik = re.sub(r"\.[a-z0-9]{2,4}$", "", _duz(a.get("baslik", "").replace("File:", "")))
+    metin = re.sub(r"[_\-.,()]+", " ", baslik + " " + _duz(a.get("meta", {}).get("ObjectName", "")))
+    q = re.sub(r"[_\-.,()]+", " ", _duz(sorgu or ""))
+    for tur, kelimeler in ILGISIZ_TURLER.items():
+        k = _kelime_var(metin, kelimeler)
+        if k and not _kelime_var(q, kelimeler):
+            return f"bağlamla ilgisiz {tur} sayfası ('{k}'; sorgu istemiyor)"
+    return None
+
+
 def puan(a: dict, sorgu: str, tercih: str | None = None) -> tuple:
     kelime = [k for k in _duz(sorgu).split() if len(k) > 2]
     baslik = _duz(a["baslik"].replace("_", " "))
@@ -153,9 +186,13 @@ def puan(a: dict, sorgu: str, tercih: str | None = None) -> tuple:
     return (on, round(ortusme, 3), serbest, a.get("gen", 0) * a.get("yuk", 0))
 
 
+def _uygun(a: dict, sorgu: str, en_az: int = EN_AZ_PX) -> bool:
+    return not elenme_nedeni(a, en_az) and not ilgisizlik(a, sorgu)
+
+
 def sec(adaylar: list[dict], sorgu: str, tercih: str | None = None, en_az: int = EN_AZ_PX) -> tuple[dict | None, list]:
-    elenen = [(a["baslik"], n) for a in adaylar if (n := elenme_nedeni(a, en_az))]
-    kalan = [a for a in adaylar if not elenme_nedeni(a, en_az)]
+    elenen = [(a["baslik"], n) for a in adaylar if (n := elenme_nedeni(a, en_az) or ilgisizlik(a, sorgu))]
+    kalan = [a for a in adaylar if _uygun(a, sorgu, en_az)]
     if not kalan:
         return None, elenen
     return max(kalan, key=lambda a: puan(a, sorgu, tercih)), elenen
@@ -202,14 +239,14 @@ def topla(s: dict, hedef: Path = HEDEF) -> dict:
     adaylar, sorgu_kullanilan = [], None
     if s.get("dosya"):   # belirli dosya başlığı (kaynak belirtilmiş seçim); süzgeçten geçemezse aramaya düşer
         adaylar, sorgu_kullanilan = ara(dosya=s["dosya"]), s["dosya"]
-    for q in ([] if any(not elenme_nedeni(a, s.get("en_az_px", EN_AZ_PX)) for a in adaylar) else
+    for q in ([] if any(_uygun(a, sorgu_kullanilan or "", s.get("en_az_px", EN_AZ_PX)) for a in adaylar) else
               [s.get("sorgu")] + list(s.get("yedek_sorgular", []))):
         if q:
             adaylar = ara(sorgu=q)
             sorgu_kullanilan = q
-            if any(not elenme_nedeni(a, s.get("en_az_px", EN_AZ_PX)) for a in adaylar):
+            if any(_uygun(a, q, s.get("en_az_px", EN_AZ_PX)) for a in adaylar):   # Faz-65: ilgisizler sayılmaz
                 break
-    if s.get("kategori") and not any(not elenme_nedeni(a) for a in adaylar):
+    if s.get("kategori") and not any(_uygun(a, sorgu_kullanilan or "") for a in adaylar):
         adaylar, sorgu_kullanilan = ara(kategori=s["kategori"]), s["kategori"]
     haric = set(s.get("haric") or [])   # Faz-62d: aynı videoda daha önce seçilmiş Commons dosyaları (tekrar yasağı)
     adaylar = [a for a in adaylar if a.get("baslik") not in haric]

@@ -59,6 +59,9 @@ env:
   IS: /tmp/otonom_is
   CIKTI: /tmp/otonom_cikti
   DOGRULAMA: ${{ github.event_name == 'push' }}
+  # Faz-65: gerçek üretimde doğal Türkçe sinirsel ses (Edge, tr-TR-AhmetNeural; anahtarsız, ücretsiz); ağ/paket hatasında
+  # seslendirme otomatik olarak yerel Piper'a düşer. Push doğrulaması (Gemini'siz fikstür) çevrimdışı Piper'la kalır.
+  MOTOR_TTS: ${{ github.event_name == 'workflow_dispatch' && 'edge' || 'piper' }}
 
 jobs:
   varlik:
@@ -150,6 +153,14 @@ jobs:
           path: assets/tarihi_gorsel
           retention-days: 14
           if-no-files-found: ignore
+      - name: Seslendirme artifact'ı (planın ölçtüğü ses dosyaları; kurgu aynı dosyaları kullanır)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seslendirme
+          path: /tmp/motor_onbellek/seslendirme
+          retention-days: 3
+          if-no-files-found: ignore
       - name: Plan raporu artifact'ı
         if: always()
         uses: actions/upload-artifact@v4
@@ -215,6 +226,9 @@ jobs:
       - uses: actions/download-artifact@v4
         continue-on-error: true
         with: {name: binek, path: /tmp/motor_onbellek/binek}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true   # yoksa kurgu planın motoruyla yeniden üretir; süre plandan saparsa açık hata verir
+        with: {name: seslendirme, path: /tmp/motor_onbellek/seslendirme}
       - uses: actions/download-artifact@v4
         with:
           pattern: render-${{ matrix.kimlik }}-*

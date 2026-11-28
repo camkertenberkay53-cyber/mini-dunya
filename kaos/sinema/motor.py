@@ -80,7 +80,8 @@ def _bilesik(katmanlar, W, H, cx, cy, z, aci, dx, dy):
     return taban
 
 
-EK_ALANLAR = ('ozne_maskesi', 'arka_plan_dolgu', 'zemin_derinlik_aktif', 'izleme_oranlari', 'nefes_aktif', 'nefes_genlik')
+EK_ALANLAR = ('ozne_maskesi', 'arka_plan_dolgu', 'zemin_derinlik_aktif', 'izleme_oranlari', 'nefes_aktif', 'nefes_genlik',
+              'titresimsiz')
 
 
 def sahne_anahtari(s, W, H, fps):
@@ -199,6 +200,8 @@ def sahne_render(s, out, W, H, fps, log=print):
     duman_doku = efekt._gurultu_dokusu(512, 512, tohum, (60, 20, 8)) if atislar else None
     vin = efekt.vinyet_maskesi(W, H, s.get('vinyet', 1.0))
     sars = kamera.Sarsinti(guc=14 * float(s.get('sarsinti', 0.15)), tohum=tohum)
+    if s.get('titresimsiz'):  # isteğe bağlı (mini-dunya Faz-65): konum ve AÇI titreşimi yok, yalnız pürüzsüz kamera eğrisi
+        sars = lambda t, darbe=1.0: (0.0, 0.0, 0.0)  # noqa: E731
     darbeler = list(s.get('darbeler') or []) + [a['zaman'] for a in atislar]
     X, Y = np.meshgrid(np.arange(W, dtype=np.float32), np.arange(H, dtype=np.float32))
     k0 = kamera.konum(s.get('kamera', 'zoom_in'), 0, s.get('odak'), float(s.get('guc', 1.0)))

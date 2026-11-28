@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 
 import numpy as np
 
@@ -57,6 +58,54 @@ def oyuncu_sec(niyet: dict, donem: str) -> tuple[list[dict], list[str]]:
     if secilen and not any(x["odak"] for x in secilen):
         secilen[0]["odak"] = True
     return secilen, eksik
+
+
+def _katla(metin: str) -> list[str]:
+    m = (metin or "").replace("İ", "i").replace("I", "ı").lower().translate(str.maketrans("çğıöşüâî", "cgiosuai"))
+    return re.findall(r"[a-z]+", m)
+
+
+def toplu_olcek(metin: str | None, niyet: dict) -> str | None:
+    """Cümle metni ya da niyet eylemi toplu askerî ölçek anlatıyorsa gerekçe, değilse None (kurallar/kalabalik.yaml)."""
+    k = veri.kural("kalabalik").get("birlik") or {}
+    if niyet.get("eylem") in set(k.get("eylemler", [])):
+        return f"eylem '{niyet['eylem']}'"
+    kelimeler, kokler = set(k.get("kelimeler", [])), tuple(k.get("kokler", []))
+    for w in _katla(metin):
+        if w in kelimeler or w.startswith(kokler):
+            return f"metin '{w}'"
+    return None
+
+
+def genis_kadraj(niyet: dict) -> bool:
+    """Geniş/kuşbakışı: mesafe 'uzak' ya da niyetin istediği kamera yüksek (≥ genis_kamera_en_az_yukseklik_m)."""
+    if niyet.get("mesafe") == "uzak":
+        return True
+    x = veri.kural("kamera")["cekimler"].get(niyet.get("kamera") or "")
+    esik = float((veri.kural("kalabalik").get("birlik") or {}).get("genis_kamera_en_az_yukseklik_m", 4.0))
+    return bool(x) and float(x["yukseklik_m"]) >= esik
+
+
+def birlik_tamamla(niyet: dict, metin: str | None) -> tuple[dict, dict | None]:
+    """Faz-65: toplu askerî ölçek + geniş kadraj + toplam adet < en_az → askerî rolün adedi hedef'e tamamlanır.
+    Dönüş: (niyet — değiştiyse kopya, kayıt — uygulanmadıysa None). Özgün niyet değişmez."""
+    k = veri.kural("kalabalik").get("birlik") or {}
+    if niyet.get("tur") != "3d" or not k or not genis_kadraj(niyet):
+        return niyet, None
+    neden = toplu_olcek(metin, niyet)
+    roller = niyet.get("roller") or []
+    toplam = sum(int(r.get("adet", 1)) for r in roller if isinstance(r, dict))
+    if not neden or toplam >= int(k["en_az"]):
+        return niyet, None
+    aday = [i for i, r in enumerate(roller) if isinstance(r, dict) and r.get("rol") not in set(k.get("haric_roller", []))]
+    if not aday:
+        return niyet, {"uygulandi": False, "neden": neden, "gerekce": "çoğaltılabilir askerî rol yok", "toplam": toplam}
+    i = max(aday, key=lambda j: (int(roller[j].get("adet", 1)), -j))
+    yeni = json.loads(json.dumps(niyet))
+    ek = int(k["hedef"]) - toplam
+    yeni["roller"][i]["adet"] = int(roller[i].get("adet", 1)) + ek
+    return yeni, {"uygulandi": True, "neden": neden, "rol": roller[i]["rol"], "onceki_toplam": toplam,
+                  "toplam": toplam + ek}
 
 
 def dizilis_kur(oyuncular: list[dict], eylem: str | None, tohum: int, dizilis: str | None = None,
@@ -416,6 +465,7 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     if n["tur"] != "3d":
         c["metin"] = n.get("metin") or n.get("aciklama", "")
         return c, [f"{taslak['id']}: '{n['tur']}' görseli üretecek 2D kart motoru yok"], {}
+    n, birlik = birlik_tamamla(n, taslak.get("metin"))   # Faz-65: geniş kadrajda toplu askerî ölçek → birlik
     odak_rol = next((r for r in n.get("roller", []) if r.get("odak")), (n.get("roller") or [{}])[0])
     if odak_rol.get("donem") and odak_rol["donem"] != donem:
         c["donem"] = odak_rol["donem"]   # çekimin dönemi (çevre varlıkları) odak tarafın dönemi
@@ -479,6 +529,11 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
             kusur.append(f"ölçek sınıfı tutmadı (en büyük oran {en_buyuk:.2f})")
         if not nesne_ok:
             kusur.append("taşınan nesne kadrajda kalmıyor")
+        if birlik and birlik.get("uygulandi"):   # Faz-65: birlik çoğaltıldıysa kadrajda birlik olarak görünmeli
+            gorunen = sum(1 for x in olc.values() if x["gorunur"])
+            en_az = int(veri.kural("kalabalik")["birlik"]["en_az"])
+            if gorunen < en_az:
+                kusur.append(f"birlik kadrajda değil ({gorunen}/{len(olc)} görünür; en az {en_az})")
         puan = (not kusur, sinif_tutuyor and nesne_ok, oran >= esik, -len(kusur), oran)
         if en_iyi is None or puan > en_iyi[0]:
             en_iyi = (puan, tur, json.loads(json.dumps(c["kamera"])), kusur)
@@ -504,5 +559,7 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
                      secim_gerekcesi=gerekce, tercih_sirasi=tercih, reddedilen_adaylar=reddedilen)
     if kor:
         c["meta"]["koreografi"] = kor
+    if birlik:
+        c["meta"]["birlik"] = birlik
     c["kamera"]["hareket"] = x["hareket"]
     return c, [f"{taslak['id']}: {e}" for e in eksik + ce], kayit

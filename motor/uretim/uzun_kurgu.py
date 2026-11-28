@@ -432,11 +432,14 @@ def uret(klasor: Path, gom: bool | None = None) -> dict:
         klipler.append(r["video"])
     t_render = time.time() - t0
     # 2) gerçek TTS: her cümlenin ses dosyası var mı
-    sureler = seslendirme.olc(senaryo["cumleler"])
+    sureler = seslendirme.olc(senaryo["cumleler"], motor=plan["ses"].get("motor", "piper"), yedek=False)   # Faz-65
     eksik_ses = [z["cumle"] for z in plan["ses"]["cizelge"]
                  if z["cumle"] not in sureler or not Path(sureler[z["cumle"]].get("wav", "")).exists()]
     if eksik_ses:
         return {"durum": "HATA", "neden": "seslendirme dosyası eksik", "eksik": eksik_ses}
+    uyusmaz = seslendirme.plana_uygun(sureler, plan["ses"]["cizelge"])   # Faz-65: plan ile aynı ses mi
+    if uyusmaz:
+        return {"durum": "HATA", "neden": "seslendirme planla uyuşmuyor", "hatalar": uyusmaz}
     t2 = time.time()
     liste = cikti / "klipler.txt"
     liste.write_text("".join(f"file '{x}'\n" for x in klipler))
