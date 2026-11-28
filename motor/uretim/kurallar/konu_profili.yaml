@@ -1,0 +1,60 @@
+# Faz-66: dinamik konu profili (motor/uretim/konu_profili.py). Pilot şablonu (motor/uretim/pilotlar/<kimlik>/konu.json)
+# olmayan konu, araştırma havuzunun doğrulanmış/tartışmalı kayıtlarından DETERMİNİSTİK olarak profillenir; profil üretim
+# hazırlık kapısından (profil_denetle) geçmeden üretime alınmaz. Eşleştirme kök (önek) ya da tam sözcükle, ASCII'ye
+# katlanmış küçük harfli sözcükler üzerinde yapılır (iddia_atom.katla). Yeni taraf/kit buraya eklenir; kod değişmez.
+
+surum: 1
+kart_en_az: 3                 # profil için en az doğrulanmış + tartışmalı kayıt
+taraf_en_az_kart: 2           # bir taraf en az bu kadar ayrı kayıtta geçmeli
+en_cok_taraf: 3
+kisi_en_az_kart: 2
+en_cok_kisi: 6
+deniz_en_az_kart: 3           # bu kadar kayıt deniz sözcüğü içeriyorsa olay türü 'deniz'
+kit_tolerans_yil: 30          # olay yılı kit aralığının bu kadar dışındaysa kit 'yakın' sayılır (uyarı); daha uzaksa kit yok
+hedef_sure_sn: [45, 60]
+
+# Desteklenen 3D dönem kitlerinin yıl aralıkları (motor/kit/*.yaml 'ad' alanlarındaki aralıklar; MÖ negatif)
+kit_yillari:
+  osmanli-15yy: [1450, 1520]
+  akkoyunlu-15yy: [1378, 1503]
+  bizans-15yy: [1400, 1453]
+  roma-cumhuriyet: [-133, -27]
+
+# Taraf sözlüğü. kok: önek eşleşmesi; tam: tam sözcük (kısa/çok anlamlı adlar için). kitler: aday 3D kitleri.
+taraflar:
+  osmanli: {ad: Osmanlı, kok: [osmanli, ottoman], tam: [], renk: [0.62, 0.13, 0.11], kitler: [osmanli-15yy]}
+  akkoyunlu: {ad: Akkoyunlu, kok: [akkoyunlu, aqqoyunlu, akkoyun], tam: [], renk: [0.16, 0.33, 0.46], kitler: [akkoyunlu-15yy]}
+  bizans: {ad: Bizans, kok: [bizans, byzantin], tam: [], renk: [0.45, 0.2, 0.5], kitler: [bizans-15yy]}
+  roma: {ad: Roma, kok: [romali, romalilar], tam: [roma, roman, romans, romanlar, lejyon], renk: [0.7, 0.12, 0.12], kitler: [roma-cumhuriyet]}
+  macar: {ad: Macar Krallığı, kok: [macar, hungar], tam: [], renk: [0.2, 0.45, 0.25], kitler: []}
+  habsburg: {ad: Habsburg, kok: [habsburg, avusturya, austria], tam: [], renk: [0.85, 0.7, 0.15], kitler: []}
+  selcuklu: {ad: Selçuklu, kok: [selcuklu, seljuk, saljuq], tam: [], renk: [0.25, 0.4, 0.2], kitler: []}
+  safevi: {ad: Safevî, kok: [safevi, safavid], tam: [], renk: [0.1, 0.5, 0.45], kitler: []}
+  memluk: {ad: Memlük, kok: [memluk, mamluk, mameluk], tam: [], renk: [0.75, 0.55, 0.2], kitler: []}
+  venedik: {ad: Venedik, kok: [venedik, venetian], tam: [venice], renk: [0.55, 0.1, 0.25], kitler: []}
+  hacli: {ad: Haçlılar, kok: [hacli, crusade], tam: [], renk: [0.8, 0.8, 0.8], kitler: []}
+  mogol: {ad: Moğol, kok: [mogol, mongol], tam: [], renk: [0.35, 0.3, 0.6], kitler: []}
+  timurlu: {ad: Timurlu, kok: [timurlu, timurid], tam: [timur], renk: [0.3, 0.55, 0.65], kitler: []}
+  part: {ad: Part, kok: [parthia], tam: [part, partlar, partlara, partlari, partlarin, parth], renk: [0.5, 0.35, 0.15], kitler: []}
+  misir: {ad: Mısır, kok: [misir, egypt], tam: [], renk: [0.8, 0.65, 0.25], kitler: []}
+  hitit: {ad: Hitit, kok: [hitit, hittit], tam: [], renk: [0.45, 0.25, 0.15], kitler: []}
+
+# Harita birlik türleri (harita.py: piyade | suvari | top | karargah) → metin kökleri. 'okcu' haritada piyade
+# imiyle çizilir; 3D'de okçu rolü olarak kalır.
+birlik_turleri:
+  suvari: {kok: [suvari, sipahi, akinci, cavalr, hussar, atlilar, sovalye, knight], tam: [atli], harita: suvari, rol: suvari, ad: Süvari}
+  piyade: {kok: [piyade, yeniceri, janissar, infantr, azap, piyadeler], tam: [], harita: piyade, rol: piyade, ad: Piyade}
+  okcu: {kok: [okcu, archer, bowmen], tam: [], harita: piyade, rol: okcu, ad: Okçular}
+  top: {kok: [topcu, cannon, artiller, toplari, toplarin], tam: [top, toplar, toplarla], harita: top, rol: null, ad: Toplar}
+
+# 3D katalog adayları: rol → denenecek eylemler (sırayla; planlayici.oyuncu_sec'in kurabildiği ilki seçilir)
+rol_eylemleri:
+  suvari: [suvari_hucum, suvari_yuruyus, yuruyus, bekleme]
+  piyade: [hucum, yuruyus, savunma_hatti, bekleme]
+  okcu: [savunma_hatti, yuruyus, bekleme]
+  komutan: [komuta_bekleme, bekleme]
+
+deniz_kokleri: [donanma, naval, fleet, kadirga, kalyon, galley, galleon, deniz muharebe, sea battle]
+# Konu başlığından yer adı: bu sözcükler atılır
+genel_sozcukler: [meydan, muharebesi, muharebe, savasi, savas, battle, of, the, kusatmasi, kusatma, siege, zaferi,
+                  zafer, deniz]

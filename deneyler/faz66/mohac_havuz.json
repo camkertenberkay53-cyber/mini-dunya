@@ -1,0 +1,462 @@
+{
+ "konu": "Mohaç Meydan Muharebesi",
+ "kayitlar": [
+  {
+   "id": "ark_001",
+   "iddia": "Mohaç Muharebesi, 29 Ağustos 1526 tarihinde Osmanlı İmparatorluğu ile Macar Krallığı arasında Mohaç Ovası'nda yapıldı.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "gun_ay": [
+     [
+      29,
+      8
+     ]
+    ],
+    "varlik": [
+     "Muharebesi",
+     "Ağustos",
+     "Osmanlı",
+     "İmparatorluğu",
+     "Macar",
+     "Krallığı"
+    ],
+    "olay": [
+     "mohac"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_002",
+   "iddia": "Kanuni Sultan Süleyman komutasındaki Osmanlı ordusu, 29 Ağustos 1526'da Macar ordusunu yendi.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "gun_ay": [
+     [
+      29,
+      8
+     ]
+    ],
+    "varlik": [
+     "Sultan",
+     "Süleyman",
+     "Osmanlı",
+     "Ağustos",
+     "Macar"
+    ],
+    "sonuc": [
+     "kazanma"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_003",
+   "iddia": "Macar ordusuna Kral II. Lajos komuta ediyordu; II. Lajos 1526'da savaş alanından kaçarken bir derede boğuldu.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "varlik": [
+     "Kral"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_004",
+   "iddia": "The Battle of Mohács was fought on 29 August 1526 near Mohács between the forces of the Kingdom of Hungary and the Ottoman Empire.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "oa_w1",
+     "url": "https://openalex.org/W1",
+     "eser": "Ottoman–Hungarian wars (review)",
+     "tur": "akademik",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "gun_ay": [
+     [
+      29,
+      8
+     ]
+    ],
+    "varlik": [
+     "Battle",
+     "Mohács",
+     "August",
+     "Kingdom",
+     "Hungary",
+     "Ottoman"
+    ],
+    "olay": [
+     "mohac"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_005",
+   "iddia": "The Ottomans won a decisive victory over the Hungarians in 1526, and Kanuni Sultan Süleyman entered Buda soon after.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "oa_w1",
+     "url": "https://openalex.org/W1",
+     "eser": "Ottoman–Hungarian wars (review)",
+     "tur": "akademik",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "varlik": [
+     "Ottomans",
+     "Hungarians",
+     "Kanuni",
+     "Sultan",
+     "Süleyman",
+     "Buda"
+    ],
+    "sonuc": [
+     "kazanma"
+    ],
+    "yorum": [
+     "belirleyici"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_006",
+   "iddia": "Osmanlı topçuları ve yeniçeriler 1526'da Macar ağır süvarisinin hücumunu durdurdu.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "oa_w1",
+     "url": "https://openalex.org/W1",
+     "eser": "Ottoman–Hungarian wars (review)",
+     "tur": "akademik",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "varlik": [
+     "Macar"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_007",
+   "iddia": "Osmanlı süvarileri, sipahiler ve akıncılar, 1526'da Macar ordusunun kanatlarını kuşattı.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "varlik": [
+     "Macar"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_008",
+   "iddia": "Hungarian heavy cavalry and infantry under Pál Tomori attacked the Ottoman lines in 1526.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 0
+    },
+    {
+     "id": "oa_w1",
+     "url": "https://openalex.org/W1",
+     "eser": "Ottoman–Hungarian wars (review)",
+     "tur": "akademik",
+     "kume": 1
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 2,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "varlik": [
+     "Pál",
+     "Tomori",
+     "Ottoman"
+    ]
+   },
+   "durum": "dogrulanmis",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_009",
+   "iddia": "Bazı kaynaklara göre Osmanlı ordusunun mevcudu 1526'da yaklaşık 100.000 kişiydi.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 1,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "sayi": [
+     100000
+    ],
+    "varlik": [
+     "Osmanlı"
+    ]
+   },
+   "durum": "tartismali",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_010",
+   "iddia": "Macar ordusunun 1526'daki mevcudu kaynaklarda 25.000 ile 40.000 arasında verilir.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 1,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "sayi": [
+     25000,
+     40000
+    ]
+   },
+   "durum": "tartismali",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_011",
+   "iddia": "Pál Tomori'nin 1526'da Macar ordusunun başkomutanı olduğu kaynaklarda farklı aktarılır.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_en_1",
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Moh%C3%A1cs",
+     "eser": "Battle of Mohács",
+     "tur": "ansiklopedi",
+     "kume": 0
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 1,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ],
+    "varlik": [
+     "Tomori",
+     "Macar"
+    ],
+    "sonuc": [
+     "olum"
+    ]
+   },
+   "durum": "tartismali",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  },
+  {
+   "id": "ark_012",
+   "iddia": "Muharebenin 1526'da yalnızca iki saat sürdüğü ileri sürülür.",
+   "yil": 1526,
+   "sayilar": [],
+   "kaynaklar": [
+    {
+     "id": "wp_tr_1",
+     "url": "https://tr.wikipedia.org/wiki/Moha%C3%A7_Muharebesi",
+     "eser": "Mohaç Muharebesi",
+     "tur": "ansiklopedi",
+     "kume": 0
+    }
+   ],
+   "bagimsiz_kaynak_sayisi": 1,
+   "karsi_kaynaklar": [],
+   "iddia_atomlari": {
+    "yil": [
+     1526
+    ]
+   },
+   "durum": "belirsiz",
+   "tur": "tarih",
+   "olay_id": "olay_1526"
+  }
+ ],
+ "konum": {
+  "enlem": 45.993,
+  "boylam": 18.683,
+  "kaynak": "wp_tr_1 (Wikipedia coordinates)"
+ },
+ "aciklama": "Faz-66 fikstürü: Wikipedia TR/EN üslubunda kayıtlar; atomlar iddia_atom ile hesaplandı (gerçek havuz biçimi)."
+}

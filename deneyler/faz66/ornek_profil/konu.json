@@ -1,0 +1,464 @@
+{
+ "surum": 1,
+ "kimlik": "mohac-1526",
+ "baslik": "Mohaç Meydan Muharebesi",
+ "format": "shorts",
+ "hedef_sure_sn": [
+  45,
+  60
+ ],
+ "donemler": [
+  "osmanli-15yy"
+ ],
+ "dil": "tr",
+ "ozet": "Mohaç (29 Ağustos 1526): Macar Krallığı ile Osmanlı arasındaki muharebe. Otomatik profil; ayrıntılar ve kaynaklar araştırma kartlarındadır.",
+ "notlar": [
+  "Faz-66 otomatik konu profili (konu-profili-1); kaynak: araştırma kayıtları ark_001, ark_002, ark_003, ark_004, ark_005, ark_006, ark_007, ark_008, ark_009, ark_010, ark_011.",
+  "Harita konumları şematiktir; arazi ve kesin birlik yerleri kaynaklarda yoktur.",
+  "Macar Krallığı için 3D dönem kiti yok: 3D'de gösterilmez, harita ve tarihî görsellerle anlatılır.",
+  "Osmanlı için en yakın kit osmanli-15yy (olay yılı kit aralığının 6 yıl dışında): kıyafet/teçhizat yaklaşık, temsilîdir.",
+  "Belirli kişiler temsilî karakterle gösterilir: Kanuni Sultan Süleyman."
+ ],
+ "harita": {
+  "kaynak": "Otomatik konu profili (konu-profili-1) — araştırma kayıtları ark_001, ark_002, ark_003, ark_004, ark_005, ark_006, ark_007, ark_008, ark_009, ark_010, ark_011; konumlar ve diziliş şematik (kaynak birlik konumu vermez), arazi gösterilmez",
+  "alan_km": [
+   10,
+   10
+  ],
+  "taraflar": {
+   "macar-16yy": {
+    "ad": "Macar Krallığı",
+    "renk": [
+     0.2,
+     0.45,
+     0.25
+    ]
+   },
+   "osmanli-15yy": {
+    "ad": "Osmanlı",
+    "renk": [
+     0.62,
+     0.13,
+     0.11
+    ]
+   }
+  },
+  "arazi": {},
+  "evreler": [
+   {
+    "id": "E1",
+    "baslik": "Mohaç · 29 Ağustos 1526",
+    "alt_baslik": "Ordular karşı karşıya",
+    "birlikler": [
+     {
+      "id": "macar_karargah",
+      "taraf": "macar-16yy",
+      "ad": "Macar Krallığı — Karargâh",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "macar_suvari1",
+      "taraf": "macar-16yy",
+      "ad": "Süvari (sol kanat)",
+      "tur": "suvari",
+      "konum": [
+       2.2,
+       3.2
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "macar_suvari2",
+      "taraf": "macar-16yy",
+      "ad": "Süvari (sağ kanat)",
+      "tur": "suvari",
+      "konum": [
+       7.8,
+       3.2
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "macar_piyade1",
+      "taraf": "macar-16yy",
+      "ad": "Piyade",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       3.2
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osmanli_karargah",
+      "taraf": "osmanli-15yy",
+      "ad": "Osmanlı — Karargâh",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       8.1
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_suvari1",
+      "taraf": "osmanli-15yy",
+      "ad": "Süvari (sol kanat)",
+      "tur": "suvari",
+      "konum": [
+       2.2,
+       6.8
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_suvari2",
+      "taraf": "osmanli-15yy",
+      "ad": "Süvari (sağ kanat)",
+      "tur": "suvari",
+      "konum": [
+       7.8,
+       6.8
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_piyade1",
+      "taraf": "osmanli-15yy",
+      "ad": "Piyade",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       6.8
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_top1",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       6.4,
+       6.8
+      ],
+      "yon_derece": 180,
+      "buyukluk": 0.8
+     }
+    ],
+    "oklar": [],
+    "odak_km": [
+     5.0,
+     5.0
+    ]
+   },
+   {
+    "id": "E2",
+    "baslik": "Muharebe başlıyor",
+    "alt_baslik": "Cepheler çarpışıyor",
+    "birlikler": [
+     {
+      "id": "macar_karargah",
+      "taraf": "macar-16yy",
+      "ad": "Macar Krallığı — Karargâh",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "macar_suvari1",
+      "taraf": "macar-16yy",
+      "ad": "Süvari (sol kanat)",
+      "tur": "suvari",
+      "konum": [
+       2.2,
+       4.1
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "macar_suvari2",
+      "taraf": "macar-16yy",
+      "ad": "Süvari (sağ kanat)",
+      "tur": "suvari",
+      "konum": [
+       7.8,
+       4.1
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "macar_piyade1",
+      "taraf": "macar-16yy",
+      "ad": "Piyade",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       4.1
+      ],
+      "yon_derece": 0
+     },
+     {
+      "id": "osmanli_karargah",
+      "taraf": "osmanli-15yy",
+      "ad": "Osmanlı — Karargâh",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       8.1
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_suvari1",
+      "taraf": "osmanli-15yy",
+      "ad": "Süvari (sol kanat)",
+      "tur": "suvari",
+      "konum": [
+       2.2,
+       5.9
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_suvari2",
+      "taraf": "osmanli-15yy",
+      "ad": "Süvari (sağ kanat)",
+      "tur": "suvari",
+      "konum": [
+       7.8,
+       5.9
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_piyade1",
+      "taraf": "osmanli-15yy",
+      "ad": "Piyade",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       5.9
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_top1",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       6.4,
+       5.9
+      ],
+      "yon_derece": 180,
+      "buyukluk": 0.8
+     }
+    ],
+    "oklar": [
+     {
+      "taraf": "macar-16yy",
+      "yol": [
+       [
+        5.0,
+        3.6
+       ],
+       [
+        5.0,
+        4.3
+       ],
+       [
+        5.0,
+        4.9
+       ]
+      ],
+      "tur": "saldiri"
+     },
+     {
+      "taraf": "osmanli-15yy",
+      "yol": [
+       [
+        5.0,
+        6.4
+       ],
+       [
+        5.0,
+        5.7
+       ],
+       [
+        5.0,
+        5.1
+       ]
+      ],
+      "tur": "saldiri"
+     }
+    ],
+    "odak_km": [
+     5.0,
+     5.0
+    ]
+   },
+   {
+    "id": "E3",
+    "baslik": "Osmanlı üstün geliyor",
+    "alt_baslik": "Macar Krallığı ordusu çekiliyor",
+    "birlikler": [
+     {
+      "id": "macar_karargah",
+      "taraf": "macar-16yy",
+      "ad": "Macar Krallığı — Karargâh",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       1.9
+      ],
+      "yon_derece": 0,
+      "dagildi": true
+     },
+     {
+      "id": "macar_suvari1",
+      "taraf": "macar-16yy",
+      "ad": "Süvari (sol kanat)",
+      "tur": "suvari",
+      "konum": [
+       2.2,
+       4.1
+      ],
+      "yon_derece": 0,
+      "dagildi": true
+     },
+     {
+      "id": "macar_suvari2",
+      "taraf": "macar-16yy",
+      "ad": "Süvari (sağ kanat)",
+      "tur": "suvari",
+      "konum": [
+       7.8,
+       4.1
+      ],
+      "yon_derece": 0,
+      "dagildi": true
+     },
+     {
+      "id": "macar_piyade1",
+      "taraf": "macar-16yy",
+      "ad": "Piyade",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       4.1
+      ],
+      "yon_derece": 0,
+      "dagildi": true
+     },
+     {
+      "id": "osmanli_karargah",
+      "taraf": "osmanli-15yy",
+      "ad": "Osmanlı — Karargâh",
+      "tur": "karargah",
+      "konum": [
+       5.0,
+       8.1
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_suvari1",
+      "taraf": "osmanli-15yy",
+      "ad": "Süvari (sol kanat)",
+      "tur": "suvari",
+      "konum": [
+       2.2,
+       6.5
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_suvari2",
+      "taraf": "osmanli-15yy",
+      "ad": "Süvari (sağ kanat)",
+      "tur": "suvari",
+      "konum": [
+       7.8,
+       6.5
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_piyade1",
+      "taraf": "osmanli-15yy",
+      "ad": "Piyade",
+      "tur": "piyade",
+      "konum": [
+       5.0,
+       6.5
+      ],
+      "yon_derece": 180
+     },
+     {
+      "id": "osmanli_top1",
+      "taraf": "osmanli-15yy",
+      "ad": "Toplar",
+      "tur": "top",
+      "konum": [
+       6.4,
+       6.5
+      ],
+      "yon_derece": 180,
+      "buyukluk": 0.8
+     }
+    ],
+    "oklar": [
+     {
+      "taraf": "osmanli-15yy",
+      "yol": [
+       [
+        5.0,
+        5.3999999999999995
+       ],
+       [
+        5.0,
+        4.6
+       ],
+       [
+        5.0,
+        3.5999999999999996
+       ]
+      ],
+      "tur": "saldiri"
+     },
+     {
+      "taraf": "macar-16yy",
+      "yol": [
+       [
+        5.0,
+        3.1999999999999997
+       ],
+       [
+        5.0,
+        2.3999999999999995
+       ],
+       [
+        5.0,
+        1.5999999999999996
+       ]
+      ],
+      "tur": "kacis"
+     }
+    ],
+    "odak_km": [
+     5.0,
+     4.6
+    ]
+   }
+  ]
+ }
+}

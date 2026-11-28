@@ -1,0 +1,53 @@
+[
+ {
+  "katalog": "3D-osmanli-suvari",
+  "aciklama": "Osmanlı: suvari (yuruyus)",
+  "niyet": {
+   "tur": "3d",
+   "eylem": "yuruyus",
+   "mesafe": "uzak",
+   "roller": [
+    {
+     "rol": "suvari",
+     "donem": "osmanli-15yy",
+     "adet": 6,
+     "odak": true
+    }
+   ]
+  }
+ },
+ {
+  "katalog": "3D-osmanli-piyade",
+  "aciklama": "Osmanlı: piyade (hucum)",
+  "niyet": {
+   "tur": "3d",
+   "eylem": "hucum",
+   "mesafe": "uzak",
+   "roller": [
+    {
+     "rol": "piyade",
+     "donem": "osmanli-15yy",
+     "adet": 6,
+     "odak": true
+    }
+   ]
+  }
+ },
+ {
+  "katalog": "3D-osmanli-komutan",
+  "aciklama": "Osmanlı: komutan (komuta_bekleme)",
+  "niyet": {
+   "tur": "3d",
+   "eylem": "komuta_bekleme",
+   "mesafe": "orta",
+   "roller": [
+    {
+     "rol": "komutan",
+     "donem": "osmanli-15yy",
+     "adet": 1,
+     "odak": true
+    }
+   ]
+  }
+ }
+]
