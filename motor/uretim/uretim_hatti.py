@@ -47,7 +47,7 @@ def planla(klasor: Path, tohum: int = 7) -> dict:
     sureler = seslendirme.olc(sen["cumleler"])
     rapor["seslendirme"] = {k: {"sure_sn": v["sure_sn"], "harf_sn": v["harf_sn"], "motor": v["motor"], "okunus": v["metin"]}
                             for k, v in sureler.items()}
-    rapor["hatalar"]["anlati"], rapor["anlati_olcum"] = anlati.shorts_denetle(sen, sureler)
+    rapor["hatalar"]["anlati"], rapor["anlati_olcum"] = anlati.denetle(sen, sureler)   # Faz-62c: biçime göre
     cizelge = sahne_bolucu.zaman_cizelgesi(sen, sureler)
     toplam = sahne_bolucu.toplam_sure(cizelge)
     rapor["toplam_sure_sn"] = toplam

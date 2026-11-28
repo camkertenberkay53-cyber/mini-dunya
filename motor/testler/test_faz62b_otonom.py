@@ -185,10 +185,12 @@ def test_senaryo_uc_denemede_gecmezse_durur(denetim_yalitik):
 
 # ================================================================== planla: biçim, anahtar, uçtan uca (sahte)
 
-def test_uzun_bicim_acikca_reddedilir_ve_hicbir_sey_cagrilmaz(tmp_path):
+def test_bilinmeyen_bicim_acikca_reddedilir_ve_hicbir_sey_cagrilmaz(tmp_path):
+    # Faz-62c: uzun ve her_ikisi artık gerçek üretim biçimidir; yalnız bilinmeyen biçim reddedilir
+    assert set(ou.MODLAR) == {"shorts", "uzun", "her_ikisi"} and ou.MODLAR["her_ikisi"] == ("shorts", "uzun")
     with pytest.raises(ou.UretimHatasi) as e:
-        ou.planla("Otlukbeli Savaşı", "uzun", tmp_path, "AIza", havuz_fn=lambda k: pytest.fail("çağrılmamalı"))
-    assert e.value.kod == 3 and "anlati.shorts_denetle" in str(e.value) and "1080×1920" in str(e.value)
+        ou.planla("Otlukbeli Savaşı", "dikey", tmp_path, "AIza", havuz_fn=lambda k: pytest.fail("çağrılmamalı"))
+    assert e.value.kod == 3 and "bilinmeyen biçim" in str(e.value)
 
 
 def test_anahtarsiz_uretim_yapilmaz_mock_yok(tmp_path):
@@ -218,11 +220,14 @@ def test_planla_uctan_uca_sahte_saglayiciyla(tmp_path, denetim_yalitik, monkeypa
     r = ou.planla("Otlukbeli Savaşı", "shorts", tmp_path / "is", "AIza", 2, havuz_fn=lambda konu: havuz,
                   saglayici_fn=lambda: s, topla=lambda q, h: {"lisans_turu": "PD-Art", "eser_adi": "p"},
                   planla_fn=_sahte_planla, olc=lambda cs: {})
-    is_ = Path(r["is"])
+    i = r["isler"][0]
+    is_ = Path(i["is"])
     for ad in ("konu.json", "arastirma.json", "senaryo.json", "kart_eslemesi.json", "cekim_plani.json", "parcalar.json"):
         assert (is_ / ad).exists(), ad
-    assert r["senaryo"]["turler"] == {"harita": 1, "gorsel25d": 1, "3d": 3} and r["gorseller"][0]["lisans"] == "PD-Art"
-    assert r["cekimler"]["3d"] == ["S3", "S4", "S5"] and sum(len(p["cekimler"]) for p in r["parcalar"]) == 3
+    assert len(r["isler"]) == 1 and i["bicim"] == "shorts" and r["kimlik"] == i["kimlik"] == "otlukbeli-1473-oto"
+    assert i["senaryo"]["turler"] == {"harita": 1, "gorsel25d": 1, "3d": 3} and r["gorseller"][0]["lisans"] == "PD-Art"
+    assert i["cekimler"]["3d"] == ["S3", "S4", "S5"] and sum(len(p["cekimler"]) for p in r["parcalar"]) == 3
+    assert {p["kimlik"] for p in r["parcalar"]} == {i["kimlik"]}
     assert [a for a, _ in s.istemler] == ["gorsel_sorgu", "senaryo"] and s.cagri_sayisi == 2
     assert r["arastirma"]["kart"] == 5 and r["arastirma"]["kesin"] == 5
 
@@ -236,7 +241,7 @@ def test_gorsel_sorgusu_basarisizsa_25d_siz_devam_kota_ise_durur(tmp_path, denet
     r = ou.planla("Otlukbeli Savaşı", "shorts", tmp_path / "a", "AIza", havuz_fn=lambda k: havuz,
                   saglayici_fn=lambda: Sahte([TimeoutError("x"), json.dumps(senaryo)]), topla=lambda q, h: {},
                   planla_fn=_sahte_planla, olc=lambda cs: {})
-    assert r["gorseller"] == [] and r["senaryo"]["turler"]["3d"] == 2
+    assert r["gorseller"] == [] and r["isler"][0]["senaryo"]["turler"]["3d"] == 2
     with pytest.raises(ou.UretimHatasi) as e:
         ou.planla("Otlukbeli Savaşı", "shorts", tmp_path / "b", "AIza", havuz_fn=lambda k: havuz,
                   saglayici_fn=lambda: Sahte([Kota("429")]), planla_fn=_sahte_planla)
@@ -272,11 +277,11 @@ def test_dogrulama_plani_fiksturu(tmp_path, monkeypatch):
     monkeypatch.setattr(ou, "GORSEL_KOK", tmp_path / "g")
     r = ou.dogrulama_plani(KOK / "deneyler/faz62b/dogrulama.json", tmp_path / "is", 3,
                            topla=lambda s, h: {"lisans_turu": "PD-Art"}, planla_fn=_sahte_planla)
-    sen = json.loads((Path(r["is"]) / "senaryo.json").read_text())
+    sen = json.loads((Path(r["isler"][0]["is"]) / "senaryo.json").read_text())
     n = {c["id"]: c["niyet"] for c in sen["cumleler"]}
     assert r["dogrulama_fiksturu"] is True and r["kimlik"].endswith("-dogrulama")
     assert n["S2"]["tur"] == "gorsel25d" and n["S2"]["aciklama"] and n["S7"] == {"tur": "harita", "evre": "E5", "metin_katmani": "Akkoyunlu merkezi dağılıyor"}
-    assert sorted(r["degisen"]) == ["S2", "S7"]
+    assert sorted(r["isler"][0]["degisen"]) == ["S2", "S7"] and r["isler"][0]["bicim"] == "shorts"
 
 
 # ================================================================== CLI
@@ -286,7 +291,8 @@ def test_cli_cikis_kodlari(tmp_path, monkeypatch, capsys):
     monkeypatch.delenv("GITHUB_OUTPUT", raising=False)
     c = str(tmp_path / "c")
     assert ou.main(["planla", "--cikti", c]) == 3
-    assert ou.main(["planla", "--konu", "Otlukbeli Savaşı", "--mod", "uzun", "--cikti", c]) == 3
+    assert ou.main(["planla", "--konu", "Otlukbeli Savaşı", "--mod", "dikey", "--cikti", c]) == 3
+    assert ou.main(["planla", "--konu", "Otlukbeli Savaşı", "--mod", "uzun", "--cikti", c]) == 2   # uzun: anahtar şart
     assert ou.main(["planla", "--konu", "Otlukbeli Savaşı", "--cikti", c]) == 2
     r = json.loads((tmp_path / "c" / "otonom_planla.json").read_text())
     assert r["gecti"] is False and r["asama"] == "anahtar"
@@ -302,7 +308,8 @@ def _yaml(p):
 def test_is_akisi_elle_varsayilan_konu_ve_bicimler():
     wf = _yaml(WF)
     t = wf.get("on", wf.get(True))
-    assert set(t) == {"workflow_dispatch", "push"} and t["push"]["branches"] == ["faz62b-otonom-uretim"]
+    assert set(t) == {"workflow_dispatch", "push"}
+    assert t["push"]["branches"] == ["faz62b-otonom-uretim", "faz62c-long-documentary-engine"]
     g = t["workflow_dispatch"]["inputs"]
     assert g["konu"]["default"] == "Otlukbeli Savaşı"
     assert g["mod"]["type"] == "choice" and g["mod"]["options"] == ["shorts", "uzun", "her_ikisi"]
@@ -323,12 +330,13 @@ def test_is_akisi_paralel_render_ve_artifactlar():
     wf = _yaml(WF)
     j = wf["jobs"]
     assert j["plan"]["needs"] == "varlik" and j["render"]["needs"] == "plan" and j["kurgu"]["needs"] == ["plan", "render"]
-    assert j["render"]["strategy"]["matrix"]["parca"] == "${{ fromJSON(needs.plan.outputs.parcalar) }}"
+    assert j["render"]["strategy"]["matrix"]["include"] == "${{ fromJSON(needs.plan.outputs.matris) }}"
+    assert j["kurgu"]["strategy"]["matrix"]["kimlik"] == "${{ fromJSON(needs.plan.outputs.kimlikler) }}"
     assert all(j[x]["timeout-minutes"] >= 25 for x in ("render", "kurgu"))
     yuk = [a for a in j["kurgu"]["steps"] if str(a.get("uses", "")).startswith("actions/upload-artifact")]
     assert yuk and "*.mp4" in yuk[-1]["with"]["path"]
     indir = [a for a in j["kurgu"]["steps"] if str(a.get("uses", "")).startswith("actions/download-artifact")]
-    assert any(a["with"].get("pattern") == "render-*" and a["with"].get("merge-multiple") for a in indir)
+    assert any(a["with"].get("pattern") == "render-${{ matrix.kimlik }}-*" and a["with"].get("merge-multiple") for a in indir)
     # plan sırasında üretilen binek GLB'leri render ve kurgu işlerine aynen devredilir (önbellek anahtarı tutarlı)
     for is_ in ("render", "kurgu"):
         assert any(a.get("with", {}).get("name") == "binek" for a in j[is_]["steps"]
