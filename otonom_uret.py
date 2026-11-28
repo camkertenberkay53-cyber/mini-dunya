@@ -240,7 +240,25 @@ SARMALAYICI = "senaryo"
 _ID_DESEN = re.compile(r"^S(\d+)$")   # senaryo.schema.json cumleler[].id deseni: ^S[0-9]+$
 
 
-_KUCUK_ID = re.compile(r"^s(\d+)$")
+_GECERLI_ID = re.compile(r"^S[0-9]+$")            # senaryo.schema.json cumleler[].id deseni
+_DONUSEBILIR_ID = re.compile(r"^[sScC]([0-9]+)$")   # Faz-63d: s1 / c1 / C1 → S1 (S1 zaten geçerli)
+_RAKAM_ID = re.compile(r"^[0-9]+$")                 # "12" → S12
+
+
+def id_adayi(i) -> str | None:
+    """Tanımlı ve güvenli kimlik biçimlerinin S<n> karşılığı; bilinmeyen/bozuk biçim için None (dönüştürülmez).
+    Kabul: s<n>, c<n>, C<n> (n rakam), rakamlı metin "<n>", negatif olmayan tam sayı <n>. Rakamlar aynen korunur
+    (c08 → S08). Reddedilen örnekler: 'abc', 'S-1', '', ' s3', 's1a', 1.0, True, -1."""
+    if isinstance(i, bool):
+        return None
+    if isinstance(i, int):
+        return f"S{i}" if i >= 0 else None
+    if not isinstance(i, str):
+        return None
+    m = _DONUSEBILIR_ID.match(i)
+    if m:
+        return f"S{m.group(1)}"
+    return f"S{i}" if _RAKAM_ID.match(i) else None
 
 
 def normalize_senaryo(veri, kanca_final: bool = True):
@@ -250,10 +268,11 @@ def normalize_senaryo(veri, kanca_final: bool = True):
       yanında başka kök anahtar varsa açılmaz.
     - 'cumleler' içinde dict olmayan ya da 'metin'i eksik/boş/metin-dışı bir öğe varsa HİÇBİR onarım yapılmaz
       (ID, kanca/final dahil); doğrulayıcı hangi öğe olduğunu açıkça söyler.
-    - Faz-63c: küçük harfli 's<n>' kimliği, büyük harfli 'S<n>' listede yoksa 'S<n>' olur (aynı rakamlar korunur);
-      varsa dokunulmaz (çakışma üretilmez, doğrulayıcı yakalar). Geçerli kimlikler hiç değişmez.
-    - 'id' alanı olmayan (ya da None olan) öğelere, mevcutlarla çakışmayan en küçük boş S<n> kimliği liste sırasıyla
-      atanır (şema deseni ^S[0-9]+$).
+    - Faz-63d kimlik standardizasyonu: geçerli S<n> kimlikleri önceliklidir ve hiç değişmez. Tanımlı güvenli biçimler
+      (s<n>, c<n>, C<n>, "<n>", tam sayı <n>; bkz. id_adayi) S<n> olur (rakamlar aynen). Bilinmeyen/bozuk biçimler
+      ('abc', 'S-1', '' ...) dönüştürülmez; doğrulayıcı açık hata verir.
+    - Hedefi dolu olan dönüşebilir kimlikler ve 'id' alanı olmayan (ya da None olan) öğeler, liste sırasıyla,
+      mevcut ve dönüşen kimliklerle çakışmayan en küçük boş S<n> kimliğini alır (şema deseni ^S[0-9]+$).
     - Faz-63c: kanca_final=True ise 'kanca' = ilk cümlenin, 'final' = son cümlenin KİMLİĞİ (şemada ve anlati/kurgu'da
       bu alanlar cümle kimliğidir, metin değil). Cümle metni ve sırası değişmez; liste boşsa dokunulmaz.
     - Bilinmeyen alanlar silinmez; işlem idempotenttir."""
@@ -271,20 +290,32 @@ def normalize_senaryo(veri, kanca_final: bool = True):
         return v
     if any(not isinstance(c, dict) or not isinstance(c.get("metin"), str) or not c["metin"].strip() for c in cs):
         return v   # bozuk öğe: onarım yok, doğrulayıcı hangi öğe olduğunu açıkça söyler
-    kullanilan = {c["id"] for c in cs if isinstance(c.get("id"), (str, int))}
-    for c in cs:   # s12 → S12 (yalnız çakışma yoksa)
-        m = _KUCUK_ID.match(c["id"]) if isinstance(c.get("id"), str) else None
-        if m and f"S{m.group(1)}" not in kullanilan:
-            c["id"] = f"S{m.group(1)}"
-            kullanilan.add(c["id"])
-    n = 0
+    # Faz-63d kimlik standardizasyonu (deterministik, liste sırasıyla):
+    # 1) geçerli S<n> kimlikleri ÖNCELİKLİ ve dokunulmaz (sonra gelseler bile ayrılır)
+    kullanilan = {c["id"] for c in cs if isinstance(c.get("id"), str) and _GECERLI_ID.match(c["id"])}
+    atanacak = []
     for c in cs:
-        if c.get("id") is None:
+        i = c.get("id")
+        if i is None:                                     # 3) eksik kimlik → aşağıda en küçük boş S<n>
+            atanacak.append(c)
+            continue
+        if isinstance(i, str) and _GECERLI_ID.match(i):
+            continue
+        aday = id_adayi(i)
+        if aday is None:                                  # bilinmeyen/bozuk biçim: dönüştürülmez, doğrulayıcı yakalar
+            continue
+        if aday in kullanilan:                            # 2) çakışma → eksik kimlik gibi, çakışmasız S<n>
+            atanacak.append(c)
+            continue
+        c["id"] = aday
+        kullanilan.add(aday)
+    n = 0
+    for c in atanacak:                                    # liste sırasıyla en küçük boş S<n>
+        n += 1
+        while f"S{n}" in kullanilan:
             n += 1
-            while f"S{n}" in kullanilan:
-                n += 1
-            c["id"] = f"S{n}"
-            kullanilan.add(c["id"])
+        c["id"] = f"S{n}"
+        kullanilan.add(c["id"])
     if kanca_final and cs:
         v["kanca"], v["final"] = cs[0]["id"], cs[-1]["id"]
     return v

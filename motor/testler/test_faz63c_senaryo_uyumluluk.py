@@ -47,13 +47,12 @@ def test_kucuk_harfli_id_buyuge(girdi, beklenen):
     assert _ids(ou.normalize_senaryo({"cumleler": [_c(i) for i in girdi]})) == beklenen
 
 
-def test_cakisma_uretilmez_kucuk_harf_dokunulmadan_kalir_dogrulayici_yakalar():
+def test_cakisma_uretilmez_cakisanlar_bos_kimlik_alir():
+    # Faz-63d: hedefi dolu olan kimlik artık olduğu gibi bırakılmaz; çakışmasız en küçük boş S<n> alır
     v = ou.normalize_senaryo(_shorts([_c("S1"), _c("s1"), _c("s1")]))
-    assert _ids(v) == ["S1", "s1", "s1"]                                         # S1 zaten var → dönüşüm yok
+    assert _ids(v) == ["S1", "S2", "S3"]                                         # geçerli S1 öncelikli, korunur
     v = ou.normalize_senaryo(_shorts([_c("s1"), _c("s1")]))
-    assert _ids(v) == ["S1", "s1"]                                               # ikincisi çakışırdı → olduğu gibi
-    h = sozlesme.senaryo_denetle(v, ARA)
-    assert any("s1" in x for x in h)                                             # açık hata sürer
+    assert _ids(v) == ["S1", "S2"] and sozlesme.senaryo_denetle(v, ARA) == []
 
 
 def test_gecerli_ve_bicim_disi_idler_degismez():
