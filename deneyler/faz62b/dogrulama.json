@@ -1,0 +1,27 @@
+{
+ "aciklama": "Faz-62b CI doğrulama fikstürü: Gemini KULLANILMAZ. Pilot senaryo + bir harita + bir Commons (CC0/PD) 2.5D cümlesiyle paralel 3D render, artifact devri ve kurgu hattını sınar. Bu bir üretim çıktısı değildir.",
+ "sablon": "otlukbeli-1473",
+ "gorseller": [
+  {
+   "gorsel_id": "mehmed-portre",
+   "sorgu": "Gentile Bellini Mehmed II portrait",
+   "yedek_sorgular": [
+    "Portrait of Sultan Mehmed II",
+    "Mehmed II Bellini National Gallery"
+   ],
+   "tur": "insan_portre",
+   "aciklama": "II. Mehmed portresi (Gentile Bellini, 1480)"
+  }
+ ],
+ "niyet_degisiklikleri": {
+  "S2": {
+   "tur": "gorsel25d",
+   "gorsel_sira": 0
+  },
+  "S7": {
+   "tur": "harita",
+   "evre": "E5",
+   "metin_katmani": "Akkoyunlu merkezi dağılıyor"
+  }
+ }
+}
