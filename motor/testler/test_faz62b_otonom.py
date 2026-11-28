@@ -132,8 +132,11 @@ def test_ek_niyet_kurallari(denetim_yalitik):
     k = ou.konu_kur(PILOT, "Otlukbeli Savaşı", "shorts")
     g = [{"gorsel_id": "g1", "aciklama": "x"}]
     olc = lambda cs: {}
-    iyi = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "g1"}), _cumle(2, "harita", evre="E1"), _cumle(3)]}
+    iyi = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "g1"}, aciklama="portre"), _cumle(2, "harita", evre="E1"),
+                        _cumle(3)]}
     assert ou.senaryo_denetle(iyi, {}, k, g, olc) == []
+    aciklamasiz = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "g1"})]}
+    assert "aciklama' zorunlu" in ou.senaryo_denetle(aciklamasiz, {}, k, g, olc)[0]     # plan_denetim çekim metni ister
     kotu = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "uydurma"}), _cumle(2, "harita", evre="E9"),
                          _cumle(3, "bilgi_karti")]}
     h = ou.senaryo_denetle(kotu, {}, k, g, olc)
@@ -164,7 +167,7 @@ class Sahte:
 def test_senaryo_hatalari_geri_beslenir_ucuncu_denemede_gecer(denetim_yalitik):
     k = ou.konu_kur(PILOT, "Otlukbeli Savaşı", "shorts")
     g = [{"gorsel_id": "g1", "aciklama": "x"}]
-    iyi = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "g1"}), _cumle(2)]}
+    iyi = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "g1"}, aciklama="p"), _cumle(2)]}
     kotu = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": "yok"})]}
     s = Sahte(["bu JSON değil", json.dumps(kotu), "```json\n" + json.dumps(iyi) + "\n```"])
     sen, gecmis = ou.senaryo_uret(s, k, {"kartlar": []}, g, olc=lambda cs: {})
@@ -209,7 +212,7 @@ def test_planla_uctan_uca_sahte_saglayiciyla(tmp_path, denetim_yalitik, monkeypa
     havuz = {"kayitlar": [_kayit(i) for i in range(1, 6)]}
     sorgu = json.dumps([{"gorsel_id": "portre", "sorgu": "q", "aciklama": "portre"}])
     k = ou.konu_kur(PILOT, "Otlukbeli Savaşı", "shorts")
-    senaryo = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": f"{k['kimlik']}-portre"}),
+    senaryo = {"cumleler": [_cumle(1, "gorsel25d", gorsel25d={"gorsel_id": f"{k['kimlik']}-portre"}, aciklama="p"),
                             _cumle(2, "harita", evre="E1"), _cumle(3), _cumle(4), _cumle(5)]}
     s = Sahte([sorgu, json.dumps(senaryo)])
     r = ou.planla("Otlukbeli Savaşı", "shorts", tmp_path / "is", "AIza", 2, havuz_fn=lambda konu: havuz,
@@ -272,7 +275,7 @@ def test_dogrulama_plani_fiksturu(tmp_path, monkeypatch):
     sen = json.loads((Path(r["is"]) / "senaryo.json").read_text())
     n = {c["id"]: c["niyet"] for c in sen["cumleler"]}
     assert r["dogrulama_fiksturu"] is True and r["kimlik"].endswith("-dogrulama")
-    assert n["S2"]["tur"] == "gorsel25d" and n["S7"] == {"tur": "harita", "evre": "E5", "metin_katmani": "Akkoyunlu merkezi dağılıyor"}
+    assert n["S2"]["tur"] == "gorsel25d" and n["S2"]["aciklama"] and n["S7"] == {"tur": "harita", "evre": "E5", "metin_katmani": "Akkoyunlu merkezi dağılıyor"}
     assert sorted(r["degisen"]) == ["S2", "S7"]
 
 

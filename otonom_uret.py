@@ -219,7 +219,8 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
     else:
         satir.append("Bu konuda harita evresi yok: 'harita' niyeti KULLANMA.")
     if gorseller:
-        satir.append("gorsel25d niyeti: {\"tur\": \"gorsel25d\", \"gorsel25d\": {\"gorsel_id\": <kimlik>}} — yalnızca şu "
+        satir.append("gorsel25d niyeti: {\"tur\": \"gorsel25d\", \"gorsel25d\": {\"gorsel_id\": <kimlik>}, \"aciklama\": "
+                     "<görselde ne olduğu, kısa>} (aciklama ZORUNLU) — yalnızca şu "
                      "görseller (anlatılan cümleyle ilgili olanı seç; aynı görseli iki kez kullanma): "
                      + "; ".join(f"{g['gorsel_id']} = {g['aciklama']}" for g in gorseller))
     else:
@@ -242,6 +243,8 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
         n = c["niyet"]
         if n["tur"] == "gorsel25d" and (n.get("gorsel25d") or {}).get("gorsel_id") not in gecerli:
             h.append(f"{c['id']}: gorsel25d.gorsel_id listede yok (geçerli: {sorted(gecerli)})")
+        elif n["tur"] == "gorsel25d" and not (n.get("aciklama") or n.get("metin")):
+            h.append(f"{c['id']}: gorsel25d niyetinde 'aciklama' zorunlu (çekim metni)")
         if n["tur"] == "harita" and n.get("evre") not in evreler:
             h.append(f"{c['id']}: harita evresi geçersiz (geçerli: {sorted(evreler)})")
         if n["tur"] == "bilgi_karti":
@@ -381,7 +384,8 @@ def dogrulama_plani(fikstur: Path, is_kok: Path, parca_sayisi: int = 4, topla=No
             if d["gorsel_sira"] >= len(gorseller):
                 log("dogrulama", f"{c['id']}: 2.5D görsel toplanamadı; cümle 3D kalır")
                 continue
-            c["niyet"] = {"tur": "gorsel25d", "gorsel25d": {"gorsel_id": gorseller[d["gorsel_sira"]]["gorsel_id"]}}
+            g = gorseller[d["gorsel_sira"]]
+            c["niyet"] = {"tur": "gorsel25d", "gorsel25d": {"gorsel_id": g["gorsel_id"]}, "aciklama": g["aciklama"]}
         else:
             c["niyet"] = {x: v for x, v in d.items()}
         degisen.append(c["id"])
