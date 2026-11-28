@@ -121,6 +121,8 @@ def _cumle(i, tur="3d", **n):
 @pytest.fixture
 def denetim_yalitik(monkeypatch):
     """Korunan kapılar (sozlesme / anlati) varlık önbelleği ister; burada geçer kabul edilir, ek kurallar sınanır."""
+    monkeypatch.setattr(ou, "EN_AZ_3D_CUMLE", 0)   # Faz-66c: en az 3 ayrı 3D cümle kuralı test_faz66c'de
+    monkeypatch.setattr(ou, "_odak_uyumu", lambda n, d, k=None: (True, ""))   # Faz-66c: gerçek uyum test_faz66c'de
     from motor.uretim import anlati, sahne_bolucu, sozlesme
     monkeypatch.setattr(sozlesme, "senaryo_denetle", lambda s, a: [])
     monkeypatch.setattr(anlati, "shorts_denetle", lambda s, sr: ([], {}))
