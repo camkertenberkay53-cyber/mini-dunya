@@ -240,14 +240,22 @@ SARMALAYICI = "senaryo"
 _ID_DESEN = re.compile(r"^S(\d+)$")   # senaryo.schema.json cumleler[].id deseni: ^S[0-9]+$
 
 
-def normalize_senaryo(veri):
+_KUCUK_ID = re.compile(r"^s(\d+)$")
+
+
+def normalize_senaryo(veri, kanca_final: bool = True):
     """Şema doğrulamasından hemen önce deterministik normalizasyon (kopya döner; girdi değişmez):
     - dict değilse aynen döner (doğrulayıcı açık hata verir).
     - Kökte YALNIZCA 'senaryo' anahtarı varsa ve değeri dict ise içi köke çıkar (iç içe sarmalayıcı da aynı kuralla);
       yanında başka kök anahtar varsa açılmaz.
-    - 'cumleler' içinde dict olmayan ya da 'metin'i eksik/boş/metin-dışı bir öğe varsa ID onarımı YAPILMAZ.
-    - Mevcut 'id' değerleri değişmez; 'id' alanı olmayan (ya da None olan) öğelere, mevcutlarla çakışmayan en küçük
-      boş S<n> kimliği liste sırasıyla atanır (şema deseni ^S[0-9]+$).
+    - 'cumleler' içinde dict olmayan ya da 'metin'i eksik/boş/metin-dışı bir öğe varsa HİÇBİR onarım yapılmaz
+      (ID, kanca/final dahil); doğrulayıcı hangi öğe olduğunu açıkça söyler.
+    - Faz-63c: küçük harfli 's<n>' kimliği, büyük harfli 'S<n>' listede yoksa 'S<n>' olur (aynı rakamlar korunur);
+      varsa dokunulmaz (çakışma üretilmez, doğrulayıcı yakalar). Geçerli kimlikler hiç değişmez.
+    - 'id' alanı olmayan (ya da None olan) öğelere, mevcutlarla çakışmayan en küçük boş S<n> kimliği liste sırasıyla
+      atanır (şema deseni ^S[0-9]+$).
+    - Faz-63c: kanca_final=True ise 'kanca' = ilk cümlenin, 'final' = son cümlenin KİMLİĞİ (şemada ve anlati/kurgu'da
+      bu alanlar cümle kimliğidir, metin değil). Cümle metni ve sırası değişmez; liste boşsa dokunulmaz.
     - Bilinmeyen alanlar silinmez; işlem idempotenttir."""
     import copy
     if not isinstance(veri, dict):
@@ -263,7 +271,12 @@ def normalize_senaryo(veri):
         return v
     if any(not isinstance(c, dict) or not isinstance(c.get("metin"), str) or not c["metin"].strip() for c in cs):
         return v   # bozuk öğe: onarım yok, doğrulayıcı hangi öğe olduğunu açıkça söyler
-    kullanilan = {c["id"] for c in cs if c.get("id") is not None}
+    kullanilan = {c["id"] for c in cs if isinstance(c.get("id"), (str, int))}
+    for c in cs:   # s12 → S12 (yalnız çakışma yoksa)
+        m = _KUCUK_ID.match(c["id"]) if isinstance(c.get("id"), str) else None
+        if m and f"S{m.group(1)}" not in kullanilan:
+            c["id"] = f"S{m.group(1)}"
+            kullanilan.add(c["id"])
     n = 0
     for c in cs:
         if c.get("id") is None:
@@ -272,7 +285,28 @@ def normalize_senaryo(veri):
                 n += 1
             c["id"] = f"S{n}"
             kullanilan.add(c["id"])
+    if kanca_final and cs:
+        v["kanca"], v["final"] = cs[0]["id"], cs[-1]["id"]
     return v
+
+
+def kaynak_ihtiyati_kurali(ara: dict) -> str:
+    """Faz-63c: tartışmalı kartlara dayanan iddialar için anlatım disiplini. İfade listesi doğrulayıcının kullandığı
+    kurallar/dil_tr.yaml temkin_ifadeleri'nden gelir (orada olmayan bir ifade sozlesme kapısından geçmez)."""
+    from motor.uretim import veri
+    temkin = veri.kural("dil_tr")["temkin_ifadeleri"]
+    oncelikli = [x for x in ("bazı kaynaklara göre", "kaynaklara göre", "rivayet", "anlatılır", "iddia edilir") if x in temkin]
+    tartismali = [c["id"] for c in ara.get("kartlar", []) if c.get("guven") in ("tartismali", "belirsiz")]
+    satir = ["KAYNAK İHTİYATI (zorunlu):",
+             "- 'tartismali' (ya da 'belirsiz') karta dayanan iddia için KESİN HÜKÜM KURMA; cümle şu ihtiyatlı "
+             "ifadelerden birini AYNEN içersin: " + ", ".join(f'"{x}"' for x in oncelikli + [t for t in temkin if t not in oncelikli])
+             + " (ör. \"Bazı kaynaklara göre…\", \"…rivayet edilir.\", \"Kaynaklara göre…\").",
+             "- Kaynaklar farklı değer veriyorsa (kart notu: 'kaynaklar arasında farklı değer') farklılığı açıkça söyle.",
+             "- 'kesin' ve 'makul' kartlara dayanan, güçlü kanıtlı iddiaları gereksiz yere belirsizleştirme: bu cümlelerde "
+             "ihtiyat ifadesi KULLANMA."]
+    satir.append(f"- Bu araştırmadaki tartışmalı kartlar: {', '.join(tartismali)}." if tartismali else
+                 "- Bu araştırmada tartışmalı kart yok.")
+    return "\n".join(satir)
 
 
 # ------------------------------------------------------------------ 3) Commons 2.5D görselleri
@@ -453,7 +487,8 @@ def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme
     hatalar: list[str] = []
     gecmis = []
     for d in range(1, deneme + 1):
-        istem = senaryo_uretici.istem(konu, ara, hatalar) + "\n" + gorsel_kurallari(konu, gorseller)
+        istem = (senaryo_uretici.istem(konu, ara, hatalar) + "\n" + gorsel_kurallari(konu, gorseller) + "\n"
+                 + kaynak_ihtiyati_kurali(ara))
         ham = saglayici.tamamla(istem, "senaryo", {"bolum": f"deneme{d}", "yanit_semasi": shorts_api_semasi()})
         try:
             s = json_ayikla(ham)
@@ -702,7 +737,6 @@ def bolum_istemi(konu: dict, ara: dict, taslak: dict, b: dict, onceki: list[dict
                  en_az_yeni: int = 0) -> str:
     from motor.uretim import veri
     kc = _uzun_kural()["cumle"]
-    temkin = ", ".join(veri.kural("dil_tr")["temkin_ifadeleri"])
     kartlar = "\n".join(f"{c['id']} [{c['guven']}]{' (' + c['not'] + ')' if c.get('not') else ''} {c['iddia']}"
                         for c in ara["kartlar"])
     anlatilan = "\n".join(f"- {c['metin']}" for c in onceki[-120:]) or "(henüz yok)"
@@ -724,8 +758,7 @@ DOĞRULANMIŞ KARTLAR (yalnızca bunlardaki bilgiler anlatılır; tarih, kişi, 
 {kartlar}
 KURALLAR:
 - Her olgusal cümle dayandığı kart kimliklerini 'kartlar' alanında verir. Kartta olmayan bilgi kesin gerçek gibi anlatılmaz.
-- [tartismali] karttaki bilgi şu ifadelerden biriyle anlatılır: {temkin}. Not'u 'kaynaklar arasında farklı değer' olan
-  kartta farklı değerleri açıkça belirt.
+{kaynak_ihtiyati_kurali(ara)}
 - Geçiş/yorum cümlesi (yeni bilgi içermeyen) "olgusal": false ile işaretlenir; bunlar bölümün %20'sini aşmaz.
 - Daha önce anlatılanları TEKRAR ETME (aynı bilgiyi başka sözcüklerle söylemek de yasak). Önceki bölümlerde anlatılanlar:
 {anlatilan}
@@ -873,7 +906,8 @@ def uzun_senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], k
         if cagri["n"] >= EN_COK_GEMINI_CAGRI:
             raise UretimHatasi("senaryo", f"Gemini çağrı tavanı ({EN_COK_GEMINI_CAGRI}) aşıldı; üretim durdu")
         cagri["n"] += 1
-        return normalize_senaryo(json_ayikla(saglayici.tamamla(istem, adim, {"bolum": adim, "yanit_semasi": BOLUM_API_SEMASI})))
+        return normalize_senaryo(json_ayikla(saglayici.tamamla(istem, adim, {"bolum": adim, "yanit_semasi": BOLUM_API_SEMASI})),
+                                 kanca_final=False)   # bölüm parçası: kanca/final bütün senaryoda (kur) belirlenir
 
     if taslak is None:
         taslak, g0 = uzun_taslak_uret(saglayici, konu, ara, deneme)
@@ -956,7 +990,7 @@ def uzun_senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], k
         bolum_cs.append(cs)
     a, b_ = konu["hedef_sure_sn"]
     for tur in range(onarim + 1):
-        s = kur(bolum_cs)
+        s = normalize_senaryo(kur(bolum_cs))   # Shorts ile ortak adaptör (kanca/final = ilk/son cümle kimliği)
         h = sozlesme.senaryo_denetle(s, ara)
         sureler = olc(s["cumleler"])
         if not h:
