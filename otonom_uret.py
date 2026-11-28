@@ -174,6 +174,107 @@ def json_ayikla(ham: str):
         raise
 
 
+# ------------------------------------------------------------------ Faz-63: yapılandırılmış çıktı + normalizasyon
+
+# Gemini responseJsonSchema'nın desteklediği JSON Schema anahtarları (REST GenerationConfig). Diğerleri (pattern,
+# minLength, default, $schema, $defs...) gönderilmez; $ref'ler açılır, const → enum, oneOf → anyOf.
+API_SEMA_ANAHTARLARI = {"type", "format", "title", "description", "enum", "items", "prefixItems", "minItems", "maxItems",
+                        "minimum", "maximum", "anyOf", "properties", "additionalProperties", "required"}
+
+
+def api_semasi(sema, tanimlar: dict | None = None):
+    """Yerel JSON Schema → Gemini'nin kabul ettiği alt küme. Yerel şema değişmez (kopya döner); yerel doğrulama
+    (sozlesme) tam şemayla yine çalışır — API şeması yalnız yapısal güvencedir."""
+    if tanimlar is None:
+        tanimlar = sema.get("$defs", {}) if isinstance(sema, dict) else {}
+    if isinstance(sema, list):
+        return [api_semasi(x, tanimlar) for x in sema]
+    if not isinstance(sema, dict):
+        return sema
+    if "$ref" in sema:
+        return api_semasi(tanimlar[sema["$ref"].rsplit("/", 1)[-1]], tanimlar)
+    cikti = {}
+    for k, v in sema.items():
+        if k == "const":
+            cikti["enum"] = [v]
+            continue
+        k = "anyOf" if k == "oneOf" else k
+        if k not in API_SEMA_ANAHTARLARI:
+            continue
+        if k == "properties":
+            cikti[k] = {ad: api_semasi(x, tanimlar) for ad, x in v.items()}
+        elif k in ("items", "additionalProperties", "anyOf", "prefixItems"):
+            cikti[k] = api_semasi(v, tanimlar)
+        else:
+            cikti[k] = v
+    return cikti
+
+
+def shorts_api_semasi() -> dict:
+    """Shorts senaryo şeması (motor/uretim/semalar/senaryo.schema.json — yalnız OKUNUR) → API alt kümesi."""
+    from motor.uretim import sozlesme
+    return api_semasi(sozlesme.sema("senaryo"))
+
+
+def _nesne(ozellik: dict, zorunlu: list[str]) -> dict:
+    return {"type": "object", "properties": ozellik, "required": zorunlu, "additionalProperties": False}
+
+
+_S = {"type": "string"}
+TASLAK_API_SEMASI = _nesne({
+    "baslik": _S,
+    "bolumler": {"type": "array", "minItems": 1, "items": _nesne({
+        "baslik": _S,
+        "roller": {"type": "array", "minItems": 1, "items": {"type": "string", "enum": [
+            "kanca", "baglam", "taraflar", "savas_oncesi", "savas", "sonuc", "etkiler", "kapanis"]}},
+        "ozet": _S, "kartlar": {"type": "array", "items": _S}, "hedef_sn": {"type": "number"}},
+        ["baslik", "roller", "ozet", "kartlar", "hedef_sn"])}}, ["baslik", "bolumler"])
+BOLUM_API_SEMASI = _nesne({"cumleler": {"type": "array", "minItems": 1, "items": _nesne({
+    "metin": _S, "kartlar": {"type": "array", "items": _S}, "olgusal": {"type": "boolean"}, "okunus": _S,
+    "niyet": _nesne({"tur": {"type": "string", "enum": ["harita", "gorsel25d", "3d"]}, "evre": _S, "metin": _S,
+                     "metin_katmani": _S, "gorsel_id": _S, "aciklama": _S,
+                     "hareket": {"type": "string", "enum": list(HAREKETLER)}, "katalog": _S}, ["tur"])},
+    ["metin", "kartlar", "olgusal", "niyet"])}}, ["cumleler"])
+
+SARMALAYICI = "senaryo"
+_ID_DESEN = re.compile(r"^S(\d+)$")   # senaryo.schema.json cumleler[].id deseni: ^S[0-9]+$
+
+
+def normalize_senaryo(veri):
+    """Şema doğrulamasından hemen önce deterministik normalizasyon (kopya döner; girdi değişmez):
+    - dict değilse aynen döner (doğrulayıcı açık hata verir).
+    - Kökte YALNIZCA 'senaryo' anahtarı varsa ve değeri dict ise içi köke çıkar (iç içe sarmalayıcı da aynı kuralla);
+      yanında başka kök anahtar varsa açılmaz.
+    - 'cumleler' içinde dict olmayan ya da 'metin'i eksik/boş/metin-dışı bir öğe varsa ID onarımı YAPILMAZ.
+    - Mevcut 'id' değerleri değişmez; 'id' alanı olmayan (ya da None olan) öğelere, mevcutlarla çakışmayan en küçük
+      boş S<n> kimliği liste sırasıyla atanır (şema deseni ^S[0-9]+$).
+    - Bilinmeyen alanlar silinmez; işlem idempotenttir."""
+    import copy
+    if not isinstance(veri, dict):
+        return veri
+    v = copy.deepcopy(veri)
+    for _ in range(4):   # iç içe sarmalayıcı (tek anahtarlı) — sınırlı derinlik
+        if set(v) == {SARMALAYICI} and isinstance(v[SARMALAYICI], dict):
+            v = v[SARMALAYICI]
+        else:
+            break
+    cs = v.get("cumleler")
+    if not isinstance(cs, list):
+        return v
+    if any(not isinstance(c, dict) or not isinstance(c.get("metin"), str) or not c["metin"].strip() for c in cs):
+        return v   # bozuk öğe: onarım yok, doğrulayıcı hangi öğe olduğunu açıkça söyler
+    kullanilan = {c["id"] for c in cs if c.get("id") is not None}
+    n = 0
+    for c in cs:
+        if c.get("id") is None:
+            n += 1
+            while f"S{n}" in kullanilan:
+                n += 1
+            c["id"] = f"S{n}"
+            kullanilan.add(c["id"])
+    return v
+
+
 # ------------------------------------------------------------------ 3) Commons 2.5D görselleri
 
 def gorsel_sorgu_istemi(konu: str, ara: dict, adet: int = EN_COK_GORSEL, sahneler: list[str] | None = None) -> str:
@@ -353,13 +454,14 @@ def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme
     gecmis = []
     for d in range(1, deneme + 1):
         istem = senaryo_uretici.istem(konu, ara, hatalar) + "\n" + gorsel_kurallari(konu, gorseller)
-        ham = saglayici.tamamla(istem, "senaryo", {"bolum": f"deneme{d}"})
+        ham = saglayici.tamamla(istem, "senaryo", {"bolum": f"deneme{d}", "yanit_semasi": shorts_api_semasi()})
         try:
             s = json_ayikla(ham)
         except (json.JSONDecodeError, TypeError) as e:
             hatalar = [f"yanıt JSON değil: {e}"]
             gecmis.append({"deneme": d, "hatalar": hatalar})
             continue
+        s = normalize_senaryo(s)   # Faz-63: şema doğrulamasından ÖNCE (ve surum/konu eklenmeden önce: wrapper açılabilsin)
         if isinstance(s, dict):
             s.setdefault("surum", 1)
             s["konu"] = konu["kimlik"]
@@ -742,7 +844,8 @@ def uzun_taslak_uret(saglayici, konu: dict, ara: dict, deneme: int = 3) -> tuple
     gecmis: list[dict] = []
     for d in range(1, deneme + 1):
         try:
-            t = json_ayikla(saglayici.tamamla(taslak_istemi(konu, ara, hatalar), "uzun_taslak", {"bolum": "uzun_taslak"}))
+            t = normalize_senaryo(json_ayikla(saglayici.tamamla(taslak_istemi(konu, ara, hatalar), "uzun_taslak",
+                                                                {"bolum": "uzun_taslak", "yanit_semasi": TASLAK_API_SEMASI})))
         except (json.JSONDecodeError, TypeError) as e:
             hatalar = [f"yanıt JSON değil: {e}"]
             continue
@@ -770,7 +873,7 @@ def uzun_senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], k
         if cagri["n"] >= EN_COK_GEMINI_CAGRI:
             raise UretimHatasi("senaryo", f"Gemini çağrı tavanı ({EN_COK_GEMINI_CAGRI}) aşıldı; üretim durdu")
         cagri["n"] += 1
-        return json_ayikla(saglayici.tamamla(istem, adim, {"bolum": adim}))
+        return normalize_senaryo(json_ayikla(saglayici.tamamla(istem, adim, {"bolum": adim, "yanit_semasi": BOLUM_API_SEMASI})))
 
     if taslak is None:
         taslak, g0 = uzun_taslak_uret(saglayici, konu, ara, deneme)
