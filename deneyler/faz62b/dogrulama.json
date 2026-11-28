@@ -23,5 +23,84 @@
    "evre": "E5",
    "metin_katmani": "Akkoyunlu merkezi dağılıyor"
   }
+ },
+ "uzun": {
+  "aciklama": "Faz-62c motor doğrulaması (Gemini yok): pilot cümleleri 16:9 bölümlü plana döner; 15–20 dk anlatı DEĞİLDİR.",
+  "hedef_sure_sn": [
+   20,
+   120
+  ],
+  "bolumler": [
+   {
+    "id": "B1",
+    "baslik": "İki ordu, tek kazanan",
+    "roller": [
+     "kanca",
+     "baglam",
+     "taraflar"
+    ]
+   },
+   {
+    "id": "B2",
+    "baslik": "Otlukbeli'de çarpışma",
+    "roller": [
+     "savas_oncesi",
+     "savas"
+    ]
+   },
+   {
+    "id": "B3",
+    "baslik": "Zaferin ardından",
+    "roller": [
+     "sonuc",
+     "etkiler",
+     "kapanis"
+    ]
+   }
+  ],
+  "cumle_bolumleri": {
+   "S1": "B1",
+   "S2": "B1",
+   "S3": "B1",
+   "S4": "B2",
+   "S5": "B2",
+   "S6": "B2",
+   "S7": "B3",
+   "S8": "B3"
+  },
+  "niyet_degisiklikleri": {
+   "S2": {
+    "tur": "gorsel25d",
+    "gorsel_sira": 0,
+    "hareket": "push_in"
+   },
+   "S3": {
+    "tur": "harita",
+    "evre": "E1",
+    "metin": "Otlukbeli · 11 Ağustos 1473",
+    "metin_katmani": "Tercan yakınları"
+   },
+   "S4": {
+    "tur": "harita",
+    "evre": "E2",
+    "metin": "Davud Paşa tepeye yükleniyor"
+   },
+   "S6": {
+    "tur": "harita",
+    "evre": "E4",
+    "metin": "Bayezid dere hattında"
+   },
+   "S7": {
+    "tur": "harita",
+    "evre": "E5",
+    "metin": "Akkoyunlu merkezi dağılıyor"
+   },
+   "S8": {
+    "tur": "gorsel25d",
+    "gorsel_sira": 0,
+    "hareket": "pull_back",
+    "aciklama": "Fatih Sultan Mehmed — zaferden sonra Anadolu'da birlik"
+   }
+  }
  }
 }

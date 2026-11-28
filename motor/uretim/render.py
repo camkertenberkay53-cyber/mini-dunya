@@ -25,6 +25,32 @@ BETIKLER = [ayar.GODOT_PROJE / "sahneler" / x for x in ("cekim.gd", "ortam.gd", 
 KOK = ayar.ONBELLEK / "uretim"
 
 
+def godot_proje_kopyasi(w: int, hgt: int) -> Path:
+    """Faz-62c: Movie Maker görüntü alanını proje ayarından alır (--resolution yok sayılır). Uzun (16:9) render için
+    asıl projeye DOKUNMADAN, yalnızca project.godot'u farklı çözünürlükte olan bir eş proje kurulur: diğer bütün
+    girdiler (sahneler, varlık, .godot içe aktarma önbelleği) asıl projeye sembolik bağdır. Shorts asıl projeyi kullanır."""
+    import re
+    hedef = ayar.ONBELLEK / "godot_proje" / f"{w}x{hgt}"
+    hedef.mkdir(parents=True, exist_ok=True)
+    for g in ayar.GODOT_PROJE.iterdir():
+        if g.name == "project.godot":
+            continue
+        b = hedef / g.name
+        if not (b.is_symlink() and b.resolve() == g.resolve()):
+            if b.is_symlink() or b.is_file():
+                b.unlink()
+            elif b.exists():
+                shutil.rmtree(b)
+            b.symlink_to(g.resolve())
+    metin = (ayar.GODOT_PROJE / "project.godot").read_text()
+    metin = re.sub(r"viewport_width=\d+", f"viewport_width={w}", metin)
+    metin = re.sub(r"viewport_height=\d+", f"viewport_height={hgt}", metin)
+    pg = hedef / "project.godot"
+    if not pg.exists() or pg.read_text() != metin:
+        pg.write_text(metin)
+    return hedef
+
+
 def gorsel_profili(g: dict, arazi: str, ad: str | None = None) -> dict:
     """Aktif görsel profil: 'taban' zinciri birleştirilir, arazi_ozel uygulanır, 'varlik/...' yolları motor/ köküne
     göre mutlak yapılır (Godot dosyayı is.json'daki yoldan okur)."""
@@ -581,7 +607,9 @@ def render(plan_yolu: str, cekim_id: str, cikti: Path | None = None, onbellek: b
     w, hgt = plan["cozunurluk"]
     proje = ayar.GODOT_PROJE / "project.godot"
     if f"viewport_width={w}" not in proje.read_text() or f"viewport_height={hgt}" not in proje.read_text():
-        return {"durum": "HATA", "neden": f"Godot projesi {w}x{hgt} değil"}
+        if plan.get("format") != "uzun":   # Shorts: proje çözünürlüğü şart (değişmedi)
+            return {"durum": "HATA", "neden": f"Godot projesi {w}x{hgt} değil"}
+        komut[komut.index(str(ayar.GODOT_PROJE))] = str(godot_proje_kopyasi(w, hgt))   # Faz-62c: uzun (16:9)
     rnd_sn, rnd_kb, gunluk = _calistir(komut, 7200)
     hatalar = [s for s in gunluk.splitlines() if "ERROR" in s or "SCRIPT ERROR" in s]
     kod_sn, _, _ = _calistir(["ffmpeg", "-y", "-loglevel", "error", "-i", str(avi), "-c:v", "libx264", "-preset", "veryfast",

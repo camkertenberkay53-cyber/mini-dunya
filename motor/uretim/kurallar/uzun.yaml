@@ -1,0 +1,48 @@
+# Faz-62c — Uzun belgesel (16:9, 15–20 dk) anlatı, bölümleme ve kurgu kuralları (konudan bağımsız).
+# Shorts kuralları (shorts.yaml) bu formata UYGULANMAZ; Shorts davranışı değişmez.
+bolum:
+  en_az: 6
+  en_cok: 8
+  en_az_cumle: 6                 # bölüm başına (gerçek anlatı; tek cümlelik bölüm yok)
+  # Her rol en az bir bölümde bulunmalı; bölümler bu sırayı bozamaz (bir bölüm ardışık birkaç rol taşıyabilir).
+  roller: [kanca, baglam, taraflar, savas_oncesi, savas, sonuc, etkiler, kapanis]
+cumle:
+  en_az_kelime: 4
+  en_cok_kelime: 32              # dinlenebilir belgesel cümlesi; Shorts'un 14 kelime sınırı burada yok
+kanca:
+  en_cok_sure_sn: 12.0           # açılış cümlesinin ÖLÇÜLEN seslendirmesi
+tekrar:                          # yapay uzatma / aynı bilginin başka cümleyle tekrarı yasak
+  icerik_kelime_en_az_harf: 4    # karşılaştırmada yalnızca bu uzunluktaki kelimeler (bağlaç/ek gürültüsü dışarıda)
+  benzerlik_esigi: 0.6           # iki cümlenin içerik kelimesi Jaccard benzerliği (en az 4 içerik kelimesi varsa)
+  ngram: 6                       # aynı 6 kelimelik dizi iki farklı cümlede geçemez
+duraklama_sn:
+  baslangic: 0.8
+  kanca_sonrasi: 0.9
+  cumle_arasi: 0.45
+  bolum_arasi: 1.8               # bölüm geçişi (görüntüde karartma geçişi buraya denk gelir)
+  kapanis: 3.0
+cekim:
+  en_cok_sure_sn: 9.0            # daha uzun cümle eşit parçalara bölünür
+  en_az_sure_sn: 2.5
+gorsel:                          # render süresi önceliği: harita > lisanslı tarihî görsel (2.5D) > sınırlı 3D
+  en_cok_3d_payi: 0.15           # 3D cümlelerin oranı
+  en_cok_3d_cumle: 12
+kurgu:
+  video: {preset: veryfast, crf: 20, maxrate: 10M, bufsize: 20M}
+  ses: {bitrate: 192k, loudnorm: {I: -16, TP: -1.5, LRA: 11}}
+  giris_sn: 1.0                  # görüntü + ses fade in
+  cikis_sn: 2.0                  # görüntü + ses fade out
+  bolum_gecisi: {sure_sn: 0.8, tepe: 0.7}   # bölüm sınırında karartma (tam siyaha inmez: blackdetect yanlış alarmı yok)
+  muzik: {duzey: 0.10}           # kodla üretilen telifsiz ambiyans müzik yatağı (bölüm başına akor)
+  ambiyans: {dosya: varlik/oga/park_ambiyans/park_ambience_wind_150s.ogg, duzey: 0.10}
+  davul: {roller: [savas], duzey: 0.12}
+  konusmada_kisma: 0.55
+  altyazi:
+    satir_en_cok_harf: 42
+    en_cok_satir: 2
+    en_az_sure_sn: 1.0
+    gom: false                   # varsayılan: ayrı .srt (format.yaml: altyazi srt); istenirse videoya gömülür
+  qa:
+    sure_toleransi_sn: 1.0       # video süresi ↔ plan (gerçek TTS zaman çizelgesi)
+    ses_goruntu_farki_sn: 0.5    # ses akışı ↔ görüntü akışı
+    dinleme_ortalama_en_az: 0.6  # Whisper benzerlik ortalaması (altında üretim KALIR)

@@ -22,6 +22,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
 FONT_I = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf"
 FONT_N = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
+YATAY_TUVAL = 1.5   # Faz-62c: 16:9 haritanın çizim tuvali çarpanı
 S = 2   # iç çizim çarpanı (kenar yumuşatma için 2x çizilip küçültülür)
 
 
@@ -54,6 +55,12 @@ class Harita:
         self.olcek = olcek
         self.x0 = (self.W - self.alan[0] * olcek) / 2
         self.y0 = (self.H - self.alan[1] * olcek) / 2 + self.H * 0.02
+        if self.W > self.H:   # Faz-62c yatay (16:9): alan başlık bandının (üst %17) altına sığdırılır; dikey yol değişmez
+            bas, son = self.H * 0.17, self.H * 0.95
+            olcek = min(self.W / (self.alan[0] * 1.08), (son - bas) / (self.alan[1] * 1.04))
+            self.olcek = olcek
+            self.x0 = (self.W - self.alan[0] * olcek) / 2
+            self.y0 = bas + ((son - bas) - self.alan[1] * olcek) / 2
         self.taban = self._taban()
 
     def p(self, xy) -> tuple[float, float]:
@@ -279,10 +286,14 @@ def kare(h: Harita, evre: dict, onceki: dict | None, u: float, baslik: str | Non
 
 def render(veri: dict, evre_id: str, sure_sn: float, cikti: Path, fps: int = 30, boyut=(1080, 1920),
            baslik: str | None = None, vf: str = "") -> dict:
-    h = Harita(veri, boyut)
+    cizim = boyut
+    if boyut[0] > boyut[1]:   # Faz-62c yatay: geniş tuvalde çizilip küçültülür (simge/yazı yoğunluğu dikeydekine yakın)
+        cizim = (round(boyut[0] * YATAY_TUVAL) // 2 * 2, round(boyut[1] * YATAY_TUVAL) // 2 * 2)
+        vf = ",".join(x for x in (f"scale={boyut[0]}:{boyut[1]}:flags=lanczos", vf) if x)
+    h = Harita(veri, cizim)
     evre, onceki = evre_bul(veri, evre_id)
     n = round(sure_sn * fps)
-    p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{boyut[0]}x{boyut[1]}",
+    p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{cizim[0]}x{cizim[1]}",
                           "-r", str(fps), "-i", "-", *(["-vf", vf] if vf else []), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p",
                           "-an", str(cikti)], stdin=subprocess.PIPE)
     for i in range(n):

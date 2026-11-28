@@ -194,6 +194,9 @@ def uret(klasor: Path) -> dict:
     t0 = time.time()
     plan_yolu = klasor / "cekim_plani.json"
     plan = json.loads(plan_yolu.read_text())
+    if plan.get("format") == "uzun":   # Faz-62c: 16:9 uzun belgesel ayrı kurgu; Shorts yolu aşağıda değişmeden
+        from motor.uretim import uzun_kurgu
+        return uzun_kurgu.uret(klasor)
     senaryo = json.loads((klasor / "senaryo.json").read_text())
     den = plan_denetim.denetle(plan)
     if not den["gecti"]:
