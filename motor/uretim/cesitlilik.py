@@ -22,15 +22,21 @@ def kayitlar(plan: dict, denetim: dict) -> list[dict]:
     return r
 
 
-def denetle(plan: dict, denetim: dict) -> tuple[list[str], dict]:
+def esikler(bicim: str | None, uc_d_sayisi: int) -> dict:
+    """Biçime göre geçerli çeşitlilik kuralları (Faz-64: planlayıcı da aynı eşikleri hedefler; tek kaynak)."""
     k = veri.kural("cesitlilik")
-    ks = kayitlar(plan, denetim)
-    if plan.get("format") == "uzun":   # Faz-62c: sınırlı 3D — "en az farklı" eşikleri 3D çekim sayısıyla ölçeklenir
-        n = (len(ks) + 1) // 2
+    if bicim == "uzun":   # Faz-62c: sınırlı 3D — "en az farklı" eşikleri 3D çekim sayısıyla ölçeklenir
+        n = (uc_d_sayisi + 1) // 2
         k = dict(k, **{x: min(k[x], n) for x in ("en_az_farkli_hareket", "en_az_farkli_plan_olcegi",
                                                   "en_az_farkli_yukseklik_sinifi", "en_az_farkli_aci_kovasi")})
-        if len(ks) < 3:
+        if uc_d_sayisi < 3:
             k["bir_hareketin_en_cok_payi"] = 1.0
+    return k
+
+
+def denetle(plan: dict, denetim: dict) -> tuple[list[str], dict]:
+    ks = kayitlar(plan, denetim)
+    k = esikler(plan.get("format"), len(ks))
     h = []
     for a, b in zip(ks, ks[1:]):
         if k["ardisik_ayni_plan_ve_hareket"] == "yasak" and (a["plan"], a["hareket"]) == (b["plan"], b["hareket"]):

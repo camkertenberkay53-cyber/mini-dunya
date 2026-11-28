@@ -173,11 +173,36 @@ def kamera_tercihleri(amac: str | None, eylem: str | None, odak_rol: str | None,
     return sira, yasak, g
 
 
+def kapsama_kazanci(ad: str, gecmis: list[dict], hedef: dict | None) -> int:
+    """Faz-64: çeşitlilik eşiğine ulaşmak için kalan 3D çekim sayısı daraldıysa (eksik ≥ kalan), bu türün getireceği
+    YENİ boyut değeri sayısı (hareket / yükseklik sınıfı / açı kovası). Eşik rahatken 0 → sıralama değişmez.
+    hedef: {"kalan": bu çekim dahil kalan 3D çekim, "esik": cesitlilik.esikler(...)}. Değerler kamera.yaml'daki gerçek
+    render parametreleridir (hareket türü, kamera yüksekliği, açı); etiket değil."""
+    if not hedef or not hedef.get("kalan"):
+        return 0   # 3D olmayan çekim ya da hedef verilmedi: sıralama Faz 5.x ile aynı
+    x = veri.kural("kamera")["cekimler"][ad]
+    e = hedef["esik"]
+    boyutlar = (("hareket", x["hareket"], e["en_az_farkli_hareket"]),
+                ("yukseklik", _yukseklik_sinifi(x["yukseklik_m"]), e["en_az_farkli_yukseklik_sinifi"]),
+                ("aci_kovasi", _aci_kovasi(x["aci_derece"]), e["en_az_farkli_aci_kovasi"]))
+    kazanc = 0
+    for alan, deger, en_az in boyutlar:
+        gorulen = {g[alan] for g in gecmis}
+        if en_az - len(gorulen) >= hedef["kalan"] and deger not in gorulen:
+            kazanc += 1
+    # bir hareketin payı sınırı: bu tür seçilirse sınır kesin aşılacaksa en sona (seçilmesi ihlali kesinleştirir)
+    if hedef.get("toplam") and (sum(1 for g in gecmis if g["hareket"] == x["hareket"]) + 1) / hedef["toplam"] > \
+            e["bir_hareketin_en_cok_payi"]:
+        kazanc -= 10
+    return kazanc
+
+
 def cekim_turu_adaylari(mesafe: str, hareketli: bool, gecmis: list[dict], indeks: int, tercih: str | None = None,
                         ayrilmis: set | None = None, tercih_sirasi: list[str] | None = None,
-                        yasak: set | None = None) -> list[str]:
-    """Uygun türler, sıralı: (1) başka cümlenin ayırdığı tür sona, (2) önceki çekimle aynı hareket sona (çeşitlilik
-    kuralı), (3) anlatı tercih sırası, (4) tekrar / aynı yükseklik / aynı açı cezası."""
+                        yasak: set | None = None, cesitlilik_hedefi: dict | None = None) -> list[str]:
+    """Uygun türler, sıralı: (1) başka cümlenin ayırdığı tür sona, (1b) Faz-64: eşiğe ulaşmak için yer kalmadıysa yeni
+    hareket/yükseklik/açı getiren türler öne, (2) önceki çekimle aynı hareket sona (çeşitlilik kuralı), (3) anlatı
+    tercih sırası, (4) tekrar / aynı yükseklik / aynı açı cezası."""
     kat = veri.kural("kamera")["cekimler"]
     tercih_sirasi = list(tercih_sirasi or ([tercih] if tercih else []))
     adaylar = [ad for ad, x in kat.items() if mesafe in x["mesafeler"] and (x.get("gerekli") != "hareketli" or hareketli)
@@ -198,7 +223,8 @@ def cekim_turu_adaylari(mesafe: str, hareketli: bool, gecmis: list[dict], indeks
         if onceki:
             p += 3 * (_yukseklik_sinifi(x["yukseklik_m"]) == onceki["yukseklik"])
             p += 2 * (_aci_kovasi(x["aci_derece"]) == onceki["aci_kovasi"])
-        return (ad in ayrilmis, ayni_hareket, sira * 4 + p, (adaylar.index(ad) - indeks) % len(adaylar))
+        return (ad in ayrilmis, -kapsama_kazanci(ad, gecmis, cesitlilik_hedefi), ayni_hareket, sira * 4 + p,
+                (adaylar.index(ad) - indeks) % len(adaylar))
     return sorted(adaylar, key=anahtar)
 
 
@@ -360,7 +386,7 @@ def insan_olcegi(c: dict, donem: str) -> dict:
 
 def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum: int,
               ayrilmis: set | None = None, karsi_donemler: list[str] | None = None,
-              harita: dict | None = None) -> tuple[dict, list[str], dict]:
+              harita: dict | None = None, cesitlilik_hedefi: dict | None = None) -> tuple[dict, list[str], dict]:
     """taslak: sahne_bolucu.cekimlere_bol çıktısı. Dönüş: (plan çekimi, eksikler, çeşitlilik kaydı)."""
     n = taslak["niyet"]
     c = {"id": taslak["id"], "cumleler": [taslak["cumle"]], "sure_sn": taslak["sure_sn"], "tur": n["tur"], "amac": taslak.get("amac")}
@@ -432,7 +458,8 @@ def cekim_kur(taslak: dict, donem: str, en_boy: float, gecmis: list[dict], tohum
     odak_rol = veri.takimlar()[karakterler[odak_i]["takim"]].get("rol")
     tercih, yasak, gerekce = kamera_tercihleri(taslak.get("amac"), n.get("eylem"), odak_rol, hareketli,
                                                len(karakterler), n.get("kamera"))
-    adaylar = cekim_turu_adaylari(mesafe, hareketli, gecmis, len(gecmis), n.get("kamera"), ayrilmis, tercih, yasak)
+    adaylar = cekim_turu_adaylari(mesafe, hareketli, gecmis, len(gecmis), n.get("kamera"), ayrilmis, tercih, yasak,
+                                  cesitlilik_hedefi)
     from motor.uretim import uyum
     nesne = next((r["nesne"] for r in n.get("roller", []) if r.get("nesne")), None)
     tepe = uyum.nesne_tepesi(karakterler[odak_i]["takim"], nesne) if nesne else None
