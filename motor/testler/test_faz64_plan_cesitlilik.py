@@ -300,6 +300,7 @@ def kapilar(monkeypatch):
     monkeypatch.setattr(sozlesme, "senaryo_denetle", lambda s, a: [])
     monkeypatch.setattr(anlati, "shorts_denetle", lambda s, sr: ([], {}))
     monkeypatch.setattr(ou, "EN_AZ_GORSEL", {"shorts": 0, "uzun": 0})
+    monkeypatch.setattr(ou, "oyuncu_hatalari", lambda s, k, kat=None: [])   # Faz-64e: gerçek planlayıcı kontrolü test_faz64e'de
     return ou.konu_kur(PILOT, "Otlukbeli Savaşı", "shorts")
 
 

@@ -529,6 +529,7 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
         satir.append("Kullanılabilir tarihî görsel yok: 'gorsel25d' niyeti KULLANMA.")
     satir.append("3d niyeti yukarıdaki rol/eylem/arazi kurallarına uyar; belirli kişiler temsilî karakterle gösterilir.")
     satir.append(ROL_KURALI)
+    satir.append(rol_katalogu_kurali(rol_katalogu(konu)))
     satir.append(f"3D ÇEŞİTLİLİK (zorunlu): en az {_shorts_3d_esik()[0]} 3D çekim gerekir (en az 3 '3d' cümle yaz; uzun "
                  f"3D cümle iki çekim olur); 3D cümlelerde 'mesafe' en az {_shorts_3d_esik()[1]} farklı değer almalı "
                  "(en az biri 'orta', biri 'uzak'); eylemleri çeşitlendir.")
@@ -556,6 +557,99 @@ def kanca_kurali() -> str:
     return (f"KANCA (ilk cümle): EN FAZLA 4–5 kelime; ölçülen seslendirmesi {hedef:.1f} saniyenin ALTINDA olmalı "
             f"(üst sınır {ust:.1f} sn, aşılırsa senaryo reddedilir). Uzun sayı/yıl ve çok heceli sözcük yerine kısa bir soru "
             "ya da çarpıcı tek bir ifade kullan.")
+
+
+# Faz-64e: rolün ADININ dolu olması yetmez; planlayıcı oyuncuyu secici.sec(rol, dönem, mesafe, eylem, nesne) ile
+# kurar (rol = derlenmiş takımların 'rol' alanı, dönem = takımın kit dönemi; eylem animasyonla, mesafe kaliteyle
+# sınanır). Katalog ve kapı AYNI fonksiyonu (planlayici.oyuncu_sec) çağırır: ölçülen, varsayılan değil.
+KATALOG_MESAFELERI = ("orta", "uzak")
+
+
+def _eylemler() -> list[str]:
+    from motor.uretim import veri
+    return sorted({e for a in veri.kural("animasyon")["animasyonlar"].values() for e in a.get("eylemler", [])})
+
+
+def rol_katalogu(konu: dict) -> dict[str, dict[str, list[str]]]:
+    """{dönem: {rol: [oyuncuya dönüşebildiği eylemler]}} — konunun dönemleri için, orta ya da uzak planda."""
+    from motor.uretim import planlayici, veri
+    roller = sorted({t["rol"] for t in veri.takimlar().values()})
+    kat: dict[str, dict[str, list[str]]] = {}
+    for d in konu.get("donemler") or []:
+        for r in roller:
+            ok = [e for e in _eylemler() if any(planlayici.oyuncu_sec(
+                {"tur": "3d", "eylem": e, "mesafe": m, "roller": [{"rol": r, "donem": d}]}, d)[0]
+                for m in KATALOG_MESAFELERI)]
+            if ok:
+                kat.setdefault(d, {})[r] = ok
+    return kat
+
+
+def rol_katalogu_kurali(kat: dict[str, dict[str, list[str]]]) -> str:
+    if not kat:
+        return "3D ROL KATALOĞU: bu konu için oyuncuya dönüşebilen rol yok — '3d' niyeti KULLANMA."
+    satir = ["3D ROL KATALOĞU (TAM LİSTE; yalnız bunlar oyuncuya dönüşür — listede olmayan rol, dönem ya da "
+             "rol-eylem eşleşmesi YAZMA; 'donem' alanına aşağıdaki dönem kimliğini aynen yaz):"]
+    for d, roller in kat.items():
+        for r, ey in roller.items():
+            satir.append(f"- donem '{d}', rol '{r}': eylem ∈ {{{', '.join(ey)}}}")
+    return "\n".join(satir)
+
+
+def _katla(x: str) -> str:
+    """Büyük/küçük harf ve Türkçe harf farkını katlar ('Süvari' → 'suvari', 'Osmanlı-15yy' → 'osmanli-15yy')."""
+    x = x.strip().replace("İ", "i").replace("I", "ı").lower().translate(str.maketrans("çğıöşü", "cgiosu"))
+    return re.sub(r"[\s_]+", "_", x)
+
+
+def rol_adlarini_esle(s: dict, konu: dict) -> list[str]:
+    """Güvenli eşleme: yalnız harf/aksan/büyük-küçük farkıyla katalogdaki bir rol ya da konu dönemine BİREBİR denk gelen
+    adlar düzeltilir (uydurma eş anlamlı yok: 'sipahi' → 'suvari' YAPILMAZ). Dönüş: yapılan eşlemeler."""
+    from motor.uretim import veri
+    roller = {_katla(r): r for r in {t["rol"] for t in veri.takimlar().values()}}
+    donemler = {_katla(d): d for d in konu.get("donemler") or []}
+    yapilan = []
+    for c in s.get("cumleler") or []:
+        n = c.get("niyet") or {}
+        if n.get("tur") != "3d" or not isinstance(n.get("roller"), list):
+            continue
+        for r in n["roller"]:
+            if not isinstance(r, dict):
+                continue
+            for alan, sozluk in (("rol", roller), ("donem", donemler)):
+                v = r.get(alan)
+                if isinstance(v, str) and v not in sozluk.values() and _katla(v) in sozluk:
+                    r[alan] = sozluk[_katla(v)]
+                    yapilan.append(f"{c.get('id')}: {alan} '{v}' → '{r[alan]}'")
+    return yapilan
+
+
+def oyuncu_hatalari(s: dict, konu: dict, kat: dict | None = None) -> list[str]:
+    """Her 3D rol öğesi planlayıcıda (planlayici.oyuncu_sec, plan ile aynı dönem varsayılanı) oyuncuya dönüşmeli."""
+    from motor.uretim import planlayici
+    donem = (konu.get("donemler") or [None])[0]   # uretim_hatti.planla ile aynı varsayılan dönem
+    h = []
+    for c in s.get("cumleler") or []:
+        n = c.get("niyet") or {}
+        if n.get("tur") != "3d" or not isinstance(n.get("roller"), list):
+            continue
+        for i, r in enumerate(n["roller"]):
+            if not isinstance(r, dict) or not isinstance(r.get("rol"), str) or not r["rol"].strip():
+                continue   # rol_hatalari raporlar
+            secilen, eksik = planlayici.oyuncu_sec(dict(n, roller=[r]), donem)
+            if secilen:
+                continue
+            kat = rol_katalogu(konu) if kat is None else kat
+            rd = r.get("donem") or donem
+            if rd not in kat:
+                ipucu = f"geçerli dönemler: {sorted(kat)}"
+            elif r["rol"] not in kat[rd]:
+                ipucu = f"'{rd}' döneminde geçerli roller: {sorted(kat[rd])}"
+            else:
+                ipucu = f"'{rd}' / '{r['rol']}' için geçerli eylemler: {', '.join(kat[rd][r['rol']])}"
+            h.append(f"{c.get('id')}: 3D roller[{i}] ('{r['rol']}', {rd}) oyuncuya dönüşmüyor — "
+                     f"{eksik[0] if eksik else 'uygun karakter yok'}; {ipucu}")
+    return h
 
 
 def rol_hatalari(s: dict) -> list[str]:
@@ -602,6 +696,7 @@ def senaryo_denetle(s: dict, ara: dict, konu: dict, gorseller: list[dict], olc=N
         if n["tur"] == "bilgi_karti":
             h.append(f"{c['id']}: bilgi_karti kullanılmaz; 3d, harita ya da gorsel25d seç")
     h += rol_hatalari(s)
+    h += oyuncu_hatalari(s, konu)   # Faz-64e: rol adı dolu ama planlayıcı kuramıyorsa plan aşamasına geçmez
     h += [x for x in gorsel_kapisi(s.get("format") or "shorts", gorseller, s) if "indirildi" not in x]
     en_az_3d, en_az_mesafe = _shorts_3d_esik()
     mesafeler = {c["niyet"].get("mesafe", "orta") for c in s["cumleler"] if c["niyet"]["tur"] == "3d"}
@@ -737,6 +832,9 @@ def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme
             continue
         s = normalize_senaryo(s, gorseller=gorseller)   # Faz-63: şema doğrulamasından ÖNCE (ve surum/konu
         #                                                 eklenmeden önce: wrapper açılabilsin); Faz-63e: 2.5D çekim metni
+        if isinstance(s, dict):   # Faz-64e: yalnız harf/aksan farkı olan rol/dönem adları katalogla eşlenir
+            for x in rol_adlarini_esle(s, konu):
+                log("senaryo", f"deneme {d}: rol eşlemesi {x}")
         if isinstance(s, dict):
             s.setdefault("surum", 1)
             s["konu"] = konu["kimlik"]

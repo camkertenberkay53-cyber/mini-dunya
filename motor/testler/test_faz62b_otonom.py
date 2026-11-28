@@ -127,6 +127,7 @@ def denetim_yalitik(monkeypatch):
     sure = {"t": 50.0}
     monkeypatch.setattr(ou, "EN_AZ_GORSEL", {"shorts": 1, "uzun": 1})   # en az görsel kapısı test_faz62d'de sınanır
     monkeypatch.setattr(ou, "_shorts_3d_esik", lambda: (0, 0))         # 3D çeşitlilik ön kapısı test_faz64'te sınanır
+    monkeypatch.setattr(ou, "oyuncu_hatalari", lambda s, k, kat=None: [])   # Faz-64e: gerçek planlayıcı kontrolü test_faz64e'de
     monkeypatch.setattr(sahne_bolucu, "zaman_cizelgesi", lambda s, sr: None)
     monkeypatch.setattr(sahne_bolucu, "cekimlere_bol", lambda s, cz, havuz=None: [])
     monkeypatch.setattr(sahne_bolucu, "toplam_sure", lambda c: sure["t"])
