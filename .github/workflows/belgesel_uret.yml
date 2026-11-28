@@ -101,7 +101,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/motor-ortami
-        with: {ses: "true", varlik: gerekli}
+        with: {bpy: "true", ses: "true", varlik: gerekli}   # bpy: plan denetimi binek GLB'lerini istek üzerine üretir
       - name: Biçim kontrolü
         run: |
           MOD="${{ inputs.mod || 'shorts' }}"
@@ -133,6 +133,14 @@ jobs:
           path: ${{ env.IS }}
           retention-days: 14
           if-no-files-found: error
+      - name: Binek artifact'ı (plan sırasında üretilen GLB'ler; render/kurgu aynı dosyaları kullanır)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: binek
+          path: /tmp/motor_onbellek/binek
+          retention-days: 3
+          if-no-files-found: ignore
       - name: 2.5D görseller artifact'ı
         if: success()
         uses: actions/upload-artifact@v4
@@ -165,6 +173,9 @@ jobs:
         with: {bpy: "true", godot: "true", varlik: gerekli}
       - uses: actions/download-artifact@v4
         with: {name: plan, path: "${{ env.IS }}"}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {name: binek, path: /tmp/motor_onbellek/binek}
       - name: Render
         run: |
           python3 -u otonom_uret.py render --is "$IS" --kimlik "${{ needs.plan.outputs.kimlik }}" \
@@ -191,6 +202,9 @@ jobs:
       - uses: actions/download-artifact@v4
         continue-on-error: true
         with: {name: gorseller, path: assets/tarihi_gorsel}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {name: binek, path: /tmp/motor_onbellek/binek}
       - uses: actions/download-artifact@v4
         with:
           pattern: render-*

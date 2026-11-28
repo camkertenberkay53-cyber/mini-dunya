@@ -326,6 +326,12 @@ def test_is_akisi_paralel_render_ve_artifactlar():
     assert yuk and "*.mp4" in yuk[-1]["with"]["path"]
     indir = [a for a in j["kurgu"]["steps"] if str(a.get("uses", "")).startswith("actions/download-artifact")]
     assert any(a["with"].get("pattern") == "render-*" and a["with"].get("merge-multiple") for a in indir)
+    # plan sırasında üretilen binek GLB'leri render ve kurgu işlerine aynen devredilir (önbellek anahtarı tutarlı)
+    for is_ in ("render", "kurgu"):
+        assert any(a.get("with", {}).get("name") == "binek" for a in j[is_]["steps"]
+                   if str(a.get("uses", "")).startswith("actions/download-artifact")), is_
+    plan_ortam = next(a for a in j["plan"]["steps"] if a.get("uses") == "./.github/actions/motor-ortami")
+    assert plan_ortam["with"]["bpy"] == "true"
 
 
 def test_ortak_eylem_dogrulamali_kurulum():
