@@ -304,6 +304,8 @@ def kapilar(monkeypatch):
 
 
 def _c(i, tur="3d", **n):
+    if tur == "3d":   # Faz-64c: senaryo kapısı 3D niyetinde rol ister
+        n.setdefault("roller", [{"rol": "suvari", "donem": "osmanli-15yy"}])
     return {"id": f"S{i}", "metin": "m", "kartlar": ["C1"], "niyet": {"tur": tur, **n}}
 
 

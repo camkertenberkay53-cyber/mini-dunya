@@ -113,6 +113,8 @@ def test_gorsel_lisans_kapisindan_gecmeyen_kullanilmaz(tmp_path, monkeypatch):
 # ================================================================== senaryo denetimi ve yeniden deneme
 
 def _cumle(i, tur="3d", **n):
+    if tur == "3d":   # Faz-64c: 3D niyetinde oyuncuya dönüşecek rol zorunlu
+        n.setdefault("roller", [{"rol": "suvari", "donem": "osmanli-15yy"}])
     return {"id": f"S{i}", "metin": f"cümle {i}", "kartlar": ["C1"], "niyet": {"tur": tur, **n}}
 
 
