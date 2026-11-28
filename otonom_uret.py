@@ -60,6 +60,10 @@ UZUN_KART = 80                       # uzun anlatı daha çok doğrulanmış bil
 EN_COK_GORSEL_UZUN = 48
 EN_COK_GEMINI_CAGRI = 32             # uzun senaryo için toplam çağrı tavanı (sonsuz yeniden deneme yok)
 KELIME_HIZI = 2.3                    # ilk bölüm için kelime/sn tahmini; sonra ölçülen TTS'den güncellenir
+ACIKLAMA_KURALI = ("'aciklama' ZORUNLUDUR ve niyetin kendi alanıdır (gorsel25d nesnesinin İÇİNE yazılmaz): sahnenin "
+                   "görsel kompozisyonunu ve çekim tarifini anlatır — görselde ne/kim görünüyor, kadrajın odağı, kamera "
+                   "hareketi (ör. \"Bellini portresi: sultanın profiline yavaş yakınlaşma\"). Anlatı cümlesini tekrarlama; "
+                   "görselde olmayan bir şey yazma.")
 HAREKETLER = ("zoom_in", "zoom_out", "push_in", "pull_back", "pan_sol", "pan_sag", "pan_yukari", "pan_asagi", "capraz", "sabit")
 GORSEL_EN_COK_KULLANIM = 1          # Faz-62d: bir görsel dosyası bir videoda en çok bir kez
 
@@ -261,7 +265,33 @@ def id_adayi(i) -> str | None:
     return f"S{i}" if _RAKAM_ID.match(i) else None
 
 
-def normalize_senaryo(veri, kanca_final: bool = True):
+def _dolu(x) -> bool:
+    return isinstance(x, str) and bool(x.strip())
+
+
+def gorsel25d_aciklamasi(niyet: dict, gorseller: list[dict] | None) -> tuple[str | None, str | None]:
+    """Faz-63e: 2.5D niyetinin çekim metni ('aciklama', NİYET düzeyinde — şemada gorsel25d nesnesi içinde bu alan yok
+    ve additionalProperties: false). Dönüş (metin, kaynak). Yalnız mevcut veriden, uydurmadan:
+      1) niyet.aciklama dolu → aynen ('mevcut');
+      2) niyet.metin dolu → ekleme yok (planlayıcı c['metin'] = metin; doğrulayıcı da kabul eder) ('metin');
+      3) yanlış yere konmuş gorsel25d.aciklama ya da düz biçimdeki iç açıklama → o metin ('ic');
+      4) indirilen görselin kaydındaki açıklama (Commons/sorgu meta verisi; görselde ne olduğu) ('gorsel_kaydi');
+      yoksa (None, None): doğrulayıcı açık hata verir. Cümle (anlatı) metni kullanılmaz: o görsel tarif değildir."""
+    if _dolu(niyet.get("aciklama")):
+        return niyet["aciklama"], "mevcut"
+    if _dolu(niyet.get("metin")):
+        return None, "metin"
+    ic = niyet.get("gorsel25d") if isinstance(niyet.get("gorsel25d"), dict) else {}
+    if _dolu(ic.get("aciklama")):
+        return ic["aciklama"].strip(), "ic"
+    gid = ic.get("gorsel_id") or niyet.get("gorsel_id")
+    for g in gorseller or []:
+        if g.get("gorsel_id") == gid and _dolu(g.get("aciklama")):
+            return g["aciklama"].strip()[:120], "gorsel_kaydi"
+    return None, None
+
+
+def normalize_senaryo(veri, kanca_final: bool = True, gorseller: list[dict] | None = None):
     """Şema doğrulamasından hemen önce deterministik normalizasyon (kopya döner; girdi değişmez):
     - dict değilse aynen döner (doğrulayıcı açık hata verir).
     - Kökte YALNIZCA 'senaryo' anahtarı varsa ve değeri dict ise içi köke çıkar (iç içe sarmalayıcı da aynı kuralla);
@@ -275,6 +305,8 @@ def normalize_senaryo(veri, kanca_final: bool = True):
       mevcut ve dönüşen kimliklerle çakışmayan en küçük boş S<n> kimliğini alır (şema deseni ^S[0-9]+$).
     - Faz-63c: kanca_final=True ise 'kanca' = ilk cümlenin, 'final' = son cümlenin KİMLİĞİ (şemada ve anlati/kurgu'da
       bu alanlar cümle kimliğidir, metin değil). Cümle metni ve sırası değişmez; liste boşsa dokunulmaz.
+    - Faz-63e: gorseller verilirse 2.5D niyetinde eksik/boş 'aciklama' (niyet düzeyi) gorsel25d_aciklamasi ile
+      yalnız mevcut veriden tamamlanır; yanlış yerdeki gorsel25d.aciklama niyet düzeyine taşınır. Veri yoksa eklenmez.
     - Bilinmeyen alanlar silinmez; işlem idempotenttir."""
     import copy
     if not isinstance(veri, dict):
@@ -316,6 +348,16 @@ def normalize_senaryo(veri, kanca_final: bool = True):
             n += 1
         c["id"] = f"S{n}"
         kullanilan.add(c["id"])
+    if gorseller is not None:
+        for c in cs:
+            n = c.get("niyet")
+            if not isinstance(n, dict) or n.get("tur") != "gorsel25d" or _dolu(n.get("aciklama")):
+                continue
+            metin, kaynak = gorsel25d_aciklamasi(n, gorseller)
+            if kaynak in ("ic", "gorsel_kaydi") and (n.get("aciklama") is None or isinstance(n.get("aciklama"), str)):
+                n["aciklama"] = metin
+                if kaynak == "ic":
+                    del n["gorsel25d"]["aciklama"]   # taşındı (şema iç nesnede bu alana izin vermez)
     if kanca_final and cs:
         v["kanca"], v["final"] = cs[0]["id"], cs[-1]["id"]
     return v
@@ -466,7 +508,7 @@ def gorsel_kurallari(konu: dict, gorseller: list[dict]) -> str:
         satir.append("Bu konuda harita evresi yok: 'harita' niyeti KULLANMA.")
     if gorseller:
         satir.append("gorsel25d niyeti: {\"tur\": \"gorsel25d\", \"gorsel25d\": {\"gorsel_id\": <kimlik>}, \"aciklama\": "
-                     "<görselde ne olduğu, kısa>} (aciklama ZORUNLU) — yalnızca şu "
+                     "<çekim tarifi>} — " + ACIKLAMA_KURALI + " Yalnızca şu "
                      f"görseller (anlatılan cümleyle ilgili olanı seç; HER GÖRSEL EN ÇOK BİR KEZ; en az "
                      f"{EN_AZ_GORSEL['shorts']} farklı görsel kullan): "
                      + "; ".join(f"{g['gorsel_id']} = {g['aciklama']}" for g in gorseller))
@@ -527,7 +569,8 @@ def senaryo_uret(saglayici, konu: dict, ara: dict, gorseller: list[dict], deneme
             hatalar = [f"yanıt JSON değil: {e}"]
             gecmis.append({"deneme": d, "hatalar": hatalar})
             continue
-        s = normalize_senaryo(s)   # Faz-63: şema doğrulamasından ÖNCE (ve surum/konu eklenmeden önce: wrapper açılabilsin)
+        s = normalize_senaryo(s, gorseller=gorseller)   # Faz-63: şema doğrulamasından ÖNCE (ve surum/konu
+        #                                                 eklenmeden önce: wrapper açılabilsin); Faz-63e: 2.5D çekim metni
         if isinstance(s, dict):
             s.setdefault("surum", 1)
             s["konu"] = konu["kimlik"]
@@ -745,8 +788,8 @@ def niyet_kurallari_uzun(konu: dict, gorseller: list[dict], katalog: list[dict],
                      + ". Aynı evre başka cümlede ancak FARKLI 'metin' ile kullanılabilir.")
     bos = [g for g in gorseller if kullanim.get(g["gorsel_id"], 0) < GORSEL_EN_COK_KULLANIM]
     if bos:
-        satir.append('gorsel25d: {"tur": "gorsel25d", "gorsel_id": <kimlik>, "aciklama": "<bu cümlede görselin ne '
-                     'gösterdiği, BENZERSİZ>", "hareket": <' + "|".join(HAREKETLER) + '>} — HER GÖRSEL BELGESEL BOYUNCA '
+        satir.append('gorsel25d: {"tur": "gorsel25d", "gorsel_id": <kimlik>, "aciklama": "<çekim tarifi, BENZERSİZ>", '
+                     '"hareket": <' + "|".join(HAREKETLER) + '>} — ' + ACIKLAMA_KURALI + ' HER GÖRSEL BELGESEL BOYUNCA '
                      'EN ÇOK BİR KEZ; henüz kullanılmamış görseller: '
                      + "; ".join(f"{g['gorsel_id']} = {g['aciklama']}" + (f" [sahne: {g['sahne']}]" if g.get("sahne") else "")
                                  for g in bos))
@@ -815,11 +858,12 @@ def niyet_normalle(n, gorseller: list[dict], katalog: list[dict], konu: dict) ->
         gid = n.get("gorsel_id") or (n.get("gorsel25d") or {}).get("gorsel_id")
         if gid not in {g["gorsel_id"] for g in gorseller}:
             return None, f"gorsel25d: gorsel_id listede yok ({gid})"
-        if not str(n.get("aciklama") or "").strip():
+        aciklama, _ = gorsel25d_aciklamasi(n, gorseller)   # Faz-63e: Shorts ile ortak, yalnız mevcut veriden
+        if not aciklama:
             return None, "gorsel25d: 'aciklama' zorunlu"
         hareket = n.get("hareket") if n.get("hareket") in HAREKETLER else "zoom_in"
         return {"tur": "gorsel25d", "gorsel25d": {"gorsel_id": gid, "hareket": hareket},
-                "aciklama": str(n["aciklama"]).strip()[:120]}, None
+                "aciklama": str(aciklama).strip()[:120]}, None
     if tur == "3d":
         x = next((x for x in katalog if x["katalog"] == n.get("katalog")), None)
         if not x:

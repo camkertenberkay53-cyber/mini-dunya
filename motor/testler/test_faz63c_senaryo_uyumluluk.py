@@ -162,7 +162,7 @@ def test_uzun_birlesik_senaryo_ve_bolum_cagrisi_adaptoru_kullanir():
     import inspect
     k = inspect.getsource(ou.uzun_senaryo_uret)
     assert "s = normalize_senaryo(kur(bolum_cs))" in k and "kanca_final=False" in k
-    assert "normalize_senaryo(s)" in inspect.getsource(ou.senaryo_uret)
+    assert "normalize_senaryo(s, gorseller=gorseller)" in inspect.getsource(ou.senaryo_uret)
 
 
 # ================================================================== 3) tartışmalı kaynak ihtiyatı
