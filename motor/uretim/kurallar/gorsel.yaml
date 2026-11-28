@@ -246,5 +246,9 @@ gorsel25d:
     # gereksiz). 0 → A2 mikro davranışı (kaynak çözünürlükte tuval). 1.25: CI kalite karşılaştırmasında (½ çöz. SSIM/keskinlik)
     # 1.1'e göre yüz/sarık detayını daha iyi korur; eskiye göre bellek −%79, hazırlık −%40.
     tuval_hareket: {acik: true, zoom_tavani: 1.06, pay: 0.8, olcek_kat: 1.25}
+  # Faz-65: yumuşak 2.5D kamera (bütün 2.5D çekimler, iki biçim): titreşim/açı salınımı, yanal yörünge ve portre nefesi
+  # kapalı; zoom 1.0–zoom_tavani aralığına orantılı ölçeklenir (yön korunur); kaydırma o zoomda görüntü içinde kalır
+  # (pay: izinli sınırın oranı); eğri ease in-out. Tuval modunun 1.06 tavanı ayrıca geçerlidir.
+  yumusak_hareket: {acik: true, zoom_tavani: 1.08, pay: 0.9}
   # Dolguya düşük opaklıklı, yerel standart sapmaya uyarlı ince gürültü/tarama dokusu (yama kopyalama YOK).
   doku_doldurma: {acik: true, opaklik: 0.5, pencere_px: 61, tarama_x: 1.2, tarama_y: 0.5}

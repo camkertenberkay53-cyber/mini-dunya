@@ -14,3 +14,6 @@ kayit_sesleri:
     - {eylemler: [kilic_saldirisi, savas], desen: "varlik/oga/kilic_starninjas/sword - StarNinjas/sword.*.ogg", duzey: 0.16, aralik_sn: 0.9}
     - {eylemler: [kalkan_darbesi, darbe_alma, geri_savrulma], desen: "varlik/oga/rpg_ses/RPG Sound Pack/inventory/metal-small*.wav", duzey: 0.2, aralik_sn: 1.2}
     - {eylemler: [yuruyus, toren_yuruyusu], desen: "varlik/oga/rpg_ses/RPG Sound Pack/inventory/chainmail*.wav", duzey: 0.05, aralik_sn: 0.55}
+# Faz-65: dikey (Shorts) altyazı kutusu alt güvenli bantta: kutunun alt kenarı ekran yüksekliğinin bu oranı kadar yukarıda
+# (alt %20–24; YouTube Shorts başlık/kanal satırının hemen üstü). Yüzleri ve harita oklarını kapatmaz.
+altyazi_dikey_alt_pay: 0.22

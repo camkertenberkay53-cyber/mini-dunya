@@ -68,7 +68,9 @@ def planla(klasor: Path, tohum: int = 7) -> dict:
         # yalnızca SONRAKİ cümlelerin tercih ettiği kamera türleri saklı tutulur
         tercihler = {x["niyet"].get("kamera") for x in taslaklar[i + 1:]} - {None, t["niyet"].get("kamera")}
         hedef = {"kalan": sum(1 for j in uc_d if j >= i), "toplam": len(uc_d), "esik": esik}   # Faz-64
-        c, eks, kayit = planlayici.cekim_kur(t, donem, w / hgt, gecmis, tohum + i, tercihler, list(konu["donemler"]),
+        metin = next((x["metin"] for x in sen["cumleler"] if x["id"] == t["cumle"]), None)   # Faz-65: birlik kuralı için
+        c, eks, kayit = planlayici.cekim_kur(dict(t, metin=metin), donem, w / hgt, gecmis, tohum + i, tercihler,
+                                             list(konu["donemler"]),
                                              konu.get("harita"), hedef)
         cekimler.append(c)
         if kayit:

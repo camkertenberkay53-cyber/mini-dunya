@@ -26,7 +26,7 @@ import numpy as np
 
 from motor.uretim import veri
 
-SURUM = "g25-kalite-2"
+SURUM = "g25-kalite-3"   # Faz-65: yumuşak kamera (titreşimsiz, zoom ≤ 1.08)
 
 
 def ayarlar() -> dict:
@@ -290,6 +290,53 @@ def hareket(ad_ya_da_dict, kaynak: tuple[int, int], W: int, H: int, guc: float, 
         bas[2] = 1 + (bas[2] - 1) * oran
         son[2] = 1 + (son[2] - 1) * oran
     return {"bas": bas, "son": son, "ease": "inout"}, {"zoom_tavani": round(tavan, 3), "zoom_kisma": round(oran, 3)}
+
+
+# ------------------------------------------------------------------ Faz-65: yumuşak 2.5D kamera
+YUMUSAK_VARSAYILAN = {"acik": True, "zoom_tavani": 1.08, "pay": 0.9}
+
+
+def yumusak_ayar() -> dict:
+    return {**YUMUSAK_VARSAYILAN, **(ayarlar().get("yumusak_hareket") or {})}
+
+
+def _kayma_siniri(z: float) -> float:
+    """sahne_render._matris: görüntü ekranı doldururken z zoomunda merkezin 0.5'ten en çok sapabileceği oran."""
+    return max(0.0, 0.5 - 1.0 / (2 * 1.04 * max(z, 1.0)))
+
+
+def yumusak_kamera(hareket, guc: float = 1.0, tavan: float = 1.08, pay: float = 0.9) -> dict:
+    """Titreşimsiz, yavaş ve kontrollü 2.5D hareket: zoom 1.0–tavan (hareketin yönü korunur, orantılı ölçeklenir),
+    kaydırma o zoomda görüntünün içinde kalır (kenar yansıması/takılma yok), eğri her zaman ease in-out (smoothstep).
+    guc hareketin içine gömülür (sahne_render'a guc=1 verilir) ki tavan aşılmasın."""
+    from kaos.sinema import kamera
+    if isinstance(hareket, dict):
+        bas, son = list(hareket["bas"]), list(hareket["son"])
+    else:
+        b, s_, _e = kamera.HAREKETLER.get(hareket, kamera.HAREKETLER["zoom_in"])
+        bas, son = list(b), list(s_)
+    g = max(0.0, float(guc))
+    bas = [0.5 + (bas[0] - 0.5) * g, 0.5 + (bas[1] - 0.5) * g, 1 + (bas[2] - 1) * g]
+    son = [0.5 + (son[0] - 0.5) * g, 0.5 + (son[1] - 0.5) * g, 1 + (son[2] - 1) * g]
+    zmax = max(bas[2], son[2], 1.0)
+    k = (tavan - 1.0) / (zmax - 1.0) if zmax > tavan else 1.0
+    for v in (bas, son):
+        v[2] = round(max(1.0, 1 + (v[2] - 1) * k), 4)
+        m = _kayma_siniri(v[2]) * pay
+        v[0] = round(0.5 + float(np.clip(v[0] - 0.5, -m, m)), 4)
+        v[1] = round(0.5 + float(np.clip(v[1] - 0.5, -m, m)), 4)
+    return {"bas": bas, "son": son, "ease": "inout"}
+
+
+def yumusat(g: dict, a: dict | None = None) -> dict:
+    """2.5D çekim girdisi (plan c['gorsel25d']) → yumuşatılmış kopya: hareket sözlüğe çevrilir, güç gömülür;
+    titreşim (sarsinti), yanal salınım (yorunge) kapatılır. Özgün sözlük değişmez."""
+    a = a or yumusak_ayar()
+    y = dict(g)
+    y["hareket"] = yumusak_kamera(g.get("hareket", "zoom_in"), float(g.get("guc", 1.0)), float(a["zoom_tavani"]),
+                                  float(a["pay"]))
+    y.update({"guc": 1.0, "sarsinti": 0.0, "yorunge": 0.0})
+    return y
 
 
 def tuval_hareketi(kam: dict, tavan: float = 1.06, pay: float = 0.8) -> dict:

@@ -16,3 +16,16 @@ kalabaliklar:
     animasyon: Idle_Loop
     golge: false
     sadelestir_oran: 0.10     # uzak kalabalıkta üçgenlerin ~%10'u (Godot LOD üreticisi); görünüm farkı yok, maliyet düşer
+
+# Faz-65: toplu askerî ölçek ("ordu zafer elde etti") anlatan GENİŞ kadrajlı (mesafe uzak ya da yüksek/kuşbakışı kamera)
+# 3D çekimde tek asker yerine birlik: rollerin toplam adedi en_az'ın altındaysa askerî rolün adedi hedef'e tamamlanır.
+# Yeni rol/karakter/animasyon uydurulmaz: aynı rol, aynı uygun karakter havuzu (oyuncu_sec) ve aynı eylemle çoğalır;
+# komutan/sivil çoğaltılmaz. Kökler küçük harf ve Türkçe harfler katlanmış; 'birlik' yalnız askerî biçimleriyle.
+birlik:
+  en_az: 4
+  hedef: 6
+  genis_kamera_en_az_yukseklik_m: 4.0
+  haric_roller: [komutan, isci_sivil]
+  kokler: [ordu, hucum, zafer, asker, kuvvet, muharebe, savas, akin, sefer, lejyon, suvariler, okcular, piyadeler, yeniceriler, saflar]
+  kelimeler: [birlik, birlikler, birlikleri, birliklerini, birliklerin, birliklerle, birliklere]
+  eylemler: [hucum, suvari_hucum, savas, savunma_hatti, toren_yuruyusu, carpisma]

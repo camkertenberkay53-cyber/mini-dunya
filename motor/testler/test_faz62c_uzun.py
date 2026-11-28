@@ -325,8 +325,9 @@ def kurgu_ortami(tmp_path, monkeypatch):
     durum = {"render": "TAMAM", "wav": {"S1": str(wav), "S2": str(wav)}}
     monkeypatch.setattr(render, "render", lambda py, cid: {"durum": durum["render"], "video": str(klip),
                                                             "olculen": {"kare": 1, "render_sn": 0.1}})
-    monkeypatch.setattr(seslendirme, "olc", lambda cs: {k: {"sure_sn": 1.0, "wav": v, "motor": "piper"}
-                                                         for k, v in durum["wav"].items()})
+    ses_sure = {z["cumle"]: z["ses_sure_sn"] for z in plan["ses"]["cizelge"]}   # Faz-65: kurgu planla aynı sesi ister
+    monkeypatch.setattr(seslendirme, "olc", lambda cs, **_: {k: {"sure_sn": ses_sure[k], "wav": v, "motor": "piper"}
+                                                              for k, v in durum["wav"].items()})
     return tmp_path, durum
 
 

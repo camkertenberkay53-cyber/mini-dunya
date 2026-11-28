@@ -150,17 +150,37 @@ def _ses_karisimi(plan: dict, senaryo: dict, sureler: dict, cikti: Path) -> dict
     return {"wav": str(wav), "tepe": round(min(tepe, 0.95), 3), "sure_sn": round(n / SR, 3)}
 
 
+ALTYAZI_DIKEY_ALT_PAY = 0.22   # Faz-65: Shorts altyazısı alt %20–24 bandında, YouTube arayüz öğelerinin hemen üstünde
+
+
+def _alt_banda_tasi(ass: Path, H: int, pay: float) -> None:
+    """kaos ass_yaz'ın 'Ana' stilini (o modül değiştirilmez) alta hizalı + MarginV = pay·H yapar."""
+    satirlar = ass.read_text(encoding="utf-8").split("\n")
+    for i, x in enumerate(satirlar):
+        if x.startswith("Style: Ana,"):
+            alan = x.split(",")
+            alan[18], alan[21] = "2", str(int(round(H * pay)))   # Alignment, MarginV (V4+ Styles biçimi)
+            satirlar[i] = ",".join(alan)
+    ass.write_text("\n".join(satirlar), encoding="utf-8")
+
+
 def _altyazi(plan: dict, senaryo: dict, cikti: Path) -> Path:
     from kaos.sinema import motor as sinema
     W, H = plan["cozunurluk"]
     metin = {c["id"]: c["metin"] for c in senaryo["cumleler"]}
-    satirlar = []
-    for z in plan["ses"]["cizelge"]:
-        satirlar += sinema.altyazi_parcala(metin[z["cumle"]], z["ses_bas_sn"], z["ses_sure_sn"])
-    ass = cikti / "altyazi.ass"
     # kanca cümlesi ilk çekim boyunca büyük harfle üstte de durur (ilk 2 saniyenin merak unsuru görsel olarak da taşınır)
     kanca = metin[senaryo["kanca"]]
-    sinema.ass_yaz(satirlar, str(ass), W, H, kanca=kanca, kanca_sure=plan["cekimler"][0]["sure_sn"] - 0.1)
+    kanca_sure = plan["cekimler"][0]["sure_sn"] - 0.1
+    satirlar = []
+    for z in plan["ses"]["cizelge"]:
+        p = sinema.altyazi_parcala(metin[z["cumle"]], z["ses_bas_sn"], z["ses_sure_sn"])
+        if z["cumle"] == senaryo["kanca"]:   # Faz-65: üst başlık görünürken aynı metin altyazı olarak tekrar basılmaz
+            p = [x for x in p if x[0] >= kanca_sure]
+        satirlar += p
+    ass = cikti / "altyazi.ass"
+    sinema.ass_yaz(satirlar, str(ass), W, H, kanca=kanca, kanca_sure=kanca_sure)
+    if H > W:   # Faz-65: dikey (Shorts) — ortadan alt güvenli banda
+        _alt_banda_tasi(ass, H, float(veri.kural("kurgu").get("altyazi_dikey_alt_pay", ALTYAZI_DIKEY_ALT_PAY)))
     # ekran yazıları (tarih, yer): çekim boyunca üstte, eski botun "Kanca" biçemiyle
     t = 0.0
     with open(ass, "a", encoding="utf-8") as f:
@@ -223,7 +243,11 @@ def uret(klasor: Path) -> dict:
     liste.write_text("".join(f"file '{k}'\n" for k in klipler))
     goruntu = cikti / "goruntu.mp4"
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(liste), "-c", "copy", str(goruntu)], check=True)
-    sureler = seslendirme.olc(senaryo["cumleler"])
+    # Faz-65: planın ölçtüğü motor (edge/piper) yedeksiz istenir; süreler plandan saparsa video kurulmaz
+    sureler = seslendirme.olc(senaryo["cumleler"], motor=plan["ses"].get("motor", "piper"), yedek=False)
+    uyusmaz = seslendirme.plana_uygun(sureler, plan["ses"]["cizelge"])
+    if uyusmaz:
+        return {"durum": "HATA", "neden": "seslendirme planla uyuşmuyor", "hatalar": uyusmaz}
     ses = _ses_karisimi(plan, senaryo, sureler, cikti)
     ass = _altyazi(plan, senaryo, cikti)
     from kaos import paths

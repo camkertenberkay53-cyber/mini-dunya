@@ -499,16 +499,20 @@ def _gorsel25d_render(plan: dict, c: dict, onbellek: bool) -> dict:
     import resource
     from motor.varlik import tarihi_gorsel
     g = c["gorsel25d"]
+    from motor.uretim import gorsel25d
+    yum = gorsel25d.yumusak_ayar()   # Faz-65: titreşimsiz, 1.0–1.08 zoom; plan dosyası değişmez, yalnız render girdisi
+    if yum["acik"]:
+        g = gorsel25d.yumusat(g, yum)
     try:
         yol, kayit = tarihi_gorsel.dogrulanmis_dosya(g["gorsel_id"])
     except tarihi_gorsel.LisansHatasi as e:
         return {"durum": "REDDEDİLDİ", "neden": "lisans kapısı", "hatalar": [str(e)], "cekim": c["id"]}
-    from motor.uretim import gorsel25d
     ayarlar = veri.kural("gorsel").get("gorsel25d", {})
     zincir = renk_profili_ffmpeg("gorsel25d")
     kod = ayarlar.get("kodlama", {"preset": "veryfast", "crf": 18})
     h = hashlib.sha256(json.dumps([c, plan["fps"], plan["cozunurluk"], zincir, kod, ayarlar.get("sinema_vinyet", 0.0),
-                                   kayit["sha256"]], sort_keys=True, ensure_ascii=False).encode())
+                                   kayit["sha256"]] + ([g, yum] if yum["acik"] else []), sort_keys=True,
+                                  ensure_ascii=False).encode())
     for b in sorted(SINEMA.glob("*.py")):
         h.update(b.read_bytes())
     if gorsel25d.kalite_acik():   # A2: kalite katmanı kodu + ayarları + görsel metadata'sı anahtara girer
@@ -535,6 +539,8 @@ def _gorsel25d_render(plan: dict, c: dict, onbellek: bool) -> dict:
         for k in ("ozne", "kirp"):   # kalite katmanı kırpmayı ve özneyi kendisi uyguladı
             s.pop(k, None)
         s.update(ek)
+    if yum["acik"]:   # Faz-65: sallanma/salınım kaynakları kapalı (kalite katmanının nefesi dahil)
+        s.update({"titresimsiz": True, "nefes_aktif": False, "sarsinti": 0.0, "yorunge": 0.0, "guc": 1.0})
     t1 = time.time()
     ham = klasor / "ham.mp4"
     sinema.sahne_render(s, str(ham), w, hgt, fps, log=lambda *_: None)
