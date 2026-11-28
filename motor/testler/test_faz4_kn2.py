@@ -160,7 +160,9 @@ def test_ardisik_ayni_hareket_ve_benzer_cekim_reddedilir(pilot):
     den = plan_denetim.denetle(plan)
     assert cesitlilik.denetle(plan, den)[0] == []
     p = copy.deepcopy(plan)
-    p["cekimler"][2]["meta"]["hareket"] = p["cekimler"][1]["meta"]["hareket"]
+    # Faz-64b: tekrar GERÇEK render kamerasıyla kurulur (yalnız meta etiketi değiştirmek artık sayılmaz)
+    p["cekimler"][2]["kamera"] = copy.deepcopy(p["cekimler"][1]["kamera"])
+    p["cekimler"][2]["meta"] = dict(p["cekimler"][2]["meta"], tur=p["cekimler"][1]["meta"]["tur"])
     assert any("ardışık" in h for h in cesitlilik.denetle(p, den)[0])
     # Benzer çekim: bir çekimin kaydı, ÖLÇÜLEN plan ölçeği aynı olan ve bitişik olmayan başka bir çekime kopyalanır
     # (Faz 5.3: sabit 5←2 indeksi planın kamera seçimine bağlıydı; ölçek farklıysa kopya gerçek bir tekrar değildir).
@@ -169,6 +171,7 @@ def test_ardisik_ayni_hareket_ve_benzer_cekim_reddedilir(pilot):
                 if olc[plan["cekimler"][i]["id"]] == olc[plan["cekimler"][j]["id"]])
     p = copy.deepcopy(plan)
     p["cekimler"][j]["meta"] = dict(p["cekimler"][i]["meta"])
+    p["cekimler"][j]["kamera"] = copy.deepcopy(p["cekimler"][i]["kamera"])    # Faz-64b: gerçek kamera kopyası
     h = cesitlilik.denetle(p, den)[0]
     assert any("benzer çekim" in x for x in h) or any("ardışık" in x for x in h)
 
@@ -177,9 +180,16 @@ def test_az_cesitlilik_reddedilir(pilot):
     _, plan = pilot
     den = plan_denetim.denetle(plan)
     p = copy.deepcopy(plan)
-    for c in p["cekimler"]:
-        c["meta"]["hareket"] = "sabit" if int(c["id"][1]) % 2 else "takip"
+    # Faz-64b: bütün 3D çekimlere yalnız İKİ gerçek kamera yapılandırması (render kamerası + türü) dağıtılır
+    a, b = copy.deepcopy(p["cekimler"][0]), copy.deepcopy(p["cekimler"][1])
+    for i, c in enumerate(p["cekimler"]):
+        k = a if i % 2 else b
+        c["kamera"], c["meta"] = copy.deepcopy(k["kamera"]), dict(c["meta"], tur=k["meta"]["tur"])
     assert any("farklı hareket" in h or "%" in h for h in cesitlilik.denetle(p, den)[0])
+    p = copy.deepcopy(plan)
+    for c in p["cekimler"]:                                                     # yalnız etiketle sahte tekrar
+        c["meta"]["hareket"] = "sabit" if int(c["id"][1]) % 2 else "takip"
+    assert cesitlilik.denetle(p, den) == cesitlilik.denetle(plan, den)          # yalnız etiket: sayılmaz
 
 
 # ---------------------------------------------------------------- sahne-anlatım uyumu

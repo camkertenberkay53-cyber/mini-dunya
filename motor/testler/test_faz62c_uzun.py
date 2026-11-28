@@ -686,9 +686,9 @@ def test_is_akisi_yukleme_yok():
 
 def test_cesitlilik_olceklemesi_yalniz_uzun():
     from motor.uretim import cesitlilik
-    meta = {"hareket": "dolly", "yukseklik": "goz", "aci_kovasi": "on", "dizilis": "a", "odak": "x", "arazi": "ova", "tur": "t"}
-    cekimler = [{"id": f"S{i}", "tur": "3d", "kamera": {"plan": "orta"}, "meta": dict(meta, hareket=f"h{i}", odak=f"o{i}")}
-                for i in range(2)]
+    # Faz-64b: çeşitlilik yalnız gerçek render kamerasından ölçülür → gerçek pilot 3D çekimleri (farklı hareketli iki)
+    pilot = json.loads((PILOT / "cekim_plani.json").read_text())
+    cekimler = [c for c in pilot["cekimler"] if c["id"] in ("S1", "S2")]
     den = {"cekimler": {}}
     hs, _ = cesitlilik.denetle({"cekimler": cekimler}, den)
     hu, _ = cesitlilik.denetle({"cekimler": cekimler, "format": "uzun"}, den)

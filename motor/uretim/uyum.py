@@ -37,6 +37,11 @@ def denetle(senaryo: dict, plan: dict, denetim: dict) -> tuple[list[str], list[d
                 ekle(f"{c['id']} ekran yazısı", c.get("metin_katmani") == n["metin_katmani"], n["metin_katmani"])
             if c["tur"] != "3d":
                 continue
+            if not isinstance(c.get("kamera"), dict) or not isinstance(c.get("ortam"), dict):
+                # Faz-64b: planlayıcı 3D çekimi kuramadı (oyuncu/kamera yok): kamera/ortam uyumu ölçülemez —
+                # varsayılanla doldurulmaz, kontrollü hata (KeyError değil); plan_denetim de 'kamera'/'ortam' yok der
+                ekle(f"{c['id']} 3D çekim kuruldu", False, "kamera/ortam yok (niyette oyuncuya dönüşen rol yok)")
+                continue
             olc = denetim["cekimler"].get(c["id"], {}).get("olcum", {})
             kad = olc.get("karakter", {})
             gorunen = [c["karakterler"][int(i)] for i, x in kad.items() if x["gorunur"]]
